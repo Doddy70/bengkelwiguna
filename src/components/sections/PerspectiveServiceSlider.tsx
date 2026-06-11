@@ -143,7 +143,7 @@ const PerspectiveServiceSlider: React.FC<PerspectiveServiceSliderProps> = ({ ser
         <div className="container mx-auto">
           <div className="sec-heading-wrap mb-12 text-center flex flex-col items-center justify-center">
             <h1 className="sec-title text-gray-900 mb-6 text-4xl lg:text-6xl font-black italic tracking-tighter">
-              Bengkel Mobil Depok <span className="text-brand-blue">Bengkel Wiguna</span>
+              Pasti Beres di <span className="text-brand-blue">Bengkel Wiguna</span>
             </h1>
             <div className="inline-block">
               <p className="text-brand-blue text-lg md:text-xl lg:text-2xl font-medium tracking-wide italic bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full border border-blue-200 shadow-lg shadow-blue-900/10" suppressHydrationWarning>
