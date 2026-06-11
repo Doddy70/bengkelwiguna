@@ -23,9 +23,9 @@ if (!process.env.NEXT_PUBLIC_WORDPRESS_URL && process.env.NODE_ENV === 'producti
 const WP_API_BASE = `${WORDPRESS_URL}/wp-json/wp/v2`
 const BW_API_BASE = `${WORDPRESS_URL}/wp-json/bw/v1`
 
-// Cache duration (60 seconds for list, 60 seconds for single during development)
-const REVALIDATE_LIST = 60
-const REVALIDATE_SINGLE = 60
+// Cache duration (Optimized: 1 hour default, purged on-demand via BW plugin)
+const REVALIDATE_LIST = 3600
+const REVALIDATE_SINGLE = 3600
 
 // ============================================
 // RESILIENCE CONFIGURATION
@@ -166,13 +166,14 @@ function isValidSlug(slug: string): boolean {
 async function apiFetch<T>(
   endpoint: string,
   base: 'wp' | 'bw' = 'wp',
-  revalidate: number = REVALIDATE_SINGLE
+  revalidate: number = REVALIDATE_SINGLE,
+  tags: string[] = []
 ): Promise<T | null> {
   const baseUrl = base === 'wp' ? WP_API_BASE : BW_API_BASE
   const url = `${baseUrl}${endpoint}`
 
   if (process.env.NODE_ENV === 'development') {
-    console.log(`[apiFetch] Calling: ${url}`)
+    console.log(`[apiFetch] Calling: ${url} (tags: ${tags.join(',')})`)
   }
 
   // Layer 1: Input Validation
@@ -207,7 +208,10 @@ async function apiFetch<T>(
       }
 
       const response = await fetch(url, {
-        next: { revalidate },
+        next: { 
+          revalidate,
+          tags: [...tags]
+        },
         signal: controller.signal,
         headers: {
           'Content-Type': 'application/json',
@@ -281,13 +285,16 @@ async function apiFetch<T>(
  */
 async function apiFetchPaginated<T>(
   endpoint: string,
-  revalidate: number = REVALIDATE_LIST
+  revalidate: number = REVALIDATE_LIST,
+  tags: string[] = []
 ): Promise<PaginatedPosts<T>> {
   // Layer 1: Input Validation
   if (!endpoint || typeof endpoint !== 'string') {
     console.error('[apiFetchPaginated] Invalid endpoint provided')
     return { posts: [], total: 0, totalPages: 0 }
   }
+
+  const url = `${WP_API_BASE}${endpoint}`
 
   // Layer 4: Circuit Breaker Check
   if (isCircuitBreakerOpen(endpoint)) {
@@ -314,8 +321,11 @@ async function apiFetchPaginated<T>(
         await delay(backoffDelay)
       }
 
-      const response = await fetch(`${WP_API_BASE}${endpoint}`, {
-        next: { revalidate },
+      const response = await fetch(url, {
+        next: { 
+          revalidate,
+          tags: [...tags]
+        },
         signal: controller.signal,
       })
 
@@ -383,16 +393,16 @@ async function apiFetchPaginated<T>(
 // ============================================
 
 export async function getAllServices(): Promise<Service[]> {
-  return (await apiFetch<Service[]>('/services-full?per_page=99', 'bw', REVALIDATE_LIST)) ?? []
+  return (await apiFetch<Service[]>('/services-full?per_page=99', 'bw', REVALIDATE_LIST, ['services', 'all-services'])) ?? []
 }
 
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
   if (!isValidSlug(slug)) return null
-  return apiFetch<Service>(`/services/${slug}`, 'bw')
+  return apiFetch<Service>(`/services/${slug}`, 'bw', REVALIDATE_SINGLE, ['services', `service-${slug}`])
 }
 
 export async function getServicesForSitemap(): Promise<Service[]> {
-  return (await apiFetch<Service[]>('/services-full?per_page=99', 'bw', REVALIDATE_LIST)) ?? []
+  return (await apiFetch<Service[]>('/services-full?per_page=99', 'bw', REVALIDATE_LIST, ['sitemap'])) ?? []
 }
 
 // ============================================
@@ -400,16 +410,16 @@ export async function getServicesForSitemap(): Promise<Service[]> {
 // ============================================
 
 export async function getAllPromosi(): Promise<Promosi[]> {
-  return (await apiFetch<Promosi[]>('/promosi-active', 'bw', REVALIDATE_LIST)) ?? []
+  return (await apiFetch<Promosi[]>('/promosi-active', 'bw', REVALIDATE_LIST, ['promosi', 'all-promosi'])) ?? []
 }
 
 export async function getPromosiBySlug(slug: string): Promise<Promosi | null> {
   if (!isValidSlug(slug)) return null
-  return apiFetch<Promosi>(`/promosi/${slug}`, 'bw')
+  return apiFetch<Promosi>(`/promosi/${slug}`, 'bw', REVALIDATE_SINGLE, ['promosi', `promosi-${slug}`])
 }
 
 export async function getPromosiForSitemap(): Promise<Promosi[]> {
-  return (await apiFetch<Promosi[]>('/promosi-active?per_page=99', 'bw', REVALIDATE_LIST)) ?? []
+  return (await apiFetch<Promosi[]>('/promosi-active?per_page=99', 'bw', REVALIDATE_LIST, ['sitemap'])) ?? []
 }
 
 // ============================================
@@ -417,12 +427,12 @@ export async function getPromosiForSitemap(): Promise<Promosi[]> {
 // ============================================
 
 export async function getAllPaketService(): Promise<PaketService[]> {
-  return (await apiFetch<PaketService[]>('/paket-service-full?per_page=99', 'bw', REVALIDATE_LIST)) ?? []
+  return (await apiFetch<PaketService[]>('/paket-service-full?per_page=99', 'bw', REVALIDATE_LIST, ['paket-service', 'all-paket'])) ?? []
 }
 
 export async function getPaketServiceBySlug(slug: string): Promise<PaketService | null> {
   if (!isValidSlug(slug)) return null
-  return apiFetch<PaketService>(`/paket-service/${slug}`, 'bw')
+  return apiFetch<PaketService>(`/paket-service/${slug}`, 'bw', REVALIDATE_SINGLE, ['paket-service', `paket-${slug}`])
 }
 
 // ============================================
@@ -435,7 +445,7 @@ export async function getPaketServiceBySlug(slug: string): Promise<PaketService 
  */
 export async function getHomepageSettings(): Promise<any> {
   return bwFetch('/homepage-settings', {
-    next: { revalidate: 60, tags: ['settings', 'homepage'] }
+    next: { revalidate: REVALIDATE_SINGLE, tags: ['settings', 'homepage'] }
   })
 }
 
@@ -462,7 +472,7 @@ export async function getHomepageFaqs(): Promise<FaqItem[]> {
  * Fetch khusus untuk BW custom endpoints (/bw/v1/)
  */
 export async function bwFetch<T>(endpoint: string, options: any = {}): Promise<T | null> {
-  return apiFetch<T>(endpoint, 'bw', options?.next?.revalidate ?? REVALIDATE_LIST)
+  return apiFetch<T>(endpoint, 'bw', options?.next?.revalidate ?? REVALIDATE_LIST, options?.next?.tags ?? [])
 }
 
 // ============================================
@@ -470,16 +480,16 @@ export async function bwFetch<T>(endpoint: string, options: any = {}): Promise<T
 // ============================================
 
 export async function getAllLayananSpesialis(): Promise<LayananSpesialis[]> {
-  return (await apiFetch<LayananSpesialis[]>('/layanan-spesialis-full', 'bw', REVALIDATE_LIST)) ?? []
+  return (await apiFetch<LayananSpesialis[]>('/layanan-spesialis-full', 'bw', REVALIDATE_LIST, ['layanan-spesialis', 'all-spesialis'])) ?? []
 }
 
 export async function getLayananSpesialisBySlug(slug: string): Promise<LayananSpesialis | null> {
   if (!isValidSlug(slug)) return null
-  return apiFetch<LayananSpesialis>(`/layanan-spesialis/${slug}`, 'bw')
+  return apiFetch<LayananSpesialis>(`/layanan-spesialis/${slug}`, 'bw', REVALIDATE_SINGLE, ['layanan-spesialis', `spesialis-${slug}`])
 }
 
 export async function getLayananSpesialisForSitemap(): Promise<LayananSpesialis[]> {
-  return (await apiFetch<LayananSpesialis[]>('/layanan-spesialis-full?per_page=99', 'bw', REVALIDATE_LIST)) ?? []
+  return (await apiFetch<LayananSpesialis[]>('/layanan-spesialis-full?per_page=99', 'bw', REVALIDATE_LIST, ['sitemap'])) ?? []
 }
 
 // ============================================
@@ -489,13 +499,15 @@ export async function getLayananSpesialisForSitemap(): Promise<LayananSpesialis[
 export async function getAllPosts(page = 1, perPage = 12): Promise<PaginatedPosts<WPPost>> {
   const safePage = Math.max(1, page)
   return apiFetchPaginated<WPPost>(
-    `/posts?page=${safePage}&per_page=${perPage}&_embed=1`
+    `/posts?page=${safePage}&per_page=${perPage}&_embed=1`,
+    REVALIDATE_LIST,
+    ['posts', 'all-posts']
   )
 }
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   if (!isValidSlug(slug)) return null
-  return apiFetch<WPPost[]>(`/posts?slug=${slug}&_embed=1`).then(data => data?.[0] ?? null)
+  return apiFetch<WPPost[]>(`/posts?slug=${slug}&_embed=1`, REVALIDATE_SINGLE, ['posts', `post-${slug}`]).then(data => data?.[0] ?? null)
 }
 
 export async function getAllPostsFlat(): Promise<Partial<WPPost>[]> {
@@ -504,7 +516,9 @@ export async function getAllPostsFlat(): Promise<Partial<WPPost>[]> {
 
   while (true) {
     const result = await apiFetchPaginated<WPPost>(
-      `/posts?page=${page}&per_page=100`
+      `/posts?page=${page}&per_page=100`,
+      REVALIDATE_LIST,
+      ['posts']
     )
 
     if (!result.posts.length) break
@@ -518,7 +532,7 @@ export async function getAllPostsFlat(): Promise<Partial<WPPost>[]> {
 }
 
 export async function getAllCategories(): Promise<any[]> {
-  return (await apiFetch<any[]>('/categories?per_page=100&hide_empty=true')) ?? []
+  return (await apiFetch<any[]>('/categories?per_page=100&hide_empty=true', 'wp', REVALIDATE_LIST, ['categories'])) ?? []
 }
 
 export async function getPostsByCategory(categoryId: number, excludeId?: number, perPage = 4): Promise<WPPost[]> {
@@ -526,7 +540,7 @@ export async function getPostsByCategory(categoryId: number, excludeId?: number,
   if (excludeId) {
     endpoint += `&exclude=${excludeId}`
   }
-  return (await apiFetch<WPPost[]>(endpoint)) ?? []
+  return (await apiFetch<WPPost[]>(endpoint, 'wp', REVALIDATE_LIST, ['posts', `category-${categoryId}`])) ?? []
 }
 
 // ============================================
@@ -535,7 +549,7 @@ export async function getPostsByCategory(categoryId: number, excludeId?: number,
 
 export async function getPageBySlug(slug: string): Promise<WPPost | null> {
   if (!isValidSlug(slug)) return null
-  return apiFetch<WPPost[]>(`/pages?slug=${slug}&_embed`).then(data => data?.[0] ?? null)
+  return apiFetch<WPPost[]>(`/pages?slug=${slug}&_embed`, REVALIDATE_SINGLE, ['pages', `page-${slug}`]).then(data => data?.[0] ?? null)
 }
 
 /**
@@ -612,7 +626,7 @@ export async function getNavigationMenu(menuLocation: string = 'main-menu'): Pro
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: REVALIDATE_LIST },
+      next: { revalidate: REVALIDATE_LIST, tags: ['menus', `menu-${menuLocation}`] },
       cache: 'no-store' // Ensure no caching in Next.js or browser
     })
 
