@@ -50,5 +50,31 @@
             "Servis Rem Depan & Belakang",
             "Cek Rack Steer & Tie Rod"
         ]
+    },
+    {
+        "id": "engine-care",
+        "label": "Engine Care",
+        "icon": "Zap",
+        "image": "/images/tabs/Engine-Flush-1.jpg.avif",
+        "heading": "Pembersihan Mesin Menyeluruh",
+        "description": "Optimalkan performa mesin dengan layanan Engine Flush dan Coolant Flush untuk menjaga suhu dan kebersihan komponen internal.",
+        "points": [
+            "Engine Flush & Carbon Clean",
+            "Coolant Flush System",
+            "Pembersihan Kerak Ruang Bakar"
+        ]
+    },
+    {
+        "id": "detailing",
+        "label": "Detailing",
+        "icon": "Sun",
+        "image": "/images/tabs/Wash-Detailing.jpg.avif",
+        "heading": "Wash & Auto Detailing",
+        "description": "Kembalikan kilau mobil Anda seperti baru dengan layanan cuci premium dan detailing menyeluruh.",
+        "points": [
+            "Premium Wash & Wax",
+            "Interior & Exterior Detailing",
+            "Engine Bay Cleaning"
+        ]
     }
 ]

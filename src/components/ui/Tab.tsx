@@ -39,8 +39,8 @@ export default function Tabs() {
                                 role="tab"
                                 aria-selected={activeTab === tab.id}
                                 className={`tab-btn lg:px-8 px-5 py-3 text-[17px] font-medium rounded-lg transition-colors duration-300 focus:outline-none ${activeTab === tab.id
-                                        ? "bg-gray-200 shadow-sm text-gray-900"
-                                        : "text-gray-800 hover:text-gray-900"
+                                        ? "bg-brand-blue shadow-lg text-white"
+                                        : "text-gray-800 hover:text-brand-blue"
                                     }`}
                             >
                                 {/* Desktop Label */}
@@ -48,7 +48,7 @@ export default function Tabs() {
 
                                 {/* Mobile Icon */}
                                 <span className="icon flex lg:hidden">
-                                    {Icon && <Icon className="text-orange-500" size={24} />}
+                                    {Icon && <Icon className={activeTab === tab.id ? "text-white" : "text-brand-blue"} size={24} />}
                                 </span>
                             </button>
                         );
@@ -64,11 +64,11 @@ export default function Tabs() {
                         <div
                             key={tab.id}
                             hidden={activeTab !== tab.id}
-                            className="flex flex-col lg:flex-row gap-6"
+                            className="flex flex-col lg:flex-row gap-6 animate-in fade-in duration-500"
                         >
                             {/* Image */}
                             <div className="lg:w-1/2">
-                                <div className="overflow-hidden rounded-2xl image-zoom-onhover">
+                                <div className="overflow-hidden rounded-2xl image-zoom-onhover shadow-xl">
                                     <Image
                                         src={tab.image}
                                         alt={tab.label}
@@ -83,25 +83,25 @@ export default function Tabs() {
                             {/* Content */}
                             <div className="lg:w-1/2 mt-3 lg:mt-0 lg:pl-4">
                                 <div className="xl:pl-12 lg:pl-6 w-full xl:max-w-[85%] flex flex-col">
-                                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-orange-500">
+                                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-brand-blue shadow-lg shadow-blue-900/20">
                                         {Icon && <Icon size={28} className="text-white" />}
                                     </div>
 
-                                    <h3 className="text-gray-900 font-semibold text-2xl lg:text-3xl mt-3">
+                                    <h3 className="text-gray-900 font-bold text-2xl lg:text-3xl mt-6 italic tracking-tight">
                                         {tab.heading}
                                     </h3>
-                                    <p className="text-gray-600 font-medium text-[17px] mb-3 mt-4">
+                                    <p className="text-gray-600 font-medium text-[17px] mb-3 mt-4 leading-relaxed">
                                         {tab.description}
                                     </p>
 
-                                    <div className="border-t border-gray-200 my-4"></div>
+                                    <div className="border-t border-gray-100 my-6"></div>
 
                                     {tab.points.map((point, idx) => (
-                                        <div key={idx} className="flex items-center gap-2 mb-2 mt-1">
-                                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-orange-500">
-                                                <FeatherIcons.Check size={16} className="text-white" />
+                                        <div key={idx} className="flex items-center gap-3 mb-3 mt-1">
+                                            <div className="flex items-center justify-center w-6 h-6 rounded-full bg-brand-gold">
+                                                <FeatherIcons.Check size={14} className="text-brand-blue font-bold" />
                                             </div>
-                                            <p className="text-gray-900 font-medium text-[17px]">
+                                            <p className="text-gray-900 font-semibold text-[17px]">
                                                 {point}
                                             </p>
                                         </div>
