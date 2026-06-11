@@ -7,7 +7,6 @@ import MenuBlock from './MenuBlock';
 import SearchBox from '../ui/Search';
 import Image from 'next/image';
 import Button from '../ui/Button';
-import { getNavigationMenu } from '@/lib/wordpress';
 import { NavMenuItem } from '@/types/wordpress';
 
 interface HeaderProps {
@@ -20,6 +19,7 @@ interface HeaderProps {
     theme?: 'header-dark' | 'header-light';
     logoWidth?: number;
     showSearch?: boolean;
+    menuItems?: NavMenuItem[];
 }
 
 const Header = ({
@@ -31,11 +31,11 @@ const Header = ({
     theme = "header-light",
     logo = "/images/logo/logo-square.avif",
     logoWidth = 60,
-    showSearch = true
+    showSearch = true,
+    menuItems = []
 }: HeaderProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-    const [menuItems, setMenuItems] = useState<NavMenuItem[]>([]);
 
     // Toggle mobile menu
     const toggleMobileMenu = () => setMobileOpen(!mobileOpen);
@@ -48,18 +48,6 @@ const Header = ({
 
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    // Fetch menu from WordPress
-    useEffect(() => {
-        const fetchMenu = async () => {
-            const menuData = await getNavigationMenu('main-menu');
-            if (menuData) {
-                const items = Array.isArray(menuData) ? menuData : menuData.items;
-                if (items) setMenuItems(items);
-            }
-        };
-        fetchMenu();
     }, []);
 
     // Keep consistent logo width - NO shrink on scroll
@@ -80,8 +68,8 @@ const Header = ({
                                 <Image
                                     src={logo}
                                     alt="Bengkel Wiguna Logo"
-                                    width={currentLogoWidth}
-                                    height={currentLogoWidth}
+                                    width={logoWidth}
+                                    height={logoWidth}
                                     priority
                                     className='h-auto w-full'
                                 />
@@ -144,4 +132,3 @@ const Header = ({
 };
 
 export default Header;
-

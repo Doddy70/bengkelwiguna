@@ -154,11 +154,15 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
     logo = "/images/logo/logo.png" , 
     btnColor = 'bg-blue-600', 
     btnlinkColor = "text-white",
-    dynamicItems
+    dynamicItems = []
 }) => {
     const [openSubMenu, setOpenSubMenu] = useState<Record<string, boolean>>({});
-    const [menuItems, setMenuItems] = useState<MenuItem[]>(defaultMenuItems);
     const [spesialis, setSpesialis] = useState<LayananSpesialis[]>([]);
+
+    // Initialize state from props to prevent flash
+    const [menuItems, setMenuItems] = useState<MenuItem[]>(() => 
+        dynamicItems.length > 0 ? transformWpMenu(dynamicItems) : defaultMenuItems
+    );
 
     useEffect(() => {
         const fetchSpesialis = async () => {
@@ -169,8 +173,11 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
     }, []);
 
     useEffect(() => {
+        // Update menu when dynamicItems (from parent) or spesialis (local) changes
         if (dynamicItems && dynamicItems.length > 0) {
             setMenuItems(transformWpMenu(dynamicItems, spesialis));
+        } else if (dynamicItems && dynamicItems.length === 0) {
+            setMenuItems(defaultMenuItems);
         }
     }, [dynamicItems, spesialis]);
 

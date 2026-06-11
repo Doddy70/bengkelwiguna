@@ -3,13 +3,18 @@
 import Header from '@/components/layout/Header';
 import FooterModern from '@/components/heroui/footer-modern';
 import CtaSection from '@/components/layout/CtaSection';
+import { getNavigationMenu } from '@/lib/wordpress';
 
 export const metadata = {
     title: 'Bengkel Wiguna | Layanan Perawatan Mobil Profesional',
     description: 'Solusi perbaikan dan perawatan mobil terpercaya di Depok. Booking sekarang untuk layanan profesional.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+    // Fetch menu on the server to prevent flash
+    const menuData = await getNavigationMenu('main-menu');
+    const menuItems = menuData?.items || [];
+
     return (
         <div className='font-dm-sans min-h-screen flex flex-col'>
             {/* Standard Header consistent with Homepage */}
@@ -17,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 position="fixed"
                 bgColor="bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm"
                 theme="header-light"
+                menuItems={menuItems}
             />
             
             <main className="flex-grow pt-[80px] lg:pt-[100px]">

@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "context-driven-development": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "skillPath": "plugins/conductor/skills/context-driven-development/SKILL.md",
+      "computedHash": "69b009af0a1495ca05b6ec7511b28d56816285b9df66a31f5c6f16436148f771"
+    },
+    "frontend-testing-best-practices": {
+      "source": "sergiodxa/agent-skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-testing-best-practices/SKILL.md",
+      "computedHash": "b021ecb24de186f86f2d4bd9ce981ba952946c3dec3a6f039819a99d2e178602"
+    },
+    "test-driven-development": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/test-driven-development/SKILL.md",
+      "computedHash": "126f1ebf6ccd414f42544f6e83d8cc5adb089e1108eaffb7c400701e37eecd9f"
+    }
+  }
+}

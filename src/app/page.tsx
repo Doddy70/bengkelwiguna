@@ -80,11 +80,12 @@ export async function generateMetadata() {
 
 export default async function HomePage() {
   // Parallel Fetching
-  const [services, promosi, blogResult, dynamicFaqs] = await Promise.all([
+  const [services, promosi, blogResult, dynamicFaqs, menuData] = await Promise.all([
     getAllServices(),
     getAllPromosi(),
     getAllPosts(1, 3), // Fetch 3 latest posts
-    getHomepageFaqs()
+    getHomepageFaqs(),
+    getNavigationMenu('main-menu')
   ])
 
   if (process.env.NODE_ENV === 'development') {
@@ -92,13 +93,15 @@ export default async function HomePage() {
         servicesCount: Array.isArray(services) ? services.length : 'null',
         promosiCount: Array.isArray(promosi) ? promosi.length : 'null',
         postsCount: blogResult?.posts?.length || 0,
-        faqsCount: dynamicFaqs?.length || 0
+        faqsCount: dynamicFaqs?.length || 0,
+        menuItems: menuData?.items?.length || 0
     })
   }
 
   const servicesList = Array.isArray(services) ? services : []
   const promosiList = Array.isArray(promosi) ? promosi.slice(0, 3) : []
   const postsList = blogResult?.posts || []
+  const menuItems = menuData?.items || []
 
   // Reconcile FAQ format (WP: {q, a} vs UI: {question, answer})
   const faqItems = dynamicFaqs.length > 0 
@@ -116,6 +119,7 @@ export default async function HomePage() {
         position="fixed"
         bgColor="bg-white/70 backdrop-blur-xl border-b border-white/30 shadow-lg"
         theme="header-light"
+        menuItems={menuItems}
       />
 
       {/* SECTION 1: HERO (Perspective Slider with Background Image) */}
