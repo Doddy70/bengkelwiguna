@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import { ChevronDown, X } from 'react-feather';
 import Image from 'next/image';
 import { NavMenuItem, LayananSpesialis } from '@/types/wordpress';
-import { getAllLayananSpesialis } from '@/lib/wordpress';
 
 interface SubMenuItem {
     title: string;
@@ -157,8 +156,6 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
     mobileOpen = false, 
     toggleMobileMenu, 
     logo = "/images/logo/logo.png" , 
-    btnColor = 'bg-blue-600', 
-    btnlinkColor = "text-white",
     dynamicItems = [],
     spesialisData = []
 }) => {

@@ -12,6 +12,8 @@ import {
   getAllPosts,
   getPageBySlug,
   getHomepageFaqs,
+  getNavigationMenu,
+  getAllLayananSpesialis,
   stripHtml,
   formatDate
 } from '@/lib/wordpress'

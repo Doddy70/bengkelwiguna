@@ -15,6 +15,7 @@ interface ButtonProps {
     textColor?: string;
     className?: string;
     type?: "button" | "submit" | "reset";
+    target?: string;
 }
 
 // ✅ Static Tailwind-safe hover map
@@ -45,7 +46,8 @@ const Button: FC<ButtonProps> = ({
     textColor = "text-white",
     className = "",
     type = "button",
-}) => {
+    target
+}: ButtonProps) => {
     const safeHoverClass = hoverBgColor || HOVER_MAP[bgColor] || "hover:opacity-90";
     const baseClasses = `inline-flex justify-between items-center group gap-2 ${padding} ${textColor} text-base font-medium rounded-lg ${bgColor} ${safeHoverClass} transition btn-transition duration-300 ${className}`;
 
@@ -56,6 +58,7 @@ const Button: FC<ButtonProps> = ({
                 className={baseClasses}
                 onClick={onClick as any}
                 data-aos="zoom-in"
+                target={target}
             >
                 <span>{label}</span>
                 {icon}

@@ -67,10 +67,19 @@ function PromoCard({ promo }: PromoCardProps) {
         </h3>
 
         {/* Validity Meta */}
-        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 mb-6">
+        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">
             <Calendar size={14} className="text-brand-blue" />
             <span>{promo.tanggal_selesai ? `Hingga ${promo.tanggal_selesai}` : 'Promo Terbatas'}</span>
         </div>
+
+        {/* Excerpt Fallback Logic */}
+        <p className="text-gray-600 dark:text-gray-400 font-medium text-sm leading-relaxed line-clamp-2 mb-6">
+            {(promo.excerpt?.rendered || promo.excerpt || promo.content?.rendered || promo.content || '')
+                .replace(/<[^>]*>/g, '')
+                .replace(/\s+/g, ' ')
+                .trim()
+                .slice(0, 100)}...
+        </p>
 
         {/* Pricing */}
         <div className="mb-8">

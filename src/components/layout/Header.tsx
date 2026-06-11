@@ -7,7 +7,7 @@ import MenuBlock from './MenuBlock';
 import SearchBox from '../ui/Search';
 import Image from 'next/image';
 import Button from '../ui/Button';
-import { NavMenuItem } from '@/types/wordpress';
+import { NavMenuItem, LayananSpesialis } from '@/types/wordpress';
 
 interface HeaderProps {
     btnColor?: string;

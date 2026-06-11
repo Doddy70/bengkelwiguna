@@ -1,6 +1,12 @@
 {
   "version": 1,
   "skills": {
+    "caveman": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/productivity/caveman/SKILL.md",
+      "computedHash": "934433479903febc585bf6deb5f0cebc63137e3f86b7babe0aab1ecb94d6d7a4"
+    },
     "context-driven-development": {
       "source": "wshobson/agents",
       "sourceType": "github",
@@ -12,6 +18,24 @@
       "sourceType": "github",
       "skillPath": "skills/frontend-testing-best-practices/SKILL.md",
       "computedHash": "b021ecb24de186f86f2d4bd9ce981ba952946c3dec3a6f039819a99d2e178602"
+    },
+    "improve-codebase-architecture": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "skillPath": "skills/engineering/improve-codebase-architecture/SKILL.md",
+      "computedHash": "ef32aea0a8fab9b365ff9e08a95f8d353e20ca21ea46ec2e73587c86dd341351"
+    },
+    "self-improving-agent": {
+      "source": "charon-fan/agent-playbook",
+      "sourceType": "github",
+      "skillPath": "skills/self-improving-agent/SKILL.md",
+      "computedHash": "da185ff6abea568b8ed6a2c3d6e7c028001d5fcc840875125a2f859e915dc877"
+    },
+    "systematic-debugging": {
+      "source": "obra/superpowers",
+      "sourceType": "github",
+      "skillPath": "skills/systematic-debugging/SKILL.md",
+      "computedHash": "7246fdd3a795fc3daff0af72044ca99bf836e4e6a46844742858786fdfb86488"
     },
     "test-driven-development": {
       "source": "obra/superpowers",

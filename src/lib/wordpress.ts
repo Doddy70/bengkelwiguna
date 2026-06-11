@@ -539,7 +539,7 @@ export async function getAllPosts(page = 1, perPage = 12): Promise<PaginatedPost
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   if (!isValidSlug(slug)) return null
-  return apiFetch<WPPost[]>(`/posts?slug=${slug}&_embed=1`, REVALIDATE_SINGLE, ['posts', `post-${slug}`]).then(data => data?.[0] ?? null)
+  return apiFetch<WPPost[]>(`/posts?slug=${slug}&_embed=1`, 'wp', REVALIDATE_SINGLE, ['posts', `post-${slug}`]).then(data => data?.[0] ?? null)
 }
 
 export async function getAllPostsFlat(): Promise<Partial<WPPost>[]> {
@@ -581,7 +581,7 @@ export async function getPostsByCategory(categoryId: number, excludeId?: number,
 
 export async function getPageBySlug(slug: string): Promise<WPPost | null> {
   if (!isValidSlug(slug)) return null
-  return apiFetch<WPPost[]>(`/pages?slug=${slug}&_embed`, REVALIDATE_SINGLE, ['pages', `page-${slug}`]).then(data => data?.[0] ?? null)
+  return apiFetch<WPPost[]>(`/pages?slug=${slug}&_embed`, 'wp', REVALIDATE_SINGLE, ['pages', `page-${slug}`]).then(data => data?.[0] ?? null)
 }
 
 /**

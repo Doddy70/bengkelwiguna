@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { Phone, Mail, Facebook, Linkedin, Twitch, Twitter, MapPin, GitBranch, Youtube } from "react-feather";
+import { Phone, Mail, Facebook, Linkedin, Twitch, MapPin, GitBranch, Youtube } from "react-feather";
+import { Icon } from "@iconify/react";
 type FooterLayout = "default" | "classic" | "modern" | "light" | "elegant";
 
 interface FooterProps {
@@ -269,7 +270,7 @@ export default function Footer({ layout = "default", foretextColor = "text-white
                                     </li>
                                     <li>
                                         <a href="https://www.tiktok.com/@bengkel.wiguna.depok" aria-label="tiktok" target="_blank" rel="noopener noreferrer" className={`${layout === "modern" ? "text-gray-700 hover:bg-gray-700 bg-gray-200" : "text-white hover:bg-gray-700 bg-gray-800"} rounded-full w-12 h-12 text-center flex items-center justify-center transition`}>
-                                            <Icon icon="fa6-brands:tiktok" size={24} />
+                                            <Icon icon="fa6-brands:tiktok" width={24} height={24} />
                                         </a>
                                     </li>
                                     <li>

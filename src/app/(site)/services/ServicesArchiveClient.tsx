@@ -17,8 +17,17 @@ interface ServiceCardProps {
 
 function ServiceCard({ service }: ServiceCardProps) {
   const title = typeof service.title === 'string' ? service.title : service.title?.rendered || ''
-  const excerpt = service.excerpt?.rendered || service.excerpt || ''
-  const cleanExcerpt = excerpt.replace(/<[^>]*>/g, '').slice(0, 120)
+  
+  // Robust excerpt logic: use excerpt if exists, otherwise slice content
+  const rawExcerpt = service.excerpt?.rendered || service.excerpt || ''
+  const rawContent = service.content?.rendered || service.content || ''
+  const sourceText = rawExcerpt || rawContent
+  
+  const cleanExcerpt = sourceText
+    .replace(/<[^>]*>/g, '') // Strip HTML
+    .replace(/\s+/g, ' ')    // Normalize whitespace
+    .trim()
+    .slice(0, 140)
 
   return (
     <div className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 flex flex-col h-full" data-aos="fade-up">
