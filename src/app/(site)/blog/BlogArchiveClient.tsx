@@ -204,14 +204,16 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
 
           {/* Bottom Grid + Sidebar Layout */}
           <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-12 relative">
-            <div className="lg:col-span-2 flex flex-col gap-8">
-              {bottomPosts.map((post) => (
-                <BlogCardTwo key={post.id} post={transformToBlogPost(post)} />
-              ))}
+            <div className="lg:col-span-2">
+                <div className="grid md:grid-cols-2 grid-cols-1 gap-8">
+                    {bottomPosts.map((post) => (
+                        <BlogCardOne key={post.id} post={transformToBlogPost(post)} />
+                    ))}
+                </div>
               
               {/* Empty State */}
               {filteredPosts.length === 0 && (
-                <div className="text-center py-24 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
+                <div className="text-center py-24 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200 w-full">
                   <span className="text-7xl mb-6 block">📭</span>
                   <h3 className="text-2xl font-black text-gray-900 mb-2 uppercase">Tidak ada artikel</h3>
                   <p className="text-gray-500 font-medium">Coba pilih kategori lain atau lihat semua artikel.</p>
