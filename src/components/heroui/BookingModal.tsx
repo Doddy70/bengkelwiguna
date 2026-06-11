@@ -126,6 +126,17 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   label="Pilihan Treatment / Servis" 
                   variant="bordered"
                   defaultSelectedKeys={serviceName ? [serviceName] : []}
+                  popoverProps={{
+                    classNames: {
+                      base: "before:bg-white dark:before:bg-gray-950",
+                      content: "p-1 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 shadow-xl",
+                    }
+                  }}
+                  listboxProps={{
+                    itemClasses: {
+                      base: "text-gray-900 dark:text-gray-100 data-[hover=true]:bg-gray-100 dark:data-[hover=true]:bg-gray-800",
+                    }
+                  }}
                 >
                   <SelectItem key="Cek Kaki Kaki" value="Cek Kaki Kaki">Cek Kaki Kaki</SelectItem>
                   <SelectItem key="Detoks Mesin" value="Detoks Mesin">Detoks Mesin</SelectItem>
@@ -154,6 +165,7 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   label="Tanggal Kedatangan"
                   type="date"
                   variant="bordered"
+                  placeholder=" " 
                   isRequired
                   isInvalid={hasError('tanggal')}
                   errorMessage={getError('tanggal')}
@@ -163,6 +175,17 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   name="jam-datang"
                   label="Jam Kedatangan" 
                   variant="bordered"
+                  popoverProps={{
+                    classNames: {
+                      base: "before:bg-white dark:before:bg-gray-950",
+                      content: "p-1 bg-white dark:bg-gray-950 border border-gray-200 dark:border-gray-800 shadow-xl",
+                    }
+                  }}
+                  listboxProps={{
+                    itemClasses: {
+                      base: "text-gray-900 dark:text-gray-100 data-[hover=true]:bg-gray-100 dark:data-[hover=true]:bg-gray-800",
+                    }
+                  }}
                 >
                   <SelectItem key="08.00 WIB" value="08.00 WIB">08.00 WIB</SelectItem>
                   <SelectItem key="09.00 WIB" value="09.00 WIB">09.00 WIB</SelectItem>
