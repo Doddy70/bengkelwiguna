@@ -89,57 +89,42 @@ const defaultMenuItems: MenuItem[] = [
  * Transforms WordPress NavMenuItems to component MenuItems
  */
 const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis[] = []): MenuItem[] => {
-    const backendUrl = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com';
-    
-    const cleanUrl = (url: string) => {
-        if (!url) return '/';
-        let cleaned = url;
-        if (cleaned.startsWith(backendUrl)) {
-            cleaned = cleaned.replace(backendUrl, '');
-        }
-        // Ensure it starts with / if it's a relative path and not an external link
-        if (cleaned && !cleaned.startsWith('/') && !cleaned.startsWith('http')) {
-            cleaned = '/' + cleaned;
-        }
-        return cleaned || '/';
-    };
-
     return wpItems.map(item => {
-        const isLayanan = item.title.toLowerCase() === 'layanan';
+        const title = item.name || item.label || "";
+        const href = item.path || "/";
+        const isLayanan = title.toLowerCase() === 'layanan';
 
-        if (isLayanan && item.child_items && item.child_items.length > 0) {
-            // Split child_items into two columns
-            const half = Math.ceil(item.child_items.length / 2);
-            const col1Items = item.child_items.slice(0, half);
-            const col2Items = item.child_items.slice(half);
+        if (isLayanan && item.children && item.children.length > 0) {
+            // Split children into columns
+            const half = Math.ceil(item.children.length / 2);
+            const col1Items = item.children.slice(0, half);
+            const col2Items = item.children.slice(half);
 
-            // Column 3 is from spesialisData
             const col3Items = spesialisData.map(s => ({
-                title: s.title,
+                title: s.title as string,
                 href: `/layanan-spesialis/${s.slug}`
             }));
 
-            // Add a "View All" fallback if needed
             if (col3Items.length === 0) {
                 col3Items.push({ title: 'Semua Spesialis', href: '/layanan-spesialis' });
             }
 
             return {
-                title: item.title,
-                href: cleanUrl(item.url),
+                title: title,
+                href: href,
                 megaMenu: [
                     {
                         title: 'Layanan Utama',
                         subMenu: col1Items.map(child => ({
-                            title: child.title,
-                            href: cleanUrl(child.url)
+                            title: child.name || child.label || "",
+                            href: child.path || "/"
                         }))
                     },
                     {
                         title: 'Perbaikan Khusus',
                         subMenu: col2Items.map(child => ({
-                            title: child.title,
-                            href: cleanUrl(child.url)
+                            title: child.name || child.label || "",
+                            href: child.path || "/"
                         }))
                     },
                     {
@@ -151,12 +136,12 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
         }
 
         return {
-            title: item.title,
-            href: cleanUrl(item.url),
-            subMenu: item.child_items && item.child_items.length > 0 
-                ? item.child_items.map(child => ({
-                    title: child.title,
-                    href: cleanUrl(child.url)
+            title: title,
+            href: href,
+            subMenu: item.children && item.children.length > 0 
+                ? item.children.map(child => ({
+                    title: child.name || child.label || "",
+                    href: child.path || "/"
                 }))
                 : undefined
         };
@@ -173,12 +158,21 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
 }) => {
     const [openSubMenu, setOpenSubMenu] = useState<Record<string, boolean>>({});
     const [menuItems, setMenuItems] = useState<MenuItem[]>(defaultMenuItems);
+    const [spesialis, setSpesialis] = useState<LayananSpesialis[]>([]);
+
+    useEffect(() => {
+        const fetchSpesialis = async () => {
+            const data = await getAllLayananSpesialis();
+            if (data) setSpesialis(data);
+        };
+        fetchSpesialis();
+    }, []);
 
     useEffect(() => {
         if (dynamicItems && dynamicItems.length > 0) {
-            setMenuItems(transformWpMenu(dynamicItems));
+            setMenuItems(transformWpMenu(dynamicItems, spesialis));
         }
-    }, [dynamicItems]);
+    }, [dynamicItems, spesialis]);
 
     const toggleSubMenu = (key: string) => {
         setOpenSubMenu((prev) => ({ ...prev, [key]: !prev[key] }));

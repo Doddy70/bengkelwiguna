@@ -106,18 +106,22 @@ export interface FaqItem {
 }
 
 export interface NavMenuItem {
-  ID: number;
-  title: string;
-  url: string;
-  slug?: string;
-  menu_item_parent: string;
+  id: number;
+  name: string;
+  path: string;
+  label: string;
+  title?: string;
+  target?: string;
+  classes?: string[];
+  menu_item_parent?: number;
   child_items?: NavMenuItem[];
+  children?: NavMenuItem[]; // Alternate field name sometimes used
 }
 
 export interface NavMenu {
-  term_id: number;
-  name: string;
-  slug: string;
+  source?: string;
+  location: string;
+  menu_name?: string;
   items: NavMenuItem[];
 }
 
