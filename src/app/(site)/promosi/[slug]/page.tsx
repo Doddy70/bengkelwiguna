@@ -7,7 +7,7 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Phone, Clock, Tag, CheckCircle, ArrowRight } from 'lucide-react'
+import { Phone, Clock, Tag, CheckCircle, ArrowRight, Calendar } from 'lucide-react'
 import Button from '@/components/ui/Button'
 import { getPromosiBySlug, getAllPromosi, stripHtml, formatDate } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'

@@ -2,7 +2,7 @@
 import './globals.css';
 import './perspective-slider.scss';
 import './hero-styles.scss';
-import { Sora, DM_Sans } from 'next/font/google';
+import { Sora, DM_Sans, Mona_Sans } from 'next/font/google';
 import ClientProviders from "@/components/providers/ClientProviders";
 import CookieConsent from "@/components/heroui/cookie-consent";
 import { Viewport } from "next";
@@ -20,6 +20,14 @@ const dmSans = DM_Sans({
   subsets: ['latin'],
   variable: '--font-dm-sans',
   display: 'swap', // Critical for CLS and LCP
+  preload: true,
+  weight: ['400', '500', '600', '700'],
+});
+
+const monaSans = Mona_Sans({
+  subsets: ['latin'],
+  variable: '--font-mona-sans',
+  display: 'swap',
   preload: true,
   weight: ['400', '500', '600', '700'],
 });
@@ -93,7 +101,7 @@ export const viewport: Viewport = {
 
 // ✅ CRITICAL CSS INLINE for above-the-fold content
 const criticalCSS = `
-  body { margin: 0; font-family: var(--font-dm-sans); }
+  body { margin: 0; font-family: var(--font-mona-sans), var(--font-dm-sans), sans-serif; }
   .hero-section { min-height: 100vh; }
   .header-wrapper { position: fixed; top: 0; width: 100%; z-index: 60; }
 `;
@@ -111,7 +119,7 @@ const speculationRules = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${sora.variable} ${dmSans.variable}`}>
+    <html lang="id" className={`${sora.variable} ${dmSans.variable} ${monaSans.variable}`}>
       <head>
         {/* ✅ CRITICAL: Preconnect to external origins */}
         <link rel="preconnect" href="https://backend.bengkelwiguna.com" crossOrigin="anonymous" />

@@ -5,10 +5,13 @@
 
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
+import { ArrowUpRight } from 'lucide-react'
 import PageTitle3 from '@/components/ui/PageTitle3'
 import Button from '@/components/ui/Button'
 import Accordion from '@/components/ui/Accordion'
 import JsonLd from '@/components/layout/JsonLd'
+import BookingTrigger from '@/components/heroui/BookingTrigger'
 
 import { getLayananSpesialisBySlug, getAllLayananSpesialis, stripHtml, parseFaqField } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
@@ -188,22 +191,26 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
                         </div>
 
                         <h3 className="text-2xl font-black uppercase tracking-tighter italic mb-2">
-                            Konsultasi
+                            Konsultasi & Booking
                         </h3>
                         <p className="text-white/80 font-medium mb-8 text-sm leading-relaxed">
-                            Butuh diagnosa spesifik? Chat Minna sekarang untuk bantuan teknis dan estimasi biaya transparan.
+                            Butuh diagnosa spesifik? Chat Minna sekarang untuk bantuan teknis, atau langsung booking jadwal Anda via form.
                         </p>
 
-                        <a
-                            href={`https://wa.me/6281717773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan spesialis "${title}" di Bengkel Wiguna.`)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
-                        >
-                            <span className="text-xl">💬</span>
-                            Tanya Teknisi
-                            <span className="group-hover:translate-x-1 transition-transform">→</span>
-                        </a>
+                        <div className="w-full flex flex-col gap-3">
+                            <a
+                                href={`https://wa.me/6281717773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan spesialis "${title}" di Bengkel Wiguna.`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
+                            >
+                                <span className="text-xl">💬</span>
+                                Tanya Teknisi
+                                <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            </a>
+                            
+                            <BookingTrigger serviceName={title} />
+                        </div>
                     </div>
                 </div>
 

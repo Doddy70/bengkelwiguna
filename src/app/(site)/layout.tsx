@@ -21,7 +21,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     const spesialisList = Array.isArray(spesialis) ? spesialis : [];
 
     return (
-        <div className='font-dm-sans min-h-screen flex flex-col'>
+        <div className='min-h-screen flex flex-col' style={{ fontFamily: 'var(--font-mona-sans), var(--font-dm-sans), sans-serif' }}>
             {/* Standard Header consistent with Homepage */}
             <Header
                 position="fixed"

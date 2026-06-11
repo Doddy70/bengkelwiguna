@@ -9,6 +9,7 @@ import PageTitle3 from '@/components/ui/PageTitle3'
 import Button from '@/components/ui/Button'
 import ServiceSidebar from '@/components/ui/ServiceSidebar'
 import { ArrowUpRight } from 'lucide-react'
+import BookingTrigger from '@/components/heroui/BookingTrigger'
 
 import { getServiceBySlug, getAllServices, stripHtml } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
@@ -42,6 +43,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   // Get related services
   const allServices = await getAllServices()
+  const title = service.title?.rendered || service.title
 
   return (
     <>
@@ -55,7 +57,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               Detail Layanan
             </span>
             <h1 className="text-4xl lg:text-7xl font-black text-gray-900 mb-6 italic tracking-tighter uppercase leading-[0.85]">
-              {service.title?.rendered || service.title}
+              {title}
             </h1>
             <p className="text-gray-800 font-bold text-lg lg:text-xl max-w-xl leading-relaxed">
               {stripHtml(service.excerpt?.rendered || service.excerpt || '').slice(0, 120)}...
@@ -145,19 +147,23 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                             Butuh Bantuan?
                         </h3>
                         <p className="text-white/80 font-medium mb-8 text-sm leading-relaxed">
-                            Ingin bertanya lebih lanjut seputar <span className="text-brand-gold">{service.title?.rendered || service.title}</span>? Chat Minna sekarang!
+                            Ingin bertanya lebih lanjut seputar <span className="text-brand-gold">{title}</span>? Chat Minna sekarang!
                         </p>
 
-                        <a
-                            href={`https://wa.me/6281717773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan "${service.title?.rendered || service.title}" di Bengkel Wiguna.`)}`}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
-                        >
-                            <span className="text-xl">💬</span>
-                            Konsultasi Sekarang
-                            <span className="group-hover:translate-x-1 transition-transform">→</span>
-                        </a>
+                        <div className="w-full flex flex-col gap-3">
+                            <a
+                                href={`https://wa.me/6281717773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan "${title}" di Bengkel Wiguna.`)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
+                            >
+                                <span className="text-xl">💬</span>
+                                Konsultasi Sekarang
+                                <span className="group-hover:translate-x-1 transition-transform">→</span>
+                            </a>
+
+                            <BookingTrigger serviceName={title} />
+                        </div>
                         
                         <p className="mt-4 text-[10px] text-white/40 uppercase font-bold tracking-widest">
                             Respon Cepat via WhatsApp

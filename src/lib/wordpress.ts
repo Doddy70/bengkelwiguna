@@ -647,9 +647,8 @@ export function parseFaqField(faqJson: string | null): FaqItem[] {
 export async function getNavigationMenu(menuLocation: string = 'main-menu'): Promise<NavMenu | null> {
   const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com'
 
-  // Use custom BW endpoint for better compatibility and dynamic control
-  // Backend provides /bw/v1/menu/{location}
-  const url = `${WORDPRESS_URL}/wp-json/bw/v1/menu/${menuLocation}`
+  // Use WP menus API for proper child_items structure
+  const url = `${WORDPRESS_URL}/wp-json/menus/v1/menus/${menuLocation}`
 
   try {
     const response = await fetch(url, {
@@ -660,16 +659,31 @@ export async function getNavigationMenu(menuLocation: string = 'main-menu'): Pro
     if (response.ok) {
       const data = await response.json();
 
-      // Normalize paths for all items and children
-      if (data && data.items) {
-        data.items = data.items.map((item: any) => ({
-          ...item,
-          path: normalizePath(item.path),
-          children: item.children ? item.children.map((c: any) => ({ ...c, path: normalizePath(c.path) })) : []
+      // Transform to match NavMenu interface
+      const menu: NavMenu = {
+        source: 'wp_navigation_api',
+        location: menuLocation,
+        menu_name: data.name,
+        items: (data.items || []).map((item: any) => ({
+          id: item.ID,
+          name: item.title,
+          label: item.title,
+          path: normalizePath(item.url),
+          target: item.target || '',
+          classes: item.classes || [],
+          menu_item_parent: item.menu_item_parent === '0' ? 0 : parseInt(item.menu_item_parent),
+          children: (item.child_items || []).map((child: any) => ({
+            id: child.ID,
+            name: child.title,
+            label: child.title,
+            path: normalizePath(child.url),
+            target: child.target || '',
+            classes: child.classes || [],
+          }))
         }))
       }
 
-      return data;
+      return menu;
     }
 
     console.error(`[WP Menu] Error fetching menu: ${response.status} from ${url}`)
