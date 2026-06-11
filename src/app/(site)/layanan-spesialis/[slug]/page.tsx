@@ -155,26 +155,64 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-gradient-to-br from-[#050b14] to-[#224297] rounded-xl p-8 sticky top-8 text-white shadow-xl">
-                <h3 className="text-2xl font-bold mb-4">Konsultasi Gratis</h3>
-                <p className="text-white/80 mb-6 leading-relaxed">
-                  Punya masalah dengan kendaraan Anda? Tim teknisi kami siap memberikan diagnosa gratis dan estimasi biaya yang transparan.
-                </p>
-                <a
-                  href="https://wa.me/6287817773888"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 w-full bg-[#ffd900] text-[#1a3567] font-bold py-4 px-6 rounded-lg text-center hover:bg-yellow-400 transition-all hover:scale-[1.02] active:scale-[0.98] mb-4 shadow-lg"
+              <div className="sticky top-32">
+                <div
+                    className="p-8 bg-gradient-to-br from-brand-blue to-[#050b14] text-white rounded-2xl shadow-xl shadow-blue-900/20 relative overflow-hidden mb-8"
+                    data-aos="zoom-in"
                 >
-                  <span className="text-xl">💬</span> Chat WhatsApp
-                </a>
-                <Button
-                  href="/lokasi"
-                  label="Kunjungi Bengkel"
-                  bgColor="bg-white/10"
-                  textColor="text-white"
-                  padding="py-4 px-6 w-full"
-                />
+                    {/* Background Decorative */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl" />
+                    
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                        <div className="mb-6 relative">
+                            <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20 p-2">
+                                <Image
+                                    src="/images/cs-support.avif"
+                                    alt="Customer Support Bengkel Wiguna"
+                                    width={80}
+                                    height={80}
+                                    className="w-full h-auto object-contain"
+                                />
+                            </div>
+                            <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-[#1a3567] rounded-full"></div>
+                        </div>
+
+                        <h3 className="text-2xl font-black uppercase tracking-tighter italic mb-2">
+                            Konsultasi Spesialis
+                        </h3>
+                        <p className="text-white/80 font-medium mb-8 text-sm leading-relaxed">
+                            Punya masalah spesifik dengan {title}? Tim teknisi kami siap memberikan diagnosa gratis dan estimasi transparan via WhatsApp.
+                        </p>
+
+                        <a
+                            href="https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
+                        >
+                            <span className="text-xl">💬</span>
+                            Chat Minna Sekarang
+                            <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </a>
+                        
+                        <p className="mt-4 text-[10px] text-white/40 uppercase font-bold tracking-widest">
+                            Solusi Cepat & Terpercaya
+                        </p>
+                    </div>
+                </div>
+
+                <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 italic uppercase tracking-tight">Kunjungi Bengkel</h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">Kami melayani pengerjaan langsung di workshop kami dengan peralatan modern.</p>
+                    <Button
+                        href="/lokasi"
+                        label="Lihat Lokasi & Rute"
+                        bgColor="bg-white/50 dark:bg-gray-700"
+                        textColor="text-brand-blue dark:text-white"
+                        padding="py-3 px-6 w-full"
+                        className="border border-brand-blue/10"
+                    />
+                </div>
               </div>
             </div>
           </div>

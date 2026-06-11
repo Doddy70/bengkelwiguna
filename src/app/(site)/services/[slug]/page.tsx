@@ -88,18 +88,64 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
             {/* Sidebar */}
             <div className="lg:col-span-1">
-              <div className="bg-gray-50 rounded-xl p-6 sticky top-8">
-                <h3 className="text-xl font-semibold mb-4">Hubungi Kami</h3>
-                <p className="text-gray-600 mb-4">
-                  Tertarik dengan layanan ini? Hubungi kami untuk konsultasi gratis.
-                </p>
-                <Button
-                  href="/lokasi"
-                  label="Lihat Lokasi"
-                  bgColor="bg-blue-600"
-                  textColor="text-white"
-                  padding="py-3 px-6 w-full"
-                />
+              <div className="sticky top-32">
+                <div
+                    className="p-8 bg-gradient-to-br from-brand-blue to-[#050b14] text-white rounded-2xl shadow-xl shadow-blue-900/20 relative overflow-hidden mb-8"
+                    data-aos="zoom-in"
+                >
+                    {/* Background Decorative */}
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl" />
+                    
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                        <div className="mb-6 relative">
+                            <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20 p-2">
+                                <Image
+                                    src="/images/cs-support.avif"
+                                    alt="Customer Support Bengkel Wiguna"
+                                    width={80}
+                                    height={80}
+                                    className="w-full h-auto object-contain"
+                                />
+                            </div>
+                            <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-[#1a3567] rounded-full"></div>
+                        </div>
+
+                        <h3 className="text-2xl font-black uppercase tracking-tighter italic mb-2">
+                            Butuh Bantuan?
+                        </h3>
+                        <p className="text-white/80 font-medium mb-8 text-sm leading-relaxed">
+                            Punya pertanyaan seputar servis {service.title?.rendered || service.title} atau ingin booking? Chat Minna sekarang untuk respon cepat!
+                        </p>
+
+                        <a
+                            href="https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
+                        >
+                            <span className="text-xl">💬</span>
+                            Chat Minna Sekarang
+                            <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </a>
+                        
+                        <p className="mt-4 text-[10px] text-white/40 uppercase font-bold tracking-widest">
+                            Respon Cepat via WhatsApp
+                        </p>
+                    </div>
+                </div>
+
+                <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 italic uppercase tracking-tight">Lokasi Bengkel</h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">Kunjungi bengkel kami di Sukmajaya, Depok untuk pengerjaan langsung.</p>
+                    <Button
+                        href="/lokasi"
+                        label="Cek Google Maps"
+                        bgColor="bg-white/50 dark:bg-gray-700"
+                        textColor="text-brand-blue dark:text-white"
+                        padding="py-3 px-6 w-full"
+                        className="border border-brand-blue/10"
+                    />
+                </div>
               </div>
             </div>
           </div>
