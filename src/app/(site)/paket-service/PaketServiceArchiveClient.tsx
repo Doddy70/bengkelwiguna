@@ -114,14 +114,12 @@ function PaketCard({ paket }: PaketCardProps) {
             )}
           </div>
           
-          <a
-            href={whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            href={`/paket-service/${paket.slug}`}
             className="w-12 h-12 rounded-full bg-brand-blue hover:bg-brand-gold text-white hover:text-brand-blue flex items-center justify-center transition-all duration-300 shadow-lg group/btn"
           >
             <ArrowUpRight size={20} className="group-hover/btn:scale-110 transition-transform" />
-          </a>
+          </Link>
         </div>
       </div>
     </div>

@@ -4,8 +4,11 @@
 
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 import PageTitle3 from '@/components/ui/PageTitle3'
 import Button from '@/components/ui/Button'
+import ServiceSidebar from '@/components/ui/ServiceSidebar'
+import { ArrowUpRight } from 'lucide-react'
 
 import { getServiceBySlug, getAllServices, stripHtml } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
@@ -39,9 +42,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
   // Get related services
   const allServices = await getAllServices()
-  const relatedServices = Array.isArray(allServices)
-    ? allServices.filter((s: any) => s.slug !== slug).slice(0, 3)
-    : []
 
   return (
     <>
@@ -104,48 +104,23 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 />
               </div>
               
-              {/* Optional: Gallery Grid if exists */}
-              {service.gallery && service.gallery.length > 0 && (
-                  <div className="mt-16 grid grid-cols-2 gap-4">
-                      {service.gallery.map((img: string, i: number) => (
-                          <div key={i} className="relative aspect-video rounded-2xl overflow-hidden border border-gray-100">
-                              <Image src={img} alt="Gallery" fill className="object-cover" />
-                          </div>
-                      ))}
-                  </div>
-              )}
+              {/* FAQ Section */}
+              <div className="mt-16 pt-10 border-t border-gray-100" data-aos="fade-up">
+                <h3 className="text-3xl font-black italic uppercase tracking-tighter text-gray-900 mb-8">FAQ Layanan</h3>
+                <div className="space-y-4">
+                    <div className="p-6 bg-gray-50 rounded-2xl">
+                        <h4 className="font-bold text-lg mb-2">Berapa lama pengerjaan layanan ini?</h4>
+                        <p className="text-gray-600">Pengerjaan bervariasi tergantung kondisi kendaraan, biasanya memakan waktu 1-3 jam.</p>
+                    </div>
+                </div>
+              </div>
             </div>
 
             {/* 2. Sidebar Column (col-span-1) */}
             <div className="lg:col-span-1">
               <div className="sticky top-32 flex flex-col gap-10">
+                <ServiceSidebar services={allServices} currentSlug={slug} />
                 
-                {/* A. Service Navigation List */}
-                <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm" data-aos="fade-left">
-                  <h4 className="text-xl font-black italic uppercase tracking-tighter text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-800 pb-4 flex items-center gap-2">
-                    <span className="w-2 h-8 bg-brand-blue rounded-full" />
-                    Semua Layanan
-                  </h4>
-                  <ul className="flex flex-col gap-3">
-                    {allServices.slice(0, 8).map((s: any) => (
-                      <li key={s.id}>
-                        <Link 
-                          href={`/services/${s.slug}`}
-                          className={`flex items-center justify-between p-4 rounded-xl font-bold text-sm transition-all duration-300 group ${s.slug === slug ? 'bg-brand-blue text-white shadow-lg shadow-blue-900/20' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-brand-gold hover:text-brand-blue border border-gray-100 dark:border-gray-700'}`}
-                        >
-                          {s.title?.rendered || s.title}
-                          <ArrowUpRight size={16} className={`transition-transform ${s.slug === slug ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5'}`} />
-                        </Link>
-                      </li>
-                    ))}
-                    <li className="mt-2 pt-4 border-t border-gray-100 dark:border-gray-800 text-center">
-                        <Link href="/services" className="text-xs font-black uppercase tracking-widest text-brand-blue dark:text-brand-gold hover:underline">
-                            Lihat Semua Layanan →
-                        </Link>
-                    </li>
-                  </ul>
-                </div>
-
                 {/* B. WhatsApp Support Card (Minna) */}
                 <div
                     className="p-8 bg-gradient-to-br from-brand-blue to-[#050b14] text-white rounded-3xl shadow-xl shadow-blue-900/20 relative overflow-hidden"
@@ -189,60 +164,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                         </p>
                     </div>
                 </div>
-
-                {/* C. Location Mini Card */}
-                <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm" data-aos="fade-up">
-                    <h4 className="text-lg font-black italic uppercase tracking-tighter text-gray-900 dark:text-white mb-4">Lokasi Bengkel</h4>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">Kunjungi workshop kami di Depok untuk pengerjaan langsung oleh teknisi ahli.</p>
-                    <Button
-                        href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
-                        label="Cek Google Maps"
-                        bgColor="bg-white/50 dark:bg-gray-800"
-                        textColor="text-brand-blue dark:text-white"
-                        padding="py-3 px-6 w-full"
-                        className="border border-brand-blue/10 dark:border-gray-700 rounded-xl"
-                        target="_blank"
-                    />
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Related Services */}
-      {relatedServices.length > 0 && (
-        <section className="lg:py-16 py-12 bg-gray-50">
-          <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
-            <PageTitle3
-              badgeText=""
-              title="Layanan Lainnya"
-              subtitle=""
-              widthClass="w-full mb-8"
-              alignment="start"
-              padding="pb-0"
-            />
-
-            <div className="grid lg:grid-cols-3 grid-cols-1 gap-6">
-              {relatedServices.map((item: any) => (
-                <div key={item.id} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <h4 className="text-lg font-semibold mb-2">{item.title?.rendered || item.title}</h4>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
-                    {stripHtml(item.excerpt?.rendered || item.excerpt || '')}
-                  </p>
-                  <Button
-                    href={`/services/${item.slug}`}
-                    label="Selengkapnya →"
-                    bgColor="bg-gray-900"
-                    textColor="text-white"
-                    padding="py-2 px-4"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </>
   )
 }

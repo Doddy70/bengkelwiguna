@@ -89,18 +89,21 @@ export default function FooterModern() {
       <div className="mx-auto max-w-screen-xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8">
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-8 md:pr-8">
-            <div className="flex items-center justify-start gap-3">
+            {/* Customer Support Widget */}
+            <Link 
+              href="https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)" 
+              isExternal
+              className="block hover:opacity-90 transition-opacity"
+            >
               <Image 
-                src="/images/logo/logo-panjang.png" 
-                alt="Bengkel Wiguna" 
-                width={280} 
-                height={60} 
+                src="/images/Custmer-Support-Widget.png.avif"
+                alt="Bengkel Wiguna Customer Support"
+                width={400}
+                height={133}
                 className="h-auto w-auto"
               />
-            </div>
-            <p className="text-small text-gray-500 dark:text-gray-400 max-w-xs">
-              Bengkel One Stop Service terpercaya di Depok. Menghadirkan perawatan mobil berkualitas dengan standar presisi tinggi sejak tahun 2010.
-            </p>
+            </Link>
+
             <div className="flex space-x-6">
               {footerNavigation.social.map((item) => (
                 <Link key={item.name} isExternal className="text-gray-400 hover:text-[#224297] hover:text-brand-blue transition-colors" href={item.href}>

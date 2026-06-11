@@ -3,156 +3,145 @@ import Link from "next/link";
 import PageTitle from "@/components/ui/PageTitle";
 
 export const metadata = {
-    title: 'Terms & Conditions - Exsit Next',
-    description: 'Read the terms and conditions for using Exsit Next template.',
+    title: 'Syarat & Ketentuan - Bengkel Wiguna',
+    description: 'Baca syarat dan ketentuan layanan Bengkel Wiguna.',
 };
 
 export default function TermsPage() {
-    return (
-        <>
-            {/* Page Title */}
-            <PageTitle
-                title="Terms & Conditions"
-                subtitle="Genuine feedback from those who know us best."
-            />
-            <section className="term-wrap font-dm lg:pb-24 pb-12">
-                <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pt-24 pt-20">
-                    <div className="lg:w-7/12 mx-auto">
-                        {/* 1. Introduction */}
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold">
-                            1. Introduction
-                        </h2>
-                        <ul className="list-disc py-6 pl-5 mb-3 text-gray-800 font-medium text-[17px] leading-7">
-                            <li>
-                                <strong>Personal Information:</strong> Name, email address, phone
-                                number, etc. (only if provided via forms)
-                            </li>
-                            <li>
-                                <strong>Usage Data:</strong> IP address, browser type, device
-                                information, and pages visited
-                            </li>
-                            <li>
-                                <strong>Cookies:</strong> We may use cookies to enhance your
-                                experience on our site
-                            </li>
-                        </ul>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">
-                            Fintech startups are rising to meet these expectations by offering
-                            tools that go beyond traditional banking. Going through this
-                            checklist will ensure that your content covers multiple angles,
-                            making it richer and more inclusive. This approach prevents your
-                            content from feeling one-dimensional or narrowly
-                            focused—allowing it to resonate with a broader and more diverse
-                            audience.
-                        </p>
+  const lastUpdated = "4 Agustus 2025"; 
 
-                        {/* 2. How We Use Your Information */}
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mt-10">
-                            2. How We Use Your Information
-                        </h2>
-                        <ul className="list-disc py-6 pl-5 mb-3 text-gray-800 font-medium text-[17px] leading-7">
-                            <li>To respond to inquiries or customer service requests</li>
-                            <li>To improve our website functionality and user experience</li>
-                            <li>To send occasional updates, if you opt-in to our mailing list</li>
-                        </ul>
+  const sections = [
+    {
+      id: 1,
+      title: "Layanan",
+      content: "Bengkel Wiguna menyediakan layanan perawatan dan perbaikan kendaraan roda empat, termasuk tetapi tidak terbatas pada:",
+      items: [
+        "Servis berkala",
+        "Ganti oli dan filter",
+        "Perbaikan mesin",
+        "Servis rem dan suspensi",
+        "Diagnosa kendaraan",
+        "Layanan kelistrikan mobil"
+      ],
+      footer: "Kami berkomitmen memberikan layanan terbaik, namun hasil layanan dapat bervariasi tergantung pada kondisi kendaraan dan riwayat perawatannya."
+    },
+    {
+      id: 2,
+      title: "Jadwal dan Reservasi",
+      content: "Pelanggan dapat datang langsung atau melakukan reservasi terlebih dahulu melalui:",
+      items: [
+        "Telepon: 0878-1777-3888",
+        "Email: info@bengkelwiguna.com"
+      ],
+      footer: "Waktu pengerjaan dan estimasi penyelesaian akan diinformasikan saat pengecekan kendaraan."
+    },
+    {
+      id: 3,
+      title: "Estimasi Biaya dan Pembayaran",
+      content: "Estimasi biaya akan diinformasikan sebelum pengerjaan dimulai. Harga dapat berubah apabila ditemukan kerusakan tambahan saat proses perbaikan, dan pelanggan akan dikonfirmasi terlebih dahulu.",
+      footer: "Pembayaran dapat dilakukan secara tunai, transfer, atau metode lain yang kami sediakan."
+    },
+    {
+      id: 4,
+      title: "Garansi Layanan",
+      content: "Kami memberikan garansi terbatas untuk beberapa jenis perbaikan dan penggantian suku cadang (maksimal 14 hari atau 500 km, mana yang tercapai lebih dulu). Garansi tidak berlaku jika kerusakan disebabkan oleh:",
+      items: [
+        "Kecelakaan",
+        "Pemakaian tidak wajar",
+        "Modifikasi kendaraan tanpa persetujuan kami",
+        "Perbaikan di tempat lain setelah layanan kami"
+      ]
+    },
+    {
+      id: 5,
+      title: "Suku Cadang",
+      content: "Kami hanya menggunakan suku cadang asli atau berkualitas setara. Permintaan penggunaan suku cadang dari pelanggan adalah tanggung jawab pelanggan sepenuhnya."
+    },
+    {
+      id: 6,
+      title: "Tanggung Jawab",
+      content: "Bengkel Wiguna tidak bertanggung jawab atas:",
+      items: [
+        "Kehilangan barang pribadi di dalam kendaraan",
+        "Kerusakan yang timbul akibat keterlambatan pengambilan kendaraan",
+        "Force majeure atau kejadian di luar kendali kami"
+      ]
+    },
+    {
+      id: 7,
+      title: "Data Pribadi",
+      content: "Data pribadi pelanggan yang dikumpulkan saat reservasi atau transaksi akan kami simpan dengan aman dan hanya digunakan untuk keperluan layanan Bengkel Wiguna."
+    },
+    {
+      id: 8,
+      title: "Perubahan Ketentuan",
+      content: "Bengkel Wiguna berhak mengubah syarat & ketentuan ini sewaktu-waktu tanpa pemberitahuan terlebih dahulu. Pelanggan disarankan untuk memeriksa halaman ini secara berkala."
+    }
+  ];
 
-                        {/* 3. Sharing Your Information */}
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4">
-                            3. Sharing Your Information
-                        </h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">
-                            We do not sell, trade, or share your personal information with third
-                            parties except as necessary to provide our services or comply with
-                            the law.
-                        </p>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7 mt-4">
-                            Third parties who perform services on your behalf (e.g., hosting,
-                            payment processing, analytics, email delivery, customer support).
-                            Clearly state that these providers are typically bound by
-                            confidentiality agreements and only use data for specified purposes.
-                        </p>
+  return (
+    <>
+      <PageTitle
+        title="Syarat & Ketentuan"
+        subtitle={`Terakhir diperbarui: ${lastUpdated}`}
+      />
+      <section className="term-wrap font-dm lg:pb-24 pb-12">
+        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pt-24 pt-20">
+          <div className="lg:w-8/12 mx-auto">
+            <p className="leading-relaxed mb-10 text-lg">
+              Selamat datang di <strong>Bengkel Wiguna</strong>. Harap baca Syarat dan Ketentuan berikut ini dengan seksama sebelum menggunakan layanan kami. 
+              Dengan menggunakan layanan atau mengunjungi lokasi kami di <em>Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423</em>, 
+              Anda setuju untuk mematuhi dan terikat oleh ketentuan yang tercantum di bawah ini.
+            </p>
 
-                        {/* 4. Third-Party Services */}
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4 mt-10">
-                            4. Third-Party Services
-                        </h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">
-                            We may use third-party tools like Google Analytics or email
-                            providers. These tools may collect data in accordance with their own
-                            privacy policies.
-                        </p>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7 mt-4">
-                            If you are involved in a merger, acquisition, or asset sale, explain
-                            that data may be transferred as part of that transaction. Explain
-                            that you may share data that cannot reasonably identify an
-                            individual for various purposes (e.g., research, marketing,
-                            reporting).
-                        </p>
+            <main className="space-y-10">
+              {sections.map((section) => (
+                <section key={section.id} className="scroll-mt-20">
+                  <h2 className="text-2xl font-bold mb-4 flex items-center text-gray-900">
+                    <span className="mr-3 text-brand-blue">{section.id}.</span>
+                    {section.title}
+                  </h2>
+                  <div className="pl-8 space-y-4">
+                    <p className="leading-relaxed text-gray-800 text-lg">{section.content}</p>
+                    {section.items && (
+                      <ul className="list-disc list-outside space-y-2 ml-4 text-gray-800 text-lg">
+                        {section.items.map((item, index) => (
+                          <li key={index} className="pl-2">{item}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {section.footer && (
+                      <p className="leading-relaxed italic text-gray-700 text-lg">{section.footer}</p>
+                    )}
+                  </div>
+                </section>
+              ))}
+            </main>
 
-                        {/* 5. Your Rights */}
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4 mt-10">
-                            5. Your Rights
-                        </h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">
-                            You can request to review, update, or delete your personal data by
-                            contacting us directly at{" "}
-                            <Link
-                                href="mailto:support@uitheme.net"
-                                className="text-blue-600 underline"
-                            >
-                                support@uitheme.net
-                            </Link>
-                            .
-                        </p>
-                        <ul className="list-disc py-6 pl-5 mb-3 text-gray-800 font-medium text-[17px] leading-7">
-                            <li>Complying with applicable laws, regulations, and legal processes.</li>
-                            <li>Responding to lawful requests from public authorities.</li>
-                            <li>Enforcing your terms and conditions.</li>
-                        </ul>
-
-                        {/* 6. Data Security */}
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4 mt-10">
-                            6. Data Security
-                        </h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">
-                            We implement reasonable security measures to protect your data from
-                            unauthorized access, disclosure, or misuse. Describe the security
-                            measures you implement to protect data (e.g., encryption, access
-                            controls, firewalls, secure servers, regular security audits,
-                            employee training).
-                        </p>
-
-                        {/* 7. Changes to This Policy */}
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4 mt-10">
-                            7. Changes to This Policy
-                        </h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">
-                            We reserve the right to update this Privacy Policy at any time. Any
-                            changes will be posted on this page with a new effective date.
-                            Acknowledge that no method of transmission over the internet or
-                            electronic storage is 100% secure, and while you strive to protect
-                            data, you cannot guarantee absolute security.
-                        </p>
-
-                        {/* 8. Contact Us */}
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4 mt-10">
-                            8. Contact Us
-                        </h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">
-                            If you have any questions about this Privacy Policy, please contact
-                            us at{" "}
-                            <Link
-                                href="mailto:support@uitheme.net"
-                                className="text-blue-600 underline"
-                            >
-                                support@uitheme.net
-                            </Link>
-                            . If you do collect data from minors (only where legally permissible
-                            and with parental consent), describe the process.
-                        </p>
-                    </div>
+            <footer className="mt-16 pt-8 border-t bg-gray-50 p-6 rounded-lg">
+                <h3 className="text-lg font-bold mb-4">Hubungi Kami</h3>
+                <div className="grid md:grid-cols-3 gap-6 text-sm">
+                <div>
+                    <p className="font-semibold mb-1">Alamat:</p>
+                    <p>Jl. Margonda No.268, Kemiri Muka, Beji, Depok 16423</p>
                 </div>
-            </section>
-        </>
-    );
+                <div>
+                    <p className="font-semibold mb-1">Email:</p>
+                    <a href="mailto:info@bengkelwiguna.com" className="text-blue-600 hover:underline">
+                    info@bengkelwiguna.com
+                    </a>
+                </div>
+                <div>
+                    <p className="font-semibold mb-1">Telepon:</p>
+                    <a href="tel:087817773888" className="text-blue-600 hover:underline">
+                    0878-1777-3888
+                    </a>
+                </div>
+                </div>
+            </footer>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }

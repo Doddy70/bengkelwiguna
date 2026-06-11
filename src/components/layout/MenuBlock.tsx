@@ -92,14 +92,13 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
     return wpItems.map(item => {
         const title = item.name || item.label || "";
         const href = item.path || "/";
-        const isLayanan = title.toLowerCase() === 'layanan';
+        const titleLower = title.toLowerCase();
+        
+        const isLayanan = titleLower.includes('layanan') || href.includes('/services');
+        const isPromosi = titleLower.includes('promo') || href.includes('/promosi');
 
-        if (isLayanan && item.children && item.children.length > 0) {
-            // Split children into columns
-            const half = Math.ceil(item.children.length / 2);
-            const col1Items = item.children.slice(0, half);
-            const col2Items = item.children.slice(half);
-
+        // FORCE Mega Menu for Layanan even if no children from API
+        if (isLayanan) {
             // Use passed in spesialisData for the 3rd column
             const col3Items = spesialisData.length > 0 
                 ? spesialisData.map(s => ({
@@ -119,21 +118,53 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
                 megaMenu: [
                     {
                         title: 'Layanan Utama',
-                        subMenu: col1Items.map(child => ({
-                            title: child.name || child.label || "",
-                            href: child.path || "/"
-                        }))
+                        subMenu: [
+                            { title: 'Semua Layanan', href: '/services' },
+                            { title: 'Tune Up', href: '/services/tune-up' },
+                            { title: 'Ganti Oli', href: '/services/ganti-oli' },
+                        ]
                     },
                     {
                         title: 'Perbaikan Khusus',
-                        subMenu: col2Items.map(child => ({
-                            title: child.name || child.label || "",
-                            href: child.path || "/"
-                        }))
+                        subMenu: [
+                            { title: 'Service AC', href: '/services/service-ac' },
+                            { title: 'Kaki-Kaki & Spooring', href: '/services/kaki-kaki' },
+                            { title: 'Rem & Kelistrikan', href: '/services/rem-kelistrikan' },
+                        ]
                     },
                     {
                         title: 'Layanan Spesialis',
                         subMenu: col3Items
+                    }
+                ]
+            };
+        }
+        
+        // FORCE Mega Menu for Promosi
+        if (isPromosi) {
+            return {
+                title: title,
+                href: href,
+                megaMenu: [
+                    {
+                        title: 'Daftar Promo',
+                        subMenu: [
+                            { title: 'Semua Promosi', href: '/promosi' },
+                            { title: 'Paket Service', href: '/paket-service' },
+                        ]
+                    },
+                    {
+                        title: 'Info Lainnya',
+                        subMenu: [
+                            { title: 'Syarat & Ketentuan', href: '/terms' },
+                            { title: 'Kontak Kami', href: '/contact' },
+                        ]
+                    },
+                    {
+                        title: 'Booking Sekarang',
+                        subMenu: [
+                            { title: 'Booking via WhatsApp', href: 'https://wa.me/6287817773888' },
+                        ]
                     }
                 ]
             };
@@ -168,15 +199,16 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
             ? transformWpMenu(dynamicItems, spesialisData) 
             : defaultMenuItems
     );
+// Keep menu in sync with dynamic props
+useEffect(() => {
+    console.log('[MenuBlock Debug] Dynamic Items:', dynamicItems);
+    if (dynamicItems && dynamicItems.length > 0) {
+        setMenuItems(transformWpMenu(dynamicItems, spesialisData));
+    } else {
+        setMenuItems(defaultMenuItems);
+    }
+}, [dynamicItems, spesialisData]);
 
-    useEffect(() => {
-        // Keep menu in sync with dynamic props
-        if (dynamicItems && dynamicItems.length > 0) {
-            setMenuItems(transformWpMenu(dynamicItems, spesialisData));
-        } else {
-            setMenuItems(defaultMenuItems);
-        }
-    }, [dynamicItems, spesialisData]);
 
     const toggleSubMenu = (key: string) => {
         setOpenSubMenu((prev) => ({ ...prev, [key]: !prev[key] }));
