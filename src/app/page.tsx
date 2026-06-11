@@ -80,12 +80,13 @@ export async function generateMetadata() {
 
 export default async function HomePage() {
   // Parallel Fetching
-  const [services, promosi, blogResult, dynamicFaqs, menuData] = await Promise.all([
+  const [services, promosi, blogResult, dynamicFaqs, menuData, spesialis] = await Promise.all([
     getAllServices(),
     getAllPromosi(),
     getAllPosts(1, 3), // Fetch 3 latest posts
     getHomepageFaqs(),
-    getNavigationMenu('main-menu')
+    getNavigationMenu('main-menu'),
+    getAllLayananSpesialis()
   ])
 
   if (process.env.NODE_ENV === 'development') {
@@ -94,7 +95,8 @@ export default async function HomePage() {
         promosiCount: Array.isArray(promosi) ? promosi.length : 'null',
         postsCount: blogResult?.posts?.length || 0,
         faqsCount: dynamicFaqs?.length || 0,
-        menuItems: menuData?.items?.length || 0
+        menuItems: menuData?.items?.length || 0,
+        spesialisCount: Array.isArray(spesialis) ? spesialis.length : 0
     })
   }
 
@@ -102,6 +104,7 @@ export default async function HomePage() {
   const promosiList = Array.isArray(promosi) ? promosi.slice(0, 3) : []
   const postsList = blogResult?.posts || []
   const menuItems = menuData?.items || []
+  const spesialisData = Array.isArray(spesialis) ? spesialis : []
 
   // Reconcile FAQ format (WP: {q, a} vs UI: {question, answer})
   const faqItems = dynamicFaqs.length > 0 
@@ -120,6 +123,7 @@ export default async function HomePage() {
         bgColor="bg-white/70 backdrop-blur-xl border-b border-white/30 shadow-lg"
         theme="header-light"
         menuItems={menuItems}
+        spesialisData={spesialisData}
       />
 
       {/* SECTION 1: HERO (Perspective Slider with Background Image) */}

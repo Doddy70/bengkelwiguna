@@ -20,6 +20,7 @@ interface HeaderProps {
     logoWidth?: number;
     showSearch?: boolean;
     menuItems?: NavMenuItem[];
+    spesialisData?: LayananSpesialis[];
 }
 
 const Header = ({
@@ -32,7 +33,8 @@ const Header = ({
     logo = "/images/logo/logo-square.avif",
     logoWidth = 60,
     showSearch = true,
-    menuItems = []
+    menuItems = [],
+    spesialisData = []
 }: HeaderProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -93,6 +95,7 @@ const Header = ({
                                 mobileOpen={mobileOpen}
                                 toggleMobileMenu={toggleMobileMenu}
                                 dynamicItems={menuItems}
+                                spesialisData={spesialisData}
                             />
                         </div>
 

@@ -32,6 +32,7 @@ interface MenuBlockProps {
     btnColor?: string;
     btnlinkColor?: string;
     dynamicItems?: NavMenuItem[];
+    spesialisData?: LayananSpesialis[];
 }
 
 const defaultMenuItems: MenuItem[] = [
@@ -100,14 +101,18 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
             const col1Items = item.children.slice(0, half);
             const col2Items = item.children.slice(half);
 
-            const col3Items = spesialisData.map(s => ({
-                title: s.title as string,
-                href: `/layanan-spesialis/${s.slug}`
-            }));
-
-            if (col3Items.length === 0) {
-                col3Items.push({ title: 'Semua Spesialis', href: '/layanan-spesialis' });
-            }
+            // Use passed in spesialisData for the 3rd column
+            const col3Items = spesialisData.length > 0 
+                ? spesialisData.map(s => ({
+                    title: typeof s.title === 'string' ? s.title : s.title?.rendered || "",
+                    href: `/layanan-spesialis/${s.slug}`
+                  }))
+                : [
+                    { title: 'Reset AC', href: '/layanan-spesialis/reset-ac' },
+                    { title: 'Cek Kaki-Kaki', href: '/layanan-spesialis/cek-kaki-kaki' },
+                    { title: 'Semi Overhaul', href: '/layanan-spesialis/semi-overhaul' },
+                    { title: 'Semua Spesialis', href: '/layanan-spesialis' }
+                  ];
 
             return {
                 title: title,
@@ -154,32 +159,27 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
     logo = "/images/logo/logo.png" , 
     btnColor = 'bg-blue-600', 
     btnlinkColor = "text-white",
-    dynamicItems = []
+    dynamicItems = [],
+    spesialisData = []
 }) => {
     const [openSubMenu, setOpenSubMenu] = useState<Record<string, boolean>>({});
-    const [spesialis, setSpesialis] = useState<LayananSpesialis[]>([]);
 
-    // Initialize state from props to prevent flash
+    // Initialize state from props to prevent flash/delay
+    // Use the passed in dynamicItems and spesialisData immediately
     const [menuItems, setMenuItems] = useState<MenuItem[]>(() => 
-        dynamicItems.length > 0 ? transformWpMenu(dynamicItems) : defaultMenuItems
+        dynamicItems.length > 0 
+            ? transformWpMenu(dynamicItems, spesialisData) 
+            : defaultMenuItems
     );
 
     useEffect(() => {
-        const fetchSpesialis = async () => {
-            const data = await getAllLayananSpesialis();
-            if (data) setSpesialis(data);
-        };
-        fetchSpesialis();
-    }, []);
-
-    useEffect(() => {
-        // Update menu when dynamicItems (from parent) or spesialis (local) changes
+        // Keep menu in sync with dynamic props
         if (dynamicItems && dynamicItems.length > 0) {
-            setMenuItems(transformWpMenu(dynamicItems, spesialis));
-        } else if (dynamicItems && dynamicItems.length === 0) {
+            setMenuItems(transformWpMenu(dynamicItems, spesialisData));
+        } else {
             setMenuItems(defaultMenuItems);
         }
-    }, [dynamicItems, spesialis]);
+    }, [dynamicItems, spesialisData]);
 
     const toggleSubMenu = (key: string) => {
         setOpenSubMenu((prev) => ({ ...prev, [key]: !prev[key] }));

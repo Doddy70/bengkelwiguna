@@ -38,9 +38,9 @@ const REQUEST_TIMEOUT = process.env.NODE_ENV === 'development' ? 10000 : 30000 /
 
 // Circuit Breaker Configuration
 const CIRCUIT_BREAKER_CONFIG = {
-  failureThreshold: 5, // Open after 5 consecutive failures
-  cooldown: 60000, // 60 seconds before half-open
-  halfOpenMaxRequests: 1,
+  failureThreshold: 10, // Relaxed: Open after 10 consecutive failures
+  cooldown: 30000, // 30 seconds before half-open
+  halfOpenMaxRequests: 2,
 }
 
 // Circuit Breaker State
@@ -96,6 +96,35 @@ function isCircuitBreakerOpen(endpoint: string): boolean {
     return false
   }
   return true
+}
+
+/**
+ * Normalizes a URL/path from WordPress to a relative Next.js path
+ * Essential for Next.js <Link> optimization to work (prevents full page refreshes)
+ */
+export function normalizePath(path: string): string {
+  if (!path) return '/'
+  
+  const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com'
+  
+  let normalized = path
+  
+  // 1. Remove absolute domain
+  if (normalized.startsWith(WORDPRESS_URL)) {
+    normalized = normalized.replace(WORDPRESS_URL, '')
+  }
+  
+  // 2. Ensure leading slash
+  if (!normalized.startsWith('/') && !normalized.startsWith('http')) {
+    normalized = '/' + normalized
+  }
+  
+  // 3. Remove trailing slash (standardizing for Next.js folder routes)
+  if (normalized !== '/' && normalized.endsWith('/')) {
+    normalized = normalized.slice(0, -1)
+  }
+  
+  return normalized || '/'
 }
 
 /**
@@ -615,15 +644,9 @@ export function parseFaqField(faqJson: string | null): FaqItem[] {
   }
 }
 
-/**
- * MENUS (WP Navigation)
- * Fetches navigation menu from WordPress.
- * @param menuLocation Menu slug (e.g., 'main-menu')
- * @returns Menu object or null
- */
 export async function getNavigationMenu(menuLocation: string = 'main-menu'): Promise<NavMenu | null> {
   const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com'
-  
+
   // Use custom BW endpoint for better compatibility and dynamic control
   // Backend provides /bw/v1/menu/{location}
   const url = `${WORDPRESS_URL}/wp-json/bw/v1/menu/${menuLocation}`
@@ -636,9 +659,19 @@ export async function getNavigationMenu(menuLocation: string = 'main-menu'): Pro
 
     if (response.ok) {
       const data = await response.json();
+
+      // Normalize paths for all items and children
+      if (data && data.items) {
+        data.items = data.items.map((item: any) => ({
+          ...item,
+          path: normalizePath(item.path),
+          children: item.children ? item.children.map((c: any) => ({ ...c, path: normalizePath(c.path) })) : []
+        }))
+      }
+
       return data;
     }
-    
+
     console.error(`[WP Menu] Error fetching menu: ${response.status} from ${url}`)
     return null
   } catch (error) {

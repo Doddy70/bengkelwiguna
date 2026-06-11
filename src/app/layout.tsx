@@ -104,7 +104,8 @@ const speculationRules = {
     { where: { href_matches: "/services/*" }, eagerness: "moderate" },
     { where: { href_matches: "/blog/*" }, eagerness: "moderate" },
     { where: { href_matches: "/promosi/*" }, eagerness: "moderate" },
-    { where: { href_matches: "/lokasi" }, eagerness: "conservative" },
+    { where: { href_matches: "/paket-service/*" }, eagerness: "moderate" },
+    { where: { href_matches: "/layanan-spesialis/*" }, eagerness: "moderate" },
   ]
 };
 
