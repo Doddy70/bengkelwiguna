@@ -56,7 +56,7 @@ export default function HomePage() {
         <>
 
             {/* Header */}
-            <Header theme="header-dark" logo="/images/logo/logo-darkgreen.png" btnColor="bg-lime-400" btnlinkColor="text-gray-900" />
+            <Header theme="header-dark"  btnColor="bg-lime-400" btnlinkColor="text-gray-900" />
             {/* Hero */}
             <HeroTwelve />
 
@@ -409,7 +409,7 @@ export default function HomePage() {
 
             {/* footer */}
             <div className="overflow-hidden">
-                <Footer layout="elegant" bgColor="bg-white" foreColor="bg-lime-400" borderColor="border-gray-100" foretextColor="text-gray-900" logo="/images/logo/logo-darkgreen.png" />
+                <FooterModern />
             </div>
 
         </>

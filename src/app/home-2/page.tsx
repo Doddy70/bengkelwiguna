@@ -26,7 +26,7 @@ export default function HomePage() {
     return (
         <>
             {/* Header */}
-            <Header theme="header-light" btnColor="bg-orange-500" logo="/images/logo/logo-warning.png" />
+            <Header theme="header-light" btnColor="bg-orange-500"  />
             {/* hero wrap */}
             <Herotwo />
             {/* brand wrap */}
@@ -259,7 +259,7 @@ export default function HomePage() {
                 </div>
             </section>
             {/* footer */}
-            <Footer foreColor="bg-orange-500" logo="/images/logo/logo-warning-white.png" />
+            <FooterModern />
         </>
     );
 }

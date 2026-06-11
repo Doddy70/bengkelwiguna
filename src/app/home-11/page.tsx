@@ -29,7 +29,7 @@ export default function HomePage() {
         <>
 
             {/* Header */}
-            <Header theme="header-dark" logo="/images/logo/logo-warning.png" btnColor="bg-orange-500" btnlinkColor="text-white" />
+            <Header theme="header-dark"  btnColor="bg-orange-500" btnlinkColor="text-white" />
             {/* Hero */}
             <HeroEleven />
             {/* service wrap */}
@@ -372,7 +372,7 @@ export default function HomePage() {
 
             {/* footer */}
             <div className="overflow-hidden">
-                <Footer layout="elegant" bgColor="bg-white" foreColor="bg-orange-500" borderColor="border-gray-100" logo="/images/logo/logo-warning.png" />
+                <FooterModern />
             </div>
 
         </>

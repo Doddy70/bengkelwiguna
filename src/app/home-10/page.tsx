@@ -26,7 +26,7 @@ export default function HomePage() {
         <>
 
             {/* Header */}
-            <Header theme="header-dark" logo="/images/logo/logo-cyan.png" btnColor="bg-cyan-500" btnlinkColor="text-white" />
+            <Header theme="header-dark"  btnColor="bg-cyan-500" btnlinkColor="text-white" />
             {/* Hero */}
             <HeroTen />
             {/* service wrap */}
@@ -390,7 +390,7 @@ export default function HomePage() {
                 </div>
             </div>
             {/* footer */}
-            <Footer layout="light" bgColor="bg-transparent" foreColor="bg-cyan-500" borderColor="border-gray-200" logo="/images/logo/logo-cyan.png" />
+            <FooterModern />
 
         </>
     );

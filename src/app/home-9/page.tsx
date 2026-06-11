@@ -24,7 +24,7 @@ export default function HomePage() {
     return (
         <>
             {/* Header */}
-            <Header theme="header-dark" position="relative" logo="/images/logo/logo.png" btnColor="bg-blue-800" btnlinkColor="text-white" />
+            <Header theme="header-dark" position="relative"  btnColor="bg-blue-800" btnlinkColor="text-white" />
             {/* Hero */}
             <HeroNine />
             {/* service wrap */}
@@ -373,7 +373,7 @@ export default function HomePage() {
             {/* footer */}
             <section className="footer-cyber-security relative">
                 <CtaSection firstButtonBg="bg-blue-800" sectionBg="" />
-                <Footer layout="light" bgColor="bg-transparent" foreColor="bg-blue-800" borderColor="border-gray-100" logo="/images/logo/logo.png" />
+                <FooterModern />
             </section>
         </>
     );

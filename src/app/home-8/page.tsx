@@ -73,7 +73,7 @@ export default function Home8Page() {
 
     return (
         <>  {/* Header */}
-            <Header theme='header-light' logo="/images/logo/logo-cyan.png" btnColor="bg-cyan-500" />
+            <Header theme='header-light'  btnColor="bg-cyan-500" />
             {/* Hero */}
             <Heroeight />
 
@@ -447,7 +447,7 @@ export default function Home8Page() {
             </section>
 
             {/* footer */}
-            <Footer bgColor="bg-gray-950" foreColor="bg-cyan-500" borderColor="border-gray-950" logo="/images/logo/logo-cyan-white.png" />
+            <FooterModern />
         </>
     );
 }

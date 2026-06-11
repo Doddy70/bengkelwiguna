@@ -22,7 +22,7 @@ export default function HomePage() {
     const bottomPosts = blogPosts.filter((post) => !post.featured).slice(0, 3);
     return (
         <>  {/* Header */}
-            <Header theme='header-light' logo="/images/logo/logo-yellow.png" btnColor="bg-yellow-400" />
+            <Header theme='header-light'  btnColor="bg-yellow-400" />
             {/* Hero */}
             <Heroseven />
             {/* feature wrap */}
@@ -318,7 +318,7 @@ export default function HomePage() {
             />
 
             {/* footer */}
-            <Footer bgColor="bg-orange-900" foreColor="bg-yellow-400" foretextColor="text-gray-900" borderColor="border-orange-900" iconbgColor="bg-yellow-400" logo="/images/logo/logo-yellow-white.png" />
+            <FooterModern />
         </>
     );
 }

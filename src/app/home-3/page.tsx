@@ -89,7 +89,7 @@ export default function HomePage() {
     return (
         <>
             {/* Header */}
-            <Header logo="/images/logo/logo-cyan.png" bgColor="bg-white" btnColor="bg-cyan-600" />
+            <Header  bgColor="bg-white" btnColor="bg-cyan-600" />
             {/* Hero */}
             <Herothree />
             {/* feature wrap */}
@@ -389,7 +389,7 @@ export default function HomePage() {
                 </div>
             </section>
             {/* footer */}
-            <Footer foreColor="bg-orange-500" layout="classic" logo="/images/logo/logo-cyan-white.png" />
+            <FooterModern />
         </>
     );
 }

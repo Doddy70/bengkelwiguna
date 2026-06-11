@@ -26,7 +26,7 @@ export default function HomePage() {
     return (
         <>
             {/* Header */}
-            <Header theme="header-light" logo="/images/logo/logo-darkgreen.png" btnColor="bg-lime-300" btnlinkColor="text-gray-900" />
+            <Header theme="header-light"  btnColor="bg-lime-300" btnlinkColor="text-gray-900" />
             {/* Hero */}
             <Herofour />
             {/* counter wrap */}
@@ -268,7 +268,7 @@ export default function HomePage() {
             </section>
             <NewsletterCTA layout="half" />
             {/* footer */}
-            <Footer foreColor="bg-orange-500" layout="classic" logo="/images/logo/logo-darkgreen-white.png" />
+            <FooterModern />
         </>
     );
 }

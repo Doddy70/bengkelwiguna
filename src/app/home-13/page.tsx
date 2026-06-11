@@ -30,7 +30,7 @@ export default function HomePage() {
         <>
 
             {/* Header */}
-            <Header theme="header-light" logo="/images/logo/logo.png" btnColor="bg-blue-800" btnlinkColor="text-white" />
+            <Header theme="header-light"  btnColor="bg-blue-800" btnlinkColor="text-white" />
 
             {/* Hero */}
             <HeroThirteen />

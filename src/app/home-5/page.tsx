@@ -43,7 +43,7 @@ export default function HomePage() {
     return (
         <>
             {/* Header */}
-            <Header logo="/images/logo/logo-green.png" btnColor="bg-green-800" bgColor="bg-white" />
+            <Header  btnColor="bg-green-800" bgColor="bg-white" />
             {/* Hero */}
             <Herofive />
             {/* feature wrap */}
@@ -290,8 +290,8 @@ export default function HomePage() {
             </section>
             <NewsletterCTA />
             {/* footer */}
-            <Footer layout="modern" bgColor="bg-white" borderColor="border-gray-200" logo="/images/logo/logo-green.png" />
-            {/* <Footer bgColor="bg-orange-900" foreColor="bg-yellow-400" foretextColor="text-gray-900" borderColor="border-orange-900" iconbgColor="bg-yellow-400"/> */}
+            <FooterModern />
+            {/* <FooterModern /> */}
         </>
     );
 }
