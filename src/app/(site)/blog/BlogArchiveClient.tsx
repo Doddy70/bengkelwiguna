@@ -91,18 +91,18 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   return (
     <>
       {/* Page Title Section */}
-      <div className="bg-light-blue-banner lg:pt-40 pt-28 pb-16">
+      <div className="bg-light-blue-banner lg:pt-48 pt-32 pb-20">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">
-              <span className="inline-block bg-[#ffd900] text-[#1a3567] px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6">
+              <span className="inline-block bg-[#ffd900] text-[#1a3567] px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest mb-6 shadow-xl shadow-yellow-900/10">
                 Edukasi Otomotif
               </span>
-              <h2 className="lg:text-6xl md:text-5xl text-4xl text-gray-900 font-black mb-4 tracking-tighter italic uppercase leading-[0.9]">
+              <h2 className="lg:text-7xl md:text-5xl text-4xl text-gray-900 font-black mb-4 tracking-tighter italic uppercase leading-[0.85]">
                 Tips & Artikel <br /><span className="text-brand-blue">Bengkel Wiguna</span>
               </h2>
-              <p className="text-xl mt-6 mb-0 text-gray-800 font-medium">
-                Wawasan seputar perawatan mobil dari tim teknisi ahli kami.
+              <p className="text-xl mt-6 mb-0 text-gray-800 font-bold max-w-xl">
+                Wawasan seputar perawatan mobil dan perkembangan dunia otomotif dari tim teknisi ahli kami.
               </p>
             </div>
 

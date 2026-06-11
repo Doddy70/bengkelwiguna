@@ -58,7 +58,7 @@ export default function TentangWigunaPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-light-blue-banner text-white relative overflow-hidden">
+      <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 text-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -68,24 +68,24 @@ export default function TentangWigunaPage() {
         </div>
 
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 relative z-10">
-          {/* Breadcrumb */}
-          <nav className="text-sm mb-8">
-            <Link href="/" className="hover:text-[#ffd900]">Home</Link>
-            <span className="mx-2">/</span>
-            <span className="text-[#ffd900]">Tentang Wiguna</span>
-          </nav>
-
           <div className="text-center max-w-4xl mx-auto">
-            <span className="inline-block bg-[#ffd900] text-[#1a3567] px-4 py-2 rounded-full text-sm font-bold mb-6">
-              🔧 ONE STOP SERVICE
+            <span className="inline-block bg-[#ffd900] text-[#1a3567] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-8 shadow-xl shadow-yellow-900/10">
+              🔧 One Stop Service
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              Selamat Datang di <span className="text-[#ffd900]">Bengkel Wiguna</span>
+            <h1 className="text-4xl lg:text-7xl font-black text-gray-900 mb-8 italic tracking-tighter uppercase leading-[0.85]">
+              Selamat Datang di <br /><span className="text-brand-blue">Bengkel Wiguna</span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 font-medium">
+            <p className="text-xl lg:text-3xl text-gray-800 font-bold mb-8 italic tracking-tight">
               &quot;No Drama, No Bongkar-Bongkar, No Tebak-Tebakan, No Tipu-Tipu&quot;
             </p>
           </div>
+
+          {/* Breadcrumb */}
+          <nav className="flex justify-center items-center gap-3 mt-12 text-sm font-bold uppercase tracking-widest text-gray-500">
+            <Link href="/" className="hover:text-brand-blue transition-colors">Home</Link>
+            <span className="text-brand-gold">/</span>
+            <span className="text-gray-900">Tentang Wiguna</span>
+          </nav>
         </div>
       </section>
 
