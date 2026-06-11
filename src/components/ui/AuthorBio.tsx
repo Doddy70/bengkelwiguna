@@ -3,7 +3,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { Facebook , Linkedin , Twitter , Twitch } from "react-feather";
+import { Facebook, Instagram, Youtube } from "react-feather";
+import { Icon } from "@iconify/react";
 
 interface AuthorBioProps {
     name?: string;
@@ -12,29 +13,28 @@ interface AuthorBioProps {
     avatar?: string;
     socials?: {
         facebook?: string;
-        linkedin?: string;
-        twitch?: string;
-        twitter?: string;
+        instagram?: string;
+        tiktok?: string;
+        youtube?: string;
     };
 }
 
 const AuthorBio: React.FC<AuthorBioProps> = ({
-    name = "Sophia Carter",
-    role = "Founder and CEO of Exsit",
-    bio = "Sophia Carter is a creative digital strategist passionate about branding, content marketing, and innovative storytelling to grow online presence.",
-    avatar = "/images/avatars/user.png",
+    name = "Bengkel Wiguna",
+    role = "One Stop Service Depok",
+    bio = "Bengkel Wiguna adalah pusat perawatan mobil terpercaya di Depok. Kami berkomitmen memberikan edukasi otomotif dan layanan terbaik untuk kendaraan Anda.",
+    avatar = "/images/logo/wb-logo.png",
     socials = {
-        facebook: "#",
-        linkedin: "#",
-        twitch: "#",
-        twitter: "#",
+        facebook: "https://web.facebook.com/Bengkel.WigunaBan",
+        instagram: "https://www.instagram.com/bengkelwiguna_depok/",
+        tiktok: "https://www.tiktok.com/@bengkel.wiguna.depok",
+        youtube: "https://www.youtube.com/@BengkelWiguna",
     },
 }) => {
     return (
         <div
-            className="lg:p-8 p-6 bg-[linear-gradient(to_bottom,#e9ecef,#f8f9fa)] dark:bg-none dark:bg-gray-800 border border-gray-200 rounded-lg aos-init aos-animate"
+            className="lg:p-8 p-6 bg-gradient-to-b from-gray-50 to-white dark:bg-none dark:bg-gray-800 border border-gray-100 rounded-2xl shadow-sm"
             data-aos="zoom-in"
-            data-aos-delay="0"
             data-aos-duration="300"
         >
             <div className="flex flex-col gap-3 p-3">
@@ -42,44 +42,44 @@ const AuthorBio: React.FC<AuthorBioProps> = ({
                     <Image
                         src={avatar}
                         alt={name}
-                        width={80}
-                        height={80}
-                        className="w-20 h-20 rounded-full"
+                        width={100}
+                        height={100}
+                        className="w-24 h-24 rounded-full border-4 border-white shadow-md bg-white"
                         loading="lazy"
                     />
                 </div>
-                <div className="text-center">
-                    <h3 className="text-gray-900 text-2xl font-semibold mb-0">{name}</h3>
-                    <p className="text-gray-700 font-medium text-base mb-0">{role}</p>
+                <div className="text-center mt-2">
+                    <h3 className="text-gray-900 text-2xl font-black uppercase tracking-tighter italic">{name}</h3>
+                    <p className="text-brand-blue font-bold text-sm uppercase tracking-widest">{role}</p>
                 </div>
-                <p className="text-gray-700 font-normal mt-1 text-center mb-4">{bio}</p>
+                <p className="text-gray-600 font-medium mt-3 text-center mb-6 leading-relaxed">{bio}</p>
                 <div className="flex justify-center text-center">
-                    <ul className="flex flex-row gap-3">
+                    <ul className="flex flex-row gap-4">
                         {socials.facebook && (
                             <li>
-                                <a href={socials.facebook} aria-label="facebook">
-                                    <Facebook size={24} />
+                                <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-blue-600 transition-colors" aria-label="facebook">
+                                    <Facebook size={20} />
                                 </a>
                             </li>
                         )}
-                        {socials.linkedin && (
+                        {socials.instagram && (
                             <li>
-                                <a href={socials.linkedin} aria-label="linkedin">
-                                    <Linkedin size={24} />
+                                <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-pink-600 transition-colors" aria-label="instagram">
+                                    <Instagram size={20} />
                                 </a>
                             </li>
                         )}
-                        {socials.twitch && (
+                        {socials.tiktok && (
                             <li>
-                                <a href={socials.twitch} aria-label="twitch">
-                                    <Twitch size={24} />
+                                <a href={socials.tiktok} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors" aria-label="tiktok">
+                                    <Icon icon="fa6-brands:tiktok" width={20} />
                                 </a>
                             </li>
                         )}
-                        {socials.twitter && (
+                        {socials.youtube && (
                             <li>
-                                <a href={socials.twitter} aria-label="twitter">
-                                    <Twitter size={24} />
+                                <a href={socials.youtube} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-red-600 transition-colors" aria-label="youtube">
+                                    <Youtube size={20} />
                                 </a>
                             </li>
                         )}
