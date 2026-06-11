@@ -84,7 +84,7 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
                 const columns: SubMenuItem[][] = [];
 
                 for (let i = 0; i < childCount; i += itemsPerColumn) {
-                    columns.push(children.slice(i, i + itemsPerColumn));
+                    const slice = children.slice(i, i + itemsPerColumn); columns.push(slice.map(c => ({ title: c.title || "", path: c.path || "", label: c.title, href: c.path })));
                 }
 
                 return {
@@ -94,8 +94,8 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
                         {
                             title: 'Menu',
                             subMenu: columns.flat().map(child => ({
-                                title: child.name || child.label || "",
-                                href: child.path || "/"
+                                title: child.title || "",
+                                href: child.href || "/"
                             }))
                         }
                     ]
@@ -108,8 +108,8 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
                     title: title,
                     href: href,
                     subMenu: children.map(child => ({
-                        title: child.name || child.label || "",
-                        href: child.path || "/"
+                        title: child.title || "",
+                        href: child.href || "/"
                     }))
                 };
             }
