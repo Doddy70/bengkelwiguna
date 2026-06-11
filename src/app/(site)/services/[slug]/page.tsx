@@ -48,15 +48,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       <JsonLd data={generateServiceSchema(service)} />
 
       {/* Page Title */}
-      <section className="pt-32 pb-12 bg-gray-50">
+      <section className="pt-32 pb-12 bg-light-blue-banner text-white">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <div className="text-center">
-            <span className="inline-block py-2 px-4 rounded-full bg-blue-100 text-blue-600 text-sm font-medium mb-4">
+            <span className="inline-block py-2 px-4 rounded-full bg-[#ffd900] text-[#1a3567] text-sm font-bold mb-4">
               LAYANAN
             </span>
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-4xl font-bold mb-4">
               {service.title?.rendered || service.title}
             </h1>
+            <p className="text-white/80">Solusi perawatan profesional untuk kendaraan Anda</p>
           </div>
         </div>
       </section>

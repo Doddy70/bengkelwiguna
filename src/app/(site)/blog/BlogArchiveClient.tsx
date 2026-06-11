@@ -80,7 +80,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   return (
     <>
       {/* Page Title Section */}
-      <div className="bg-gradient-to-br from-[#050b14] via-[#224297] to-[#224297] lg:pt-40 pt-28 pb-16">
+      <div className="bg-light-blue-banner lg:pt-40 pt-28 pb-16">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div className="max-w-2xl">

@@ -129,34 +129,21 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
   return (
     <>
       {/* Archive Header */}
-      <section className="relative bg-[#f4f7fa] text-[#1a3567] py-24 lg:py-32 overflow-hidden border-b border-gray-100">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/bg/home-9-hero.webp"
-            alt="Bengkel Wiguna Promo Background"
-            fill
-            className="object-cover opacity-60"
-            priority
-          />
-        </div>
-
-        <div className="relative z-10 max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
+      <section className="bg-light-blue-banner text-white pt-32 pb-12">
+        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <div className="flex flex-col items-center text-center font-dm xl:w-2/3 lg:w-2/3 mx-auto">
-            <h2 className="lg:text-7xl md:text-5xl text-4xl text-gray-900 font-bold lg:mb-4 tracking-tight drop-shadow-sm">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-4 tracking-tight">
               Promosi Spesial
-            </h2>
-            <p className="text-lg mt-2 mb-6 text-gray-800 font-medium">
+            </h1>
+            <p className="text-lg text-white/90 mb-8 font-medium">
               Dapatkan penawaran terbaik dan hemat hingga 20% untuk perawatan kendaraan Anda.
             </p>
             {/* Breadcrumb */}
-            <div className="flex justify-center text-center">
-              <nav className="flex items-center text-sm font-medium text-gray-600">
-                <Link href="/" className="hover:text-gray-900 transition-colors">Home</Link>
-                <span className="mx-3 text-gray-400">/</span>
-                <span className="text-gray-900">Promosi</span>
-              </nav>
-            </div>
+            <nav className="flex items-center text-sm font-medium">
+              <Link href="/" className="hover:text-[#ffd900] transition-colors">Home</Link>
+              <span className="mx-3 text-white/40">/</span>
+              <span className="text-[#ffd900]">Promosi</span>
+            </nav>
           </div>
         </div>
       </section>

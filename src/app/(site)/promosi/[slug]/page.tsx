@@ -65,7 +65,7 @@ export default async function SinglePromosiPage({ params }: { params: Promise<{ 
 
       <div className="shop-wrap lg:pt-24 pt-12">
         {/* Hero Banner */}
-        <div className="bg-gradient-to-r from-[#224297] to-[#050b14] text-white py-8">
+        <div className="bg-light-blue-banner text-white pt-32 pb-8">
           <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
             <nav className="text-sm mb-4">
               <Link href="/" className="hover:text-[#ffd900]">Home</Link>

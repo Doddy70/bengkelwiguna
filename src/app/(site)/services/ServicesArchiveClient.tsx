@@ -148,7 +148,7 @@ export default function ServicesArchiveClient({ services }: ServicesArchiveProps
   return (
     <>
       {/* Archive Header */}
-      <section className="bg-gradient-to-r from-[#224297] to-[#050b14] text-white py-12">
+      <section className="bg-light-blue-banner text-white pt-32 pb-12">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <div className="text-center mb-6">
             <h1 className="text-4xl lg:text-5xl font-bold mb-4">Layanan Service</h1>

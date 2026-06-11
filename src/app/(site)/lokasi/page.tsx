@@ -11,7 +11,7 @@ export default function LokasiPage() {
   return (
     <>
       {/* Page Title */}
-      <section className="pt-32 pb-12 bg-gradient-to-br from-[#050b14] to-[#224297] text-white">
+      <section className="pt-32 pb-12 bg-light-blue-banner text-white">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <PageTitle3
             badgeText="📍 DATANG Langsung"

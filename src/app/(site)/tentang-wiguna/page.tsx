@@ -51,7 +51,7 @@ export default function TentangWigunaPage() {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="pt-16 pb-16 bg-gradient-to-br from-[#050b14] via-[#224297] to-[#224297] text-white relative overflow-hidden">
+      <section className="pt-32 pb-16 bg-light-blue-banner text-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{

@@ -191,7 +191,7 @@ export default function PaketServiceArchiveClient({ pakets }: PaketServiceArchiv
   return (
     <>
       {/* Archive Header */}
-      <section className="bg-gradient-to-r from-[#050b14] to-[#224297] text-white py-12">
+      <section className="bg-light-blue-banner text-white pt-32 pb-12">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <div className="text-center mb-6">
             <div className="inline-flex items-center gap-2 bg-[#ffd900] text-[#1a3567] px-4 py-2 rounded-full text-sm font-bold mb-4">

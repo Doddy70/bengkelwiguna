@@ -14,6 +14,12 @@
 }
 
 
+.bg-light-blue-banner {
+    background-image: url('/images/bg-banner.webp'), radial-gradient(circle at 130% 110%, #fff 15%, #fff0 37%), linear-gradient(50deg, #fff0 70%, #fffc 93%), linear-gradient(100deg, #fff 12%, #fff0 30%), linear-gradient(#fff0 15%, #fff), radial-gradient(circle at -20% -40%, #fff0 8%, #add8e066 33%, #fff0 68%), repeating-linear-gradient(210deg, #fff0, #e6f7ff4d 18%, #fff0 50%), repeating-linear-gradient(195deg, #fff0 55%, #4da6ff4d 66%, #fff0 85%);
+    background-size: cover;
+    background-position: center;
+}
+
 .splide__pagination--ttb {
     bottom: 0;
     display: -ms-flexbox;
