@@ -98,8 +98,8 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // ✅ OUTPUT FILE TRACING ROOT (fix warning)
-  outputFileTracingRoot: "/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna/bengkel-wiguna-nextjs",
+  // ✅ OUTPUT FILE TRACING ROOT (removed hardcoded absolute path)
+  // outputFileTracingRoot: path.join(__dirname, "bengkel-wiguna-nextjs"),
 
   // ✅ WEBPACK OPTIMIZATION
   webpack: (config, { isServer }) => {

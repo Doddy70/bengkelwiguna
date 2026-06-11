@@ -40,3 +40,17 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 _archived_files/
+
+# agent & automation
+.agents/
+.firecrawl/
+.maestro/
+.maestro.md
+skills-lock.json
+
+# project management & docs
+conductor/
+GEMINI.md
+Prompt Onboard.md
+bw-headless-cms-latest.zip
+bengkel-wiguna-nextjs/

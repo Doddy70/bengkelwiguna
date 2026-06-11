@@ -95,7 +95,7 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
                             title: 'Menu',
                             subMenu: columns.flat().map(child => ({
                                 title: child.title || "",
-                                href: child.href || "/"
+                                href: (child as any).path || "/"
                             }))
                         }
                     ]
@@ -109,7 +109,7 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
                     href: href,
                     subMenu: children.map(child => ({
                         title: child.title || "",
-                        href: child.href || "/"
+                        href: (child as any).path || "/"
                     }))
                 };
             }
@@ -161,7 +161,7 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
             <ul className="hidden lg:flex gap-4 xl:gap-5 font-semibold text-[16px] xl:text-[17px] main-menu">
                 {menuItems.map((item, index) => {
                     const isMegaMenu = !!item.megaMenu;
-                    const allItems = isMegaMenu ? item.megaMenu.flatMap(section => section.subMenu) : [];
+                    const allItems = isMegaMenu ? (item.megaMenu?.flatMap(section => section.subMenu) || []) : [];
                     const itemKey = `menu-${index}`;
 
                     return (
@@ -401,7 +401,7 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
 
                         return (
                             <li key={index} className="border-b border-gray-100 last:border-0">
-                                <Link href={item.href} className="block py-4 px-2 text-gray-900 font-semibold">
+                                <Link href={item.href || "/"} className="block py-4 px-2 text-gray-900 font-semibold">
                                     {item.title}
                                 </Link>
                             </li>

@@ -38,6 +38,17 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
   const hasError = (fieldName: string) => state?.invalid_fields?.some(f => f.field === fieldName);
   const getError = (fieldName: string) => state?.invalid_fields?.find(f => f.field === fieldName)?.message;
 
+  // Siapkan daftar layanan default dari CF7
+  const defaultServices = [
+    'Cek Kaki Kaki', 'Detoks Mesin', 'Semi Overhaul', 'Coolant Changer / Flush',
+    'Penggantian Oli', 'Penggantian Ban', 'Spooring', 'Balancing', 'Rem & Rotasi Roda',
+    'Servis Berkala', 'Cars Detailing / Wash', 'Servis Lain nya'
+  ];
+
+  // Pastikan serviceName (jika ada) ditambahkan ke dalam dropdown jika tidak ada di default
+  const hasCustomService = serviceName && !defaultServices.includes(serviceName);
+  const allServices = hasCustomService ? [...defaultServices, serviceName] : defaultServices;
+
   return (
     <Modal 
       isOpen={isOpen} 
@@ -138,26 +149,11 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                     }
                   }}
                 >
-                  <SelectItem key="Cek Kaki Kaki" value="Cek Kaki Kaki">Cek Kaki Kaki</SelectItem>
-                  <SelectItem key="Detoks Mesin" value="Detoks Mesin">Detoks Mesin</SelectItem>
-                  <SelectItem key="Semi Overhaul" value="Semi Overhaul">Semi Overhaul</SelectItem>
-                  <SelectItem key="Coolant Changer / Flush" value="Coolant Changer / Flush">Coolant Changer / Flush</SelectItem>
-                  <SelectItem key="Penggantian Oli" value="Penggantian Oli">Penggantian Oli</SelectItem>
-                  <SelectItem key="Penggantian Ban" value="Penggantian Ban">Penggantian Ban</SelectItem>
-                  <SelectItem key="Spooring" value="Spooring">Spooring</SelectItem>
-                  <SelectItem key="Balancing" value="Balancing">Balancing</SelectItem>
-                  <SelectItem key="Rem & Rotasi Roda" value="Rem & Rotasi Roda">Rem & Rotasi Roda</SelectItem>
-                  <SelectItem key="Servis Berkala" value="Servis Berkala">Servis Berkala</SelectItem>
-                  <SelectItem key="Cars Detailing / Wash" value="Cars Detailing / Wash">Cars Detailing / Wash</SelectItem>
-                  <SelectItem key="Servis Lain nya" value="Servis Lain nya">Servis Lain nya</SelectItem>
-                  {/* Tambahkan fallback key jika nama layanannya unik/tidak ada di list */}
-                  {serviceName && ![
-                    'Cek Kaki Kaki', 'Detoks Mesin', 'Semi Overhaul', 'Coolant Changer / Flush',
-                    'Penggantian Oli', 'Penggantian Ban', 'Spooring', 'Balancing', 'Rem & Rotasi Roda',
-                    'Servis Berkala', 'Cars Detailing / Wash', 'Servis Lain nya'
-                  ].includes(serviceName) && (
-                    <SelectItem key={serviceName} value={serviceName}>{serviceName}</SelectItem>
-                  )}
+                  {allServices.map((service) => (
+                    <SelectItem key={service} value={service}>
+                      {service}
+                    </SelectItem>
+                  ))}
                 </Select>
 
                 <Input
