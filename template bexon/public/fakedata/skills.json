@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Figma",
+    "img": "/img/icons/figma.png",
+    "perchant": "92%"
+  },
+  {
+    "name": "Sketch",
+    "img": "/img/icons/sketch.png",
+    "perchant": "80%"
+  },
+  {
+    "name": "XD",
+    "img": "/img/icons/xd.png",
+    "perchant": "85%"
+  },
+  {
+    "name": "WordPress",
+    "img": "/img/icons/wp.png",
+    "perchant": "99%"
+  },
+  {
+    "name": "React",
+    "img": "/img/icons/react.png",
+    "perchant": "89%"
+  },
+  {
+    "name": "JavaScript",
+    "img": "/img/icons/js.png",
+    "perchant": "93%"
+  }
+]

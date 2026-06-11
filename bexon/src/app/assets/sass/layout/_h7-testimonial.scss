@@ -1,0 +1,115 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Testimonial CSS
+----------------------------------------*/
+.h7-testimonial {
+	background-color: var(--tj-color-theme-dark);
+	position: relative;
+	z-index: 1;
+	border-radius: 12px;
+	overflow: hidden;
+
+	.sec-heading.style-2 {
+		.sub-title {
+			background-color: var(--tj-color-grey-3);
+			color: var(--tj-color-grey-1);
+		}
+		.sec-title {
+			color: var(--tj-color-common-white);
+		}
+	}
+
+	&-wrapper {
+		position: relative;
+		z-index: 0;
+
+		.slider-next,
+		.slider-prev {
+			border-color: var(--tj-color-border-2);
+			background-color: var(--tj-color-theme-dark);
+			position: absolute;
+			top: calc(50% - 31.5px);
+			inset-inline-start: 0;
+			transform: translate(0, -50%);
+			z-index: 1;
+			opacity: 0;
+			@media #{$sm,$xs} {
+				top: calc(50% - 15px);
+				display: none;
+			}
+			i {
+				color: var(--tj-color-common-white);
+			}
+			&:hover {
+				background-color: var(--tj-color-theme-primary);
+			}
+		}
+		.slider-next {
+			inset-inline-start: 100%;
+			transform: translate(-100%, -50%);
+		}
+		&:hover {
+			.slider-next,
+			.slider-prev {
+				transform: translate(-50%, -50%);
+				opacity: 1;
+				@media #{$xl,$lg,$md} {
+					transform: translate(0, -50%);
+				}
+			}
+			.slider-next {
+				@media #{$xl,$lg,$md} {
+					transform: translate(-100%, -50%);
+				}
+			}
+		}
+		.bg-shape-3 {
+			bottom: 50%;
+			inset-inline-start: 50%;
+			transform: translate(-50%, 50%);
+		}
+		.testimonial-item {
+			border-color: transparent;
+			background-color: var(--tj-color-grey-3);
+			padding: 30px 30px 35px;
+
+			@media #{$xl, $lg,$md,$sm, $xs} {
+				padding: 30px 20px;
+			}
+			.testimonial-author {
+				padding-top: 0;
+				border-top: 0;
+				flex-direction: column;
+				.author-inner {
+					flex-direction: column;
+					text-align: center;
+				}
+				.author-img {
+					width: 100px;
+					height: 100px;
+				}
+				.title {
+					color: var(--tj-color-common-white);
+				}
+				.designation {
+					color: var(--tj-color-text-body-2);
+				}
+			}
+
+			.desc {
+				color: var(--tj-color-grey-1);
+				text-align: center;
+			}
+			.star-ratings {
+				margin: 0 auto;
+			}
+		}
+		.swiper-slide-active {
+			.testimonial-item {
+				background-color: var(--tj-color-grey-3);
+			}
+		}
+	}
+}
+/* !END: Testimonial CSS */

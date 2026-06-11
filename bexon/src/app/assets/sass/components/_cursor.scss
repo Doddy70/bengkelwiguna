@@ -1,0 +1,102 @@
+@use "../utilities" as *;
+
+/* cursor css  */
+.cb-cursor {
+	position: fixed;
+	top: 0;
+	inset-inline-start: 0;
+	z-index: 150;
+	contain: layout style size;
+	pointer-events: none;
+	will-change: transform;
+	transition: opacity 0.3s, color 0.4s;
+}
+
+.cb-cursor:before {
+	content: "";
+	position: absolute;
+	top: -24px;
+	inset-inline-start: -24px;
+	display: block;
+	width: 164px;
+	height: 52px;
+	transform: scale(0);
+	border-radius: 100px;
+	transition: transform 0.3s ease-in-out, opacity 0.1s;
+}
+
+.cb-cursor-text {
+	position: absolute;
+	top: -24px;
+	inset-inline-start: -24px;
+	width: 164px;
+	height: 52px;
+	line-height: 55px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transform: scale(0) rotate(10deg);
+	opacity: 0;
+	color: var(--tj-color-theme-dark);
+	text-align: center;
+	white-space: nowrap;
+	letter-spacing: 0;
+	font-weight: var(--tj-fw-sbold);
+	transition: opacity 0.4s, transform 0.3s;
+}
+
+@supports (mix-blend-mode: exclusion) {
+	.cb-cursor.-exclusion,
+	.cb-cursor.-opaque {
+		mix-blend-mode: exclusion;
+	}
+}
+
+@supports (mix-blend-mode: exclusion) {
+	.cb-cursor.-exclusion:before,
+	.cb-cursor.-opaque:before {
+		background: white;
+	}
+}
+
+.cb-cursor.-normal,
+.cb-cursor.-text {
+	mix-blend-mode: normal;
+}
+
+.cb-cursor.-normal:before,
+.cb-cursor.-text:before {
+	background: currentColor;
+}
+
+.cb-cursor.-inverse {
+	color: white;
+}
+
+.cb-cursor.-visible:before {
+	transform: scale(0.2);
+}
+
+.cb-cursor.-visible.-active:before {
+	transform: scale(0.23);
+	transition-duration: 0.2s;
+}
+
+.cb-cursor.-pointer:before {
+	transform: scale(0);
+}
+
+.cb-cursor.-text:before {
+	background: var(--tj-color-common-white);
+	transform: scale(1);
+}
+
+.cb-cursor.-text .cb-cursor-text {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.cb-cursor.-text.-active:before {
+	transform: scale(0.9);
+	transition-duration: 0.2s;
+}

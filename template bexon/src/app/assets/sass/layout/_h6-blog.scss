@@ -1,0 +1,19 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Blog CSS
+----------------------------------------*/
+.h6-blog {
+	&-wrapper {
+		.blog {
+			&-date {
+				top: auto;
+				inset-inline-start: auto;
+				bottom: 15px;
+				inset-inline-end: 15px;
+			}
+		}
+	}
+}
+
+/* !END: Blog CSS */

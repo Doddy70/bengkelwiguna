@@ -1,0 +1,92 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Service CSS
+----------------------------------------*/
+.h6-service {
+	&-item {
+		height: 100%;
+		padding: 15px;
+		padding-bottom: 0;
+		background-color: var(--tj-color-common-white);
+		border-radius: 10px;
+		overflow: hidden;
+		.h6-service {
+			&-thumb {
+				min-height: 280px;
+				overflow: hidden;
+				position: relative;
+				border-radius: 10px;
+
+				img {
+					width: 100%;
+					min-height: 280px;
+					height: 100%;
+					object-fit: cover;
+					transition: transform 500ms;
+					transform-origin: center center;
+					transform: perspective(0) rotateX(0) rotateY(0) scaleX(1) scaleY(1);
+					border-radius: 10px;
+				}
+				@media #{$xl, $lg, $xs} {
+					min-height: 240px;
+					img {
+						min-height: 240px;
+					}
+				}
+			}
+			&-content {
+				padding: 25px 15px 30px;
+				height: 100%;
+				.title {
+					font-weight: var(--tj-fw-sbold);
+					margin: 0;
+					width: calc(100% - 50px);
+
+					a {
+						&:hover {
+							color: var(--tj-color-theme-primary);
+						}
+					}
+				}
+				.desc {
+					margin-top: 15px;
+					&:last-of-type {
+						margin-bottom: 0;
+					}
+				}
+				.text-btn {
+					.btn-icon {
+						width: 40px;
+						height: 40px;
+					}
+				}
+			}
+			&-index {
+				color: var(--tj-color-text-body-3);
+				font-weight: var(--tj-fw-sbold);
+				margin-bottom: 16px;
+			}
+		}
+		&:hover {
+			.h6-service {
+				&-thumb {
+					img {
+						transform: perspective(400px) rotateX(0.09deg) rotateY(0) scale(1.1);
+					}
+				}
+			}
+		}
+	}
+
+	&-title {
+		&-wrap {
+			display: flex;
+			align-items: flex-end;
+			flex-wrap: wrap;
+			gap: 10px;
+		}
+	}
+}
+
+/* !END: Service CSS */

@@ -1,0 +1,144 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Team CSS
+----------------------------------------*/
+.h9-team {
+	&-item {
+		&-wrap {
+			.team-item {
+				display: flex;
+				flex-wrap: wrap;
+				justify-content: space-between;
+				padding: 40px 43px 50px 30px;
+				background-color: var(--tj-color-common-white);
+				border-radius: 8px;
+				position: relative;
+				&::before {
+					content: "";
+					position: absolute;
+					width: 100%;
+					height: 0;
+					background-color: var(--tj-color-theme-primary);
+					top: 50%;
+					inset-inline-start: 50%;
+					transform: translate(-50%, -50%);
+					opacity: 0;
+					visibility: hidden;
+					z-index: 1;
+					border-radius: 8px;
+					transition: all 0.3s ease-in-out 0s;
+				}
+				.team-content {
+					max-width: 300px;
+					width: 100%;
+					margin-top: 0;
+					z-index: 2;
+					@media #{$md,$sm,$xs} {
+						text-align: center;
+					}
+				}
+				.title {
+					width: 100%;
+					font-weight: var(--tj-fw-medium);
+					margin-bottom: 13px;
+					transition: none;
+					a {
+						&:hover {
+							color: var(--tj-color-common-white);
+							letter-spacing: 0;
+						}
+					}
+				}
+				.designation {
+					background-color: var(--tj-color-theme-bg);
+					color: var(--tj-color-theme-primary);
+					font-size: 16px;
+					padding: 4px 10px;
+					border-radius: 40px;
+				}
+				.text-btn {
+					justify-content: right;
+					gap: 0;
+					.btn-text {
+						color: var(--tj-color-common-white);
+						text-indent: -100px;
+					}
+					.btn-icon {
+						width: 48px;
+						height: 48px;
+					}
+				}
+				.team-img {
+					width: 238px;
+					height: 238px;
+					overflow: hidden;
+					border-radius: 100%;
+					margin-inline-start: auto;
+					margin-inline-end: auto;
+					background-color: var(--tj-color-grey-2);
+					position: absolute;
+					top: 50%;
+					inset-inline-start: 50%;
+					transform: translate(-50%, -50%) scale(0.8);
+					z-index: 2;
+					opacity: 0;
+					visibility: hidden;
+					transition: all 0.3s ease-in-out;
+					&::after,
+					&::before {
+						display: none;
+					}
+					@media #{$md,$sm,$xs} {
+						width: 200px;
+						height: 200px;
+						opacity: 1;
+						visibility: visible;
+						position: unset;
+						transform: none;
+						margin: 20px auto;
+					}
+				}
+				&:hover {
+					&::before {
+						height: 100%;
+						opacity: 1;
+						visibility: visible;
+					}
+					.title {
+						color: var(--tj-color-common-white);
+					}
+					.designation {
+						background-color: var(--tj-color-common-white);
+					}
+					.team-img {
+						opacity: 1;
+						visibility: visible;
+						transform: translate(-50%, -50%) scale(1);
+						@media #{$md,$sm,$xs} {
+							transform: none;
+						}
+					}
+					.text-btn {
+						gap: 10px;
+						.btn-text {
+							text-indent: 0;
+						}
+						.btn-icon {
+							background-color: var(--tj-color-common-white);
+							i {
+								color: var(--tj-color-theme-dark);
+							}
+						}
+					}
+				}
+				@media #{$md,$sm,$xs} {
+					flex-direction: column;
+					align-items: center;
+					padding: 30px 20px 35px 20px;
+				}
+			}
+		}
+	}
+}
+/* !END: Team CSS */

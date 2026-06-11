@@ -1,0 +1,156 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Pricing CSS
+----------------------------------------*/
+.h5-pricing {
+	.heading-wrap-content .sec-heading {
+		max-width: 360px;
+	}
+	.gap-30-30 .row {
+		@media #{$md} {
+			--bs-gutter-x: 20px;
+			--bs-gutter-y: 20px;
+		}
+	}
+	&-tab {
+		&-controllers {
+			flex-wrap: nowrap;
+			padding: 6px;
+			background-color: var(--tj-color-theme-dark);
+			border-radius: 100px;
+			gap: 0px;
+			@media #{$sm,$xs} {
+				padding: 5px;
+			}
+		}
+		&-controller {
+			background: transparent;
+			color: var(--tj-color-common-white);
+			font-size: 16px;
+			padding: 14px 20px;
+			border-radius: 50px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			white-space: nowrap;
+			font-weight: var(--tj-fw-sbold);
+			line-height: 1;
+			@media #{$sm,$xs} {
+				font-size: 14px;
+				padding: 10px 15px;
+			}
+			&.active {
+				background: var(--tj-color-theme-primary);
+				color: var(--tj-color-common-white);
+			}
+		}
+	}
+	&-box {
+		&-wrapper {
+			background-color: var(--tj-color-theme-dark);
+			border-radius: 12px;
+			padding: 30px;
+			position: relative;
+			z-index: 0;
+			@media #{$md,$xs} {
+				padding: 30px 15px;
+			}
+			.bg-shape-3 {
+				inset-inline-start: 20%;
+			}
+		}
+	}
+	&-box {
+		padding: 26px 30px 30px;
+		background-color: var(--tj-color-common-white);
+		border-radius: 12px;
+		@media #{$md,$xs} {
+			padding: 26px 15px 30px;
+		}
+		.list-items {
+			.h5-pricing-list-title {
+				margin-bottom: 24px;
+				font-weight: var(--tj-fw-sbold);
+			}
+		}
+		.package {
+			&-desc {
+				margin-bottom: 35px;
+			}
+			&-price {
+				margin: 35px 0;
+			}
+		}
+		.pricing-btn {
+			margin-bottom: 0;
+			margin-top: 28px;
+			a {
+				background-color: var(--tj-color-theme-primary);
+				border: 0;
+				.btn-text {
+					color: var(--tj-color-common-white);
+				}
+				&:hover {
+					.btn-icon {
+						background-color: var(--tj-color-theme-dark);
+					}
+				}
+			}
+		}
+		&.active,
+		&-basic {
+			.package {
+				&-name {
+					color: var(--tj-color-common-white);
+				}
+				&-desc {
+					p {
+						color: var(--tj-color-text-body-2);
+					}
+				}
+				&-price {
+					color: var(--tj-color-common-white);
+				}
+				&-currency {
+					color: var(--tj-color-common-white);
+				}
+				&-period {
+					color: var(--tj-color-text-body-2);
+				}
+			}
+			.pricing-btn {
+				a {
+					background-color: var(--tj-color-theme-primary);
+					border: 0;
+					.btn-text {
+						color: var(--tj-color-common-white);
+					}
+				}
+			}
+			.list-items {
+				.h5-pricing-list-title {
+					color: var(--tj-color-common-white);
+				}
+				ul {
+					li {
+						color: var(--tj-color-grey-1);
+						i {
+							color: var(--tj-color-theme-primary);
+						}
+					}
+				}
+			}
+		}
+
+		&-basic {
+			background-color: transparent;
+			border: 1px solid var(--tj-color-border-3);
+		}
+		&.active {
+			background-color: var(--tj-color-grey-3);
+		}
+	}
+}
+
+/* !END: Pricing CSS */

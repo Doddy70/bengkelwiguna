@@ -1,0 +1,225 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Heading CSS
+----------------------------------------*/
+.sec-heading {
+	margin-inline-start: auto;
+	margin-inline-end: auto;
+	width: 100%;
+	margin-bottom: 52px;
+	&-centered {
+		max-width: 550px;
+		text-align: center;
+	}
+	.sec-title {
+		margin-bottom: 0;
+		span {
+			color: var(--tj-color-theme-primary);
+		}
+	}
+	.sub-title {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		color: var(--tj-color-heading-primary);
+		font-size: 14px;
+		line-height: 1;
+		letter-spacing: 1.4px;
+		text-transform: uppercase;
+		font-weight: var(--tj-fw-bold);
+		border: 1px dashed var(--tj-color-border-1);
+		padding: 2px 10px;
+		margin-bottom: 20px;
+		border-radius: 4px;
+		i {
+			color: var(--tj-color-theme-primary);
+			font-size: 22px;
+			line-height: 1;
+			display: inline-flex;
+		}
+		@media #{$md, $sm, $xs} {
+			margin-bottom: 15px;
+		}
+		&.text-white {
+			border-color: rgba(255, 255, 255, 0.15);
+		}
+		@media #{$md, $sm, $xs} {
+			font-size: 13px;
+		}
+	}
+	&.style-2 {
+		.sec-title {
+			span {
+				color: var(--tj-color-text-body-2);
+			}
+		}
+		.sub-title {
+			color: var(--tj-color-theme-primary);
+			background-color: var(--tj-color-common-white);
+			border: 0;
+			padding: 7px 10px;
+		}
+	}
+	&.style-3 {
+		.sub-title {
+			color: var(--tj-color-theme-primary);
+			padding: 0;
+			border: 0;
+		}
+	}
+	&.style-4 {
+		.sub-title {
+			color: var(--tj-color-theme-primary);
+			border-color: var(--tj-color-theme-primary);
+		}
+	}
+	&.style-6 {
+		.sub-title {
+			padding: 4px 8px;
+		}
+	}
+	&.style-7 {
+		.sub-title {
+			color: var(--tj-color-heading-primary);
+			padding: 4px 8px;
+		}
+	}
+	&.style-8 {
+		.sub-title {
+			color: var(--tj-color-theme-primary);
+			border: 0;
+			padding: 0 0 0 12px;
+			position: relative;
+			&::before {
+				content: "";
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background-color: var(--tj-color-theme-primary);
+				position: absolute;
+				inset-inline-start: 0;
+				top: 6px;
+			}
+		}
+	}
+	@media #{$md, $sm, $xs} {
+		margin-bottom: 35px;
+	}
+}
+
+.heading-wrap-content {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 25px;
+	margin-bottom: 52px;
+	.sec-heading {
+		max-width: 500px;
+		margin-inline-start: 0;
+		margin-inline-end: 0;
+		margin-bottom: 0;
+	}
+	.desc {
+		max-width: 360px;
+		margin-bottom: 0;
+		@media #{$sm, $xs} {
+			max-width: 100%;
+		}
+	}
+	.btn-wrap {
+		max-width: 220px;
+	}
+	@media #{$md, $sm, $xs} {
+		margin-bottom: 35px;
+	}
+}
+.sec-heading-wrap {
+	.sub-title {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		color: var(--tj-color-heading-primary);
+		font-size: 14px;
+		line-height: 1;
+		letter-spacing: 1.4px;
+		text-transform: uppercase;
+		font-weight: var(--tj-fw-bold);
+		border: 1px dashed var(--tj-color-border-1);
+		padding: 2px 10px;
+		margin-bottom: 20px;
+		border-radius: 4px;
+		i {
+			color: var(--tj-color-theme-primary);
+			font-size: 22px;
+			line-height: 1;
+			display: inline-flex;
+		}
+		@media #{$md, $sm, $xs} {
+			margin-bottom: 15px;
+		}
+	}
+	&.style-3 {
+		.sub-title {
+			color: var(--tj-color-theme-primary);
+			padding: 0;
+			border: 0;
+		}
+	}
+}
+.content-wrap {
+	.sec-heading {
+		max-width: 550px;
+		margin: 0 0 20px 0;
+	}
+	.desc {
+		margin-bottom: 0;
+	}
+	.tj-primary-btn {
+		margin-top: 14px;
+		@media #{$md, $sm, $xs} {
+			margin-top: 5px;
+		}
+	}
+	@media #{$sm, $xs} {
+		.desc {
+			br {
+				display: none;
+			}
+		}
+	}
+}
+
+.title-anim {
+	> div {
+		overflow: hidden;
+	}
+}
+.tj-text-invert > div {
+	background-size: 200% 100%;
+	background-position-x: 100%;
+	color: transparent;
+	background-clip: text;
+	-webkit-background-clip: text;
+	background-image: linear-gradient(
+		to right,
+		var(--tj-color-heading-primary) 50%,
+		var(--tj-color-text-body-2) 50%
+	);
+}
+
+.line {
+	position: relative;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	--highlight-offset: 0%;
+	background-image: linear-gradient(
+		90deg,
+		var(--tj-color-heading-primary) var(--highlight-offset),
+		var(--tj-color-text-body-2) var(--highlight-offset)
+	);
+}
+
+/* !END: Heading CSS */

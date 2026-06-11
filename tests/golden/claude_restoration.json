@@ -1,0 +1,31 @@
+{
+  "test_id": "claude_restoration_bexon_basic",
+  "description": "Golden test to verify if the agent correctly restores a Bexon component using Bootstrap 5.3 and standard API fetches.",
+  "input": {
+    "command": "Restore the ServiceCard component in Bexon architecture. Make sure it has a brand blue background, gold text, 12px rounded corners, and uses standard wordpress wrappers.",
+    "files": {
+      "bexon/src/components/ServiceCard.js": "export default function ServiceCard() { return <div className=\"card bg-light\">Card</div>; }"
+    }
+  },
+  "expected_output": {
+    "files_modified": ["bexon/src/components/ServiceCard.js"],
+    "validation_passed": true,
+    "content_assertions": [
+      {
+        "file": "bexon/src/components/ServiceCard.js",
+        "must_contain": [
+          "wpFetch",
+          "bg-brand-blue",
+          "text-brand-gold",
+          "brand-rounded"
+        ],
+        "must_not_contain": [
+          "@nextui-org/react",
+          "rounded-xl",
+          "bg-light"
+        ]
+      }
+    ]
+  }
+}
+

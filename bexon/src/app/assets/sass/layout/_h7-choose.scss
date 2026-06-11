@@ -1,0 +1,60 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Choose CSS
+----------------------------------------*/
+.h7-choose {
+	&-item {
+		&-wrapper {
+			--bs-gutter-x: 0;
+			border-radius: 12px;
+			background-color: var(--tj-color-common-white);
+		}
+
+		&:not(:last-child) {
+			border-inline-end: 2px solid var(--tj-color-grey-1);
+			@media #{$md,$sm,$xs} {
+				border-inline-end: 0;
+				border-bottom: 2px solid var(--tj-color-grey-1);
+			}
+		}
+	}
+	&-box {
+		text-align: center;
+		border-radius: 0;
+		background-color: transparent;
+		.choose-content {
+			align-items: center;
+		}
+		.choose-icon {
+			background-color: var(--tj-color-grey-1);
+			transition: all 0.4s;
+			width: 100%;
+			margin-bottom: 30px;
+			i {
+				transition: all 0.4s;
+				color: var(--tj-color-theme-primary);
+			}
+		}
+		.text-btn {
+			&:hover {
+				.btn-icon {
+					background-color: var(--tj-color-theme-primary);
+				}
+			}
+		}
+		&:hover {
+			.choose-icon {
+				background-color: var(--tj-color-theme-primary);
+				i {
+					color: var(--tj-color-common-white);
+				}
+			}
+			.btn-text {
+				color: var(--tj-color-heading-primary);
+			}
+		}
+	}
+}
+
+/* !END: Choose CSS */

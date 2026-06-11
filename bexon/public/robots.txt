@@ -1,0 +1,16 @@
+# robots.txt - Bengkel Wiguna
+
+User-agent: *
+Allow: /
+
+# Block WordPress paths
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/
+
+# Block unnecessary paths
+Disallow: /?s=*
+Disallow: /search/
+
+Sitemap: https://bengkelwiguna.com/sitemap.xml

@@ -1,0 +1,151 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Marquee CSS
+----------------------------------------*/
+.h5-maquee {
+	position: relative;
+	overflow: hidden;
+	padding: 70px 0;
+	@media #{$lg} {
+		padding: 40px 0;
+	}
+	@media #{$md,$sm,$xs} {
+		padding: 30px 0;
+	}
+	// @media #{$sm} {
+	// 	padding: 20px 0;
+	// }
+	// @media #{$xs} {
+	// 	padding: 26px 0;
+	// }
+	&-inner {
+		position: relative;
+		background: var(--tj-color-theme-primary);
+		padding: 31px 0;
+		rotate: 2deg;
+		z-index: 3;
+		width: 105%;
+		margin-inline-start: -5px;
+		@media #{$lg, $md} {
+			padding: 25px 0;
+			rotate: 4deg;
+		}
+		@media #{$sm} {
+			padding: 20px 0;
+			rotate: 4deg;
+		}
+		@media #{$xs} {
+			padding: 15px 0;
+			rotate: 4deg;
+		}
+		.h5-maquee {
+			&-slider {
+				&-wrapper {
+					transition-timing-function: linear;
+				}
+				&-item {
+					width: auto;
+					display: inline-block;
+					.marquee-box {
+						display: flex;
+						align-items: center;
+						justify-content: space-between;
+						gap: 50px;
+						.marquee-icon {
+							line-height: 1;
+							animation: rotateImg2 6s infinite linear;
+							color: var(--tj-color-common-white);
+						}
+						.marquee-title {
+							.title {
+								font-size: 24px;
+								font-weight: var(--tj-fw-sbold);
+								text-transform: capitalize;
+								line-height: 1;
+								margin-bottom: 0;
+								white-space: nowrap;
+								color: var(--tj-color-common-white);
+							}
+						}
+					}
+					@media #{$lg, $md} {
+						.marquee-box {
+							gap: 35px;
+						}
+					}
+					@media #{$sm, $xs} {
+						.marquee-box {
+							gap: 30px;
+							.marquee-icon {
+								font-size: 14px;
+							}
+							.marquee-title {
+								.title {
+									font-size: 20px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&-rtl {
+			background: var(--tj-color-common-white);
+			rotate: -4deg;
+			position: absolute;
+			inset-inline-start: 0;
+			width: 105%;
+			top: 70px;
+			z-index: 2;
+			@media #{$lg} {
+				top: 40px;
+			}
+			@media #{$md,$sm} {
+				top: 30px;
+			}
+			@media #{$xs} {
+				top: 30px;
+				rotate: -7deg;
+			}
+			.h5-maquee {
+				&-slider {
+					&-item {
+						.marquee-box {
+							.marquee-icon {
+								animation: rotateImg 6s infinite linear;
+								color: var(--tj-color-theme-primary);
+							}
+							.marquee-title {
+								.title {
+									color: var(--tj-color-theme-primary);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+@keyframes rotateImg {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes rotateImg2 {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+/* !END: Theme Marquee CSS */

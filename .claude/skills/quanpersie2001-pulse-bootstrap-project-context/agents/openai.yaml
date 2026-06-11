@@ -1,0 +1,4 @@
+interface:
+  display_name: "Bootstrap Project Context"
+  short_description: "Build grounded repo context before implementation"
+  default_prompt: "Read AGENTS.md and README.md first, then inspect the most informative source files to build a grounded summary of the repo's purpose, architecture, key components, workflows, important commands, constraints, open questions, and best next reads."

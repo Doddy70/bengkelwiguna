@@ -1,0 +1,174 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Home 7 About CSS
+----------------------------------------*/
+.h8-about {
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	&.section-gap {
+		padding-bottom: 30px;
+	}
+	.sec-heading {
+		&.style-3 {
+			margin-bottom: 0;
+			.sec-title {
+				margin-bottom: 35px;
+			}
+			.sub-title {
+				margin-top: 12px;
+				@media #{$md,$sm,$xs} {
+					margin-top: 0;
+					margin-bottom: 15px;
+				}
+			}
+		}
+	}
+	&-left {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+	&-video {
+		border-radius: 100%;
+		width: 248px;
+		height: 248px;
+		position: relative;
+		z-index: 0;
+		overflow: hidden;
+		@media #{$md,$sm,$xs} {
+			margin-bottom: 30px;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			inset-inline-start: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: var(--tj-color-theme-dark);
+			opacity: 0.15;
+			mix-blend-mode: Color;
+			z-index: 1;
+		}
+		&-btn {
+			width: 60px;
+			height: 60px;
+			border-radius: 100%;
+			background-color: rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(10px);
+			border: 1px solid var(--tj-color-grey-3);
+			position: absolute;
+			z-index: 2;
+			inset-inline-start: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			line-height: 1;
+			animation: pulse4 1.3s ease-out infinite;
+			i {
+				color: var(--tj-color-common-white);
+				transition: all 0.4s;
+				padding-inline-start: 4px;
+			}
+			&:hover {
+				i {
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+	&-item {
+		&-wrapper {
+			display: flex;
+			border: 1px dashed var(--tj-color-border-1);
+			border-inline-start: 0;
+			border-inline-end: 0;
+			@media #{$sm,$xs} {
+				flex-direction: column;
+			}
+		}
+
+		&-counter {
+			width: 310px;
+			padding-top: 50px;
+			padding-bottom: 50px;
+			padding-inline-end: 40px;
+			border-inline-end: 1px dashed var(--tj-color-border-1);
+			@media #{$lg,$md} {
+				padding-top: 35px;
+				padding-bottom: 35px;
+			}
+			@media #{$sm,$xs} {
+				padding-inline-end: 0px;
+				border-inline-end: 0;
+				border-bottom: 1px dashed var(--tj-color-border-1);
+				width: 100%;
+				padding-top: 15px;
+				padding-bottom: 20px;
+			}
+			.countup-item.style-2 {
+				padding: 0;
+				background-color: transparent;
+				.count-inner {
+					padding: 0;
+				}
+				.inline-content {
+					font-size: 130px;
+					font-weight: var(--tj-fw-sbold);
+					margin-top: 0;
+					@media #{$lg,$md} {
+						font-size: 110px;
+					}
+					@media #{$sm,$xs} {
+						font-size: 100px;
+					}
+					.odometer {
+						margin-inline-start: -6px;
+						span {
+							font-weight: var(--tj-fw-sbold);
+						}
+					}
+					sup {
+						font-weight: var(--tj-fw-medium);
+						font-size: 0.57em;
+					}
+				}
+				.count-text {
+					font-weight: var(--tj-fw-sbold);
+					font-size: 18px;
+					max-width: 195px;
+					line-height: 1.44;
+					color: var(--tj-color-theme-dark-3);
+				}
+			}
+		}
+		&-desc {
+			width: 530px;
+			padding-top: 50px;
+			padding-bottom: 55px;
+			padding-inline-start: 60px;
+			@media #{$lg,$md} {
+				padding-top: 35px;
+				padding-bottom: 40px;
+				padding-inline-start: 35px;
+			}
+			@media #{$sm,$xs} {
+				padding-top: 20px;
+				padding-bottom: 25px;
+				padding-inline-start: 0;
+			}
+			.desc {
+				margin-bottom: 24px;
+				color: var(--tj-color-theme-dark-3);
+			}
+		}
+	}
+}
+
+/* !END: Home 7 About CSS  */

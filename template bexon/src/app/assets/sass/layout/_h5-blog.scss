@@ -1,0 +1,127 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Blog CSS
+----------------------------------------*/
+.h5-blog {
+	&-wrapper {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(calc(50% - 15px), 1fr));
+		grid-gap: 30px;
+		justify-content: center;
+
+		.blog {
+			&-item {
+				&.h5-blog-item {
+					padding: 15px;
+					.blog-thumb {
+						width: 41%;
+					}
+					.blog-date {
+						top: auto;
+						bottom: 15px;
+						inset-inline-start: auto;
+						inset-inline-end: 15px;
+					}
+					.blog-content {
+						padding: 35px 15px 35px 25px;
+						width: 59%;
+					}
+				}
+				&:first-child {
+					grid-row: 1/3;
+					flex-direction: column;
+					align-items: start;
+					gap: 0;
+					&.h5-blog-item {
+						.blog-thumb {
+							width: 100%;
+						}
+						.blog-content {
+							width: 100%;
+							padding: 20px 15px 15px;
+							.title {
+								font-size: 32px;
+								font-weight: var(--tj-fw-medium);
+							}
+							.text-btn {
+								margin-top: 24px;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		@media #{$lg, $md} {
+			grid-template-columns: 696px;
+		}
+		@media #{$sm} {
+			grid-template-columns: 516px;
+
+			.blog {
+				&-item {
+					&:first-child {
+						&.h5-blog-item {
+							.blog-content {
+								padding: 20px 0;
+							}
+						}
+					}
+				}
+			}
+		}
+		@media #{$sm} {
+			.blog {
+				&-item {
+					&:first-child {
+						&.h5-blog-item {
+							.blog-content {
+								.blog-title {
+									font-size: 26px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		@media #{$xs} {
+			grid-template-columns: 100%;
+
+			.blog {
+				&-item {
+					&.h5-blog-item {
+						.blog-thumb {
+							width: 100%;
+							max-height: 240px;
+						}
+						.blog-content {
+							padding: 20px 0 10px 0;
+							width: 100%;
+							.title {
+								font-size: 24px;
+							}
+						}
+					}
+					&:first-child {
+						&.h5-blog-item {
+							.blog-content {
+								padding: 20px 0 10px 0;
+								.title {
+									font-size: 24px;
+									font-weight: var(--tj-fw-sbold);
+								}
+								.text-btn {
+									margin-top: 16px;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Blog CSS */

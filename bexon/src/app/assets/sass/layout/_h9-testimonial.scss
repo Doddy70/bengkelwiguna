@@ -1,0 +1,117 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Testimonial CSS
+----------------------------------------*/
+.h9-testimonial {
+	overflow: hidden;
+	&-wrap {
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
+		@media #{$md} {
+			flex-direction: row;
+		}
+		@media #{$md, $sm, $xs} {
+			margin-top: 15px;
+		}
+		&.style-2 {
+			@media #{$sm, $xs} {
+				flex-direction: column-reverse;
+			}
+		}
+	}
+	.testimonial {
+		&-item {
+			background-color: var(--tj-color-common-white);
+			padding: 35px 30px 35px;
+			height: 100%;
+			border-radius: 8px;
+
+			@media #{$xl, $lg} {
+				padding: 35px 22px;
+			}
+			@media #{$md, $sm, $xs} {
+				padding: 30px 20px;
+			}
+			.star-ratings {
+				font-size: 20px;
+			}
+			.desc {
+				font-size: 18px;
+				line-height: 1.444;
+				padding-top: 27px;
+				padding-bottom: 22px;
+				p {
+					margin-bottom: 0;
+				}
+				@media #{$xl} {
+					font-size: 17px;
+				}
+				@media #{$lg, $md, $sm, $xs} {
+					font-size: 16px;
+					padding-top: 20px;
+					padding-bottom: 18px;
+				}
+			}
+			.testimonial-author {
+				border: 0;
+				padding-top: 0;
+				.title {
+					font-weight: var(--tj-fw-sbold);
+					margin-bottom: 7px;
+				}
+				.designation {
+					font-size: 16px;
+					color: var(--tj-color-text-body-3);
+				}
+			}
+			&.style-2 {
+				background-color: var(--tj-color-theme-bg);
+			}
+		}
+	}
+	&-heading {
+		background-image: linear-gradient(
+			var(--tj-color-theme-primary),
+			var(--tj-color-theme-dark)
+		);
+		border-radius: 10px;
+		position: relative;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		overflow: hidden;
+		.sec-heading {
+			padding: 35px 30px 0 30px;
+			margin-bottom: 10px;
+			.sub-title {
+				color: var(--tj-color-common-white);
+				&::before {
+					background-color: var(--tj-color-common-white);
+				}
+			}
+			.sec-title {
+				color: var(--tj-color-common-white);
+			}
+			@media #{$sm, $xs} {
+				padding: 30px 20px 0 20px;
+			}
+		}
+		.testimonial-img {
+			max-width: 415px;
+			margin: 0 auto;
+		}
+		.shape-icon {
+			max-width: 420px;
+			width: 100%;
+			position: absolute;
+			bottom: 0;
+			inset-inline-start: 50%;
+			transform: translateX(-50%);
+			z-index: -1;
+		}
+	}
+}
+/* !END: Testimonial CSS */

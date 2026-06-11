@@ -1,0 +1,46 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Header CSS
+----------------------------------------*/
+.header-area.header-5 {
+	&.header-absolute {
+		inset-inline-start: 0 !important;
+		inset-inline-end: 0;
+		margin-inline-start: auto;
+		margin-inline-end: auto;
+		backdrop-filter: blur(10px);
+		@media #{$sm, $xs} {
+			top: 24px;
+			inset-inline-start: 0 !important;
+			width: calc(100% - 48px);
+		}
+		.header-wrapper {
+			max-width: 1000px;
+			margin-inline-start: auto;
+			margin-inline-end: auto;
+			border-radius: 8px;
+			backdrop-filter: none;
+		}
+		.mainmenu {
+			> ul {
+				> li {
+					> a {
+						padding-top: 25px;
+						padding-bottom: 25px;
+					}
+					&.menu-item-has-children,
+					&.has-dropdown {
+						> a {
+							&::after {
+								top: 28px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Theme Header CSS */

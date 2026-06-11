@@ -1,0 +1,478 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Contact CSS
+----------------------------------------*/
+.tj-contact-section {
+	background-color: var(--tj-color-theme-dark);
+	border-radius: 12px;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	.sec-heading {
+		margin-inline-start: 0;
+		margin-inline-end: 0;
+		margin-bottom: 35px;
+		.sec-title {
+			color: var(--tj-color-common-white);
+		}
+	}
+}
+
+.map-area {
+	width: 100%;
+	height: 100%;
+	border-radius: 12px;
+	overflow: hidden;
+	iframe {
+		width: 100%;
+		height: 100%;
+		min-height: 360px;
+		display: block;
+	}
+	@media #{$md, $sm, $xs} {
+		height: auto;
+		margin-top: 30px;
+	}
+}
+.contact-info {
+	.contact-item {
+		padding: 13px 0 9px 0;
+		.subtitle {
+			display: block;
+			font-size: 14px;
+			line-height: 1;
+			color: var(--tj-color-text-body-2);
+			margin-bottom: 7px;
+		}
+		a {
+			&:hover {
+				color: var(--tj-color-theme-primary);
+			}
+		}
+		.contact-link {
+			display: inline-block;
+			color: var(--tj-color-common-white);
+		}
+		&:last-child {
+			border: 0;
+		}
+	}
+}
+
+.contact-form {
+	background-color: var(--tj-color-common-white);
+	margin-inline-start: 0;
+	margin-inline-end: 15px;
+	padding: 60px 50px;
+	border-radius: 12px;
+	.title {
+		margin-bottom: 35px;
+		@media #{$sm, $xs} {
+			margin-bottom: 25px;
+		}
+	}
+	.form-input {
+		margin-bottom: 27px;
+		position: relative;
+		textarea,
+		select,
+		.nice-select,
+		input[type="tel"],
+		input[type="text"],
+		input[type="email"] {
+			background-color: transparent;
+			color: var(--tj-color-text-body-3);
+			padding: 11px 0;
+			border: 0;
+			border-bottom: 1px dashed var(--tj-color-border-1);
+			@include placeholder {
+				color: var(--tj-color-text-body-3);
+			}
+			&:focus {
+				border-color: var(--tj-color-theme-dark);
+			}
+			@media #{$sm, $xs} {
+				padding: 6px 0 10px;
+			}
+		}
+		.cf-label {
+			font-size: 16px;
+			color: var(--tj-color-text-body-3);
+			position: absolute;
+			top: 10px;
+			inset-inline-start: 0;
+			pointer-events: none;
+			transition: all 0.2s linear;
+			span {
+				color: var(--tj-color-theme-primary);
+			}
+		}
+		textarea,
+		input[type="tel"],
+		input[type="text"],
+		input[type="email"] {
+			&:focus {
+				~ .cf-label {
+					visibility: hidden;
+					opacity: 0;
+				}
+			}
+		}
+		.nice-select {
+			color: var(--tj-color-text-body-3);
+			line-height: 1.5;
+			border-radius: 0;
+			margin-bottom: 27px;
+			.list {
+				width: 100%;
+				border-radius: 8px;
+				.option {
+					color: var(--tj-color-theme-dark);
+					padding: 0 20px;
+					&:hover,
+					&.focus {
+						background: var(--tj-color-theme-bg);
+						color: var(--tj-color-theme-dark);
+					}
+				}
+			}
+			&::after {
+				content: "\e929";
+				font-family: "bexon-icons";
+				color: var(--tj-color-common-black);
+				font-size: 16px;
+				line-height: 1;
+				width: 16px;
+				height: 16px;
+				top: 20px;
+				inset-inline-end: 5px;
+				border: 0;
+				transform: rotate(0);
+				transform-origin: center;
+			}
+			&.open {
+				&::after {
+					transform: rotate(-180deg);
+				}
+			}
+			@media #{$sm, $xs} {
+				margin-bottom: 20px;
+			}
+		}
+		textarea {
+			height: 130px;
+			resize: none;
+			padding-top: 0;
+		}
+		&.message-input {
+			margin-bottom: 30px;
+		}
+		@media #{$sm, $xs} {
+			margin-bottom: 20px;
+		}
+	}
+
+	@media #{$md, $sm, $xs} {
+		max-width: 100%;
+	}
+	@media #{$sm, $xs} {
+		padding: 25px 20px 30px;
+	}
+
+	&.style-2 {
+		max-width: 610px;
+		background-color: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(6px);
+		position: relative;
+		z-index: 2;
+		.title {
+			margin-bottom: 40px;
+			@media #{$md, $sm, $xs} {
+				margin-bottom: 20px;
+			}
+		}
+		.form-input {
+			margin-bottom: 27px;
+			position: relative;
+			&.message-input {
+				margin-top: 0;
+				@media #{$xs} {
+					margin-top: 20px;
+				}
+			}
+
+			textarea,
+			input[type="tel"],
+			input[type="text"],
+			input[type="email"] {
+				color: var(--tj-color-text-body-2);
+				padding: 11px 0;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+				@include placeholder {
+					color: var(--tj-color-text-body-2);
+				}
+				&:focus {
+					border-color: rgba(255, 255, 255, 1);
+				}
+			}
+			.cf-label {
+				color: var(--tj-color-text-body-2);
+			}
+			.nice-select {
+				color: var(--tj-color-text-body-2);
+				border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+				&.open {
+					border-color: rgba(255, 255, 255, 1);
+				}
+				&::after {
+					color: var(--tj-color-common-white);
+					font-size: 13px;
+					width: 13px;
+					height: 13px;
+				}
+			}
+			textarea {
+				height: 140px;
+			}
+		}
+		@media #{$lg, $md, $sm, $xs} {
+			max-width: 100%;
+			margin-inline-end: 0;
+		}
+		@media #{$lg, $sm, $xs} {
+			padding: 35px 20px 40px;
+		}
+	}
+	@media #{$md, $sm, $xs} {
+		margin-inline-end: 0;
+	}
+}
+
+.contact {
+	&-item {
+		&.style-2 {
+			padding: 30px 25px 40px;
+			background-color: var(--tj-color-common-white);
+			text-align: center;
+			border-radius: 12px;
+			@media #{$sm, $md} {
+				padding: 25px;
+			}
+			p {
+				margin-bottom: 0;
+				max-width: 224px;
+				margin: 0 auto;
+			}
+			&:hover {
+				.contact-icon {
+					background: var(--tj-color-theme-primary);
+					i {
+						color: var(--tj-color-common-white);
+					}
+				}
+			}
+			.contact-icon {
+				width: 88px;
+				height: 88px;
+				display: inline-flex;
+				justify-content: center;
+				align-items: center;
+				background: var(--tj-color-theme-bg);
+				border-radius: 50%;
+				margin-bottom: 22px;
+				@include transition(all 0.3s ease-in-out 0s);
+				i {
+					font-size: 32px;
+					color: var(--tj-color-theme-primary);
+				}
+			}
+			.contact-title {
+				font-size: 24px;
+				font-weight: var(--tj-fw-sbold);
+				margin-bottom: 20px;
+				@media #{$sm, $md} {
+					font-size: 20px;
+				}
+			}
+			.contact-list {
+				list-style: none;
+				li {
+					a {
+						color: var(--tj-color-text-body);
+						&:hover {
+							color: var(--tj-color-theme-primary);
+						}
+					}
+					&.active {
+						a {
+							font-weight: var(--tj-fw-sbold);
+							color: var(--tj-color-theme-primary);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// global map css
+.global-map {
+	width: 1167px;
+	height: 100%;
+	position: relative;
+	z-index: 1;
+	inset-inline-start: -115px;
+	display: flex;
+	align-items: center;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 30%;
+		inset-inline-start: 28%;
+		width: 220px;
+		height: 220px;
+		border-radius: 50%;
+		background: var(--tj-color-theme-primary);
+		-webkit-filter: blur(40px);
+		filter: blur(40px);
+		opacity: 0.1;
+		z-index: -1;
+		backdrop-filter: blur(10px);
+		@media #{$xxl, $xl, $lg, $md, $sm} {
+			width: 120px;
+			height: 120px;
+			top: 25%;
+			inset-inline-start: 27%;
+		}
+		@media #{$xs} {
+			width: 100px;
+			height: 100px;
+			inset-inline-start: 25%;
+		}
+	}
+	&-img {
+		position: relative;
+		width: 100%;
+		z-index: 2;
+		img {
+			width: 100%;
+			opacity: 0.4;
+		}
+		@media #{$md, $sm, $xs} {
+			margin-bottom: 40px;
+		}
+	}
+	@media #{$xxl, $xl, $lg, $md, $sm} {
+		inset-inline-start: 0;
+	}
+	@media #{$xl} {
+		width: calc(100% + 360px);
+	}
+	@media #{$lg} {
+		width: calc(100% + 300px);
+	}
+	@media #{$md, $sm} {
+		width: 100%;
+	}
+	@media #{$xs} {
+		width: 580px;
+		inset-inline-start: -20px;
+	}
+}
+.location {
+	&-indicator {
+		width: 19px;
+		height: 19px;
+		background-color: var(--tj-color-common-white);
+		border-radius: 50%;
+		position: absolute;
+		cursor: pointer;
+		z-index: 1;
+		@media #{$lg, $md, $sm, $xs} {
+			width: 12px;
+			height: 12px;
+		}
+		&.loc-1 {
+			top: 38%;
+			inset-inline-start: 21%;
+		}
+		&.loc-2 {
+			top: 36%;
+			inset-inline-start: 46%;
+		}
+		&.loc-3 {
+			top: 73%;
+			inset-inline-start: 30%;
+		}
+		&::after {
+			content: "";
+			background: rgba(255, 255, 255, 0.1);
+			width: 100%;
+			height: 100%;
+			z-index: -2;
+			position: absolute;
+			top: 0;
+			inset-inline-start: 0;
+			border-radius: 50%;
+			animation: pulse4 1.6s linear infinite;
+		}
+		&:hover {
+			.location-tooltip {
+				opacity: 1;
+				visibility: visible;
+				margin-bottom: 42px;
+			}
+		}
+	}
+
+	&-tooltip {
+		width: 222px;
+		background-color: var(--tj-color-theme-primary);
+		font-size: 14px;
+		padding: 15px;
+		position: absolute;
+		margin-bottom: 35px;
+		inset-inline-start: 50%;
+		bottom: 0;
+		transform: translateX(-50%);
+		cursor: default;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease-in-out;
+		&::after {
+			content: "";
+			background: var(--tj-color-theme-primary);
+			width: 14px;
+			height: 14px;
+			z-index: -1;
+			position: absolute;
+			inset-inline-start: 50%;
+			bottom: -7px;
+			transform: translateX(-50%) rotate(45deg);
+		}
+		span {
+			color: var(--tj-color-common-white);
+			margin-bottom: 5px;
+			display: inline-flex;
+		}
+		p {
+			color: var(--tj-color-common-white);
+			margin-bottom: 5px;
+		}
+		a {
+			color: var(--tj-color-common-white);
+			font-weight: var(--tj-fw-medium);
+			display: inline-flex;
+			&:hover {
+				color: var(--tj-color-theme-bg);
+			}
+		}
+		@media #{$xs} {
+			width: 205px;
+		}
+	}
+}
+
+/* !END: Contact CSS */

@@ -1,0 +1,60 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Testimonial CSS
+----------------------------------------*/
+.h10-testimonial {
+	background-color: var(--tj-color-theme-dark);
+	position: relative;
+	z-index: 0;
+	border-radius: 12px;
+	overflow: hidden;
+	.sec-heading {
+		&.style-3 {
+			.sec-title {
+				color: var(--tj-color-common-white);
+			}
+		}
+	}
+	.slider-next,
+	.slider-prev {
+		border-color: var(--tj-color-border-2);
+		.anim-icon {
+			i {
+				color: var(--tj-color-common-white);
+			}
+		}
+	}
+	&-wrapper {
+		mask-image: none;
+		.testimonial-item {
+			background-color: var(--tj-color-grey-3);
+			border: 0;
+			.desc {
+				border-bottom: 1px dashed var(--tj-color-border-2);
+				padding-bottom: 25px;
+				p {
+					color: var(--tj-color-text-body-2);
+				}
+			}
+		}
+		.testimonial-author {
+			padding-top: 0;
+			border-top: 0;
+			.title {
+				color: var(--tj-color-common-white);
+			}
+			.designation {
+				color: var(--tj-color-text-body-2);
+			}
+		}
+		.star-ratings {
+			margin-top: 20px;
+
+			@media #{$sm, $xs} {
+				margin-top: 20px;
+			}
+		}
+	}
+}
+/* !END: Testimonial CSS */

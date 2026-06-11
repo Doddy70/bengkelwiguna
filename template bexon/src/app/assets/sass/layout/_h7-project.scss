@@ -1,0 +1,61 @@
+@use "../utilities" as *;
+
+/* START: Case Study CSS */
+.h7-project {
+	.sec-heading.style-2 {
+		.tj-primary-btn {
+			margin-top: 30px;
+		}
+	}
+	&-wrapper {
+		padding: 0;
+		max-width: 870px;
+		margin-inline-start: auto;
+		@media #{$md,$sm,$xs} {
+			max-width: 100%;
+			margin-inline-start: 0;
+		}
+		.h4-project-item {
+			margin-bottom: 30px;
+			@media #{$lg,$md,$sm,$xs} {
+				padding: 20px 20px 30px;
+			}
+			.project-content {
+				padding-bottom: 0;
+				padding-top: 20px;
+				@media #{$md,$sm,$xs} {
+					padding-top: 15px;
+				}
+				.project-text {
+					margin-top: 0;
+					gap: 20px 10px;
+					flex-wrap: nowrap;
+				}
+				.title {
+					max-width: 504px;
+					margin-bottom: 20px;
+					font-weight: var(--tj-fw-medium);
+					@media #{$xl, $lg, $md, $sm, $xs} {
+						max-width: 100%;
+						width: 100%;
+					}
+				}
+				.tji-icon-btn {
+					flex-shrink: 0;
+				}
+			}
+			&:hover {
+				.project-content {
+					.tji-icon-btn {
+						border-color: var(--tj-color-theme-primary);
+						background-color: var(--tj-color-theme-primary);
+						i {
+							color: var(--tj-color-common-white);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/* !END: Case Study CSS */

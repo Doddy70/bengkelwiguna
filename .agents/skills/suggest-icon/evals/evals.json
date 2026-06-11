@@ -1,0 +1,42 @@
+{
+  "skill_name": "suggest-icon",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I would like an icon that represents a comfortable, cozy tea store",
+      "expected_output": "A Font Awesome icon recommendation relevant to tea/coziness, presented in a markdown table with icon name, families, and availability.",
+      "files": [],
+      "assertions": [
+        "The output recommends a specific Font Awesome icon by name",
+        "The output uses a markdown table with Icon, Families, and Availability columns",
+        "The suggested icon is semantically relevant to tea, mugs, warmth, or coziness",
+        "The output indicates whether the icon is Free or Pro"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm using version 5 and would like a portable electronics device. I only have the free version of Font Awesome though.",
+      "expected_output": "A Font Awesome icon recommendation for a portable electronics device, using version 5, noting free availability.",
+      "files": [],
+      "assertions": [
+        "The output recommends a specific Font Awesome icon by name",
+        "The output uses a markdown table with Icon, Families, and Availability columns",
+        "The suggested icon is semantically relevant to portable electronics (phone, laptop, tablet, etc.)",
+        "The output indicates the icon is available in the Free tier",
+        "The version used is 5.x, not the latest version"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "What's icon can I use to represent the nintendo console?",
+      "expected_output": "A Font Awesome icon recommendation relevant to Nintendo/gaming consoles, presented in a markdown table with icon name, families, and availability.",
+      "files": [],
+      "assertions": [
+        "The output recommends a specific Font Awesome icon by name",
+        "The output uses a markdown table with Icon, Families, and Availability columns",
+        "The suggested icon is semantically relevant to gaming or consoles",
+        "The output indicates whether the icon is Free or Pro"
+      ]
+    }
+  ]
+}

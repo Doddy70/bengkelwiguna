@@ -1,0 +1,83 @@
+@use "../utilities" as *;
+/**----------------------------------------
+START: Back to top CSS
+----------------------------------------*/
+#tj-back-to-top {
+	height: 60px;
+	width: 60px;
+	background-color: var(--tj-color-common-white);
+	border-radius: 50%;
+	position: fixed;
+	bottom: 30px;
+	inset-inline-end: 40px;
+	transform: scale(0);
+	display: grid;
+	place-items: center;
+	cursor: pointer;
+	visibility: hidden;
+	opacity: 0;
+	transition: all 0.3s;
+	z-index: 100;
+	@media #{$sm,$xs} {
+		height: 50px;
+		width: 50px;
+	}
+	&.active {
+		bottom: 40px;
+		transform: scale(1);
+		opacity: 1;
+		visibility: visible;
+		animation: 500ms ease-in-out 0s normal none 1 running scrollToTop;
+		transition: 0.3s;
+		background: var(--tj-color-theme-primary);
+	}
+
+	.return {
+		visibility: hidden;
+		position: relative;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+	&-percentage {
+		height: calc(100% - 2px);
+		width: calc(100% - 2px);
+		background-color: var(--tj-color-common-white);
+		color: var(--tj-color-theme-dark);
+		border-radius: 50%;
+		display: grid;
+		place-items: center;
+		font-size: 12px;
+		font-weight: var(--tj-fw-sbold);
+		box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px 0px;
+		i {
+			font-size: var(--tj-fs-h5);
+		}
+	}
+	@media #{$lg} {
+		inset-inline-end: 30px;
+		&.active {
+			bottom: 30px;
+		}
+	}
+
+	@media #{$md,$sm,$xs} {
+		bottom: 20px;
+		inset-inline-end: 20px;
+		&.active {
+			bottom: 20px;
+		}
+	}
+}
+
+@keyframes scrollToTop {
+	0% {
+		transform: translate3d(0, 80%, 0);
+		visibility: visible;
+	}
+	to {
+		transform: translateZ(0);
+	}
+}
+
+/* !END: Back to top CSS */

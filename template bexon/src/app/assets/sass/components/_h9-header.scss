@@ -1,0 +1,88 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Header CSS
+----------------------------------------*/
+.h9-header {
+	&.header-absolute {
+		position: absolute;
+		top: 15px;
+		inset-inline-start: 0;
+		width: calc(100% - 30px);
+		z-index: 999;
+		background-color: transparent;
+		@media #{$md,$sm,$xs} {
+			padding: 15px 0;
+		}
+		@media #{$sm,$xs} {
+			width: calc(100% - 24px);
+		}
+
+		.header-wrapper {
+			padding: 0 18px;
+			@media #{$xl,$lg,$md,$sm,$xs} {
+				padding: 0 8px;
+			}
+		}
+
+		.mainmenu {
+			> ul {
+				> li {
+					padding: 30px 0;
+					> a {
+						color: var(--tj-color-common-white);
+						border-radius: 50px;
+						border: 1px solid var(--tj-color-border-2);
+						padding: 5px 12px;
+					}
+					&.menu-item-has-children,
+					&.has-dropdown {
+						> a {
+							&::after {
+								display: none;
+							}
+						}
+					}
+					&:hover,
+					&.current-menu-ancestor {
+						> a {
+							border-color: var(--tj-color-common-white);
+						}
+					}
+				}
+			}
+		}
+		.header-search {
+			.search_close_btn,
+			.search {
+				color: var(--tj-color-grey-1);
+				background-color: transparent;
+				border: 1px solid var(--tj-color-border-2);
+			}
+		}
+		.search_popup {
+			background-color: rgba($color: var(--tj-color-theme-dark), $alpha: 0.3);
+			backdrop-filter: blur(15px);
+			height: 100vh;
+			.tj_search_wrapper {
+				min-height: 620px;
+				.search_form {
+					form {
+						.search_input {
+							.search-box {
+								input:not([type="submit"]):not([type="radio"]):not(
+										[type="checkbox"]
+									):not([type="search"]),
+								input[type="text"] {
+									background: var(--tj-color-common-white);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Theme Header CSS */

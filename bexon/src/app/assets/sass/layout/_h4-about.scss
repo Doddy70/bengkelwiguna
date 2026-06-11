@@ -1,0 +1,95 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: About CSS
+----------------------------------------*/
+.about-content-area {
+	&.style-3 {
+		.sec-heading {
+			display: flex;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			margin-bottom: 25px;
+			.subtitle-text {
+				max-width: 200px;
+			}
+			.sec-title {
+				width: 67.2%;
+				img {
+					height: 50px;
+					border-radius: 4px;
+					margin-top: -9px;
+					@media #{$md} {
+						margin-top: -6px;
+					}
+					@media #{$md, $sm, $xs} {
+						height: 40px;
+						margin-top: -6px;
+					}
+				}
+				@media #{$sm, $xs} {
+					width: 100%;
+					line-height: 1.3;
+				}
+			}
+		}
+		.about-bottom-area {
+			justify-content: space-between;
+			align-items: flex-end;
+			gap: 20px;
+			margin-top: -62px;
+			.about-btn-area-2 {
+				width: 67.2%;
+				display: flex;
+				flex-wrap: wrap;
+				gap: 20px;
+				@media #{$sm, $xs} {
+					width: 100%;
+					order: 1;
+				}
+			}
+			@media #{$sm, $xs} {
+				margin-top: 25px;
+				gap: 35px;
+			}
+		}
+	}
+}
+
+.customers-box {
+	&.style-3 {
+		max-width: 195px;
+		background-color: transparent;
+		padding: 0;
+		border-radius: 0;
+		ul {
+			li {
+				span,
+				img {
+					width: 50px;
+					height: 50px;
+				}
+			}
+		}
+		.customers-text {
+			font-size: 18px;
+			line-height: 1.444;
+			font-weight: var(--tj-fw-sbold);
+			color: var(--tj-color-text-body-3);
+			margin-top: 15px;
+			span {
+				color: var(--tj-color-theme-dark-2);
+			}
+		}
+		@media #{$sm, $xs} {
+			order: 2;
+		}
+	}
+}
+.client-container-2 {
+	padding-inline-end: 0;
+	padding-inline-start: 0;
+	overflow: hidden;
+}
+
+/* !END: About CSS */

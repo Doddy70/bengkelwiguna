@@ -1,0 +1,94 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Service CSS
+----------------------------------------*/
+.h10-service {
+	&-wrapper {
+		.service-item.style-4 {
+			padding: 30px 30px 35px;
+			position: relative;
+			border-radius: 8px;
+			z-index: 0;
+			@media #{$sm, $xs} {
+				padding: 30px 20px;
+			}
+			.h10-service-sln {
+				position: absolute;
+				top: 0;
+				inset-inline-end: 0;
+				width: 48px;
+				height: 48px;
+				background-color: var(--tj-color-grey-1);
+				border-end-start-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				line-height: 1;
+				font-weight: var(--tj-fw-sbold);
+				color: var(--tj-color-theme-dark-3);
+				margin-bottom: 0;
+				z-index: 1;
+				&::before,
+				&::after {
+					content: "";
+					position: absolute;
+					inset-inline-start: -8px;
+					top: 0;
+					width: 8px;
+					height: 8px;
+					background: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
+					transform: rotate(90deg);
+				}
+				&::after {
+					inset-inline-start: auto;
+					top: auto;
+					inset-inline-end: 0;
+					bottom: -8px;
+				}
+			}
+			.service-icon {
+				width: 90px;
+				height: 90px;
+				margin-bottom: 54px;
+				@media #{$md,$sm, $xs} {
+					width: 80px;
+					height: 80px;
+					font-size: 60px;
+					margin-bottom: 45px;
+				}
+				@media #{$sm, $xs} {
+					margin-bottom: 35px;
+				}
+			}
+			.service-content {
+				overflow: hidden;
+			}
+			.text-btn {
+				transform: translateX(calc(-100% + 30px));
+			}
+			&:hover {
+				.service-icon {
+					background: linear-gradient(
+						135deg,
+						rgba(255, 255, 255, 0.3) 0%,
+						rgba(255, 255, 255, 0) 50%,
+						rgba(255, 255, 255, 0.3) 100%
+					);
+					backdrop-filter: blur(15px);
+					i {
+						color: var(--tj-color-common-white);
+					}
+				}
+				.desc {
+					color: var(--tj-color-grey-1);
+				}
+				.text-btn {
+					transform: translateX(0);
+				}
+			}
+		}
+	}
+}
+
+/* !END: Service CSS */

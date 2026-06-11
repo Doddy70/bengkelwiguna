@@ -1,0 +1,47 @@
+// Bengkel Wiguna Brand Colors - Re-applied after Architecture Sync
+$colors: (
+	common: (
+		white: #ffffff,
+		black: #000000,
+	),
+	heading: (
+		primary: #2a2a2a,
+	),
+	text: (
+		body: #2a2a2a,
+		body-2: #b9bbbc,
+		body-3: #67787a,
+		body-4: #18292c,
+		body-5: #ffffffcc,
+	),
+	theme: (
+		// Bengkel Wiguna Brand Colors
+		primary: #224297, // Primary Blue
+		secondary: #2a2a2a, // Dark Gray
+		accent-1: #ffd900, // Yellow/Gold
+		accent-2: #b9bbbc, // Light Gray
+		bg: #f5f5f5,
+		bg-2: #e8e8e8,
+		bg-3: #1a1a1a,
+		dark: #2a2a2a,
+		dark-2: #1a1a1a,
+		dark-3: #333333,
+		dark-4: #666666,
+		dark-5: #999999,
+	),
+	red: (
+		1: #ff0000,
+	),
+	grey: (
+		1: #f5f5f5,
+		2: #e8e8e8,
+		3: #ffffff1a,
+	),
+	border: (
+		1: #d0d0d0,
+		2: #404040,
+		3: #ffffff26,
+		4: #ffffff33,
+		5: #22429726,
+	),
+);

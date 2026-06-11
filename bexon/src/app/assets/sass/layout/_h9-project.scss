@@ -1,0 +1,57 @@
+@use "../utilities" as *;
+
+/* START: Case Study CSS */
+.h9-project {
+	&-wrapper {
+		background-color: var(--tj-color-theme-dark);
+		.project-item {
+			background-color: transparent;
+			border-radius: 10px;
+			height: 527px;
+			.project-content {
+				position: absolute;
+				bottom: 30px;
+				inset-inline-start: 30px;
+				inset-inline-end: 30px;
+				padding: 25px 20px 20px 25px;
+				background-color: var(--tj-color-common-white);
+				border-radius: 10px;
+				opacity: 0;
+				transform: translateY(100%);
+				transition: all 0.4s;
+				z-index: 3;
+				@media #{$xs} {
+					bottom: 15px;
+					inset-inline-start: 15px;
+					inset-inline-end: 15px;
+				}
+				.project-text {
+					margin-top: 14px;
+				}
+			}
+			&:hover {
+				.project-content {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			@media #{$sm,$xs} {
+				height: 380px;
+			}
+		}
+	}
+	&-slider {
+		mask-image: linear-gradient(
+			90deg,
+			rgba(12, 30, 33, 0) 0%,
+			var(--tj-color-theme-dark) 20%,
+			var(--tj-color-theme-dark) 80%,
+			rgba(12, 30, 33, 0) 100%
+		);
+		@media #{$xs} {
+			mask-image: none;
+		}
+	}
+}
+/* !END: Case Study CSS */

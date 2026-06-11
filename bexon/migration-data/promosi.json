@@ -1,0 +1,158 @@
+[
+  {
+    "id": 21505,
+    "date": "2026-05-31T12:39:23",
+    "date_gmt": "2026-05-31T05:39:23",
+    "guid": {
+      "rendered": "https://backend.bengkelwiguna.com/?post_type=promosi&#038;p=21505"
+    },
+    "modified": "2026-05-31T12:39:23",
+    "modified_gmt": "2026-05-31T05:39:23",
+    "slug": "test-konten-promosi",
+    "status": "publish",
+    "type": "promosi",
+    "link": "https://backend.bengkelwiguna.com/promosi/test-konten-promosi/",
+    "title": {
+      "rendered": "Test Konten Promosi"
+    },
+    "content": {
+      "rendered": "<p>Test konten API Promosi</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Test konten API Promosi</p>\n",
+      "protected": false
+    },
+    "featured_media": 0,
+    "template": "",
+    "meta": {
+      "_acf_changed": false,
+      "inline_featured_image": false,
+      "diskon_persen": "",
+      "harga_asli": "",
+      "harga_promo": "",
+      "tanggal_mulai": "",
+      "tanggal_selesai": ""
+    },
+    "categories": [
+      103
+    ],
+    "tags": [],
+    "class_list": [
+      "post-21505",
+      "promosi",
+      "type-promosi",
+      "status-publish",
+      "hentry",
+      "category-ac-kelistrikan"
+    ],
+    "acf": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/promosi/21505",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/promosi"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/types/promosi"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/promosi/21505/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/media?parent=21505"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/categories?post=21505"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/tags?post=21505"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    },
+    "_embedded": {
+      "wp:term": [
+        [
+          {
+            "id": 103,
+            "link": "https://backend.bengkelwiguna.com/ac-kelistrikan/",
+            "name": "AC &amp; Kelistrikan",
+            "slug": "ac-kelistrikan",
+            "taxonomy": "category",
+            "acf": [],
+            "_links": {
+              "self": [
+                {
+                  "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/categories/103",
+                  "targetHints": {
+                    "allow": [
+                      "GET"
+                    ]
+                  }
+                }
+              ],
+              "collection": [
+                {
+                  "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/categories"
+                }
+              ],
+              "about": [
+                {
+                  "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/taxonomies/category"
+                }
+              ],
+              "wp:post_type": [
+                {
+                  "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/posts?categories=103"
+                },
+                {
+                  "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/services?categories=103"
+                },
+                {
+                  "href": "https://backend.bengkelwiguna.com/wp-json/wp/v2/promosi?categories=103"
+                }
+              ],
+              "curies": [
+                {
+                  "name": "wp",
+                  "href": "https://api.w.org/{rel}",
+                  "templated": true
+                }
+              ]
+            }
+          }
+        ],
+        []
+      ]
+    }
+  }
+]

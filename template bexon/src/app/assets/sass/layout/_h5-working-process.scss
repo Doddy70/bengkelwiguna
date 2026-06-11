@@ -1,0 +1,229 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Working process CSS
+----------------------------------------*/
+.sec-heading-centered {
+	max-width: 550px;
+	margin-inline-start: auto;
+	margin-inline-end: auto;
+	width: 100%;
+	text-align: center;
+}
+
+.h5-working-process {
+	background-color: var(--tj-color-theme-dark);
+	border-radius: 12px;
+	position: relative;
+	z-index: 1;
+	overflow: hidden;
+	&-inner {
+		position: relative;
+		z-index: 0;
+		padding-top: 42px;
+		@media #{$sm,$xs} {
+			padding-top: 0;
+			margin-top: 72px;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			inset-inline-start: 0;
+			top: 21px;
+			transform: translateY(-50%);
+			width: 100%;
+			height: 0;
+			border-bottom: 1px dashed var(--tj-color-border-2);
+			z-index: -1;
+			@media #{$sm,$xs} {
+				inset-inline-start: 50%;
+				top: 0;
+				transform: translateX(-50%);
+				width: 0;
+				height: 100%;
+				border-bottom: 0;
+				border-inline-end: 1px dashed var(--tj-color-border-2);
+			}
+		}
+	}
+
+	&-wrapper {
+		gap: 30px;
+		flex-wrap: nowrap;
+		align-items: flex-start;
+		@media #{$lg,$md,$sm} {
+			gap: 20px;
+		}
+		@media #{$sm,$xs} {
+			flex-direction: column;
+			gap: 85px;
+		}
+	}
+
+	&-item {
+		background-color: rgba(255, 255, 255, 0.1);
+		backdrop-filter: blur(10px);
+		margin-top: 60px;
+		transition: all 0.6s;
+		position: static;
+		@media #{$sm,$xs} {
+			margin-top: 30px;
+		}
+		.h5-working-process {
+			&-indicator {
+				padding: 9px 34px 11px;
+				font-size: 20px;
+				font-weight: var(--tj-fw-sbold);
+				line-height: 1;
+				letter-spacing: -0.03em;
+				border: 1px dashed var(--tj-color-border-2);
+				border-radius: 50px;
+				color: var(--tj-color-common-white);
+				background-color: var(--tj-color-theme-dark);
+				margin-bottom: 0;
+				position: absolute;
+				transition: all 0.2s 0.3s;
+				top: -60px;
+				inset-inline-start: 50%;
+				transform: translate(-50%, -100%);
+				white-space: nowrap;
+				z-index: 0;
+				&::before,
+				&::after {
+					content: "";
+					position: absolute;
+					inset-inline-start: 50%;
+					bottom: -60px;
+					transform: translateX(-50%) scaleY(-1);
+					width: 0;
+					height: 60px;
+					border-inline-end: 1px dashed var(--tj-color-border-2);
+					z-index: -1;
+					transition: all 0.3s;
+				}
+				&::after {
+					height: 0;
+				}
+				@media #{$sm,$xs} {
+					top: -30px;
+					&::before {
+						display: none;
+					}
+					&::after {
+						bottom: -30px;
+					}
+				}
+			}
+		}
+		&:nth-child(2) {
+			margin-top: 192px;
+			@media #{$sm,$xs} {
+				margin-top: 30px;
+			}
+			.h5-working-process {
+				&-indicator {
+					top: -192px;
+					&::before,
+					&::after {
+						bottom: -192px;
+					}
+					&::before {
+						height: 192px;
+					}
+					@media #{$sm,$xs} {
+						top: -30px;
+						&::after {
+							bottom: -30px;
+						}
+					}
+				}
+			}
+		}
+		&:nth-child(3) {
+			margin-top: 324px;
+			@media #{$sm,$xs} {
+				margin-top: 30px;
+				&::after {
+					bottom: -30px;
+				}
+			}
+			.h5-working-process {
+				&-indicator {
+					top: -324px;
+					&::before,
+					&::after {
+						bottom: -324px;
+					}
+					&::before {
+						height: 324px;
+					}
+					@media #{$sm,$xs} {
+						top: -30px;
+						&::after {
+							bottom: -30px;
+						}
+					}
+				}
+			}
+		}
+		&:not(:last-child)::after {
+			display: none;
+		}
+		&:hover {
+			.h5-working-process {
+				&-indicator {
+					border-color: var(--tj-color-theme-primary);
+
+					&::after {
+						height: 60px;
+						border-color: var(--tj-color-theme-primary);
+						@media #{$sm,$xs} {
+							height: 30px;
+						}
+					}
+				}
+			}
+			&:nth-child(2) {
+				.h5-working-process {
+					&-indicator {
+						&::after {
+							height: 192px;
+							@media #{$sm,$xs} {
+								height: 30px;
+							}
+						}
+					}
+				}
+			}
+			&:nth-child(3) {
+				.h5-working-process {
+					&-indicator {
+						&::after {
+							height: 324px;
+							@media #{$sm,$xs} {
+								height: 30px;
+							}
+						}
+					}
+				}
+			}
+		}
+		.process {
+			&-step {
+				background-image: linear-gradient(
+					180deg,
+					var(--tj-color-theme-primary) 0%,
+					rgba(30, 138, 138, 0) 116.09%
+				);
+			}
+		}
+	}
+	.title {
+		color: var(--tj-color-common-white);
+	}
+	.desc {
+		color: var(--tj-color-text-body-2);
+	}
+}
+
+/* !END: Working process CSS */

@@ -1,0 +1,330 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Hero CSS
+----------------------------------------*/
+.h8-hero {
+	position: relative;
+	margin: 0 15px 0 15px;
+	border-radius: 12px;
+	border-end-end-radius: 0;
+	border-end-start-radius: 0;
+	overflow: hidden;
+
+	@media #{$sm, $xs} {
+		margin: 0 12px 0;
+	}
+	&-inner {
+		background: var(--tj-color-theme-bg-2);
+	}
+	&-bg-image {
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		mix-blend-mode: color-burn;
+	}
+	&-item {
+		min-height: 92.5vh;
+		background-color: #0c1e21;
+		position: relative;
+		&::after {
+			position: absolute;
+			content: "";
+			top: 0;
+			inset-inline-start: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+			background: linear-gradient(
+				90deg,
+				rgba(12, 30, 33, 1) 20%,
+				rgba(12, 30, 33, 0.4) 60%,
+				rgba(12, 30, 33, 0.1) 100%
+			);
+		}
+		&-wrapper {
+			padding: 202px 0 30px;
+			min-height: 849px;
+			position: relative;
+
+			@media #{$xxl} {
+				padding-top: 170px;
+			}
+			@media #{$xl} {
+				padding: 170px 0 280px 0;
+			}
+			@media #{$lg} {
+				padding: 170px 0 280px 0;
+			}
+			@media #{ $md} {
+				padding: 170px 0 0 0;
+			}
+			@media #{$sm, $xs} {
+				padding: 150px 0 0 0;
+			}
+			@media #{ $xs} {
+				min-height: 833px;
+			}
+		}
+
+		@media #{$xxl} {
+			height: 95vh;
+		}
+		@media #{$xl} {
+			min-height: auto;
+		}
+		@media #{$sm, $xs} {
+			min-height: 840px;
+		}
+	}
+	&-content {
+		.h8-hero {
+			&-title {
+				font-size: 148px;
+				line-height: 1;
+				letter-spacing: -0.03em;
+				font-weight: var(--tj-fw-sbold);
+				margin-bottom: 0;
+				position: relative;
+				span {
+					display: inline-block;
+					white-space: nowrap;
+					&:first-child {
+						width: 43%;
+					}
+					&:nth-child(2) {
+						text-align: end;
+						margin-inline-start: auto;
+						width: 54%;
+					}
+					&:nth-child(3) {
+						text-align: end;
+						display: block;
+						width: 100%;
+					}
+					&:has(img) {
+						display: flex;
+						align-items: center;
+						justify-content: flex-end;
+						gap: 10px;
+						img {
+							width: 104px;
+							height: 104px;
+							object-fit: cover;
+							padding: 20px 19px 18px;
+							background: linear-gradient(
+								135deg,
+								rgba(30, 138, 138, 0.3) 0%,
+								rgba(30, 138, 138, 0) 50%,
+								rgba(30, 138, 138, 0.3) 100%
+							);
+							border: 3px solid var(--tj-color-theme-primary);
+							border: 2px solid var(--tj-color-border-5);
+							box-sizing: border-box;
+							border-radius: 100%;
+							@media #{$sm, $xs} {
+								width: 70px;
+								height: 70px;
+								padding: 15px 14px 13px;
+							}
+						}
+					}
+				}
+				.title-year {
+					font-size: 18px;
+					position: absolute;
+					inset-inline-end: 0;
+					top: 100%;
+					display: block;
+					z-index: 1;
+					display: flex;
+					letter-spacing: 0;
+					line-height: 1.44;
+					margin-top: 20px;
+				}
+				@media #{$xl} {
+					font-size: 130px;
+				}
+				@media #{ $lg} {
+					font-size: 120px;
+				}
+				@media #{$md} {
+					font-size: 92px;
+					line-height: 1.1;
+				}
+				@media #{$sm} {
+					font-size: 70px;
+					line-height: 1.3;
+				}
+				@media #{ $xs} {
+					font-size: 44px;
+					line-height: 1.3;
+					.title-year {
+						margin-top: 10px;
+					}
+				}
+			}
+		}
+	}
+	&-banner {
+		position: absolute;
+		inset-inline-start: 54%;
+		transform: translateX(-50%);
+		bottom: 0;
+		z-index: 9;
+		max-width: 669px;
+		width: 100%;
+		max-height: 745px;
+		pointer-events: none;
+
+		@media #{$xxxl} {
+			inset-inline-end: -10%;
+		}
+		@media #{$xxl} {
+			inset-inline-end: -2%;
+		}
+		@media #{$xl} {
+			inset-inline-start: 58%;
+		}
+		@media #{$lg} {
+			max-width: 602px;
+			inset-inline-start: 65%;
+		}
+		@media #{$md,$sm,$xs} {
+			position: static;
+			max-width: 602px;
+			inset-inline-start: 0;
+			margin-top: 50px;
+			transform: translateX(0);
+		}
+		@media #{$md} {
+			position: relative;
+			max-width: 602px;
+			margin-top: 50px;
+		}
+		@media #{$sm,$xs} {
+			margin-top: 40px;
+		}
+	}
+	&-shape {
+		position: absolute;
+		top: 10px;
+		z-index: 1;
+		&-2 {
+			inset-inline-end: 0;
+		}
+	}
+	.circle-text-wrap {
+		z-index: 1000;
+		height: 160px;
+		width: 160px;
+		inset-inline-end: 0;
+		bottom: 60px;
+		background-color: var(--tj-color-theme-dark);
+		border-radius: 100%;
+		color: var(--tj-color-common-white);
+		font-weight: var(--tj-fw-sbold);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		animation: tj-bounce-ball 2s infinite;
+		transform: all 0.4s;
+		.desc {
+			max-width: 83px;
+			i {
+				transform: rotate(-45deg) translateY(3px);
+				display: inline-block;
+				font-size: 22px;
+				transition: all 0.4s;
+			}
+		}
+		&:hover {
+			background-color: var(--tj-color-theme-primary);
+			animation-play-state: paused;
+
+			.desc {
+				i {
+					transform: rotate(0deg) translateY(5px);
+				}
+			}
+		}
+		@media #{$md} {
+			bottom: 2%;
+		}
+		@media #{$sm} {
+			bottom: 30%;
+		}
+		@media #{$xs} {
+			height: 120px;
+			width: 120px;
+			bottom: 25%;
+		}
+	}
+	&-box {
+		display: flex;
+		flex-direction: column;
+		gap: 148px;
+		position: absolute;
+		inset-inline-start: 0;
+		bottom: 88px;
+		z-index: 1000;
+		@media #{$xl} {
+			inset-inline-start: 8px;
+		}
+		@media #{$lg} {
+			inset-inline-start: 8px;
+		}
+		@media #{$md} {
+			inset-inline-start: 52%;
+			bottom: 37%;
+			gap: 66px;
+		}
+		@media #{$sm,$xs} {
+			position: static;
+			gap: 40px;
+			margin-top: -46px;
+			flex-direction: column;
+			margin-inline-start: 3px;
+			margin-inline-end: 3px;
+		}
+		@media #{$sm} {
+			gap: 50px;
+			margin-top: -66px;
+		}
+
+		.customers ul li {
+			margin-inline-start: -22px;
+
+			@media #{$sm,$xs} {
+				margin-inline-start: -16px;
+			}
+			&:first-child {
+				margin-inline-start: 0;
+			}
+		}
+		&-content {
+			max-width: 330px;
+			font-size: 18px;
+			color: var(--tj-color-theme-dark-2);
+			letter-spacing: 0;
+			line-height: 1.44;
+			@media #{$sm,$xs} {
+				max-width: 100%;
+				margin-inline-start: 10px;
+				margin-inline-end: 10px;
+			}
+			@media #{$xs} {
+				margin-inline-start: 0;
+				margin-inline-end: 0;
+			}
+		}
+		&-icon {
+			margin-bottom: 20px;
+		}
+	}
+}
+
+/* !END: Hero CSS */

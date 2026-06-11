@@ -1,0 +1,101 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Contact CSS
+----------------------------------------*/
+.h4-contact-section {
+	position: relative;
+	overflow: hidden;
+	&::before {
+		content: "";
+		position: absolute;
+		bottom: 2%;
+		inset-inline-start: 38%;
+		width: 360px;
+		height: 360px;
+		border-radius: 50%;
+		background: var(--tj-color-theme-primary);
+		-webkit-filter: blur(80px);
+		filter: blur(80px);
+		opacity: 0.3;
+		z-index: -1;
+		backdrop-filter: blur(10px);
+		@media #{$lg} {
+			width: 280px;
+			height: 280px;
+		}
+		@media #{ $md, $sm, $xs} {
+			width: 200px;
+			height: 200px;
+		}
+	}
+}
+
+.contact-form {
+	&.style-3 {
+		max-width: 610px;
+		background-color: transparent;
+		padding: 0;
+		.form-input {
+			margin-bottom: 20px;
+			position: relative;
+			&.message-input {
+				margin-top: 0;
+				margin-bottom: 25px;
+			}
+
+			textarea,
+			input[type="tel"],
+			input[type="text"],
+			input[type="email"] {
+				color: var(--tj-color-text-body-2);
+				padding: 12px 20px;
+				background-color: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(10px);
+				border-radius: 6px;
+				@include placeholder {
+					color: var(--tj-color-text-body-2);
+				}
+				&:focus {
+					border-color: var(--tj-color-theme-primary);
+				}
+			}
+			.cf-label {
+				color: var(--tj-color-text-body-2);
+				position: unset;
+				margin-bottom: 10px;
+			}
+			.nice-select {
+				color: var(--tj-color-text-body-2);
+				padding: 12px 20px;
+				background-color: rgba(255, 255, 255, 0.1);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(10px);
+				border-radius: 6px;
+				z-index: 2;
+				margin-bottom: 20px;
+				&.open {
+					border-color: var(--tj-color-theme-primary);
+				}
+				&::after {
+					color: var(--tj-color-common-white);
+					font-size: 13px;
+					width: 13px;
+					height: 13px;
+					top: 22px;
+					inset-inline-end: 18px;
+				}
+			}
+			textarea {
+				height: 183px;
+			}
+		}
+		@media #{$md, $sm, $xs} {
+			max-width: 100%;
+			margin-bottom: 60px;
+		}
+	}
+}
+
+/* !END: Contact CSS */

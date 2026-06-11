@@ -1,0 +1,63 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Countup CSS
+----------------------------------------*/
+.tj-funfact-section {
+	background-color: var(--tj-color-theme-bg);
+	border-radius: 12px;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+	.heading-wrap-content {
+		.sec-heading {
+			max-width: 550px;
+		}
+		.progress-item {
+			display: flex;
+			align-items: center;
+			gap: 15px;
+			.progress-circle {
+				margin-bottom: 0;
+			}
+			.progress-text {
+				max-width: 160px;
+			}
+		}
+	}
+	.countup-item {
+		transition: all 0.3s ease-in-out;
+		&:hover {
+			transform: translateY(-10px);
+		}
+	}
+}
+
+.progress-item {
+	.progress-circle {
+		margin-bottom: 10px;
+		input,
+		.progress-percent {
+			color: var(--tj-color-heading-primary) !important;
+			font-size: 22px !important;
+			width: auto;
+			font-weight: var(--tj-fw-bold) !important;
+			font-family: var(--tj-ff-heading) !important;
+		}
+	}
+	.progress-text {
+		.sub-title {
+			display: block;
+			font-size: 16px;
+			font-family: var(--tj-ff-heading);
+			font-weight: var(--tj-fw-regular);
+			letter-spacing: initial;
+			text-transform: unset;
+			color: var(--tj-color-heading-primary);
+			margin-bottom: 0px;
+			line-height: 1.5;
+		}
+	}
+}
+
+/* !END: Countup CSS */

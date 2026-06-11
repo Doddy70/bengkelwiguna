@@ -1,0 +1,29 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Header CSS
+----------------------------------------*/
+.header-area {
+	&.h6-header {
+		&.header-absolute {
+			top: 30px;
+			inset-inline-start: 15px;
+			width: calc(100% - 60px);
+			border-radius: 12px;
+			z-index: 999;
+			@media #{$sm,$xs} {
+				inset-inline-start: 12px;
+				top: 24px;
+				width: calc(100% - 48px);
+			}
+		}
+		&.sticky {
+			width: calc(100% - 30px);
+			@media #{$sm,$xs} {
+				width: 100%;
+			}
+		}
+	}
+}
+
+/* !END: Theme Header CSS */

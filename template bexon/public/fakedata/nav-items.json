@@ -1,0 +1,327 @@
+[
+	{
+		"id": 1,
+		"name": "Home",
+		"path": "/",
+		"submenu": [
+			{
+				"id": 1,
+				"name": "Home - 01",
+				"img": "/images/header/demo/home-1.webp",
+				"path": "/"
+			},
+			{
+				"id": 2,
+				"name": "Home - 02",
+				"img": "/images/header/demo/home-2.webp",
+				"path": "/home-02"
+			},
+			{
+				"id": 3,
+				"name": "Home - 03",
+				"img": "/images/header/demo/home-3.webp",
+				"path": "/home-03"
+			},
+			{
+				"id": 4,
+				"name": "Home - 04",
+				"img": "/images/header/demo/home-4.webp",
+				"path": "/home-04"
+			},
+			{
+				"id": 5,
+				"name": "Home - 05",
+				"img": "/images/header/demo/home-5.webp",
+				"path": "/home-05"
+			},
+			{
+				"id": 6,
+				"name": "Home - 06",
+				"img": "/images/header/demo/home-6.webp",
+				"path": "/home-06"
+			},
+			{
+				"id": 7,
+				"name": "Home - 07",
+				"img": "/images/header/demo/home-7.webp",
+				"path": "/home-07",
+				"badge": "New"
+			},
+			{
+				"id": 8,
+				"name": "Home - 08",
+				"img": "/images/header/demo/home-8.webp",
+				"path": "/home-08",
+				"badge": "New"
+			},
+			{
+				"id": 9,
+				"name": "Home - 09",
+				"img": "/images/header/demo/home-9.webp",
+				"path": "/home-09",
+				"badge": "New"
+			},
+			{
+				"id": 10,
+				"name": "Home - 10",
+				"img": "/images/header/demo/home-10.webp",
+				"path": "/home-10",
+				"badge": "New"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "Pages",
+		"path": "/about",
+		"submenu": [
+			{
+				"id": 1,
+				"name": "Main Pages",
+				"path": "#",
+				"items": [
+					{ "id": 1, "name": "About us", "path": "/about", "badge": null },
+					{
+						"id": 2,
+						"name": "Our history",
+						"path": "/history",
+						"badge": "HOT"
+					},
+					{ "id": 3, "name": "Team", "path": "/team", "badge": null },
+					{
+						"id": 4,
+						"name": "Team details",
+						"path": "/team/1",
+						"badge": null
+					},
+					{
+						"id": 5,
+						"name": "Careers",
+						"path": "/careers",
+						"badge": "New"
+					},
+					{
+						"id": 6,
+						"name": "Careers details",
+						"path": "/careers/1",
+						"badge": null
+					},
+					{
+						"id": 7,
+						"name": "Pricing Plan",
+						"path": "/pricing-plan",
+						"badge": null
+					},
+					{ "id": 8, "name": "Feedbacks", "path": "#", "badge": null },
+					{ "id": 9, "name": "Faq", "path": "/faq", "badge": null },
+					{ "id": 10, "name": "Conatct", "path": "/contact", "badge": null }
+				]
+			},
+			{
+				"id": 2,
+				"name": "Other pages",
+				"path": "#",
+				"items": [
+					{ "id": 1, "name": "Services", "path": "/services", "badge": null },
+					{
+						"id": 2,
+						"name": "Service details",
+						"path": "/services/1",
+						"badge": null
+					},
+					{
+						"id": 3,
+						"name": "Portfolios",
+						"path": "/portfolios",
+						"badge": null
+					},
+					{
+						"id": 4,
+						"name": "Portfolio details",
+						"path": "/portfolios/1",
+						"badge": null
+					},
+					{
+						"id": 5,
+						"name": "Error 404",
+						"path": "/error",
+						"badge": null
+					},
+					{
+						"id": 6,
+						"name": "Blog grid",
+						"path": "/blog-grid",
+						"badge": "NEW"
+					},
+					{
+						"id": 7,
+						"name": "Blog standard",
+						"path": "/blogs",
+						"badge": null
+					},
+					{
+						"id": 8,
+						"name": "Blog sidebar",
+						"path": "/blog-sidebar",
+						"badge": null
+					},
+					{
+						"id": 9,
+						"name": "Blog details",
+						"path": "/blogs/1",
+						"badge": null
+					},
+					{
+						"id": 10,
+						"name": "Term & conditions",
+						"path": "/terms-and-conditions",
+						"badge": null
+					}
+				]
+			},
+			{
+				"id": 3,
+				"name": "Shop pages",
+				"path": "/shop",
+				"items": [
+					{ "id": 1, "name": "Shop", "path": "/shop", "badge": "HOT" },
+					{
+						"id": 2,
+						"name": "Shop details",
+						"path": "/shop/1",
+						"badge": null
+					},
+					{ "id": 3, "name": "Cart", "path": "/cart", "badge": null },
+					{
+						"id": 4,
+						"name": "Checkout",
+						"path": "/checkout",
+						"badge": null
+					},
+					{
+						"id": 5,
+						"name": "My account",
+						"path": "#",
+						"badge": null
+					},
+					{
+						"id": 6,
+						"name": "Wishlist",
+						"path": "/wishlist",
+						"badge": "NEW"
+					},
+					{
+						"id": 7,
+						"name": "Login",
+						"path": "/login",
+						"badge": null
+					},
+					{
+						"id": 8,
+						"name": "Registration",
+						"path": "/password",
+						"badge": null
+					},
+					{ "id": 9, "name": "Order confirm", "path": "#", "badge": null },
+					{ "id": 10, "name": "Coming soon", "path": "#", "badge": null }
+				]
+			}
+		]
+	},
+	{
+		"id": 3,
+		"name": "Services",
+		"path": "/services",
+		"submenu": [
+			{
+				"id": 1,
+				"name": "Business Strategy Development",
+				"icon": "tji-service-1",
+				"path": "/services/1"
+			},
+			{
+				"id": 2,
+				"name": "Customer Experience Solutions",
+				"icon": "tji-service-2",
+				"path": "/services/2"
+			},
+			{
+				"id": 3,
+				"name": "Sustainability and ESG Consulting",
+				"icon": "tji-service-3",
+				"path": "/services/3"
+			},
+			{
+				"id": 4,
+				"name": "Training and Development Programs",
+				"icon": "tji-service-4",
+				"path": "/services/4"
+			},
+			{
+				"id": 5,
+				"name": "IT Support & Maintenance",
+				"icon": "tji-service-5",
+				"path": "/services/5"
+			},
+			{
+				"id": 6,
+				"name": "Marketing Strategy & Campaigns",
+				"icon": "tji-service-6",
+				"path": "/services/6"
+			}
+		]
+	},
+	{
+		"id": 4,
+		"name": "Portfolio",
+		"path": "/portfolios",
+		"submenu": [
+			{
+				"id": 1,
+				"name": "Portfolios",
+				"path": "/portfolios"
+			},
+			{
+				"id": 2,
+				"name": "Portfolio details",
+				"path": "/portfolios/1"
+			}
+		]
+	},
+	{
+		"id": 5,
+		"name": "Blog",
+		"path": "/blogs",
+		"submenu": [
+			{
+				"id": 1,
+				"name": "Blog",
+				"path": "/blogs",
+				"badge": "NEW"
+			},
+			{
+				"id": 2,
+				"name": "Blog grid",
+				"path": "/blog-grid",
+				"badge": null
+			},
+			{
+				"id": 3,
+				"name": "Blog with sidebar",
+				"path": "/blog-sidebar",
+				"badge": null
+			},
+			{
+				"id": 4,
+				"name": "Blog details",
+				"path": "/blogs/1",
+				"badge": null
+			}
+		]
+	},
+	{
+		"id": 6,
+		"name": "Contact",
+		"path": "/contact"
+	}
+]

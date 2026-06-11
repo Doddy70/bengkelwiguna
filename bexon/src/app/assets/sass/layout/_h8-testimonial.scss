@@ -1,0 +1,70 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Testimonial CSS
+----------------------------------------*/
+.h8-testimonial {
+	overflow: hidden;
+
+	&-wrapper {
+		mask-image: linear-gradient(
+			90deg,
+			rgba(255, 255, 255, 0) 0%,
+			var(--tj-color-grey-1) 30.6%,
+			var(--tj-color-grey-1) 69.4%,
+			rgba(255, 255, 255, 0) 100%
+		);
+		@media #{$xs} {
+			mask-image: none;
+			margin-left: 12px !important;
+			margin-right: 12px !important;
+		}
+		.testimonial {
+			&-item {
+				background-color: var(--tj-color-common-white);
+				border: 2px solid var(--tj-color-common-white);
+				padding: 40px 30px 35px;
+				height: 100%;
+				border-radius: 8px;
+
+				@media #{$xl, $lg} {
+					padding: 35px 23px;
+				}
+				@media #{$sm, $xs} {
+					padding: 30px 20px;
+				}
+				.desc {
+					font-size: 18px;
+					line-height: 1.444;
+					padding-top: 23px;
+					padding-bottom: 22px;
+					p {
+						margin-bottom: 0;
+					}
+					@media #{$xl, $lg} {
+						font-size: 17px;
+					}
+					@media #{$md, $sm, $xs} {
+						font-size: 16px;
+					}
+				}
+				.testimonial-author {
+					.author-img {
+						width: 80px;
+						height: 80px;
+
+						@media #{$sm, $xs} {
+							width: 60px;
+							height: 60px;
+						}
+					}
+					.title {
+						font-weight: var(--tj-fw-sbold);
+						margin-bottom: 3px;
+					}
+				}
+			}
+		}
+	}
+}
+/* !END: Testimonial CSS */

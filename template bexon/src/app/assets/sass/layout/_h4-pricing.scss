@@ -1,0 +1,105 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Pricing CSS
+----------------------------------------*/
+.tj-pricing-section {
+	&-2 {
+		.content-wrap {
+			.tj-primary-btn {
+				margin-top: 24px;
+			}
+		}
+	}
+}
+.accordion {
+	&.pricing-accordion {
+		max-width: 820px;
+		.pricing-box {
+			margin-bottom: 30px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+			.faq-title {
+				font-size: 24px;
+				@media #{$md, $sm, $xs} {
+					font-size: 20px;
+				}
+			}
+			&.active,
+			&:has(button:not(.collapsed)) {
+				.faq-title {
+					color: var(--tj-color-common-white);
+					border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+					&::after {
+						color: var(--tj-color-heading-primary);
+						background-color: var(--tj-color-common-white);
+						border-color: var(--tj-color-common-white);
+					}
+				}
+			}
+
+			@media #{$lg} {
+				padding: 0 20px;
+			}
+			@media #{$md, $sm, $xs} {
+				margin-bottom: 20px;
+			}
+		}
+		.pricing-inner {
+			display: flex;
+			flex-wrap: wrap;
+			position: relative;
+			margin-top: 0;
+			padding-top: 30px;
+			padding-bottom: 45px;
+			&::after {
+				content: "";
+				position: absolute;
+				width: 1px;
+				height: calc(100% - 45px);
+				top: 0;
+				inset-inline-start: 50%;
+				background-color: rgba(255, 255, 255, 0.1);
+				transform: translateX(-50%);
+				@media #{$md, $sm, $xs} {
+					display: none;
+				}
+			}
+			.pricing-header,
+			.list-items {
+				width: 50%;
+				@media #{$md, $sm, $xs} {
+					width: 100%;
+				}
+			}
+			.pricing-header {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding-inline-end: 30px;
+				@media #{$md, $sm, $xs} {
+					padding-inline-end: 0;
+				}
+			}
+			.list-items {
+				padding-inline-start: 30px;
+				@media #{$md, $sm, $xs} {
+					padding-inline-start: 0;
+					padding-top: 40px;
+				}
+			}
+			.package-price {
+				margin: 20px 0 80px;
+				@media #{$md, $sm, $xs} {
+					margin-bottom: 40px;
+				}
+			}
+			.pricing-btn {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+/* !END: Pricing CSS */

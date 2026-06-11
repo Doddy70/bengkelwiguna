@@ -1,0 +1,363 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Team CSS
+----------------------------------------*/
+.tj-team-section {
+	padding-top: 120px;
+	padding-bottom: 90px;
+	overflow: hidden;
+	.sec-heading {
+		max-width: 550px;
+	}
+	@media #{$lg} {
+		padding-top: 100px;
+		padding-bottom: 70px;
+	}
+	@media #{$md, $sm, $xs} {
+		padding-top: 70px;
+		padding-bottom: 40px;
+	}
+	&-2 {
+		.sub-title {
+			color: var(--tj-color-theme-primary);
+			border: 0;
+			padding: 0;
+		}
+	}
+	&-3 {
+		background-color: var(--tj-color-theme-bg);
+		padding-top: 120px;
+		padding-bottom: 90px;
+		overflow: hidden;
+		position: relative;
+		z-index: 1;
+		border-radius: 12px;
+		.sec-heading {
+			max-width: 500px;
+		}
+		@media #{$lg} {
+			padding-top: 100px;
+			padding-bottom: 70px;
+		}
+		@media #{$md, $sm, $xs} {
+			padding-top: 70px;
+			padding-bottom: 40px;
+		}
+	}
+}
+.team-item {
+	position: relative;
+	margin-bottom: 30px;
+	.team-img {
+		position: relative;
+		z-index: 0;
+		.team-img-inner {
+			background-color: var(--tj-color-grey-2);
+			border-radius: 10px;
+			overflow: hidden;
+		}
+		img {
+			width: 100%;
+			border-radius: 10px;
+			transition: transform 500ms;
+			transform-origin: center center;
+			transform: perspective(0) rotateX(0) rotateY(0) scaleX(1) scaleY(1);
+		}
+
+		&::after,
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			inset-inline-start: 0;
+			width: 100%;
+			height: 100%;
+			background-color: var(--tj-color-theme-dark);
+			opacity: 0;
+			border-radius: 10px;
+			z-index: -1;
+		}
+		&::before {
+			z-index: 1;
+		}
+		&::after {
+			background-color: var(--tj-color-theme-primary);
+			opacity: 1;
+			z-index: -1;
+		}
+	}
+	.social-links {
+		position: absolute;
+		top: 50%;
+		inset-inline-start: 50%;
+		width: 100%;
+		opacity: 0;
+		visibility: hidden;
+		transition: all 0.3s ease-in-out;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+		ul {
+			justify-content: center;
+			li {
+				a {
+					width: 30px;
+					height: 30px;
+					background-color: var(--tj-color-theme-bg);
+					opacity: 0.4;
+					i {
+						color: var(--tj-color-theme-dark);
+					}
+					&:hover {
+						opacity: 1;
+						background-color: var(--tj-color-theme-primary);
+						i {
+							color: var(--tj-color-common-white);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.team-content {
+		position: relative;
+		margin-top: 18px;
+	}
+	.title {
+		font-weight: var(--tj-fw-sbold);
+		margin-bottom: 0;
+		width: calc(100% - 35px);
+		a {
+			display: inline-block;
+			&:hover {
+				color: var(--tj-color-theme-primary);
+			}
+		}
+	}
+	.designation {
+		font-size: 14px;
+		color: var(--tj-color-text-body-3);
+		line-height: 1;
+		display: inline-flex;
+	}
+	.mail-at {
+		width: 31px;
+		height: 31px;
+		border-radius: 50%;
+		background-color: var(--tj-color-common-white);
+		color: var(--tj-color-heading-primary);
+		font-size: 22px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		position: absolute;
+		top: 6px;
+		inset-inline-end: 0;
+		&:hover {
+			background-color: var(--tj-color-theme-primary);
+			color: var(--tj-color-common-white);
+		}
+	}
+	&:hover {
+		.team-img {
+			img {
+				transform: perspective(400px) rotateX(0.09deg) rotateY(0) scaleX(1.1)
+					scaleY(1.1);
+			}
+			&::before {
+				opacity: 0.75;
+			}
+			&::after {
+				transform: rotate(3deg);
+			}
+		}
+		.social-links {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+}
+
+// Team section 2
+.team-wrapper {
+	display: flex;
+	justify-content: space-between;
+	gap: 30px;
+	@media #{$md, $sm, $xs} {
+		gap: 20px;
+		flex-direction: column;
+	}
+}
+.team-img-wrap {
+	flex: 1;
+	display: block;
+	@media #{$md, $sm, $xs} {
+		display: none;
+	}
+	.team-img {
+		height: 100%;
+		background-color: var(--tj-color-grey-2);
+		border-radius: 12px;
+		overflow: hidden;
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			border-radius: 12px;
+			transition: all 0.3s ease-in-out;
+		}
+	}
+	@media #{$md, $sm, $xs} {
+		order: 2;
+	}
+}
+.team-item-wrap {
+	flex: 1;
+	.team-item {
+		overflow: hidden;
+		margin-bottom: 20px;
+		padding: 0;
+		&:last-child {
+			margin-bottom: 0;
+			padding: 0;
+		}
+		&-inner {
+			background-color: var(--tj-color-common-white);
+			position: relative;
+			text-align: start;
+			width: 100%;
+			border-radius: 12px;
+			padding: 35px 30px 30px;
+			z-index: 1;
+			overflow: hidden;
+			@media #{$sm, $xs} {
+				padding: 20px;
+			}
+		}
+		.team-link {
+			color: var(--tj-color-theme-primary);
+			font-size: 75px;
+			line-height: 1;
+			position: absolute;
+			top: 20px;
+			inset-inline-end: 15px;
+			opacity: 0;
+			visibility: hidden;
+			transform: rotate(-45deg);
+			&:hover {
+				transform: rotate(0);
+			}
+			@media #{$md} {
+				font-size: 65px;
+			}
+			@media #{$sm, $xs} {
+				font-size: 50px;
+				top: 12px;
+			}
+		}
+		.team-content {
+			margin-top: 0;
+			transition: all 0.3s ease-in-out;
+		}
+		.title {
+			width: calc(100% - 50px);
+			font-weight: var(--tj-fw-medium);
+			line-height: 1;
+			transition: none;
+			margin-bottom: 11px;
+		}
+		.designation {
+			font-size: 16px;
+		}
+		.social-links {
+			top: inherit;
+			inset-inline-start: inherit;
+			bottom: 30px;
+			transform: translate(0);
+			ul {
+				justify-content: flex-start;
+				li {
+					a {
+						width: 24px;
+						height: 24px;
+						font-size: 14px;
+						background-color: var(--tj-color-theme-dark);
+						i {
+							color: var(--tj-color-common-white);
+						}
+						&:hover {
+							background-color: var(--tj-color-theme-primary);
+						}
+					}
+				}
+			}
+			@media #{$sm, $xs} {
+				bottom: 20px;
+			}
+		}
+		.desc {
+			opacity: 0;
+			visibility: hidden;
+		}
+		.team-img-wrap {
+			display: none;
+			transition: all 0.3s ease-in-out;
+			.team-img {
+				&::after,
+				&::before {
+					display: none;
+				}
+			}
+			@media #{$md, $sm, $xs} {
+				display: block;
+				width: 100%;
+				height: 0;
+				img {
+					object-fit: cover;
+				}
+			}
+		}
+		&.active {
+			.team-item-inner {
+				margin-bottom: 0px;
+				@media #{$md, $sm, $xs} {
+					margin-bottom: 20px;
+				}
+			}
+			.team-link {
+				opacity: 1;
+				visibility: visible;
+			}
+			.team-content {
+				margin-bottom: 110px;
+				@media #{$lg, $md} {
+					margin-bottom: 80px;
+				}
+				@media #{$sm, $xs} {
+					margin-bottom: 50px;
+				}
+			}
+			.social-links {
+				opacity: 1;
+				visibility: visible;
+				transition-delay: 0.2s;
+			}
+			.team-img-wrap {
+				height: 755px;
+				@media #{$sm} {
+					height: 516px;
+				}
+				@media #{$xs} {
+					height: 337px;
+				}
+			}
+		}
+	}
+
+	@media #{$md, $sm, $xs} {
+		order: 1;
+	}
+}
+
+/* !END: Team CSS */

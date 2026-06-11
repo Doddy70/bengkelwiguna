@@ -1,0 +1,90 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Testimonial CSS
+----------------------------------------*/
+.h5-testimonial {
+	background-color: var(--tj-color-theme-bg);
+	position: relative;
+	z-index: 1;
+	border-radius: 12px;
+	overflow: hidden;
+	.sec-heading-wrap {
+		padding-top: 120px;
+		@media #{$lg} {
+			padding-top: 100px;
+		}
+	}
+
+	&-wrapper {
+		@media #{$xs} {
+			margin-inline-end: 0;
+		}
+		.swiper {
+			overflow: visible;
+		}
+		.testimonial {
+			&-item {
+				background-color: var(--tj-color-common-white);
+				border: 2px solid var(--tj-color-common-white);
+				padding: 40px 30px 35px;
+				height: 100%;
+				border-radius: 12px;
+				.testimonial-author .title {
+					font-weight: var(--tj-fw-sbold);
+				}
+				.desc {
+					font-size: 24px;
+					line-height: 1.3333;
+					color: var(--tj-color-theme-dark-2);
+					font-weight: var(--tj-fw-medium);
+					p {
+						margin-bottom: 0;
+					}
+					@media #{$xl, $lg} {
+						font-size: 22px;
+					}
+					@media #{$md, $sm, $xs} {
+						font-size: 20px;
+					}
+				}
+
+				@media #{$xl, $lg} {
+					padding: 35px 23px;
+				}
+				@media #{$sm, $xs} {
+					padding: 30px 20px;
+				}
+			}
+		}
+
+		.h5-testimonial {
+			&-author {
+				&-wrapper {
+					display: flex;
+					gap: 15px;
+					align-items: center;
+					justify-content: space-between;
+					padding-bottom: 30px;
+					margin-bottom: 25px;
+					border-bottom: 1px dashed var(--tj-color-border-1);
+					@media #{$sm, $xs} {
+						padding-top: 0;
+						padding-bottom: 20px;
+						margin-bottom: 16px;
+					}
+					.testimonial {
+						&-author {
+							padding-top: 0;
+							border-top: 0;
+							@media #{$sm, $xs} {
+								padding-top: 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/* !END: Testimonial CSS */

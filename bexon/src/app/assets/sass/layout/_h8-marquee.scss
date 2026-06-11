@@ -1,0 +1,38 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Marquee CSS
+----------------------------------------*/
+.h8-maquee {
+	position: relative;
+	overflow: hidden;
+	&-inner {
+		padding: 26px 0;
+		rotate: 0deg;
+		width: 100%;
+		border-radius: 12px;
+		border-start-end-radius: 0;
+		border-start-start-radius: 0;
+		margin-inline-start: 0;
+		@media #{$sm} {
+			padding: 20px 0;
+		}
+		@media #{$xs} {
+			padding: 15px 0;
+		}
+		.h5-maquee-slider-item .marquee-box {
+			.marquee-icon {
+				font-size: 24px;
+				font-weight: var(--tj-fw-sbold);
+				text-transform: capitalize;
+				line-height: 1;
+				margin-bottom: 0;
+				white-space: nowrap;
+				color: var(--tj-color-common-white);
+				animation: none;
+			}
+		}
+	}
+}
+
+/* !END: Theme Marquee CSS */

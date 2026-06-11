@@ -1,0 +1,950 @@
+[
+	{
+		"id": 1,
+		"title": "Innovative Solutions for every Business Success",
+		"img": "/images/blog/blog-1.webp",
+		"img1": "/images/blog/blog-4.webp",
+		"img2": "/images/blog/blog-6.webp",
+		"img3": "/images/blog/h5-blog-1.webp",
+		"img4": "/images/blog/blog-thumb-1.webp",
+		"img5": "/images/blog/tj-blog-8.webp",
+		"img6": "/images/blog/tj-blog-8.webp",
+		"detailsImg": "/images/blog/tj-blog-1.webp",
+		"smallImg": "/images/blog/post-1.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc1": "As businesses unlock growth opportunities in the digital age, harnessing the power of cloud computing has become essential. Amazon Web Services (AWS) offers the AWS SaaS Competency Partner program, recognizing companies with exceptional expertise in delivering Software-as-a-Service solutions on the AWS platform.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "28 DEC 2025",
+		"date2": "Oct 24 2025",
+		"day": 28,
+		"month": "JUL",
+		"category": "Corporate",
+		"tags": ["Corporate", "Business"],
+		"author_role": "Analysis",
+		"author": "gerold",
+		"status": "Tutorial",
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "01 OCT 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"title": "Harnessing Digital Transform a Roadmap Businesses",
+		"img": "/images/blog/blog-2.webp",
+		"img1": "/images/blog/blog-5.webp",
+		"img2": "/images/blog/blog-7.webp",
+		"img3": "/images/blog/h5-blog-2.webp",
+		"img4": "/images/blog/h2-blog-2.webp",
+		"img5": "/images/blog/tj-blog-1.webp",
+		"img6": "/images/blog/tj-blog-2.webp",
+		"detailsImg": "/images/blog/tj-blog-2.webp",
+		"smallImg": "/images/blog/post-2.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "06 NOV 2025",
+		"date2": "Nov 24 2025",
+		"day": 6,
+		"month": "NOV",
+		"category": "Business",
+		"tags": ["Business", "Design"],
+		"author_name": "Silvester Scott",
+		"author_role": "admin",
+		"author": "gerold",
+		"status": "TIPS",
+		"isBlogQuote": false,
+		"iconId": "f10e",
+		"popupVideo": "https://www.youtube.com/watch?v=eEzD-Y97ges",
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "01 NOV 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	},
+	{
+		"id": 3,
+		"title": "Mastering Change Management Lessons for Businesses",
+		"img": "/images/blog/blog-3.webp",
+		"img1": "/images/blog/blog-4.webp",
+		"img2": "/images/blog/blog-8.webp",
+		"img3": "/images/blog/h5-blog-3.webp",
+		"img4": "/images/blog/h2-blog-3.webp",
+		"img5": "/images/blog/tj-blog-2.webp",
+		"img6": "/images/blog/tj-blog-1.webp",
+		"detailsImg": "/images/blog/tj-blog-3.webp",
+		"smallImg": "/images/blog/post-3.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc1": "As businesses unlock growth opportunities in the digital age, harnessing the power of cloud computing has become essential. Amazon Web Services (AWS) offers the AWS SaaS Competency Partner program, recognizing companies with exceptional expertise in delivering Software-as-a-Service solutions on the AWS platform.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "24 OCT 2025",
+		"date2": "Dec 24 2025",
+		"day": 24,
+		"month": "AUG",
+		"category": "Consuting",
+		"tags": ["Design", "Marketing", "Strategy"],
+		"author_role": "admin",
+		"author": "gerold",
+		"status": "TIPS",
+		"slider": [
+			"/images/blog/tj-blog-5.webp",
+			"/images/blog/tj-blog-6.webp",
+			"/images/blog/tj-blog-7.webp"
+		],
+
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "01 NOV 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	},
+	{
+		"id": 4,
+		"title": "Designing a Modern Brand Identity for Competitive Edge",
+		"img": "/images/blog/blog-video.webp",
+		"img1": "/images/blog/blog-5.webp",
+		"img2": "/images/blog/h2-blog-1.webp",
+		"img3": "/images/blog/h5-blog-1.webp",
+		"img4": "/images/blog/blog-thumb-1.webp",
+		"img5": "/images/blog/tj-blog-8.webp",
+		"img6": "/images/blog/tj-blog-1.webp",
+		"detailsImg": "/images/blog/tj-blog-4.webp",
+		"smallImg": "/images/blog/post-1.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc1": "As businesses unlock growth opportunities in the digital age, harnessing the power of cloud computing has become essential. Amazon Web Services (AWS) offers the AWS SaaS Competency Partner program, recognizing companies with exceptional expertise in delivering Software-as-a-Service solutions on the AWS platform.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "01 OCT 2025",
+		"day": 28,
+		"month": "AUG",
+		"category": "Innovations",
+		"tags": ["Business", "Design", "Marketing"],
+		"author_role": "admin",
+		"author": "gerold",
+		"status": "FREEBIES",
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "Dec 01, 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	},
+	{
+		"id": 5,
+		"title": "Proven Lessons for Effective Change Management in Business",
+		"img": "/images/project/project-4.webp",
+		"img1": "/images/blog/blog-thumb-1.webp",
+		"img2": "/images/blog/h2-blog-1.webp",
+		"img3": "/images/blog/h5-blog-2.webp",
+		"img4": "/images/blog/blog-thumb-1.webp",
+		"img5": "/images/blog/tj-blog-8.webp",
+		"img6": "/images/blog/tj-blog-1.webp",
+		"detailsImg": "/images/blog/tj-blog-5.webp",
+		"smallImg": "/images/blog/post-2.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc1": "As businesses unlock growth opportunities in the digital age, harnessing the power of cloud computing has become essential. Amazon Web Services (AWS) offers the AWS SaaS Competency Partner program, recognizing companies with exceptional expertise in delivering Software-as-a-Service solutions on the AWS platform.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "01 NOV 2025",
+		"day": 28,
+		"month": "AUG",
+		"category": "Managements",
+		"tags": ["Corporate", "Design", "Strategy"],
+		"author_role": "admin",
+		"author": "gerold",
+		"status": "Tutorial",
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "01 OCT 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	},
+	{
+		"id": 6,
+		"title": "Measuring success key metrics every business track",
+		"img": "/images/project/project-1.webp",
+		"img1": "/images/blog/blog-thumb-1.webp",
+		"img2": "/images/blog/h2-blog-1.webp",
+		"img3": "/images/blog/h5-blog-3.webp",
+		"img4": "/images/blog/blog-thumb-1.webp",
+		"img5": "/images/blog/tj-blog-8.webp",
+		"img6": "/images/blog/tj-blog-1.webp",
+		"detailsImg": "/images/blog/tj-blog-6.webp",
+		"smallImg": "/images/blog/post-3.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc1": "As businesses unlock growth opportunities in the digital age, harnessing the power of cloud computing has become essential. Amazon Web Services (AWS) offers the AWS SaaS Competency Partner program, recognizing companies with exceptional expertise in delivering Software-as-a-Service solutions on the AWS platform.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "01 NOV 2025",
+		"day": 28,
+		"month": "AUG",
+		"category": "Marketing",
+		"tags": ["Business", "Marketing"],
+		"author_role": "admin",
+		"author": "gerold",
+		"status": "Tutorial",
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "01 OCT 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	},
+	{
+		"id": 7,
+		"title": "How to navigate consulting tips for transforming",
+		"img": "/images/blog/blog-1.webp",
+		"img1": "/images/blog/blog-thumb-1.webp",
+		"img2": "/images/blog/h2-blog-1.webp",
+		"img3": "/images/blog/blog-thumb-1.webp",
+		"img4": "/images/blog/blog-thumb-1.webp",
+		"img5": "/images/blog/tj-blog-8.webp",
+		"img6": "/images/blog/tj-blog-1.webp",
+		"detailsImg": "/images/blog/tj-blog-7.webp",
+		"smallImg": "/images/blog/post-1.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc1": "As businesses unlock growth opportunities in the digital age, harnessing the power of cloud computing has become essential. Amazon Web Services (AWS) offers the AWS SaaS Competency Partner program, recognizing companies with exceptional expertise in delivering Software-as-a-Service solutions on the AWS platform.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "01 NOV 2025",
+		"day": 28,
+		"month": "AUG",
+		"category": "Corporate",
+		"tags": ["Marketing", "Strategy"],
+		"author_role": "admin",
+		"author": "gerold",
+		"status": "Tutorial",
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "01 OCT 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	},
+	{
+		"id": 8,
+		"title": "Innovation in action examples of consulting successt",
+		"img": "/images/blog/blog-2.webp",
+		"img1": "/images/blog/blog-thumb-1.webp",
+		"img2": "/images/blog/h2-blog-1.webp",
+		"img3": "/images/blog/blog-thumb-1.webp",
+		"img4": "/images/blog/blog-thumb-1.webp",
+		"img5": "/images/blog/tj-blog-8.webp",
+		"img6": "/images/blog/tj-blog-1.webp",
+		"detailsImg": "/images/blog/tj-blog-2.webp",
+		"smallImg": "/images/blog/post-2.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc1": "As businesses unlock growth opportunities in the digital age, harnessing the power of cloud computing has become essential. Amazon Web Services (AWS) offers the AWS SaaS Competency Partner program, recognizing companies with exceptional expertise in delivering Software-as-a-Service solutions on the AWS platform.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "01 NOV 2025",
+		"day": 28,
+		"month": "AUG",
+		"category": "Business",
+		"tags": ["Design", "Marketing"],
+		"author_role": "admin",
+		"author": "gerold",
+		"status": "Tutorial",
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "01 OCT 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	},
+	{
+		"id": 9,
+		"title": "Innovative solutions for business success from today",
+		"img": "/images/blog/blog-3.webp",
+		"img1": "/images/blog/blog-thumb-1.webp",
+		"img2": "/images/blog/h2-blog-1.webp",
+		"img3": "/images/blog/blog-thumb-1.webp",
+		"img4": "/images/blog/blog-thumb-1.webp",
+		"img5": "/images/blog/tj-blog-8.webp",
+		"img6": "/images/blog/tj-blog-1.webp",
+		"detailsImg": "/images/blog/tj-blog-4.webp",
+		"smallImg": "/images/blog/post-3.webp",
+		"desc": "The curve. Whether you're looking to streamline operations, enhance customer experiences, or explore new market opportunities, our tailored solutions are designed to empower your business.",
+		"desc1": "As businesses unlock growth opportunities in the digital age, harnessing the power of cloud computing has become essential. Amazon Web Services (AWS) offers the AWS SaaS Competency Partner program, recognizing companies with exceptional expertise in delivering Software-as-a-Service solutions on the AWS platform.",
+		"desc2": "In this blog, we will delve into the strategies, best practices, and key factors that accelerated our business growth and earned us the prestigious AWS SaaS Competency Partner status.",
+		"date": "01 NOV 2025",
+		"day": 28,
+		"month": "AUG",
+		"category": "Consuting",
+		"tags": ["Business", "Design", "Marketing", "Strategy"],
+		"author_role": "admin",
+		"author": "gerold",
+		"status": "Tutorial",
+		"blogTopList": [
+			{
+				"iconName": "fa-light fa-user",
+				"name": "Admin",
+				"path": "#"
+			},
+			{
+				"iconName": "fa-light fa-calendar-days",
+				"name": "01 OCT 2025"
+			},
+			{
+				"iconName": "fa-light fa-comments",
+				"name": "Comment",
+				"path": "#"
+			}
+		],
+		"comments": [
+			{
+				"authorName": "Jane Doe",
+				"img": "/img/blog/user-1.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 3, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "England dotted with a lush, green landscape, rustic villages and throbbing with humanity. South Asian country that has plenty to offer to visitors with its diverse wildlife.",
+				"replies": [
+					{
+						"authorName": "Fred Bloggs",
+						"img": "/img/blog/user-2.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "February 3, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here making it look like readable English."
+					},
+					{
+						"authorName": "Jane Bloggs",
+						"img": "/img/blog/user-3.jpg",
+						"img1": "/images/blog/blog-thumb-1.webp",
+						"img2": "/images/blog/h2-blog-1.webp",
+						"img3": "/images/blog/blog-thumb-1.webp",
+						"img4": "/images/blog/blog-thumb-1.webp",
+						"img5": "/images/blog/tj-blog-8.webp",
+						"img6": "/images/blog/tj-blog-1.webp",
+						"date": "January 13, 2025",
+						"day": 28,
+						"month": "AUG",
+						"smallImg": "/images/blog/post-2.webp",
+						"desc": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account"
+					}
+				]
+			},
+			{
+				"authorName": "Themedemos",
+				"img": "/img/blog/user-4.jpg",
+				"img1": "/images/blog/blog-thumb-1.webp",
+				"img2": "/images/blog/h2-blog-1.webp",
+				"img3": "/images/blog/blog-thumb-1.webp",
+				"img4": "/images/blog/blog-thumb-1.webp",
+				"img5": "/images/blog/tj-blog-8.webp",
+				"img6": "/images/blog/tj-blog-1.webp",
+				"date": "January 20, 2025",
+				"day": 28,
+				"month": "AUG",
+				"smallImg": "/images/blog/post-2.webp",
+				"desc": "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage you need to be sure there isn't anything embarrassing hidden in the middle of text. All the"
+			}
+		]
+	}
+]

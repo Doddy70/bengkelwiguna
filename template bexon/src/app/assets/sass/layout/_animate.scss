@@ -1,0 +1,228 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Animate CSS
+----------------------------------------*/
+
+@include keyframes(sticky) {
+	0% {
+		-webkit-transform: translateY(-100%);
+		transform: translateY(-100%);
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+		transform: translateY(0%);
+	}
+}
+
+@include keyframes(pulse) {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(0.8);
+	}
+}
+
+.jumping {
+	animation: jumping 1.5s infinite;
+}
+@include keyframes(jumping) {
+	0% {
+		transform: translateY(2px);
+	}
+	25% {
+		transform: translateY(5px);
+	}
+	50% {
+		transform: translateY(-6px);
+	}
+	75% {
+		transform: translateY(5px);
+	}
+	100% {
+		transform: translateY(2px);
+	}
+}
+
+@include keyframes(linehover) {
+	0% {
+		width: 100%;
+	}
+	50% {
+		width: 0;
+		inset-inline-end: 0;
+	}
+	100% {
+		width: 100%;
+		inset-inline-start: 0;
+	}
+}
+
+@include keyframes(textrotate) {
+	0% {
+		-webkit-transform: translate(-50%, -50%) rotate(0deg);
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		-webkit-transform: translate(-50%, -50%) rotate(360deg);
+		transform: translate(-50%, -50%) rotate(360deg);
+	}
+}
+
+@include keyframes(rotates) {
+	0% {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes gelatine {
+	from,
+	to {
+		transform: scale(1, 1);
+	}
+	25% {
+		transform: scale(0.7, 1.1);
+	}
+	50% {
+		transform: scale(1.1, 0.7);
+	}
+	75% {
+		transform: scale(0.95, 1.05);
+	}
+}
+
+@include keyframes(borderanimate) {
+	0% {
+		transform: translate(-50%, -50%) scale(0.8);
+	}
+	60% {
+		opacity: 1;
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(1.5);
+		opacity: 0;
+	}
+}
+
+@include keyframes(bellshake) {
+	0% {
+		transform: rotate(0);
+	}
+	15% {
+		transform: rotate(5deg);
+	}
+	30% {
+		transform: rotate(-5deg);
+	}
+	45% {
+		transform: rotate(4deg);
+	}
+	60% {
+		transform: rotate(-4deg);
+	}
+	75% {
+		transform: rotate(2deg);
+	}
+	85% {
+		transform: rotate(-2deg);
+	}
+	92% {
+		transform: rotate(1deg);
+	}
+	100% {
+		transform: rotate(0);
+	}
+}
+
+.pulse2 {
+	animation: pulse2 2s linear infinite;
+}
+@include keyframes(pulse2) {
+	0% {
+		-webkit-box-shadow: 0 0 0 0px rgba(255, 255, 255, 1);
+		box-shadow: 0 0 0 0px rgba(255, 255, 255, 1);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 20px rgba(0, 0, 0, 0);
+	}
+}
+.pulse3 {
+	animation: pulse3 2s linear infinite;
+}
+@include keyframes(pulse3) {
+	0% {
+		-webkit-box-shadow: 0 0 0 0px rgba(30, 138, 138, 0.4);
+		box-shadow: 0 0 0 0px rgba(30, 138, 138, 0.4);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 8px rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 8px rgba(0, 0, 0, 0);
+	}
+}
+.pulse4 {
+	animation: pulse4 2s linear infinite;
+}
+@include keyframes(pulse4) {
+	0% {
+		-webkit-box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.05);
+		box-shadow: 0 0 0 0px rgba(255, 255, 255, 0.5);
+	}
+	100% {
+		-webkit-box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
+		box-shadow: 0 0 0 12px rgba(0, 0, 0, 0);
+	}
+}
+@include keyframes(shine) {
+	0% {
+		transform: skewX(-25deg) translateX(0);
+	}
+	100% {
+		transform: skewX(-25deg) translateX(250%);
+	}
+}
+
+.zoomInOut {
+	animation: zoomEffect 3s linear infinite;
+}
+@include keyframes(zoomEffect) {
+	0%,
+	100% {
+		transform: scale(0.9);
+	}
+	50% {
+		transform: scale(1.2);
+	}
+}
+
+@keyframes marquee {
+	0% {
+		transform: translateY(0);
+	}
+	100% {
+		transform: translateY(100%);
+	}
+}
+@keyframes tj-bounce-ball {
+	0%,
+	20%,
+	50%,
+	80%,
+	100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-30px);
+	}
+	60% {
+		transform: translateY(-15px);
+	}
+}
+
+/* !END: Animate CSS */

@@ -1,0 +1,108 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Service CSS
+----------------------------------------*/
+.h7-service {
+	.sec-heading.style-7 {
+		@media #{$md, $sm, $xs} {
+			margin-bottom: 18px;
+		}
+		.sub-title {
+			margin-top: 12px;
+			@media #{$md,$sm, $xs} {
+				margin-top: 0;
+			}
+		}
+		.sec-title {
+			&-wrapper {
+				max-width: 870px;
+				margin-inline-start: auto;
+				@media #{$md,$sm, $xs} {
+					max-width: 100%;
+				}
+			}
+			max-width: 550px;
+			@media #{$md,$sm, $xs} {
+				max-width: 100%;
+			}
+		}
+	}
+	&-wrapper {
+		max-width: 870px;
+		margin-inline-start: auto;
+		@media #{$md,$sm, $xs} {
+			max-width: 100%;
+		}
+	}
+	.section-desc-wrapper {
+		.desc {
+			margin-bottom: 24px;
+		}
+		@media #{$md, $sm, $xs} {
+			margin-bottom: 42px;
+			.desc {
+				margin-bottom: 22px;
+			}
+		}
+	}
+	&-item {
+		padding: 35px 30px;
+		border-radius: 8px;
+		&:not(:last-child) {
+			margin-bottom: 15px;
+		}
+		@media #{$sm, $xs} {
+			padding: 30px 20px;
+		}
+
+		.service-content-wrap {
+			align-items: center;
+			.service-title .title a:hover {
+				color: var(--tj-color-theme-primary);
+			}
+		}
+
+		.h7-service {
+			&-action {
+				.text-btn {
+					margin-top: 0;
+					@media #{$xs} {
+						margin-top: 12px;
+						margin-inline-start: 85px;
+					}
+					.btn-icon {
+						width: 40px;
+						height: 40px;
+						font-size: 24px;
+						background-color: transparent;
+						border: 1px solid var(--tj-color-border-1);
+
+						i {
+							color: var(--tj-color-theme-dark);
+						}
+					}
+				}
+			}
+		}
+
+		&:hover {
+			.service-icon {
+				animation: gelatine 0.6s;
+			}
+			.h7-service {
+				&-action {
+					.text-btn .btn-icon {
+						background-color: var(--tj-color-theme-dark);
+						border: 1px solid var(--tj-color-theme-dark);
+						i {
+							color: var(--tj-color-common-white);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Service CSS */

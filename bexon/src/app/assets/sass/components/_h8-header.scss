@@ -1,0 +1,141 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Header CSS
+----------------------------------------*/
+.header-area.h8-header {
+	&.header-absolute {
+		position: absolute;
+		top: 15px;
+		inset-inline-start: 0;
+		inset-inline-end: 0;
+		width: calc(100% - 30px);
+		margin: 0 auto;
+		z-index: 999;
+		padding-bottom: 15px;
+		background-color: transparent;
+		@media #{$lg} {
+			width: calc(100% - 60px);
+		}
+		@media #{$md,$sm,$xs} {
+			inset-inline-start: 50%;
+			inset-inline-end: auto;
+			transform: translateX(-50%);
+			max-width: 1382px;
+			margin: 0 auto;
+			border-radius: 12px;
+			z-index: 999;
+			border-start-end-radius: 0;
+			border-start-start-radius: 0;
+			background-color: var(--tj-color-grey-1);
+		}
+		@media #{$md} {
+			width: 86%;
+		}
+		@media #{$sm} {
+			top: 12px;
+			width: 86%;
+			padding-bottom: 12px;
+		}
+		@media #{$xs} {
+			top: 12px;
+			width: 78%;
+			padding-bottom: 12px;
+		}
+		.h8-header-mainmenu-bg-shape {
+			position: absolute;
+			top: 0;
+			inset-inline-start: 50%;
+			transform: translateX(-50%);
+			width: 92%;
+			max-width: 1382px;
+			height: 100%;
+			background-color: var(--tj-color-grey-1);
+			margin: 0 auto;
+			border-radius: 12px;
+			border-start-end-radius: 0;
+			border-start-start-radius: 0;
+			z-index: -1;
+			@media #{$lg} {
+				width: 100%;
+			}
+			@media #{$md,$sm,$xs} {
+				display: none;
+			}
+			&::after,
+			&::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				width: 13px;
+				height: 13px;
+				background: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
+			}
+			&::before {
+				inset-inline-start: -13px;
+				transform: rotate(90deg);
+			}
+			&::after {
+				inset-inline-end: -13px;
+			}
+		}
+		.header-wrapper {
+			border-radius: 7px;
+			width: calc(92% - 6px);
+			max-width: 1352px;
+			margin: 0 auto;
+			@media #{$xl,$lg} {
+				padding: 0 15px;
+			}
+			@media #{$lg} {
+				width: calc(100% - 6px);
+			}
+			@media #{$md,$sm,$xs} {
+				width: auto;
+				max-width: inherit;
+				margin: 0 3px;
+			}
+			@media #{$md} {
+				padding: 15px 15px;
+			}
+			@media #{$sm,$xs} {
+				padding: 15px 12px;
+				margin: 0;
+			}
+		}
+		&::after,
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			width: 13px;
+			height: 13px;
+			background: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%23ecf0f0"></path></svg>');
+
+			display: none;
+			@media #{$md,$sm,$xs} {
+				display: block;
+			}
+		}
+		&::before {
+			inset-inline-start: -13px;
+			transform: rotate(90deg);
+		}
+		&::after {
+			inset-inline-end: -13px;
+		}
+
+		.mainmenu ul > li > .mega-menu {
+			top: calc(100% - 15px);
+		}
+	}
+	&.sticky {
+		width: calc(100% - 30px);
+		max-width: inherit;
+		@media #{$sm,$xs} {
+			width: 100%;
+		}
+	}
+}
+
+/* !END: Theme Header CSS */

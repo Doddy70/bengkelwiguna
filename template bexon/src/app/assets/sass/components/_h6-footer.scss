@@ -1,0 +1,137 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Footer CSS
+----------------------------------------*/
+.tj-footer-section {
+	&.h6-footer {
+		padding-top: 0;
+		.h6-footer {
+			&-subscribe {
+				margin-inline-start: 0;
+				margin-inline-end: auto;
+				@media #{$lg,$md,$sm,$xs} {
+					margin-top: 0;
+				}
+				.subscribe-form {
+					input[type="email"] {
+						background-color: var(--tj-color-grey-3);
+						backdrop-filter: blur(10px);
+						color: var(--tj-color-common-white);
+						outline: 1px solid transparent;
+						&::placeholder {
+							transition: all 0.3s;
+							color: var(--tj-color-common-white);
+						}
+						&:focus {
+							outline-color: var(--tj-color-theme-primary);
+						}
+					}
+					input[type="checkbox"] {
+						border: 1px solid var(--tj-color-grey-3);
+						&::before {
+							color: var(--tj-color-common-white);
+						}
+						&:checked {
+							background-color: var(--tj-color-grey-3);
+							border-color: var(--tj-color-grey-3);
+						}
+					}
+					button::before {
+						border-color: var(--tj-color-grey-3);
+					}
+					label {
+						color: var(--tj-color-grey-1);
+						a {
+							color: var(--tj-color-common-white);
+							&:hover {
+								color: var(--tj-color-theme-primary);
+							}
+						}
+					}
+				}
+			}
+			&-col-2 {
+				padding-inline-start: 17px;
+				@media #{$md} {
+					padding-inline-start: 90px;
+				}
+				@media #{$sm,$xs} {
+					padding-inline-start: 0;
+				}
+			}
+			&-col-3 {
+				&.widget-nav-menu {
+					padding-inline-start: 20px;
+					@media #{$lg} {
+						margin-top: 0;
+						padding-inline-start: 10px;
+					}
+					@media #{$md} {
+						padding-inline-start: 0;
+					}
+					@media #{$sm,$xs} {
+						padding-inline-start: 0;
+					}
+				}
+			}
+			&-contact {
+				@media #{$lg} {
+					margin-top: 0;
+					padding-inline-start: 20px;
+				}
+				@media #{$md} {
+					padding-inline-start: 90px;
+				}
+				@media #{$sm,$xs} {
+					padding-inline-start: 0;
+				}
+			}
+			&-logo {
+				display: flex;
+				justify-content: center;
+				overflow: hidden;
+				&-area {
+					padding-bottom: 50px;
+				}
+			}
+			&-copyright {
+				border-color: var(--tj-color-border-4);
+				.copyright-menu ul li {
+					&::before {
+						background: var(--tj-color-border-4);
+					}
+				}
+			}
+		}
+		.bg-shape-3 {
+			max-width: 100%;
+			inset-inline-start: 0;
+
+			width: 100%;
+		}
+	}
+}
+.social-links {
+	&.style-6 {
+		ul {
+			li {
+				a {
+					background-color: var(--tj-color-common-white);
+					opacity: 0.3;
+					i {
+						color: var(--tj-color-theme-dark);
+					}
+					&:hover {
+						background-color: var(--tj-color-common-white);
+						opacity: 1;
+						i {
+							color: var(--tj-color-theme-dark);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/* !END: Theme Footer CSS */

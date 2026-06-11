@@ -1,0 +1,372 @@
+@use "../utilities" as *;
+
+/* START: Careers CSS */
+.tj-careers {
+	padding: 30px;
+	border: 1px solid var(--tj-color-border-3);
+	background-color: var(--tj-color-common-white);
+	border-radius: 12px;
+	@include transition(all 0.3s ease-in-out 0s);
+	&-icon {
+		width: 88px;
+		height: 88px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 48px;
+		line-height: 1;
+		background-color: var(--tj-color-theme-bg-2);
+		border-radius: 50%;
+		@include transition(all 0.3s ease-in-out 0s);
+		i {
+			@include transition(all 0.3s ease-in-out 0s);
+			color: var(--tj-color-theme-primary);
+		}
+	}
+	&-tag {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px;
+		margin-bottom: 16px;
+		span {
+			display: inline-block;
+			padding: 2px 14px;
+			border: 1px dashed var(--tj-color-border-1);
+			background-color: transparent;
+			text-transform: capitalize;
+			border-radius: 4px;
+			@include transition(all 0.3s ease-in-out 0s);
+			&:hover {
+				color: var(--tj-color-common-white) !important;
+				border-color: var(--tj-color-theme-primary) !important;
+				background-color: var(--tj-color-theme-primary);
+			}
+		}
+	}
+	&-title {
+		margin-bottom: 0;
+		font-weight: var(--tj-fw-sbold);
+		@media #{$xl, $lg} {
+			font-size: 20px;
+		}
+		@media #{$md} {
+			font-size: 19px;
+		}
+	}
+	&-salary {
+		margin-top: 15px;
+		font-family: var(--tj-ff-heading);
+		font-weight: 600;
+		font-size: 20px;
+		color: var(--tj-color-common-black-3);
+		span {
+			color: var(--tj-color-text-body);
+			@include transition(all 0.3s ease-in-out 0s);
+		}
+	}
+	&-bottom {
+		margin-top: 60px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px;
+		.location {
+			@include transition(all 0.3s ease-in-out 0s);
+			i {
+				color: var(--tj-color-common-black-3);
+				margin-inline-end: 5px;
+			}
+		}
+	}
+	&-btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		color: var(--tj-color-heading-primary);
+
+		span.btn-icon {
+			overflow: hidden;
+			position: relative;
+			display: inline-flex;
+			color: var(--tj-color-heading-primary);
+			i {
+				color: var(--tj-color-heading-primary);
+				font-weight: 700;
+				margin-top: 2px;
+				&:first-child,
+				&:last-child {
+					transition: transform 0.4s ease-in-out 0s;
+				}
+			}
+			i:last-child {
+				position: absolute;
+				transform: translateX(-150%);
+			}
+		}
+		.btn-text {
+			display: inline-flex;
+			overflow: hidden;
+			color: var(--tj-color-heading-primary);
+			text-shadow: 0 23px 0 currentColor;
+			font-weight: 700;
+			> span {
+				display: flex;
+				align-items: center;
+				backface-visibility: hidden;
+				transform: translateY(0);
+				transition: 0.5s;
+			}
+		}
+	}
+	&:hover {
+		border-color: var(--tj-color-theme-dark);
+		background-color: var(--tj-color-theme-dark);
+		.tj-careers-icon {
+			background-color: var(--tj-color-theme-primary);
+			i {
+				color: var(--tj-color-common-white);
+			}
+		}
+		.tj-careers-tag {
+			span {
+				border: 1px dashed var(--tj-color-border-2);
+				color: var(--tj-color-text-body-2);
+			}
+		}
+		.tj-careers-title {
+			a {
+				color: var(--tj-color-common-white);
+			}
+		}
+		.tj-careers-salary {
+			color: var(--tj-color-text-body-2);
+			span {
+				color: var(--tj-color-common-white);
+			}
+		}
+		.tj-careers-bottom {
+			.location {
+				color: var(--tj-color-text-body-2);
+			}
+		}
+		.tj-careers-btn {
+			color: var(--tj-color-common-white);
+			span.btn-icon {
+				color: var(--tj-color-common-white);
+				i {
+					color: var(--tj-color-common-white);
+				}
+				i:first-child {
+					transform: translateX(150%);
+				}
+				i:last-child {
+					transform: translateX(0);
+				}
+			}
+			.btn-text {
+				color: var(--tj-color-common-white);
+				> span {
+					transform: translateY(-24px);
+				}
+			}
+		}
+	}
+}
+/* !END: Careers CSS */
+
+/* START: Careers details CSS */
+.tj-careers {
+	&-details {
+		.tj-post-single-post {
+			border: 1px dashed var(--tj-color-border-1);
+			padding: 30px;
+			margin-bottom: 50px;
+			border-radius: 10px;
+			@media #{$sm,$xs} {
+				margin-bottom: 35px;
+				padding: 12px;
+			}
+		}
+		.tj-check-list {
+			ul {
+				list-style: none;
+
+				li {
+					display: flex;
+					align-items: start;
+					column-gap: 10px;
+					color: var(--tj-color-heading-primary);
+					font-weight: var(--tj-fw-medium);
+					margin-bottom: 10px;
+					&:last-child {
+						margin-bottom: 0;
+					}
+					span {
+						display: inline-flex;
+						align-items: center;
+						justify-content: center;
+						width: 20px;
+						height: 20px;
+						flex: 0 0 auto;
+						font-size: 8px;
+						line-height: 1;
+						margin-top: 3px;
+						color: var(--tj-color-common-white);
+						background: var(--tj-color-theme-primary);
+						border-radius: 50%;
+					}
+				}
+			}
+		}
+		.service-check-list ul li span {
+			font-weight: 400;
+		}
+		.tj-post-details_tags_share {
+			margin-top: 25px;
+			padding-bottom: 0;
+			margin-bottom: 0;
+			border-bottom: 0;
+		}
+		.project_catagory ul {
+			background-color: var(--tj-color-common-white);
+			padding: 0 20px 25px 20px;
+			margin: 0;
+			list-style: none;
+			border-radius: 8px;
+			li:first-child {
+				padding-top: 19px;
+			}
+		}
+		.project_catagory ul li {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: space-between;
+			padding: 19px 0;
+			position: relative;
+			z-index: 1;
+			border-bottom: 1px dashed var(--tj-color-border-1);
+			font-weight: 400;
+			&:last-child {
+				border-bottom: 0;
+				padding-bottom: 0;
+			}
+			span {
+				color: var(--tj-color-body-text);
+				&.first-child {
+					min-width: 100px;
+					position: relative;
+					z-index: 1;
+					&::before {
+						position: absolute;
+						content: ":";
+						top: 50%;
+						transform: translateY(-50%);
+						inset-inline-end: 0;
+					}
+				}
+			}
+		}
+		.tj-sidebar-widget {
+			border-color: var(--tj-color-border-3);
+		}
+	}
+	&-top {
+		padding: 30px;
+		background-color: var(--tj-color-theme-bg-2);
+		display: flex;
+		flex-wrap: wrap;
+		gap: 30px;
+		border-radius: 8px;
+		&-icon {
+			width: 130px;
+			height: 130px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background-color: var(--tj-color-theme-primary);
+			border-radius: 8px;
+			@media #{$lg, $sm, $xs} {
+				width: 100px;
+				height: 100px;
+			}
+			i {
+				font-size: 70px;
+				color: var(--tj-color-common-white);
+				@media #{$lg, $sm, $xs} {
+					font-size: 55px;
+				}
+			}
+		}
+		&-title {
+			margin-bottom: 0;
+		}
+		.tj-careers-tag {
+			span {
+				border-color: var(--tj-color-border-1);
+				&:hover {
+					border-color: var(--tj-color-theme-primary);
+				}
+			}
+		}
+		.location {
+			display: block;
+			margin-top: 15px;
+			color: var(--tj-color-heading-primary);
+			i {
+				margin-inline-end: 5px;
+			}
+		}
+	}
+}
+
+.tj-careers-form {
+	.form-input {
+		margin-bottom: 20px;
+		&.reduce {
+			margin-top: -10px;
+		}
+		textarea,
+		input {
+			height: 60px;
+			border-color: transparent;
+			border-radius: 8px;
+			&::placeholder {
+				color: var(--tj-color-common-black-2);
+			}
+			&:focus {
+				border: 1px solid var(--tj-color-theme-primary);
+			}
+		}
+		textarea {
+			min-height: 160px;
+		}
+		label {
+			color: var(--tj-color-common-black-2);
+			display: block;
+			line-height: 1;
+			margin-bottom: 10px;
+		}
+		input[type="file"] {
+			padding: 7px;
+			cursor: pointer;
+			background: var(--tj-color-common-white);
+			border: 1px solid transparent;
+			&:focus {
+				border-color: var(--tj-color-theme-primary);
+			}
+		}
+		input::file-selector-button {
+			width: 125px;
+			height: 44px;
+			margin-inline-end: 10px;
+			color: var(--tj-color-theme-primary);
+			background: var(--tj-color-theme-bg-2);
+			border: none;
+			border-radius: 6px;
+			cursor: pointer;
+		}
+	}
+}
+/* !END: Careers details CSS */

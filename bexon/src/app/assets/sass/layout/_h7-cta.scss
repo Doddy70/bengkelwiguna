@@ -1,0 +1,50 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: CTA CSS
+----------------------------------------*/
+
+.h7-cta {
+	background: url("/images/cta/h7-cta-bg.webp") no-repeat center;
+	background-size: cover;
+	position: relative;
+	overflow: hidden;
+	z-index: 0;
+	border-radius: 12px;
+	margin-bottom: 15px;
+	&-inner {
+		background-color: transparent;
+		.cta-content {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			gap: 20px;
+			flex-wrap: wrap;
+			align-items: center;
+			padding-inline-start: 0;
+			padding-inline-end: 0;
+			padding: 50px 0 65px;
+			@media #{$lg} {
+				padding: 34px 0 45px;
+			}
+			@media #{$md, $sm, $xs} {
+				padding: 34px 0 45px;
+			}
+			.title {
+				max-width: 624px;
+				margin-bottom: 0;
+			}
+			.cta-btn {
+				margin-top: 15px;
+				@media #{ $xs} {
+					margin-top: 5px;
+				}
+			}
+		}
+	}
+	.bg-shape-3 {
+		inset-inline-start: 32%;
+	}
+}
+
+/* !END: CTA CSS */

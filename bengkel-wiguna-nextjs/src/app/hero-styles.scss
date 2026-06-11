@@ -1,0 +1,175 @@
+
+.tj-banner-section {
+	position: relative;
+    padding-top: 120px;
+    background-color: #fff;
+}
+.banner-area {
+	display: flex;
+	flex-wrap: wrap;
+	min-height: 792px;
+	@media (min-width: 1200px) {
+		min-height: 700px;
+	}
+}
+.banner-left-box {
+	background-color: #224297; /* Bengkel Wiguna Blue */
+	border-radius: 12px;
+	padding: 70px;
+	width: calc(50% - 15px);
+	margin-inline-end: 15px;
+	position: relative;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+    
+	&::before {
+		content: "";
+		position: absolute;
+		top: 5%;
+		inset-inline-start: 5%;
+		width: 350px;
+		height: 350px;
+		border-radius: 50%;
+		background: #ffd900; /* Bengkel Wiguna Gold */
+		-webkit-filter: blur(65px);
+		filter: blur(65px);
+		opacity: 0.15;
+		z-index: -1;
+	}
+	@media (max-width: 991px) {
+		width: 100%;
+		margin-inline-end: 0;
+		margin-bottom: 15px;
+		padding: 60px 30px;
+	}
+}
+.banner-content {
+	max-width: 635px;
+	width: 100%;
+	.sub-title {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		color: #fff;
+		font-size: 14px;
+		line-height: 1;
+		letter-spacing: 1.4px;
+		text-transform: uppercase;
+		font-weight: 700;
+		border: 1px dashed rgba(255, 255, 255, 0.3);
+		padding: 8px 12px;
+		margin-bottom: 25px;
+		border-radius: 4px;
+		i {
+			color: #ffd900;
+			font-size: 20px;
+		}
+	}
+	.banner-title {
+		color: #fff;
+		line-height: 1.1;
+		margin-bottom: 20px;
+        font-weight: 800;
+        font-size: 64px;
+		span {
+			display: inline-block;
+			color: #ffd900;
+			font-weight: 500;
+		}
+		@media (max-width: 1400px) {
+			font-size: 54px;
+		}
+		@media (max-width: 767px) {
+			font-size: 40px;
+		}
+	}
+	.banner-desc {
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 18px;
+		line-height: 1.6;
+		max-width: 500px;
+        margin-bottom: 35px;
+	}
+}
+
+.banner-btn-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.banner-right-box {
+	width: 50%;
+	position: relative;
+	min-height: 450px;
+	@media (max-width: 991px) {
+		width: 100%;
+        height: 500px;
+	}
+}
+
+.banner-img {
+	width: 100%;
+	height: 100%;
+	border-radius: 12px;
+	position: relative;
+	overflow: hidden;
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 12px;
+	}
+}
+
+.customers-box {
+	background-color: #fff;
+	border-radius: 12px;
+	padding: 30px;
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    max-width: 280px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    z-index: 10;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-number {
+    color: #224297;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 5px;
+}
+
+.customers-text {
+    margin-top: 15px;
+    font-size: 15px;
+    color: #444;
+    line-height: 1.4;
+}
+
+.banner-shape {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	pointer-events: none;
+    opacity: 0.1;
+}

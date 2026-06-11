@@ -1,0 +1,161 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Team CSS
+----------------------------------------*/
+.h8-team {
+	background-color: var(--tj-color-theme-bg);
+	position: relative;
+	z-index: 1;
+	border-radius: 12px;
+	overflow: hidden;
+	.sec-heading .sec-title {
+		@media #{$xl} {
+			font-size: 45px;
+		}
+		@media #{$lg} {
+			font-size: 38px;
+		}
+	}
+	&-item {
+		&-wrapper {
+			.team-item {
+				padding: 35px 15px 30px;
+				margin-bottom: 0;
+				border: 1px solid var(--tj-color-border-1);
+				border-top: 0;
+				border-inline-start: 0;
+				text-align: center;
+
+				.team-img {
+					width: 230px;
+					height: 230px;
+					overflow: hidden;
+					border-radius: 100%;
+					margin-inline-start: auto;
+					margin-inline-end: auto;
+					@media #{$lg,$sm} {
+						width: 200px;
+						height: 200px;
+					}
+					&::after {
+						display: none;
+					}
+				}
+				.title {
+					width: 100%;
+				}
+			}
+			&:nth-child(2),
+			&:nth-child(3),
+			&:nth-child(4),
+			&:nth-child(5) {
+				.team-item {
+					border-top: 1px solid var(--tj-color-border-1);
+				}
+			}
+			&:nth-child(2),
+			&:nth-child(5),
+			&:nth-child(9) {
+				.team-item {
+					border-inline-start: 1px solid var(--tj-color-border-1);
+				}
+			}
+			&:nth-child(5) {
+				.team-item {
+					margin-top: -1px;
+					margin-inline-end: -1px;
+				}
+			}
+			&:nth-child(9) {
+				.team-item {
+					margin-inline-end: -1px;
+				}
+			}
+
+			@media #{$md,$sm} {
+				&:nth-child(2),
+				&:nth-child(3),
+				&:nth-child(4),
+				&:nth-child(5) {
+					.team-item {
+						border-top: 0;
+					}
+				}
+				&:nth-child(2),
+				&:nth-child(3) {
+					.team-item {
+						border-top: 1px solid var(--tj-color-border-1);
+					}
+				}
+				&:nth-child(3),
+				&:nth-child(5),
+				&:nth-child(7) {
+					.team-item {
+						border-inline-start: 1px solid var(--tj-color-border-1);
+						margin-top: -1px;
+						margin-inline-end: -1px;
+					}
+				}
+				&:nth-child(5),
+				&:nth-child(7) {
+					.team-item {
+						border-top: 0;
+						margin-top: 0px;
+					}
+				}
+				&:nth-child(7) {
+					.team-item {
+						margin-top: 0;
+						margin-inline-end: -1px;
+					}
+				}
+				&:nth-child(9) {
+					.team-item {
+						margin-top: 0px;
+						margin-inline-end: 0;
+					}
+				}
+			}
+			@media #{$xs} {
+				.team-item {
+					border-inline-start: 1px solid var(--tj-color-border-1);
+					margin-top: 0;
+					margin-inline-end: 0;
+				}
+				&:nth-child(3),
+				&:nth-child(4),
+				&:nth-child(5) {
+					.team-item {
+						border-top: 0;
+					}
+				}
+			}
+		}
+	}
+
+	&-action {
+		height: 100%;
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		@media #{$xs} {
+			margin-top: 10px;
+		}
+		.circle-text-wrap {
+			position: static;
+			flex-shrink: 0;
+			background-color: transparent;
+			backdrop-filter: blur(0);
+			.circle-icon {
+				font-size: 85px;
+			}
+			i {
+				color: var(--tj-color-theme-primary);
+				transform: rotate(-45deg);
+			}
+		}
+	}
+}
+/* !END: Team CSS */

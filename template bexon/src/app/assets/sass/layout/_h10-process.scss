@@ -1,0 +1,142 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Process CSS
+----------------------------------------*/
+.h10-process {
+	background-color: var(--tj-color-theme-dark);
+	position: relative;
+	z-index: 0;
+	border-radius: 12px;
+	overflow: hidden;
+	.bg-shape-3 {
+		@media #{$xl} {
+			inset-inline-start: -16%;
+		}
+		@media #{$lg} {
+			inset-inline-start: -28%;
+		}
+		@media #{$md,$sm, $xs} {
+			display: none;
+		}
+	}
+	.pin-spacer:has(.sec-heading.style-3) {
+		@media #{$md, $sm, $xs} {
+			height: auto !important;
+		}
+	}
+	.sec-heading {
+		&.style-3 {
+			@media #{$md, $sm, $xs} {
+				&.tj-sticky-panel-3 {
+					position: relative !important;
+					inset-inline-start: 0 !important;
+					top: 0 !important;
+					transform: none !important;
+					height: auto !important;
+					max-height: inherit !important;
+					// margin-bottom: -30px !important;
+				}
+			}
+			.sec-title {
+				color: var(--tj-color-common-white);
+			}
+			.h10-process-more {
+				margin-top: 24px;
+			}
+		}
+	}
+	&-wrapper {
+		max-width: 644px;
+		margin-inline-start: auto;
+		@media #{$md,$sm, $xs} {
+			max-width: 100%;
+		}
+		.h10-process {
+			&-item {
+				background-color: var(--tj-color-theme-bg-3);
+				padding: 108px 30px 35px;
+				position: relative;
+				border-radius: 8px;
+				z-index: 0;
+				&:not(:last-child) {
+					margin-bottom: 30px;
+				}
+				@media #{$sm, $xs} {
+					padding: 90px 20px 30px;
+				}
+				.title {
+					max-width: 300px;
+					font-weight: var(--tj-fw-sbold);
+					color: var(--tj-color-common-white);
+					margin-bottom: 20px;
+					transition: none;
+				}
+				.desc {
+					margin-bottom: 0;
+					color: var(--tj-color-text-body-2);
+				}
+			}
+			&-icon {
+				font-size: 48px;
+				width: 80px;
+				height: 80px;
+				margin-bottom: 24px;
+				background: var(--tj-color-theme-primary);
+				border-radius: 50%;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				line-height: 1;
+				flex: 0 0 auto;
+				transition: all 0.4s ease-in-out;
+				i {
+					color: var(--tj-color-common-white);
+					display: inline-flex;
+					line-height: 1;
+				}
+				@media #{$sm, $xs} {
+					font-size: 38px;
+					width: 65px;
+					height: 65px;
+				}
+			}
+
+			&-sln {
+				position: absolute;
+				top: 0;
+				inset-inline-start: 0;
+				padding: 13px 21px 17px;
+				margin-bottom: 0;
+				background-color: var(--tj-color-theme-dark);
+				border-end-end-radius: 8px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				line-height: 1;
+				font-weight: var(--tj-fw-sbold);
+				color: var(--tj-color-text-body-2);
+				z-index: 1;
+				&::before,
+				&::after {
+					content: "";
+					position: absolute;
+					inset-inline-end: -8px;
+					top: 0;
+					width: 8px;
+					height: 8px;
+					background: url('data:image/svg+xml,<svg viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-11 h-11"><path d="M11 1.54972e-06L0 0L2.38419e-07 11C1.65973e-07 4.92487 4.92487 1.62217e-06 11 1.54972e-06Z" fill="%230c1e21"></path></svg>');
+					// transform: rotate(90deg);
+				}
+				&::after {
+					inset-inline-end: auto;
+					inset-inline-start: 0;
+					top: auto;
+					bottom: -8px;
+				}
+			}
+		}
+	}
+}
+
+/* !END: Process CSS */

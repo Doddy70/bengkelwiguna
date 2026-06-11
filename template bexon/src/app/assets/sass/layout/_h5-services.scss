@@ -1,0 +1,100 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Services CSS
+----------------------------------------*/
+.h5-service-section {
+	.sec-heading {
+		max-width: 550px;
+	}
+}
+
+.service-item {
+	&.style-6 {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		padding: 0;
+		overflow: hidden;
+		height: 390px;
+		padding: 30px;
+		transition: all 0.3s ease-in-out;
+		.service-icon {
+			width: 90px;
+			height: 90px;
+			margin: 0 auto;
+			i {
+				transition: all 0.5s ease-in-out;
+			}
+			@media #{$sm, $xs} {
+				width: 70px;
+				height: 70px;
+				font-size: 50px;
+			}
+		}
+		.title {
+			max-width: 250px;
+			margin-bottom: 0;
+			@media #{$xl} {
+				font-size: 20px;
+			}
+		}
+		.text-btn {
+			position: absolute;
+			inset-inline-start: auto;
+			bottom: 0;
+			opacity: 0;
+			visibility: hidden;
+			margin: 0;
+		}
+		&:hover {
+			background-color: var(--tj-color-theme-primary);
+			.service-icon {
+				background: linear-gradient(
+					-45deg,
+					rgba(255, 255, 255, 0.3) 0%,
+					rgba(255, 255, 255, 0) 50%,
+					rgba(255, 255, 255, 0.3) 100%
+				);
+				border-color: rgba(255, 255, 255, 0.15);
+				i {
+					color: var(--tj-color-common-white);
+					-webkit-transform: rotateY(360deg);
+					transform: rotateY(360deg);
+				}
+			}
+			.desc,
+			.title {
+				color: var(--tj-color-common-white);
+				a {
+					color: var(--tj-color-common-white);
+				}
+			}
+			.desc {
+				opacity: 0;
+				visibility: hidden;
+				transform: scaleY(0);
+			}
+			.text-btn {
+				opacity: 1;
+				visibility: visible;
+				bottom: 30px;
+				transition: all 0.2s linear;
+				@media #{$sm, $xs} {
+					bottom: 20px;
+				}
+				.btn-text {
+					color: var(--tj-color-common-white);
+				}
+				.btn-icon {
+					background-color: var(--tj-color-theme-dark);
+				}
+			}
+		}
+		@media #{$sm, $xs} {
+			padding: 20px;
+		}
+	}
+}
+
+/* !END: Services CSS */

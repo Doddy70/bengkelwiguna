@@ -1,0 +1,97 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Footer CSS
+----------------------------------------*/
+.tj-footer-section {
+	&.h9-footer {
+		.h9-footer {
+			&-subscribe {
+				margin-inline-start: 0;
+				margin-inline-end: auto;
+				@media #{$lg,$md,$sm,$xs} {
+					margin-top: 0;
+				}
+			}
+			&-widget {
+				&-2 {
+					@media #{$xl} {
+						padding-inline-start: 60px;
+					}
+					@media #{$lg} {
+						padding-inline-start: 15px;
+					}
+					@media #{$md} {
+						padding-inline-start: 70px;
+					}
+				}
+				&-3 {
+					@media #{$xl} {
+						padding-inline-start: 20px;
+					}
+					@media #{$lg} {
+						padding-inline-start: 0;
+					}
+					@media #{$md} {
+						margin-top: 30px;
+					}
+				}
+			}
+			&-contact {
+				@media #{$lg} {
+					margin-top: 0;
+					padding-inline-start: 0;
+				}
+			}
+			&-logo {
+				display: flex;
+				gap: 30px;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: -40px;
+				position: relative;
+				z-index: 1;
+				@media #{$md,$sm,$xs} {
+					flex-direction: column-reverse;
+					align-items: flex-start;
+					gap: 0;
+				}
+				@media #{$xs} {
+					margin-bottom: -24px;
+				}
+				a {
+					max-width: 532px;
+					width: 100%;
+				}
+
+				.h9-footer-award {
+					margin-bottom: 38px;
+				}
+			}
+			&-copyright {
+				position: relative;
+				padding: 0;
+				border-color: rgba(49, 61, 61, 0.3);
+				z-index: 2;
+
+				.copyright-content-area {
+					padding: 30px 0;
+					background-color: var(--tj-color-theme-bg);
+				}
+				.copyright-menu ul li {
+					&::before {
+						background-color: var(--tj-color-border-1);
+					}
+					a {
+						color: var(--tj-color-theme-dark-3);
+						&:hover {
+							color: var(--tj-color-theme-primary);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Theme Footer CSS */

@@ -1,0 +1,3895 @@
+@use "variables" as *;
+
+@font-face {
+  font-family: '#{$icomoon-font-family}';
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?klk9x');
+  src:  url('#{$icomoon-font-path}/#{$icomoon-font-family}.eot?klk9x#iefix') format('embedded-opentype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.ttf?klk9x') format('truetype'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.woff?klk9x') format('woff'),
+    url('#{$icomoon-font-path}/#{$icomoon-font-family}.svg?klk9x##{$icomoon-font-family}') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.cft-sharp-solid {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: '#{$icomoon-font-family}' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.cft-columns {
+  &:before {
+    content: $cft-columns; 
+  }
+}
+.cft-data-transfer-horizontal {
+  &:before {
+    content: $cft-data-transfer-horizontal; 
+  }
+}
+.cft-underline {
+  &:before {
+    content: $cft-underline; 
+  }
+}
+.cft-sorting-number-ascending {
+  &:before {
+    content: $cft-sorting-number-ascending; 
+  }
+}
+.cft-panel-divided {
+  &:before {
+    content: $cft-panel-divided; 
+  }
+}
+.cft-transfer {
+  &:before {
+    content: $cft-transfer; 
+  }
+}
+.cft-lightning {
+  &:before {
+    content: $cft-lightning; 
+  }
+}
+.cft-search {
+  &:before {
+    content: $cft-search; 
+  }
+}
+.cft-notes {
+  &:before {
+    content: $cft-notes; 
+  }
+}
+.cft-grid-view {
+  &:before {
+    content: $cft-grid-view; 
+  }
+}
+.cft-camera-add {
+  &:before {
+    content: $cft-camera-add; 
+  }
+}
+.cft-task {
+  &:before {
+    content: $cft-task; 
+  }
+}
+.cft-pointer-left-circle {
+  &:before {
+    content: $cft-pointer-left-circle; 
+  }
+}
+.cft-eraser {
+  &:before {
+    content: $cft-eraser; 
+  }
+}
+.cft-download-round {
+  &:before {
+    content: $cft-download-round; 
+  }
+}
+.cft-voice-over {
+  &:before {
+    content: $cft-voice-over; 
+  }
+}
+.cft-receipt {
+  &:before {
+    content: $cft-receipt; 
+  }
+}
+.cft-arrow-down {
+  &:before {
+    content: $cft-arrow-down; 
+  }
+}
+.cft-expand-all-2 {
+  &:before {
+    content: $cft-expand-all-2; 
+  }
+}
+.cft-earth {
+  &:before {
+    content: $cft-earth; 
+  }
+}
+.cft-quote-down {
+  &:before {
+    content: $cft-quote-down; 
+  }
+}
+.cft-diamond-shape {
+  &:before {
+    content: $cft-diamond-shape; 
+  }
+}
+.cft-megaphone {
+  &:before {
+    content: $cft-megaphone; 
+  }
+}
+.cft-pos-register-2 {
+  &:before {
+    content: $cft-pos-register-2; 
+  }
+}
+.cft-tennis-ball {
+  &:before {
+    content: $cft-tennis-ball; 
+  }
+}
+.cft-trending-top {
+  &:before {
+    content: $cft-trending-top; 
+  }
+}
+.cft-agenda-bookmark {
+  &:before {
+    content: $cft-agenda-bookmark; 
+  }
+}
+.cft-briefcase-2 {
+  &:before {
+    content: $cft-briefcase-2; 
+  }
+}
+.cft-switches {
+  &:before {
+    content: $cft-switches; 
+  }
+}
+.cft-plant-vase {
+  &:before {
+    content: $cft-plant-vase; 
+  }
+}
+.cft-shopping-cart-entry {
+  &:before {
+    content: $cft-shopping-cart-entry; 
+  }
+}
+.cft-dot-divider {
+  &:before {
+    content: $cft-dot-divider; 
+  }
+}
+.cft-sales-money {
+  &:before {
+    content: $cft-sales-money; 
+  }
+}
+.cft-flip-vertical {
+  &:before {
+    content: $cft-flip-vertical; 
+  }
+}
+.cft-file-error {
+  &:before {
+    content: $cft-file-error; 
+  }
+}
+.cft-cutlery {
+  &:before {
+    content: $cft-cutlery; 
+  }
+}
+.cft-target {
+  &:before {
+    content: $cft-target; 
+  }
+}
+.cft-direction-left {
+  &:before {
+    content: $cft-direction-left; 
+  }
+}
+.cft-printer-add {
+  &:before {
+    content: $cft-printer-add; 
+  }
+}
+.cft-signture {
+  &:before {
+    content: $cft-signture; 
+  }
+}
+.cft-fast-forward-circle {
+  &:before {
+    content: $cft-fast-forward-circle; 
+  }
+}
+.cft-digital-video-camera {
+  &:before {
+    content: $cft-digital-video-camera; 
+  }
+}
+.cft-repeat {
+  &:before {
+    content: $cft-repeat; 
+  }
+}
+.cft-coffee-bottle {
+  &:before {
+    content: $cft-coffee-bottle; 
+  }
+}
+.cft-direction-upward-right {
+  &:before {
+    content: $cft-direction-upward-right; 
+  }
+}
+.cft-hourglass {
+  &:before {
+    content: $cft-hourglass; 
+  }
+}
+.cft-microwave {
+  &:before {
+    content: $cft-microwave; 
+  }
+}
+.cft-menu-3 {
+  &:before {
+    content: $cft-menu-3; 
+  }
+}
+.cft-user-clipboard {
+  &:before {
+    content: $cft-user-clipboard; 
+  }
+}
+.cft-contact-agenda {
+  &:before {
+    content: $cft-contact-agenda; 
+  }
+}
+.cft-tag-2 {
+  &:before {
+    content: $cft-tag-2; 
+  }
+}
+.cft-reply {
+  &:before {
+    content: $cft-reply; 
+  }
+}
+.cft-hamburger {
+  &:before {
+    content: $cft-hamburger; 
+  }
+}
+.cft-variables {
+  &:before {
+    content: $cft-variables; 
+  }
+}
+.cft-translate {
+  &:before {
+    content: $cft-translate; 
+  }
+}
+.cft-cone-icecream {
+  &:before {
+    content: $cft-cone-icecream; 
+  }
+}
+.cft-adjustments {
+  &:before {
+    content: $cft-adjustments; 
+  }
+}
+.cft-warning-sign {
+  &:before {
+    content: $cft-warning-sign; 
+  }
+}
+.cft-measure-tape {
+  &:before {
+    content: $cft-measure-tape; 
+  }
+}
+.cft-umbrella {
+  &:before {
+    content: $cft-umbrella; 
+  }
+}
+.cft-user {
+  &:before {
+    content: $cft-user; 
+  }
+}
+.cft-arrow-big-down {
+  &:before {
+    content: $cft-arrow-big-down; 
+  }
+}
+.cft-activity-monitor {
+  &:before {
+    content: $cft-activity-monitor; 
+  }
+}
+.cft-keyboard-2 {
+  &:before {
+    content: $cft-keyboard-2; 
+  }
+}
+.cft-sorting-alphab-descending {
+  &:before {
+    content: $cft-sorting-alphab-descending; 
+  }
+}
+.cft-comment-face {
+  &:before {
+    content: $cft-comment-face; 
+  }
+}
+.cft-portmanteau {
+  &:before {
+    content: $cft-portmanteau; 
+  }
+}
+.cft-euro-round {
+  &:before {
+    content: $cft-euro-round; 
+  }
+}
+.cft-rubber-stamp {
+  &:before {
+    content: $cft-rubber-stamp; 
+  }
+}
+.cft-mouse-retro {
+  &:before {
+    content: $cft-mouse-retro; 
+  }
+}
+.cft-battery-charge {
+  &:before {
+    content: $cft-battery-charge; 
+  }
+}
+.cft-dollar-round {
+  &:before {
+    content: $cft-dollar-round; 
+  }
+}
+.cft-menu-2 {
+  &:before {
+    content: $cft-menu-2; 
+  }
+}
+.cft-settings-automation {
+  &:before {
+    content: $cft-settings-automation; 
+  }
+}
+.cft-upset {
+  &:before {
+    content: $cft-upset; 
+  }
+}
+.cft-dollar {
+  &:before {
+    content: $cft-dollar; 
+  }
+}
+.cft-quote-up {
+  &:before {
+    content: $cft-quote-up; 
+  }
+}
+.cft-square-direction-left {
+  &:before {
+    content: $cft-square-direction-left; 
+  }
+}
+.cft-rectangle {
+  &:before {
+    content: $cft-rectangle; 
+  }
+}
+.cft-text-align-center {
+  &:before {
+    content: $cft-text-align-center; 
+  }
+}
+.cft-round-direction-upward-right {
+  &:before {
+    content: $cft-round-direction-upward-right; 
+  }
+}
+.cft-home {
+  &:before {
+    content: $cft-home; 
+  }
+}
+.cft-color-adjustments {
+  &:before {
+    content: $cft-color-adjustments; 
+  }
+}
+.cft-mailbox {
+  &:before {
+    content: $cft-mailbox; 
+  }
+}
+.cft-music {
+  &:before {
+    content: $cft-music; 
+  }
+}
+.cft-more-horizontal {
+  &:before {
+    content: $cft-more-horizontal; 
+  }
+}
+.cft-content-contract {
+  &:before {
+    content: $cft-content-contract; 
+  }
+}
+.cft-draggable {
+  &:before {
+    content: $cft-draggable; 
+  }
+}
+.cft-collaborator {
+  &:before {
+    content: $cft-collaborator; 
+  }
+}
+.cft-identification-card {
+  &:before {
+    content: $cft-identification-card; 
+  }
+}
+.cft-eject {
+  &:before {
+    content: $cft-eject; 
+  }
+}
+.cft-chevron-down {
+  &:before {
+    content: $cft-chevron-down; 
+  }
+}
+.cft-logout {
+  &:before {
+    content: $cft-logout; 
+  }
+}
+.cft-pin-2 {
+  &:before {
+    content: $cft-pin-2; 
+  }
+}
+.cft-coffee-cup {
+  &:before {
+    content: $cft-coffee-cup; 
+  }
+}
+.cft-shirt {
+  &:before {
+    content: $cft-shirt; 
+  }
+}
+.cft-rectangular-marquee {
+  &:before {
+    content: $cft-rectangular-marquee; 
+  }
+}
+.cft-call-round {
+  &:before {
+    content: $cft-call-round; 
+  }
+}
+.cft-round-direction-downward-right {
+  &:before {
+    content: $cft-round-direction-downward-right; 
+  }
+}
+.cft-cancel {
+  &:before {
+    content: $cft-cancel; 
+  }
+}
+.cft-cone {
+  &:before {
+    content: $cft-cone; 
+  }
+}
+.cft-rotate {
+  &:before {
+    content: $cft-rotate; 
+  }
+}
+.cft-nav-foward {
+  &:before {
+    content: $cft-nav-foward; 
+  }
+}
+.cft-usb {
+  &:before {
+    content: $cft-usb; 
+  }
+}
+.cft-chip {
+  &:before {
+    content: $cft-chip; 
+  }
+}
+.cft-water-polo {
+  &:before {
+    content: $cft-water-polo; 
+  }
+}
+.cft-export {
+  &:before {
+    content: $cft-export; 
+  }
+}
+.cft-usb-a {
+  &:before {
+    content: $cft-usb-a; 
+  }
+}
+.cft-crop {
+  &:before {
+    content: $cft-crop; 
+  }
+}
+.cft-chat-help {
+  &:before {
+    content: $cft-chat-help; 
+  }
+}
+.cft-tag {
+  &:before {
+    content: $cft-tag; 
+  }
+}
+.cft-text-2 {
+  &:before {
+    content: $cft-text-2; 
+  }
+}
+.cft-briefcase {
+  &:before {
+    content: $cft-briefcase; 
+  }
+}
+.cft-return-left {
+  &:before {
+    content: $cft-return-left; 
+  }
+}
+.cft-skip-foward-circle {
+  &:before {
+    content: $cft-skip-foward-circle; 
+  }
+}
+.cft-fast-previous-circle {
+  &:before {
+    content: $cft-fast-previous-circle; 
+  }
+}
+.cft-user-frame {
+  &:before {
+    content: $cft-user-frame; 
+  }
+}
+.cft-pointer-right {
+  &:before {
+    content: $cft-pointer-right; 
+  }
+}
+.cft-plugin {
+  &:before {
+    content: $cft-plugin; 
+  }
+}
+.cft-support-agent {
+  &:before {
+    content: $cft-support-agent; 
+  }
+}
+.cft-diamond-gem {
+  &:before {
+    content: $cft-diamond-gem; 
+  }
+}
+.cft-remote-working {
+  &:before {
+    content: $cft-remote-working; 
+  }
+}
+.cft-file-add {
+  &:before {
+    content: $cft-file-add; 
+  }
+}
+.cft-inbox {
+  &:before {
+    content: $cft-inbox; 
+  }
+}
+.cft-paper-map {
+  &:before {
+    content: $cft-paper-map; 
+  }
+}
+.cft-menu-5 {
+  &:before {
+    content: $cft-menu-5; 
+  }
+}
+.cft-power {
+  &:before {
+    content: $cft-power; 
+  }
+}
+.cft-user-union {
+  &:before {
+    content: $cft-user-union; 
+  }
+}
+.cft-microphone {
+  &:before {
+    content: $cft-microphone; 
+  }
+}
+.cft-verified {
+  &:before {
+    content: $cft-verified; 
+  }
+}
+.cft-database {
+  &:before {
+    content: $cft-database; 
+  }
+}
+.cft-calendar-day {
+  &:before {
+    content: $cft-calendar-day; 
+  }
+}
+.cft-delivery-man {
+  &:before {
+    content: $cft-delivery-man; 
+  }
+}
+.cft-plug-integration {
+  &:before {
+    content: $cft-plug-integration; 
+  }
+}
+.cft-select-circle {
+  &:before {
+    content: $cft-select-circle; 
+  }
+}
+.cft-file {
+  &:before {
+    content: $cft-file; 
+  }
+}
+.cft-puzzle {
+  &:before {
+    content: $cft-puzzle; 
+  }
+}
+.cft-duplicate {
+  &:before {
+    content: $cft-duplicate; 
+  }
+}
+.cft-round-direction-left {
+  &:before {
+    content: $cft-round-direction-left; 
+  }
+}
+.cft-signal {
+  &:before {
+    content: $cft-signal; 
+  }
+}
+.cft-chef {
+  &:before {
+    content: $cft-chef; 
+  }
+}
+.cft-male {
+  &:before {
+    content: $cft-male; 
+  }
+}
+.cft-paint-brush {
+  &:before {
+    content: $cft-paint-brush; 
+  }
+}
+.cft-devices {
+  &:before {
+    content: $cft-devices; 
+  }
+}
+.cft-eject-round {
+  &:before {
+    content: $cft-eject-round; 
+  }
+}
+.cft-contrast {
+  &:before {
+    content: $cft-contrast; 
+  }
+}
+.cft-production-order {
+  &:before {
+    content: $cft-production-order; 
+  }
+}
+.cft-terminal {
+  &:before {
+    content: $cft-terminal; 
+  }
+}
+.cft-theme-editor {
+  &:before {
+    content: $cft-theme-editor; 
+  }
+}
+.cft-round-direction-up {
+  &:before {
+    content: $cft-round-direction-up; 
+  }
+}
+.cft-move {
+  &:before {
+    content: $cft-move; 
+  }
+}
+.cft-delivery {
+  &:before {
+    content: $cft-delivery; 
+  }
+}
+.cft-blocks-view {
+  &:before {
+    content: $cft-blocks-view; 
+  }
+}
+.cft-sparkles {
+  &:before {
+    content: $cft-sparkles; 
+  }
+}
+.cft-city {
+  &:before {
+    content: $cft-city; 
+  }
+}
+.cft-chevron-up {
+  &:before {
+    content: $cft-chevron-up; 
+  }
+}
+.cft-menu-4 {
+  &:before {
+    content: $cft-menu-4; 
+  }
+}
+.cft-energy {
+  &:before {
+    content: $cft-energy; 
+  }
+}
+.cft-perfume {
+  &:before {
+    content: $cft-perfume; 
+  }
+}
+.cft-chat-text {
+  &:before {
+    content: $cft-chat-text; 
+  }
+}
+.cft-smartglass {
+  &:before {
+    content: $cft-smartglass; 
+  }
+}
+.cft-sales-assistant {
+  &:before {
+    content: $cft-sales-assistant; 
+  }
+}
+.cft-projector-screen {
+  &:before {
+    content: $cft-projector-screen; 
+  }
+}
+.cft-build {
+  &:before {
+    content: $cft-build; 
+  }
+}
+.cft-paint-roller {
+  &:before {
+    content: $cft-paint-roller; 
+  }
+}
+.cft-annotations-notes {
+  &:before {
+    content: $cft-annotations-notes; 
+  }
+}
+.cft-keyboard {
+  &:before {
+    content: $cft-keyboard; 
+  }
+}
+.cft-reports {
+  &:before {
+    content: $cft-reports; 
+  }
+}
+.cft-x {
+  &:before {
+    content: $cft-x; 
+  }
+}
+.cft-clock-warning {
+  &:before {
+    content: $cft-clock-warning; 
+  }
+}
+.cft-qr-code {
+  &:before {
+    content: $cft-qr-code; 
+  }
+}
+.cft-square-direction-right {
+  &:before {
+    content: $cft-square-direction-right; 
+  }
+}
+.cft-panel-sidebar-divided {
+  &:before {
+    content: $cft-panel-sidebar-divided; 
+  }
+}
+.cft-visibilty-off {
+  &:before {
+    content: $cft-visibilty-off; 
+  }
+}
+.cft-zip {
+  &:before {
+    content: $cft-zip; 
+  }
+}
+.cft-lock {
+  &:before {
+    content: $cft-lock; 
+  }
+}
+.cft-chart-pie-2 {
+  &:before {
+    content: $cft-chart-pie-2; 
+  }
+}
+.cft-round-direction-downward-left {
+  &:before {
+    content: $cft-round-direction-downward-left; 
+  }
+}
+.cft-sorting-number-descending {
+  &:before {
+    content: $cft-sorting-number-descending; 
+  }
+}
+.cft-curved-file {
+  &:before {
+    content: $cft-curved-file; 
+  }
+}
+.cft-chat-typing {
+  &:before {
+    content: $cft-chat-typing; 
+  }
+}
+.cft-shopping-bag {
+  &:before {
+    content: $cft-shopping-bag; 
+  }
+}
+.cft-divide {
+  &:before {
+    content: $cft-divide; 
+  }
+}
+.cft-cocktail-glass {
+  &:before {
+    content: $cft-cocktail-glass; 
+  }
+}
+.cft-calendar-month {
+  &:before {
+    content: $cft-calendar-month; 
+  }
+}
+.cft-desk-kit {
+  &:before {
+    content: $cft-desk-kit; 
+  }
+}
+.cft-promo-percent {
+  &:before {
+    content: $cft-promo-percent; 
+  }
+}
+.cft-archive-doc {
+  &:before {
+    content: $cft-archive-doc; 
+  }
+}
+.cft-calendar-event {
+  &:before {
+    content: $cft-calendar-event; 
+  }
+}
+.cft-inventory {
+  &:before {
+    content: $cft-inventory; 
+  }
+}
+.cft-moisturizer {
+  &:before {
+    content: $cft-moisturizer; 
+  }
+}
+.cft-money-2 {
+  &:before {
+    content: $cft-money-2; 
+  }
+}
+.cft-pen {
+  &:before {
+    content: $cft-pen; 
+  }
+}
+.cft-credit-card-add {
+  &:before {
+    content: $cft-credit-card-add; 
+  }
+}
+.cft-chevron-right {
+  &:before {
+    content: $cft-chevron-right; 
+  }
+}
+.cft-bullet-list {
+  &:before {
+    content: $cft-bullet-list; 
+  }
+}
+.cft-projection-tripod {
+  &:before {
+    content: $cft-projection-tripod; 
+  }
+}
+.cft-clipboard {
+  &:before {
+    content: $cft-clipboard; 
+  }
+}
+.cft-swap-vertical {
+  &:before {
+    content: $cft-swap-vertical; 
+  }
+}
+.cft-shield-user {
+  &:before {
+    content: $cft-shield-user; 
+  }
+}
+.cft-translate-2 {
+  &:before {
+    content: $cft-translate-2; 
+  }
+}
+.cft-swap-horizontal {
+  &:before {
+    content: $cft-swap-horizontal; 
+  }
+}
+.cft-columns1 {
+  &:before {
+    content: $cft-columns1; 
+  }
+}
+.cft-instagram {
+  &:before {
+    content: $cft-instagram; 
+  }
+}
+.cft-euro {
+  &:before {
+    content: $cft-euro; 
+  }
+}
+.cft-pointer-double {
+  &:before {
+    content: $cft-pointer-double; 
+  }
+}
+.cft-link {
+  &:before {
+    content: $cft-link; 
+  }
+}
+.cft-gift-box-2 {
+  &:before {
+    content: $cft-gift-box-2; 
+  }
+}
+.cft-certificate {
+  &:before {
+    content: $cft-certificate; 
+  }
+}
+.cft-ship-box-2 {
+  &:before {
+    content: $cft-ship-box-2; 
+  }
+}
+.cft-key {
+  &:before {
+    content: $cft-key; 
+  }
+}
+.cft-rename {
+  &:before {
+    content: $cft-rename; 
+  }
+}
+.cft-sad {
+  &:before {
+    content: $cft-sad; 
+  }
+}
+.cft-filmstrip {
+  &:before {
+    content: $cft-filmstrip; 
+  }
+}
+.cft-sorting-alphab-ascending {
+  &:before {
+    content: $cft-sorting-alphab-ascending; 
+  }
+}
+.cft-notification-loud {
+  &:before {
+    content: $cft-notification-loud; 
+  }
+}
+.cft-party-balloon {
+  &:before {
+    content: $cft-party-balloon; 
+  }
+}
+.cft-drag-line {
+  &:before {
+    content: $cft-drag-line; 
+  }
+}
+.cft-arrow-right {
+  &:before {
+    content: $cft-arrow-right; 
+  }
+}
+.cft-store {
+  &:before {
+    content: $cft-store; 
+  }
+}
+.cft-box-pack {
+  &:before {
+    content: $cft-box-pack; 
+  }
+}
+.cft-at {
+  &:before {
+    content: $cft-at; 
+  }
+}
+.cft-notebook-open {
+  &:before {
+    content: $cft-notebook-open; 
+  }
+}
+.cft-cry {
+  &:before {
+    content: $cft-cry; 
+  }
+}
+.cft-publish-round {
+  &:before {
+    content: $cft-publish-round; 
+  }
+}
+.cft-treasure-map {
+  &:before {
+    content: $cft-treasure-map; 
+  }
+}
+.cft-agenda-cover {
+  &:before {
+    content: $cft-agenda-cover; 
+  }
+}
+.cft-pet-paw {
+  &:before {
+    content: $cft-pet-paw; 
+  }
+}
+.cft-upload-round {
+  &:before {
+    content: $cft-upload-round; 
+  }
+}
+.cft-song {
+  &:before {
+    content: $cft-song; 
+  }
+}
+.cft-digital-camera {
+  &:before {
+    content: $cft-digital-camera; 
+  }
+}
+.cft-stopwatch {
+  &:before {
+    content: $cft-stopwatch; 
+  }
+}
+.cft-group {
+  &:before {
+    content: $cft-group; 
+  }
+}
+.cft-settings {
+  &:before {
+    content: $cft-settings; 
+  }
+}
+.cft-ellipse {
+  &:before {
+    content: $cft-ellipse; 
+  }
+}
+.cft-pos-machine {
+  &:before {
+    content: $cft-pos-machine; 
+  }
+}
+.cft-rugby {
+  &:before {
+    content: $cft-rugby; 
+  }
+}
+.cft-setting-content {
+  &:before {
+    content: $cft-setting-content; 
+  }
+}
+.cft-thumbs-down {
+  &:before {
+    content: $cft-thumbs-down; 
+  }
+}
+.cft-compose {
+  &:before {
+    content: $cft-compose; 
+  }
+}
+.cft-financial-report {
+  &:before {
+    content: $cft-financial-report; 
+  }
+}
+.cft-envelope {
+  &:before {
+    content: $cft-envelope; 
+  }
+}
+.cft-templates {
+  &:before {
+    content: $cft-templates; 
+  }
+}
+.cft-position {
+  &:before {
+    content: $cft-position; 
+  }
+}
+.cft-square-piramyd {
+  &:before {
+    content: $cft-square-piramyd; 
+  }
+}
+.cft-bazier-path {
+  &:before {
+    content: $cft-bazier-path; 
+  }
+}
+.cft-pix {
+  &:before {
+    content: $cft-pix; 
+  }
+}
+.cft-candy {
+  &:before {
+    content: $cft-candy; 
+  }
+}
+.cft-mail {
+  &:before {
+    content: $cft-mail; 
+  }
+}
+.cft-arrow-big-right {
+  &:before {
+    content: $cft-arrow-big-right; 
+  }
+}
+.cft-shield {
+  &:before {
+    content: $cft-shield; 
+  }
+}
+.cft-calendar-today {
+  &:before {
+    content: $cft-calendar-today; 
+  }
+}
+.cft-download {
+  &:before {
+    content: $cft-download; 
+  }
+}
+.cft-coin-2 {
+  &:before {
+    content: $cft-coin-2; 
+  }
+}
+.cft-expand {
+  &:before {
+    content: $cft-expand; 
+  }
+}
+.cft-file-warning {
+  &:before {
+    content: $cft-file-warning; 
+  }
+}
+.cft-fast-shipping {
+  &:before {
+    content: $cft-fast-shipping; 
+  }
+}
+.cft-paper-pin {
+  &:before {
+    content: $cft-paper-pin; 
+  }
+}
+.cft-eject-square {
+  &:before {
+    content: $cft-eject-square; 
+  }
+}
+.cft-deck-cards {
+  &:before {
+    content: $cft-deck-cards; 
+  }
+}
+.cft-magic-wand {
+  &:before {
+    content: $cft-magic-wand; 
+  }
+}
+.cft-import {
+  &:before {
+    content: $cft-import; 
+  }
+}
+.cft-travel-suitcase {
+  &:before {
+    content: $cft-travel-suitcase; 
+  }
+}
+.cft-apps {
+  &:before {
+    content: $cft-apps; 
+  }
+}
+.cft-gallery {
+  &:before {
+    content: $cft-gallery; 
+  }
+}
+.cft-tv-retro {
+  &:before {
+    content: $cft-tv-retro; 
+  }
+}
+.cft-divide-square {
+  &:before {
+    content: $cft-divide-square; 
+  }
+}
+.cft-jar {
+  &:before {
+    content: $cft-jar; 
+  }
+}
+.cft-add-square {
+  &:before {
+    content: $cft-add-square; 
+  }
+}
+.cft-takeout {
+  &:before {
+    content: $cft-takeout; 
+  }
+}
+.cft-skip-forward {
+  &:before {
+    content: $cft-skip-forward; 
+  }
+}
+.cft-pound {
+  &:before {
+    content: $cft-pound; 
+  }
+}
+.cft-cash-drawer {
+  &:before {
+    content: $cft-cash-drawer; 
+  }
+}
+.cft-battery-medium {
+  &:before {
+    content: $cft-battery-medium; 
+  }
+}
+.cft-text-align-justify {
+  &:before {
+    content: $cft-text-align-justify; 
+  }
+}
+.cft-cancel-round {
+  &:before {
+    content: $cft-cancel-round; 
+  }
+}
+.cft-injection-syringe {
+  &:before {
+    content: $cft-injection-syringe; 
+  }
+}
+.cft-lock-square {
+  &:before {
+    content: $cft-lock-square; 
+  }
+}
+.cft-pointer-up {
+  &:before {
+    content: $cft-pointer-up; 
+  }
+}
+.cft-comment-typing {
+  &:before {
+    content: $cft-comment-typing; 
+  }
+}
+.cft-login {
+  &:before {
+    content: $cft-login; 
+  }
+}
+.cft-radio {
+  &:before {
+    content: $cft-radio; 
+  }
+}
+.cft-book {
+  &:before {
+    content: $cft-book; 
+  }
+}
+.cft-file-tree {
+  &:before {
+    content: $cft-file-tree; 
+  }
+}
+.cft-day {
+  &:before {
+    content: $cft-day; 
+  }
+}
+.cft-chat-conversation {
+  &:before {
+    content: $cft-chat-conversation; 
+  }
+}
+.cft-direction-downward-left {
+  &:before {
+    content: $cft-direction-downward-left; 
+  }
+}
+.cft-neutral {
+  &:before {
+    content: $cft-neutral; 
+  }
+}
+.cft-financial-entries {
+  &:before {
+    content: $cft-financial-entries; 
+  }
+}
+.cft-lock-round {
+  &:before {
+    content: $cft-lock-round; 
+  }
+}
+.cft-car-front {
+  &:before {
+    content: $cft-car-front; 
+  }
+}
+.cft-scissor {
+  &:before {
+    content: $cft-scissor; 
+  }
+}
+.cft-shield-error {
+  &:before {
+    content: $cft-shield-error; 
+  }
+}
+.cft-skull {
+  &:before {
+    content: $cft-skull; 
+  }
+}
+.cft-sphere {
+  &:before {
+    content: $cft-sphere; 
+  }
+}
+.cft-add-collection {
+  &:before {
+    content: $cft-add-collection; 
+  }
+}
+.cft-automate-campaign {
+  &:before {
+    content: $cft-automate-campaign; 
+  }
+}
+.cft-wallet {
+  &:before {
+    content: $cft-wallet; 
+  }
+}
+.cft-paper-folded-2 {
+  &:before {
+    content: $cft-paper-folded-2; 
+  }
+}
+.cft-rotate-content {
+  &:before {
+    content: $cft-rotate-content; 
+  }
+}
+.cft-panel-header-sidebar {
+  &:before {
+    content: $cft-panel-header-sidebar; 
+  }
+}
+.cft-dashboard {
+  &:before {
+    content: $cft-dashboard; 
+  }
+}
+.cft-code {
+  &:before {
+    content: $cft-code; 
+  }
+}
+.cft-settings-2 {
+  &:before {
+    content: $cft-settings-2; 
+  }
+}
+.cft-chat-love {
+  &:before {
+    content: $cft-chat-love; 
+  }
+}
+.cft-smartwatch-round {
+  &:before {
+    content: $cft-smartwatch-round; 
+  }
+}
+.cft-telegram {
+  &:before {
+    content: $cft-telegram; 
+  }
+}
+.cft-block-sign {
+  &:before {
+    content: $cft-block-sign; 
+  }
+}
+.cft-flag {
+  &:before {
+    content: $cft-flag; 
+  }
+}
+.cft-exchange {
+  &:before {
+    content: $cft-exchange; 
+  }
+}
+.cft-gameboy {
+  &:before {
+    content: $cft-gameboy; 
+  }
+}
+.cft-observation {
+  &:before {
+    content: $cft-observation; 
+  }
+}
+.cft-stop {
+  &:before {
+    content: $cft-stop; 
+  }
+}
+.cft-results-board {
+  &:before {
+    content: $cft-results-board; 
+  }
+}
+.cft-newspaper {
+  &:before {
+    content: $cft-newspaper; 
+  }
+}
+.cft-system-bug {
+  &:before {
+    content: $cft-system-bug; 
+  }
+}
+.cft-star-square {
+  &:before {
+    content: $cft-star-square; 
+  }
+}
+.cft-cube {
+  &:before {
+    content: $cft-cube; 
+  }
+}
+.cft-bomb {
+  &:before {
+    content: $cft-bomb; 
+  }
+}
+.cft-pound-round {
+  &:before {
+    content: $cft-pound-round; 
+  }
+}
+.cft-vynil {
+  &:before {
+    content: $cft-vynil; 
+  }
+}
+.cft-star-half {
+  &:before {
+    content: $cft-star-half; 
+  }
+}
+.cft-release-notes {
+  &:before {
+    content: $cft-release-notes; 
+  }
+}
+.cft-ruler {
+  &:before {
+    content: $cft-ruler; 
+  }
+}
+.cft-nav-backward {
+  &:before {
+    content: $cft-nav-backward; 
+  }
+}
+.cft-work {
+  &:before {
+    content: $cft-work; 
+  }
+}
+.cft-fax {
+  &:before {
+    content: $cft-fax; 
+  }
+}
+.cft-round-blink {
+  &:before {
+    content: $cft-round-blink; 
+  }
+}
+.cft-user-remove {
+  &:before {
+    content: $cft-user-remove; 
+  }
+}
+.cft-cancel-square {
+  &:before {
+    content: $cft-cancel-square; 
+  }
+}
+.cft-leaf-2 {
+  &:before {
+    content: $cft-leaf-2; 
+  }
+}
+.cft-bold {
+  &:before {
+    content: $cft-bold; 
+  }
+}
+.cft-triangule {
+  &:before {
+    content: $cft-triangule; 
+  }
+}
+.cft-user-error {
+  &:before {
+    content: $cft-user-error; 
+  }
+}
+.cft-boxed-list {
+  &:before {
+    content: $cft-boxed-list; 
+  }
+}
+.cft-trophy {
+  &:before {
+    content: $cft-trophy; 
+  }
+}
+.cft-maintenance-plate {
+  &:before {
+    content: $cft-maintenance-plate; 
+  }
+}
+.cft-share-2 {
+  &:before {
+    content: $cft-share-2; 
+  }
+}
+.cft-battery-full {
+  &:before {
+    content: $cft-battery-full; 
+  }
+}
+.cft-clock-square {
+  &:before {
+    content: $cft-clock-square; 
+  }
+}
+.cft-store-2 {
+  &:before {
+    content: $cft-store-2; 
+  }
+}
+.cft-bowling {
+  &:before {
+    content: $cft-bowling; 
+  }
+}
+.cft-check {
+  &:before {
+    content: $cft-check; 
+  }
+}
+.cft-nut {
+  &:before {
+    content: $cft-nut; 
+  }
+}
+.cft-warning {
+  &:before {
+    content: $cft-warning; 
+  }
+}
+.cft-pointer-right-circle {
+  &:before {
+    content: $cft-pointer-right-circle; 
+  }
+}
+.cft-battery-high {
+  &:before {
+    content: $cft-battery-high; 
+  }
+}
+.cft-hospital {
+  &:before {
+    content: $cft-hospital; 
+  }
+}
+.cft-panel-list {
+  &:before {
+    content: $cft-panel-list; 
+  }
+}
+.cft-bluetooth {
+  &:before {
+    content: $cft-bluetooth; 
+  }
+}
+.cft-headphones {
+  &:before {
+    content: $cft-headphones; 
+  }
+}
+.cft-video-content {
+  &:before {
+    content: $cft-video-content; 
+  }
+}
+.cft-filter-2 {
+  &:before {
+    content: $cft-filter-2; 
+  }
+}
+.cft-dot-large {
+  &:before {
+    content: $cft-dot-large; 
+  }
+}
+.cft-drag-drop-vertical {
+  &:before {
+    content: $cft-drag-drop-vertical; 
+  }
+}
+.cft-rss {
+  &:before {
+    content: $cft-rss; 
+  }
+}
+.cft-remove-square {
+  &:before {
+    content: $cft-remove-square; 
+  }
+}
+.cft-watch {
+  &:before {
+    content: $cft-watch; 
+  }
+}
+.cft-pointer-down {
+  &:before {
+    content: $cft-pointer-down; 
+  }
+}
+.cft-store-3 {
+  &:before {
+    content: $cft-store-3; 
+  }
+}
+.cft-happy {
+  &:before {
+    content: $cft-happy; 
+  }
+}
+.cft-share-3 {
+  &:before {
+    content: $cft-share-3; 
+  }
+}
+.cft-article-caption {
+  &:before {
+    content: $cft-article-caption; 
+  }
+}
+.cft-ipod {
+  &:before {
+    content: $cft-ipod; 
+  }
+}
+.cft-pointer-up-circle {
+  &:before {
+    content: $cft-pointer-up-circle; 
+  }
+}
+.cft-milk-bottle {
+  &:before {
+    content: $cft-milk-bottle; 
+  }
+}
+.cft-info {
+  &:before {
+    content: $cft-info; 
+  }
+}
+.cft-tablet-portrait {
+  &:before {
+    content: $cft-tablet-portrait; 
+  }
+}
+.cft-money-vault {
+  &:before {
+    content: $cft-money-vault; 
+  }
+}
+.cft-check-round {
+  &:before {
+    content: $cft-check-round; 
+  }
+}
+.cft-radiobox {
+  &:before {
+    content: $cft-radiobox; 
+  }
+}
+.cft-intercom {
+  &:before {
+    content: $cft-intercom; 
+  }
+}
+.cft-direction-up {
+  &:before {
+    content: $cft-direction-up; 
+  }
+}
+.cft-text-sheet {
+  &:before {
+    content: $cft-text-sheet; 
+  }
+}
+.cft-palette {
+  &:before {
+    content: $cft-palette; 
+  }
+}
+.cft-spoon {
+  &:before {
+    content: $cft-spoon; 
+  }
+}
+.cft-user-add {
+  &:before {
+    content: $cft-user-add; 
+  }
+}
+.cft-add {
+  &:before {
+    content: $cft-add; 
+  }
+}
+.cft-truck-fast {
+  &:before {
+    content: $cft-truck-fast; 
+  }
+}
+.cft-speedometer {
+  &:before {
+    content: $cft-speedometer; 
+  }
+}
+.cft-panel-sidebar-right {
+  &:before {
+    content: $cft-panel-sidebar-right; 
+  }
+}
+.cft-pause-round {
+  &:before {
+    content: $cft-pause-round; 
+  }
+}
+.cft-volleyball {
+  &:before {
+    content: $cft-volleyball; 
+  }
+}
+.cft-american-football {
+  &:before {
+    content: $cft-american-football; 
+  }
+}
+.cft-pants {
+  &:before {
+    content: $cft-pants; 
+  }
+}
+.cft-orders {
+  &:before {
+    content: $cft-orders; 
+  }
+}
+.cft-quote-down-round {
+  &:before {
+    content: $cft-quote-down-round; 
+  }
+}
+.cft-milk-carton {
+  &:before {
+    content: $cft-milk-carton; 
+  }
+}
+.cft-content-expand {
+  &:before {
+    content: $cft-content-expand; 
+  }
+}
+.cft-list-view {
+  &:before {
+    content: $cft-list-view; 
+  }
+}
+.cft-printer-receipt {
+  &:before {
+    content: $cft-printer-receipt; 
+  }
+}
+.cft-soup {
+  &:before {
+    content: $cft-soup; 
+  }
+}
+.cft-text-sheet-stack {
+  &:before {
+    content: $cft-text-sheet-stack; 
+  }
+}
+.cft-comment-text {
+  &:before {
+    content: $cft-comment-text; 
+  }
+}
+.cft-padlock-unlocked {
+  &:before {
+    content: $cft-padlock-unlocked; 
+  }
+}
+.cft-stand-office {
+  &:before {
+    content: $cft-stand-office; 
+  }
+}
+.cft-copy {
+  &:before {
+    content: $cft-copy; 
+  }
+}
+.cft-fish {
+  &:before {
+    content: $cft-fish; 
+  }
+}
+.cft-zoom-in {
+  &:before {
+    content: $cft-zoom-in; 
+  }
+}
+.cft-racing-flag {
+  &:before {
+    content: $cft-racing-flag; 
+  }
+}
+.cft-mansory-grid {
+  &:before {
+    content: $cft-mansory-grid; 
+  }
+}
+.cft-glasses {
+  &:before {
+    content: $cft-glasses; 
+  }
+}
+.cft-coins {
+  &:before {
+    content: $cft-coins; 
+  }
+}
+.cft-refresh {
+  &:before {
+    content: $cft-refresh; 
+  }
+}
+.cft-snapchat {
+  &:before {
+    content: $cft-snapchat; 
+  }
+}
+.cft-very-sad {
+  &:before {
+    content: $cft-very-sad; 
+  }
+}
+.cft-panel-footer {
+  &:before {
+    content: $cft-panel-footer; 
+  }
+}
+.cft-text {
+  &:before {
+    content: $cft-text; 
+  }
+}
+.cft-image {
+  &:before {
+    content: $cft-image; 
+  }
+}
+.cft-deck-cards-2 {
+  &:before {
+    content: $cft-deck-cards-2; 
+  }
+}
+.cft-user-love {
+  &:before {
+    content: $cft-user-love; 
+  }
+}
+.cft-lightbulb {
+  &:before {
+    content: $cft-lightbulb; 
+  }
+}
+.cft-ship-box {
+  &:before {
+    content: $cft-ship-box; 
+  }
+}
+.cft-smile {
+  &:before {
+    content: $cft-smile; 
+  }
+}
+.cft-hang-frame {
+  &:before {
+    content: $cft-hang-frame; 
+  }
+}
+.cft-navigation {
+  &:before {
+    content: $cft-navigation; 
+  }
+}
+.cft-fork {
+  &:before {
+    content: $cft-fork; 
+  }
+}
+.cft-dine-in {
+  &:before {
+    content: $cft-dine-in; 
+  }
+}
+.cft-rio-de-janeiro {
+  &:before {
+    content: $cft-rio-de-janeiro; 
+  }
+}
+.cft-fast-previous {
+  &:before {
+    content: $cft-fast-previous; 
+  }
+}
+.cft-text-edit {
+  &:before {
+    content: $cft-text-edit; 
+  }
+}
+.cft-pin-map {
+  &:before {
+    content: $cft-pin-map; 
+  }
+}
+.cft-volume-mute {
+  &:before {
+    content: $cft-volume-mute; 
+  }
+}
+.cft-archive-box {
+  &:before {
+    content: $cft-archive-box; 
+  }
+}
+.cft-egypt {
+  &:before {
+    content: $cft-egypt; 
+  }
+}
+.cft-film-content {
+  &:before {
+    content: $cft-film-content; 
+  }
+}
+.cft-signposts {
+  &:before {
+    content: $cft-signposts; 
+  }
+}
+.cft-direction-right {
+  &:before {
+    content: $cft-direction-right; 
+  }
+}
+.cft-book-opened {
+  &:before {
+    content: $cft-book-opened; 
+  }
+}
+.cft-fast-forward {
+  &:before {
+    content: $cft-fast-forward; 
+  }
+}
+.cft-medal-2 {
+  &:before {
+    content: $cft-medal-2; 
+  }
+}
+.cft-sheets-content {
+  &:before {
+    content: $cft-sheets-content; 
+  }
+}
+.cft-stop-round {
+  &:before {
+    content: $cft-stop-round; 
+  }
+}
+.cft-zoom-out {
+  &:before {
+    content: $cft-zoom-out; 
+  }
+}
+.cft-credit-card-simple {
+  &:before {
+    content: $cft-credit-card-simple; 
+  }
+}
+.cft-thumbs-up {
+  &:before {
+    content: $cft-thumbs-up; 
+  }
+}
+.cft-pasta {
+  &:before {
+    content: $cft-pasta; 
+  }
+}
+.cft-paper-folded {
+  &:before {
+    content: $cft-paper-folded; 
+  }
+}
+.cft-battery-low {
+  &:before {
+    content: $cft-battery-low; 
+  }
+}
+.cft-help-2 {
+  &:before {
+    content: $cft-help-2; 
+  }
+}
+.cft-style {
+  &:before {
+    content: $cft-style; 
+  }
+}
+.cft-monetary {
+  &:before {
+    content: $cft-monetary; 
+  }
+}
+.cft-purchase-order {
+  &:before {
+    content: $cft-purchase-order; 
+  }
+}
+.cft-contract {
+  &:before {
+    content: $cft-contract; 
+  }
+}
+.cft-data-transfer-vertical {
+  &:before {
+    content: $cft-data-transfer-vertical; 
+  }
+}
+.cft-percent {
+  &:before {
+    content: $cft-percent; 
+  }
+}
+.cft-framing {
+  &:before {
+    content: $cft-framing; 
+  }
+}
+.cft-crown {
+  &:before {
+    content: $cft-crown; 
+  }
+}
+.cft-round-direction-right {
+  &:before {
+    content: $cft-round-direction-right; 
+  }
+}
+.cft-network-modem {
+  &:before {
+    content: $cft-network-modem; 
+  }
+}
+.cft-side-list-view {
+  &:before {
+    content: $cft-side-list-view; 
+  }
+}
+.cft-donut {
+  &:before {
+    content: $cft-donut; 
+  }
+}
+.cft-play {
+  &:before {
+    content: $cft-play; 
+  }
+}
+.cft-soccer-ball {
+  &:before {
+    content: $cft-soccer-ball; 
+  }
+}
+.cft-checkout-counter {
+  &:before {
+    content: $cft-checkout-counter; 
+  }
+}
+.cft-skip-previous-circle {
+  &:before {
+    content: $cft-skip-previous-circle; 
+  }
+}
+.cft-notification {
+  &:before {
+    content: $cft-notification; 
+  }
+}
+.cft-cycling {
+  &:before {
+    content: $cft-cycling; 
+  }
+}
+.cft-flow-2 {
+  &:before {
+    content: $cft-flow-2; 
+  }
+}
+.cft-file-check {
+  &:before {
+    content: $cft-file-check; 
+  }
+}
+.cft-coin {
+  &:before {
+    content: $cft-coin; 
+  }
+}
+.cft-agenda {
+  &:before {
+    content: $cft-agenda; 
+  }
+}
+.cft-saturn {
+  &:before {
+    content: $cft-saturn; 
+  }
+}
+.cft-send {
+  &:before {
+    content: $cft-send; 
+  }
+}
+.cft-design-kit {
+  &:before {
+    content: $cft-design-kit; 
+  }
+}
+.cft-play-store {
+  &:before {
+    content: $cft-play-store; 
+  }
+}
+.cft-barcode {
+  &:before {
+    content: $cft-barcode; 
+  }
+}
+.cft-bar {
+  &:before {
+    content: $cft-bar; 
+  }
+}
+.cft-coupon {
+  &:before {
+    content: $cft-coupon; 
+  }
+}
+.cft-flow {
+  &:before {
+    content: $cft-flow; 
+  }
+}
+.cft-medal-3 {
+  &:before {
+    content: $cft-medal-3; 
+  }
+}
+.cft-night {
+  &:before {
+    content: $cft-night; 
+  }
+}
+.cft-facebook {
+  &:before {
+    content: $cft-facebook; 
+  }
+}
+.cft-publish {
+  &:before {
+    content: $cft-publish; 
+  }
+}
+.cft-drag-drop-horizontal {
+  &:before {
+    content: $cft-drag-drop-horizontal; 
+  }
+}
+.cft-panel-sidebar-header {
+  &:before {
+    content: $cft-panel-sidebar-header; 
+  }
+}
+.cft-list-ascending {
+  &:before {
+    content: $cft-list-ascending; 
+  }
+}
+.cft-battery-empty {
+  &:before {
+    content: $cft-battery-empty; 
+  }
+}
+.cft-wi-fi {
+  &:before {
+    content: $cft-wi-fi; 
+  }
+}
+.cft-camera {
+  &:before {
+    content: $cft-camera; 
+  }
+}
+.cft-printer {
+  &:before {
+    content: $cft-printer; 
+  }
+}
+.cft-smartwatch {
+  &:before {
+    content: $cft-smartwatch; 
+  }
+}
+.cft-redo {
+  &:before {
+    content: $cft-redo; 
+  }
+}
+.cft-plugin-content {
+  &:before {
+    content: $cft-plugin-content; 
+  }
+}
+.cft-pinterest {
+  &:before {
+    content: $cft-pinterest; 
+  }
+}
+.cft-truck {
+  &:before {
+    content: $cft-truck; 
+  }
+}
+.cft-groups {
+  &:before {
+    content: $cft-groups; 
+  }
+}
+.cft-home-3 {
+  &:before {
+    content: $cft-home-3; 
+  }
+}
+.cft-chat-minimal {
+  &:before {
+    content: $cft-chat-minimal; 
+  }
+}
+.cft-money-briefcase {
+  &:before {
+    content: $cft-money-briefcase; 
+  }
+}
+.cft-blender {
+  &:before {
+    content: $cft-blender; 
+  }
+}
+.cft-mute {
+  &:before {
+    content: $cft-mute; 
+  }
+}
+.cft-pen-tool {
+  &:before {
+    content: $cft-pen-tool; 
+  }
+}
+.cft-wine-glass {
+  &:before {
+    content: $cft-wine-glass; 
+  }
+}
+.cft-saving {
+  &:before {
+    content: $cft-saving; 
+  }
+}
+.cft-visibilty {
+  &:before {
+    content: $cft-visibilty; 
+  }
+}
+.cft-return-right {
+  &:before {
+    content: $cft-return-right; 
+  }
+}
+.cft-whatsapp {
+  &:before {
+    content: $cft-whatsapp; 
+  }
+}
+.cft-line {
+  &:before {
+    content: $cft-line; 
+  }
+}
+.cft-egg {
+  &:before {
+    content: $cft-egg; 
+  }
+}
+.cft-window-programming {
+  &:before {
+    content: $cft-window-programming; 
+  }
+}
+.cft-parameters {
+  &:before {
+    content: $cft-parameters; 
+  }
+}
+.cft-comment-star {
+  &:before {
+    content: $cft-comment-star; 
+  }
+}
+.cft-tablet-landscape {
+  &:before {
+    content: $cft-tablet-landscape; 
+  }
+}
+.cft-grid-system {
+  &:before {
+    content: $cft-grid-system; 
+  }
+}
+.cft-pointer-left {
+  &:before {
+    content: $cft-pointer-left; 
+  }
+}
+.cft-attachment {
+  &:before {
+    content: $cft-attachment; 
+  }
+}
+.cft-gift-box {
+  &:before {
+    content: $cft-gift-box; 
+  }
+}
+.cft-pointer-down-circle {
+  &:before {
+    content: $cft-pointer-down-circle; 
+  }
+}
+.cft-diskette {
+  &:before {
+    content: $cft-diskette; 
+  }
+}
+.cft-trash {
+  &:before {
+    content: $cft-trash; 
+  }
+}
+.cft-chart-bar {
+  &:before {
+    content: $cft-chart-bar; 
+  }
+}
+.cft-menu-expand {
+  &:before {
+    content: $cft-menu-expand; 
+  }
+}
+.cft-eleptical-marquee {
+  &:before {
+    content: $cft-eleptical-marquee; 
+  }
+}
+.cft-leaf {
+  &:before {
+    content: $cft-leaf; 
+  }
+}
+.cft-network {
+  &:before {
+    content: $cft-network; 
+  }
+}
+.cft-panel-sidebar {
+  &:before {
+    content: $cft-panel-sidebar; 
+  }
+}
+.cft-math-divide-round {
+  &:before {
+    content: $cft-math-divide-round; 
+  }
+}
+.cft-text-align-left {
+  &:before {
+    content: $cft-text-align-left; 
+  }
+}
+.cft-income {
+  &:before {
+    content: $cft-income; 
+  }
+}
+.cft-banknotes {
+  &:before {
+    content: $cft-banknotes; 
+  }
+}
+.cft-customer-support {
+  &:before {
+    content: $cft-customer-support; 
+  }
+}
+.cft-star {
+  &:before {
+    content: $cft-star; 
+  }
+}
+.cft-notification-off {
+  &:before {
+    content: $cft-notification-off; 
+  }
+}
+.cft-cd {
+  &:before {
+    content: $cft-cd; 
+  }
+}
+.cft-wrench {
+  &:before {
+    content: $cft-wrench; 
+  }
+}
+.cft-home-2 {
+  &:before {
+    content: $cft-home-2; 
+  }
+}
+.cft-checklist {
+  &:before {
+    content: $cft-checklist; 
+  }
+}
+.cft-chart-column {
+  &:before {
+    content: $cft-chart-column; 
+  }
+}
+.cft-panel-header {
+  &:before {
+    content: $cft-panel-header; 
+  }
+}
+.cft-trencher-hat {
+  &:before {
+    content: $cft-trencher-hat; 
+  }
+}
+.cft-edit {
+  &:before {
+    content: $cft-edit; 
+  }
+}
+.cft-skip-previous {
+  &:before {
+    content: $cft-skip-previous; 
+  }
+}
+.cft-browser {
+  &:before {
+    content: $cft-browser; 
+  }
+}
+.cft-contactless {
+  &:before {
+    content: $cft-contactless; 
+  }
+}
+.cft-checkbox {
+  &:before {
+    content: $cft-checkbox; 
+  }
+}
+.cft-teapot {
+  &:before {
+    content: $cft-teapot; 
+  }
+}
+.cft-nav-back {
+  &:before {
+    content: $cft-nav-back; 
+  }
+}
+.cft-wheelchair {
+  &:before {
+    content: $cft-wheelchair; 
+  }
+}
+.cft-chart-pie {
+  &:before {
+    content: $cft-chart-pie; 
+  }
+}
+.cft-panel-simple {
+  &:before {
+    content: $cft-panel-simple; 
+  }
+}
+.cft-lifebuoy {
+  &:before {
+    content: $cft-lifebuoy; 
+  }
+}
+.cft-bug {
+  &:before {
+    content: $cft-bug; 
+  }
+}
+.cft-volume-high {
+  &:before {
+    content: $cft-volume-high; 
+  }
+}
+.cft-mail-birdhouse {
+  &:before {
+    content: $cft-mail-birdhouse; 
+  }
+}
+.cft-mail-open {
+  &:before {
+    content: $cft-mail-open; 
+  }
+}
+.cft-youtube {
+  &:before {
+    content: $cft-youtube; 
+  }
+}
+.cft-data-storage {
+  &:before {
+    content: $cft-data-storage; 
+  }
+}
+.cft-name-tag {
+  &:before {
+    content: $cft-name-tag; 
+  }
+}
+.cft-collection {
+  &:before {
+    content: $cft-collection; 
+  }
+}
+.cft-idea {
+  &:before {
+    content: $cft-idea; 
+  }
+}
+.cft-unlock {
+  &:before {
+    content: $cft-unlock; 
+  }
+}
+.cft-to-top {
+  &:before {
+    content: $cft-to-top; 
+  }
+}
+.cft-compass {
+  &:before {
+    content: $cft-compass; 
+  }
+}
+.cft-hang-tag {
+  &:before {
+    content: $cft-hang-tag; 
+  }
+}
+.cft-knife {
+  &:before {
+    content: $cft-knife; 
+  }
+}
+.cft-clock-rush {
+  &:before {
+    content: $cft-clock-rush; 
+  }
+}
+.cft-promo-price {
+  &:before {
+    content: $cft-promo-price; 
+  }
+}
+.cft-pharmacy {
+  &:before {
+    content: $cft-pharmacy; 
+  }
+}
+.cft-pencil-2 {
+  &:before {
+    content: $cft-pencil-2; 
+  }
+}
+.cft-store-round {
+  &:before {
+    content: $cft-store-round; 
+  }
+}
+.cft-woman {
+  &:before {
+    content: $cft-woman; 
+  }
+}
+.cft-columns2 {
+  &:before {
+    content: $cft-columns2; 
+  }
+}
+.cft-grid-circle {
+  &:before {
+    content: $cft-grid-circle; 
+  }
+}
+.cft-bank {
+  &:before {
+    content: $cft-bank; 
+  }
+}
+.cft-credit-card {
+  &:before {
+    content: $cft-credit-card; 
+  }
+}
+.cft-cylinder {
+  &:before {
+    content: $cft-cylinder; 
+  }
+}
+.cft-computer {
+  &:before {
+    content: $cft-computer; 
+  }
+}
+.cft-shopping-bag-2 {
+  &:before {
+    content: $cft-shopping-bag-2; 
+  }
+}
+.cft-lightning-bolt {
+  &:before {
+    content: $cft-lightning-bolt; 
+  }
+}
+.cft-remove-round {
+  &:before {
+    content: $cft-remove-round; 
+  }
+}
+.cft-pencil {
+  &:before {
+    content: $cft-pencil; 
+  }
+}
+.cft-language {
+  &:before {
+    content: $cft-language; 
+  }
+}
+.cft-boxing-glove {
+  &:before {
+    content: $cft-boxing-glove; 
+  }
+}
+.cft-integration {
+  &:before {
+    content: $cft-integration; 
+  }
+}
+.cft-sort-list {
+  &:before {
+    content: $cft-sort-list; 
+  }
+}
+.cft-shape-boundary {
+  &:before {
+    content: $cft-shape-boundary; 
+  }
+}
+.cft-basketball {
+  &:before {
+    content: $cft-basketball; 
+  }
+}
+.cft-diamond {
+  &:before {
+    content: $cft-diamond; 
+  }
+}
+.cft-square-direction-down {
+  &:before {
+    content: $cft-square-direction-down; 
+  }
+}
+.cft-clock {
+  &:before {
+    content: $cft-clock; 
+  }
+}
+.cft-movie-camera {
+  &:before {
+    content: $cft-movie-camera; 
+  }
+}
+.cft-android-brand-2 {
+  &:before {
+    content: $cft-android-brand-2; 
+  }
+}
+.cft-user-settings {
+  &:before {
+    content: $cft-user-settings; 
+  }
+}
+.cft-arrow-big-left {
+  &:before {
+    content: $cft-arrow-big-left; 
+  }
+}
+.cft-results-meeting {
+  &:before {
+    content: $cft-results-meeting; 
+  }
+}
+.cft-app-notification {
+  &:before {
+    content: $cft-app-notification; 
+  }
+}
+.cft-hanger {
+  &:before {
+    content: $cft-hanger; 
+  }
+}
+.cft-enter-room {
+  &:before {
+    content: $cft-enter-room; 
+  }
+}
+.cft-yen-round {
+  &:before {
+    content: $cft-yen-round; 
+  }
+}
+.cft-repeat-all {
+  &:before {
+    content: $cft-repeat-all; 
+  }
+}
+.cft-dumbbell {
+  &:before {
+    content: $cft-dumbbell; 
+  }
+}
+.cft-sync {
+  &:before {
+    content: $cft-sync; 
+  }
+}
+.cft-call {
+  &:before {
+    content: $cft-call; 
+  }
+}
+.cft-eye {
+  &:before {
+    content: $cft-eye; 
+  }
+}
+.cft-view-off {
+  &:before {
+    content: $cft-view-off; 
+  }
+}
+.cft-delivery-2 {
+  &:before {
+    content: $cft-delivery-2; 
+  }
+}
+.cft-plant-vase-2 {
+  &:before {
+    content: $cft-plant-vase-2; 
+  }
+}
+.cft-location {
+  &:before {
+    content: $cft-location; 
+  }
+}
+.cft-flower {
+  &:before {
+    content: $cft-flower; 
+  }
+}
+.cft-menu-contract {
+  &:before {
+    content: $cft-menu-contract; 
+  }
+}
+.cft-power-switch {
+  &:before {
+    content: $cft-power-switch; 
+  }
+}
+.cft-comment-simple {
+  &:before {
+    content: $cft-comment-simple; 
+  }
+}
+.cft-location-2 {
+  &:before {
+    content: $cft-location-2; 
+  }
+}
+.cft-pill {
+  &:before {
+    content: $cft-pill; 
+  }
+}
+.cft-square-direction-up {
+  &:before {
+    content: $cft-square-direction-up; 
+  }
+}
+.cft-gift {
+  &:before {
+    content: $cft-gift; 
+  }
+}
+.cft-mobile-portrait {
+  &:before {
+    content: $cft-mobile-portrait; 
+  }
+}
+.cft-external-link {
+  &:before {
+    content: $cft-external-link; 
+  }
+}
+.cft-car {
+  &:before {
+    content: $cft-car; 
+  }
+}
+.cft-notebook-folder {
+  &:before {
+    content: $cft-notebook-folder; 
+  }
+}
+.cft-text-align-right {
+  &:before {
+    content: $cft-text-align-right; 
+  }
+}
+.cft-order-service {
+  &:before {
+    content: $cft-order-service; 
+  }
+}
+.cft-more-vertical {
+  &:before {
+    content: $cft-more-vertical; 
+  }
+}
+.cft-panel-header-divided {
+  &:before {
+    content: $cft-panel-header-divided; 
+  }
+}
+.cft-direction-downward-right {
+  &:before {
+    content: $cft-direction-downward-right; 
+  }
+}
+.cft-square-direction-upward-right {
+  &:before {
+    content: $cft-square-direction-upward-right; 
+  }
+}
+.cft-observation-love {
+  &:before {
+    content: $cft-observation-love; 
+  }
+}
+.cft-square-direction-downward-left {
+  &:before {
+    content: $cft-square-direction-downward-left; 
+  }
+}
+.cft-baseball {
+  &:before {
+    content: $cft-baseball; 
+  }
+}
+.cft-profile {
+  &:before {
+    content: $cft-profile; 
+  }
+}
+.cft-share {
+  &:before {
+    content: $cft-share; 
+  }
+}
+.cft-ruler-triangule {
+  &:before {
+    content: $cft-ruler-triangule; 
+  }
+}
+.cft-arrow-up {
+  &:before {
+    content: $cft-arrow-up; 
+  }
+}
+.cft-geo-globe {
+  &:before {
+    content: $cft-geo-globe; 
+  }
+}
+.cft-money {
+  &:before {
+    content: $cft-money; 
+  }
+}
+.cft-direction-down {
+  &:before {
+    content: $cft-direction-down; 
+  }
+}
+.cft-return-up {
+  &:before {
+    content: $cft-return-up; 
+  }
+}
+.cft-folder-add {
+  &:before {
+    content: $cft-folder-add; 
+  }
+}
+.cft-linkedin {
+  &:before {
+    content: $cft-linkedin; 
+  }
+}
+.cft-sort {
+  &:before {
+    content: $cft-sort; 
+  }
+}
+.cft-remove {
+  &:before {
+    content: $cft-remove; 
+  }
+}
+.cft-modules {
+  &:before {
+    content: $cft-modules; 
+  }
+}
+.cft-undo {
+  &:before {
+    content: $cft-undo; 
+  }
+}
+.cft-video {
+  &:before {
+    content: $cft-video; 
+  }
+}
+.cft-postal-package {
+  &:before {
+    content: $cft-postal-package; 
+  }
+}
+.cft-pos-register {
+  &:before {
+    content: $cft-pos-register; 
+  }
+}
+.cft-robot {
+  &:before {
+    content: $cft-robot; 
+  }
+}
+.cft-padlock-locked {
+  &:before {
+    content: $cft-padlock-locked; 
+  }
+}
+.cft-id-card {
+  &:before {
+    content: $cft-id-card; 
+  }
+}
+.cft-quote-up-round {
+  &:before {
+    content: $cft-quote-up-round; 
+  }
+}
+.cft-filter {
+  &:before {
+    content: $cft-filter; 
+  }
+}
+.cft-build-rounded {
+  &:before {
+    content: $cft-build-rounded; 
+  }
+}
+.cft-file-remove {
+  &:before {
+    content: $cft-file-remove; 
+  }
+}
+.cft-switch {
+  &:before {
+    content: $cft-switch; 
+  }
+}
+.cft-check-double {
+  &:before {
+    content: $cft-check-double; 
+  }
+}
+.cft-italic {
+  &:before {
+    content: $cft-italic; 
+  }
+}
+.cft-flowtree {
+  &:before {
+    content: $cft-flowtree; 
+  }
+}
+.cft-medal {
+  &:before {
+    content: $cft-medal; 
+  }
+}
+.cft-calendar {
+  &:before {
+    content: $cft-calendar; 
+  }
+}
+.cft-baby-stroller {
+  &:before {
+    content: $cft-baby-stroller; 
+  }
+}
+.cft-video-camera {
+  &:before {
+    content: $cft-video-camera; 
+  }
+}
+.cft-globe {
+  &:before {
+    content: $cft-globe; 
+  }
+}
+.cft-arrow-left {
+  &:before {
+    content: $cft-arrow-left; 
+  }
+}
+.cft-coupon-2 {
+  &:before {
+    content: $cft-coupon-2; 
+  }
+}
+.cft-yen {
+  &:before {
+    content: $cft-yen; 
+  }
+}
+.cft-chat-face {
+  &:before {
+    content: $cft-chat-face; 
+  }
+}
+.cft-domino {
+  &:before {
+    content: $cft-domino; 
+  }
+}
+.cft-square-direction-upward-left {
+  &:before {
+    content: $cft-square-direction-upward-left; 
+  }
+}
+.cft-school-book {
+  &:before {
+    content: $cft-school-book; 
+  }
+}
+.cft-gift-2 {
+  &:before {
+    content: $cft-gift-2; 
+  }
+}
+.cft-laptop {
+  &:before {
+    content: $cft-laptop; 
+  }
+}
+.cft-select-object {
+  &:before {
+    content: $cft-select-object; 
+  }
+}
+.cft-arrow-big-up {
+  &:before {
+    content: $cft-arrow-big-up; 
+  }
+}
+.cft-financial-statement {
+  &:before {
+    content: $cft-financial-statement; 
+  }
+}
+.cft-club-suit {
+  &:before {
+    content: $cft-club-suit; 
+  }
+}
+.cft-manager {
+  &:before {
+    content: $cft-manager; 
+  }
+}
+.cft-volume-low {
+  &:before {
+    content: $cft-volume-low; 
+  }
+}
+.cft-scanner {
+  &:before {
+    content: $cft-scanner; 
+  }
+}
+.cft-rocket-launch {
+  &:before {
+    content: $cft-rocket-launch; 
+  }
+}
+.cft-shorts {
+  &:before {
+    content: $cft-shorts; 
+  }
+}
+.cft-audio-waves {
+  &:before {
+    content: $cft-audio-waves; 
+  }
+}
+.cft-disappear {
+  &:before {
+    content: $cft-disappear; 
+  }
+}
+.cft-mouse-cursor {
+  &:before {
+    content: $cft-mouse-cursor; 
+  }
+}
+.cft-cloud {
+  &:before {
+    content: $cft-cloud; 
+  }
+}
+.cft-star-round {
+  &:before {
+    content: $cft-star-round; 
+  }
+}
+.cft-shuffle {
+  &:before {
+    content: $cft-shuffle; 
+  }
+}
+.cft-window {
+  &:before {
+    content: $cft-window; 
+  }
+}
+.cft-videogame-controler {
+  &:before {
+    content: $cft-videogame-controler; 
+  }
+}
+.cft-gemstone {
+  &:before {
+    content: $cft-gemstone; 
+  }
+}
+.cft-supplier {
+  &:before {
+    content: $cft-supplier; 
+  }
+}
+.cft-search-list {
+  &:before {
+    content: $cft-search-list; 
+  }
+}
+.cft-table-tenis {
+  &:before {
+    content: $cft-table-tenis; 
+  }
+}
+.cft-skull-angry {
+  &:before {
+    content: $cft-skull-angry; 
+  }
+}
+.cft-motorcycle {
+  &:before {
+    content: $cft-motorcycle; 
+  }
+}
+.cft-upload {
+  &:before {
+    content: $cft-upload; 
+  }
+}
+.cft-trending-down {
+  &:before {
+    content: $cft-trending-down; 
+  }
+}
+.cft-messenger {
+  &:before {
+    content: $cft-messenger; 
+  }
+}
+.cft-slider-left {
+  &:before {
+    content: $cft-slider-left; 
+  }
+}
+.cft-apple-brand {
+  &:before {
+    content: $cft-apple-brand; 
+  }
+}
+.cft-text-content {
+  &:before {
+    content: $cft-text-content; 
+  }
+}
+.cft-peanut {
+  &:before {
+    content: $cft-peanut; 
+  }
+}
+.cft-text-sheet-folded {
+  &:before {
+    content: $cft-text-sheet-folded; 
+  }
+}
+.cft-pause {
+  &:before {
+    content: $cft-pause; 
+  }
+}
+.cft-square-direction-downward-right {
+  &:before {
+    content: $cft-square-direction-downward-right; 
+  }
+}
+.cft-juice-cup {
+  &:before {
+    content: $cft-juice-cup; 
+  }
+}
+.cft-flowtree-2 {
+  &:before {
+    content: $cft-flowtree-2; 
+  }
+}
+.cft-android-brand {
+  &:before {
+    content: $cft-android-brand; 
+  }
+}
+.cft-place-pin {
+  &:before {
+    content: $cft-place-pin; 
+  }
+}
+.cft-forward {
+  &:before {
+    content: $cft-forward; 
+  }
+}
+.cft-kanban-view {
+  &:before {
+    content: $cft-kanban-view; 
+  }
+}
+.cft-bookmark {
+  &:before {
+    content: $cft-bookmark; 
+  }
+}
+.cft-help {
+  &:before {
+    content: $cft-help; 
+  }
+}
+.cft-status {
+  &:before {
+    content: $cft-status; 
+  }
+}
+.cft-rocket {
+  &:before {
+    content: $cft-rocket; 
+  }
+}
+.cft-socket {
+  &:before {
+    content: $cft-socket; 
+  }
+}
+.cft-add-round {
+  &:before {
+    content: $cft-add-round; 
+  }
+}
+.cft-employee {
+  &:before {
+    content: $cft-employee; 
+  }
+}
+.cft-inbox-receive {
+  &:before {
+    content: $cft-inbox-receive; 
+  }
+}
+.cft-user-check {
+  &:before {
+    content: $cft-user-check; 
+  }
+}
+.cft-tag-love {
+  &:before {
+    content: $cft-tag-love; 
+  }
+}
+.cft-iphone {
+  &:before {
+    content: $cft-iphone; 
+  }
+}
+.cft-statement {
+  &:before {
+    content: $cft-statement; 
+  }
+}
+.cft-round-direction-down {
+  &:before {
+    content: $cft-round-direction-down; 
+  }
+}
+.cft-file-blocked {
+  &:before {
+    content: $cft-file-blocked; 
+  }
+}
+.cft-pamphlet {
+  &:before {
+    content: $cft-pamphlet; 
+  }
+}
+.cft-ice-cream {
+  &:before {
+    content: $cft-ice-cream; 
+  }
+}
+.cft-menu {
+  &:before {
+    content: $cft-menu; 
+  }
+}
+.cft-happy-love {
+  &:before {
+    content: $cft-happy-love; 
+  }
+}
+.cft-brightness {
+  &:before {
+    content: $cft-brightness; 
+  }
+}
+.cft-soda-glass {
+  &:before {
+    content: $cft-soda-glass; 
+  }
+}
+.cft-backspace {
+  &:before {
+    content: $cft-backspace; 
+  }
+}
+.cft-arrow-rightward {
+  &:before {
+    content: $cft-arrow-rightward; 
+  }
+}
+.cft-chat-simple {
+  &:before {
+    content: $cft-chat-simple; 
+  }
+}
+.cft-play-round {
+  &:before {
+    content: $cft-play-round; 
+  }
+}
+.cft-mobile-landscape {
+  &:before {
+    content: $cft-mobile-landscape; 
+  }
+}
+.cft-shopping-cart {
+  &:before {
+    content: $cft-shopping-cart; 
+  }
+}
+.cft-id {
+  &:before {
+    content: $cft-id; 
+  }
+}
+.cft-calculator {
+  &:before {
+    content: $cft-calculator; 
+  }
+}
+.cft-direction-upward-left {
+  &:before {
+    content: $cft-direction-upward-left; 
+  }
+}
+.cft-return-down {
+  &:before {
+    content: $cft-return-down; 
+  }
+}
+.cft-mouse {
+  &:before {
+    content: $cft-mouse; 
+  }
+}
+.cft-female {
+  &:before {
+    content: $cft-female; 
+  }
+}
+.cft-beach {
+  &:before {
+    content: $cft-beach; 
+  }
+}
+.cft-shield-check {
+  &:before {
+    content: $cft-shield-check; 
+  }
+}
+.cft-sales-contract {
+  &:before {
+    content: $cft-sales-contract; 
+  }
+}
+.cft-columns3 {
+  &:before {
+    content: $cft-columns3; 
+  }
+}
+.cft-adobe-acrobat {
+  &:before {
+    content: $cft-adobe-acrobat; 
+  }
+}
+.cft-shopping-basket {
+  &:before {
+    content: $cft-shopping-basket; 
+  }
+}
+.cft-man {
+  &:before {
+    content: $cft-man; 
+  }
+}
+.cft-mail-doc {
+  &:before {
+    content: $cft-mail-doc; 
+  }
+}
+.cft-building {
+  &:before {
+    content: $cft-building; 
+  }
+}
+.cft-angry {
+  &:before {
+    content: $cft-angry; 
+  }
+}
+.cft-history {
+  &:before {
+    content: $cft-history; 
+  }
+}
+.cft-rhombus {
+  &:before {
+    content: $cft-rhombus; 
+  }
+}
+.cft-folder {
+  &:before {
+    content: $cft-folder; 
+  }
+}
+.cft-alarm {
+  &:before {
+    content: $cft-alarm; 
+  }
+}
+.cft-gift-card {
+  &:before {
+    content: $cft-gift-card; 
+  }
+}
+.cft-arrow-leftward {
+  &:before {
+    content: $cft-arrow-leftward; 
+  }
+}
+.cft-fingerprint {
+  &:before {
+    content: $cft-fingerprint; 
+  }
+}
+.cft-timer {
+  &:before {
+    content: $cft-timer; 
+  }
+}
+.cft-clipboard-check {
+  &:before {
+    content: $cft-clipboard-check; 
+  }
+}
+.cft-tiktok {
+  &:before {
+    content: $cft-tiktok; 
+  }
+}
+.cft-activity-monitor-square {
+  &:before {
+    content: $cft-activity-monitor-square; 
+  }
+}
+.cft-chevron-left {
+  &:before {
+    content: $cft-chevron-left; 
+  }
+}
+.cft-slider-right {
+  &:before {
+    content: $cft-slider-right; 
+  }
+}
+.cft-moon {
+  &:before {
+    content: $cft-moon; 
+  }
+}
+.cft-blink {
+  &:before {
+    content: $cft-blink; 
+  }
+}
+.cft-behance {
+  &:before {
+    content: $cft-behance; 
+  }
+}
+.cft-band-aid {
+  &:before {
+    content: $cft-band-aid; 
+  }
+}
+.cft-accessibility {
+  &:before {
+    content: $cft-accessibility; 
+  }
+}
+.cft-surprise {
+  &:before {
+    content: $cft-surprise; 
+  }
+}
+.cft-customer {
+  &:before {
+    content: $cft-customer; 
+  }
+}
+.cft-list-descending {
+  &:before {
+    content: $cft-list-descending; 
+  }
+}
+.cft-round-direction-upward-left {
+  &:before {
+    content: $cft-round-direction-upward-left; 
+  }
+}
+.cft-proposal {
+  &:before {
+    content: $cft-proposal; 
+  }
+}
+.cft-flip-horizontal {
+  &:before {
+    content: $cft-flip-horizontal; 
+  }
+}
+.cft-notebook {
+  &:before {
+    content: $cft-notebook; 
+  }
+}
+.cft-edit-inline {
+  &:before {
+    content: $cft-edit-inline; 
+  }
+}
+.cft-sofa {
+  &:before {
+    content: $cft-sofa; 
+  }
+}
+.cft-cherry {
+  &:before {
+    content: $cft-cherry; 
+  }
+}
+.cft-percent-round {
+  &:before {
+    content: $cft-percent-round; 
+  }
+}
+.cft-heart {
+  &:before {
+    content: $cft-heart; 
+  }
+}
+

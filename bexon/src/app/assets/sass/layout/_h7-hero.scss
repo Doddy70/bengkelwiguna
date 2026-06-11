@@ -1,0 +1,252 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Hero CSS
+----------------------------------------*/
+.h7-hero {
+	position: relative;
+	margin: 0 15px 0 15px;
+	border-radius: 16px;
+	overflow: hidden;
+
+	@media #{$sm, $xs} {
+		border-radius: 12px;
+		margin: 0 12px 0;
+	}
+	&-inner {
+		background: var(--tj-color-theme-dark);
+		position: relative;
+		&::after {
+			content: "";
+			position: absolute;
+			inset-inline-start: 0;
+			top: 90px;
+			width: 100%;
+			height: 1px;
+			background-color: var(--tj-color-border-2);
+			z-index: 998;
+		}
+	}
+	&-bg-image {
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		mix-blend-mode: Luminosity;
+	}
+	&-item {
+		min-height: 92.5vh;
+		background-color: #0c1e21;
+		position: relative;
+		&::after {
+			position: absolute;
+			content: "";
+			top: 0;
+			inset-inline-start: 0;
+			width: 100%;
+			height: 100%;
+			z-index: 2;
+			background: linear-gradient(
+				90deg,
+				rgba(12, 30, 33, 1) 20%,
+				rgba(12, 30, 33, 0.4) 60%,
+				rgba(12, 30, 33, 0.1) 100%
+			);
+		}
+		&-wrapper {
+			padding: 242px 0 30px;
+			min-height: 883px;
+			position: relative;
+
+			@media #{$xxl} {
+				padding-inline-start: 50px;
+				padding-top: 170px;
+			}
+			@media #{$xl} {
+				padding: 170px 0 280px 30px;
+			}
+			@media #{$lg} {
+				padding: 170px 0 280px 0;
+			}
+			@media #{ $md} {
+				padding: 170px 0 0 0;
+			}
+			@media #{$sm, $xs} {
+				padding: 150px 0 0 0;
+			}
+		}
+
+		@media #{$xxl} {
+			height: 95vh;
+		}
+		@media #{$xl} {
+			min-height: auto;
+		}
+		@media #{$sm, $xs} {
+			min-height: 840px;
+		}
+	}
+	&-content {
+		max-width: 660px;
+		position: relative;
+		z-index: 1000;
+		max-width: 898px;
+		margin: 0 auto;
+		@media #{$xxl,$xl,$lg} {
+			margin: 0;
+		}
+		.h7-hero {
+			&-title {
+				color: var(--tj-color-common-white);
+				font-size: 140.59px;
+				line-height: 1;
+				letter-spacing: -0.03em;
+				margin-bottom: 0;
+				span {
+					width: 100%;
+					display: block;
+					&:nth-child(2) {
+						text-align: end;
+					}
+					&:nth-child(3) {
+						text-align: center;
+					}
+					&:has(img) {
+						display: flex;
+						align-items: center;
+						justify-content: flex-end;
+						gap: 10px;
+						img {
+							width: 104px;
+							height: 104px;
+							object-fit: cover;
+							padding: 20px 19px 18px;
+							background: linear-gradient(
+								135deg,
+								rgba(30, 138, 138, 0.3) 0%,
+								rgba(30, 138, 138, 0) 50%,
+								rgba(30, 138, 138, 0.3) 100%
+							);
+							border: 3px solid var(--tj-color-theme-primary);
+							border: 2px solid var(--tj-color-border-5);
+							box-sizing: border-box;
+							border-radius: 100%;
+							@media #{$sm, $xs} {
+								width: 70px;
+								height: 70px;
+								padding: 15px 14px 13px;
+							}
+						}
+					}
+				}
+
+				@media #{$xl, $lg} {
+					font-size: 130px;
+				}
+				@media #{$md} {
+					font-size: 110px;
+				}
+				@media #{$sm} {
+					font-size: 70px;
+				}
+				@media #{ $xs} {
+					font-size: 60px;
+				}
+			}
+		}
+
+		@media #{$xl} {
+			max-width: 720px;
+		}
+		@media #{$lg} {
+			max-width: 708px;
+		}
+		@media #{$md} {
+			max-width: 640px;
+		}
+		@media #{$sm} {
+			max-width: 450px;
+		}
+	}
+	&-banner {
+		position: absolute;
+		inset-inline-end: -17%;
+		bottom: 0;
+		z-index: 9;
+		pointer-events: none;
+		@media #{$xxxxl} {
+			z-index: 999;
+		}
+		@media #{$xxxl} {
+			inset-inline-end: -10%;
+		}
+		@media #{$xxl,$xl} {
+			inset-inline-end: -2%;
+		}
+		@media #{$md} {
+			position: relative;
+			inset-inline-end: -9%;
+			margin-top: 50px;
+		}
+		@media #{$sm,$xs} {
+			position: relative;
+			inset-inline-end: -3%;
+			margin-top: 40px;
+		}
+	}
+	&-shape {
+		position: absolute;
+		top: 10px;
+		z-index: 1;
+		&-2 {
+			inset-inline-end: 0;
+		}
+	}
+	.circle-text-wrap {
+		z-index: 1000;
+		background-color: transparent;
+		backdrop-filter: none;
+		@media #{$md} {
+			bottom: 48px;
+		}
+		@media #{$sm,$xs} {
+			bottom: 164px;
+		}
+		.circle-icon {
+			transform: translate(-50%, -50%) rotate(-135deg);
+		}
+	}
+	&-box {
+		display: flex;
+		gap: 10px;
+		align-items: center;
+		position: absolute;
+		inset-inline-start: 0;
+		bottom: 60px;
+		z-index: 1000;
+		@media #{$xl} {
+			inset-inline-start: 3%;
+		}
+		@media #{$lg,$md,$sm,$xs} {
+			inset-inline-start: 10px;
+		}
+
+		.star-ratings {
+			font-size: 19px;
+		}
+		.customers-text {
+			font-size: 20px;
+			font-weight: var(--tj-fw-sbold);
+			color: var(--tj-color-common-white);
+			margin-top: 8px;
+			letter-spacing: -0.03em;
+			@media #{$xs} {
+				font-size: 18px;
+			}
+		}
+	}
+}
+
+/* !END: Hero CSS */

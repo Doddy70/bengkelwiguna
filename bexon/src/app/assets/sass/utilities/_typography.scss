@@ -1,0 +1,36 @@
+//Font Family
+$font-family: (
+	ff: (
+		fontawesome: '"Font Awesome 6 Pro"',
+	),
+);
+
+// Font Weight
+$font-scale: (
+	fw: (
+		normal: normal,
+		thin: 100,
+		elight: 200,
+		light: 300,
+		regular: 400,
+		medium: 500,
+		sbold: 600,
+		bold: 700,
+		ebold: 800,
+		black: 900,
+	),
+);
+
+// Font Size
+$font-size: (
+	fs: (
+		body: 16px,
+		p: 16px,
+		h1: 74px,
+		h2: 48px,
+		h3: 32px,
+		h4: 24px,
+		h5: 20px,
+		h6: 18px,
+	),
+);

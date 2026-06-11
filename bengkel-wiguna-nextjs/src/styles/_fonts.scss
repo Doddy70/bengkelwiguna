@@ -1,0 +1,75 @@
+@font-face {
+    font-family: "Sora";
+    src: url('/fonts/dm-sans-400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Sora";
+    src: url('/fonts/Sora-500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Sora";
+    src: url('/fonts/Sora-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+        font-display: swap;
+}
+@font-face {
+    font-family: "Sora";
+    src: url('/fonts/Sora-700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* DM Sans */
+@font-face {
+    font-family: "DM Sans";
+    src: url('/fonts/dm-sans-400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "DM Sans";
+    src: url('/fonts/dm-sans-500.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "DM Sans";
+    src: url('/fonts/dm-sans-600.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "DM Sans";
+    src: url('/fonts/dm-sans-700.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Merri";
+    src: url('/fonts/Merriweather-400.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+.font-sora {
+    font-family: "Sora";
+}
+.font-dm {
+    font-family: "DM Sans";
+}
+.font-merri {
+    font-family: "Merri";
+}
+

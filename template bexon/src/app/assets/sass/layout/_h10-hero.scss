@@ -1,0 +1,194 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Hero CSS
+----------------------------------------*/
+.h10-hero {
+	padding-bottom: 0;
+	overflow: hidden;
+	@media #{$xxxxl,$xxxl} {
+		.container {
+			max-width: 1422px;
+		}
+	}
+	@media #{$md} {
+		padding-top: 98px;
+	}
+	@media #{$sm,$xs} {
+		padding-top: 75px;
+	}
+
+	&-award-wrapper {
+		@media #{$md} {
+			display: flex;
+			flex-direction: row-reverse;
+			align-items: center;
+			justify-content: flex-end;
+			padding-inline-start: 20px;
+			gap: 50px;
+		}
+		.h6-hero-history {
+			margin-top: 43px;
+			@media #{$lg} {
+				margin-top: 23px;
+			}
+			@media #{$sm,$xs} {
+				margin-top: 20px;
+			}
+		}
+		.circle-text-wrap {
+			margin-top: 90px;
+			position: relative;
+			inset-inline-end: auto;
+			bottom: 0;
+			background-color: var(--tj-color-common-white);
+			width: 192px;
+			height: 192px;
+			@media #{$xl,$lg,$md} {
+				margin-top: 41px;
+			}
+			@media #{$sm,$xs} {
+				margin-top: 30px;
+			}
+			@media #{$lg} {
+				width: 162px;
+				height: 162px;
+			}
+			.circle-text {
+				width: 158px;
+				height: 163px;
+				@media #{$lg} {
+					width: 132px;
+					height: 137px;
+				}
+			}
+			.circle-icon {
+				font-size: 30px;
+				i {
+					color: var(--tj-color-theme-dark);
+				}
+			}
+		}
+	}
+	.banner-content-2 {
+		max-width: 875px;
+		margin-inline-start: auto;
+		@media #{$xl} {
+			padding-top: 40px;
+		}
+		@media #{$lg,$md} {
+			padding-top: 20px;
+			padding-bottom: 20px;
+			padding-inline-start: 20px;
+		}
+		@media #{$md,$sm,$xs} {
+			padding-bottom: 10px;
+		}
+		.banner-title {
+			font-size: 94px;
+			line-height: 1.043;
+			@media #{$xl} {
+				font-size: 84px;
+			}
+			@media #{$lg} {
+				font-size: 64px;
+			}
+			@media #{$md} {
+				font-size: 64px;
+			}
+			@media #{ $sm} {
+				font-size: 54px;
+			}
+			@media #{ $xs} {
+				font-size: 35px;
+			}
+			i {
+				font-size: 82px;
+				margin-inline-start: 5px;
+				display: inline-block;
+				position: relative;
+				bottom: -5px;
+				@media #{$lg,$md} {
+					font-size: 62px;
+				}
+				@media #{$sm} {
+					font-size: 50px;
+					margin-inline-start: 1px;
+				}
+				@media #{$xs} {
+					font-size: 30px;
+					margin-inline-start: 1px;
+				}
+			}
+		}
+		.banner-desc-area {
+			display: flex;
+			align-items: center;
+			gap: 30px;
+			margin-top: 40px;
+			@media #{$md} {
+				margin-top: 30px;
+			}
+			@media #{$sm,$xs} {
+				margin-top: 20px;
+			}
+			@media #{$xs} {
+				font-size: 16px;
+				flex-direction: column-reverse;
+				align-items: flex-start;
+				gap: 24px;
+			}
+			.tj-primary-btn {
+				flex-shrink: 0;
+			}
+			.banner-desc {
+				max-width: 375px;
+				width: 100%;
+				font-size: 18px;
+				line-height: 1.444;
+				color: var(--tj-color-text-body-4);
+				@media #{$sm,$xs} {
+					font-size: 16px;
+				}
+			}
+		}
+	}
+
+	&-banner {
+		margin: 65px auto 0;
+		text-align: center;
+		width: 100%;
+		transform: scale(0.74);
+		@media #{$md} {
+			margin-top: 80px;
+		}
+		@media #{$md} {
+			margin-top: 70px;
+			height: 500px;
+		}
+		@media #{$sm,$xs} {
+			margin-top: 70px;
+			height: 300px;
+		}
+		&-video {
+			height: 100%;
+			width: 100%;
+			border-radius: 12px;
+			overflow: hidden;
+			z-index: 0;
+
+			video {
+				object-fit: cover;
+				z-index: -100;
+				background-position: 50%;
+				background-size: cover;
+				width: 100%;
+				height: 100%;
+				display: inline-block;
+				margin-bottom: -10px;
+			}
+		}
+	}
+}
+
+/* !END: Hero CSS */

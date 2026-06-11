@@ -1,0 +1,114 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Pricing CSS
+----------------------------------------*/
+.tj-pricing-section {
+	background-color: var(--tj-color-theme-bg);
+	position: relative;
+	z-index: 1;
+	.sec-heading {
+		max-width: 550px;
+	}
+}
+.pricing-box {
+	padding: 46px 30px 40px;
+	background-color: var(--tj-color-common-white);
+	border-radius: 12px;
+	&.active,
+	&:has(button:not(.collapsed)) {
+		background-color: var(--tj-color-theme-primary);
+		.package {
+			&-name {
+				color: var(--tj-color-common-white);
+			}
+			&-desc {
+				p {
+					color: var(--tj-color-common-white);
+				}
+			}
+			&-price {
+				color: var(--tj-color-common-white);
+			}
+			&-currency {
+				color: var(--tj-color-common-white);
+			}
+			&-period {
+				color: var(--tj-color-common-white);
+			}
+		}
+		.pricing-btn {
+			a {
+				background-color: var(--tj-color-common-white);
+				border-color: var(--tj-color-common-white);
+				.btn-text {
+					color: var(--tj-color-heading-primary);
+				}
+			}
+		}
+		.list-items {
+			ul {
+				li {
+					color: var(--tj-color-common-white);
+					i {
+						color: var(--tj-color-common-white);
+					}
+				}
+			}
+		}
+	}
+}
+.package {
+	&-name {
+		font-weight: var(--tj-fw-sbold);
+		line-height: 1;
+		margin-bottom: 11px;
+	}
+	&-desc {
+		p {
+			margin-bottom: 0;
+		}
+	}
+	&-price {
+		display: flex;
+		font-size: 64px;
+		color: var(--tj-color-heading-primary);
+		font-family: var(--tj-ff-heading);
+		font-weight: var(--tj-fw-sbold);
+		line-height: 0.8;
+		margin: 30px 0 40px;
+	}
+	&-currency {
+		font-size: 24px;
+	}
+	&-period {
+		font-size: 16px;
+		font-weight: var(--tj-fw-regular);
+		color: var(--tj-color-text-body);
+		margin-top: auto;
+	}
+}
+.pricing-btn {
+	overflow: hidden;
+	margin-bottom: 37px;
+	a {
+		display: flex;
+		text-align: center;
+		border: 1px solid var(--tj-color-theme-primary);
+		padding: 12px;
+		border-radius: 50px;
+		.btn-text {
+			font-weight: var(--tj-fw-sbold);
+		}
+	}
+}
+.list-items {
+	ul {
+		li {
+			gap: 12px;
+			margin-bottom: 16px;
+		}
+	}
+}
+
+/* !END: Pricing CSS */

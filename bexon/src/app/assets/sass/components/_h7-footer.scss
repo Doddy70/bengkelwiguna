@@ -1,0 +1,31 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Footer CSS
+----------------------------------------*/
+.tj-footer-section {
+	&.h7-footer {
+		padding-top: 120px;
+		@media #{$lg} {
+			padding-top: 100px;
+		}
+		@media #{$md, $sm, $xs} {
+			padding-top: 70px;
+		}
+		.h7-footer {
+			&-main {
+				padding-top: 0;
+			}
+			&-copyright {
+				border-top: 1px dashed var(--tj-color-border-1);
+				padding: 30px 0;
+				.copyright-content-area {
+					border: 0;
+					padding: 0;
+				}
+			}
+		}
+	}
+}
+
+/* !END: Theme Footer CSS */

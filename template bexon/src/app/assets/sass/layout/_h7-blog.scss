@@ -1,0 +1,72 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Blog CSS
+----------------------------------------*/
+.h7-blog {
+	&-wrapper {
+		.blog {
+			&-meta {
+				position: absolute;
+				inset-inline-start: 15px;
+				top: 15px;
+				z-index: 1;
+				.categories {
+					a {
+						border-radius: 34px;
+						background-color: var(--tj-color-common-white);
+						color: var(--tj-color-heading-primary);
+						border-color: var(--tj-color-common-white);
+						&:hover {
+							background-color: var(--tj-color-theme-primary);
+							border-color: var(--tj-color-theme-primary);
+							color: var(--tj-color-common-white);
+						}
+					}
+				}
+			}
+			&-content {
+				background-color: var(--tj-color-common-white);
+				padding: 20px 25px 30px;
+				.title {
+					&-wrapper {
+						display: flex;
+						flex-wrap: wrap;
+						gap: 10px;
+						align-items: flex-end;
+						justify-content: space-between;
+					}
+
+					max-width: 250px;
+				}
+				.text-btn {
+					.btn-icon {
+						width: 48px;
+						height: 48px;
+						font-size: 24px;
+					}
+				}
+			}
+
+			&-date {
+				position: static;
+				padding: 0;
+				text-align: start;
+			}
+
+			&-item {
+				&:hover {
+					.blog-content {
+						.text-btn {
+							.btn-icon {
+								background-color: var(--tj-color-theme-primary);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Blog CSS */

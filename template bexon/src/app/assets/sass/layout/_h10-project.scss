@@ -1,0 +1,122 @@
+@use "../utilities" as *;
+
+/* START: Case Study CSS */
+.h10-project {
+	&.section-gap {
+		padding-bottom: 80px;
+		@media #{$lg} {
+			padding-bottom: 60px;
+		}
+		@media #{$md, $sm, $xs} {
+			padding-bottom: 35px;
+		}
+	}
+	&-filter {
+		display: flex;
+		justify-content: center;
+		margin-top: 34px;
+		@media #{$sm,$xs} {
+			margin-top: 24px;
+		}
+	}
+	&-button-group {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+		position: relative;
+		@media #{$xs} {
+			gap: 4px;
+			flex-wrap: wrap;
+		}
+		button {
+			background: var(--tj-color-theme-bg);
+			border: none;
+			color: var(--tj-color-theme-dark-2);
+			text-transform: capitalize;
+			font-weight: var(--tj-fw-medium);
+			line-height: 1;
+			padding: 14px 23px;
+			border-radius: 4px;
+			position: relative;
+			z-index: 0;
+			overflow: hidden;
+			&::after {
+				content: "";
+				width: 0;
+				height: 100%;
+				background: var(--tj-color-theme-primary);
+				position: absolute;
+				inset-inline-start: 0;
+				top: 0;
+				transition: all 0.3s ease;
+				border-radius: 4px;
+				z-index: -1;
+			}
+			@media #{$xs} {
+				font-size: 14px;
+				padding: 9px 11px;
+			}
+			&.active {
+				color: var(--tj-color-common-white);
+				background: transparent;
+				&::after {
+					width: 100%;
+				}
+			}
+		}
+	}
+	&-wrapper {
+		max-width: 100%;
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		max-width: calc(100% + 30px);
+		margin: 0 -15px;
+		@media #{$md,$sm} {
+			max-width: calc(100% + 20px);
+			margin: 0 -10px;
+		}
+		@media #{$xs} {
+			max-width: calc(100% + 20px);
+			margin: 0 -10px;
+		}
+		.project-item {
+			&.h4-project-item {
+				width: 50%;
+				background-color: transparent;
+				padding: 0 15px;
+				margin-bottom: 40px;
+				@media #{$md,$sm} {
+					padding: 0 10px;
+					margin-bottom: 35px;
+				}
+				@media #{$xs} {
+					width: 100%;
+					padding: 0 10px;
+					margin-bottom: 35px;
+				}
+				.project-img {
+					height: 460px;
+					@media #{$xl, $lg, $md} {
+						height: 345px;
+					}
+					@media #{$sm, $xs} {
+						height: 300px;
+					}
+				}
+				.project-content {
+					.title {
+						font-weight: var(--tj-fw-sbold);
+						margin-bottom: 10px;
+					}
+				}
+				.categories a {
+					border-radius: 20px;
+				}
+			}
+		}
+	}
+}
+
+/* !END: Case Study CSS */

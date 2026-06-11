@@ -1,0 +1,40 @@
+@use "colors" as *;
+@use "typography" as *;
+
+:root {
+	/**
+    @Font-Family Declaration
+  */
+	@each $ff, $shades in $font-family {
+		@each $shade, $value in $shades {
+			--tj-#{"" + $ff}-#{"" + $shade}: #{$value};
+		}
+	}
+
+	/**
+    @Font-weight Declaration
+  */
+	@each $fw, $shades in $font-scale {
+		@each $shade, $value in $shades {
+			--tj-#{"" + $fw}-#{"" + $shade}: #{$value};
+		}
+	}
+
+	/**
+    @Font-Size Declaration
+  */
+	@each $fs, $shades in $font-size {
+		@each $shade, $value in $shades {
+			--tj-#{"" + $fs}-#{"" + $shade}: #{$value};
+		}
+	}
+
+	/**
+    @Color Declaration
+  */
+	@each $color, $shades in $colors {
+		@each $shade, $value in $shades {
+			--tj-color-#{"" + $color}-#{"" + $shade}: #{$value};
+		}
+	}
+}

@@ -1,0 +1,131 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Blog CSS
+----------------------------------------*/
+.h10-blog {
+	&-wrapper {
+		.blog {
+			&-item {
+				&.style-2 {
+					padding: 15px;
+					flex-direction: row-reverse;
+					justify-content: space-between;
+					flex-wrap: nowrap;
+					@media #{$sm,$xs} {
+						flex-direction: column;
+						padding: 12px;
+					}
+					.blog-thumb {
+						width: 25.3%;
+						height: 210px;
+						min-height: 100%;
+						border-radius: 8px;
+						flex-shrink: 0;
+						@media #{$md} {
+							width: 30%;
+						}
+						@media #{$sm,$xs} {
+							width: 100%;
+						}
+						a {
+							display: inline-block;
+							height: 100%;
+							width: 100%;
+							img {
+								min-height: 100%;
+							}
+						}
+					}
+					.blog-content {
+						max-width: 800px;
+						width: 100%;
+						padding: 9px 15px 15px;
+						flex-direction: row;
+						justify-content: space-between;
+						@media #{$lg,$md,$sm} {
+							max-width: 640px;
+						}
+						@media #{$md} {
+							gap: 30px;
+						}
+						@media #{$sm,$xs} {
+							max-width: 100%;
+							flex-direction: column;
+							padding: 15px 10px;
+						}
+					}
+					.title-area {
+						max-width: 400px;
+						height: 100%;
+						display: flex;
+						flex-direction: column;
+						align-items: flex-start;
+						justify-content: space-between;
+
+						@media #{$lg,$md} {
+							max-width: 363px;
+						}
+						@media #{$md} {
+							.title {
+								font-size: 26px;
+							}
+						}
+						@media #{$sm,$xs} {
+							max-width: 100%;
+						}
+					}
+					.blog-meta {
+						padding-top: 6px;
+						flex-direction: column;
+						align-items: flex-start;
+						justify-content: space-between;
+						height: 100%;
+						flex-shrink: 0;
+						@media #{$sm,$xs} {
+							width: 100%;
+							flex-direction: row;
+						}
+						.blog-date-wrapper {
+							.blog-author {
+								font-size: 18px;
+								font-weight: var(--tj-fw-sbold);
+								letter-spacing: -0.03em;
+								margin-bottom: 10px;
+							}
+							span {
+								display: block;
+							}
+						}
+						.categories {
+							a {
+								border-color: var(--tj-color-theme-primary);
+								background-color: var(--tj-color-theme-primary);
+								color: var(--tj-color-common-white);
+								border-radius: 13px;
+								&:hover {
+									background-color: transparent;
+									border-color: var(--tj-color-border-1);
+									color: var(--tj-color-theme-dark-3);
+								}
+							}
+						}
+					}
+					.blog-date {
+						position: static;
+						padding: 0;
+						text-align: start;
+					}
+
+					.text-btn .btn-icon {
+						width: 30px;
+						height: 30px;
+						font-size: 20px;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Blog CSS */

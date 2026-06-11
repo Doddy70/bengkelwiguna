@@ -1,0 +1,30 @@
+{
+    "name": "bengkel-wiguna/wp-ai-connector",
+    "description": "AI Connector Bridge - Integrates WordPress PHP AI Client with Next.js frontend. Unifies AI abilities across OpenAI, Gemini, and Anthropic.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0+",
+    "require": {
+        "php": ">=7.4",
+        "wordpress/php-ai-client": "^1.0",
+        "composer/installers": "^2.0",
+        "psr/log": "^3.0",
+        "psr/event-dispatcher": "^1.0",
+        "psr/simple-cache": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "wp-coding-standards/wpcs": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BengkelWiguna\\AIConnector\\": "includes/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

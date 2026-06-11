@@ -1,0 +1,45 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Service CSS
+----------------------------------------*/
+.h8-service {
+	&-item {
+		padding: 35px 30px 34px;
+		border-radius: 10px;
+		@media #{$sm, $xs} {
+			padding: 30px 20px;
+		}
+		.service-icon {
+			font-size: 59px;
+			width: 84px;
+			height: 84px;
+			margin: 0 0 24px;
+			@media #{$sm, $xs} {
+				font-size: 52px;
+				width: 70px;
+				height: 70px;
+			}
+		}
+		.service-content {
+			.desc {
+				margin-bottom: 22px;
+			}
+		}
+		&:hover {
+			.service-icon {
+				animation: gelatine 0.6s;
+			}
+		}
+	}
+	&-more {
+		display: flex;
+		justify-content: center;
+		margin-top: 60px;
+		@media #{$sm, $xs} {
+			margin-top: 35px;
+		}
+	}
+}
+
+/* !END: Service CSS */

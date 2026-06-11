@@ -1,0 +1,541 @@
+/**
+ * AI Master SDK - Admin Styles
+ * Version: 1.0.0
+ */
+
+/* ================================
+   Variables & Reset
+   ================================ */
+:root {
+    --aimsdk-primary: #2271b1;
+    --aimsdk-primary-dark: #135e96;
+    --aimsdk-success: #00a878;
+    --aimsdk-warning: #dba617;
+    --aimsdk-error: #dc3545;
+    --aimsdk-bg: #f0f0f1;
+    --aimsdk-card-bg: #fff;
+    --aimsdk-border: #c3c4c7;
+    --aimsdk-text: #1d2327;
+    --aimsdk-text-muted: #646970;
+}
+
+/* ================================
+   Settings Page
+   ================================ */
+.aimsdk-settings-wrap {
+    max-width: 1200px;
+    padding: 20px 0;
+}
+
+.aimsdk-settings-wrap h1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+/* Tabs */
+.aimsdk-tabs {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--aimsdk-border);
+    padding-bottom: 0;
+}
+
+.aimsdk-tab {
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--aimsdk-text-muted);
+    transition: all 0.2s;
+    margin-bottom: -1px;
+}
+
+.aimsdk-tab:hover {
+    color: var(--aimsdk-text);
+    background: rgba(0,0,0,0.03);
+}
+
+.aimsdk-tab.active {
+    color: var(--aimsdk-primary);
+    border-bottom-color: var(--aimsdk-primary);
+    font-weight: 600;
+}
+
+.aimsdk-tab-content {
+    display: none;
+}
+
+.aimsdk-tab-content.active {
+    display: block;
+}
+
+/* Cards */
+.aimsdk-card {
+    background: var(--aimsdk-card-bg);
+    border: 1px solid var(--aimsdk-border);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.aimsdk-card h2 {
+    margin-top: 0;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f1;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.aimsdk-card h2::before {
+    content: '⚙️';
+}
+
+.aimsdk-card h3 {
+    margin: 20px 0 10px;
+    font-size: 15px;
+    color: var(--aimsdk-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Form Elements */
+.aimsdk-card input[type="text"],
+.aimsdk-card input[type="password"],
+.aimsdk-card input[type="number"],
+.aimsdk-card select,
+.aimsdk-card textarea {
+    border-radius: 6px;
+    padding: 8px 12px;
+    border: 1px solid var(--aimsdk-border);
+}
+
+.aimsdk-card input:focus,
+.aimsdk-card select:focus,
+.aimsdk-card textarea:focus {
+    border-color: var(--aimsdk-primary);
+    box-shadow: 0 0 0 2px rgba(34, 113, 177, 0.2);
+}
+
+/* Abilities Grid */
+.aimsdk-abilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.aimsdk-ability-card {
+    background: var(--aimsdk-card-bg);
+    border: 1px solid var(--aimsdk-border);
+    border-radius: 8px;
+    padding: 20px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.aimsdk-ability-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.aimsdk-ability-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.aimsdk-ability-icon {
+    font-size: 24px;
+}
+
+.aimsdk-ability-card h3 {
+    margin: 0;
+    font-size: 16px;
+}
+
+.aimsdk-ability-desc {
+    color: var(--aimsdk-text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0 0 15px;
+}
+
+.aimsdk-ability-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 12px;
+    color: var(--aimsdk-text-muted);
+}
+
+.aimsdk-ability-category {
+    background: #f0f0f1;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: capitalize;
+}
+
+.aimsdk-ability-actions {
+    text-align: right;
+}
+
+/* Meta Box (Post Editor) */
+.aimsdk-ability-meta-box {
+    padding: 10px 0;
+}
+
+.aimsdk-ability-meta-box p {
+    font-size: 13px;
+    color: var(--aimsdk-text-muted);
+    margin-bottom: 10px;
+}
+
+.aimsdk-ability-controls {
+    margin: 10px 0;
+}
+
+.aimsdk-ability-controls label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.aimsdk-ability-controls select {
+    width: 100%;
+    margin-top: 4px;
+}
+
+.aimsdk-ability-result {
+    margin-top: 12px;
+    padding: 10px;
+    background: #f7f7f7;
+    border-radius: 6px;
+    font-size: 13px;
+    display: none;
+}
+
+.aimsdk-ability-result.has-result {
+    display: block;
+}
+
+.aimsdk-ability-result-item {
+    padding: 8px 10px;
+    background: #fff;
+    border: 1px solid #e2e4e7;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.aimsdk-ability-result-item:hover {
+    background: #f0f6fc;
+    border-color: var(--aimsdk-primary);
+}
+
+.aimsdk-ability-result-item.copied {
+    background: #d4edda;
+    border-color: #28a745;
+}
+
+/* Status Widget */
+.aimsdk-status-widget {
+    background: var(--aimsdk-card-bg);
+    border: 1px solid var(--aimsdk-border);
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.aimsdk-status-widget h3 {
+    margin-top: 0;
+}
+
+/* Focus Areas */
+.aimsdk-focus-areas label {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 13px;
+}
+
+/* Current Taxonomy Display */
+.aimsdk-existing-taxonomy {
+    background: #f7f7f7;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+/* ================================
+   Logs Page
+   ================================ */
+.aimsdk-logs-stats {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.aimsdk-stat-box {
+    background: var(--aimsdk-card-bg);
+    border: 1px solid var(--aimsdk-border);
+    border-radius: 8px;
+    padding: 20px 30px;
+    text-align: center;
+    min-width: 150px;
+}
+
+.aimsdk-stat-box h3 {
+    margin: 0 0 10px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--aimsdk-text-muted);
+}
+
+.aimsdk-stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--aimsdk-primary);
+    margin: 0;
+}
+
+.aimsdk-logs-table {
+    margin: 20px 0;
+}
+
+.aimsdk-error-row td {
+    background: #fff8f8;
+}
+
+.aimsdk-ability-tag,
+.aimsdk-provider-tag {
+    background: #f0f0f1;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* ================================
+   Modal
+   ================================ */
+.aimsdk-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.aimsdk-modal-content {
+    background: #fff;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 80vh;
+    overflow: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+.aimsdk-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid var(--aimsdk-border);
+}
+
+.aimsdk-modal-header h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.aimsdk-modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: var(--aimsdk-text-muted);
+    line-height: 1;
+}
+
+.aimsdk-modal-close:hover {
+    color: var(--aimsdk-text);
+}
+
+.aimsdk-modal-body {
+    padding: 20px;
+}
+
+.aimsdk-modal-footer {
+    padding: 20px;
+    border-top: 1px solid var(--aimsdk-border);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.aimsdk-form-group {
+    margin-bottom: 15px;
+}
+
+.aimsdk-form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.aimsdk-test-output {
+    padding: 15px;
+    background: #f7f7f7;
+    border-radius: 6px;
+    margin-top: 15px;
+}
+
+.aimsdk-test-output pre {
+    white-space: pre-wrap;
+    word-break: break-word;
+    max-height: 200px;
+    overflow: auto;
+    background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid var(--aimsdk-border);
+}
+
+/* ================================
+   Dashboard Widgets
+   ================================ */
+.aimsdk-widget {
+    padding: 10px 0;
+}
+
+.aimsdk-widget table {
+    margin-bottom: 10px;
+}
+
+/* ================================
+   Quick Status Widget
+   ================================ */
+#tab-providers .aimsdk-status-widget {
+    float: right;
+    width: 300px;
+    margin-left: 20px;
+    margin-top: 0;
+}
+
+/* ================================
+   Filters
+   ================================ */
+.aimsdk-abilities-filters {
+    margin: 15px 0;
+}
+
+.aimsdk-abilities-filters .button {
+    margin-right: 5px;
+}
+
+.aimsdk-abilities-filters .button.active {
+    background: var(--aimsdk-primary);
+    border-color: var(--aimsdk-primary);
+    color: #fff;
+}
+
+/* ================================
+   Presets
+   ================================ */
+.aimsdk-preset-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ================================
+   Warning Box
+   ================================ */
+.aimsdk-warning {
+    background: #fff8e5;
+    border-left: 4px solid var(--aimsdk-warning);
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+/* ================================
+   Responsive
+   ================================ */
+@media screen and (max-width: 782px) {
+    .aimsdk-tabs {
+        flex-wrap: wrap;
+    }
+
+    .aimsdk-tab {
+        padding: 10px 15px;
+        font-size: 13px;
+    }
+
+    .aimsdk-abilities-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .aimsdk-logs-stats {
+        flex-direction: column;
+    }
+
+    .aimsdk-card {
+        padding: 15px;
+    }
+
+    #tab-providers .aimsdk-status-widget {
+        float: none;
+        width: 100%;
+        margin: 20px 0 0;
+    }
+}
+
+/* ================================
+   Dark Mode
+   ================================ */
+@media (prefers-color-scheme: dark) {
+    body.admin-color-midnight .aimsdk-card,
+    body.admin-color-ocean .aimsdk-card {
+        background: #1e1e1e;
+        border-color: #3c3c3c;
+    }
+
+    body.admin-color-midnight .aimsdk-ability-card,
+    body.admin-color-ocean .aimsdk-ability-card {
+        background: #1e1e1e;
+        border-color: #3c3c3c;
+    }
+
+    body.admin-color-midnight .aimsdk-ability-meta-box p,
+    body.admin-color-ocean .aimsdk-ability-meta-box p {
+        color: #a0a5aa;
+    }
+}
+
+/* ================================
+   Animations
+   ================================ */
+@keyframes aimsdk-fade-in {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.aimsdk-ability-card {
+    animation: aimsdk-fade-in 0.3s ease;
+}

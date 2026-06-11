@@ -1,0 +1,454 @@
+/*--------------------------------------------------------------
+# Perspective 3D Curved Slider - Bengkel Wiguna
+--------------------------------------------------------------*/
+
+#services-slider-section {
+  background-color: #050b14 !important; /* Ganti warna background menjadi dark */
+  position: relative;
+  
+  &::before,
+  &::after {
+    display: none !important; /* Hapus bokeh biru dari template bawaan */
+  }
+  
+  /* Overrides for Bexon's h5-banner-area to center the 3D slider vertically */
+  .h5-banner-area {
+    background: transparent !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 860px; /* Increased from 720px for more height */
+    padding-top: 220px; /* Pushes content down slightly further */
+    padding-bottom: 80px;
+    
+    @media (max-width: 1199px) {
+      padding-top: 180px;
+      min-height: 760px;
+    }
+    
+    @media (max-width: 991px) {
+      padding-top: 150px;
+      min-height: 700px;
+    }
+    
+    @media (max-width: 767px) {
+      padding-top: 130px;
+      padding-bottom: 50px;
+      min-height: 600px;
+    }
+  }
+  
+  .sec-heading-wrap {
+    margin-bottom: 25px; /* Reduced from 30px */
+    text-align: center;
+    
+    .sec-title {
+      font-size: 64px; /* Grand hero size */
+      font-weight: 700; /* Extra bold */
+      line-height: 1.15;
+      color: #ffffff;
+      text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+      letter-spacing: -0.02em;
+      margin-bottom: 0;
+      
+      @media (max-width: 1199px) {
+        font-size: 54px;
+      }
+      
+      @media (max-width: 991px) {
+        font-size: 44px;
+      }
+      
+      @media (max-width: 767px) {
+        font-size: 34px;
+      }
+      
+      @media (max-width: 480px) {
+        font-size: 26px; /* Perfect fit for small mobile devices */
+      }
+    }
+  }
+}
+
+/* --- Eye-Catching Image Hero Background --- */
+.perspective-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #050b14;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+.perspective-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 11, 20, 0.85); /* Meningkatkan kegelapan agar opasitas gambar seolah berkurang */
+  pointer-events: none;
+}
+
+
+.perspective-slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1300px; /* Increased container width for wider spread */
+  margin: 0 auto;
+  padding: 10px 0 60px 0; /* Increased padding bottom for labels */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.perspective-slider-viewport {
+  position: relative;
+  width: 100%;
+  height: 460px; /* Increased to fit larger cards */
+  perspective: 1400px; /* Adjusted perspective for larger size */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  @media (max-width: 991px) {
+    height: 380px;
+  }
+  
+  @media (max-width: 767px) {
+    height: 300px;
+  }
+}
+
+.perspective-slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.perspective-card-wrapper {
+  position: absolute;
+  width: 280px; /* Significantly enlarged */
+  height: 380px; /* Significantly enlarged */
+  transform-style: preserve-3d;
+  will-change: transform, opacity, filter;
+  
+  @media (max-width: 991px) {
+    width: 220px;
+    height: 300px;
+  }
+
+  @media (max-width: 767px) {
+    width: 170px;
+    height: 240px;
+  }
+}
+
+.perspective-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 16px; /* HIG Spacing standard: 16pt */
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06); /* System Thin Material Dark equivalent */
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  
+  &:hover {
+    box-shadow: 0 32px 64px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.07);
+  }
+}
+
+.perspective-card-image {
+  position: relative;
+  width: 100%;
+  height: 55%;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+}
+
+.perspective-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0 6px;
+  flex-grow: 1;
+}
+
+.perspective-card-title-area {
+  margin-bottom: 12px;
+}
+
+.perspective-card-action {
+  margin-top: auto;
+  padding-bottom: 5px;
+}
+
+.perspective-card-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: #224297; /* Biru Wiguna */
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid #224297;
+  
+  i {
+    margin-left: 6px;
+    font-size: 12px;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover {
+    background: #ffd900; /* Kuning Wiguna */
+    color: #1a1a2e;
+    border-color: #ffd900;
+    
+    i {
+      transform: translateX(4px);
+    }
+  }
+}
+
+.perspective-card-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #ffd900;
+  margin-bottom: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.3s ease;
+  
+  @media (max-width: 767px) {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+}
+
+.perspective-card:hover .perspective-card-icon {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.perspective-card-title-internal {
+  font-size: 17px;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.2px;
+  
+  @media (max-width: 767px) {
+    font-size: 13px;
+  }
+}
+
+/* External Labels (below the cards) */
+.perspective-card-label {
+  position: absolute;
+  bottom: -32px; /* Shifted closer to the card since the text title is gone */
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  will-change: opacity;
+  
+  @media (max-width: 991px) {
+    bottom: -28px;
+  }
+
+  @media (max-width: 767px) {
+    bottom: -24px;
+  }
+}
+
+/* Only show labels for active and immediately adjacent cards */
+.perspective-card-wrapper-visible {
+  .perspective-card-label {
+    opacity: 0.7;
+  }
+  
+  &.active-card {
+    .perspective-card-label {
+      opacity: 1;
+    }
+  }
+}
+
+.perspective-label-num {
+  font-size: 13px; /* iOS standard Footnote */
+  font-weight: 600; /* Semibold for legibility */
+  color: #ffd900;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+  
+  @media (max-width: 767px) {
+    font-size: 12px; /* Keep strictly above 11pt HIG absolute minimum */
+  }
+}
+
+.perspective-label-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.3;
+  white-space: nowrap;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  
+  @media (max-width: 991px) {
+    font-size: 13px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 11px;
+    max-width: 140px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.active-card {
+  .perspective-label-title {
+    font-weight: 700;
+    color: #ffd900;
+  }
+  
+  .perspective-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  }
+  
+  .perspective-card-image img {
+    transform: scale(1.05);
+  }
+}
+
+/* Navigation Buttons */
+.perspective-slider-controls {
+  position: absolute;
+  top: 50%;
+  left: -70px;
+  right: -70px;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 25;
+  
+  @media (max-width: 1360px) {
+    left: 20px;
+    right: 20px;
+  }
+
+  @media (max-width: 767px) {
+    left: 10px;
+    right: 10px;
+  }
+}
+
+.perspective-control-btn {
+  pointer-events: auto;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  color: #ffffff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  
+  &:hover {
+    background: #ffd900;
+    color: #1a1a2e;
+    border-color: #ffd900;
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(255, 217, 0, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  @media (max-width: 767px) {
+    width: 44px; /* HIG minimum touch target size */
+    height: 44px; /* HIG minimum touch target size */
+    font-size: 16px;
+  }
+}
+
+/* Middle CTA Button */
+.perspective-cta-wrap {
+  margin-top: 30px; /* Reduced from 50px */
+  text-align: center;
+  z-index: 20;
+}
+
+/* YouTube Slider Play Button Hover Animation */
+.project-item {
+  &:hover {
+    .video-play-overlay-btn {
+      transform: translate(-50%, -50%) scale(1.15) !important;
+      background-color: #ffd900 !important;
+      color: #1a1a2e !important;
+      border-color: #ffffff !important;
+      box-shadow: 0 10px 30px rgba(255, 217, 0, 0.45) !important;
+    }
+  }
+}
+
+/* Custom YouTube Playlist Gradient Background matching Bengkel Wiguna identity */
+.youtube-playlist-section {
+  background: linear-gradient(135deg, #0a142e 0%, #224297 100%) !important;
+}
+

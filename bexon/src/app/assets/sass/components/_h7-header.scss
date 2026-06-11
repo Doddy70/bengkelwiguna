@@ -1,0 +1,42 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Header CSS
+----------------------------------------*/
+.h7-header {
+	&.header-area.header-absolute {
+		background: transparent;
+		padding: 5px 0;
+		z-index: 1001;
+		top: 15px;
+		.header-wrapper {
+			background: transparent;
+			border-radius: 0;
+			backdrop-filter: blur(0);
+			padding: 0 5px;
+			@media #{$lg} {
+				padding: 0 1px;
+			}
+			@media #{$md, $sm, $xs} {
+				padding: 15px 0;
+			}
+		}
+		.search_popup {
+			border-start-start-radius: 0;
+			border-start-end-radius: 0;
+			inset-inline-start: 5px;
+			width: calc(100% - 10px);
+			@media #{$lg} {
+				inset-inline-start: 1px;
+				width: calc(100% - 2px);
+			}
+		}
+		@media #{$sm,$xs} {
+			top: 12px;
+			width: calc(100% - 48px);
+			padding: 5px 0;
+		}
+	}
+}
+
+/* !END: Theme Header CSS */

@@ -1,0 +1,60 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Blog CSS
+----------------------------------------*/
+.h8-blog {
+	border-top: 1px dashed var(--tj-color-border-1);
+	&-more {
+		margin-top: 24px;
+	}
+	&-wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
+		@media #{$md,$sm,$xs} {
+			gap: 20px;
+		}
+		.blog {
+			&-item.style-2 {
+				.blog-thumb {
+					width: 42.6%;
+					height: 300px;
+					@media #{$xs} {
+						width: 100%;
+						margin-inline-end: 0;
+					}
+					a {
+						width: 100%;
+						height: 100%;
+						display: inline-block;
+					}
+					img {
+						width: 100%;
+						height: 100%;
+						object-fit: cover;
+					}
+				}
+				.blog-content {
+					width: 57.4%;
+					.title {
+						font-weight: var(--tj-fw-medium);
+						@media #{$xl,$lg} {
+							font-size: 28px;
+						}
+					}
+					@media #{$xs} {
+						width: 100%;
+					}
+				}
+				.text-btn .btn-icon {
+					width: 48px;
+					height: 48px;
+					font-size: 24px;
+				}
+			}
+		}
+	}
+}
+
+/* !END: Blog CSS */

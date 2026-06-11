@@ -1,0 +1,92 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Choose CSS
+----------------------------------------*/
+.h8-choose {
+	background-color: var(--tj-color-theme-bg);
+	border-radius: 12px;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	&-content {
+		&-wrapper {
+			max-width: 550px;
+			margin-inline-start: 125px;
+			padding: 50px 0;
+			margin-inline-end: 12px;
+			@media #{$xl} {
+				margin-inline-start: 80px;
+			}
+			@media #{$lg} {
+				margin-inline-start: 40px;
+			}
+			@media #{$md} {
+				margin-left: 30px !important;
+				margin-right: 30px !important;
+				max-width: 100%;
+			}
+			@media #{$sm,$xs} {
+				margin-inline-start: 12px;
+				max-width: 100%;
+			}
+		}
+	}
+	.sec-heading {
+		&.style-3 {
+			margin-inline-start: 0;
+			margin-inline-end: 0;
+			@media #{$md,$sm,$xs} {
+				max-width: 100%;
+			}
+		}
+	}
+	&-banner {
+		height: 100%;
+		img {
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&-box {
+		&-wrapper {
+			border: 1px dashed var(--tj-color-border-1);
+			border-inline-start: 0;
+			border-inline-end: 0;
+		}
+		background-color: transparent;
+		border-radius: 0;
+		padding: 24px 0 22px;
+		border-bottom: 1px dashed var(--tj-color-border-1);
+		&:last-child {
+			border-bottom: 0;
+		}
+
+		.choose-content {
+			flex-direction: row;
+			gap: 15px;
+			.title {
+				margin-bottom: 18px;
+			}
+			.choose-icon {
+				margin-bottom: 0;
+				margin-top: 6px;
+				flex-shrink: 0;
+				width: 100%;
+				background-color: var(--tj-color-theme-dark);
+				transition: all 0.4s;
+			}
+		}
+		&:hover {
+			background-color: transparent;
+			.choose-content {
+				.choose-icon {
+					background-color: var(--tj-color-theme-primary);
+					animation: none;
+				}
+			}
+		}
+	}
+}
+
+/* !END: Choose CSS */

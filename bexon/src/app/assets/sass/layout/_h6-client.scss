@@ -1,0 +1,66 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Client CSS
+----------------------------------------*/
+.h6-client {
+	margin: 0 15px 15px;
+	padding-inline-start: 0;
+	padding-inline-end: 0;
+	.container-fluid {
+		--bs-gutter-x: 0;
+		.row {
+			--bs-gutter-x: 0;
+		}
+	}
+	&-title {
+		&-wrapper {
+			text-align: center;
+			padding: 25px 15px 55px;
+			display: flex;
+			justify-content: center;
+			@media #{$xs} {
+				padding: 15px 15px 35px;
+			}
+		}
+		color: var(--tj-color-common-white);
+		font-weight: var(--tj-fw-bold);
+		line-height: 1.57;
+		font-size: 14px;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		margin-bottom: 0;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		@media #{$xs} {
+			gap: 0px;
+		}
+		&::after,
+		&::before {
+			content: "";
+			width: 6px;
+			height: 6px;
+			background-color: var(--tj-color-common-white);
+			border-radius: 100%;
+			line-height: 1;
+			flex-shrink: 0;
+		}
+	}
+	&-slider {
+		.client-logo {
+			background: var(--tj-color-grey-3);
+			border: 0;
+			img {
+				opacity: 1;
+			}
+			&:hover {
+				img {
+					animation: gelatine 0.6s;
+				}
+			}
+		}
+	}
+}
+
+/* !END: Client CSS */

@@ -1,0 +1,134 @@
+// after before
+@mixin theme-afbf {
+	position: absolute;
+	content: "";
+}
+
+// bg color
+@mixin bg-color($color, $opacity) {
+	background: rgba($color, $opacity);
+}
+
+// placeholder input
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+		transition: all 0.3s;
+	}
+	&:-moz-placeholder {
+		@content;
+		transition: all 0.3s;
+	}
+	&::-moz-placeholder {
+		@content;
+		transition: all 0.3s;
+	}
+	&:-ms-input-placeholder {
+		@content;
+		transition: all 0.3s;
+	}
+	&::placeholder {
+		@content;
+		transition: all 0.3s;
+	}
+}
+
+// animate
+@mixin appearance($value) {
+	-webkit-appearance: $value;
+	-moz-appearance: $value;
+	-ms-appearance: $value;
+	-o-appearance: $value;
+	appearance: $value;
+}
+
+// filter
+@mixin filter($value) {
+	-webkit-filter: $value;
+	filter: $value;
+}
+
+// appearance for select
+@mixin appearance($value) {
+	-webkit-appearance: $value;
+	-moz-appearance: $value;
+	-ms-appearance: $value;
+	-o-appearance: $value;
+	appearance: $value;
+}
+
+// keyframes
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} {
+		@content;
+	}
+	@-moz-keyframes #{$name} {
+		@content;
+	}
+	@-ms-keyframes #{$name} {
+		@content;
+	}
+	@keyframes #{$name} {
+		@content;
+	}
+}
+
+//background
+@mixin background {
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+//transition
+@mixin transition($value...) {
+	-webkit-transition: $value;
+	-moz-transition: $value;
+	-ms-transition: $value;
+	-o-transition: $value;
+	transition: $value;
+}
+
+// transform
+@mixin transform($transforms) {
+	-webkit-transform: $transforms;
+	-moz-transform: $transforms;
+	-ms-transform: $transforms;
+	-o-transform: $transforms;
+	transform: $transforms;
+}
+
+//border
+@mixin border-radius($value) {
+	-webkit-border-radius: $value;
+	-moz-border-radius: $value;
+	-o-border-radius: $value;
+	-ms-border-radius: $value;
+	border-radius: $value;
+}
+
+// sentence case
+@mixin sentence-case() {
+	text-transform: lowercase;
+	&:first-letter {
+		text-transform: uppercase;
+	}
+}
+
+// Flexbox display
+@mixin flexbox() {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+// Box shadows
+@mixin box-shadow($shadow) {
+	-webkit-box-shadow: $shadow;
+	-moz-box-shadow: $shadow;
+	-ms-box-shadow: $shadow;
+	-o-box-shadow: $shadow;
+	box-shadow: $shadow;
+}

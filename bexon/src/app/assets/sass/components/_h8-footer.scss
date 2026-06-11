@@ -1,0 +1,110 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Footer CSS
+----------------------------------------*/
+.tj-footer-section {
+	&.h8-footer {
+		.bg-shape-3 {
+			inset-inline-end: 0;
+			inset-inline-start: auto;
+			width: auto;
+		}
+		.bg-shape-4 {
+			transform: scale(1);
+			inset-inline-end: auto;
+			inset-inline-start: 0;
+		}
+		.h6-footer-logo-area {
+			padding: 120px 0 80px;
+			border-bottom: 1px dashed var(--tj-color-border-4);
+
+			@media #{$lg} {
+				padding-top: 100px;
+			}
+			@media #{$md, $sm, $xs} {
+				padding-top: 70px;
+			}
+		}
+		.h8-footer {
+			&-logo {
+				&-wrapper {
+					display: flex;
+					gap: 40px;
+					justify-content: space-between;
+					align-items: center;
+					@media #{$sm} {
+						gap: 30px;
+					}
+					@media #{ $xs} {
+						gap: 30px;
+						flex-direction: column;
+						align-items: flex-start;
+					}
+				}
+				max-width: 562px;
+				width: 100%;
+				&-content {
+					max-width: 443px;
+					width: 100%;
+					.footer-text {
+						margin-bottom: 24px;
+						color: var(--tj-color-text-body-2);
+						font-size: 18px;
+						font-weight: var(--tj-fw-sbold);
+						letter-spacing: -0.03em;
+						line-height: 1.444;
+					}
+				}
+			}
+			&-main {
+				padding-top: 80px;
+				@media #{$sm, $xs} {
+					padding-top: 70px;
+				}
+			}
+			&-contact {
+				padding-inline-start: 0;
+				padding-inline-end: 76px;
+
+				@media #{$xl} {
+					padding-inline-start: 0;
+					padding-inline-end: 30px;
+				}
+				@media #{$lg, $md} {
+					margin-top: 0;
+					padding-inline-start: 0;
+					padding-inline-end: 0px;
+				}
+				@media #{$sm, $xs} {
+					margin-top: 0;
+					padding-inline-start: 0;
+				}
+			}
+			&-col-2 {
+				padding-inline-start: 35px;
+				@media #{$md,$sm,$xs} {
+					padding-inline-start: 0;
+				}
+			}
+			&-subscribe {
+				margin-inline-start: auto;
+				margin-inline-end: 0;
+				@media #{$lg, $md} {
+					margin-top: 30px;
+				}
+				@media #{$sm, $xs} {
+					margin-top: 30px;
+				}
+			}
+			&-copyright {
+				border-color: var(--tj-color-border-4);
+				.copyright-content-area {
+					justify-content: center;
+				}
+			}
+		}
+	}
+}
+
+/* !END: Theme Footer CSS */

@@ -1,0 +1,7 @@
+<svg width="400" height="300" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="300" fill="#224297"/>
+  <text x="200" y="145" text-anchor="middle" fill="#ffd900" font-family="Arial" font-size="24" font-weight="bold">BENGKEL WIGUNA</text>
+  <text x="200" y="175" text-anchor="middle" fill="white" font-family="Arial" font-size="14">Service &amp; Perawatan Mobil</text>
+  <circle cx="200" cy="220" r="30" stroke="#ffd900" stroke-width="3" fill="none"/>
+  <path d="M190 215 L200 225 L215 210" stroke="#ffd900" stroke-width="3" fill="none"/>
+</svg>

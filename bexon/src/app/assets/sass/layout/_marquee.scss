@@ -1,0 +1,82 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Marquee CSS
+----------------------------------------*/
+.tj-marquee-section {
+	background-color: var(--tj-color-theme-primary);
+	position: relative;
+	padding-top: 33px;
+	padding-bottom: 37px;
+	border-radius: 12px;
+	overflow: hidden;
+	@media #{$md, $sm, $xs} {
+		padding-top: 22px;
+		padding-bottom: 16px;
+	}
+}
+
+.marquee-slider {
+	padding-bottom: 10px;
+	.swiper-wrapper {
+		transition-timing-function: linear;
+	}
+}
+
+.marquee-item {
+	width: auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 30px;
+	padding-inline-end: 30px;
+	.marquee-text {
+		-webkit-text-fill-color: transparent;
+		-webkit-text-stroke: 2px var(--tj-color-common-white);
+		font-size: 136px;
+		font-weight: var(--tj-fw-sbold);
+		font-family: var(--tj-ff-heading);
+		line-height: 1.2;
+		margin: 0;
+		@media #{$xl, $lg} {
+			font-size: 100px;
+		}
+		@media #{$md} {
+			font-size: 80px;
+		}
+		@media #{$sm, $xs} {
+			font-size: 50px;
+			-webkit-text-stroke: 1px var(--tj-color-common-white);
+		}
+	}
+	.marquee-img {
+		position: relative;
+		top: 4px;
+		color: var(--tj-color-theme-primary);
+		height: 98px;
+		border-radius: 4px;
+		overflow: hidden;
+		img {
+			height: 100%;
+		}
+		@media #{$xl, $lg} {
+			height: 75px;
+		}
+		@media #{$md} {
+			height: 60px;
+		}
+		@media #{$sm, $xs} {
+			height: 40px;
+		}
+	}
+	@media #{$md, $sm} {
+		gap: 25px;
+		padding-inline-end: 25px;
+	}
+	@media #{$xs} {
+		gap: 20px;
+		padding-inline-end: 20px;
+	}
+}
+
+/* !END: Theme Marquee CSS */

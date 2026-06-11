@@ -1,0 +1,223 @@
+@use "../utilities" as *;
+/**----------------------------------------
+START: Team Details CSS
+----------------------------------------*/
+
+.team-details {
+	padding: 120px 0;
+	@media #{$lg} {
+		padding: 100px 0;
+	}
+	@media #{$md} {
+		padding: 80px 0;
+	}
+	@media #{$sm,$xs} {
+		padding: 60px 0;
+	}
+	&__img {
+		background-color: var(--tj-color-grey-2);
+		border-radius: 12px;
+		overflow: hidden;
+		img {
+			border-radius: 12px;
+			width: 100%;
+		}
+	}
+	&__content {
+		padding-inline-start: 30px;
+		@media #{$md,$sm,$xs} {
+			margin-top: 30px;
+			padding-inline-start: 0;
+		}
+		@media #{$sm,$xs} {
+			margin-top: 20px;
+		}
+	}
+	.team-details__subtitle {
+		margin-bottom: 16px;
+		@media #{$md,$sm,$xs} {
+			margin-bottom: 12px;
+		}
+	}
+	&__name {
+		@media #{$md,$sm,$xs} {
+			font-size: 36px;
+			margin-bottom: 8px;
+		}
+		@media #{$sm,$xs} {
+			font-size: 30px;
+			margin-bottom: 8px;
+		}
+	}
+	&__desig {
+		margin-bottom: 20px;
+		color: var(--tj-color-text-body-3);
+		display: inline-block;
+		@media #{$md,$sm,$xs} {
+			margin-bottom: 8px;
+		}
+		@media #{$sm,$xs} {
+			margin-bottom: 8px;
+		}
+	}
+	.social-links {
+		ul {
+			li {
+				a {
+					i {
+						color: var(--tj-color-common-white);
+					}
+				}
+			}
+		}
+	}
+
+	&__contact-info {
+		ul {
+			display: flex;
+			border: 1px dashed var(--tj-color-border-1);
+			margin: 30px 0;
+			border-radius: 12px;
+			list-style: none;
+			@media #{$md,$sm,$xs} {
+				margin: 20px 0;
+			}
+			@media #{$xs} {
+				flex-wrap: wrap;
+			}
+
+			li {
+				flex: 1 1 50%;
+				padding: 25px 28px;
+				border-inline-end: 1px dashed var(--tj-color-border-1);
+				display: flex;
+				align-items: flex-start;
+				flex-direction: column;
+
+				&:last-child {
+					border-inline-end: 0;
+				}
+				@media #{$lg,$md} {
+					padding: 16px 18px;
+					align-items: center;
+				}
+				@media #{$sm,$xs} {
+					padding: 12px 14px;
+					align-items: center;
+				}
+				@media #{$xs} {
+					border-inline-end: 0;
+					border-bottom: 1px dashed var(--tj-color-border-1);
+					&:last-child {
+						border-bottom: 0;
+					}
+				}
+			}
+			span {
+				color: var(--tj-color-text-body-3);
+				display: inline-block;
+				@media #{$lg,$md,$sm,$xs} {
+					font-size: 14px;
+				}
+			}
+			a {
+				font-size: 20px;
+				color: var(--tj-color-heading-primary);
+				font-weight: var(--tj-fw-sbold);
+				margin-bottom: 0;
+				position: relative;
+				display: inline-block;
+				&::after {
+					content: "";
+					width: 0;
+					height: 1px;
+					transition: all 0.3s;
+					position: absolute;
+					bottom: 2px;
+					inset-inline-start: 0;
+					background-color: var(--tj-color-heading-primary);
+				}
+				@media #{$lg,$md,$sm,$xs} {
+					font-size: 16px;
+				}
+
+				&:hover {
+					&::after {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
+	&__experience {
+		margin-top: 50px;
+		margin-bottom: 50px;
+		@media #{$lg,$md} {
+			margin-top: 30px;
+			margin-bottom: 30px;
+		}
+		@media #{$sm,$xs} {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+		&__list {
+			ul {
+				display: flex;
+				border: 1px dashed var(--tj-color-border-1);
+				flex-wrap: wrap;
+				margin: 25px 0;
+				border-radius: 12px;
+				list-style: none;
+				border-radius: 10px;
+				li {
+					flex: 1 1 50%;
+					padding: 25px;
+					display: flex;
+					gap: 8px;
+
+					border: 1px dashed var(--tj-color-border-1);
+					border-top: 0;
+					border-inline-start: 0;
+
+					p {
+						margin-bottom: 0;
+					}
+					i {
+						display: inline-flex;
+						align-items: center;
+						justify-content: center;
+						max-width: 22px;
+						width: 100%;
+						height: 22px;
+						font-size: 10px;
+						color: var(--tj-color-common-white);
+						background: var(--tj-color-theme-primary);
+						border-radius: 50%;
+						margin-top: 4px;
+					}
+					&:last-child {
+						border-inline-end: 0;
+						border-bottom: 0;
+					}
+					&:nth-last-child(2) {
+						border-bottom: 0;
+					}
+					&:nth-child(2n) {
+						border-inline-end: 0;
+					}
+					@media #{$md,$sm,$xs} {
+						padding: 16px;
+					}
+					@media #{$xs} {
+						border-inline-end: 0;
+						flex: 1 1 100%;
+						&:nth-last-child(2) {
+							border-bottom: 1px dashed var(--tj-color-border-1);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/* !END: Team Details CSS */

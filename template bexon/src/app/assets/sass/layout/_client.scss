@@ -1,0 +1,232 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Client CSS
+----------------------------------------*/
+.tj-client-section {
+	position: relative;
+	.client-container {
+		padding: 0;
+		overflow: hidden;
+	}
+	&-2 {
+		background-color: var(--tj-color-theme-primary);
+		border-radius: 12px;
+		padding: 30px 5px;
+		margin-top: 15px;
+		@media #{$sm, $xs} {
+			padding: 18px 5px;
+		}
+	}
+}
+.client-section-gap {
+	padding-top: 80px;
+	padding-bottom: 80px;
+	@media #{$lg} {
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+	@media #{$md, $sm, $xs} {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}
+	&-2 {
+		padding: 100px 0;
+		margin: 120px 0;
+		@media #{$lg} {
+			padding: 80px 0;
+			margin: 90px 0;
+		}
+		@media #{$md, $sm} {
+			padding: 65px 0;
+			margin: 70px 0;
+		}
+		@media #{$xs} {
+			padding: 60px 0;
+			margin: 50px 0;
+		}
+	}
+}
+.client-content {
+	width: 320px;
+	height: 320px;
+	border-radius: 50%;
+	border: 1px dashed var(--tj-color-border-1);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	inset-inline-start: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
+	z-index: 2;
+	background-color: rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(8px);
+	.sec-title {
+		max-width: 200px;
+		width: 100%;
+		letter-spacing: 0;
+		font-weight: var(--tj-fw-sbold);
+		margin-bottom: 0;
+		@media #{$xs} {
+			font-size: 15px;
+		}
+	}
+	span {
+		display: inline-flex;
+	}
+	.client-numbers {
+		color: var(--tj-color-common-white);
+		background-color: var(--tj-color-theme-primary);
+		line-height: 1.2;
+		border-radius: 50px;
+		padding: 0 5px;
+	}
+	.client-text {
+		color: var(--tj-color-text-body-3);
+		position: relative;
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 3px;
+			inset-inline-start: auto;
+			width: 100%;
+			border-bottom: 1px solid rgba(12, 30, 33, 0.2);
+		}
+	}
+	@media #{$lg} {
+		width: 260px;
+		height: 260px;
+	}
+	@media #{$md, $sm, $xs} {
+		width: 220px;
+		height: 220px;
+	}
+	@media #{$xs} {
+		width: 190px;
+		height: 190px;
+	}
+	&.style-2 {
+		max-width: 440px;
+		width: 100%;
+		display: block;
+		margin: 0 auto 60px;
+		height: auto;
+		border-radius: 40px;
+		position: unset;
+		background: transparent;
+		transform: translate(0);
+		padding: 0 15px 4px;
+		@media #{$xs} {
+			padding: 4px 15px 4px;
+		}
+		.sec-title {
+			max-width: 100%;
+			line-height: 1.2;
+			margin-bottom: 0;
+			letter-spacing: -0.6px;
+		}
+		.client-numbers {
+			color: var(--tj-color-theme-primary);
+			background: transparent;
+			padding: 0;
+			border-radius: 0;
+		}
+		.client-text {
+			&::after {
+				display: none;
+			}
+		}
+		@media #{$xs} {
+			width: calc(100% - 30px);
+			margin: 0 auto 40px;
+		}
+	}
+}
+.client-slider {
+	.swiper-wrapper {
+		transition-timing-function: linear;
+	}
+}
+.client-slider-1 {
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		width: 448px;
+		height: 100%;
+		background-image: linear-gradient(
+			90deg,
+			rgba(233, 237, 237, 1) 0%,
+			rgba(233, 237, 237, 0) 100%
+		);
+		top: 0;
+		inset-inline-start: 0;
+		z-index: 2;
+		@media #{$xl, $lg} {
+			width: 300px;
+		}
+		@media #{$md, $sm} {
+			width: 200px;
+		}
+		@media #{$xs} {
+			width: 100px;
+		}
+	}
+	&::after {
+		inset-inline-start: auto;
+		inset-inline-end: 0;
+		background-image: linear-gradient(
+			-90deg,
+			rgba(233, 237, 237, 1) 0%,
+			rgba(233, 237, 237, 0) 100%
+		);
+	}
+}
+.client-item {
+	width: auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	padding-inline-end: 30px;
+	@media #{$sm, $xs} {
+		padding-inline-end: 20px;
+	}
+}
+.client-logo {
+	width: 284px;
+	height: 120px;
+	background-color: var(--tj-color-common-white);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	z-index: 5;
+	border-radius: 8px;
+
+	@media #{$lg, $md} {
+		width: 220px;
+		height: 90px;
+	}
+	@media #{$sm, $xs} {
+		width: 190px;
+		height: 70px;
+		padding: 20px;
+	}
+}
+
+.client-slider-2 {
+	.client-logo {
+		background: transparent;
+		border: 1px solid rgba(255, 255, 255, 0.1);
+		img {
+			opacity: 0.85;
+		}
+	}
+}
+
+/* !END: Client CSS */

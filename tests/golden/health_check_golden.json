@@ -1,0 +1,17 @@
+{
+  "agent": "health-check-agent",
+  "version": "1.0.0",
+  "status": "pass",
+  "checks": [
+    {
+      "name": "Build Validation",
+      "result": "ok",
+      "message": "Next.js build successful"
+    },
+    {
+      "name": "Endpoint Accessibility",
+      "result": "ok",
+      "message": "URL http://localhost:3000 returned status 200"
+    }
+  ]
+}

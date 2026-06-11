@@ -1,0 +1,287 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Promosi Page CSS - Bengkel Wiguna (Portfolio Style)
+----------------------------------------*/
+
+// Project Filter Buttons
+.project-filter-btn {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 12px;
+	margin-bottom: 40px;
+
+	button {
+		padding: 12px 28px;
+		border: 2px solid var(--tj-color-border-1);
+		border-radius: 50px;
+		background: transparent;
+		color: var(--tj-color-text-body);
+		font-size: 14px;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.4s ease;
+
+		&:hover,
+		&.active {
+			background: var(--tj-color-theme-primary);
+			border-color: var(--tj-color-theme-primary);
+			color: var(--tj-color-common-white);
+		}
+	}
+}
+
+// Project Card H5 (used for promo cards)
+.project-card-h5 {
+	background: var(--tj-color-common-white);
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+	transition: all 0.4s ease;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+
+	&:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+
+		.project-thumb img {
+			transform: scale(1.08);
+		}
+
+		.project-overlay {
+			opacity: 1;
+			visibility: visible;
+
+			.project-link {
+				transform: scale(1);
+			}
+		}
+	}
+
+	.project-thumb {
+		position: relative;
+		overflow: hidden;
+		aspect-ratio: 16/10;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.5s ease;
+		}
+
+		.project-overlay {
+			position: absolute;
+			inset: 0;
+			background: rgba(106, 155, 204, 0.85);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			opacity: 0;
+			visibility: hidden;
+			transition: all 0.4s ease;
+
+			.project-link {
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				background: var(--tj-color-common-white);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				transform: scale(0.5);
+				transition: transform 0.4s ease;
+
+				i {
+					font-size: 20px;
+					color: var(--tj-color-theme-primary);
+				}
+
+				&:hover {
+					background: var(--tj-color-theme-accent-1);
+					i {
+						color: var(--tj-color-theme-dark);
+					}
+				}
+			}
+		}
+
+		.project-badge {
+			position: absolute;
+			top: 16px;
+			left: 16px;
+			padding: 8px 18px;
+			background: var(--tj-color-theme-accent-1);
+			color: var(--tj-color-theme-dark);
+			font-size: 12px;
+			font-weight: 700;
+			border-radius: 50px;
+			text-transform: uppercase;
+			box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+		}
+	}
+
+	.project-content {
+		padding: 28px;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+	}
+
+	.project-meta {
+		margin-bottom: 12px;
+
+		.project-category {
+			font-size: 13px;
+			color: var(--tj-color-theme-primary);
+			font-weight: 500;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+		}
+	}
+
+	.project-title {
+		font-size: 20px;
+		font-weight: 600;
+		line-height: 1.3;
+		margin-bottom: 12px;
+
+		a {
+			color: var(--tj-color-heading-primary);
+			transition: color 0.3s ease;
+
+			&:hover {
+				color: var(--tj-color-theme-primary);
+			}
+		}
+	}
+
+	.project-desc {
+		font-size: 14px;
+		color: var(--tj-color-text-body);
+		line-height: 1.6;
+		margin-bottom: 20px;
+		flex-grow: 1;
+	}
+
+	.project-footer {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-top: 16px;
+		border-top: 1px solid var(--tj-color-grey-1);
+		margin-top: auto;
+
+		.project-duration {
+			font-size: 12px;
+			color: var(--tj-color-text-body-3);
+
+			i {
+				margin-right: 6px;
+			}
+		}
+
+		.project-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			font-size: 14px;
+			font-weight: 600;
+			color: var(--tj-color-theme-primary);
+			transition: gap 0.3s ease;
+
+			i {
+				transition: transform 0.3s ease;
+			}
+
+			&:hover {
+				gap: 12px;
+				color: var(--tj-color-theme-dark);
+
+				i {
+					transform: translateX(4px);
+				}
+			}
+		}
+	}
+}
+
+// Promosi Page Section
+.tj-project-section {
+	.sec-heading {
+		margin-bottom: 20px;
+
+		.sub-title {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			color: var(--tj-color-theme-primary);
+			font-size: 14px;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 12px;
+
+			i {
+				font-size: 12px;
+			}
+		}
+
+		.sec-title {
+			font-size: 42px;
+			font-weight: 700;
+			color: var(--tj-color-heading-primary);
+			line-height: 1.2;
+
+			span {
+				color: var(--tj-color-theme-primary);
+			}
+
+			@media #{$md} {
+				font-size: 36px;
+			}
+
+			@media #{$sm, $xs} {
+				font-size: 30px;
+			}
+		}
+	}
+}
+
+// Price Box
+.price-box {
+	margin-top: 30px;
+}
+
+// CTA Section Override
+.tj-cta-section {
+	.cta-wrapper {
+		padding: 60px 40px;
+		background: linear-gradient(135deg, #f8f9fa 0%, #e8e8e8 100%);
+		border-radius: 20px;
+
+		.cta-title {
+			font-size: 32px;
+			font-weight: 700;
+			color: var(--tj-color-heading-primary);
+			margin-bottom: 16px;
+
+			@media #{$sm, $xs} {
+				font-size: 26px;
+			}
+		}
+
+		.cta-desc {
+			font-size: 16px;
+			color: var(--tj-color-text-body);
+			margin-bottom: 24px;
+			max-width: 600px;
+			margin-inline: auto;
+		}
+	}
+}
+
+/* !END: Promosi Page CSS */

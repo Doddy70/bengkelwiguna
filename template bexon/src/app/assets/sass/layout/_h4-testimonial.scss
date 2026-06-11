@@ -1,0 +1,108 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Testimonial CSS
+----------------------------------------*/
+.testimonial-wrapper-3 {
+	position: relative;
+}
+.h4-testimonial-wrapper {
+	max-width: 610px;
+	margin-inline-end: 0;
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.1);
+	backdrop-filter: blur(10px);
+	border-radius: 12px;
+	padding-top: 50px;
+	.tes-title {
+		color: var(--tj-color-common-white);
+		margin-bottom: 0;
+		padding: 0 30px;
+		span {
+			color: var(--tj-color-text-body-2);
+		}
+		@media #{$lg} {
+			padding: 0 25px;
+		}
+		@media #{$sm, $xs} {
+			padding: 0 20px;
+		}
+	}
+	@media #{$md, $sm, $xs} {
+		max-width: 100%;
+	}
+	@media #{$sm, $xs} {
+		padding-top: 35px;
+	}
+}
+.testimonial-slider-2 {
+	&.h4-testimonial {
+		padding-bottom: 60px;
+		.testimonial-item {
+			background-color: transparent;
+			padding: 50px 30px 0;
+			height: auto;
+			.desc {
+				color: var(--tj-color-grey-1);
+				line-height: 1.545;
+				padding-bottom: 10px;
+				@media #{$xl} {
+					font-size: 20px;
+				}
+				@media #{$lg, $md} {
+					font-size: 18px;
+				}
+				@media #{$sm, $xs} {
+					font-size: 16px;
+					padding-top: 20px;
+				}
+			}
+			.testimonial-author {
+				border-color: var(--tj-color-border-2);
+				.author-img {
+					@media #{$sm, $xs} {
+						width: 60px;
+						height: 60px;
+					}
+				}
+				.title {
+					color: var(--tj-color-common-white);
+				}
+				.designation {
+					color: var(--tj-color-text-body-2);
+				}
+			}
+
+			@media #{$lg} {
+				padding: 35px 25px 0;
+			}
+			@media #{$sm, $xs} {
+				padding: 30px 20px 0;
+			}
+		}
+		.testimonial-navigation {
+			position: absolute;
+			inset-inline-end: 30px;
+			bottom: 75px;
+			z-index: 2;
+			gap: 15px;
+			@media #{$sm, $xs} {
+				bottom: 30px;
+			}
+		}
+		.slider-next,
+		.slider-prev {
+			border: 1px solid var(--tj-color-border-2);
+			.anim-icon {
+				i {
+					color: var(--tj-color-common-white);
+				}
+			}
+		}
+		@media #{$sm, $xs} {
+			padding-bottom: 40px;
+		}
+	}
+}
+
+/* !END: Testimonial CSS */

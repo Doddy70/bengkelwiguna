@@ -1,0 +1,190 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Testimonial CSS
+----------------------------------------*/
+.h6-testimonial {
+	background-color: var(--tj-color-theme-dark);
+	position: relative;
+	z-index: 1;
+	border-radius: 12px;
+	overflow: hidden;
+	.container {
+		--bs-gutter-x: 30px;
+		.row {
+			--bs-gutter-x: 30px;
+		}
+		@media #{$xs} {
+			--bs-gutter-x: 24px;
+			.row {
+				--bs-gutter-x: 24px;
+			}
+		}
+	}
+	.sec-heading.style-2 {
+		.sub-title {
+			background-color: var(--tj-color-grey-3);
+		}
+		.sec-title {
+			color: var(--tj-color-common-white);
+		}
+	}
+	.content-wrap {
+		max-width: 500px;
+		@media #{$md} {
+			max-width: 100%;
+		}
+		.desc {
+			color: var(--tj-color-text-body-2);
+		}
+		.tj-primary-btn {
+			margin-top: 24px;
+		}
+	}
+	&-banner {
+		border-radius: 12px;
+		position: relative;
+		z-index: 0;
+		overflow: hidden;
+		margin-bottom: 60px;
+		img {
+			width: 100%;
+		}
+		&::after {
+			content: "";
+			position: absolute;
+			inset-inline-start: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: var(--tj-color-theme-dark);
+			opacity: 0.3;
+			z-index: 1;
+		}
+		&-video {
+			width: 60px;
+			height: 60px;
+			border-radius: 100%;
+			background-color: rgba(255, 255, 255, 0.1);
+			backdrop-filter: blur(10px);
+			border: 1px solid var(--tj-color-grey-3);
+			position: absolute;
+			z-index: 2;
+			inset-inline-start: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			line-height: 1;
+			animation: pulse4 1.3s ease-out infinite;
+			i {
+				color: var(--tj-color-common-white);
+				transition: all 0.4s;
+				padding-inline-start: 4px;
+			}
+			&:hover {
+				i {
+					transform: scale(1.1);
+				}
+			}
+		}
+	}
+
+	&-wrapper {
+		height: 750px;
+		@media #{$md,$sm, $xs} {
+			margin-top: 50px;
+			height: auto;
+		}
+		@media #{$xs} {
+			margin-inline-end: 0;
+		}
+		.swiper {
+			overflow: visible;
+			height: 100%;
+			mask-image: linear-gradient(0deg, rgba(12, 30, 33, 0) 5%, #0c1e21 21%);
+			mask-repeat: no-repeat;
+			mask-size: contain;
+			@media #{$md,$sm} {
+				mask-image: linear-gradient(
+					-90deg,
+					rgba(12, 30, 33, 0) 0%,
+					#0c1e21 20%
+				);
+			}
+			@media #{$xs} {
+				mask-image: none;
+			}
+			&-slide {
+				height: auto;
+			}
+		}
+		.testimonial {
+			&-item {
+				background-color: var(--tj-color-grey-3);
+				padding: 40px 30px 35px;
+				height: 100%;
+				border-radius: 12px;
+				.testimonial-author .title {
+					font-weight: var(--tj-fw-sbold);
+					color: var(--tj-color-common-white);
+				}
+				.desc {
+					font-size: 24px;
+					line-height: 1.3333;
+					color: var(--tj-color-text-body-2);
+					font-weight: var(--tj-fw-medium);
+					p {
+						margin-bottom: 0;
+					}
+					@media #{$xl, $lg} {
+						font-size: 22px;
+					}
+					@media #{$md, $sm, $xs} {
+						font-size: 20px;
+					}
+				}
+
+				@media #{$xl, $lg} {
+					padding: 35px 23px;
+				}
+				@media #{$sm, $xs} {
+					padding: 30px 20px;
+				}
+			}
+		}
+
+		.h6-testimonial {
+			&-author {
+				&-wrapper {
+					display: flex;
+					gap: 15px;
+					align-items: center;
+					justify-content: space-between;
+					padding-bottom: 30px;
+					margin-bottom: 25px;
+					border-bottom: 1px dashed var(--tj-color-border-2);
+					@media #{$sm, $xs} {
+						padding-top: 0;
+						padding-bottom: 20px;
+						margin-bottom: 16px;
+					}
+					.testimonial {
+						&-author {
+							padding-top: 0;
+							border-top: 0;
+							@media #{$sm, $xs} {
+								padding-top: 0;
+							}
+							.designation {
+								color: var(--tj-color-text-body-2);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/* !END: Testimonial CSS */

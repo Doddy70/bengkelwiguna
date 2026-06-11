@@ -1,0 +1,86 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Pricing CSS
+----------------------------------------*/
+.h10-pricing {
+	&-box {
+		padding: 15px;
+		.pricing-header {
+			padding: 36px 22px 40px;
+			border-radius: 12px;
+			background-color: var(--tj-color-theme-bg);
+			position: relative;
+			z-index: 0;
+			.package-price {
+				margin-bottom: 0;
+			}
+			.pricing-badge {
+				padding: 4px 7px 4px 5px;
+				border-radius: 4px;
+				background: var(--tj-color-theme-dark);
+				color: var(--tj-color-common-white);
+				display: flex;
+				gap: 4px;
+				font-size: 14px;
+				font-weight: var(--tj-fw-sbold);
+				line-height: 1;
+				letter-spacing: -0.03em;
+				position: absolute;
+				inset-inline-end: 20px;
+				top: 20px;
+				z-index: 1;
+				i {
+					font-size: 15px;
+				}
+			}
+		}
+		.pricing-body {
+			padding: 24px 20px 20px;
+			.title-wrapper {
+				margin-bottom: 20px;
+				.title {
+					margin-bottom: 2px;
+					font-weight: var(--tj-fw-sbold);
+				}
+				.desc {
+					margin-bottom: 0;
+				}
+			}
+			.list-items ul li {
+				color: var(--tj-color-text-body-4);
+				i {
+					color: var(--tj-color-theme-primary);
+				}
+			}
+			.pricing-btn {
+				margin-top: 26px;
+				margin-bottom: 0;
+			}
+		}
+
+		&.active {
+			background: var(--tj-color-common-white);
+			.pricing-header {
+				background-color: var(--tj-color-theme-primary);
+			}
+
+			.pricing-btn {
+				a {
+					background-color: var(--tj-color-theme-primary);
+					border-color: var(--tj-color-theme-primary);
+					.btn-text {
+						color: var(--tj-color-common-white);
+					}
+					&:hover {
+						.btn-icon {
+							background-color: var(--tj-color-theme-dark);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Pricing CSS */

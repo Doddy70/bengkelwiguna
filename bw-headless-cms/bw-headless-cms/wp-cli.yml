@@ -1,0 +1,20 @@
+# Konfigurasi standar WP-CLI untuk operasi Headless Bengkel Wiguna
+
+# Jika Anda menjalankan perintah ini di server (contoh di cPanel Terminal),
+# hilangkan tanda '#' pada baris 'path:' di bawah ini dan ganti dengan direktori instalasi WordPress Anda.
+# path: public_html
+
+# Batasi penggunaan memori agar aman saat export/import atau flush besar-besaran
+# require:
+#  - wp-config.php
+
+core:
+  allow-root: true
+
+config create:
+  dbuser: root
+  dbpass: 
+  skip-check: true
+
+# Anda dapat menjalankan `wp transient delete --all` untuk membersihkan semua transient
+# Atau spesifik: `wp transient delete bw_services_full`

@@ -1,0 +1,49 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Choose CSS
+----------------------------------------*/
+.h6-choose {
+	overflow: hidden;
+	&-box {
+		.choose-icon {
+			border-radius: 100%;
+			background-color: var(--tj-color-theme-primary);
+			color: var(--tj-color-common-white);
+			font-size: 65px;
+			max-width: 90px;
+			height: 90px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			i {
+				width: 42px;
+			}
+			.tji-support {
+				margin-inline-start: -8px;
+				margin-top: -3px;
+			}
+			@media #{$md, $sm, $xs} {
+				max-width: 80px;
+				height: 80px;
+				font-size: 56px;
+				i {
+					width: 36px;
+				}
+			}
+		}
+
+		&:hover {
+			background-color: var(--tj-color-common-white);
+			.title {
+				color: var(--tj-color-heading-primary);
+			}
+			.desc {
+				color: var(--tj-color-text-body);
+			}
+		}
+	}
+}
+
+/* !END: Choose CSS */

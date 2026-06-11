@@ -1,0 +1,67 @@
+@use "../utilities" as *;
+
+/* START: Case Study CSS */
+.h8-project {
+	background-color: var(--tj-color-theme-bg);
+	position: relative;
+	z-index: 1;
+	border-radius: 12px;
+	overflow: hidden;
+	.heading-wrap-content .sec-heading {
+		max-width: 550px;
+	}
+	.slider-next,
+	.slider-prev {
+		background-color: var(--tj-color-common-white);
+		border-color: var(--tj-color-common-white);
+		&:hover {
+			background-color: var(--tj-color-theme-primary);
+			border-color: var(--tj-color-theme-primary);
+		}
+	}
+	&-wrapper {
+		padding: 0;
+		max-width: 1591px;
+		margin-inline-start: auto;
+		@media #{$md,$sm,$xs} {
+			max-width: 100%;
+			margin-inline-start: 0;
+		}
+		.h4-project-item {
+			margin-bottom: 0;
+			@media #{$xs} {
+				padding: 15px 15px 30px;
+			}
+			.project-img {
+				height: 520px;
+				@media #{$xl, $lg, $md} {
+					height: 345px;
+				}
+				@media #{$sm, $xs} {
+					height: 300px;
+				}
+			}
+			.project-content {
+				.tji-icon-btn {
+					margin-top: 4px;
+					border-color: var(--tj-color-border-1);
+					i {
+						color: var(--tj-color-theme-dark);
+					}
+				}
+			}
+			&:hover {
+				.project-content {
+					.tji-icon-btn {
+						border-color: var(--tj-color-theme-dark);
+						background-color: var(--tj-color-theme-dark);
+						i {
+							color: var(--tj-color-common-white);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+/* !END: Case Study CSS */

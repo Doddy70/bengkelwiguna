@@ -1,0 +1,120 @@
+[
+	{
+		"id": 1,
+		"name": "Home",
+		"path": "/"
+	},
+	{
+		"id": 2,
+		"name": "Layanan",
+		"path": "/services/",
+		"submenu": [
+			{
+				"id": 1,
+				"name": "Semua Layanan",
+				"path": "/services/",
+				"badge": null
+			},
+			{
+				"id": 2,
+				"name": "Penggantian Ban",
+				"path": "/services/penggantian-ban/",
+				"badge": null
+			},
+			{
+				"id": 3,
+				"name": "Penggantian Oli",
+				"path": "/services/penggantian-oli/",
+				"badge": null
+			},
+			{
+				"id": 4,
+				"name": "Kaki-Kaki Mobil",
+				"path": "/services/kaki-kaki-mobil/",
+				"badge": null
+			},
+			{
+				"id": 5,
+				"name": "Service AC",
+				"path": "/services/service-ac/",
+				"badge": null
+			},
+			{
+				"id": 6,
+				"name": "Aki & Kelistrikan",
+				"path": "/services/aki-dan-kelistrikan/",
+				"badge": null
+			},
+			{
+				"id": 7,
+				"name": "Servis Rem & Roda",
+				"path": "/services/servis-rem-dan-roda/",
+				"badge": null
+			},
+			{
+				"id": 8,
+				"name": "Spooring & Balancing",
+				"path": "/services/spooring-balancing/",
+				"badge": null
+			},
+			{
+				"id": 9,
+				"name": "Engine Flushing",
+				"path": "/services/engine-flushing/",
+				"badge": null
+			}
+		]
+	},
+	{
+		"id": 3,
+		"name": "Promosi",
+		"path": "/promosi/",
+		"submenu": [
+			{
+				"id": 1,
+				"name": "Semua Promo",
+				"path": "/promosi/",
+				"badge": "HOT"
+			},
+			{
+				"id": 2,
+				"name": "Paket Service",
+				"path": "/paket-service/",
+				"badge": "NEW"
+			}
+		]
+	},
+	{
+		"id": 4,
+		"name": "Blog",
+		"path": "/blog/",
+		"submenu": [
+			{
+				"id": 1,
+				"name": "Semua Artikel",
+				"path": "/blog/",
+				"badge": null
+			}
+		]
+	},
+	{
+		"id": 5,
+		"name": "Tentang Kami",
+		"path": "/tentang-wiguna/"
+	},
+	{
+		"id": 6,
+		"name": "Lokasi",
+		"path": "/lokasi/"
+	},
+	{
+		"id": 7,
+		"name": "Karir",
+		"path": "/karir/"
+	},
+	{
+		"id": 8,
+		"name": "Hubungi Kami",
+		"path": "/contact/"
+	}
+]

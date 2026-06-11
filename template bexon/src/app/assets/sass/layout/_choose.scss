@@ -1,0 +1,173 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Choose CSS
+----------------------------------------*/
+.tj-choose-section {
+	overflow: hidden;
+	.sec-heading {
+		max-width: 550px;
+	}
+	&.choose-3 {
+		.sec-heading {
+			margin-inline-start: 0;
+			margin-inline-end: 0;
+		}
+	}
+}
+.choose-box {
+	height: 100%;
+	padding: 50px 28px 45px;
+	background-color: var(--tj-color-common-white);
+	transition: all 0.4s ease-in-out;
+	border-radius: 10px;
+	position: relative;
+	overflow: hidden;
+	z-index: 1;
+	.choose-content {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+	.choose-icon {
+		display: inline-flex;
+		color: var(--tj-color-theme-primary);
+		font-size: 88px;
+		line-height: 1;
+		max-width: 88px;
+		margin-bottom: 43px;
+		i {
+			line-height: 1;
+			display: inline-flex;
+		}
+		@media #{$xl, $lg} {
+			margin-bottom: 30px;
+		}
+		@media #{$md, $sm, $xs} {
+			font-size: 65px;
+			max-width: 65px;
+			margin-bottom: 20px;
+		}
+	}
+	.title {
+		font-weight: var(--tj-fw-sbold);
+		margin-bottom: 20px;
+		@media #{$md, $sm, $xs} {
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+	}
+	.desc {
+		margin-bottom: 0;
+	}
+	.text-btn {
+		margin-top: auto;
+		padding-top: 27px;
+		justify-content: flex-start;
+	}
+	&:hover {
+		background-color: var(--tj-color-theme-primary);
+		.choose-icon {
+			color: var(--tj-color-common-white);
+			animation: gelatine 0.6s;
+		}
+		.btn-icon {
+			background-color: var(--tj-color-theme-dark);
+		}
+		.btn-text,
+		.desc,
+		.title {
+			color: var(--tj-color-common-white);
+		}
+	}
+	@media #{$xl, $lg, $md} {
+		padding: 40px 20px;
+	}
+	@media #{$sm, $xs} {
+		padding: 30px 15px;
+	}
+	&.style-2 {
+		padding: 40px 28px;
+		.choose-icon {
+			margin-bottom: 25px;
+			@media #{$md, $sm, $xs} {
+				margin-bottom: 20px;
+			}
+		}
+		@media #{$sm, $xs} {
+			padding: 30px 15px;
+		}
+	}
+}
+
+.work-experience-area {
+	max-width: 570px;
+	.sec-heading {
+		margin-bottom: 65px;
+		@media #{$lg} {
+			margin-bottom: 50px;
+		}
+		@media #{$md, $sm, $xs} {
+			margin-bottom: 35px;
+		}
+	}
+	@media #{$md, $sm, $xs} {
+		max-width: 100%;
+		margin-bottom: 50px;
+	}
+}
+.experience-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: end;
+	border-top: 1px dashed rgba(0, 0, 0, 0.16);
+	border-bottom: 1px dashed rgba(0, 0, 0, 0.16);
+	.year-count {
+		color: var(--tj-color-theme-primary);
+		font-size: 404px;
+		line-height: 0.75;
+		font-family: var(--tj-ff-heading);
+		font-weight: var(--tj-fw-light);
+		letter-spacing: -8.08px;
+		display: inline-flex;
+		padding: 17px 30px 38px 0;
+		border-inline-end: 1px dashed rgba(0, 0, 0, 0.16);
+		@media #{$lg, $md} {
+			font-size: 335px;
+		}
+		@media #{$sm} {
+			font-size: 250px;
+		}
+		@media #{$xs} {
+			font-size: 210px;
+		}
+	}
+	.experience-text {
+		padding-inline-start: 32px;
+		padding-bottom: 35px;
+		.title {
+			max-width: 110px;
+			font-size: 16px;
+			font-weight: var(--tj-fw-sbold);
+			font-family: var(--tj-ff-body);
+			text-transform: uppercase;
+			letter-spacing: 0;
+			margin-bottom: 0;
+		}
+		span {
+			color: var(--tj-color-theme-primary);
+			font-size: 24px;
+			display: inline-flex;
+			line-height: 1;
+			i {
+				display: inline-flex;
+				line-height: 1;
+			}
+		}
+		@media #{$xs} {
+			padding-inline-start: 20px;
+		}
+	}
+}
+
+/* !END: Choose CSS */

@@ -1,0 +1,63 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Choose CSS
+----------------------------------------*/
+.tj-choose-section {
+	overflow: hidden;
+	.sec-heading {
+		max-width: 550px;
+	}
+	.countup-item {
+		&.style-2 {
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+			height: 100%;
+			position: relative;
+			overflow: hidden;
+			z-index: 1;
+			&::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				inset-inline-start: 0;
+				width: 100%;
+				height: 100%;
+				background-color: var(--tj-color-theme-dark);
+				opacity: 0.7;
+				z-index: -1;
+			}
+			.count-icon {
+				background-color: var(--tj-color-theme-primary);
+				color: var(--tj-color-common-white);
+			}
+			.count-text {
+				color: var(--tj-color-text-body-2);
+			}
+			.inline-content {
+				color: var(--tj-color-common-white);
+				.odometer {
+					color: var(--tj-color-common-white);
+					.odometer-digit,
+					span {
+						color: var(--tj-color-common-white);
+					}
+				}
+			}
+		}
+	}
+}
+.h4-content-wrap {
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	.sec-heading {
+		margin-bottom: 25px;
+	}
+}
+
+/* !END: Choose CSS */

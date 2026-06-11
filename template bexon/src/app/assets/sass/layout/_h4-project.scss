@@ -1,0 +1,58 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Project CSS
+----------------------------------------*/
+.tj-project-section {
+	&-4 {
+		overflow: hidden;
+		.sec-heading {
+			max-width: 550px;
+		}
+
+		@media #{$sm, $xs} {
+			.container-fluid,
+			.project-wrapper {
+				padding-inline-end: 0;
+			}
+		}
+	}
+}
+
+.project-item {
+	&.h4-project-item {
+		padding: 30px;
+		.project-content {
+			padding: 0 0 25px 0;
+			.title {
+				max-width: 250px;
+				@media #{$lg, $md} {
+					max-width: 230px;
+				}
+			}
+			@media #{$sm, $xs} {
+				padding: 0 0 20px 0;
+			}
+		}
+		.project-text {
+			@media #{$xl, $lg, $md, $sm, $xs} {
+				margin-top: 14px;
+			}
+		}
+		.project-img {
+			height: 445px;
+			border-radius: 10px;
+			@media #{$xl, $lg, $md} {
+				height: 345px;
+			}
+			@media #{$sm, $xs} {
+				height: 300px;
+			}
+		}
+		@media #{$xl, $lg, $md, $sm, $xs} {
+			padding: 20px;
+		}
+	}
+}
+
+/* !END: Project CSS */

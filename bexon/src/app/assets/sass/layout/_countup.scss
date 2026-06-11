@@ -1,0 +1,110 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Countup CSS
+----------------------------------------*/
+.tj-countup-section {
+	position: relative;
+	z-index: 2;
+	margin-bottom: -122px;
+}
+.countup-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	background-color: var(--tj-color-theme-primary);
+	border-radius: 12px;
+}
+.countup-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 25%;
+	padding: 68px 50px 74px 50px;
+	position: relative;
+	@media #{$xl, $lg} {
+		padding: 55px 30px 60px 30px;
+	}
+	@media #{$md, $sm} {
+		width: 50%;
+		padding: 45px 30px 50px 30px;
+	}
+	@media #{$xs} {
+		width: 100%;
+		padding: 38px 0 45px 0;
+		text-align: center;
+		&:last-child {
+			padding-bottom: 40px;
+		}
+	}
+	&:nth-child(2) {
+		@media #{$md, $sm} {
+			.count-separator {
+				display: none;
+			}
+		}
+	}
+	&:nth-child(4),
+	&:nth-child(3) {
+		@media #{$md, $sm} {
+			padding-top: 0;
+		}
+	}
+}
+.inline-content {
+	font-size: 74px;
+	line-height: 1;
+	font-weight: var(--tj-fw-medium);
+	color: var(--tj-color-common-white);
+	font-family: var(--tj-ff-heading);
+	display: inline-flex;
+	align-items: center;
+	margin-bottom: 5px;
+	letter-spacing: -1.48px;
+	.odometer {
+		font-weight: var(--tj-fw-medium);
+		color: var(--tj-color-common-white);
+		font-family: var(--tj-ff-heading);
+		display: inline-flex;
+		.odometer-digit,
+		span {
+			font-weight: var(--tj-fw-medium);
+			color: var(--tj-color-common-white);
+			font-family: var(--tj-ff-heading);
+			display: inline-flex;
+			vertical-align: bottom;
+		}
+	}
+
+	@media #{$lg} {
+		font-size: 65px;
+	}
+	@media #{$md, $sm} {
+		font-size: 60px;
+	}
+	@media #{$xs} {
+		font-size: 55px;
+		justify-content: center;
+	}
+}
+
+.count-text {
+	color: var(--tj-color-common-white);
+	display: block;
+}
+.count-separator {
+	position: absolute;
+	width: 10px;
+	height: 90px;
+	top: 50%;
+	inset-inline-end: -5px;
+	transform: translateY(-50%);
+	opacity: 0.15;
+	@media #{$xs} {
+		top: inherit;
+		bottom: 0;
+		inset-inline-end: 50%;
+		transform: translate(0, 50%) rotate(90deg);
+	}
+}
+
+/* !END: Countup CSS */

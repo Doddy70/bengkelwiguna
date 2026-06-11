@@ -1,0 +1,142 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Footer CSS
+----------------------------------------*/
+.tj-footer-section {
+	&.h10-footer {
+		padding-top: 0;
+		.h10-footer {
+			&-title {
+				font-size: 64px;
+				color: var(--tj-color-common-white);
+
+				@media #{$xl} {
+					font-size: 58px;
+				}
+
+				@media #{$lg, $md} {
+					font-size: 44px;
+				}
+				@media #{$sm} {
+					font-size: 40px;
+				}
+				@media #{$xs} {
+					font-size: 38px;
+				}
+			}
+			&-subscribe-wrapper {
+				margin-bottom: 30px;
+				.award-logo-area {
+					margin-bottom: 20px;
+					@media #{$md, $sm, $xs} {
+						margin-bottom: 30px;
+					}
+				}
+			}
+		}
+		.footer-col {
+			&-1 {
+				&::before {
+					display: none;
+				}
+				.bg-shape-widget {
+					position: absolute;
+					bottom: -160px;
+					inset-inline-start: -50px;
+					width: 362px;
+					height: 372px;
+					opacity: 1;
+					border-radius: 50%;
+					background: var(--tj-color-theme-primary);
+					filter: blur(110px);
+					z-index: -1;
+				}
+				.text-btn {
+					font-size: 20px;
+					letter-spacing: -0.03em;
+					line-height: 1;
+					padding: 5px 20px 8px;
+					border: 1px solid var(--tj-color-grey-3);
+					border-radius: 50px;
+					margin-top: 24px;
+					@media #{$sm,$xs} {
+						font-size: 18px;
+						margin-top: 16px;
+					}
+
+					.btn-text {
+						color: var(--tj-color-common-white);
+					}
+				}
+			}
+			&-2 {
+				padding-inline-start: 30px;
+				@media #{$xl} {
+					padding-inline-start: 0;
+				}
+				@media #{$lg} {
+					padding-inline-start: 30px;
+				}
+				@media #{$md} {
+					padding-inline-start: 70px;
+				}
+				@media #{$sm,$xs} {
+					padding-inline-start: 0;
+				}
+			}
+			&-3 {
+				padding-inline-start: 80px;
+				@media #{$xl} {
+					padding-inline-start: 44px;
+				}
+				@media #{$lg} {
+					margin-top: 0;
+					padding-inline-start: 12px;
+				}
+				@media #{$md,$sm,$xs} {
+					padding-inline-start: 0;
+				}
+			}
+		}
+		.widget-contact {
+			@media #{$lg} {
+				margin-top: 0;
+				padding-inline-start: 10px;
+			}
+		}
+		.footer-subscribe {
+			padding: 42px 30px 46px;
+			margin-inline-start: 30px;
+			border: 0;
+			@media #{$xl,$md, $sm, $xs} {
+				margin-inline-start: 0;
+			}
+			@media #{$md, $sm} {
+				padding: 32px 20px 36px;
+			}
+			@media #{ $xs} {
+				padding: 32px 20px 36px;
+			}
+			.title {
+				max-width: 100%;
+			}
+			.subscribe-form {
+				width: 100%;
+				label {
+					margin-top: 16px;
+				}
+				button {
+					inset-inline-end: 6px;
+				}
+			}
+		}
+		.bg-shape-4 {
+			top: auto;
+			bottom: 0;
+			transform: scale(1);
+		}
+	}
+}
+
+/* !END: Theme Footer CSS */

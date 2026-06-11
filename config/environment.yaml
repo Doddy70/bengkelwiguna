@@ -1,0 +1,3 @@
+node: 20.x
+npm: ">=9"
+notes: "Run tests and builds locally; ensure Node and npm versions match project requirements."

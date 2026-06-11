@@ -1,0 +1,49 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Header CSS
+----------------------------------------*/
+.h10-header {
+	&.header-area.header-absolute {
+		top: 15px;
+		padding-top: 24px;
+		padding-bottom: 24px;
+		z-index: 999;
+		@media #{$md,$sm,$xs} {
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+		@media #{$sm,$xs} {
+			top: 12px;
+		}
+		.header-bottom {
+			border-bottom: 0;
+		}
+
+		.mainmenu {
+			> ul {
+				padding: 0 30px;
+				background-color: var(--tj-color-common-white);
+				border-radius: 56px;
+				> li {
+					> .mega-menu {
+						top: calc(100% - 24px);
+					}
+					> a {
+						padding-top: 16px;
+						padding-bottom: 16px;
+					}
+					&.has-dropdown {
+						> a {
+							&::after {
+								top: 19px;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/* !END: Theme Header CSS */

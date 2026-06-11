@@ -1,0 +1,52 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Theme Footer CSS
+----------------------------------------*/
+.tj-footer-section {
+	&.h5-footer {
+		.h5-footer {
+			&-subscribe {
+				@media #{$xs} {
+					padding: 24px 20px 32px;
+				}
+				.title {
+					color: var(--tj-color-common-white);
+					max-width: 500px;
+					@media #{$xl,$lg} {
+						max-width: 400px;
+					}
+					@media #{$md} {
+						max-width: 100%;
+					}
+				}
+				.subscribe-form {
+					input[type="checkbox"] {
+						border: 1px solid var(--tj-color-text-body-2);
+						&::before {
+							color: var(--tj-color-theme-dark);
+						}
+						&:checked {
+							background-color: var(--tj-color-common-white);
+							border-color: var(--tj-color-common-white);
+						}
+					}
+					label {
+						color: var(--tj-color-text-body-2);
+						a {
+							color: var(--tj-color-common-white);
+							&:hover {
+								color: var(--tj-color-theme-primary);
+							}
+						}
+					}
+				}
+			}
+			&-copyright {
+				border-top: 1px dashed var(--tj-color-border-2);
+			}
+		}
+	}
+}
+
+/* !END: Theme Footer CSS */

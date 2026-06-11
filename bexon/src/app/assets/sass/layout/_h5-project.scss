@@ -1,0 +1,88 @@
+@use "../utilities" as *;
+
+/**----------------------------------------
+START: Home 5 Project CSS
+----------------------------------------*/
+.h5-project {
+	overflow: hidden;
+	.sec-heading {
+		max-width: 550px;
+	}
+	&-wrapper {
+		padding: 0;
+		display: flex;
+		flex-wrap: nowrap;
+		@media #{$sm,$xs} {
+			gap: 30px;
+			flex-direction: column;
+		}
+	}
+	&-item {
+		&-wrapper {
+			width: 100%;
+			flex-shrink: 0;
+			flex: none;
+			will-change: transform;
+
+			&:not(:last-child) {
+				padding-inline-end: 30px;
+				@media #{$lg,$md} {
+					padding-inline-end: 20px;
+				}
+				@media #{$sm,$xs} {
+					padding-inline-end: 0;
+				}
+			}
+			.h5-project {
+				&-item {
+					display: flex;
+					align-items: center;
+					flex-wrap: nowrap;
+					gap: 60px;
+					@media #{$md} {
+						gap: 40px;
+					}
+					@media #{$sm,$xs} {
+						gap: 20px;
+						flex-direction: column;
+						align-items: flex-start;
+					}
+				}
+			}
+		}
+		&.project-item {
+			.project-content {
+				max-width: 360px;
+				padding-bottom: 0;
+				@media #{$sm,$xs} {
+					padding: 0 0 10px 0;
+				}
+				.title {
+					margin-bottom: 20px;
+					max-width: 308px;
+					font-weight: var(--tj-fw-medium);
+				}
+				.desc {
+					margin-bottom: 24px;
+				}
+			}
+
+			.project-img {
+				max-width: 615px;
+				height: 505px;
+				@media #{$xl, $lg, $md} {
+					height: 350px;
+				}
+
+				@media #{$md} {
+					max-width: 330px;
+					flex-shrink: 0;
+				}
+				@media #{$sm, $xs} {
+					height: 300px;
+				}
+			}
+		}
+	}
+}
+/* !END: Home 5 Project CSS */
