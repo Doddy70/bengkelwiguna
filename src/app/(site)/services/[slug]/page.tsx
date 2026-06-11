@@ -47,55 +47,111 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     <>
       <JsonLd data={generateServiceSchema(service)} />
 
-      {/* Page Title */}
-      <section className="pt-32 pb-12 bg-light-blue-banner text-white">
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
-          <div className="text-center">
-            <span className="inline-block py-2 px-4 rounded-full bg-[#ffd900] text-[#1a3567] text-sm font-bold mb-4">
-              LAYANAN
+      {/* Branded Page Title Section */}
+      <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">
+        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 relative z-10">
+          <div className="max-w-3xl">
+            <span className="inline-block bg-brand-gold text-brand-blue px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 shadow-xl shadow-yellow-900/10">
+              Detail Layanan
             </span>
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="text-4xl lg:text-7xl font-black text-gray-900 mb-6 italic tracking-tighter uppercase leading-[0.85]">
               {service.title?.rendered || service.title}
             </h1>
-            <p className="text-white/80">Solusi perawatan profesional untuk kendaraan Anda</p>
+            <p className="text-gray-800 font-bold text-lg lg:text-xl max-w-xl leading-relaxed">
+              {stripHtml(service.excerpt?.rendered || service.excerpt || '').slice(0, 120)}...
+            </p>
           </div>
+          
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-3 mt-12 text-sm font-bold uppercase tracking-widest text-gray-500">
+            <Link href="/" className="hover:text-brand-blue transition-colors">Home</Link>
+            <span className="text-brand-gold">/</span>
+            <Link href="/services" className="hover:text-brand-blue transition-colors">Layanan</Link>
+            <span className="text-brand-gold">/</span>
+            <span className="text-gray-900">{service.slug}</span>
+          </nav>
         </div>
       </section>
 
-      {/* Service Content */}
-      <section className="lg:py-16 py-12">
+      {/* Main Content Section (Bexon Template Style) */}
+      <section className="lg:py-24 py-12 bg-white dark:bg-gray-950">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Main Content */}
-            <div className="lg:col-span-2">
+          <div className="grid lg:grid-cols-4 lg:gap-16 gap-10 relative">
+            
+            {/* 1. Main Content Area (col-span-3) */}
+            <div className="lg:col-span-3">
               {service.featured_img && (
-                <div className="mb-8 rounded-xl overflow-hidden">
+                <div className="mb-12 rounded-3xl overflow-hidden shadow-2xl relative aspect-[16/9] group" data-aos="fade-up">
                   <Image
                     src={service.featured_img}
                     alt={typeof service.title === 'string' ? service.title : service.title?.rendered || 'Layanan Bengkel Wiguna'}
-                    width={800}
-                    height={500}
-                    className="w-full h-auto"
+                    fill
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
+                    priority
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
               )}
 
-              <div
-                className="prose prose-lg max-w-none"
-                dangerouslySetInnerHTML={{ __html: service.content?.rendered || service.content || '' }}
-              />
+              <div className="service-content-rich">
+                <div
+                    className="prose prose-lg dark:prose-invert max-w-none 
+                    prose-h2:text-3xl prose-h2:font-black prose-h2:italic prose-h2:uppercase prose-h2:tracking-tighter prose-h2:text-gray-900 prose-h2:dark:text-white prose-h2:mb-8
+                    prose-p:text-gray-600 prose-p:dark:text-gray-400 prose-p:font-medium prose-p:leading-relaxed prose-p:mb-6
+                    prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8
+                    prose-li:text-gray-600 prose-li:dark:text-gray-400 prose-li:font-medium prose-li:mb-2"
+                    dangerouslySetInnerHTML={{ __html: service.content?.rendered || service.content || '' }}
+                />
+              </div>
+              
+              {/* Optional: Gallery Grid if exists */}
+              {service.gallery && service.gallery.length > 0 && (
+                  <div className="mt-16 grid grid-cols-2 gap-4">
+                      {service.gallery.map((img: string, i: number) => (
+                          <div key={i} className="relative aspect-video rounded-2xl overflow-hidden border border-gray-100">
+                              <Image src={img} alt="Gallery" fill className="object-cover" />
+                          </div>
+                      ))}
+                  </div>
+              )}
             </div>
 
-            {/* Sidebar */}
+            {/* 2. Sidebar Column (col-span-1) */}
             <div className="lg:col-span-1">
-              <div className="sticky top-32">
+              <div className="sticky top-32 flex flex-col gap-10">
+                
+                {/* A. Service Navigation List */}
+                <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm" data-aos="fade-left">
+                  <h4 className="text-xl font-black italic uppercase tracking-tighter text-gray-900 dark:text-white mb-6 border-b border-gray-200 dark:border-gray-800 pb-4 flex items-center gap-2">
+                    <span className="w-2 h-8 bg-brand-blue rounded-full" />
+                    Semua Layanan
+                  </h4>
+                  <ul className="flex flex-col gap-3">
+                    {allServices.slice(0, 8).map((s: any) => (
+                      <li key={s.id}>
+                        <Link 
+                          href={`/services/${s.slug}`}
+                          className={`flex items-center justify-between p-4 rounded-xl font-bold text-sm transition-all duration-300 group ${s.slug === slug ? 'bg-brand-blue text-white shadow-lg shadow-blue-900/20' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-brand-gold hover:text-brand-blue border border-gray-100 dark:border-gray-700'}`}
+                        >
+                          {s.title?.rendered || s.title}
+                          <ArrowUpRight size={16} className={`transition-transform ${s.slug === slug ? 'opacity-100' : 'opacity-0 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5'}`} />
+                        </Link>
+                      </li>
+                    ))}
+                    <li className="mt-2 pt-4 border-t border-gray-100 dark:border-gray-800 text-center">
+                        <Link href="/services" className="text-xs font-black uppercase tracking-widest text-brand-blue dark:text-brand-gold hover:underline">
+                            Lihat Semua Layanan →
+                        </Link>
+                    </li>
+                  </ul>
+                </div>
+
+                {/* B. WhatsApp Support Card (Minna) */}
                 <div
-                    className="p-8 bg-gradient-to-br from-brand-blue to-[#050b14] text-white rounded-2xl shadow-xl shadow-blue-900/20 relative overflow-hidden mb-8"
+                    className="p-8 bg-gradient-to-br from-brand-blue to-[#050b14] text-white rounded-3xl shadow-xl shadow-blue-900/20 relative overflow-hidden"
                     data-aos="zoom-in"
                 >
-                    {/* Background Decorative */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl" />
-                    
                     <div className="relative z-10 flex flex-col items-center text-center">
                         <div className="mb-6 relative">
                             <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20 p-2">
@@ -107,24 +163,24 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                                     className="w-full h-auto object-contain"
                                 />
                             </div>
-                            <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-[#1a3567] rounded-full"></div>
+                            <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-[#1a3567] rounded-full shadow-lg"></div>
                         </div>
 
                         <h3 className="text-2xl font-black uppercase tracking-tighter italic mb-2">
                             Butuh Bantuan?
                         </h3>
                         <p className="text-white/80 font-medium mb-8 text-sm leading-relaxed">
-                            Punya pertanyaan seputar servis {service.title?.rendered || service.title} atau ingin booking? Chat Minna sekarang untuk respon cepat!
+                            Ingin bertanya lebih lanjut seputar <span className="text-brand-gold">{service.title?.rendered || service.title}</span>? Chat Minna sekarang!
                         </p>
 
                         <a
-                            href="https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
+                            href={`https://wa.me/6281717773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan "${service.title?.rendered || service.title}" di Bengkel Wiguna.`)}`}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
                         >
                             <span className="text-xl">💬</span>
-                            Chat Minna Sekarang
+                            Konsultasi Sekarang
                             <span className="group-hover:translate-x-1 transition-transform">→</span>
                         </a>
                         
@@ -134,16 +190,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </div>
                 </div>
 
-                <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700">
-                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 italic uppercase tracking-tight">Lokasi Bengkel</h4>
-                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">Kunjungi bengkel kami di Sukmajaya, Depok untuk pengerjaan langsung.</p>
+                {/* C. Location Mini Card */}
+                <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm" data-aos="fade-up">
+                    <h4 className="text-lg font-black italic uppercase tracking-tighter text-gray-900 dark:text-white mb-4">Lokasi Bengkel</h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">Kunjungi workshop kami di Depok untuk pengerjaan langsung oleh teknisi ahli.</p>
                     <Button
                         href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
                         label="Cek Google Maps"
-                        bgColor="bg-white/50 dark:bg-gray-700"
+                        bgColor="bg-white/50 dark:bg-gray-800"
                         textColor="text-brand-blue dark:text-white"
                         padding="py-3 px-6 w-full"
-                        className="border border-brand-blue/10"
+                        className="border border-brand-blue/10 dark:border-gray-700 rounded-xl"
                         target="_blank"
                     />
                 </div>

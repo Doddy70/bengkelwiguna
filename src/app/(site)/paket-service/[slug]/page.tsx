@@ -67,202 +67,185 @@ export default async function SinglePaketServicePage({ params }: { params: Promi
     <>
       <JsonLd data={generateServiceSchema(paket)} />
 
-      <div className="shop-wrap lg:pt-24 pt-12">
-        {/* Hero Banner */}
-        <div className="bg-light-blue-banner text-white pt-32 pb-8">
-          <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
-            <nav className="text-sm mb-4">
-              <Link href="/" className="hover:text-[#ffd900]">Home</Link>
-              <span className="mx-2">/</span>
-              <Link href="/paket-service" className="hover:text-[#ffd900]">Paket Service</Link>
-              <span className="mx-2">/</span>
-              <span className="text-[#ffd900]">{title}</span>
-            </nav>
+      {/* Branded Page Title Section */}
+      <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">
+        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 relative z-10">
+          <div className="max-w-3xl">
+            <span className="inline-block bg-brand-gold text-brand-blue px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 shadow-xl shadow-yellow-900/10">
+              Paket Bundling
+            </span>
+            <h1 className="text-4xl lg:text-7xl font-black text-gray-900 mb-6 italic tracking-tighter uppercase leading-[0.85]">
+              {title}
+            </h1>
+            <p className="text-gray-800 font-bold text-lg lg:text-xl max-w-xl leading-relaxed">
+              {excerpt.slice(0, 120)}...
+            </p>
           </div>
+          
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-3 mt-12 text-sm font-bold uppercase tracking-widest text-gray-500">
+            <Link href="/" className="hover:text-brand-blue transition-colors">Home</Link>
+            <span className="text-brand-gold">/</span>
+            <Link href="/paket-service" className="hover:text-brand-blue transition-colors">Paket Service</Link>
+            <span className="text-brand-gold">/</span>
+            <span className="text-gray-900">{slug}</span>
+          </nav>
         </div>
+      </section>
 
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:py-16 py-12">
-          <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-10 relative lg:space-y-0 space-y-8">
-            {/* Left Side - Image Gallery */}
-            <div className="w-full">
+      {/* Main Content Section (Bexon Template Style) */}
+      <section className="lg:py-24 py-12 bg-white dark:bg-gray-950">
+        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
+          <div className="grid lg:grid-cols-4 lg:gap-16 gap-10 relative">
+            
+            {/* 1. Main Content Area (col-span-3) */}
+            <div className="lg:col-span-3">
               {paket.featured_img && (
-                <div className="relative rounded-2xl overflow-hidden aspect-[4/3] bg-gray-100">
+                <div className="mb-12 rounded-3xl overflow-hidden shadow-2xl relative aspect-[16/9] group" data-aos="fade-up">
                   <Image
                     src={paket.featured_img}
                     alt={title}
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
                     priority
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  
                   {paket.bestSeller && (
-                    <div className="absolute top-4 left-4 bg-[#ffd900] text-[#1a3567] font-bold px-4 py-2 rounded-full text-sm flex items-center gap-1">
-                      <Star size={14} className="fill-current" />
-                      BEST SELLER
+                    <div className="absolute top-6 left-6 bg-brand-gold text-brand-blue font-black px-6 py-3 rounded-full text-xl shadow-2xl z-10 italic tracking-tighter uppercase animate-bounce">
+                      Best Seller
                     </div>
                   )}
                 </div>
               )}
 
-              {/* Gallery if available */}
-              {paket.gallery && Array.isArray(paket.gallery) && paket.gallery.length > 0 && (
-                <div className="mt-6 grid grid-cols-4 gap-3">
-                  {paket.gallery.slice(0, 4).map((img: string, i: number) => (
-                    <div key={i} className="relative rounded-lg overflow-hidden aspect-square bg-gray-100">
-                      <Image
-                        src={img}
-                        alt={`Gallery ${i + 1}`}
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Right Side - Content */}
-            <div className="w-full">
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-[#224297] text-white px-4 py-2 rounded-full text-sm font-bold mb-4">
-                <Package size={16} />
-                PAKET SERVICE
-              </div>
-
-              {/* Title */}
-              <h1 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-                {title}
-              </h1>
-
-              {/* Meta Info */}
-              <div className="flex flex-wrap items-center gap-4 text-gray-600 mb-6">
-                {paket.durasi_paket && (
-                  <span className="flex items-center gap-1 text-sm">
-                    <Clock size={14} />
-                    Durasi: {paket.durasi_paket}
-                  </span>
-                )}
-                {paket.garansi_paket && (
-                  <span className="flex items-center gap-1 text-sm">
-                    <Shield size={14} />
-                    Garansi: {paket.garansi_paket}
-                  </span>
-                )}
-                {paket.jenis_kendaraan && (
-                  <span className="flex items-center gap-1 text-sm bg-gray-100 px-3 py-1 rounded-full">
-                    {paket.jenis_kendaraan}
-                  </span>
-                )}
-              </div>
-
-              {/* Price Section */}
-              <div className="mb-6">
-                {paket.harga_paket && (
-                  <div className="flex items-baseline gap-4">
-                    <span className="text-3xl font-bold text-[#224297]">
-                      {paket.harga_paket}
-                    </span>
-                    {paket.previousPrice && (
-                      <span className="text-xl text-gray-400 line-through">
-                        {paket.previousPrice}
-                      </span>
-                    )}
+              {/* Package Summary Cards */}
+              <div className="grid md:grid-cols-3 gap-6 mb-12" data-aos="fade-up">
+                  <div className="p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 text-center">
+                      <Clock className="mx-auto mb-3 text-brand-blue" />
+                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Durasi</span>
+                      <span className="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-tighter italic">{paket.durasi_paket || '1-2 Jam'}</span>
                   </div>
-                )}
-                {paket.status === 'tersedia' && (
-                  <span className="inline-flex items-center gap-1 text-sm text-green-600 mt-2">
-                    <CheckCircle size={14} />
-                    Tersedia
-                  </span>
-                )}
+                  <div className="p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 text-center">
+                      <Shield className="mx-auto mb-3 text-green-500" />
+                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Garansi</span>
+                      <span className="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-tighter italic">{paket.garansi_paket || '1 Minggu'}</span>
+                  </div>
+                  <div className="p-6 bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 text-center">
+                      <Package className="mx-auto mb-3 text-brand-gold" />
+                      <span className="block text-xs font-black uppercase tracking-widest text-gray-400 mb-1">Status</span>
+                      <span className="text-lg font-bold text-gray-900 dark:text-white uppercase tracking-tighter italic">{paket.availability || 'Tersedia'}</span>
+                  </div>
               </div>
 
-              {/* Excerpt */}
-              <p className="text-gray-700 text-base leading-relaxed mb-6">
-                {excerpt}
-              </p>
-
-              {/* Paket Items */}
-              {paketItems.length > 0 && (
-                <div className="bg-blue-50 rounded-xl p-6 mb-6">
-                  <h3 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-                    <Package size={18} className="text-[#224297]" />
-                    Isi Paket:
-                  </h3>
-                  <ul className="space-y-2">
-                    {paketItems.map((item: string, i: number) => (
-                      <li key={i} className="flex items-start gap-3">
-                        <CheckCircle size={18} className="text-[#224297] mt-0.5 flex-shrink-0" />
-                        <span className="text-gray-700">{item.replace(/^[•\-*]\s*/, '')}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              {/* Reviews if available */}
-              {paket.ulasan_paket && (
-                <div className="bg-yellow-50 rounded-xl p-4 mb-6">
-                  <div className="flex items-center gap-2 mb-2">
-                    <div className="flex text-yellow-400">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} size={16} className={`fill-current ${i < 4 ? 'text-yellow-400' : 'text-gray-300'}`} />
-                      ))}
-                    </div>
-                    <span className="text-sm text-gray-600">{paket.ulasan_paket} ulasan</span>
-                  </div>
-                  {paket.soldUnits && (
-                    <p className="text-sm text-gray-600">{paket.soldUnits} unit terjual</p>
-                  )}
-                </div>
-              )}
-
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 mb-8">
-                <a
-                  href={whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#224297] hover:bg-[#1a3567] text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-blue-900/30"
-                >
-                  <Phone size={20} />
-                  Pesan via WhatsApp
-                  <ArrowRight size={18} />
-                </a>
-                <Button
-                  href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
-                  label="Cek Google Maps"
-                  bgColor="bg-gray-100 hover:bg-gray-200"
-                  textColor="text-gray-900"
-                  padding="py-4 px-8"
-                  target="_blank"
+              <div className="paket-content-rich">
+                <div
+                    className="prose prose-lg dark:prose-invert max-w-none 
+                    prose-h2:text-3xl prose-h2:font-black prose-h2:italic prose-h2:uppercase prose-h2:tracking-tighter prose-h2:text-gray-900 prose-h2:dark:text-white prose-h2:mb-8
+                    prose-p:text-gray-600 prose-p:dark:text-gray-400 prose-p:font-medium prose-p:leading-relaxed prose-p:mb-6
+                    prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8
+                    prose-li:text-gray-600 prose-li:dark:text-gray-400 prose-li:font-medium prose-li:mb-2"
+                    dangerouslySetInnerHTML={{ __html: content }}
                 />
               </div>
 
-              {/* Info Box */}
-              <div className="bg-gray-50 rounded-xl p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                  <CheckCircle size={18} className="text-[#224297]" />
-                  Yang Termasuk
-                </h3>
-                <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Jasa installation oleh teknisi berpengalaman</li>
-                  <li>• Garansi service sesuai paket</li>
-                  <li>• Konsultasi gratis setelah service</li>
-                  <li>• Booking via WhatsApp diutamakan</li>
-                </ul>
+              {/* Package Items Highlight */}
+              {paketItems.length > 0 && (
+                <div className="mt-16 bg-gray-50 dark:bg-gray-900 rounded-3xl p-10 border border-gray-100 dark:border-gray-800" data-aos="fade-up">
+                  <h3 className="text-2xl font-black italic uppercase tracking-tighter text-gray-900 dark:text-white mb-8 flex items-center gap-3">
+                    <Package className="text-brand-blue" />
+                    Apa Saja Yang Termasuk?
+                  </h3>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    {paketItems.map((item: string, i: number) => (
+                      <div key={i} className="flex items-center gap-3 p-4 bg-white dark:bg-gray-800 rounded-2xl shadow-sm border border-gray-50 dark:border-gray-700">
+                        <CheckCircle size={18} className="text-green-500 flex-shrink-0" />
+                        <span className="text-gray-700 dark:text-gray-300 font-bold text-sm">{item.replace(/^[•\-*]\s*/, '')}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* 2. Sidebar Column (col-span-1) */}
+            <div className="lg:col-span-1">
+              <div className="sticky top-32 flex flex-col gap-10">
+                
+                {/* A. Dynamic Pricing Card */}
+                <div className="bg-brand-blue text-white rounded-3xl p-8 shadow-xl shadow-blue-900/20 relative overflow-hidden" data-aos="fade-left">
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-white/5 rounded-full -mr-12 -mt-12" />
+                  <span className="text-xs font-black uppercase tracking-widest text-brand-gold mb-2 block">Harga Paket</span>
+                  <div className="flex flex-col mb-4">
+                    <span className="text-4xl font-black italic tracking-tighter uppercase leading-none">
+                      {paket.harga_paket || 'Hubungi Kami'}
+                    </span>
+                    {paket.previousPrice && (
+                      <span className="text-lg text-white/40 line-through font-bold mt-2">{paket.previousPrice}</span>
+                    )}
+                  </div>
+                  <p className="text-[10px] font-bold text-white/40 uppercase tracking-widest">Harga Sudah Termasuk Jasa & PPN</p>
+                </div>
+
+                {/* B. WhatsApp Support Card (Minna) */}
+                <div
+                    className="p-8 bg-gradient-to-br from-brand-blue to-[#050b14] text-white rounded-3xl shadow-xl shadow-blue-900/20 relative overflow-hidden"
+                    data-aos="zoom-in"
+                >
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl" />
+                    <div className="relative z-10 flex flex-col items-center text-center">
+                        <div className="mb-6 relative">
+                            <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm border border-white/20 p-2">
+                                <Image
+                                    src="/images/cs-support.avif"
+                                    alt="Customer Support Bengkel Wiguna"
+                                    width={80}
+                                    height={80}
+                                    className="w-full h-auto object-contain"
+                                />
+                            </div>
+                            <div className="absolute bottom-1 right-1 w-5 h-5 bg-green-500 border-4 border-[#1a3567] rounded-full shadow-lg"></div>
+                        </div>
+
+                        <h3 className="text-2xl font-black uppercase tracking-tighter italic mb-2">
+                            Pesan Sekarang
+                        </h3>
+                        <p className="text-white/80 font-medium mb-8 text-sm leading-relaxed">
+                            Mulai perawatan mobil Anda hari ini. Chat Minna untuk reservasi <span className="text-brand-gold">{title}</span>.
+                        </p>
+
+                        <a
+                            href={whatsappUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
+                        >
+                            <span className="text-xl">💬</span>
+                            Booking via WhatsApp
+                            <span className="group-hover:translate-x-1 transition-transform">→</span>
+                        </a>
+                    </div>
+                </div>
+
+                {/* C. Location Mini Card */}
+                <div className="bg-gray-50 dark:bg-gray-900 rounded-3xl p-8 border border-gray-100 dark:border-gray-800 shadow-sm" data-aos="fade-up">
+                    <h4 className="text-lg font-black italic uppercase tracking-tighter text-gray-900 dark:text-white mb-4">Lokasi Bengkel</h4>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 leading-relaxed">Pengerjaan paket service dilakukan langsung di workshop kami dengan standar kualitas tinggi.</p>
+                    <Button
+                        href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
+                        label="Cek Google Maps"
+                        bgColor="bg-white/50 dark:bg-gray-800"
+                        textColor="text-brand-blue dark:text-white"
+                        padding="py-3 px-6 w-full"
+                        className="border border-brand-blue/10 dark:border-gray-700 rounded-xl"
+                        target="_blank"
+                    />
+                </div>
               </div>
             </div>
           </div>
-
-          {/* Full Content */}
-          {content && (
-            <div className="mt-12 prose prose-lg max-w-none">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Detail Paket</h2>
-              <div dangerouslySetInnerHTML={{ __html: content }} />
-            </div>
-          )}
         </div>
-      </div>
+      </section>
 
       {/* Related Paket Services */}
       {relatedPaket.length > 0 && (
