@@ -74,11 +74,12 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
                 <Input
                   autoFocus
                   name="nama-depan"
                   label="Nama Lengkap"
+                  labelPlacement="outside"
                   placeholder="Masukkan nama Anda"
                   variant="bordered"
                   isInvalid={hasError('nama-depan')}
@@ -88,6 +89,7 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="telepon"
                   label="Nomer Tlp. / Whatsapp"
+                  labelPlacement="outside"
                   placeholder="0812xxxxxx"
                   type="tel"
                   variant="bordered"
@@ -99,6 +101,7 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="merek-mobil"
                   label="Merek Mobil"
+                  labelPlacement="outside"
                   placeholder="Contoh: Toyota Avanza"
                   variant="bordered"
                   isRequired
@@ -109,6 +112,7 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="tahun-mobil"
                   label="Tahun Mobil"
+                  labelPlacement="outside"
                   placeholder="Contoh: 2018"
                   variant="bordered"
                   isRequired
@@ -119,6 +123,7 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="nomer-polisi"
                   label="No. Polisi"
+                  labelPlacement="outside"
                   placeholder="Contoh: B 1234 ABC"
                   variant="bordered"
                   isRequired
@@ -129,6 +134,7 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Select 
                   name="pilihan-servis"
                   label="Pilihan Treatment / Servis" 
+                  labelPlacement="outside"
                   variant="bordered"
                   defaultSelectedKeys={serviceName ? [serviceName] : []}
                 >
@@ -157,6 +163,7 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="tanggal"
                   label="Tanggal Kedatangan"
+                  labelPlacement="outside"
                   type="date"
                   variant="bordered"
                   isRequired
@@ -168,6 +175,7 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Select 
                   name="jam-datang"
                   label="Jam Kedatangan" 
+                  labelPlacement="outside"
                   variant="bordered"
                 >
                   <SelectItem key="08.00 WIB" value="08.00 WIB">08.00 WIB</SelectItem>
@@ -183,14 +191,17 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 </Select>
               </div>
 
-              <Textarea
-                name="keluhan-kendaraan"
-                label="Keluhan Kendaraan"
-                placeholder="Tulis masalah / kendala kendaraan Anda..."
-                variant="bordered"
-                isInvalid={hasError('keluhan-kendaraan')}
-                errorMessage={getError('keluhan-kendaraan')}
-              />
+              <div className="mt-2">
+                <Textarea
+                  name="keluhan-kendaraan"
+                  label="Keluhan Kendaraan"
+                  labelPlacement="outside"
+                  placeholder="Tulis masalah / kendala kendaraan Anda..."
+                  variant="bordered"
+                  isInvalid={hasError('keluhan-kendaraan')}
+                  errorMessage={getError('keluhan-kendaraan')}
+                />
+              </div>
 
               {/* CF7 Hidden Metadata (Ambil dari setting lingkungan/fallback ke form spesifik) */}
               <input type="hidden" name="_wpcf7" value={process.env.NEXT_PUBLIC_CF7_BOOKING_ID || "5ca70cf"} />
