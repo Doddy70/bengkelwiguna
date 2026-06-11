@@ -229,11 +229,12 @@ export default async function SinglePaketServicePage({ params }: { params: Promi
                   <ArrowRight size={18} />
                 </a>
                 <Button
-                  href="/lokasi"
-                  label="Kunjungi Bengkel"
+                  href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
+                  label="Cek Google Maps"
                   bgColor="bg-gray-100 hover:bg-gray-200"
                   textColor="text-gray-900"
                   padding="py-4 px-8"
+                  target="_blank"
                 />
               </div>
 

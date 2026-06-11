@@ -28,7 +28,7 @@ const footerNavigation = {
   ],
   company: [
     { name: "Tentang Kami", href: "/about" },
-    { name: "Lokasi Bengkel", href: "/lokasi" },
+    { name: "Lokasi Bengkel", href: "https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA" },
     { name: "Hubungi Kami", href: "/contact" },
     { name: "Promosi", href: "/promosi" },
   ],

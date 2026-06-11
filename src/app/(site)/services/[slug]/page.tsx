@@ -138,12 +138,13 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4 italic uppercase tracking-tight">Lokasi Bengkel</h4>
                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-6">Kunjungi bengkel kami di Sukmajaya, Depok untuk pengerjaan langsung.</p>
                     <Button
-                        href="/lokasi"
+                        href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
                         label="Cek Google Maps"
                         bgColor="bg-white/50 dark:bg-gray-700"
                         textColor="text-brand-blue dark:text-white"
                         padding="py-3 px-6 w-full"
                         className="border border-brand-blue/10"
+                        target="_blank"
                     />
                 </div>
               </div>

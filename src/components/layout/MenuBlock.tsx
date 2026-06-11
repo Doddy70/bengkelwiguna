@@ -76,11 +76,11 @@ const defaultMenuItems: MenuItem[] = [
         title: 'Tentang',
         subMenu: [
             { title: 'Tentang Kami', href: '/about' },
-            { title: 'Lokasi Bengkel', href: '/lokasi' },
+            { title: 'Lokasi Bengkel', href: 'https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA' },
             { title: 'Blog & Artikel', href: '/blog' },
         ],
     },
-    { title: 'Lokasi', href: '/lokasi' },
+    { title: 'Lokasi', href: 'https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA' },
     { title: 'Blog', href: '/blog' },
     { title: 'Kontak', href: '/contact' },
 ];

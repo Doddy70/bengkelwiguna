@@ -267,11 +267,12 @@ export default async function HomePage() {
                         padding="py-5 px-10 text-xl font-bold"
                     />
                     <Button
-                        href="/lokasi"
-                        label="Kunjungi Bengkel Kami"
-                        bgColor="bg-white/10"
+                        href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
+                        label="Cek Google Maps"
+                        bgColor="bg-white/10 hover:bg-white/20"
                         textColor="text-white"
                         padding="py-5 px-10 text-xl font-bold"
+                        target="_blank"
                     />
                 </div>
             </div>
