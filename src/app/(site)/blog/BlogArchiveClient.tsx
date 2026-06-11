@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, ArrowUpRight, Clock } from "lucide-react";
 import { WPPost } from "@/types/wordpress";
+import BlogCardOne from "@/components/ui/BlogCardOne";
 import BlogCardTwo, { BlogPost } from "@/components/ui/BlogCardTwo";
 import Subscribe from "@/components/ui/Subscribe";
 import AuthorBio from "@/components/ui/AuthorBio";
