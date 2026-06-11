@@ -78,9 +78,9 @@ const Header = ({
                         <Link href="/" className="flex items-center lg:py-3 py-2 mr-5">
                             <div style={{ width: currentLogoWidth }} className="transition-all duration-300">
                                 <Image
-                                    src="/images/logo/logo.png"
+                                    src="/images/logo/logo-panjang.png"
                                     alt="Bengkel Wiguna Logo"
-                                    width={220}
+                                    width={280}
                                     height={60}
                                     priority
                                     className='h-auto w-full'

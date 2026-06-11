@@ -1,54 +1,54 @@
 [
     {
-        "id": "analytics",
-        "label": "Analytics",
-        "icon": "BarChart2",
-        "image": "/images/feature-2.svg",
-        "heading": "Stakeholders who believe in our commitment to transparency.",
-        "description": "Whether you're building a startup landing page, a dashboard interface, or a modern web app.",
+        "id": "diagnosa",
+        "label": "Diagnosa Gratis",
+        "icon": "Search",
+        "image": "/images/service/service-tuneup.svg",
+        "heading": "Cek Kondisi Mobil Anda Tanpa Biaya",
+        "description": "Kami memberikan layanan pengecekan awal gratis untuk memastikan masalah pada kendaraan Anda terdeteksi dengan tepat.",
         "points": [
-            "10 GB disk space availability",
-            "50 GB NVMe SSD for use",
-            "Free platform access for all"
+            "Pengecekan 21 titik standar",
+            "Konsultasi langsung dengan mekanik",
+            "Estimasi biaya di awal"
         ]
     },
     {
-        "id": "develop",
-        "label": "Develop",
-        "icon": "Code",
-        "image": "/images/feature-2.svg",
-        "heading": "Community members who have faith in our ongoing efforts.",
-        "description": "Whether you're building a startup landing page, a dashboard interface, or a modern web app.",
+        "id": "transparansi",
+        "label": "Transparansi",
+        "icon": "Shield",
+        "image": "/images/service/service-oli.svg",
+        "heading": "No Drama, No Bongkar Tanpa Izin",
+        "description": "Prinsip utama kami adalah kejujuran. Tidak ada biaya tersembunyi atau penggantian part tanpa persetujuan Anda.",
         "points": [
-            "10 GB disk space availability",
-            "50 GB NVMe SSD for use",
-            "Free platform access for all"
+            "Penjelasan detail kerusakan",
+            "Persetujuan sebelum pengerjaan",
+            "Part lama dikembalikan ke user"
         ]
     },
     {
-        "id": "marketing",
-        "label": "Marketing",
-        "icon": "Send",
-        "image": "/images/feature-2.svg",
-        "heading": "Team members who confide in our leadership and guidance.",
-        "description": "Whether you're building a startup landing page, a dashboard interface, or a modern web app.",
+        "id": "teknologi",
+        "label": "Teknologi",
+        "icon": "Cpu",
+        "image": "/images/service/service-ac.svg",
+        "heading": "Peralatan Modern & Presisi",
+        "description": "Menggunakan scanner komputer dan alat spooring 3D terbaru untuk hasil servis yang akurat sesuai standar pabrikan.",
         "points": [
-            "Connect Stripe, Paypal",
-            "Automate reminders",
-            "Free platform access for all"
+            "Scanner Engine OBD2 terbaru",
+            "Spooring 3D High Precision",
+            "Alat Flushing AC otomatis"
         ]
     },
     {
-        "id": "performance",
-        "label": "Performance",
-        "icon": "Activity",
-        "image": "/images/feature-2.svg",
-        "heading": "Customers who rely on our expertise and honest recommendations.",
-        "description": "Whether you're building a startup landing page, a dashboard interface, or a modern web app.",
+        "id": "garansi",
+        "label": "Garansi",
+        "icon": "Award",
+        "image": "/images/service/service-kaki.svg",
+        "heading": "Jaminan Kualitas Pekerjaan",
+        "description": "Setiap pengerjaan di Bengkel Wiguna disertai dengan garansi resmi untuk ketenangan pikiran Anda.",
         "points": [
-            "Enable SSO & SAML",
-            "Domain control",
-            "Free platform access for all"
+            "Garansi pengerjaan s/d 1 bulan",
+            "Jaminan keaslian suku cadang",
+            "After-sales service responsif"
         ]
     }
 ]

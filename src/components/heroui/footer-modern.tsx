@@ -91,9 +91,9 @@ export default function FooterModern() {
           <div className="space-y-8 md:pr-8">
             <div className="flex items-center justify-start gap-3">
               <Image 
-                src="/images/logo/logo.png" 
+                src="/images/logo/logo-panjang.png" 
                 alt="Bengkel Wiguna" 
-                width={220} 
+                width={280} 
                 height={60} 
                 className="h-auto w-auto"
               />

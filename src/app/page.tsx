@@ -33,6 +33,7 @@ const FooterModern = dynamic(() => import('@/components/heroui/footer-modern'))
 const PageTitle3 = dynamic(() => import('@/components/ui/PageTitle3'))
 const Button = dynamic(() => import('@/components/ui/Button'))
 const BlogCardOne = dynamic(() => import('@/components/ui/BlogCardOne'))
+const Tabs = dynamic(() => import('@/components/ui/Tab'))
 
 // 3. SEO OPTIMIZATION: Trust Signals & FAQ
 import PartnerLogos from '@/components/sections/PartnerLogos'
@@ -151,6 +152,23 @@ export default async function HomePage() {
           </div>
         </section>
       )}
+
+      {/* SECTION: TABS (No Drama Service Process) */}
+      <section id="why-wiguna" className="lg:py-24 py-12 bg-white">
+        <div className="max-w-screen-xl mx-auto boxed-layout-gap">
+            <div className="text-center mb-16">
+                <PageTitle3
+                    badgeText="💎 KEUNGGULAN KAMI"
+                    title="Mengapa Pilih Bengkel Wiguna?"
+                    subtitle="Kami menggabungkan kejujuran tradisional dengan teknologi modern untuk hasil terbaik."
+                    widthClass="w-full"
+                    alignment="center"
+                    padding="pb-0"
+                />
+            </div>
+            <Tabs />
+        </div>
+      </section>
 
       {/* SECTION 3: GOOGLE REVIEWS */}
       <GoogleReviews />
