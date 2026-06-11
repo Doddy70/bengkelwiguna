@@ -1,1 +1,0 @@
-{"input":"bootstrap agent","expected":{"agent":"onboard-agent","version":"v1","steps":["establish_conventions","create_structure","add_tools","add_tests"],"result":{"status":"ok","notes":"agent scaffolded"}}}

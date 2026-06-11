@@ -1,6 +1,38 @@
 {
+  "name": "exsit-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
   "dependencies": {
-    "@openai/agents": "^0.11.6",
-    "zod": "^4.4.3"
+    "@iconify/react": "^6.0.2",
+    "@nextui-org/react": "^2.6.11",
+    "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide-extension-auto-scroll": "^0.5.3",
+    "aos": "^2.3.4",
+    "framer-motion": "^12.40.0",
+    "glightbox": "^3.3.1",
+    "lucide-react": "^0.543.0",
+    "next": "^15.5.4",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-feather": "^2.0.10",
+    "sass": "^1.91.0",
+    "web-vitals": "^4.2.4"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "^15.5.4",
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
