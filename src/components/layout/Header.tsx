@@ -29,8 +29,8 @@ const Header = ({
     position = "absolute",
     btnlinkColor = "text-[#1a3567]",
     theme = "header-light",
-    logo = "/images/logo/logo-panjang.png",
-    logoWidth = 220,
+    logo = "/images/logo/logo-square.avif",
+    logoWidth = 60,
     showSearch = true
 }: HeaderProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -80,8 +80,8 @@ const Header = ({
                                 <Image
                                     src={logo}
                                     alt="Bengkel Wiguna Logo"
-                                    width={logoWidth}
-                                    height={50}
+                                    width={currentLogoWidth}
+                                    height={currentLogoWidth}
                                     priority
                                     className='h-auto w-full'
                                 />

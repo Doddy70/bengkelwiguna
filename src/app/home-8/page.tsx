@@ -2,7 +2,7 @@
 
 
 import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import FooterModern from '@/components/heroui/footer-modern';
 import BrandCarousel from "@/components/ui/BrandCarousel";
 
 import PageTitle3 from "@/components/ui/PageTitle3";

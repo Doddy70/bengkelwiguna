@@ -10,7 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Filter, X } from "lucide-react";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import FooterModern from "@/components/heroui/footer-modern";
 import Button from "@/components/ui/Button";
 import { Service, Promosi, PaketService } from "@/types/wordpress";
 
@@ -292,7 +292,7 @@ export default function ServicesArchiveClient({ services }: ServicesArchiveProps
         </div>
       </div>
 
-      <Footer />
+      <FooterModern />
     </>
   )
 }

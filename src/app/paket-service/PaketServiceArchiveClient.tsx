@@ -9,7 +9,7 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Filter, X, Clock, Shield, Star, Package } from "lucide-react";
-import Footer from "@/components/layout/Footer";
+import FooterModern from "@/components/heroui/footer-modern";
 import { PaketService } from "@/types/wordpress";
 
 interface PaketCardProps {
@@ -326,7 +326,7 @@ export default function PaketServiceArchiveClient({ pakets }: PaketServiceArchiv
         </div>
       </div>
 
-      <Footer />
+      <FooterModern />
     </>
   )
 }

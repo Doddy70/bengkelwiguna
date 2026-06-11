@@ -1,7 +1,7 @@
 "use client";
 
 import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import FooterModern from '@/components/heroui/footer-modern';
 
 import CtaSection from "@/components/layout/CtaSection";
 import PageTitle3 from '@/components/ui/PageTitle3';

@@ -9,7 +9,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Phone, Clock, Package, CheckCircle, ArrowRight, Star, Shield } from 'lucide-react'
 import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import FooterModern from '@/components/heroui/footer-modern'
 import Button from '@/components/ui/Button'
 import { getPaketServiceBySlug, getAllPaketService, stripHtml, formatDate } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
@@ -343,7 +343,7 @@ export default async function SinglePaketServicePage({ params }: { params: Promi
         </svg>
       </a>
 
-      <Footer />
+      <FooterModern />
     </>
   )
 }

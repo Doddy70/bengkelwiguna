@@ -6,7 +6,7 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import FooterModern from '@/components/heroui/footer-modern'
 import PageTitle3 from '@/components/ui/PageTitle3'
 import Button from '@/components/ui/Button'
 import Accordion from '@/components/ui/Accordion'
@@ -260,7 +260,7 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
         </section>
       )}
 
-      <Footer />
+      <FooterModern />
     </>
   )
 }

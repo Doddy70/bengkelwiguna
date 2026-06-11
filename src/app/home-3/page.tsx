@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import FooterModern from '@/components/heroui/footer-modern';
 
 import PageTitle3 from "@/components/ui/PageTitle3";
 import { Command, Database, HelpCircle, Linkedin, Package, Twitch, Twitter, Zap } from "react-feather";

@@ -4,7 +4,7 @@
  */
 
 import Header from '@/components/layout/Header'
-import Footer from '@/components/layout/Footer'
+import FooterModern from '@/components/heroui/footer-modern'
 import BlogArchiveClient from './BlogArchiveClient'
 import { getAllPosts, getAllPostsFlat } from '@/lib/wordpress'
 
@@ -39,7 +39,7 @@ export default async function BlogPage() {
         theme="header-dark"
       />
       <BlogArchiveClient posts={posts} categories={categories} />
-      <Footer />
+      <FooterModern />
     </>
   )
 }

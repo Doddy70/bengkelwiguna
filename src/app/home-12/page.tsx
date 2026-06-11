@@ -2,7 +2,7 @@
 import { blogPosts } from "@/const/blogData";
 
 import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
+import FooterModern from '@/components/heroui/footer-modern';
 
 import PageTitle3 from "@/components/ui/PageTitle3";
 import { Command, Linkedin, Twitch, Twitter } from "react-feather";

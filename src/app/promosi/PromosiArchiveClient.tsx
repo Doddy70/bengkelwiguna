@@ -9,7 +9,7 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Filter, X } from "lucide-react";
-import Footer from "@/components/layout/Footer";
+import FooterModern from "@/components/heroui/footer-modern";
 import { Promosi } from "@/types/wordpress";
 
 interface PromoCardProps {
@@ -291,7 +291,7 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
         </div>
       </div>
 
-      <Footer />
+      <FooterModern />
     </>
   )
 }
