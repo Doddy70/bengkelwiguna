@@ -73,6 +73,9 @@ function getCircuitBreaker(endpoint: string): CircuitBreakerState {
  * Check if circuit breaker allows the request
  */
 function isCircuitBreakerOpen(endpoint: string): boolean {
+  // DISABLE Circuit Breaker in Development to prevent blocking debugging
+  if (process.env.NODE_ENV === 'development') return false
+
   const cb = getCircuitBreaker(endpoint)
 
   if (cb.state === 'CLOSED') return false
