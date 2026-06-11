@@ -1,62 +1,100 @@
-// app/terms/page.tsx
 import Link from "next/link";
-import PageTitle from "@/components/ui/PageTitle";
 
 export const metadata = {
-    title: 'Privacy policy - Exsit Next',
-    description: 'Read the terms and conditions for using Exsit Next template.',
+    title: 'Privacy Policy | Bengkel Wiguna',
+    description: 'Kebijakan Privasi Bengkel Wiguna - Bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda.',
 };
 
 export default function PrivacyPage() {
     return (
         <>
-            {/* Page Title */}
-            <PageTitle
-                title="Privacy policy"
-                subtitle="Genuine feedback from those who know us best."
-            />
-            <section className="term-wrap font-dm lg:pb-24 pb-12">
+            {/* Branded Header Section */}
+            <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">
+                <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 relative z-10">
+                    <div className="max-w-3xl">
+                        <span className="inline-block bg-brand-gold text-brand-blue px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 shadow-xl shadow-yellow-900/10">
+                            Legal & Privacy
+                        </span>
+                        <h1 className="text-4xl lg:text-7xl font-black text-gray-900 mb-6 italic tracking-tighter uppercase leading-[0.85]">
+                            Privacy <br /><span className="text-brand-blue">Policy</span>
+                        </h1>
+                        <p className="text-gray-800 font-bold text-lg lg:text-xl max-w-xl leading-relaxed">
+                            Terakhir diperbarui: 29 April 2025
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section className="term-wrap font-dm lg:pb-24 pb-12 bg-white dark:bg-gray-950">
                 <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pt-24 pt-20">
-                    <div className="lg:w-7/12 mx-auto">
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold">1. Introduction</h2>
-                        <ul className="list-disc py-6 pl-5 mb-3 text-gray-800 font-medium text-[17px] leading-7">
-                            <li><strong>Personal Information:</strong> Name, email address, phone number, etc. (only if provided via forms)</li>
-                            <li><strong>Usage Data:</strong> IP address, browser type, device information, and pages visited</li>
-                            <li><strong>Cookies:</strong> We may use cookies to enhance your experience on our site</li>
+                    <div className="lg:w-8/12 mx-auto prose prose-lg dark:prose-invert 
+                        prose-h2:text-3xl prose-h2:font-black prose-h2:italic prose-h2:uppercase prose-h2:tracking-tighter prose-h2:text-gray-900 prose-h2:dark:text-white prose-h2:mb-6
+                        prose-p:text-gray-700 prose-p:dark:text-gray-300 prose-p:font-medium prose-p:leading-relaxed prose-p:mb-8
+                        prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-8
+                        prose-li:text-gray-700 prose-li:dark:text-gray-300 prose-li:font-medium prose-li:mb-2">
+                        
+                        <p><strong>Selamat datang di Bengkel Wiguna!</strong></p>
+                        <p>Bengkel Wiguna (&ldquo;kami&rdquo;, &ldquo;kita&rdquo;, atau &ldquo;milik kami&rdquo;) menghargai privasi Anda. Halaman Kebijakan Privasi ini menjelaskan bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda saat Anda menggunakan layanan kami, mengunjungi bengkel kami, atau berinteraksi melalui situs web dan kontak resmi kami.</p>
+
+                        <h2>Informasi yang Kami Kumpulkan</h2>
+                        <p>Kami dapat mengumpulkan informasi pribadi dari Anda ketika Anda:</p>
+                        <ul>
+                            <li>Menghubungi kami melalui email, telepon, atau formulir di website.</li>
+                            <li>Membuat janji atau permintaan layanan.</li>
+                            <li>Memberikan umpan balik, ulasan, atau pertanyaan terkait layanan kami.</li>
                         </ul>
-                        <p className="mb-8 text-gray-800 font-medium text-[17px] leading-7">Fintech startups are rising to meet these expectations by offering tools that go beyond traditional banking. Going through this checklist will ensure that your content covers multiple angles, making it richer and more inclusive. This approach prevents your content from feeling one-dimensional or narrowly focused—allowing it to resonate with a broader and more diverse audience.</p>
-                        
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold">2. How We Use Your Information</h2>
-                        <ul className="mb-8 list-disc py-6 pl-5 mb-3 text-gray-800 font-medium text-[17px] leading-7">
-                            <li>To respond to inquiries or customer service requests</li>
-                            <li>To improve our website functionality and user experience</li>
-                            <li>To send occasional updates, if you opt-in to our mailing list</li>
-                        </ul> 
-                        
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4">3. Sharing Your Information</h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">We do not sell, trade, or share your personal information with third parties except as necessary to provide our services or comply with the law.</p>
-                        <p className="mb-8 text-gray-800 font-medium text-[17px] leading-7">Third parties who perform services on your behalf (e.g., hosting, payment processing, analytics, email delivery, customer support). Clearly state that these providers are typically bound by confidentiality agreements and only use data for specified purposes.</p>
-                        
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4">4. Third-Party Services</h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">We may use third-party tools like Google Analytics or email providers. These tools may collect data in accordance with their own privacy policies.</p>
-                        <p className="mb-8 text-gray-800 font-medium text-[17px] leading-7">If you are involved in a merger, acquisition, or asset sale, explain that data may be transferred as part of that transaction. Explain that you may share data that cannot reasonably identify an individual for various purposes (e.g., research, marketing, reporting).</p>
-                        
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4">5. Your Rights</h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">You can request to review, update, or delete your personal data by contacting us directly at <Link href="mailto:support@uitheme.net" className="text-blue-600 underline">support@uitheme.net</Link>.</p>
-                        <ul className="list-disc py-6 pl-5 mb-3 text-gray-800 font-medium text-[17px] leading-7">
-                            <li>Complying with applicable laws, regulations, and legal processes.</li>
-                            <li>Responding to lawful requests from public authorities.</li>
-                            <li>Enforcing your terms and conditions.</li>
-                        </ul> 
-                        
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4">6. Data Security</h2>
-                        <p className="mb-8 text-gray-800 font-medium text-[17px] leading-7">We implement reasonable security measures to protect your data from unauthorized access, disclosure, or misuse. Describe the security measures you implement to protect data (e.g., encryption, access controls, firewalls, secure servers, regular security audits, employee training)</p>
-                        
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4">7. Changes to This Policy</h2>
-                        <p className="mb-8 text-gray-800 font-medium text-[17px] leading-7">We reserve the right to update this Privacy Policy at any time. Any changes will be posted on this page with a new effective date. Acknowledge that no method of transmission over the internet or electronic storage is 100% secure, and while you strive to protect data, you cannot guarantee absolute security.</p>
-                        
-                        <h2 className="text-2xl md:text-3xl text-gray-900 font-semibold mb-4">8. Contact Us</h2>
-                        <p className="text-gray-800 font-medium text-[17px] leading-7">If you have any questions about this Privacy Policy, please contact us at <Link href="mailto:support@uitheme.net" className="text-blue-600 underline">support@uitheme.net</Link>. If you do collect data from minors (only where legally permissible and with parental consent), describe the process.</p>
+                        <p>Informasi pribadi yang dapat kami kumpulkan meliputi:</p>
+                        <ul>
+                            <li>Nama lengkap</li>
+                            <li>Alamat email</li>
+                            <li>Nomor telepon</li>
+                            <li>Informasi kendaraan (seperti merek, model, tahun produksi)</li>
+                            <li>Informasi lain yang Anda berikan secara sukarela</li>
+                        </ul>
+
+                        <h2>Bagaimana Kami Menggunakan Informasi Anda</h2>
+                        <p>Informasi yang kami kumpulkan dapat digunakan untuk:</p>
+                        <ul>
+                            <li>Memberikan, mengelola, dan meningkatkan layanan perbaikan dan perawatan kendaraan Anda.</li>
+                            <li>Menghubungi Anda untuk konfirmasi layanan, penjadwalan, atau tindak lanjut.</li>
+                            <li>Menjawab pertanyaan atau keluhan yang Anda ajukan.</li>
+                            <li>Memberikan informasi terkait promosi, layanan baru, atau penawaran khusus (dengan persetujuan Anda).</li>
+                        </ul>
+
+                        <h2>Perlindungan Informasi</h2>
+                        <p>Kami berkomitmen untuk melindungi informasi pribadi Anda. Kami menerapkan berbagai langkah keamanan teknis dan administratif untuk mencegah akses tidak sah, pengungkapan, perubahan, atau penghancuran informasi pribadi Anda.</p>
+
+                        <h2>Berbagi Informasi</h2>
+                        <p>Bengkel Wiguna tidak akan menjual, menyewakan, atau membagikan informasi pribadi Anda kepada pihak ketiga tanpa persetujuan Anda, kecuali jika diwajibkan oleh hukum atau untuk keperluan operasional layanan (misalnya, dengan mitra pihak ketiga yang membantu kami menyediakan layanan).</p>
+
+                        <h2>Hak Anda</h2>
+                        <p>Anda memiliki hak untuk:</p>
+                        <ul>
+                            <li>Meminta salinan informasi pribadi Anda yang kami simpan.</li>
+                            <li>Meminta perbaikan atas informasi yang tidak akurat.</li>
+                            <li>Meminta penghapusan informasi pribadi Anda, kecuali ada keperluan hukum atau operasional yang mengharuskan kami menyimpannya.</li>
+                        </ul>
+                        <p>Untuk permintaan tersebut, Anda dapat menghubungi kami melalui kontak di bawah ini.</p>
+
+                        <h2>Perubahan terhadap Kebijakan Privasi Ini</h2>
+                        <p>Kami dapat memperbarui Kebijakan Privasi ini dari waktu ke waktu. Perubahan akan kami informasikan melalui situs web kami atau media komunikasi resmi lainnya. Harap tinjau halaman ini secara berkala untuk mengetahui pembaruan terbaru.</p>
+
+                        <h2>Kontak Kami</h2>
+                        <p>Jika Anda memiliki pertanyaan atau permintaan terkait Kebijakan Privasi ini, silakan hubungi kami:</p>
+                        <div className="bg-gray-50 dark:bg-gray-900 p-8 rounded-3xl border border-gray-100 dark:border-gray-800 not-prose">
+                            <p className="text-xl font-black text-brand-blue dark:text-brand-gold italic tracking-tighter uppercase mb-2">Bengkel Wiguna</p>
+                            <p className="text-gray-700 dark:text-gray-300 font-bold mb-4 leading-relaxed">
+                                Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423
+                            </p>
+                            <div className="flex flex-col gap-2">
+                                <Link href="mailto:info@bengkelwiguna.com" className="text-brand-blue dark:text-blue-400 font-bold hover:underline">
+                                    Email: info@bengkelwiguna.com
+                                </Link>
+                                <Link href="tel:087817773888" className="text-brand-blue dark:text-blue-400 font-bold hover:underline">
+                                    Telepon: 0878-1777-3888
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
