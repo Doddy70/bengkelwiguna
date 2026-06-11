@@ -29,8 +29,8 @@ const Header = ({
     position = "absolute",
     btnlinkColor = "text-[#1a3567]",
     theme = "header-light",
-    logo = "/images/logo/logo.png",
-    logoWidth = 220,
+    logo = "/images/logo/logo-panjang.png",
+    logoWidth = 280,
     showSearch = true
 }: HeaderProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -78,9 +78,9 @@ const Header = ({
                         <Link href="/" className="flex items-center lg:py-3 py-2 mr-5">
                             <div style={{ width: currentLogoWidth }} className="transition-all duration-300">
                                 <Image
-                                    src="/images/logo/logo-panjang.png"
+                                    src={logo}
                                     alt="Bengkel Wiguna Logo"
-                                    width={280}
+                                    width={logoWidth}
                                     height={60}
                                     priority
                                     className='h-auto w-full'

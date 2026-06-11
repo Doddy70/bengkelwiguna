@@ -151,15 +151,3 @@ export async function generateMetadata({ params }: BlogPageProps) {
     return generateMetadataFromSEO(seo);
 }
 
-/**
- * Generate Metadata for SEO
- */
-export async function generateMetadata({ params }: BlogPageProps) {
-    const { slug } = await params;
-    const post = await getPostBySlug(slug);
-    
-    if (!post) return { title: "Post Not Found" };
-    
-    const seo = extractRankMathSEO(post);
-    return generateMetadataFromSEO(seo);
-}
