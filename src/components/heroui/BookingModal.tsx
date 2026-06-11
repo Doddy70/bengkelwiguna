@@ -79,8 +79,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   autoFocus
                   name="nama-depan"
                   label="Nama Lengkap"
-                  labelPlacement="outside"
-                  placeholder="Masukkan nama Anda"
                   variant="bordered"
                   isInvalid={hasError('nama-depan')}
                   errorMessage={getError('nama-depan')}
@@ -89,8 +87,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="telepon"
                   label="Nomer Tlp. / Whatsapp"
-                  labelPlacement="outside"
-                  placeholder="0812xxxxxx"
                   type="tel"
                   variant="bordered"
                   isRequired
@@ -101,8 +97,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="merek-mobil"
                   label="Merek Mobil"
-                  labelPlacement="outside"
-                  placeholder="Contoh: Toyota Avanza"
                   variant="bordered"
                   isRequired
                   isInvalid={hasError('merek-mobil')}
@@ -112,8 +106,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="tahun-mobil"
                   label="Tahun Mobil"
-                  labelPlacement="outside"
-                  placeholder="Contoh: 2018"
                   variant="bordered"
                   isRequired
                   isInvalid={hasError('tahun-mobil')}
@@ -123,8 +115,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="nomer-polisi"
                   label="No. Polisi"
-                  labelPlacement="outside"
-                  placeholder="Contoh: B 1234 ABC"
                   variant="bordered"
                   isRequired
                   isInvalid={hasError('nomer-polisi')}
@@ -134,7 +124,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Select 
                   name="pilihan-servis"
                   label="Pilihan Treatment / Servis" 
-                  labelPlacement="outside"
                   variant="bordered"
                   defaultSelectedKeys={serviceName ? [serviceName] : []}
                 >
@@ -163,11 +152,9 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="tanggal"
                   label="Tanggal Kedatangan"
-                  labelPlacement="outside"
                   type="date"
                   variant="bordered"
                   isRequired
-                  placeholder=""
                   isInvalid={hasError('tanggal')}
                   errorMessage={getError('tanggal')}
                 />
@@ -175,7 +162,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Select 
                   name="jam-datang"
                   label="Jam Kedatangan" 
-                  labelPlacement="outside"
                   variant="bordered"
                 >
                   <SelectItem key="08.00 WIB" value="08.00 WIB">08.00 WIB</SelectItem>
@@ -195,8 +181,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Textarea
                   name="keluhan-kendaraan"
                   label="Keluhan Kendaraan"
-                  labelPlacement="outside"
-                  placeholder="Tulis masalah / kendala kendaraan Anda..."
                   variant="bordered"
                   isInvalid={hasError('keluhan-kendaraan')}
                   errorMessage={getError('keluhan-kendaraan')}
