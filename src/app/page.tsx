@@ -11,6 +11,7 @@ import {
   getAllPromosi, 
   getAllPosts,
   getPageBySlug,
+  getHomepageFaqs,
   stripHtml,
   formatDate
 } from '@/lib/wordpress'
@@ -78,17 +79,19 @@ export async function generateMetadata() {
 
 export default async function HomePage() {
   // Parallel Fetching
-  const [services, promosi, blogResult] = await Promise.all([
+  const [services, promosi, blogResult, dynamicFaqs] = await Promise.all([
     getAllServices(),
     getAllPromosi(),
     getAllPosts(1, 3), // Fetch 3 latest posts
+    getHomepageFaqs()
   ])
 
   if (process.env.NODE_ENV === 'development') {
     console.log('[HomePage] Data loaded:', {
         servicesCount: Array.isArray(services) ? services.length : 'null',
         promosiCount: Array.isArray(promosi) ? promosi.length : 'null',
-        postsCount: blogResult?.posts?.length || 0
+        postsCount: blogResult?.posts?.length || 0,
+        faqsCount: dynamicFaqs?.length || 0
     })
   }
 
@@ -96,11 +99,16 @@ export default async function HomePage() {
   const promosiList = Array.isArray(promosi) ? promosi.slice(0, 3) : []
   const postsList = blogResult?.posts || []
 
+  // Reconcile FAQ format (WP: {q, a} vs UI: {question, answer})
+  const faqItems = dynamicFaqs.length > 0 
+    ? dynamicFaqs.map(f => ({ question: f.q, answer: f.a }))
+    : defaultFaqs;
+
   return (
     <div className="homepage-final-sequence overflow-x-hidden relative bg-white">
       <JsonLd data={generateWebsiteSchema()} />
       <JsonLd data={generateLocalBusinessSchema()} />
-      <JsonLd data={generateFAQSchema(defaultFaqs.map(f => ({ q: f.question, a: f.answer })))} />
+      <JsonLd data={generateFAQSchema(faqItems.map(f => ({ q: f.question, a: f.answer })))} />
       
       {/* HOMEPAGE HEADER (Fixed, Transparent with blur) */}
       <Header
@@ -216,7 +224,7 @@ export default async function HomePage() {
       </section>
 
       {/* SECTION 7: FAQ (GEO Optimization) */}
-      <FaqSectionHomepage />
+      <FaqSectionHomepage items={faqItems} />
 
       {/* CTA FINAL */}
       <section className="py-24 bg-brand-blue text-white relative overflow-hidden">

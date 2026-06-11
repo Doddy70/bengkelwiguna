@@ -426,6 +426,46 @@ export async function getPaketServiceBySlug(slug: string): Promise<PaketService 
 }
 
 // ============================================
+// CUSTOM ENDPOINTS (BW Plugin)
+// ============================================
+
+/**
+ * Fetches homepage settings from BW Headless CMS
+ * Used for dynamic sections like Hero, FAQ, etc.
+ */
+export async function getHomepageSettings(): Promise<any> {
+  return bwFetch('/homepage-settings', {
+    next: { revalidate: 60, tags: ['settings', 'homepage'] }
+  })
+}
+
+/**
+ * Helper to fetch and parse homepage FAQs
+ */
+export async function getHomepageFaqs(): Promise<FaqItem[]> {
+  try {
+    const settings = await getHomepageSettings();
+    if (settings && settings.faq && Array.isArray(settings.faq)) {
+      return settings.faq;
+    }
+    // Fallback if structured as a JSON string
+    if (settings && settings.faq && typeof settings.faq === 'string') {
+      return parseFaqField(settings.faq);
+    }
+  } catch (error) {
+    console.error('[WP] Error fetching homepage FAQs:', error);
+  }
+  return [];
+}
+
+/**
+ * Fetch khusus untuk BW custom endpoints (/bw/v1/)
+ */
+export async function bwFetch<T>(endpoint: string, options: any = {}): Promise<T | null> {
+  return apiFetch<T>(endpoint, 'bw', options?.next?.revalidate ?? REVALIDATE_LIST)
+}
+
+// ============================================
 // LAYANAN SPESIALIS (Custom Post Type with FAQ)
 // ============================================
 
