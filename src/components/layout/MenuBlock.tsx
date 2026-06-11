@@ -187,7 +187,7 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
     return (
         <>
             {/* Desktop Menu */}
-            <ul className="hidden lg:flex gap-6 font-semibold text-[17px] main-menu">
+            <ul className="hidden lg:flex gap-4 xl:gap-5 font-semibold text-[16px] xl:text-[17px] main-menu">
                 {menuItems.map((item, index) => {
                     if (item.megaMenu) {
                         return (

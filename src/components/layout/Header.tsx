@@ -30,7 +30,7 @@ const Header = ({
     btnlinkColor = "text-[#1a3567]",
     theme = "header-light",
     logo = "/images/logo/logo-panjang.png",
-    logoWidth = 280,
+    logoWidth = 220,
     showSearch = true
 }: HeaderProps) => {
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -75,13 +75,13 @@ const Header = ({
                     <nav className="flex items-center justify-between w-full relative">
 
                         {/* Logo - Always same size, no shrink */}
-                        <Link href="/" className="flex items-center lg:py-3 py-2 mr-5">
+                        <Link href="/" className="flex items-center lg:py-3 py-2 mr-5 flex-shrink-0">
                             <div style={{ width: currentLogoWidth }} className="transition-all duration-300">
                                 <Image
                                     src={logo}
                                     alt="Bengkel Wiguna Logo"
                                     width={logoWidth}
-                                    height={60}
+                                    height={50}
                                     priority
                                     className='h-auto w-full'
                                 />
@@ -97,17 +97,19 @@ const Header = ({
                         )}
 
                         {/* MenuBlock handles both desktop and mobile */}
-                        <MenuBlock
-                            btnColor={btnColor}
-                            btnlinkColor="text-gray-900"
-                            logo={logo}
-                            mobileOpen={mobileOpen}
-                            toggleMobileMenu={toggleMobileMenu}
-                            dynamicItems={menuItems}
-                        />
+                        <div className="flex-grow flex justify-center">
+                            <MenuBlock
+                                btnColor={btnColor}
+                                btnlinkColor="text-gray-900"
+                                logo={logo}
+                                mobileOpen={mobileOpen}
+                                toggleMobileMenu={toggleMobileMenu}
+                                dynamicItems={menuItems}
+                            />
+                        </div>
 
                         {/* Right Icons */}
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
                             {/* Search Button */}
                             {showSearch && <SearchBox />}
 
