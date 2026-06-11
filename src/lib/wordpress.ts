@@ -24,8 +24,8 @@ const WP_API_BASE = `${WORDPRESS_URL}/wp-json/wp/v2`
 const BW_API_BASE = `${WORDPRESS_URL}/wp-json/bw/v1`
 
 // Cache duration (Optimized: 1 hour default, purged on-demand via BW plugin)
-const REVALIDATE_LIST = 3600
-const REVALIDATE_SINGLE = 3600
+const REVALIDATE_LIST = process.env.NODE_ENV === 'development' ? 0 : 3600
+const REVALIDATE_SINGLE = process.env.NODE_ENV === 'development' ? 0 : 3600
 
 // ============================================
 // RESILIENCE CONFIGURATION
