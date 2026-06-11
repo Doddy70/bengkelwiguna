@@ -1,0 +1,83 @@
+[
+    {
+        "id": 1,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 1",
+        "width": 110,
+        "height": 30,
+        "delay": 100
+    },
+    {
+        "id": 2,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 2",
+        "width": 110,
+        "height": 30,
+        "delay": 200
+    },
+    {
+        "id": 3,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 3",
+        "width": 110,
+        "height": 30,
+        "delay": 300
+    },
+    {
+        "id": 4,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 4",
+        "width": 110,
+        "height": 30,
+        "delay": 400
+    },
+    {
+        "id": 5,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 5",
+        "width": 110,
+        "height": 30,
+        "delay": 500
+    },
+    {
+        "id": 6,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 6",
+        "width": 110,
+        "height": 30,
+        "delay": 100
+    },
+    {
+        "id": 7,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 7",
+        "width": 110,
+        "height": 30,
+        "delay": 200
+    },
+    {
+        "id": 8,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 8",
+        "width": 110,
+        "height": 30,
+        "delay": 300
+    },
+    {
+        "id": 9,
+        "light": "/images/brand.svg",
+        "dark": "/images/brand-w.svg",
+        "alt": "brand 9",
+        "width": 110,
+        "height": 30,
+        "delay": 400
+    }
+]

@@ -1,0 +1,20 @@
+[
+    {
+        "brand": "/images/brand.svg",
+        "brandWidth": 110,
+        "brandHeight": 30,
+        "text": "Incredible experience from start to finish. The team is responsive, professional, and genuinely cares about customer satisfaction. A brand I can truly rely on. ",
+        "avatar": "/images/avatars/user.png",
+        "name": "Goria Coast",
+        "role": "Founder and CEO of Exsit"
+    },
+    {
+        "brand": "/images/brand.svg",
+        "brandWidth": 110,
+        "brandHeight": 30,
+        "text": "Being a member has real benefits. I always feel heard, supported, and appreciated. The team is responsive, professional, and genuinely cares about customer satisfaction.",
+        "avatar": "/images/avatars/user.png",
+        "name": "Emily Grace",
+        "role": "Founder and CEO of Exsit"
+    }
+]

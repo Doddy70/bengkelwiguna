@@ -1,54 +1,54 @@
 [
     {
-        "id": "diagnosa",
-        "label": "Diagnosa Gratis",
-        "icon": "Search",
-        "image": "/images/service/service-tuneup.svg",
-        "heading": "Cek Kondisi Mobil Anda Tanpa Biaya",
-        "description": "Kami memberikan layanan pengecekan awal gratis untuk memastikan masalah pada kendaraan Anda terdeteksi dengan tepat.",
+        "id": "service-oli",
+        "label": "Service & Oli",
+        "icon": "Droplet",
+        "image": "/images/tabs/Service-oli.jpg.avif",
+        "heading": "Ganti Oli & Service Berkala",
+        "description": "Perawatan rutin untuk memastikan mesin tetap prima. Kami menggunakan oli berkualitas tinggi sesuai spesifikasi pabrikan.",
         "points": [
-            "Pengecekan 21 titik standar",
-            "Konsultasi langsung dengan mekanik",
-            "Estimasi biaya di awal"
+            "Ganti Oli Mesin & Filter",
+            "Pengecekan Cairan Kendaraan",
+            "Tune Up Standar Pabrik"
         ]
     },
     {
-        "id": "transparansi",
-        "label": "Transparansi",
-        "icon": "Shield",
-        "image": "/images/service/service-oli.svg",
-        "heading": "No Drama, No Bongkar Tanpa Izin",
-        "description": "Prinsip utama kami adalah kejujuran. Tidak ada biaya tersembunyi atau penggantian part tanpa persetujuan Anda.",
+        "id": "servis-ac",
+        "label": "Servis AC",
+        "icon": "Wind",
+        "image": "/images/tabs/Perawatan-AC.jpg.avif",
+        "heading": "Perawatan AC Mobil Profesional",
+        "description": "Nikmati udara kabin yang sejuk dan bersih. Kami melayani pengisian freon, pembersihan evaporator, hingga ganti oli kompresor.",
         "points": [
-            "Penjelasan detail kerusakan",
-            "Persetujuan sebelum pengerjaan",
-            "Part lama dikembalikan ke user"
+            "Isi Freon & Cek Kebocoran",
+            "Cleaning Evaporator Tanpa Bongkar",
+            "Oli Kompresor Berkualitas"
         ]
     },
     {
-        "id": "teknologi",
-        "label": "Teknologi",
-        "icon": "Cpu",
-        "image": "/images/service/service-ac.svg",
-        "heading": "Peralatan Modern & Presisi",
-        "description": "Menggunakan scanner komputer dan alat spooring 3D terbaru untuk hasil servis yang akurat sesuai standar pabrikan.",
+        "id": "spooring",
+        "label": "Spooring 3D",
+        "icon": "Crosshair",
+        "image": "/images/tabs/Spooring-Balancing.jpg.avif",
+        "heading": "Spooring 3D & Balancing",
+        "description": "Menjaga stabilitas kemudi dan memperpanjang umur ban. Menggunakan alat 3D terbaru untuk hasil yang sangat presisi.",
         "points": [
-            "Scanner Engine OBD2 terbaru",
-            "Spooring 3D High Precision",
-            "Alat Flushing AC otomatis"
+            "Adjustment Sudut Camber/Caster",
+            "Balancing Roda High Speed",
+            "Cek Tekanan & Kondisi Ban"
         ]
     },
     {
-        "id": "garansi",
-        "label": "Garansi",
-        "icon": "Award",
-        "image": "/images/service/service-kaki.svg",
-        "heading": "Jaminan Kualitas Pekerjaan",
-        "description": "Setiap pengerjaan di Bengkel Wiguna disertai dengan garansi resmi untuk ketenangan pikiran Anda.",
+        "id": "kaki-kaki",
+        "label": "Kaki-Kaki",
+        "icon": "Wrench",
+        "image": "/images/tabs/Cek-Kaki-Kaki-1.jpg.avif",
+        "heading": "Servis Kaki-Kaki & Sistem Rem",
+        "description": "Pastikan kenyamanan dan keamanan berkendara Anda dengan sistem kaki-kaki yang kokoh dan rem yang pakem.",
         "points": [
-            "Garansi pengerjaan s/d 1 bulan",
-            "Jaminan keaslian suku cadang",
-            "After-sales service responsif"
+            "Ganti Shockbreaker & Bushing",
+            "Servis Rem Depan & Belakang",
+            "Cek Rack Steer & Tie Rod"
         ]
     }
 ]

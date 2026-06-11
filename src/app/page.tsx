@@ -158,9 +158,9 @@ export default async function HomePage() {
         <div className="max-w-screen-xl mx-auto boxed-layout-gap">
             <div className="text-center mb-16">
                 <PageTitle3
-                    badgeText="💎 KEUNGGULAN KAMI"
-                    title="Mengapa Pilih Bengkel Wiguna?"
-                    subtitle="Kami menggabungkan kejujuran tradisional dengan teknologi modern untuk hasil terbaik."
+                    badgeText="💎 ONE STOP SERVICE"
+                    title="Solusi Lengkap untuk Kendaraan Anda"
+                    subtitle="Bengkel Wiguna hadir sebagai solusi lengkap untuk semua jenis kendaraan, mulai dari mobil pribadi, niaga, hingga kendaraan operasional perusahaan."
                     widthClass="w-full"
                     alignment="center"
                     padding="pb-0"
