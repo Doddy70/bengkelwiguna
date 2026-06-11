@@ -8,7 +8,7 @@ import Link from 'next/link'
 import PageTitle3 from '@/components/ui/PageTitle3'
 import Button from '@/components/ui/Button'
 import ServiceSidebar from '@/components/ui/ServiceSidebar'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, CalendarCheck } from 'lucide-react'
 import BookingTrigger from '@/components/heroui/BookingTrigger'
 
 import { getServiceBySlug, getAllServices, stripHtml } from '@/lib/wordpress'
@@ -105,6 +105,25 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     dangerouslySetInnerHTML={{ __html: service.content?.rendered || service.content || '' }}
                 />
               </div>
+
+              {/* Dedicated Booking CTA Section */}
+              <div className="mt-16 p-8 lg:p-12 bg-gray-50 border border-gray-200 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm" data-aos="fade-up">
+                <div className="max-w-xl text-center md:text-left">
+                  <h3 className="text-2xl lg:text-3xl font-black italic uppercase tracking-tighter text-gray-900 mb-3">
+                    Siap Memperbaiki Kendaraan Anda?
+                  </h3>
+                  <p className="text-gray-600 font-medium">
+                    Jangan tunda perawatan! Booking layanan <span className="text-brand-blue font-bold">{title}</span> sekarang untuk mendapatkan jadwal yang sesuai dengan waktu Anda tanpa perlu antre lama.
+                  </p>
+                </div>
+                <div className="w-full md:w-auto shrink-0 flex justify-center">
+                   <BookingTrigger 
+                     serviceName={title} 
+                     buttonText="Booking Sekarang"
+                     className="py-4 px-10 bg-brand-blue hover:bg-blue-800 text-white font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-xl shadow-blue-900/20 flex items-center justify-center gap-3 group"
+                   />
+                </div>
+              </div>
               
               {/* FAQ Section */}
               <div className="mt-16 pt-10 border-t border-gray-100" data-aos="fade-up">
@@ -158,11 +177,9 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                                 className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
                             >
                                 <span className="text-xl">💬</span>
-                                Konsultasi Sekarang
+                                Konsultasi
                                 <span className="group-hover:translate-x-1 transition-transform">→</span>
                             </a>
-
-                            <BookingTrigger serviceName={title} />
                         </div>
                         
                         <p className="mt-4 text-[10px] text-white/40 uppercase font-bold tracking-widest">

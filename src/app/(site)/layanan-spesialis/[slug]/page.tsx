@@ -127,6 +127,25 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
                 />
               </div>
 
+              {/* Dedicated Booking CTA Section */}
+              <div className="mt-16 p-8 lg:p-12 bg-gray-50 border border-gray-200 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8 shadow-sm" data-aos="fade-up">
+                <div className="max-w-xl text-center md:text-left">
+                  <h3 className="text-2xl lg:text-3xl font-black italic uppercase tracking-tighter text-gray-900 mb-3">
+                    Perlu Penanganan Spesialis?
+                  </h3>
+                  <p className="text-gray-600 font-medium">
+                    Jadwalkan pengecekan mendalam untuk <span className="text-brand-blue font-bold">{title}</span>. Teknisi spesialis kami siap memberikan diagnosa akurat dan solusi tepat.
+                  </p>
+                </div>
+                <div className="w-full md:w-auto shrink-0 flex justify-center">
+                   <BookingTrigger 
+                     serviceName={title} 
+                     buttonText="Booking Sekarang"
+                     className="py-4 px-10 bg-brand-blue hover:bg-blue-800 text-white font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-xl shadow-blue-900/20 flex items-center justify-center gap-3 group"
+                   />
+                </div>
+              </div>
+
               {/* FAQ Section */}
               {faqData.length > 0 && (
                 <div className="mt-20" data-aos="fade-up">
@@ -191,10 +210,10 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
                         </div>
 
                         <h3 className="text-2xl font-black uppercase tracking-tighter italic mb-2">
-                            Konsultasi & Booking
+                            Konsultasi
                         </h3>
                         <p className="text-white/80 font-medium mb-8 text-sm leading-relaxed">
-                            Butuh diagnosa spesifik? Chat Minna sekarang untuk bantuan teknis, atau langsung booking jadwal Anda via form.
+                            Butuh diagnosa spesifik? Chat Minna sekarang untuk bantuan teknis dan estimasi biaya transparan.
                         </p>
 
                         <div className="w-full flex flex-col gap-3">
@@ -208,8 +227,6 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
                                 Tanya Teknisi
                                 <span className="group-hover:translate-x-1 transition-transform">→</span>
                             </a>
-                            
-                            <BookingTrigger serviceName={title} />
                         </div>
                     </div>
                 </div>
