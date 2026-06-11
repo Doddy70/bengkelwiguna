@@ -620,21 +620,23 @@ export function parseFaqField(faqJson: string | null): FaqItem[] {
  */
 export async function getNavigationMenu(menuLocation: string = 'main-menu'): Promise<NavMenu | null> {
   const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com'
-  // Use cache-busting timestamp to prevent browser caching stale menu
-  const timestamp = typeof window !== 'undefined' ? `?t=${Date.now()}` : '';
-  const url = `${WORDPRESS_URL}/wp-json/menus/v1/menus/${menuLocation}${timestamp}`
+  
+  // Use custom BW endpoint for better compatibility and dynamic control
+  // Backend provides /bw/v1/menu/{location}
+  const url = `${WORDPRESS_URL}/wp-json/bw/v1/menu/${menuLocation}`
 
   try {
     const response = await fetch(url, {
       next: { revalidate: REVALIDATE_LIST, tags: ['menus', `menu-${menuLocation}`] },
-      cache: 'no-store' // Ensure no caching in Next.js or browser
+      cache: 'no-store'
     })
 
     if (response.ok) {
-      return await response.json()
+      const data = await response.json();
+      return data;
     }
     
-    console.error(`[WP Menu] Error fetching menu: ${response.status}`)
+    console.error(`[WP Menu] Error fetching menu: ${response.status} from ${url}`)
     return null
   } catch (error) {
     console.error('[WP Menu] Network error:', error)
