@@ -3,7 +3,6 @@
  * Template: Shop Two with filters
  */
 
-import Header from '@/components/layout/Header'
 import PaketServiceArchiveClient from './PaketServiceArchiveClient'
 import { getAllPaketService } from '@/lib/wordpress'
 
@@ -19,13 +18,6 @@ export default async function PaketServicePage() {
   const paketList = Array.isArray(pakets) ? pakets : []
 
   return (
-    <>
-      <Header
-        position="fixed"
-        bgColor="bg-[#050b14]/80 backdrop-blur-xl border-b border-white/10"
-        theme="header-dark"
-      />
-      <PaketServiceArchiveClient pakets={paketList} />
-    </>
+    <PaketServiceArchiveClient pakets={paketList} />
   )
 }

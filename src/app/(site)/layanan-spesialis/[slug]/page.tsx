@@ -5,8 +5,6 @@
 
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import Header from '@/components/layout/Header'
-import FooterModern from '@/components/heroui/footer-modern'
 import PageTitle3 from '@/components/ui/PageTitle3'
 import Button from '@/components/ui/Button'
 import Accordion from '@/components/ui/Accordion'
@@ -58,7 +56,6 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
     <>
       <JsonLd data={generateServiceSchema(layanan)} />
       {faqData.length > 0 && <JsonLd data={generateFAQSchema(faqData)} />}
-      <Header />
 
       {/* Page Title */}
       <section className="pt-32 pb-12 bg-gradient-to-br from-[#050b14] to-[#224297] text-white">
@@ -259,8 +256,6 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
           </div>
         </section>
       )}
-
-      <FooterModern />
     </>
   )
 }

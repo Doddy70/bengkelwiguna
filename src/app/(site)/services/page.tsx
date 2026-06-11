@@ -3,7 +3,6 @@
  * Template: Shop Two with filters
  */
 
-import Header from '@/components/layout/Header'
 import ServicesArchiveClient from './ServicesArchiveClient'
 import { getAllServices } from '@/lib/wordpress'
 
@@ -19,13 +18,6 @@ export default async function ServicesPage() {
   const servicesList = Array.isArray(services) ? services : []
 
   return (
-    <>
-      <Header
-        position="fixed"
-        bgColor="bg-[#224297]/80 backdrop-blur-xl border-b border-white/10"
-        theme="header-dark"
-      />
-      <ServicesArchiveClient services={servicesList} />
-    </>
+    <ServicesArchiveClient services={servicesList} />
   )
 }

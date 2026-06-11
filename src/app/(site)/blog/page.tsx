@@ -3,8 +3,6 @@
  * Template: Blog Three adapted for WordPress posts
  */
 
-import Header from '@/components/layout/Header'
-import FooterModern from '@/components/heroui/footer-modern'
 import BlogArchiveClient from './BlogArchiveClient'
 import { getAllPosts, getAllPostsFlat } from '@/lib/wordpress'
 
@@ -32,14 +30,6 @@ export default async function BlogPage() {
   const categories = Array.from(categoriesSet).sort()
 
   return (
-    <>
-      <Header
-        position="fixed"
-        bgColor="bg-[#050b14]/80 backdrop-blur-xl border-b border-white/10"
-        theme="header-dark"
-      />
-      <BlogArchiveClient posts={posts} categories={categories} />
-      <FooterModern />
-    </>
+    <BlogArchiveClient posts={posts} categories={categories} />
   )
 }

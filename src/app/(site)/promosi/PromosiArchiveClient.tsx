@@ -9,7 +9,6 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Filter, X } from "lucide-react";
-import FooterModern from "@/components/heroui/footer-modern";
 import { Promosi } from "@/types/wordpress";
 
 interface PromoCardProps {
@@ -170,7 +169,7 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
             {/* Mobile Filter Toggle */}
             <button
               onClick={() => setShowFilters(!showFilters)}
-              className="lg:hidden fixed bottom-6 right-6 z-40 bg-gray-900 text-white p-4 rounded-full shadow-2xl flex items-center gap-2 font-medium"
+              className="lg:hidden fixed bottom-6 left-6 z-40 bg-gray-900 text-white p-4 rounded-full shadow-2xl flex items-center gap-2 font-medium"
             >
               <Filter size={20} />
               Filter
@@ -290,8 +289,6 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
           </div>
         </div>
       </div>
-
-      <FooterModern />
     </>
   )
 }

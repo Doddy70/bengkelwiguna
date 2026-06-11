@@ -3,8 +3,6 @@
  * Contact and location information
  */
 
-import Header from '@/components/layout/Header'
-import FooterModern from '@/components/heroui/footer-modern'
 import PageTitle3 from '@/components/ui/PageTitle3'
 
 export const revalidate = 86400
@@ -12,8 +10,6 @@ export const revalidate = 86400
 export default function LokasiPage() {
   return (
     <>
-      <Header />
-
       {/* Page Title */}
       <section className="pt-32 pb-12 bg-gradient-to-br from-[#050b14] to-[#224297] text-white">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
@@ -108,8 +104,6 @@ export default function LokasiPage() {
           </a>
         </div>
       </section>
-
-      <FooterModern />
     </>
   )
 }

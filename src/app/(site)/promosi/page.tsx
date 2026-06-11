@@ -3,7 +3,6 @@
  * Template: Shop Two with filters
  */
 
-import Header from '@/components/layout/Header'
 import PromosiArchiveClient from './PromosiArchiveClient'
 import { getAllPromosi } from '@/lib/wordpress'
 
@@ -19,13 +18,6 @@ export default async function PromosiPage() {
   const promosiList = Array.isArray(promosi) ? promosi : []
 
   return (
-    <>
-      <Header
-        position="fixed"
-        bgColor="bg-white/70 backdrop-blur-xl border-b border-white/30 shadow-lg"
-        theme="header-light"
-      />
-      <PromosiArchiveClient promos={promosiList} />
-    </>
+    <PromosiArchiveClient promos={promosiList} />
   )
 }

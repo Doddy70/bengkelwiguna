@@ -4,8 +4,6 @@
 
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import Header from '@/components/layout/Header'
-import FooterModern from '@/components/heroui/footer-modern'
 import PageTitle3 from '@/components/ui/PageTitle3'
 import Button from '@/components/ui/Button'
 
@@ -48,7 +46,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       <JsonLd data={generateServiceSchema(service)} />
-      <Header />
 
       {/* Page Title */}
       <section className="pt-32 pb-12 bg-gray-50">
@@ -141,8 +138,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
         </section>
       )}
-
-      <FooterModern />
     </>
   )
 }
