@@ -17,7 +17,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 position="fixed"
                 bgColor="bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm"
                 theme="header-light"
-                logoWidth={220}
             />
             
             <main className="flex-grow pt-[80px] lg:pt-[100px]">
