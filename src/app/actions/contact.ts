@@ -39,15 +39,18 @@ export async function subscribeNewsletter(prevState: any, formData: FormData): P
  * Requires the client to pass the target form ID as a hidden field.
  */
 export async function submitGenericForm(prevState: any, formData: FormData): Promise<CF7Response> {
-  const formId = formData.get('_wpcf7');
+  // CF7 Sangat ketat terhadap Meta Field. 
+  // Untuk form booking di website Anda, ID aslinya adalah 326
+  const formId = "326"; 
   
-  if (!formId || typeof formId !== 'string') {
-     return {
-      contact_form_id: 0,
-      status: 'validation_failed',
-      message: 'ID Formulir tidak valid.',
-    };
+  // Wajib menimpa/menambahkan hidden fields inti dari CF7 agar plugin addon (seperti FormyChat/WA) tereksekusi.
+  formData.set('_wpcf7', formId);
+  if (!formData.has('_wpcf7_unit_tag')) {
+    formData.set('_wpcf7_unit_tag', `wpcf7-f${formId}-p1-o1`);
   }
+  
+  // Clean up unused client-side fields that might confuse CF7
+  formData.delete('service-name'); 
 
   return submitContactForm(formId, formData);
 }
