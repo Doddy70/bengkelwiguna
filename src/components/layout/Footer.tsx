@@ -268,17 +268,17 @@ export default function Footer({ layout = "default", foretextColor = "text-white
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" aria-label="tiktok" className={`${layout === "modern" ? "text-gray-700 hover:bg-gray-700 bg-gray-200" : "text-white hover:bg-gray-700 bg-gray-800"} rounded-full w-12 h-12 text-center flex items-center justify-center transition`}>
-                                            <Twitter size={24} />
+                                        <a href="https://www.tiktok.com/@bengkel.wiguna.depok" aria-label="tiktok" target="_blank" rel="noopener noreferrer" className={`${layout === "modern" ? "text-gray-700 hover:bg-gray-700 bg-gray-200" : "text-white hover:bg-gray-700 bg-gray-800"} rounded-full w-12 h-12 text-center flex items-center justify-center transition`}>
+                                            <Icon icon="fa6-brands:tiktok" size={24} />
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" aria-label="twitter-x" className={`${layout === "modern" ? "text-gray-700 hover:bg-gray-700 bg-gray-200" : "text-white hover:bg-gray-700 bg-gray-800"} rounded-full w-12 h-12 text-center flex items-center justify-center transition`}>
+                                        <a href="https://www.youtube.com/@BengkelWiguna" aria-label="youtube" target="_blank" rel="noopener noreferrer" className={`${layout === "modern" ? "text-gray-700 hover:bg-gray-700 bg-gray-200" : "text-white hover:bg-gray-700 bg-gray-800"} rounded-full w-12 h-12 text-center flex items-center justify-center transition`}>
                                             <Youtube size={24} />
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" aria-label="yelp" className={`${layout === "modern" ? "text-gray-700 hover:bg-gray-700 bg-gray-200" : "text-white hover:bg-gray-700 bg-gray-800"} rounded-full w-12 h-12 text-center flex items-center justify-center transition`}>
+                                        <a href="https://web.facebook.com/Bengkel.WigunaBan" aria-label="facebook" target="_blank" rel="noopener noreferrer" className={`${layout === "modern" ? "text-gray-700 hover:bg-gray-700 bg-gray-200" : "text-white hover:bg-gray-700 bg-gray-800"} rounded-full w-12 h-12 text-center flex items-center justify-center transition`}>
                                             <Facebook size={24} />
                                         </a>
                                     </li>

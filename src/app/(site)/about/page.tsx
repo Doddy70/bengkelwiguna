@@ -5,8 +5,6 @@
 
 import Link from "next/link"
 import { CheckCircle, Wrench, Users, Target, Award, Heart, Phone, MapPin, Clock } from "lucide-react"
-import Header from "@/components/layout/Header"
-import Footer from "@/components/layout/Footer"
 import Button from "@/components/ui/Button"
 
 export const metadata = {
@@ -47,7 +45,7 @@ const whyChooseUs = [
   {
     icon: Users,
     title: "Tim Profesional",
-    desc: "Mekanik berpengalaman dan terus Pelatihan berkelanjutan untuk服务质量 terbaik."
+    desc: "Mekanik berpengalaman dan terus Pelatihan berkelanjutan untuk kualitas terbaik."
   },
   {
     icon: Heart,
@@ -59,14 +57,8 @@ const whyChooseUs = [
 export default function TentangWigunaPage() {
   return (
     <>
-      <Header
-        position="fixed"
-        bgColor="bg-white/70 backdrop-blur-xl border-b border-white/30 shadow-lg"
-        theme="header-light"
-      />
-
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#050b14] via-[#224297] to-[#224297] text-white relative overflow-hidden">
+      <section className="pt-16 pb-16 bg-gradient-to-br from-[#050b14] via-[#224297] to-[#224297] text-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -168,7 +160,7 @@ export default function TentangWigunaPage() {
             {/* Mission */}
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/20">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-[#ffd-yellow] rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-[#ffd900] rounded-xl flex items-center justify-center">
                   <Award className="w-6 h-6 text-[#1a3567]" />
                 </div>
                 <h3 className="text-2xl font-bold">Misi Kami</h3>
@@ -255,36 +247,6 @@ export default function TentangWigunaPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="lg:py-16 py-12 bg-[#ffd900]">
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#1a3567] mb-4">
-            Siap Mempercayakan Kendaraan Anda?
-          </h2>
-          <p className="text-[#1a3567]/80 text-lg mb-8 max-w-2xl mx-auto">
-            Konsultasi gratis dengan tim teknisi berpengalaman kami. Diagnosa transparan, tanpa biaya tersembunyi.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://wa.me/6287817773888?text=halo%20minna,%20saya%20ingin%20konsultasi%20tentang%20service%20mobil%20di%20bengkel%20wiguna"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#224297] hover:bg-[#1a3567] text-white font-bold rounded-xl transition-colors shadow-lg"
-            >
-              <Phone size={20} />
-              Hubungi via WhatsApp
-            </a>
-            <Button
-              href="/lokasi"
-              label="Kunjungi Bengkel"
-              bgColor="bg-white hover:bg-gray-100"
-              textColor="text-[#224297]"
-              padding="py-4 px-8"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Contact Info */}
       <section className="lg:py-16 py-12 bg-white">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
@@ -321,8 +283,6 @@ export default function TentangWigunaPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   )
 }

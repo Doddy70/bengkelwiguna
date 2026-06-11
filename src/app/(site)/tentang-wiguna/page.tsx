@@ -6,8 +6,6 @@
 import Image from "next/image"
 import Link from "next/link"
 import { CheckCircle, Wrench, Users, Target, Award, Heart, Phone, MapPin, Clock } from "lucide-react"
-import Header from "@/components/layout/Header"
-import Footer from "@/components/layout/Footer"
 import Button from "@/components/ui/Button"
 
 export const metadata = {
@@ -40,7 +38,7 @@ const whyChooseUs = [
   {
     icon: Users,
     title: "Tim Profesional",
-    desc: "Mekanik berpengalaman dan terus pelatihan berkelanjutan untuk服务质量 terbaik."
+    desc: "Mekanik berpengalaman dan terus pelatihan berkelanjutan untuk kualitas terbaik."
   },
   {
     icon: Heart,
@@ -51,15 +49,9 @@ const whyChooseUs = [
 
 export default function TentangWigunaPage() {
   return (
-    <>
-      <Header
-        position="fixed"
-        bgColor="bg-white/70 backdrop-blur-xl border-b border-white/30 shadow-lg"
-        theme="header-light"
-      />
-
+    <div className="bg-white">
       {/* Hero Section */}
-      <section className="pt-32 pb-16 bg-gradient-to-br from-[#050b14] via-[#224297] to-[#224297] text-white relative overflow-hidden">
+      <section className="pt-16 pb-16 bg-gradient-to-br from-[#050b14] via-[#224297] to-[#224297] text-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -308,8 +300,6 @@ export default function TentangWigunaPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </>
+    </div>
   )
 }

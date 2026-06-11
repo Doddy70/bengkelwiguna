@@ -19,8 +19,7 @@ import { extractRankMathSEO, generateMetadataFromSEO } from "@/lib/rank-math";
 import JsonLd from "@/components/layout/JsonLd";
 import { generateArticleSchema } from "@/lib/seo";
 import BlogSidebar from "@/components/ui/BlogSidebar";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
+import { Icon } from "@iconify/react";
 
 interface BlogPageProps {
   params: Promise<{ slug: string }>;
@@ -51,13 +50,12 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
     const content = typeof post.content === "string" ? post.content : post.content?.rendered;
 
     return (
-        <>
+        <div className="bg-white">
         <JsonLd data={generateArticleSchema(post)} />
-        <Header theme="header-light" />
         
         <div className="blog-wrap font-dm">
             <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pb-24 pb-20 justify-center">
-                <div className="blog-title bg-light-blue-banner lg:pt-32 pt-24 font-dm">
+                <div className="blog-title bg-light-blue-banner lg:pt-32 pt-24 font-dm rounded-3xl mb-12">
                     {/* Post Title */}
                     <div className="lg:w-10/12 text-center pb-12 mx-auto">
                         <div className="flex justify-center mb-4">
@@ -107,12 +105,17 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                                 dangerouslySetInnerHTML={{ __html: content || "" }}
                             />
 
-                            {/* Share & Tags Section (Optional) */}
+                            {/* Share & Tags Section */}
                             <div className="mt-16 pt-8 border-t border-gray-100 flex flex-wrap justify-between items-center gap-6">
-                                <div className="flex items-center gap-3">
-                                    <span className="text-sm font-black uppercase text-gray-400 tracking-widest">Share:</span>
+                                <div className="flex items-center gap-4">
+                                    <span className="text-sm font-black uppercase text-gray-400 tracking-widest">Bagikan:</span>
                                     <div className="flex gap-2">
-                                        {/* Social share icons can go here */}
+                                        <a href={`https://wa.me/?text=${encodeURIComponent(title + ' ')}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:scale-110 transition-transform">
+                                            <Icon icon="fa6-brands:whatsapp" width={18} />
+                                        </a>
+                                        <a href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent('')}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:scale-110 transition-transform">
+                                            <Icon icon="fa6-brands:facebook" width={18} />
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -131,9 +134,21 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
         </div>
         
         <PopularPost posts={popularPosts} />
-        <Footer />
-        </>
+        </div>
     );
+}
+
+/**
+ * Generate Metadata for SEO
+ */
+export async function generateMetadata({ params }: BlogPageProps) {
+    const { slug } = await params;
+    const post = await getPostBySlug(slug);
+    
+    if (!post) return { title: "Post Not Found" };
+    
+    const seo = extractRankMathSEO(post);
+    return generateMetadataFromSEO(seo);
 }
 
 /**

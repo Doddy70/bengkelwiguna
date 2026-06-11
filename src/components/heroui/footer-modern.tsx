@@ -40,27 +40,27 @@ const footerNavigation = {
     {
       name: "Facebook",
       href: "https://web.facebook.com/Bengkel.WigunaBan",
-      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:facebook" />,
+      icon: (props: SocialIconProps) => <Icon {...props} icon="fa6-brands:facebook" />,
     },
     {
       name: "Instagram",
       href: "https://www.instagram.com/bengkelwiguna_depok/",
-      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:instagram" />,
+      icon: (props: SocialIconProps) => <Icon {...props} icon="fa6-brands:instagram" />,
     },
     {
       name: "TikTok",
       href: "https://www.tiktok.com/@bengkel.wiguna.depok",
-      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:tictok" />,
+      icon: (props: SocialIconProps) => <Icon {...props} icon="fa6-brands:tiktok" />,
     },
     {
       name: "YouTube",
       href: "https://www.youtube.com/@BengkelWiguna",
-      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:youtube" />,
+      icon: (props: SocialIconProps) => <Icon {...props} icon="fa6-brands:youtube" />,
     },
     {
       name: "WhatsApp",
       href: "https://wa.me/6287817773888",
-      icon: (props: SocialIconProps) => <Icon {...props} icon="fontisto:whatsapp" />,
+      icon: (props: SocialIconProps) => <Icon {...props} icon="fa6-brands:whatsapp" />,
     },
   ],
 };

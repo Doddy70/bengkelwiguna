@@ -116,6 +116,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://backend.bengkelwiguna.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
+        {/* ✅ FontAwesome CDN for legacy icon support */}
+        <link 
+          rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
+          crossOrigin="anonymous" 
+          referrerPolicy="no-referrer" 
+        />
 
         {/* ✅ INLINE CRITICAL CSS for above-the-fold */}
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
