@@ -23,11 +23,11 @@ interface HeaderProps {
 }
 
 const Header = ({
-    btnColor = 'bg-brand-blue',
+    btnColor = 'bg-brand-gold',
     bgColor = "bg-transparent",
     headerClass = "",
     position = "absolute",
-    btnlinkColor = "text-gray-900",
+    btnlinkColor = "text-[#1a3567]",
     theme = "header-light",
     logo = "/images/logo/logo.png",
     logoWidth = 220,
