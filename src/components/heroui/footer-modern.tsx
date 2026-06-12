@@ -86,11 +86,11 @@ export default function FooterModern() {
 
   return (
     <footer className="flex w-full flex-col bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
-      <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-12 sm:pt-16 lg:px-8">
-        {/* Mobile First Grid Layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+      <div className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-12 sm:pt-16 lg:px-8">
+        {/* Desktop: 4 Column Layout | Tablet: 2 Column | Mobile: 1 Column */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
           {/* Column 1: Customer Support Widget */}
-          <div className="space-y-6 sm:col-span-2 sm:grid sm:grid-cols-2 sm:gap-8 lg:col-span-1 lg:block">
+          <div className="space-y-6">
             {/* Customer Support Widget */}
             <div>
               <h3 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-3">Konsultasi Gratis</h3>
@@ -102,9 +102,9 @@ export default function FooterModern() {
                 <Image
                   src="/images/Custmer-Support-Widget.png.avif"
                   alt="Bengkel Wiguna Customer Support"
-                  width={300}
-                  height={100}
-                  className="h-auto w-full max-w-[300px]"
+                  width={280}
+                  height={93}
+                  className="h-auto w-full max-w-[280px]"
                 />
               </Link>
             </div>
@@ -114,37 +114,43 @@ export default function FooterModern() {
               {footerNavigation.social.map((item) => (
                 <Link key={item.name} isExternal className="text-gray-400 hover:text-[#224297] transition-colors" href={item.href}>
                   <span className="sr-only">{item.name}</span>
-                  <item.icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6" />
+                  <item.icon aria-hidden="true" className="w-5 h-5" />
                 </Link>
               ))}
             </div>
           </div>
 
-          {/* Column 2: Services & Spesialis */}
-          <div className="space-y-6">
+          {/* Column 2: Services */}
+          <div>
             {renderList({ title: "Layanan Utama", items: footerNavigation.services })}
-            <div className="mt-6 sm:mt-8">{renderList({ title: "Spesialis", items: footerNavigation.spesialis })}</div>
           </div>
 
-          {/* Column 3: Company & Legal */}
-          <div className="space-y-6">
+          {/* Column 3: Spesialis */}
+          <div>
+            {renderList({ title: "Spesialis", items: footerNavigation.spesialis })}
+          </div>
+
+          {/* Column 4: Company & Legal */}
+          <div>
             {renderList({ title: "Perusahaan", items: footerNavigation.company })}
-            <div className="mt-6 sm:mt-8">{renderList({ title: "Legal", items: footerNavigation.legal })}</div>
+            <div className="mt-8">
+              {renderList({ title: "Legal", items: footerNavigation.legal })}
+            </div>
           </div>
         </div>
 
-        {/* Newsletter Section - Mobile Optimized */}
-        <div className="my-8 sm:my-12 lg:my-16 bg-gray-50 dark:bg-gray-800/50 p-5 sm:p-8 rounded-2xl border border-gray-100 dark:border-gray-800">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
-            <div className="text-center sm:text-left">
-              <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">
+        {/* Newsletter Section */}
+        <div className="my-10 sm:my-14 bg-gray-50 dark:bg-gray-800/50 p-5 sm:p-8 rounded-2xl border border-gray-100 dark:border-gray-800">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+            <div>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white">
                 Berlangganan Newsletter
               </h3>
               <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
                 Dapatkan tips & promo terbaru di email Anda.
               </p>
             </div>
-            <form className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
               <Input
                 isRequired
                 aria-label="Alamat Email"
@@ -154,7 +160,7 @@ export default function FooterModern() {
                 startContent={<Icon className="text-gray-500 dark:text-gray-400" icon="solar:letter-linear" />}
                 type="email"
                 variant="bordered"
-                className="bg-white dark:bg-gray-900 rounded-xl w-full sm:w-56"
+                className="bg-white dark:bg-gray-900 rounded-xl w-full lg:w-80"
                 size="sm"
               />
               <Button className="bg-brand-blue text-white shadow-md font-medium rounded-xl w-full sm:w-auto" type="submit">
