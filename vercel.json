@@ -26,6 +26,5 @@
       ]
     }
   ],
-  "regions": ["sin1"],
-  "maxDuration": 300
+  "regions": ["sin1"]
 }
