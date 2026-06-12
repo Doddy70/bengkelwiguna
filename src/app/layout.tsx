@@ -7,6 +7,10 @@ import ClientProviders from "@/components/providers/ClientProviders";
 import CookieConsent from "@/components/heroui/cookie-consent";
 import { Viewport } from "next";
 
+// ✅ FORCE DYNAMIC RENDERING - Required for WordPress API integration
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 // ✅ OPTIMIZED FONTS: Reduced subsets, optimized display
 const sora = Sora({
   subsets: ['latin'],

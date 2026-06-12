@@ -2,8 +2,11 @@
 
 import Header from '@/components/layout/Header';
 import FooterModern from '@/components/heroui/footer-modern';
-import CtaSection from '@/components/layout/CtaSection';
 import { getNavigationMenu, getAllLayananSpesialis } from '@/lib/wordpress';
+
+// ✅ FORCE DYNAMIC RENDERING - Required because menu fetch cannot be cached
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export const metadata = {
     title: 'Bengkel Wiguna | Layanan Perawatan Mobil Profesional',

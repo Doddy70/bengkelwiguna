@@ -652,8 +652,7 @@ export async function getNavigationMenu(menuLocation: string = 'main-menu'): Pro
 
   try {
     const response = await fetch(url, {
-      next: { revalidate: REVALIDATE_LIST, tags: ['menus', `menu-${menuLocation}`] },
-      cache: 'no-store'
+      next: { revalidate: REVALIDATE_LIST, tags: ['menus', `menu-${menuLocation}`] }
     })
 
     if (response.ok) {
