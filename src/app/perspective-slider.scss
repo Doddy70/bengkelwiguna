@@ -13,24 +13,24 @@
     background: transparent !important;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     min-height: 100vh;
-    padding-top: 120px;
+    padding-top: 160px;
     padding-bottom: 80px;
 
     @media (max-width: 1199px) {
-      padding-top: 100px;
+      padding-top: 140px;
       min-height: 100vh;
     }
 
     @media (max-width: 991px) {
-      padding-top: 100px;
+      padding-top: 120px;
       min-height: 100vh;
     }
 
     @media (max-width: 767px) {
-      padding-top: 80px;
+      padding-top: 110px;
       padding-bottom: 50px;
       min-height: 100vh;
     }
