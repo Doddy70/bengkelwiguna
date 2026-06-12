@@ -345,7 +345,7 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
 
             {/* Mobile Menu */}
             <div
-                className={`fixed top-0 left-0 h-full w-72 bg-white z-[100] transform transition-transform duration-300 flex flex-col lg:hidden ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
+                className={`fixed top-0 left-0 h-full w-72 bg-white z-[110] transform transition-transform duration-300 flex flex-col lg:hidden ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
                     }`}
             >
                 <div className="flex items-center justify-between p-4 border-b border-gray-100">
@@ -388,7 +388,7 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
                                         <ul className="pb-2">
                                             {subItems.map((sub, i) => (
                                                 <li key={i}>
-                                                    <Link href={sub.href} className="block py-3 px-4 text-gray-600 hover:text-brand-blue">
+                                                    <Link href={sub.href || "/"} className="block py-3 px-4 text-gray-600 hover:text-brand-blue">
                                                         {sub.title}
                                                     </Link>
                                                 </li>
@@ -419,8 +419,8 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
             </div>
             {/* Mobile Menu Overlay Backdrop */}
             {mobileOpen && (
-                <div 
-                    className="fixed inset-0 bg-black/60 z-[90] lg:hidden backdrop-blur-sm transition-opacity"
+                <div
+                    className="fixed inset-0 bg-black/60 z-[105] lg:hidden backdrop-blur-sm transition-opacity"
                     onClick={toggleMobileMenu}
                 />
             )}

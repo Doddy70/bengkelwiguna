@@ -81,7 +81,7 @@ const Header = ({
                         {/* Mobile Menu Overlay */}
                         {mobileOpen && (
                             <div
-                                className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+                                className="fixed inset-0 bg-black/60 z-[105] lg:hidden"
                                 onClick={toggleMobileMenu}
                             ></div>
                         )}
