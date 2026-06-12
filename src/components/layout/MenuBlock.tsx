@@ -79,23 +79,15 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
 
             // Create mega menu for items with many children (> 5)
             if (childCount > 5) {
-                // Split children into columns (4 items per column max)
-                const itemsPerColumn = 6;
-                const columns: SubMenuItem[][] = [];
-
-                for (let i = 0; i < childCount; i += itemsPerColumn) {
-                    const slice = children.slice(i, i + itemsPerColumn); columns.push(slice.map(c => ({ title: c.title || "", path: c.path || "", label: c.title, href: c.path })));
-                }
-
                 return {
                     title: title,
                     href: href,
                     megaMenu: [
                         {
                             title: 'Menu',
-                            subMenu: columns.flat().map(child => ({
+                            subMenu: children.map(child => ({
                                 title: child.title || "",
-                                href: (child as any).path || "/"
+                                href: child.path || "/"
                             }))
                         }
                     ]
@@ -109,7 +101,7 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
                     href: href,
                     subMenu: children.map(child => ({
                         title: child.title || "",
-                        href: (child as any).path || "/"
+                        href: child.path || "/"
                     }))
                 };
             }
@@ -128,14 +120,13 @@ const transformWpMenu = (wpItems: NavMenuItem[], spesialisData: LayananSpesialis
 const MenuBlock: React.FC<MenuBlockProps> = ({
     mobileOpen = false,
     toggleMobileMenu,
-    logo = "/images/logo/logo.png" ,
+    logo = "/images/logo/logo-square.avif",
     dynamicItems = [],
     spesialisData = []
 }) => {
     const [openSubMenu, setOpenSubMenu] = useState<Record<string, boolean>>({});
 
     // Initialize state from props to prevent flash/delay
-    // Use the passed in dynamicItems and spesialisData immediately
     const [menuItems, setMenuItems] = useState<MenuItem[]>(() =>
         dynamicItems.length > 0
             ? transformWpMenu(dynamicItems, spesialisData)
@@ -157,293 +148,161 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
 
     return (
         <>
-            {/* Desktop Menu */}
-            <ul className="hidden lg:flex gap-4 xl:gap-5 font-semibold text-[16px] xl:text-[17px] main-menu">
-                {menuItems.map((item, index) => {
-                    const isMegaMenu = !!item.megaMenu;
-                    const allItems = isMegaMenu ? (item.megaMenu?.flatMap(section => section.subMenu) || []) : [];
-                    const itemKey = `menu-${index}`;
-
-                    return (
-                        <li
-                            key={index}
-                            className={`group static ${isMegaMenu ? 'has-dropdown' : item.subMenu?.length ? 'has-dropdown' : ''}`}
-                            onMouseEnter={() => isMegaMenu || item.subMenu?.length ? setOpenSubMenu(prev => ({ ...prev, [itemKey]: true })) : null}
-                            onMouseLeave={() => isMegaMenu || item.subMenu?.length ? setOpenSubMenu(prev => ({ ...prev, [itemKey]: false })) : null}
-                        >
-                            <Link href={item.href || "#"} className="flex items-center gap-1 py-8 hover:text-brand-gold transition-colors">
-                                {item.title} {isMegaMenu || item.subMenu?.length ? <ChevronDown size={14} /> : null}
-                            </Link>
-
-                            {/* Mega Menu (many items) */}
-                            {isMegaMenu && openSubMenu[itemKey] && (
-                                <ul className="sub-menu header__mega-menu mega-menu mega-menu-pages" style={{
-                                    position: 'absolute',
-                                    top: '100%',
-                                    left: '50%',
-                                    transform: 'translateX(-50%)',
-                                    maxWidth: '1320px',
-                                    width: '100%',
-                                    padding: '30px 0',
-                                    background: 'white',
-                                    boxShadow: '0 16px 15px rgba(0,0,0,0.1)',
-                                    borderRadius: '10px',
-                                    zIndex: 100
-                                }}>
-                                    <li>
-                                        <div className="mega-menu-wrapper" style={{
-                                            display: 'grid',
-                                            gridTemplateColumns: 'repeat(4, 1fr)',
-                                            gap: '25px',
-                                            padding: '0 30px'
-                                        }}>
-                                            {/* Single Title Header */}
-                                            <div style={{
-                                                gridColumn: '1 / -1',
-                                                borderBottom: '2px solid #224297',
-                                                marginBottom: '15px',
-                                                paddingBottom: '10px'
-                                            }}>
-                                                <h6 style={{
-                                                    fontSize: '18px',
-                                                    fontWeight: 600,
-                                                    color: '#224297'
-                                                }}>
-                                                    {item.title === 'Promosi' ? 'Promo Terbaru' : 'Layanan Service Bengkel Wiguna'}
-                                                </h6>
-                                            </div>
-
-                                            {/* Service Columns (3 columns) - No titles */}
-                                            {(() => {
-                                                const itemsPerCol = Math.ceil(allItems.length / 3);
-                                                const cols = [];
-                                                for (let i = 0; i < allItems.length; i += itemsPerCol) {
-                                                    cols.push(allItems.slice(i, i + itemsPerCol));
-                                                }
-                                                return cols.slice(0, 3).map((colItems, colIdx) => (
-                                                    <div key={colIdx} className="mega-menu-pages-single" style={{ minWidth: 0 }}>
-                                                        <div className="mega-menu-list" style={{ display: 'flex', flexDirection: 'column' }}>
-                                                            {colItems.map((sub, sIndex) => (
-                                                                <Link
-                                                                    key={sIndex}
-                                                                    href={sub.href || "#"}
-                                                                    style={{
-                                                                        display: 'block',
-                                                                        padding: '10px 0',
-                                                                        color: '#374151',
-                                                                        fontWeight: 500,
-                                                                        fontSize: '14px',
-                                                                        borderBottom: '1px solid #f3f4f6',
-                                                                        transition: 'all 0.3s'
-                                                                    }}
-                                                                    className="hover:text-brand-blue hover:pl-2"
-                                                                >
-                                                                    {sub.title}
-                                                                </Link>
-                                                            ))}
-                                                        </div>
-                                                    </div>
-                                                ));
-                                            })()}
-
-                                            {/* WhatsApp Consultation Card */}
-                                            <div className="mega-menu-pages-single" style={{
-                                                background: 'linear-gradient(135deg, #224297 0%, #1a3567 100%)',
-                                                borderRadius: '12px',
-                                                padding: '20px',
-                                                display: 'flex',
-                                                flexDirection: 'column',
-                                                alignItems: 'center',
-                                                textAlign: 'center'
-                                            }}>
-                                                <div style={{
-                                                    width: '100px',
-                                                    height: '100px',
-                                                    borderRadius: '50%',
-                                                    overflow: 'hidden',
-                                                    border: '4px solid #ffd900',
-                                                    marginBottom: '15px'
-                                                }}>
-                                                    <Image
-                                                        src="/images/cs-support.png"
-                                                        alt="Customer Support"
-                                                        width={100}
-                                                        height={100}
-                                                        style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                                                    />
-                                                </div>
-                                                <h6 style={{ fontSize: '16px', fontWeight: 700, color: 'white', marginBottom: '8px' }}>
-                                                    Konsultasi Gratis
-                                                </h6>
-                                                <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.8)', marginBottom: '15px', lineHeight: 1.4 }}>
-                                                    Customer Support Bengkel Wiguna
-                                                </p>
-                                                <a
-                                                    href="https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    style={{
-                                                        display: 'inline-flex',
-                                                        alignItems: 'center',
-                                                        gap: '8px',
-                                                        padding: '12px 20px',
-                                                        background: '#ffd900',
-                                                        color: '#224297',
-                                                        fontWeight: 700,
-                                                        fontSize: '13px',
-                                                        borderRadius: '25px',
-                                                        textDecoration: 'none'
-                                                    }}
-                                                    className="hover:bg-yellow-400"
-                                                >
-                                                    💬 Chat WhatsApp
-                                                </a>
-                                            </div>
-                                        </div>
+            {/* Desktop Menu - Only visible on large screens */}
+            <ul className="hidden lg:flex gap-6 font-semibold text-[17px] main-menu">
+                {menuItems.map((item, index) => (
+                    item.subMenu ? (
+                        <li key={index} className="group relative">
+                            <button className="flex items-center gap-1 py-8 text-gray-900 hover:text-brand-blue transition-colors">
+                                {item.title} <ChevronDown size={14} />
+                            </button>
+                            <ul className="absolute top-full py-2 left-0 bg-white shadow-lg rounded-lg hidden group-hover:flex flex-col min-w-[220px] z-50 overflow-hidden">
+                                {item.subMenu.map((sub, subIndex) => (
+                                    <li key={subIndex}>
+                                        <Link
+                                            href={sub.href || "#"}
+                                            className="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:translate-x-2 transition duration-300"
+                                        >
+                                            {sub.title}
+                                        </Link>
                                     </li>
-                                </ul>
-                            )}
-
-                            {/* Sub Menu (fewer items) */}
-                            {item.subMenu && item.subMenu.length > 0 && !isMegaMenu && (
-                                <ul className="sub-menu" style={{
-                                    position: 'absolute',
-                                    top: '100%',
-                                    left: 0,
-                                    background: 'white',
-                                    padding: '15px 0',
-                                    boxShadow: '0 10px 15px rgba(0,0,0,0.1)',
-                                    borderRadius: '10px',
-                                    minWidth: '250px',
-                                    zIndex: 50
-                                }}>
-                                    {item.subMenu.map((sub, subIndex) => (
-                                        <li key={subIndex}>
-                                            <Link
-                                                href={sub.href || "#"}
-                                                style={{
-                                                    display: 'block',
-                                                    padding: '15px 25px',
-                                                    color: '#374151',
-                                                    fontWeight: 500,
-                                                    borderBottom: '1px solid #e5e7eb',
-                                                    transition: 'all 0.3s'
-                                                }}
-                                                className="hover:text-brand-blue hover:pl-7"
-                                            >
-                                                {sub.title}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
+                                ))}
+                            </ul>
                         </li>
-                    );
-                })}
-            </ul>
-
-
-            {/* Mobile Menu */}
-            <div
-                className={`fixed inset-y-0 left-0 w-72 bg-white z-[110] transform transition-transform duration-300 flex flex-col lg:hidden ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
-                    }`}
-            >
-                {/* Header with Logo and Close Button */}
-                <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white">
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center" onClick={toggleMobileMenu}>
-                        <Image
-                            src={logo}
-                            alt="logo"
-                            width={160}
-                            height={44}
-                            priority
-                            className="h-10 w-auto"
-                        />
-                    </Link>
-                    <button onClick={toggleMobileMenu} aria-label="close menu" className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-                        <X size={24} className="text-gray-900" />
-                    </button>
-                </div>
-
-                {/* Menu Items - Scrollable */}
-                <nav className="flex-1 overflow-y-auto">
-                    <ul className="py-2 px-4">
-                        {menuItems.map((item, index) => {
-                            const mobileKey = `mobile-${index}`;
-                            const isOpen = !!openSubMenu[mobileKey];
-
-                            const subItems = [
-                                ...(item.subMenu || []),
-                                ...(item.megaMenu?.flatMap(s => s.subMenu) || [])
-                            ];
-
-                            if (subItems.length > 0) {
-                                return (
-                                    <li key={index} className="border-b border-gray-100 last:border-0">
-                                        <div className="flex justify-between items-center py-3">
-                                            <Link
-                                                href={item.href || "/"}
-                                                className="flex-1 font-semibold text-gray-900 hover:text-brand-blue"
-                                                onClick={toggleMobileMenu}
-                                            >
-                                                {item.title}
-                                            </Link>
-                                            <button
-                                                onClick={(e) => {
-                                                    e.preventDefault();
-                                                    toggleSubMenu(mobileKey);
-                                                }}
-                                                className="p-2 hover:bg-gray-100 rounded-lg"
-                                                aria-label={`Toggle ${item.title} menu`}
-                                            >
-                                                <ChevronDown size={18} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-                                            </button>
-                                        </div>
-                                        {isOpen && (
-                                            <ul className="pb-2 pl-2">
-                                                {subItems.map((sub, i) => (
-                                                    <li key={i}>
-                                                        <Link href={sub.href || "/"} className="block py-2 px-3 text-gray-600 hover:text-brand-blue text-sm rounded-lg hover:bg-gray-50" onClick={toggleMobileMenu}>
+                    ) : item.megaMenu ? (
+                        <li key={index} className="group relative">
+                            <button className="flex items-center gap-1 py-8 text-gray-900 hover:text-brand-blue transition-colors">
+                                {item.title} <ChevronDown size={14} />
+                            </button>
+                            <div className="absolute top-full left-0 w-full bg-white shadow-lg hidden group-hover:block rounded-lg z-50">
+                                <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-5 lg:gap-6 gap-1 lg:p-6 p-0 text-base font-medium text-gray-900">
+                                    {item.megaMenu.map((section, secIndex) => (
+                                        <div key={secIndex}>
+                                            <ul className="flex flex-col gap-2">
+                                                {section.subMenu.map((sub, subIndex) => (
+                                                    <li key={subIndex}>
+                                                        <Link
+                                                            href={sub.href || "#"}
+                                                            className="text-gray-700 hover:text-brand-blue hover:translate-x-2 duration-300 transition block py-1"
+                                                        >
                                                             {sub.title}
                                                         </Link>
                                                     </li>
                                                 ))}
                                             </ul>
-                                        )}
-                                    </li>
-                                );
-                            }
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </li>
+                    ) : (
+                        <li key={index}>
+                            <Link href={item.href || "#"} className="flex items-center gap-1 py-8 text-gray-900 hover:text-brand-blue transition-colors">
+                                {item.title}
+                            </Link>
+                        </li>
+                    )
+                ))}
+            </ul>
 
-                            return (
-                                <li key={index} className="border-b border-gray-100 last:border-0">
-                                    <Link href={item.href || "/"} className="block py-3 font-semibold text-gray-900 hover:text-brand-blue" onClick={toggleMobileMenu}>
-                                        {item.title}
-                                    </Link>
-                                </li>
-                            );
-                        })}
-                    </ul>
-                </nav>
+            {/* Mobile Menu - Only visible on small/medium screens */}
+            <div
+                className={`fixed top-0 left-0 h-full w-72 bg-white z-50 transform transition-transform duration-300 flex flex-col lg:hidden ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
+                    }`}
+            >
+                {/* Header with Logo and Close Button */}
+                <div className="flex items-center justify-between p-4 border-b border-gray-200">
+                    {/* Logo */}
+                    <Link href="/" className="flex items-center">
+                        <Image
+                            src={logo}
+                            alt="logo"
+                            width={120}
+                            height={40}
+                            priority
+                            className="h-10 w-auto"
+                        />
+                    </Link>
+                    <button onClick={toggleMobileMenu} aria-label="close menu">
+                        <X size={24} />
+                    </button>
+                </div>
 
-                {/* CTA Button - Always Visible at Bottom */}
-                <div className="p-4 border-t border-gray-100 bg-white">
+                {/* Menu Items */}
+                <ul className="flex flex-col p-4 gap-2 overflow-y-auto">
+                    {menuItems.map((item, index) => (
+                        <li key={index}>
+                            {item.subMenu || item.megaMenu ? (
+                                <>
+                                    <button
+                                        onClick={() => toggleSubMenu(`${index}`)}
+                                        className="flex justify-between w-full items-center py-3 font-semibold text-gray-900"
+                                    >
+                                        {item.title} <ChevronDown size={18} />
+                                    </button>
+                                    {openSubMenu[`${index}`] && (
+                                        <ul className="pl-4 mt-2 flex flex-col gap-2">
+                                            {/* Regular SubMenu */}
+                                            {item.subMenu &&
+                                                item.subMenu.map((sub, subIndex) => (
+                                                    <li key={subIndex}>
+                                                        <Link href={sub.href || '#'} className="text-gray-700 py-1 block font-medium hover:text-brand-blue">
+                                                            {sub.title}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+
+                                            {/* Mega Menu Sections */}
+                                            {item.megaMenu &&
+                                                item.megaMenu.map((section, secIndex) => (
+                                                    <li key={secIndex}>
+                                                        <button
+                                                            onClick={() =>
+                                                                toggleSubMenu(`${index}-${secIndex}`)
+                                                            }
+                                                            className="flex justify-between w-full items-center py-2 font-medium text-gray-900"
+                                                        >
+                                                            {section.title} <ChevronDown size={16} />
+                                                        </button>
+                                                        {openSubMenu[`${index}-${secIndex}`] && (
+                                                            <ul className="pl-4 mt-1 flex flex-col gap-1">
+                                                                {section.subMenu.map((sub, subIndex) => (
+                                                                    <li key={subIndex}>
+                                                                        <Link
+                                                                            href={sub.href || '#'}
+                                                                            className="text-gray-700 py-1 block font-medium hover:text-brand-blue"
+                                                                        >
+                                                                            {sub.title}
+                                                                        </Link>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        )}
+                                                    </li>
+                                                ))}
+                                        </ul>
+                                    )}
+                                </>
+                            ) : (
+                                <Link href={item.href || '#'} className="py-3 block text-gray-900 font-semibold hover:text-brand-blue" onClick={toggleMobileMenu}>
+                                    {item.title}
+                                </Link>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+
+                {/* CTA Button at Bottom */}
+                <div className="mt-auto p-4 border-t border-gray-200">
                     <Link
                         href="https://wa.me/6287817773888"
-                        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-[#ffd900] text-[#1a3567] hover:bg-yellow-400 transition-all shadow-md"
+                        className="flex items-center justify-center gap-2 w-full py-3 rounded-lg text-sm font-semibold bg-[#ffd900] text-[#1a3567] hover:bg-yellow-400 transition-all"
                         onClick={toggleMobileMenu}
                     >
                         📞 Booking Service
                     </Link>
                 </div>
             </div>
-            {/* Mobile Menu Overlay Backdrop */}
-            {mobileOpen && (
-                <div
-                    className="fixed inset-0 bg-black/60 z-[105] lg:hidden backdrop-blur-sm transition-opacity"
-                    onClick={toggleMobileMenu}
-                />
-            )}
         </>
     );
 };
