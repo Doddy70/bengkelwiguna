@@ -86,83 +86,91 @@ export default function FooterModern() {
 
   return (
     <footer className="flex w-full flex-col bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
-      <div className="mx-auto max-w-screen-xl px-6 pb-8 pt-16 sm:pt-24 lg:px-8">
-        <div className="xl:grid xl:grid-cols-3 xl:gap-8">
-          <div className="space-y-8 md:pr-8">
+      <div className="mx-auto max-w-screen-xl px-4 pb-8 pt-12 sm:pt-16 lg:px-8">
+        {/* Mobile First Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+          {/* Column 1: Customer Support Widget */}
+          <div className="space-y-6 sm:col-span-2 sm:grid sm:grid-cols-2 sm:gap-8 lg:col-span-1 lg:block">
             {/* Customer Support Widget */}
-            <h3 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-2">Konsultasi Gratis</h3>
-            <Link 
-              href="https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)" 
-              isExternal
-              className="block hover:opacity-90 transition-opacity"
-            >
-              <Image 
-                src="/images/Custmer-Support-Widget.png.avif"
-                alt="Bengkel Wiguna Customer Support"
-                width={450}
-                height={150}
-                className="h-auto w-auto"
-              />
-            </Link>
+            <div>
+              <h3 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-3">Konsultasi Gratis</h3>
+              <Link
+                href="https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
+                isExternal
+                className="block hover:opacity-90 transition-opacity"
+              >
+                <Image
+                  src="/images/Custmer-Support-Widget.png.avif"
+                  alt="Bengkel Wiguna Customer Support"
+                  width={300}
+                  height={100}
+                  className="h-auto w-full max-w-[300px]"
+                />
+              </Link>
+            </div>
 
-            <div className="flex space-x-6">
+            {/* Social Icons */}
+            <div className="flex space-x-5">
               {footerNavigation.social.map((item) => (
-                <Link key={item.name} isExternal className="text-gray-400 hover:text-[#224297] hover:text-brand-blue transition-colors" href={item.href}>
+                <Link key={item.name} isExternal className="text-gray-400 hover:text-[#224297] transition-colors" href={item.href}>
                   <span className="sr-only">{item.name}</span>
-                  <item.icon aria-hidden="true" className="w-6 h-6" />
+                  <item.icon aria-hidden="true" className="w-5 h-5 sm:w-6 sm:h-6" />
                 </Link>
               ))}
             </div>
           </div>
-          <div className="mt-16 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>{renderList({ title: "Layanan Utama", items: footerNavigation.services })}</div>
-              <div className="mt-10 md:mt-0">
-                {renderList({ title: "Spesialis", items: footerNavigation.spesialis })}
-              </div>
-            </div>
-            <div className="md:grid md:grid-cols-2 md:gap-8">
-              <div>{renderList({ title: "Perusahaan", items: footerNavigation.company })}</div>
-              <div className="mt-10 md:mt-0">
-                {renderList({ title: "Legal", items: footerNavigation.legal })}
-              </div>
-            </div>
+
+          {/* Column 2: Services & Spesialis */}
+          <div className="space-y-6">
+            {renderList({ title: "Layanan Utama", items: footerNavigation.services })}
+            <div className="mt-6 sm:mt-8">{renderList({ title: "Spesialis", items: footerNavigation.spesialis })}</div>
+          </div>
+
+          {/* Column 3: Company & Legal */}
+          <div className="space-y-6">
+            {renderList({ title: "Perusahaan", items: footerNavigation.company })}
+            <div className="mt-6 sm:mt-8">{renderList({ title: "Legal", items: footerNavigation.legal })}</div>
           </div>
         </div>
 
-        <div className="my-10 brand-rounded bg-gray-50 dark:bg-gray-800/50 p-4 sm:my-14 sm:p-8 lg:my-16 lg:flex lg:items-center lg:justify-between lg:gap-2 border border-gray-100 dark:border-gray-800">
-          <div className="max-w-md">
-            <h3 className="text-lg font-bold text-gray-900 dark:text-white">
-              Berlangganan Newsletter
-            </h3>
-            <p className="mt-2 text-small text-gray-500 dark:text-gray-400 dark:text-gray-400">
-              Dapatkan tips perawatan mobil, info promo terbaru, dan artikel otomotif langsung di email Anda.
-            </p>
+        {/* Newsletter Section - Mobile Optimized */}
+        <div className="my-8 sm:my-12 lg:my-16 bg-gray-50 dark:bg-gray-800/50 p-5 sm:p-8 rounded-2xl border border-gray-100 dark:border-gray-800">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
+            <div className="text-center sm:text-left">
+              <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white">
+                Berlangganan Newsletter
+              </h3>
+              <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+                Dapatkan tips & promo terbaru di email Anda.
+              </p>
+            </div>
+            <form className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <Input
+                isRequired
+                aria-label="Alamat Email"
+                autoComplete="email"
+                id="footer-email"
+                placeholder="nama@email.com"
+                startContent={<Icon className="text-gray-500 dark:text-gray-400" icon="solar:letter-linear" />}
+                type="email"
+                variant="bordered"
+                className="bg-white dark:bg-gray-900 rounded-xl w-full sm:w-56"
+                size="sm"
+              />
+              <Button className="bg-brand-blue text-white shadow-md font-medium rounded-xl w-full sm:w-auto" type="submit">
+                Berlangganan
+              </Button>
+            </form>
           </div>
-          <form className="mt-6 sm:flex sm:max-w-md lg:mt-0 gap-3">
-            <Input
-              isRequired
-              aria-label="Alamat Email"
-              autoComplete="email"
-              id="footer-email"
-              placeholder="nama@email.com"
-              startContent={<Icon className="text-gray-500 dark:text-gray-400" icon="solar:letter-linear" />}
-              type="email"
-              variant="bordered"
-              className="bg-white dark:bg-gray-900 brand-rounded"
-            />
-            <Button className="bg-brand-blue text-white shadow-md font-medium" type="submit">
-              Berlangganan
-            </Button>
-          </form>
         </div>
 
-        <div className="flex flex-wrap justify-between gap-4 pt-8 border-t border-gray-100 dark:border-gray-800">
-          <p className="text-small text-gray-400 hover:text-[#224297]">
-            &copy; 2026 Bengkel Wiguna. Hak Cipta Dilindungi Undang-Undang.
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-gray-100 dark:border-gray-800">
+          <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
+            &copy; 2026 Bengkel Wiguna. Hak Cipta Dilindungi.
           </p>
-          <div className="flex items-center gap-4">
-            <span className="text-xs text-gray-400 hover:text-[#224297]">Pilih Tema:</span>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-gray-400">Tema:</span>
             <DarkToggle />
           </div>
         </div>

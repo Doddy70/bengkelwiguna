@@ -377,18 +377,29 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
                         if (subItems.length > 0) {
                             return (
                                 <li key={index} className="border-b border-gray-100 last:border-0">
-                                    <button
-                                        onClick={() => toggleSubMenu(mobileKey)}
-                                        className="flex justify-between w-full items-center py-4 px-2 font-semibold text-gray-900"
-                                    >
-                                        {item.title}
-                                        <ChevronDown size={18} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-                                    </button>
+                                    <div className="flex justify-between items-center">
+                                        <Link
+                                            href={item.href || "/"}
+                                            className="flex-1 py-4 px-2 font-semibold text-gray-900 hover:text-brand-blue"
+                                        >
+                                            {item.title}
+                                        </Link>
+                                        <button
+                                            onClick={(e) => {
+                                                e.preventDefault();
+                                                toggleSubMenu(mobileKey);
+                                            }}
+                                            className="p-2 hover:bg-gray-100 rounded-lg"
+                                            aria-label={`Toggle ${item.title} menu`}
+                                        >
+                                            <ChevronDown size={18} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                                        </button>
+                                    </div>
                                     {isOpen && (
-                                        <ul className="pb-2">
+                                        <ul className="pb-2 ml-4">
                                             {subItems.map((sub, i) => (
                                                 <li key={i}>
-                                                    <Link href={sub.href || "/"} className="block py-3 px-4 text-gray-600 hover:text-brand-blue">
+                                                    <Link href={sub.href || "/"} className="block py-3 px-4 text-gray-600 hover:text-brand-blue border-l-2 border-gray-200 hover:border-brand-blue">
                                                         {sub.title}
                                                     </Link>
                                                 </li>
@@ -401,7 +412,7 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
 
                         return (
                             <li key={index} className="border-b border-gray-100 last:border-0">
-                                <Link href={item.href || "/"} className="block py-4 px-2 text-gray-900 font-semibold">
+                                <Link href={item.href || "/"} className="block py-4 px-2 text-gray-900 font-semibold hover:text-brand-blue">
                                     {item.title}
                                 </Link>
                             </li>

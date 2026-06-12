@@ -141,13 +141,13 @@ const PerspectiveServiceSlider: React.FC<PerspectiveServiceSliderProps> = ({ ser
 
       <div className="h5-banner-area relative z-10">
         <div className="container mx-auto">
-          <div className="sec-heading-wrap mb-12 text-center flex flex-col items-center justify-center">
-            <h1 className="sec-title text-gray-900 mb-6 text-4xl lg:text-6xl font-black italic tracking-tighter">
+          <div className="sec-heading-wrap mb-8 sm:mb-12 text-center flex flex-col items-center justify-center px-4">
+            <h1 className="sec-title text-gray-900 mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black italic tracking-tighter leading-tight">
               Pasti Beres di <span className="text-brand-blue">Bengkel Wiguna</span>
             </h1>
-            <div className="inline-block">
-              <p className="text-brand-blue text-lg md:text-xl lg:text-2xl font-medium tracking-wide italic bg-white/80 backdrop-blur-sm px-6 py-3 rounded-full border border-blue-200 shadow-lg shadow-blue-900/10" suppressHydrationWarning>
-                &quot;No Drama, No Bongkar-Bongkar, No Tebak-Tebak, &amp; No Tipu-Tipu&quot;
+            <div className="inline-block max-w-full">
+              <p className="text-brand-blue text-sm sm:text-base md:text-lg lg:text-xl font-medium tracking-wide italic bg-white/80 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-blue-200 shadow-lg shadow-blue-900/10 leading-snug" suppressHydrationWarning>
+                &quot;No Drama, No Bongkar-Bongkar, No Tebak-Tebek &amp; No Tipu-Tipu&quot;
               </p>
             </div>
           </div>
