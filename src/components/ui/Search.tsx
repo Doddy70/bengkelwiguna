@@ -30,13 +30,13 @@ export default function SearchBox() {
             {/* Search Button */}
             <button
                 aria-label="Buka pencarian"
-                className="search-btn p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors cursor-pointer flex items-center justify-center"
+                className="search-btn flex items-center justify-center w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-sm border border-gray-200 text-gray-900 dark:text-gray-100 transition-colors cursor-pointer"
                 onClick={() => setIsOpen(true)}
             >
                 <Search size={20} aria-hidden="true" />
             </button>
 
-            {/* Search Wrap - Increased Z-index to 100 to be above header (z-60) */}
+            {/* Search Wrap - Increased Z-index to 100 to be above header */}
             <div
                 className={`search-wrap w-full md:py-6 py-4 fixed top-0 left-0 z-[100] bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 shadow-[0_4px_30px_rgba(0,0,0,0.1)] transition-all duration-500 ease-in-out ${isOpen
                         ? "translate-y-0 opacity-100 pointer-events-auto"
@@ -70,7 +70,7 @@ export default function SearchBox() {
 
             {/* Backdrop for Search */}
             {isOpen && (
-                <div 
+                <div
                     className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[90] transition-opacity duration-500"
                     onClick={() => setIsOpen(false)}
                 />

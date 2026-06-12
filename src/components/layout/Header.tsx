@@ -66,7 +66,7 @@ const Header = ({
 
     return (
         <header
-            className={`header-wrapper w-full ${position} top-0 left-0 z-50 transition-all duration-300 ease-in-out font-dm-sans ${headerClass === "bg-color-none" ? "bg-color-none top-0" : ""} ${theme} ${scrolled ? "scroll-header glass-header shadow-sm" : `${bgColor} border-transparent`
+            className={`header-wrapper w-full ${position} top-0 left-0 z-[60] transition-all duration-300 ease-in-out font-dm-sans ${headerClass === "bg-color-none" ? "bg-color-none top-0" : ""} ${theme} ${scrolled ? "scroll-header glass-header shadow-sm" : `${bgColor} border-transparent`
                 }`}
         >
             <div className="max-w-screen-xl mx-auto px-4 lg:px-6">
@@ -74,7 +74,7 @@ const Header = ({
                     <nav className="flex items-center justify-between w-full relative">
 
                         {/* Logo */}
-                        <Link href="/" className="flex items-center py-3 mr-4 lg:py-2">
+                        <Link href="/" className="flex items-center py-3 mr-4 lg:py-2 z-[61]">
                             <Image
                                 src={logo}
                                 alt="Bengkel Wiguna Logo"
@@ -99,7 +99,7 @@ const Header = ({
                         </div>
 
                         {/* Right Icons */}
-                        <div className="flex items-center gap-2 lg:gap-4 flex-shrink-0">
+                        <div className="flex items-center gap-2 lg:gap-4 flex-shrink-0 z-[61]">
                             {/* Search Button */}
                             {showSearch && <SearchBox />}
 
@@ -119,10 +119,14 @@ const Header = ({
                             <button
                                 aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
                                 aria-expanded={mobileOpen}
-                                className="flex md:hidden items-center p-2 -mr-2"
+                                className="flex md:hidden items-center justify-center w-12 h-12 rounded-lg bg-white/90 hover:bg-white shadow-md border border-gray-200"
                                 onClick={toggleMobileMenu}
                             >
-                                {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+                                {mobileOpen ? (
+                                    <X size={24} className="text-gray-900" />
+                                ) : (
+                                    <Menu size={24} className="text-gray-900" />
+                                )}
                             </button>
                         </div>
 
@@ -133,7 +137,7 @@ const Header = ({
             {/* Mobile Menu Overlay - ONLY visible on mobile */}
             {mobileOpen && (
                 <div
-                    className="fixed inset-0 bg-black/60 z-40 md:hidden"
+                    className="fixed inset-0 bg-black/60 z-[59] md:hidden"
                     onClick={toggleMobileMenu}
                 />
             )}
