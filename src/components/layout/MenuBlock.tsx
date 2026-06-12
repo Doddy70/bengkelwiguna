@@ -345,17 +345,18 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
 
             {/* Mobile Menu */}
             <div
-                className={`fixed top-0 left-0 h-full w-72 bg-white z-[110] transform transition-transform duration-300 flex flex-col lg:hidden ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
+                className={`fixed inset-y-0 left-0 w-72 bg-white z-[110] transform transition-transform duration-300 flex flex-col lg:hidden ${mobileOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full'
                     }`}
             >
-                <div className="flex items-center justify-between p-4 border-b border-gray-100">
+                {/* Header with Logo and Close Button */}
+                <div className="flex items-center justify-between p-4 border-b border-gray-100 bg-white">
                     {/* Logo */}
-                    <Link href="/" className="flex items-center">
+                    <Link href="/" className="flex items-center" onClick={toggleMobileMenu}>
                         <Image
                             src={logo}
                             alt="logo"
-                            width={180}
-                            height={50}
+                            width={160}
+                            height={44}
                             priority
                             className="h-10 w-auto"
                         />
@@ -364,67 +365,75 @@ const MenuBlock: React.FC<MenuBlockProps> = ({
                         <X size={24} className="text-gray-900" />
                     </button>
                 </div>
-                <ul className="flex flex-col overflow-y-auto" style={{ padding: '16px' }}>
-                    {menuItems.map((item, index) => {
-                        const mobileKey = `mobile-${index}`;
-                        const isOpen = !!openSubMenu[mobileKey];
 
-                        const subItems = [
-                            ...(item.subMenu || []),
-                            ...(item.megaMenu?.flatMap(s => s.subMenu) || [])
-                        ];
+                {/* Menu Items - Scrollable */}
+                <nav className="flex-1 overflow-y-auto">
+                    <ul className="py-2 px-4">
+                        {menuItems.map((item, index) => {
+                            const mobileKey = `mobile-${index}`;
+                            const isOpen = !!openSubMenu[mobileKey];
 
-                        if (subItems.length > 0) {
+                            const subItems = [
+                                ...(item.subMenu || []),
+                                ...(item.megaMenu?.flatMap(s => s.subMenu) || [])
+                            ];
+
+                            if (subItems.length > 0) {
+                                return (
+                                    <li key={index} className="border-b border-gray-100 last:border-0">
+                                        <div className="flex justify-between items-center py-3">
+                                            <Link
+                                                href={item.href || "/"}
+                                                className="flex-1 font-semibold text-gray-900 hover:text-brand-blue"
+                                                onClick={toggleMobileMenu}
+                                            >
+                                                {item.title}
+                                            </Link>
+                                            <button
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    toggleSubMenu(mobileKey);
+                                                }}
+                                                className="p-2 hover:bg-gray-100 rounded-lg"
+                                                aria-label={`Toggle ${item.title} menu`}
+                                            >
+                                                <ChevronDown size={18} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+                                            </button>
+                                        </div>
+                                        {isOpen && (
+                                            <ul className="pb-2 pl-2">
+                                                {subItems.map((sub, i) => (
+                                                    <li key={i}>
+                                                        <Link href={sub.href || "/"} className="block py-2 px-3 text-gray-600 hover:text-brand-blue text-sm rounded-lg hover:bg-gray-50" onClick={toggleMobileMenu}>
+                                                            {sub.title}
+                                                        </Link>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </li>
+                                );
+                            }
+
                             return (
                                 <li key={index} className="border-b border-gray-100 last:border-0">
-                                    <div className="flex justify-between items-center">
-                                        <Link
-                                            href={item.href || "/"}
-                                            className="flex-1 py-4 px-2 font-semibold text-gray-900 hover:text-brand-blue"
-                                        >
-                                            {item.title}
-                                        </Link>
-                                        <button
-                                            onClick={(e) => {
-                                                e.preventDefault();
-                                                toggleSubMenu(mobileKey);
-                                            }}
-                                            className="p-2 hover:bg-gray-100 rounded-lg"
-                                            aria-label={`Toggle ${item.title} menu`}
-                                        >
-                                            <ChevronDown size={18} className={`transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
-                                        </button>
-                                    </div>
-                                    {isOpen && (
-                                        <ul className="pb-2 ml-4">
-                                            {subItems.map((sub, i) => (
-                                                <li key={i}>
-                                                    <Link href={sub.href || "/"} className="block py-3 px-4 text-gray-600 hover:text-brand-blue border-l-2 border-gray-200 hover:border-brand-blue">
-                                                        {sub.title}
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
+                                    <Link href={item.href || "/"} className="block py-3 font-semibold text-gray-900 hover:text-brand-blue" onClick={toggleMobileMenu}>
+                                        {item.title}
+                                    </Link>
                                 </li>
                             );
-                        }
+                        })}
+                    </ul>
+                </nav>
 
-                        return (
-                            <li key={index} className="border-b border-gray-100 last:border-0">
-                                <Link href={item.href || "/"} className="block py-4 px-2 text-gray-900 font-semibold hover:text-brand-blue">
-                                    {item.title}
-                                </Link>
-                            </li>
-                        );
-                    })}
-                </ul>
-                <div className="mt-auto p-4 border-t border-gray-100">
+                {/* CTA Button - Always Visible at Bottom */}
+                <div className="p-4 border-t border-gray-100 bg-white">
                     <Link
                         href="https://wa.me/6287817773888"
-                        className={`flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-[#ffd900] text-[#1a3567] hover:bg-yellow-400 transition-all shadow-md`}
+                        className="flex items-center justify-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-[#ffd900] text-[#1a3567] hover:bg-yellow-400 transition-all shadow-md"
+                        onClick={toggleMobileMenu}
                     >
-                        Booking Service
+                        📞 Booking Service
                     </Link>
                 </div>
             </div>
