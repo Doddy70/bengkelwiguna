@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'react-feather';
-import MenuBlock from './MenuBlock';
+import { Menu, X } from 'lucide-react';
+import MobileMenu from './MobileMenu';
 import SearchBox from '../ui/Search';
 import Image from 'next/image';
 import Button from '../ui/Button';
@@ -23,7 +23,7 @@ interface HeaderProps {
     spesialisData?: LayananSpesialis[];
 }
 
-const Header = ({
+export default function Header({
     btnColor = 'bg-brand-gold',
     bgColor = "bg-transparent",
     headerClass = "",
@@ -35,24 +35,11 @@ const Header = ({
     showSearch = true,
     menuItems = [],
     spesialisData = []
-}: HeaderProps) => {
+}: HeaderProps) {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
 
-    // Toggle mobile menu
-    const toggleMobileMenu = () => setMobileOpen(!mobileOpen);
-
-    // Close menu on route change
-    useEffect(() => {
-        if (mobileOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-        return () => {
-            document.body.style.overflow = '';
-        };
-    }, [mobileOpen]);
+    const toggleMobileMenu = () => setMobileOpen(prev => !prev);
 
     // Scroll listener for sticky header
     useEffect(() => {
@@ -60,89 +47,97 @@ const Header = ({
             setScrolled(window.scrollY > 10);
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
-        <header
-            className={`header-wrapper w-full ${position} top-0 left-0 z-[60] transition-all duration-300 ease-in-out font-dm-sans ${headerClass === "bg-color-none" ? "bg-color-none top-0" : ""} ${theme} ${scrolled ? "scroll-header glass-header shadow-sm" : `${bgColor} border-transparent`
-                }`}
-        >
-            <div className="max-w-screen-xl mx-auto px-4 lg:px-6">
-                <div className={`${headerClass === "bg-color-none" ? "bg-gray-200 rounded-xl px-4 shadow-md" : ""}`} >
-                    <nav className="flex items-center justify-between w-full relative">
+        <>
+            <header
+                className={`header-wrapper w-full ${position} top-0 left-0 z-40 transition-all duration-300 ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${scrolled ? "scroll-header shadow-md" : `${bgColor}`}`}
+            >
+                <div className="max-w-screen-xl mx-auto px-4">
+                    <div className={`${headerClass === "bg-color-none" ? "bg-gray-100 rounded-lg px-3" : ""}`}>
+                        <nav className="flex items-center justify-between">
 
-                        {/* Logo */}
-                        <Link href="/" className="flex items-center py-3 mr-4 lg:py-2 z-[61]">
-                            <Image
-                                src={logo}
-                                alt="Bengkel Wiguna Logo"
-                                width={logoWidth}
-                                height={logoWidth}
-                                priority
-                                className='h-auto w-full'
-                            />
-                        </Link>
-
-                        {/* Desktop Menu - Only visible on large screens (md and up) */}
-                        <div className="hidden md:block flex-grow justify-center">
-                            <MenuBlock
-                                btnColor={btnColor}
-                                btnlinkColor={btnlinkColor}
-                                logo={logo}
-                                mobileOpen={mobileOpen}
-                                toggleMobileMenu={toggleMobileMenu}
-                                dynamicItems={menuItems}
-                                spesialisData={spesialisData}
-                            />
-                        </div>
-
-                        {/* Right Icons */}
-                        <div className="flex items-center gap-2 lg:gap-4 flex-shrink-0 z-[61]">
-                            {/* Search Button */}
-                            {showSearch && <SearchBox />}
-
-                            {/* Chat Button - Desktop Only */}
-                            <div className="hidden xl:block">
-                                <Button
-                                    href='https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)'
-                                    label='Chat Minna'
-                                    icon=""
-                                    className="text-sm font-semibold rounded-full"
-                                    bgColor={btnColor}
-                                    textColor={btnlinkColor}
+                            {/* Logo */}
+                            <Link href="/" className="flex-shrink-0 py-2">
+                                <Image
+                                    src={logo}
+                                    alt="Bengkel Wiguna"
+                                    width={logoWidth}
+                                    height={logoWidth}
+                                    priority
+                                    className="h-auto w-full"
                                 />
+                            </Link>
+
+                            {/* Desktop Navigation - Hidden on mobile */}
+                            <div className="hidden lg:flex items-center gap-6">
+                                {[
+                                    { name: 'Beranda', href: '/' },
+                                    { name: 'Layanan', href: '/services' },
+                                    { name: 'Promosi', href: '/promosi' },
+                                    { name: 'Paket Service', href: '/paket-service' },
+                                    { name: 'Tentang Wiguna', href: '/tentang-wiguna' },
+                                    { name: 'Blog', href: '/blog' },
+                                    { name: 'Lokasi', href: '/contact' },
+                                ].map((item, index) => (
+                                    <Link
+                                        key={index}
+                                        href={item.href}
+                                        className="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors"
+                                    >
+                                        {item.name}
+                                    </Link>
+                                ))}
                             </div>
 
-                            {/* Mobile Menu Button - ONLY visible on mobile (md and below) */}
-                            <button
-                                aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
-                                aria-expanded={mobileOpen}
-                                className="flex md:hidden items-center justify-center w-12 h-12 rounded-lg bg-white/90 hover:bg-white shadow-md border border-gray-200"
-                                onClick={toggleMobileMenu}
-                            >
-                                {mobileOpen ? (
-                                    <X size={24} className="text-gray-900" />
-                                ) : (
-                                    <Menu size={24} className="text-gray-900" />
-                                )}
-                            </button>
-                        </div>
+                            {/* Right Side Actions */}
+                            <div className="flex items-center gap-3">
+                                {/* Search - Desktop Only */}
+                                <div className="hidden lg:block">
+                                    <SearchBox />
+                                </div>
 
-                    </nav>
+                                {/* CTA Button - Desktop Only */}
+                                <div className="hidden xl:block">
+                                    <Button
+                                        href='https://wa.me/6287817773888?text=halo%20minna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20di%20bengkel%20wiguna'
+                                        label='Chat Minna'
+                                        className="text-sm font-semibold"
+                                        bgColor={btnColor}
+                                        textColor={btnlinkColor}
+                                    />
+                                </div>
+
+                                {/* Mobile Menu Toggle - Mobile Only */}
+                                <button
+                                    onClick={toggleMobileMenu}
+                                    className="lg:hidden flex items-center justify-center w-11 h-11 rounded-lg bg-white shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors"
+                                    aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
+                                    aria-expanded={mobileOpen}
+                                >
+                                    {mobileOpen ? (
+                                        <X size={22} className="text-gray-700" />
+                                    ) : (
+                                        <Menu size={22} className="text-gray-700" />
+                                    )}
+                                </button>
+                            </div>
+                        </nav>
+                    </div>
                 </div>
-            </div>
+            </header>
 
-            {/* Mobile Menu Overlay - ONLY visible on mobile */}
-            {mobileOpen && (
-                <div
-                    className="fixed inset-0 bg-black/60 z-[59] md:hidden"
-                    onClick={toggleMobileMenu}
-                />
-            )}
-        </header >
+            {/* Mobile Menu */}
+            <MobileMenu
+                mobileOpen={mobileOpen}
+                toggleMobileMenu={toggleMobileMenu}
+                logo={logo}
+                dynamicItems={menuItems}
+                spesialisData={spesialisData}
+            />
+        </>
     );
-};
-
-export default Header;
+}
