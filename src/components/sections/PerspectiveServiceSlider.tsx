@@ -199,9 +199,6 @@ const PerspectiveServiceSlider: React.FC<PerspectiveServiceSliderProps> = ({ ser
 
                         <div className="perspective-card-content">
                           <div className="perspective-card-title-area">
-                            <div className="perspective-card-icon text-brand-blue">
-                              <Icon icon="solar:wrench-bold" width={20} />
-                            </div>
                             <h4 className="perspective-card-title-internal" suppressHydrationWarning>
                               {title}
                             </h4>
