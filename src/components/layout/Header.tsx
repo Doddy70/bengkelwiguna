@@ -57,7 +57,7 @@ const Header = ({
 
     return (
         <header
-            className={`header-wrapper w-full ${position} top-0 left-0 z-[60] transition-all duration-300 ease-in-out font-dm-sans ${headerClass === "bg-color-none" ? "bg-color-none top-0" : ""} ${theme} ${scrolled ? "scroll-header glass-header shadow-sm" : `${bgColor} border-transparent`
+            className={`header-wrapper w-full ${position} top-0 left-0 z-[70] transition-all duration-300 ease-in-out font-dm-sans ${headerClass === "bg-color-none" ? "bg-color-none top-0" : ""} ${theme} ${scrolled ? "scroll-header glass-header shadow-sm" : `${bgColor} border-transparent`
                 }`}
         >
             <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
@@ -65,29 +65,21 @@ const Header = ({
                     <nav className="flex items-center justify-between w-full relative">
 
                         {/* Logo - Always same size, no shrink */}
-                        <Link href="/" className="flex items-center lg:py-3 py-2 mr-5 flex-shrink-0">
-                            <div style={{ width: currentLogoWidth }} className="transition-all duration-300">
+                        <Link href="/" className="flex items-center lg:py-3 py-2 flex-shrink-0">
+                            <div className="w-[60px] h-[60px] lg:w-[70px] lg:h-[70px] transition-all duration-300">
                                 <Image
                                     src={logo}
                                     alt="Bengkel Wiguna Logo"
-                                    width={logoWidth}
-                                    height={logoWidth}
+                                    width={60}
+                                    height={60}
                                     priority
-                                    className='h-auto w-full'
+                                    className='h-full w-auto object-contain'
                                 />
                             </div>
                         </Link>
 
-                        {/* Mobile Menu Overlay */}
-                        {mobileOpen && (
-                            <div
-                                className="fixed inset-0 bg-black/60 z-[105] lg:hidden"
-                                onClick={toggleMobileMenu}
-                            ></div>
-                        )}
-
-                        {/* MenuBlock handles both desktop and mobile */}
-                        <div className="flex-grow flex justify-center">
+                        {/* Desktop Menu */}
+                        <div className="hidden lg:flex flex-grow justify-center">
                             <MenuBlock
                                 btnColor={btnColor}
                                 btnlinkColor="text-gray-900"
@@ -100,36 +92,59 @@ const Header = ({
                         </div>
 
                         {/* Right Icons */}
-                        <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
+                        <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0">
                             {/* Search Button */}
                             {showSearch && <SearchBox />}
 
-                            {/* Register/Chat Button */}
-                            <div className="hidden sm:block">
+                            {/* Register/Chat Button - Desktop Only */}
+                            <div className="hidden xl:block">
                                 <Button
                                     href='https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)'
                                     label='Chat Minna'
                                     icon=""
                                     className="text-sm font-semibold rounded-full"
-                                    bgColor={` ${btnColor} `}
-                                    textColor={` ${btnlinkColor} `}
+                                    bgColor={btnColor}
+                                    textColor={btnlinkColor}
                                 />
                             </div>
 
-                            {/* Mobile Menu Button */}
+                            {/* Mobile Menu Button - Always Visible on Mobile */}
                             <button
                                 aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
                                 aria-expanded={mobileOpen}
-                                className="lg:hidden flex items-center p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                                className="flex items-center justify-center w-12 h-12 rounded-xl bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 transition-colors"
                                 onClick={toggleMobileMenu}
                             >
-                                {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+                                {mobileOpen ? (
+                                    <X size={24} className="text-gray-900 dark:text-white" />
+                                ) : (
+                                    <Menu size={24} className="text-gray-900 dark:text-white" />
+                                )}
                             </button>
                         </div>
 
                     </nav>
                 </div>
             </div>
+
+            {/* Mobile Menu Overlay */}
+            {mobileOpen && (
+                <div
+                    className="fixed inset-0 bg-black/60 z-[100] lg:hidden"
+                    onClick={toggleMobileMenu}
+                />
+            )}
+
+            {/* Mobile Menu - Rendered Outside of Nav */}
+            <MenuBlock
+                btnColor={btnColor}
+                btnlinkColor="text-gray-900"
+                logo={logo}
+                mobileOpen={mobileOpen}
+                toggleMobileMenu={toggleMobileMenu}
+                dynamicItems={menuItems}
+                spesialisData={spesialisData}
+            />
         </header >
     );
 };
