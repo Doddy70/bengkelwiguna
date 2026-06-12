@@ -85,16 +85,18 @@ const Header = ({
                             />
                         </Link>
 
-                        {/* MenuBlock handles both desktop and mobile */}
-                        <MenuBlock
-                            btnColor={btnColor}
-                            btnlinkColor={btnlinkColor}
-                            logo={logo}
-                            mobileOpen={mobileOpen}
-                            toggleMobileMenu={toggleMobileMenu}
-                            dynamicItems={menuItems}
-                            spesialisData={spesialisData}
-                        />
+                        {/* Desktop Menu - Only visible on large screens (md and up) */}
+                        <div className="hidden md:block flex-grow justify-center">
+                            <MenuBlock
+                                btnColor={btnColor}
+                                btnlinkColor={btnlinkColor}
+                                logo={logo}
+                                mobileOpen={mobileOpen}
+                                toggleMobileMenu={toggleMobileMenu}
+                                dynamicItems={menuItems}
+                                spesialisData={spesialisData}
+                            />
+                        </div>
 
                         {/* Right Icons */}
                         <div className="flex items-center gap-2 lg:gap-4 flex-shrink-0">
@@ -113,11 +115,11 @@ const Header = ({
                                 />
                             </div>
 
-                            {/* Mobile Menu Button */}
+                            {/* Mobile Menu Button - ONLY visible on mobile (md and below) */}
                             <button
                                 aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
                                 aria-expanded={mobileOpen}
-                                className="lg:hidden flex items-center p-2 -mr-2"
+                                className="flex md:hidden items-center p-2 -mr-2"
                                 onClick={toggleMobileMenu}
                             >
                                 {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -128,10 +130,10 @@ const Header = ({
                 </div>
             </div>
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile Menu Overlay - ONLY visible on mobile */}
             {mobileOpen && (
                 <div
-                    className="fixed inset-0 bg-black/60 z-40 lg:hidden"
+                    className="fixed inset-0 bg-black/60 z-40 md:hidden"
                     onClick={toggleMobileMenu}
                 />
             )}
