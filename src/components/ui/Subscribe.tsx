@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 
 const Subscribe = () => {
-    const waUrl = "https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)";
+    const waUrl = "https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)";
 
     return (
         <div

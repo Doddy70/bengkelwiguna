@@ -218,7 +218,7 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
 
                         <div className="w-full flex flex-col gap-3">
                             <a
-                                href={`https://wa.me/6281717773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan spesialis "${title}" di Bengkel Wiguna.`)}`}
+                                href={`https://wa.me/6287817773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan spesialis "${title}" di Bengkel Wiguna.`)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"

@@ -27,7 +27,7 @@ const footerNavigation = {
     { name: "Ganti Oli", href: "/services" },
   ],
   company: [
-    { name: "Tentang Kami", href: "/about" },
+    { name: "Tentang Kami", href: "/tentang-wiguna" },
     { name: "Lokasi Bengkel", href: "https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA" },
     { name: "Hubungi Kami", href: "/contact" },
     { name: "Promosi", href: "/promosi" },
@@ -92,7 +92,7 @@ export default function FooterModern() {
             {/* Customer Support Widget */}
             <h3 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-2">Konsultasi Gratis</h3>
             <Link 
-              href="https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)" 
+              href="https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)" 
               isExternal
               className="block hover:opacity-90 transition-opacity"
             >
