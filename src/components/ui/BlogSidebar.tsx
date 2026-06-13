@@ -95,13 +95,47 @@ export default function BlogSidebar({ categories, relatedPosts }: BlogSidebarPro
             Promo Servis <br/>Bulan Ini
           </h3>
           <p className="text-sm text-white/70 mb-6 font-medium">Dapatkan diskon hingga 20% untuk Tune Up & Ganti Oli.</p>
-          <Link 
-            href="https://wa.me/6287817773888"
+          <Link
+            href="/promosi"
             className="bg-brand-gold text-brand-blue text-center py-4 rounded-xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-lg shadow-brand-gold/20"
           >
-            Ambil Promo Sekarang
+            Lihat Promo
           </Link>
         </div>
+      </div>
+
+      {/* Services Quick Links */}
+      <div className="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100">
+        <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+          <Icon icon="solar:settings-bold" className="text-brand-blue" width={24} />
+          Layanan Populer
+        </h3>
+        <ul className="space-y-3">
+          <li>
+            <Link href="/services" className="flex items-center gap-3 text-gray-700 hover:text-brand-blue transition-colors font-medium group">
+              <span className="w-2 h-2 bg-brand-gold rounded-full"></span>
+              Service Berkala
+            </Link>
+          </li>
+          <li>
+            <Link href="/layanan-spesialis" className="flex items-center gap-3 text-gray-700 hover:text-brand-blue transition-colors font-medium group">
+              <span className="w-2 h-2 bg-brand-gold rounded-full"></span>
+              Scanner Komputer
+            </Link>
+          </li>
+          <li>
+            <Link href="/layanan-spesialis" className="flex items-center gap-3 text-gray-700 hover:text-brand-blue transition-colors font-medium group">
+              <span className="w-2 h-2 bg-brand-gold rounded-full"></span>
+              Semi Overhaul
+            </Link>
+          </li>
+          <li>
+            <Link href="/lokasi" className="flex items-center gap-3 text-gray-700 hover:text-brand-blue transition-colors font-medium group">
+              <span className="w-2 h-2 bg-brand-gold rounded-full"></span>
+              Kunjungi Bengkel
+            </Link>
+          </li>
+        </ul>
       </div>
     </aside>
   );

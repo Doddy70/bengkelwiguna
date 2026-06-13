@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import SearchBox from '../ui/Search';
 import Image from 'next/image';
 import Button from '../ui/Button';
-import { NavMenuItem, LayananSpesialis } from '@/types/wordpress';
+import { NavMenuItem, LayananSpesialis, Service } from '@/types/wordpress';
 
 interface HeaderProps {
     btnColor?: string;
@@ -21,6 +21,7 @@ interface HeaderProps {
     showSearch?: boolean;
     menuItems?: NavMenuItem[];
     spesialisData?: LayananSpesialis[];
+    servicesData?: Service[];
 }
 
 export default function Header({
@@ -34,10 +35,13 @@ export default function Header({
     logoWidth = 60,
     showSearch = true,
     menuItems = [],
-    spesialisData = []
+    spesialisData = [],
+    servicesData = []
 }: HeaderProps) {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const [layananOpen, setLayananOpen] = useState(false);
+    const layananRef = useRef<HTMLDivElement>(null);
 
     const toggleMobileMenu = () => setMobileOpen(prev => !prev);
 
@@ -50,6 +54,66 @@ export default function Header({
         window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Close mega menu when clicking outside
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (layananRef.current && !layananRef.current.contains(event.target as Node)) {
+                setLayananOpen(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+    // Close mega menu on escape key
+    useEffect(() => {
+        const handleEscape = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') {
+                setLayananOpen(false);
+            }
+        };
+
+        document.addEventListener('keydown', handleEscape);
+        return () => document.removeEventListener('keydown', handleEscape);
+    }, []);
+
+    // Service categories for mega menu
+    const serviceCategories = [
+        {
+            title: 'Perawatan Rutin',
+            items: [
+                { name: 'Ganti Oli', href: '/services/ganti-oli', icon: '🛢️' },
+                { name: 'Ganti Ban', href: '/services/ganti-ban', icon: '🔘' },
+                { name: 'Spooring & Balancing', href: '/services/spooring-balancing', icon: '⚙️' },
+            ]
+        },
+        {
+            title: 'Servis AC',
+            items: [
+                { name: 'Service AC Mobil', href: '/services/service-ac', icon: '❄️' },
+                { name: 'Flush AC', href: '/services/flush-ac', icon: '🧊' },
+                { name: 'Tambah Freon', href: '/services/tambah-freon', icon: '💨' },
+            ]
+        },
+        {
+            title: 'Kaki-Kaki',
+            items: [
+                { name: 'Shockbreaker', href: '/services/shockbreaker', icon: '🔧' },
+                { name: 'Kaki-Kaki / Suspensi', href: '/services/kaki-kaki', icon: '🦵' },
+                { name: 'Busi & Koil', href: '/services/busi-koil', icon: '⚡' },
+            ]
+        },
+        {
+            title: 'Layanan Spesialis',
+            items: spesialisData.slice(0, 4).map(s => ({
+                name: s.title || 'Layanan',
+                href: `/layanan-spesialis/${s.slug}`,
+                icon: '🔩'
+            }))
+        }
+    ];
 
     return (
         <>
@@ -73,24 +137,130 @@ export default function Header({
                             </Link>
 
                             {/* Desktop Navigation - Hidden on mobile */}
-                            <div className="hidden lg:flex items-center gap-6">
-                                {[
-                                    { name: 'Beranda', href: '/' },
-                                    { name: 'Layanan', href: '/services' },
-                                    { name: 'Promosi', href: '/promosi' },
-                                    { name: 'Paket Service', href: '/paket-service' },
-                                    { name: 'Tentang Wiguna', href: '/tentang-wiguna' },
-                                    { name: 'Blog', href: '/blog' },
-                                    { name: 'Lokasi', href: '/contact' },
-                                ].map((item, index) => (
-                                    <Link
-                                        key={index}
-                                        href={item.href}
-                                        className="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors"
+                            <div className="hidden lg:flex items-center gap-1">
+                                {/* Beranda */}
+                                <Link
+                                    href="/"
+                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                >
+                                    Beranda
+                                </Link>
+
+                                {/* Layanan - with Mega Menu */}
+                                <div
+                                    ref={layananRef}
+                                    className="relative"
+                                    onMouseEnter={() => setLayananOpen(true)}
+                                    onMouseLeave={() => setLayananOpen(false)}
+                                >
+                                    <button
+                                        className={`flex items-center gap-1 px-4 py-7 font-medium text-sm transition-colors ${
+                                            layananOpen ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'
+                                        }`}
+                                        aria-expanded={layananOpen}
+                                        aria-haspopup="true"
                                     >
-                                        {item.name}
-                                    </Link>
-                                ))}
+                                        Layanan
+                                        <ChevronDown
+                                            size={14}
+                                            className={`transition-transform duration-200 ${layananOpen ? 'rotate-180' : ''}`}
+                                        />
+                                    </button>
+
+                                    {/* Mega Menu Dropdown */}
+                                    {layananOpen && (
+                                        <div
+                                            className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+                                            onMouseEnter={() => setLayananOpen(true)}
+                                        >
+                                            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 min-w-[600px]">
+                                                <div className="grid grid-cols-4 gap-6">
+                                                    {serviceCategories.map((category, catIndex) => (
+                                                        <div key={catIndex}>
+                                                            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
+                                                                {category.title}
+                                                            </h3>
+                                                            <ul className="space-y-2">
+                                                                {category.items.map((item, itemIndex) => (
+                                                                    <li key={itemIndex}>
+                                                                        <Link
+                                                                            href={item.href}
+                                                                            onClick={() => setLayananOpen(false)}
+                                                                            className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-brand-blue hover:bg-brand-blue/5 rounded-lg transition-colors text-sm"
+                                                                        >
+                                                                            <span className="text-base">{item.icon}</span>
+                                                                            {String(item.name)}
+                                                                        </Link>
+                                                                    </li>
+                                                                ))}
+                                                            </ul>
+                                                        </div>
+                                                    ))}
+                                                </div>
+
+                                                {/* CTA Banner */}
+                                                <div className="mt-6 pt-6 border-t border-gray-100">
+                                                    <Link
+                                                        href="/services"
+                                                        onClick={() => setLayananOpen(false)}
+                                                        className="flex items-center justify-between px-4 py-3 bg-brand-blue/5 hover:bg-brand-blue/10 rounded-xl transition-colors"
+                                                    >
+                                                        <span className="font-semibold text-brand-blue">Lihat Semua Layanan</span>
+                                                        <ChevronRight size={18} className="text-brand-blue" />
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Promosi */}
+                                <Link
+                                    href="/promosi"
+                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                >
+                                    Promosi
+                                </Link>
+
+                                {/* Paket Service */}
+                                <Link
+                                    href="/paket-service"
+                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                >
+                                    Paket Service
+                                </Link>
+
+                                {/* Layanan Spesialis */}
+                                <Link
+                                    href="/layanan-spesialis"
+                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                >
+                                    Spesialis
+                                </Link>
+
+                                {/* Tentang Wiguna */}
+                                <Link
+                                    href="/tentang-wiguna"
+                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                >
+                                    Tentang Wiguna
+                                </Link>
+
+                                {/* Blog */}
+                                <Link
+                                    href="/blog"
+                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                >
+                                    Blog
+                                </Link>
+
+                                {/* Lokasi */}
+                                <Link
+                                    href="/lokasi"
+                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                >
+                                    Lokasi
+                                </Link>
                             </div>
 
                             {/* Right Side Actions */}
@@ -137,6 +307,7 @@ export default function Header({
                 logo={logo}
                 dynamicItems={menuItems}
                 spesialisData={spesialisData}
+                servicesData={servicesData}
             />
         </>
     );

@@ -12,7 +12,7 @@ import Button from '@/components/ui/Button'
 import { getPromosiBySlug, getAllPromosi, stripHtml, formatDate } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
 import JsonLd from '@/components/layout/JsonLd'
-import { generateArticleSchema } from '@/lib/seo'
+import { generateSpecialOfferSchema, generateBreadcrumbSchema } from '@/lib/seo'
 
 export const revalidate = 3600
 
@@ -61,7 +61,12 @@ export default async function SinglePromosiPage({ params }: { params: Promise<{ 
 
   return (
     <>
-      <JsonLd data={generateArticleSchema(promo)} />
+      <JsonLd data={generateSpecialOfferSchema(promo)} />
+      <JsonLd data={generateBreadcrumbSchema([
+        { name: 'Home', url: 'https://bengkelwiguna.com' },
+        { name: 'Promosi', url: 'https://bengkelwiguna.com/promosi' },
+        { name: title, url: `https://bengkelwiguna.com/promosi/${slug}` }
+      ])} />
 
       {/* Branded Page Title Section */}
       <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">

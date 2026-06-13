@@ -17,7 +17,7 @@ import { notFound } from "next/navigation";
 import PopularPost from "@/components/ui/PopularPost";
 import { extractRankMathSEO, generateMetadataFromSEO } from "@/lib/rank-math";
 import JsonLd from "@/components/layout/JsonLd";
-import { generateArticleSchema } from "@/lib/seo";
+import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import BlogSidebar from "@/components/ui/BlogSidebar";
 import { Icon } from "@iconify/react";
 
@@ -52,6 +52,11 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
     return (
         <div className="bg-white">
         <JsonLd data={generateArticleSchema(post)} />
+        <JsonLd data={generateBreadcrumbSchema([
+          { name: 'Home', url: 'https://bengkelwiguna.com' },
+          { name: 'Blog', url: 'https://bengkelwiguna.com/blog' },
+          { name: title, url: `https://bengkelwiguna.com/blog/${slug}` }
+        ])} />
         
         <div className="blog-wrap font-dm">
             <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pb-24 pb-20 justify-center">

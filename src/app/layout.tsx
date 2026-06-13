@@ -2,6 +2,8 @@
 import './globals.css';
 import './perspective-slider.scss';
 import './hero-styles.scss';
+import '@splidejs/splide/dist/css/splide.min.css';
+import '@splidejs/splide/dist/css/themes/splide-default.min.css';
 import { Sora, DM_Sans, Mona_Sans } from 'next/font/google';
 import ClientProviders from "@/components/providers/ClientProviders";
 import CookieConsent from "@/components/heroui/cookie-consent";

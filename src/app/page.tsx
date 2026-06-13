@@ -6,9 +6,11 @@
 
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { 
-  getAllServices, 
-  getAllPromosi, 
+import {
+  getAllServices,
+  getAllPromosi,
+  getPromosiBulanan,
+  getPromosiRegular,
   getAllPosts,
   getPageBySlug,
   getHomepageFaqs,
@@ -23,7 +25,7 @@ import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
 import PerspectiveServiceSlider from '@/components/sections/PerspectiveServiceSlider'
 import Header from '@/components/layout/Header'
 import JsonLd from '@/components/layout/JsonLd'
-import { generateLocalBusinessSchema, generateWebsiteSchema, generateFAQSchema } from '@/lib/seo'
+import { generateLocalBusinessSchema, generateWebsiteSchema, generateFAQSchema, generateAggregateRatingSchema, generateOrganizationSchema } from '@/lib/seo'
 import { defaultFaqs } from '@/const/faqData'
 
 // 2. OPTIMIZED: Lazy Loading components below-the-fold
@@ -31,6 +33,7 @@ const GoogleReviews = dynamic(() => import('@/components/sections/GoogleReviews'
 const YoutubeEducation = dynamic(() => import('@/components/sections/YoutubeEducation'))
 const SpesialisSlider = dynamic(() => import('@/components/heroui/spesialis-slider'))
 const PromoSlider = dynamic(() => import('@/components/heroui/promo-slider'))
+const PromoHeroSlider = dynamic(() => import('@/components/heroui/promo-hero-slider'))
 const FooterModern = dynamic(() => import('@/components/heroui/footer-modern'))
 const PageTitle3 = dynamic(() => import('@/components/ui/PageTitle3'))
 const Button = dynamic(() => import('@/components/ui/Button'))
@@ -117,7 +120,9 @@ export default async function HomePage() {
     <div className="homepage-final-sequence overflow-x-hidden relative bg-white">
       <JsonLd data={generateWebsiteSchema()} />
       <JsonLd data={generateLocalBusinessSchema()} />
+      <JsonLd data={generateOrganizationSchema()} />
       <JsonLd data={generateFAQSchema(faqItems.map(f => ({ q: f.question, a: f.answer })))} />
+      <JsonLd data={generateAggregateRatingSchema()} />
       
       {/* HOMEPAGE HEADER (Fixed, Transparent with blur) */}
       <Header
@@ -126,6 +131,7 @@ export default async function HomePage() {
         theme="header-light"
         menuItems={menuItems}
         spesialisData={spesialisData}
+        servicesData={servicesList}
       />
 
       {/* SECTION 1: HERO (Perspective Slider with Background Image) */}

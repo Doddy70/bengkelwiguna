@@ -15,7 +15,7 @@ import BookingTrigger from '@/components/heroui/BookingTrigger'
 
 import { getLayananSpesialisBySlug, getAllLayananSpesialis, stripHtml, parseFaqField } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
-import { generateFAQSchema, generateServiceSchema } from '@/lib/seo'
+import { generateFAQSchema, generateServiceSchema, generateBreadcrumbSchema } from '@/lib/seo'
 
 export const revalidate = 3600
 
@@ -59,6 +59,11 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
     <>
       <JsonLd data={generateServiceSchema(layanan)} />
       {faqData.length > 0 && <JsonLd data={generateFAQSchema(faqData)} />}
+      <JsonLd data={generateBreadcrumbSchema([
+        { name: 'Home', url: 'https://bengkelwiguna.com' },
+        { name: 'Layanan Spesialis', url: 'https://bengkelwiguna.com/layanan-spesialis' },
+        { name: title, url: `https://bengkelwiguna.com/layanan-spesialis/${slug}` }
+      ])} />
 
       {/* Branded Page Title Section */}
       <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">

@@ -14,7 +14,7 @@ import BookingTrigger from '@/components/heroui/BookingTrigger'
 import { getServiceBySlug, getAllServices, stripHtml } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
 import JsonLd from '@/components/layout/JsonLd'
-import { generateServiceSchema } from '@/lib/seo'
+import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/seo'
 
 export const revalidate = 3600
 
@@ -48,6 +48,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   return (
     <>
       <JsonLd data={generateServiceSchema(service)} />
+      <JsonLd data={generateBreadcrumbSchema([
+        { name: 'Home', url: 'https://bengkelwiguna.com' },
+        { name: 'Layanan', url: 'https://bengkelwiguna.com/services' },
+        { name: title, url: `https://bengkelwiguna.com/services/${slug}` }
+      ])} />
 
       {/* Branded Page Title Section */}
       <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">

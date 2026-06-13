@@ -23,7 +23,7 @@ export default function ServiceSidebar({ services, currentSlug }: { services: an
       <ul className="flex flex-col gap-3">
         {paginatedServices.map((s: any) => (
           <li key={s.id}>
-            <Link 
+            <Link
               href={`/services/${s.slug}`}
               className={`flex items-center justify-between p-4 rounded-xl font-bold text-sm transition-all duration-300 group ${s.slug === currentSlug ? 'bg-brand-blue text-white shadow-lg shadow-blue-900/20' : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-brand-gold hover:text-brand-blue border border-gray-100 dark:border-gray-700'}`}
             >
@@ -33,11 +33,11 @@ export default function ServiceSidebar({ services, currentSlug }: { services: an
           </li>
         ))}
       </ul>
-      
+
       {/* Pagination Controls */}
       {totalPages > 1 && (
         <div className="flex items-center justify-between mt-6 pt-4 border-t border-gray-200 dark:border-gray-800">
-          <button 
+          <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
             className="p-2 rounded-full hover:bg-gray-200 disabled:opacity-30 transition-colors"
@@ -47,7 +47,7 @@ export default function ServiceSidebar({ services, currentSlug }: { services: an
           <span className="text-xs font-bold text-gray-500">
             {currentPage} / {totalPages}
           </span>
-          <button 
+          <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
             className="p-2 rounded-full hover:bg-gray-200 disabled:opacity-30 transition-colors"
@@ -56,6 +56,24 @@ export default function ServiceSidebar({ services, currentSlug }: { services: an
           </button>
         </div>
       )}
+
+      {/* Cross-links to other sections */}
+      <div className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-800 space-y-3">
+        <Link
+          href="/layanan-spesialis"
+          className="flex items-center justify-between p-4 rounded-xl font-bold text-sm bg-brand-blue/5 hover:bg-brand-blue/10 text-brand-blue border border-brand-blue/10 transition-all duration-300 group"
+        >
+          <span>Layanan Spesialis</span>
+          <ArrowUpRight size={16} className="opacity-70 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+        </Link>
+        <Link
+          href="/promosi"
+          className="flex items-center justify-between p-4 rounded-xl font-bold text-sm bg-brand-gold/10 hover:bg-brand-gold/20 text-brand-blue border border-brand-gold/10 transition-all duration-300 group"
+        >
+          <span>Promo & Diskon</span>
+          <ArrowUpRight size={16} className="opacity-70 group-hover:opacity-100 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+        </Link>
+      </div>
     </div>
   );
 }

@@ -141,16 +141,36 @@ const PerspectiveServiceSlider: React.FC<PerspectiveServiceSliderProps> = ({ ser
 
       <div className="h5-banner-area relative z-10">
         <div className="container mx-auto">
-          <div className="sec-heading-wrap mb-8 sm:mb-12 text-center flex flex-col items-center justify-center px-4">
-            <h1 className="sec-title text-gray-900 mb-4 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black italic tracking-tighter leading-tight">
-              Pasti Beres di <span className="text-brand-blue">Bengkel Wiguna</span>
-            </h1>
-            <div className="inline-block max-w-full">
-              <p className="text-brand-blue text-sm sm:text-base md:text-lg lg:text-xl font-medium tracking-wide italic bg-white/80 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-full border border-blue-200 shadow-lg shadow-blue-900/10 leading-snug" suppressHydrationWarning>
-                &quot;No Drama, No Bongkar-Bongkar, No Tebak-Tebek &amp; No Tipu-Tipu&quot;
-              </p>
-            </div>
-          </div>
+              <div className="sec-heading-wrap mb-10 sm:mb-16 text-center flex flex-col items-center justify-center px-4">
+
+                {/* Tagline - Pill Badge Style */}
+                <div className="relative mb-6 sm:mb-8">
+                  <div className="absolute inset-0 bg-brand-blue/20 blur-xl rounded-full scale-110"></div>
+                  <h2
+                    className="relative text-brand-blue text-xs sm:text-sm md:text-base lg:text-lg font-semibold tracking-widest uppercase bg-white/90 backdrop-blur-md px-5 sm:px-7 py-2.5 sm:py-3 rounded-full border-2 border-brand-blue/30 shadow-lg shadow-brand-blue/20"
+                    suppressHydrationWarning
+                  >
+                    <span className="mr-2">✨</span>
+                    &quot;No Drama, No Bongkar-Bongkar, No Tebak-Tebek &amp; No Tipu-Tipu&quot;
+                    <span className="ml-2">✨</span>
+                  </h2>
+                </div>
+
+                {/* Main Title */}
+                <h1 className="sec-title text-gray-900 mb-6 sm:mb-8 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black italic tracking-tight leading-[1.1]">
+                  <span className="block">
+                    di <span className="text-brand-blue relative">
+                      Bengkel Wiguna
+                      <span className="absolute -bottom-1 left-0 w-full h-2 sm:h-3 bg-brand-blue/20 rounded-full"></span>
+                    </span>
+                  </span>
+                </h1>
+
+                {/* Subtitle / CTA hint */}
+                <p className="text-gray-500 text-xs sm:text-sm md:text-base mt-4 sm:mt-6 font-medium tracking-wide">
+                  One Stop Service • Ganti Ban • Oli • AC • Kaki-Kaki • Spooring
+                </p>
+              </div>
 
           <div
             className="perspective-slider-container"

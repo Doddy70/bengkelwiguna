@@ -21,16 +21,23 @@ const footerNavigation = {
     { name: "Kaki-Kaki & Rem", href: "/services" },
   ],
   spesialis: [
-    { name: "Semi Overhaul", href: "/layanan-spesialis/semi-overhaul" },
+    { name: "Layanan Spesialis", href: "/layanan-spesialis" },
+    { name: "Semi Overhaul", href: "/layanan-spesialis" },
     { name: "Scanner Komputer", href: "/layanan-spesialis" },
     { name: "Spooring 3D", href: "/layanan-spesialis" },
-    { name: "Ganti Oli", href: "/services" },
+  ],
+  blog: [
+    { name: "Tips Otomotif", href: "/blog" },
+    { name: "Edukasi Mobil", href: "/blog" },
+    { name: "Promo Terbaru", href: "/promosi" },
+    { name: "Paket Service", href: "/paket-service" },
   ],
   company: [
     { name: "Tentang Kami", href: "/tentang-wiguna" },
-    { name: "Lokasi Bengkel", href: "https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA" },
-    { name: "Hubungi Kami", href: "/contact" },
+    { name: "Lokasi Bengkel", href: "/lokasi" },
+    { name: "Hubungi Kami", href: "/lokasi" },
     { name: "Promosi", href: "/promosi" },
+    { name: "Blog & Tips", href: "/blog" },
   ],
   legal: [
     { name: "Kebijakan Privasi", href: "/privacy" },
@@ -88,7 +95,7 @@ export default function FooterModern() {
     <footer className="flex w-full flex-col bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
       <div className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-12 sm:pt-16 lg:px-8">
         {/* Desktop: 4 Column Layout | Tablet: 2 Column | Mobile: 1 Column */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
           {/* Column 1: Customer Support Widget */}
           <div className="space-y-6">
             {/* Customer Support Widget */}
@@ -122,15 +129,20 @@ export default function FooterModern() {
 
           {/* Column 2: Services */}
           <div>
-            {renderList({ title: "Layanan Utama", items: footerNavigation.services })}
+            {renderList({ title: "Layanan Service", items: footerNavigation.services })}
           </div>
 
           {/* Column 3: Spesialis */}
           <div>
-            {renderList({ title: "Spesialis", items: footerNavigation.spesialis })}
+            {renderList({ title: "Layanan Spesialis", items: footerNavigation.spesialis })}
           </div>
 
-          {/* Column 4: Company & Legal */}
+          {/* Column 4: Blog & Edukasi */}
+          <div>
+            {renderList({ title: "Blog & Edukasi", items: footerNavigation.blog })}
+          </div>
+
+          {/* Column 5: Company & Legal */}
           <div>
             {renderList({ title: "Perusahaan", items: footerNavigation.company })}
             <div className="mt-8">
