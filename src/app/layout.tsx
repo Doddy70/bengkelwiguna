@@ -134,6 +134,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="id" className={`${sora.variable} ${dmSans.variable} ${monaSans.variable}`}>
       <head>
+        {/* ✅ Preload LCP Hero Images based on viewport */}
+        <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero-tablet.webp" media="(min-width: 768px) and (max-width: 1023px)" fetchPriority="high" />
+        <link rel="preload" as="image" href="/images/hero-desktop.webp" media="(min-width: 1024px)" fetchPriority="high" />
+
         {/* ✅ CRITICAL: Preconnect to external origins */}
         <link rel="preconnect" href="https://backend.bengkelwiguna.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />

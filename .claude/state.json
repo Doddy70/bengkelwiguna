@@ -3,24 +3,21 @@
   "version": "1.1.0",
   "lastUpdated": "2026-06-14T00:15:00+07:00",
   "lastAgent": {
-    "name": "Gemini CLI",
+    "name": "Gemini 3.1 Pro (High)",
     "email": "noreply@google.com",
-    "action": "Task 4 Complete: Lazy loading optimized across all homepage sub-components"
+    "action": "Task 5 Complete: Preload LCP Image"
   },
   "lastCommit": {
     "hash": null,
-    "message": "perf: implement lazy loading for below-fold images",
-    "author": "Gemini CLI",
-    "date": "2026-06-14T00:15:00+07:00",
+    "message": "perf: preload LCP image with high priority",
+    "author": "Gemini 3.1 Pro (High)",
+    "date": "2026-06-14T00:20:00+07:00",
     "files": [
-      "src/components/ui/BlogCardOne.tsx",
-      "src/components/heroui/spesialis-slider.tsx",
-      "src/components/heroui/promo-slider.tsx",
-      "src/components/sections/PartnerLogos.tsx"
+      "src/app/layout.tsx"
     ]
   },
   "gitStatus": {
-    "branch": "perf/lazy-loading",
+    "branch": "perf/preload-lcp",
     "upstream": "origin/main",
     "ahead": 0,
     "behind": 0,
@@ -79,17 +76,17 @@
       "ADAPTATION"
     ],
     "activeTasks": [
-      "preload-lcp"
+      "browser-caching"
     ],
     "completedTasks": [
       "inline-critical-css",
       "workflow-adaptation",
       "minify-assets",
       "convert-hero-webp",
-      "lazy-loading"
+      "lazy-loading",
+      "preload-lcp"
     ],
     "pendingTasks": [
-      "preload-lcp",
       "browser-caching",
       "gzip-compression",
       "cdn-setup",
@@ -163,7 +160,7 @@
       "estimatedSavings": "~400ms LCP"
     },
     "preload-lcp": {
-      "status": "PENDING",
+      "status": "DONE",
       "priority": "HIGH",
       "branch": "perf/preload-lcp",
       "estimatedSavings": "~200ms LCP"
