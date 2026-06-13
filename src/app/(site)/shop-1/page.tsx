@@ -1,5 +1,6 @@
 "use client";
 
+
 import { products } from "@/const/productData";
 import { useState } from "react";
 import { ArrowUpRight } from "react-feather";
@@ -224,3 +225,4 @@ export default function ShopPage() {
 
     );
 }
+

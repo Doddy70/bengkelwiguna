@@ -6,6 +6,10 @@ import CountdownTimer from "@/components/ui/CountdownTimer";
 export const metadata = {
     title: 'Terms & Conditions - Exsit Next',
     description: 'Read the terms and conditions for using Exsit Next template.',
+    robots: {
+        index: false,
+        follow: true,
+    },
 };
 
 export default function ComingsoonPage() {

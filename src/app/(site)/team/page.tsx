@@ -1,4 +1,3 @@
-"use client";
 
 import Image from "next/image";
 import FaqSection from "@/components/layout/FaqSection";
@@ -233,3 +232,10 @@ export default function ContactPage() {
         </>
     );
 }
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

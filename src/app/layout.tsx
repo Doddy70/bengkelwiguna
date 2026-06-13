@@ -8,6 +8,8 @@ import { Sora, DM_Sans, Mona_Sans } from 'next/font/google';
 import ClientProviders from "@/components/providers/ClientProviders";
 import CookieConsent from "@/components/heroui/cookie-consent";
 import { Viewport } from "next";
+import fs from 'fs';
+import path from 'path';
 
 // ✅ FORCE DYNAMIC RENDERING - Required for WordPress API integration
 export const dynamic = 'force-dynamic'
@@ -106,11 +108,16 @@ export const viewport: Viewport = {
 };
 
 // ✅ CRITICAL CSS INLINE for above-the-fold content
-const criticalCSS = `
-  body { margin: 0; font-family: var(--font-mona-sans), var(--font-dm-sans), sans-serif; }
-  .hero-section { min-height: 100vh; }
-  .header-wrapper { position: fixed; top: 0; width: 100%; z-index: 60; }
-`;
+// Read from file for better maintainability and performance
+let criticalCSS = '';
+try {
+  const criticalPath = path.join(process.cwd(), 'src/styles/critical.min.css');
+  criticalCSS = fs.readFileSync(criticalPath, 'utf8');
+} catch (error) {
+  console.error('[CriticalCSS] Error reading critical.css:', error);
+  // Fallback to basic reset
+  criticalCSS = 'body { margin: 0; padding: 0; box-sizing: border-box; }';
+}
 
 // ✅ Speculation Rules for instant navigation
 const speculationRules = {
@@ -131,14 +138,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://backend.bengkelwiguna.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         
-        {/* ✅ FontAwesome CDN for legacy icon support */}
+        {/* ✅ FontAwesome CDN for legacy icon support - Preload for performance */}
+        <link 
+          rel="preload"
+          as="style"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        />
         <link 
           rel="stylesheet" 
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
           crossOrigin="anonymous" 
-          referrerPolicy="no-referrer" 
+          referrerPolicy="no-referrer"
+          media="print"
+          onLoad={(e) => {
+            const target = e.currentTarget;
+            if (target) target.media = 'all';
+          }}
         />
 
         {/* ✅ INLINE CRITICAL CSS for above-the-fold */}

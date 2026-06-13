@@ -1,4 +1,3 @@
-"use client";
 
 import FaqSection from "@/components/layout/FaqSection";
 import { Zap, Linkedin, Twitch, Twitter, Database } from 'react-feather';
@@ -199,3 +198,10 @@ export default function ContactPage() {
         </>
     );
 }
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

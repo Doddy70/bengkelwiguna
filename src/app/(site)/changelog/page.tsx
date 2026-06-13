@@ -1,4 +1,3 @@
-"use client";
 
 
 import FaqSection from '@/components/layout/FaqSection';
@@ -63,3 +62,10 @@ export default function ContactPage() {
         </>
     );
 }
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

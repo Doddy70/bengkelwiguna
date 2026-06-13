@@ -1,4 +1,3 @@
-"use client";
 
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -183,3 +182,10 @@ export default function SingleProductPage() {
 
     );
 }
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

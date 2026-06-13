@@ -35,9 +35,8 @@ export default function BlogCardOne({ post, index = 0 }: BlogCardOneProps) {
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 hover:scale-105"
-                    loading={index < 3 ? "eager" : "lazy"}
-                    priority={index === 0}
-                    quality={index === 0 ? 85 : 75}
+                    loading="lazy"
+                    quality={75}
                 />
             </div>
             <div className="p-4">

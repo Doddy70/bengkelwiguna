@@ -155,3 +155,10 @@ const RegisterPage: React.FC = () => {
 };
 
 export default RegisterPage;
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

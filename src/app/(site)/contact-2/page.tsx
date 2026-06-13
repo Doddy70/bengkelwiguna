@@ -1,5 +1,6 @@
 "use client";
 
+
 import Image from "next/image";
 import { FormEvent, useState } from "react";
 import FaqSection from "@/components/layout/FaqSection";
@@ -169,3 +170,4 @@ export default function ContactPage() {
         </>
     );
 }
+

@@ -132,9 +132,8 @@ export default function PromoSlider({ items = [] }: PromoSliderProps) {
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading={index === 0 ? "eager" : "lazy"}
-                      priority={index === 0}
-                      quality={index === 0 ? 85 : 75}
+                      loading="lazy"
+                      quality={75}
                     />
                   </Link>
                   <div className="absolute top-4 right-4 bg-brand-gold text-gray-900 font-bold px-4 py-1 rounded-full text-xs z-10 shadow-lg">

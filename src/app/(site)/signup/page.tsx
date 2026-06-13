@@ -154,3 +154,10 @@ const SignupPage: React.FC = () => {
 };
 
 export default SignupPage;
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

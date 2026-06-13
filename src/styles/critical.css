@@ -1,0 +1,173 @@
+/*
+ * CRITICAL CSS — Bengkel Wiguna V3
+ * Optimized for Above-the-fold content (Header & Hero Perspective Slider)
+ */
+
+:root {
+  --background: #fff;
+  --foreground: #0a0a0a;
+  --brand-blue: #224297;
+  --brand-gold: #ffd900;
+  --font-fallback-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+}
+
+html {
+  font-family: var(--font-dm-sans, var(--font-fallback-sans));
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+body {
+  margin: 0;
+  line-height: inherit;
+  background: var(--background);
+  color: var(--foreground);
+  overflow-x: hidden;
+}
+
+/* Header Styles */
+.header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 60;
+  transition: all 0.3s ease;
+}
+
+.glass-header {
+  backdrop-filter: blur(35px);
+  -webkit-backdrop-filter: blur(35px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.35));
+}
+
+.scroll-header {
+  background: #fff;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Hero Section Styles */
+#services-slider-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.h5-banner-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 160px;
+  padding-bottom: 80px;
+}
+
+@media (max-width: 767px) {
+  .h5-banner-area {
+    padding-top: 110px;
+    padding-bottom: 50px;
+  }
+}
+
+.sec-heading-wrap {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.sec-title {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #1e3a5f;
+  letter-spacing: -0.02em;
+}
+
+@media (max-width: 991px) {
+  .sec-title { font-size: 44px; }
+}
+
+@media (max-width: 767px) {
+  .sec-title { font-size: 34px; }
+}
+
+/* Perspective Slider Essentials */
+.perspective-slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.perspective-slider-viewport {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  perspective: 1400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 767px) {
+  .perspective-slider-viewport { height: 340px; }
+}
+
+.perspective-slider-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.perspective-card-wrapper {
+  position: absolute;
+  width: 320px;
+  height: 420px;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+@media (max-width: 767px) {
+  .perspective-card-wrapper { width: 200px; height: 280px; }
+}
+
+.perspective-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Common Utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.relative { position: relative; }
+.absolute { position: absolute; }
+.inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.mx-auto { margin-left: auto; margin-right: auto; }
+.text-center { text-align: center; }
+.w-full { width: 100%; }
+.max-w-screen-xl { max-width: 1280px; }
+.px-4 { padding-left: 1rem; padding-right: 1rem; }
+.hidden { display: none; }
+@media (min-width: 1024px) { .lg\:flex { display: flex; } .lg\:hidden { display: none; } }

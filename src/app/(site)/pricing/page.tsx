@@ -1,4 +1,3 @@
-"use client";
 
 import FaqSection from "@/components/layout/FaqSection";
 import PageTitle2 from "@/components/ui/PageTitle2";
@@ -96,3 +95,10 @@ export default function ContactPage() {
         </>
     );
 }
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

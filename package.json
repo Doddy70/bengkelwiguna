@@ -6,12 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "minify": "node scripts/minify.js"
   },
   "dependencies": {
+    "@automattic/mcp-wordpress-remote": "^0.3.4",
     "@iconify/react": "^6.0.2",
     "@nextui-org/react": "^2.6.11",
     "@splidejs/react-splide": "^0.7.12",
+    "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "aos": "^2.3.4",
     "framer-motion": "^12.40.0",
@@ -30,9 +33,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "cssnano": "^8.0.2",
     "eslint": "^9",
     "eslint-config-next": "^15.5.4",
+    "postcss": "^8.5.15",
     "tailwindcss": "^4",
+    "terser": "^5.48.0",
     "typescript": "^5"
   }
 }

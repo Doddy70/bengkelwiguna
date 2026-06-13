@@ -128,9 +128,8 @@ export default function SpesialisSlider({ items }: SpesialisSliderProps) {
                           fill
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                           className="object-cover group-hover:scale-110 transition-transform duration-700"
-                          loading={index < 3 ? "eager" : "lazy"}
-                          priority={index === 0}
-                          quality={index === 0 ? 85 : 75}
+                          loading="lazy"
+                          quality={75}
                         />
                       ) : (
                         <div className="w-full h-full flex items-center justify-center">

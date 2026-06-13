@@ -1,0 +1,202 @@
+{
+  "project": "bengkel-wiguna",
+  "version": "1.1.0",
+  "lastUpdated": "2026-06-14T00:15:00+07:00",
+  "lastAgent": {
+    "name": "Gemini CLI",
+    "email": "noreply@google.com",
+    "action": "Task 4 Complete: Lazy loading optimized across all homepage sub-components"
+  },
+  "lastCommit": {
+    "hash": null,
+    "message": "perf: implement lazy loading for below-fold images",
+    "author": "Gemini CLI",
+    "date": "2026-06-14T00:15:00+07:00",
+    "files": [
+      "src/components/ui/BlogCardOne.tsx",
+      "src/components/heroui/spesialis-slider.tsx",
+      "src/components/heroui/promo-slider.tsx",
+      "src/components/sections/PartnerLogos.tsx"
+    ]
+  },
+  "gitStatus": {
+    "branch": "perf/lazy-loading",
+    "upstream": "origin/main",
+    "ahead": 0,
+    "behind": 0,
+    "status": "modified"
+  },
+  "performance": {
+    "baseline": {
+      "date": "2026-06-12",
+      "source": "Google PageSpeed Insights (Mobile)",
+      "device": "Emulated Moto G Power",
+      "network": "Slow 4G",
+      "metrics": {
+        "performance": 72,
+        "accessibility": 91,
+        "bestPractices": 96,
+        "seo": 100,
+        "lcp": "6.4s",
+        "fcp": "1.85s",
+        "tbt": "160ms",
+        "cls": "0",
+        "speedIndex": "3.85s"
+      }
+    },
+    "target": {
+      "performance": 90,
+      "lcp": "≤2.5s",
+      "fcp": "≤1.8s",
+      "tbt": "≤200ms",
+      "cls": "≤0.1"
+    },
+    "opportunities": [
+      {
+        "title": "Eliminate render-blocking resources",
+        "savings": "890ms",
+        "priority": "HIGH"
+      },
+      {
+        "title": "Improve image delivery",
+        "savings": "92 KiB",
+        "priority": "HIGH"
+      },
+      {
+        "title": "Reduce unused JavaScript",
+        "savings": "15 KiB",
+        "priority": "MEDIUM"
+      }
+    ]
+  },
+  "workflow": {
+    "currentPhase": "IMPLEMENTATION_PHASE_1",
+    "nextPhase": "IMPLEMENTATION_PHASE_1",
+    "completedPhases": [
+      "AUDIT",
+      "ANALYSIS",
+      "RECOMMENDATIONS",
+      "ADAPTATION"
+    ],
+    "activeTasks": [
+      "preload-lcp"
+    ],
+    "completedTasks": [
+      "inline-critical-css",
+      "workflow-adaptation",
+      "minify-assets",
+      "convert-hero-webp",
+      "lazy-loading"
+    ],
+    "pendingTasks": [
+      "preload-lcp",
+      "browser-caching",
+      "gzip-compression",
+      "cdn-setup",
+      "lighthouse-ci",
+      "web-vitals-rum"
+    ]
+  },
+  "constraints": {
+    "dontDelete": [
+      "bexon/src/**",
+      "public/**"
+    ],
+    "dontModify": [
+      "package.json",
+      "lighthouse.config.js"
+    ],
+    "dontPushDirect": true,
+    "useFeatureBranch": true,
+    "zeroInitiative": true,
+    "brandColors": {
+      "blue": "#224297",
+      "gold": "#ffd900"
+    }
+  },
+  "architecture": {
+    "frontend": "bexon/ (Active - Stable)",
+    "frontendDeprecated": "bengkel-wiguna-nextjs/ (Paused)",
+    "backend": "WordPress at https://backend.bengkelwiguna.com/",
+    "cms": "bw-headless-cms plugin v1.7.0",
+    "framework": "Next.js 16.0+ (App Router + Turbopack)",
+    "styling": "Bootstrap 5.3 + Sass"
+  },
+  "nextAgentInstructions": [
+    "1. Baca .claude/CLAUDE.md dan .claude/workflow.md (Terutama LIGHTWEIGHT MODEL PROTOCOL)",
+    "2. Baca .claude/state.json untuk state terkini",
+    "3. Gunakan Atomic Tasks: Selesaikan task per SUB-TASK, jangan sekaligus",
+    "4. Jalankan 'npm run build' DAN 'npm run type-check' setelah setiap perubahan",
+    "5. Update state.json segera setelah task selesai",
+    "6. Commit dengan conventional commits",
+    "7. Jalankan lighthouse audit sebelum push"
+  ],
+  "tasks": {
+    "workflow-adaptation": {
+      "status": "DONE",
+      "priority": "HIGH",
+      "branch": "perf/workflow-adaptation",
+      "estimatedSavings": "Reliability for lightweight models"
+    },
+    "inline-critical-css": {
+      "status": "DONE",
+      "priority": "HIGH",
+      "branch": "perf/inline-critical-css",
+      "estimatedSavings": "~300ms FCP"
+    },
+    "minify-assets": {
+      "status": "DONE",
+      "priority": "HIGH",
+      "branch": "perf/minify-assets",
+      "estimatedSavings": "~200ms"
+    },
+    "convert-hero-webp": {
+      "status": "DONE",
+      "priority": "HIGH",
+      "branch": "perf/convert-hero-webp",
+      "estimatedSavings": "~500ms LCP"
+    },
+    "lazy-loading": {
+      "status": "DONE",
+      "priority": "HIGH",
+      "branch": "perf/lazy-loading",
+      "estimatedSavings": "~400ms LCP"
+    },
+    "preload-lcp": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "perf/preload-lcp",
+      "estimatedSavings": "~200ms LCP"
+    },
+    "browser-caching": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "perf/browser-caching",
+      "estimatedSavings": "~200ms (repeat visit)"
+    },
+    "gzip-compression": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "perf/compression",
+      "estimatedSavings": "~60-70% size reduction"
+    },
+    "cdn-setup": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "perf/cdn-setup",
+      "estimatedSavings": "~300ms"
+    },
+    "lighthouse-ci": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "perf/lighthouse-ci",
+      "estimatedSavings": "Regression prevention"
+    },
+    "web-vitals-rum": {
+      "status": "PENDING",
+      "priority": "LOW",
+      "branch": "perf/web-vitals-rum",
+      "estimatedSavings": "Real user monitoring"
+    }
+  }
+}

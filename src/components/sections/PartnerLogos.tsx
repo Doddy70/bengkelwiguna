@@ -39,6 +39,7 @@ export default function PartnerLogos() {
                 fill
                 className="object-contain"
                 sizes="(max-width: 768px) 112px, 144px"
+                loading="lazy"
               />
             </div>
           ))}

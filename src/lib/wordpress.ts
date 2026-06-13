@@ -454,6 +454,22 @@ export async function getPromosiForSitemap(): Promise<Promosi[]> {
   return (await apiFetch<Promosi[]>('/promosi-active?per_page=99', 'bw', REVALIDATE_LIST, ['sitemap'])) ?? []
 }
 
+/**
+ * Get Promosi Bulanan (Monthly Promotions) - for Hero Slider
+ * These are the main/focus promotions displayed in the big slider
+ */
+export async function getPromosiBulanan(): Promise<Promosi[]> {
+  return (await apiFetch<Promosi[]>('/promosi-active?jenis_promosi=bulanan', 'bw', REVALIDATE_LIST, ['promosi', 'bulanan'])) ?? []
+}
+
+/**
+ * Get Promosi Regular (Regular Promotions) - for Carousel
+ * These are secondary promotions displayed in the carousel below
+ */
+export async function getPromosiRegular(): Promise<Promosi[]> {
+  return (await apiFetch<Promosi[]>('/promosi-active?jenis_promosi=regular', 'bw', REVALIDATE_LIST, ['promosi', 'regular'])) ?? []
+}
+
 // ============================================
 // PAKET SERVICE (Custom Post Type)
 // ============================================

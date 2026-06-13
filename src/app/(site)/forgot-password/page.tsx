@@ -138,3 +138,10 @@ const ForgotPasswordPage: React.FC = () => {
 };
 
 export default ForgotPasswordPage;
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

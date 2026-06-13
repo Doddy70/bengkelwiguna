@@ -1,4 +1,3 @@
-"use client";
 
 
 import { Eye } from "react-feather";
@@ -151,3 +150,10 @@ export default function LoginPage() {
         </div>
     );
 }
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

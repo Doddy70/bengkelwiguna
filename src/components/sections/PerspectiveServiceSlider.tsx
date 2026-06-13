@@ -124,17 +124,20 @@ const PerspectiveServiceSlider: React.FC<PerspectiveServiceSliderProps> = ({ ser
 
   return (
     <section id="services-slider-section" className="relative overflow-hidden" onMouseEnter={() => isHoveredRef.current = true} onMouseLeave={() => isHoveredRef.current = false}>
-      {/* Hero Background Image with blur and opacity */}
+      {/* Hero Background Image with blur and opacity - Optimized with WebP variants */}
       <div className="absolute inset-0 z-0">
-        <Image
-          src="/images/hero-main.jpg"
-          alt="Bengkel Wiguna - Service & Perawatan Kendaraan Profesional"
-          fill
-          priority
-          quality={85}
-          style={{ objectFit: "cover", objectPosition: "center top" }}
-          className="blur-sm opacity-40"
-        />
+        <picture>
+          <source media="(max-width: 767px)" srcSet="/images/hero-mobile.webp" type="image/webp" />
+          <source media="(max-width: 1199px)" srcSet="/images/hero-tablet.webp" type="image/webp" />
+          <source srcSet="/images/hero-desktop.webp" type="image/webp" />
+          <img 
+            src="/images/hero-main.jpg" 
+            alt="Bengkel Wiguna - Service & Perawatan Kendaraan Profesional"
+            className="w-full h-full object-cover object-[center_top] blur-sm opacity-40"
+            loading="eager"
+            {...({ fetchPriority: "high" } as any)}
+          />
+        </picture>
         {/* Subtle light overlay instead of dark */}
         <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-white/10 to-white/50" />
       </div>

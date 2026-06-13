@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { blogPosts } from "@/const/blogData";
 import { ArrowUpRight, ChevronDown } from "react-feather";
@@ -90,3 +91,4 @@ export default function BlogPage() {
         </>
     );
 }
+

@@ -2,16 +2,17 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
-import { NavMenuItem, LayananSpesialis } from '@/types/wordpress';
+import { NavMenuItem, LayananSpesialis, Service } from '@/types/wordpress';
 
-interface MenuBlockProps {
+interface MobileMenuProps {
     mobileOpen: boolean;
     toggleMobileMenu: () => void;
     logo?: string;
     dynamicItems?: NavMenuItem[];
     spesialisData?: LayananSpesialis[];
+    servicesData?: Service[];
 }
 
 interface SubMenuItem {
@@ -23,11 +24,12 @@ interface MenuItem {
     title: string;
     href?: string;
     subMenu?: SubMenuItem[];
+    isMegaMenu?: boolean;
 }
 
 const defaultMenuItems: MenuItem[] = [
     { title: 'Beranda', href: '/' },
-    { title: 'Layanan', href: '/services' },
+    { title: 'Layanan', href: '/services', isMegaMenu: true },
     { title: 'Promosi', href: '/promosi' },
     { title: 'Paket Service', href: '/paket-service' },
     { title: 'Tentang Wiguna', href: '/tentang-wiguna' },
@@ -40,8 +42,9 @@ export default function MobileMenu({
     toggleMobileMenu,
     logo = "/images/logo/logo-square.avif",
     dynamicItems = [],
-    spesialisData = []
-}: MenuBlockProps) {
+    spesialisData = [],
+    servicesData = []
+}: MobileMenuProps) {
     const [menuItems, setMenuItems] = useState<MenuItem[]>(defaultMenuItems);
     const [openSubMenu, setOpenSubMenu] = useState<Record<string, boolean>>({});
 
@@ -86,6 +89,41 @@ export default function MobileMenu({
     // Don't render anything if menu is closed
     if (!mobileOpen) return null;
 
+    // Service categories for mega menu
+    const serviceCategories = [
+        {
+            title: 'Perawatan Rutin',
+            items: [
+                { name: 'Ganti Oli', href: '/services/ganti-oli' },
+                { name: 'Ganti Ban', href: '/services/ganti-ban' },
+                { name: 'Spooring & Balancing', href: '/services/spooring-balancing' },
+            ]
+        },
+        {
+            title: 'Servis AC',
+            items: [
+                { name: 'Service AC Mobil', href: '/services/service-ac' },
+                { name: 'Flush AC', href: '/services/flush-ac' },
+                { name: 'Tambah Freon', href: '/services/tambah-freon' },
+            ]
+        },
+        {
+            title: 'Kaki-Kaki',
+            items: [
+                { name: 'Shockbreaker', href: '/services/shockbreaker' },
+                { name: 'Kaki-Kaki / Suspensi', href: '/services/kaki-kaki' },
+                { name: 'Busi & Koil', href: '/services/busi-koil' },
+            ]
+        },
+        {
+            title: 'Layanan Spesialis',
+            items: spesialisData.slice(0, 3).map(s => ({
+                name: s.title || 'Layanan',
+                href: `/layanan-spesialis/${s.slug}`
+            }))
+        }
+    ];
+
     return (
         <>
             {/* Backdrop */}
@@ -97,7 +135,7 @@ export default function MobileMenu({
 
             {/* Menu Panel */}
             <div
-                className="fixed top-0 left-0 h-full w-[280px] max-w-[85vw] bg-white z-50 flex flex-col shadow-2xl"
+                className="fixed top-0 left-0 h-full w-[300px] max-w-[85vw] bg-white z-50 flex flex-col shadow-2xl"
                 style={{
                     transform: mobileOpen ? 'translateX(0)' : 'translateX(-100%)',
                     transition: 'transform 0.3s ease-in-out'
@@ -129,10 +167,58 @@ export default function MobileMenu({
                         {menuItems.map((item, index) => {
                             const key = `menu-${index}`;
                             const isOpen = !!openSubMenu[key];
+                            const isLayanan = item.title.toLowerCase() === 'layanan' || item.isMegaMenu;
 
                             return (
                                 <li key={index}>
-                                    {item.subMenu && item.subMenu.length > 0 ? (
+                                    {isLayanan ? (
+                                        <>
+                                            {/* Layanan - with expandable submenu */}
+                                            <button
+                                                onClick={() => toggleSubMenu(key)}
+                                                className="flex items-center justify-between w-full px-4 py-3 text-gray-800 font-semibold hover:bg-gray-50 transition-colors"
+                                            >
+                                                <span>{item.title}</span>
+                                                <ChevronDown
+                                                    size={18}
+                                                    className={`text-brand-blue transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                                                />
+                                            </button>
+
+                                            {isOpen && (
+                                                <div className="bg-gray-50 border-y border-gray-100">
+                                                    {/* Service Categories */}
+                                                    {serviceCategories.map((category, catIndex) => (
+                                                        <div key={catIndex} className="border-b border-gray-100 last:border-b-0">
+                                                            <div className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-gray-400 bg-gray-100">
+                                                                {category.title}
+                                                            </div>
+                                                            {category.items.map((subItem, subIndex) => (
+                                                                <Link
+                                                                    key={subIndex}
+                                                                    href={subItem.href}
+                                                                    onClick={handleLinkClick}
+                                                                    className="block px-6 py-2.5 text-gray-600 text-sm hover:text-brand-blue hover:bg-gray-100 transition-colors"
+                                                                >
+                                                                    {String(subItem.name)}
+                                                                </Link>
+                                                            ))}
+                                                        </div>
+                                                    ))}
+
+                                                    {/* View All Services Link */}
+                                                    <Link
+                                                        href="/services"
+                                                        onClick={handleLinkClick}
+                                                        className="flex items-center justify-between px-4 py-3 text-brand-blue font-semibold bg-brand-blue/5 hover:bg-brand-blue/10 transition-colors"
+                                                    >
+                                                        <span>Lihat Semua Layanan</span>
+                                                        <ChevronDown size={16} className="rotate-[-90deg]" />
+                                                    </Link>
+                                                </div>
+                                            )}
+                                        </>
+                                    ) : item.subMenu && item.subMenu.length > 0 ? (
                                         <>
                                             <button
                                                 onClick={() => toggleSubMenu(key)}
@@ -149,9 +235,9 @@ export default function MobileMenu({
                                                     {item.subMenu.map((sub, subIndex) => (
                                                         <li key={subIndex}>
                                                             <Link
-                                                                href={sub.href}
+                                                                href={sub.href || '/'}
                                                                 onClick={handleLinkClick}
-                                                                className="block px-6 py-2.5 text-gray-600 text-sm hover:text-blue-600 hover:bg-gray-100 transition-colors"
+                                                                className="block px-6 py-2.5 text-gray-600 text-sm hover:text-brand-blue hover:bg-gray-100 transition-colors"
                                                             >
                                                                 {sub.title}
                                                             </Link>
@@ -180,31 +266,12 @@ export default function MobileMenu({
                     <Link
                         href="https://wa.me/6287817773888"
                         onClick={handleLinkClick}
-                        className="flex items-center justify-center gap-2 w-full py-3 rounded-lg text-sm font-bold bg-yellow-400 text-blue-900 hover:bg-yellow-300 transition-colors"
+                        className="flex items-center justify-center gap-2 w-full py-3 rounded-lg text-sm font-bold bg-brand-gold text-[#1a3567] hover:bg-brand-gold/90 transition-colors"
                     >
                         📞 Booking Service
                     </Link>
                 </div>
             </div>
         </>
-    );
-}
-
-// ChevronDown component inline to avoid import issues
-function ChevronDown({ size, className }: { size: number; className?: string }) {
-    return (
-        <svg
-            width={size}
-            height={size}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className={className}
-        >
-            <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
     );
 }

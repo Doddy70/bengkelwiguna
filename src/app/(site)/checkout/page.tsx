@@ -1,4 +1,3 @@
-"use client";
 
 import React from "react";
 import PageTitle from "@/components/ui/PageTitle";
@@ -194,3 +193,10 @@ const CheckoutPage = () => {
 };
 
 export default CheckoutPage;
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

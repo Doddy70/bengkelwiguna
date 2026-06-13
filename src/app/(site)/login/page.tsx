@@ -130,3 +130,10 @@ const LoginPage: React.FC = () => {
 };
 
 export default LoginPage;
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

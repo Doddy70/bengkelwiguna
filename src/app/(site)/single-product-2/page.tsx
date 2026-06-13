@@ -1,4 +1,3 @@
-"use client";
 
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import RelatedProducts from "@/components/ui/RelatedProducts";
@@ -182,3 +181,10 @@ export default function SingleProductPage() {
 
     );
 }
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};

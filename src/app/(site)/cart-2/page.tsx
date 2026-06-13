@@ -1,4 +1,3 @@
-"use client";
 
 import React from "react";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -168,3 +167,10 @@ const CartPage = () => {
 };
 
 export default CartPage;
+
+export const metadata = {
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
