@@ -208,7 +208,7 @@ export default function ModernEquipmentShowcase() {
               <div className="bg-white/50 backdrop-blur-[32px] rounded-[2.5rem] p-7 shadow-[0_8px_32px_rgba(0,0,0,0.06)] border border-white/60">
                 <div className="flex justify-between items-start mb-7">
                   <div>
-                    <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Spesifikasi Detail</h3>
+                    <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Info Detail</h3>
                     <p className="text-[13px] text-[#8b95a5] mt-1">{activeHotspot ? (activeItem.id === 'service-berkala' || !activeHotspot.details ? "Equipment Preview" : "Detail Informasi") : "Pilih titik komponen"}</p>
                   </div>
                   <button 
