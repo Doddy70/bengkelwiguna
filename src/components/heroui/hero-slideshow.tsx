@@ -27,12 +27,10 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
 
   // Custom static images requested by the user
   const customImages = [
-    "/images/hero/Perawatan Berkala Hero.jpg",
-    "/images/hero/Penggantian Oli-Hero.jpg",
-    "/images/hero/Kyoto Shaking Machine.jpg",
-    "/images/hero/Hero Spooring Balancing.jpg",
-    "/images/hero/Hero Penggantian Ban.jpg",
-    "/images/hero/Engine Flush Hero.jpg"
+    "/images/hero/slider1.jpg",
+    "/images/hero/Wiguna-New1.jpg",
+    "/images/hero/New_wiguna2.jpg",
+    "/images/hero/new_wiguna3.jpg"
   ];
 
   const currentService = servicesData[currentIndex % servicesData.length];
