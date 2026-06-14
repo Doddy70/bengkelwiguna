@@ -31,7 +31,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
       t.name.toLowerCase().includes('seasonal')
     );
     const isSeasonalCat = p.kategori_promosi?.toLowerCase().includes('seasonal');
-    const isJenisSeasonal = p.jenis_promosi === 'bulanan' || p.jenis_promosi === 'seasonal';
+    const isJenisSeasonal = String(p.jenis_promosi) === 'bulanan' || String(p.jenis_promosi) === 'seasonal';
     
     // Also explicitly exclude if it matches a slug in promoBulanan
     const isInBulanan = promoBulanan.some(pb => pb.slug === p.slug);
