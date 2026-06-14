@@ -72,7 +72,7 @@
     "hotspots": [
       {
         "top": "60%", "left": "15%",
-        "title": "Kyoto Shaking Machine", "subtitle": "Pendeteksi Bunyi Kaki-Kaki",
+        "title": "Kyoto Shaking Machine", "subtitle": "Diagnosis akurat visual, kinestatis, dan suara",
         "lineAngle": -60, "lineLength": 370,
         "labelOffsetX": 180, "labelOffsetY": -320,
         "imageUrl": "/images/equipment/kaki-kaki.png",
