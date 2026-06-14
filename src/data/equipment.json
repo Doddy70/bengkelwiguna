@@ -93,7 +93,7 @@
     "id": "reset-ac",
     "name": "Reset AC",
     "category": "Climate Control",
-    "image": "/images/equipment/Flushing.png",
+    "image": "/images/equipment/reset_ac.png",
     "imagePosition": "left",
     "description": "Perawatan total sistem pendingin kabin menggunakan mesin Kyoto Flushing Machine, mengganti oli kompresor secara 100% vakum.",
     "suggestedQuestions": [
@@ -113,7 +113,7 @@
         "title": "Kyoto Flushing AC", "subtitle": "Digital Recovery & Vakum",
         "lineAngle": -30, "lineLength": 380,
         "labelOffsetX": 300, "labelOffsetY": -180,
-        "imageUrl": "/images/equipment/Flushing.png"
+        "imageUrl": "/images/equipment/reset_ac.png"
       }
     ],
     "specs": {
