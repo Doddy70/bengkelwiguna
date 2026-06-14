@@ -111,7 +111,7 @@
     "hotspots": [
       {
         "top": "45%", "left": "15%",
-        "title": "Stinger System", "subtitle": "Injeksi Cairan Khusus",
+        "title": "Stinger Engine Flush", "subtitle": "Mencegah kerusakan turun mesin",
         "lineAngle": -45, "lineLength": 350,
         "labelOffsetX": 250, "labelOffsetY": -250,
         "imageUrl": "/images/equipment/Stinger-Promo.png",
