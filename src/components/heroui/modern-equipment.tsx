@@ -122,20 +122,24 @@ export default function ModernEquipmentShowcase() {
               transition={{ duration: 1.2, ease: smoothBezier }}
               className="absolute inset-0 flex justify-center items-center z-10 pointer-events-none w-full h-full"
             >
-              <div 
-                className={`relative w-full h-full ${
-                  activeItem.id === 'service-berkala' 
-                    ? 'max-w-[1100px] lg:scale-100 xl:scale-[1.1] lg:translate-x-[5%] lg:-translate-y-4' 
-                    : 'max-w-[700px] lg:scale-90 xl:scale-[1.0] lg:-translate-x-[15%] lg:translate-y-12'
-                }`}
-              >
-                      <Image
-                        src={activeItem.image}
-                        alt={activeItem.name}
-                        fill
-                        className={`object-contain drop-shadow-2xl opacity-90 ${activeItem.imagePosition === 'left' ? 'object-left' : 'object-center'}`}
-                        priority
-                      />
+              <div className="relative w-full h-full max-w-[1100px] lg:scale-100 xl:scale-[1.1] lg:translate-x-[5%] lg:-translate-y-4">
+                
+                {/* Product Image Layer */}
+                <div 
+                  className={`absolute inset-0 transition-all duration-700 ${
+                    activeItem.id === 'service-berkala' 
+                      ? 'w-full h-full' 
+                      : 'w-full lg:w-[55%] lg:-translate-x-12 lg:translate-y-12 h-[80%] lg:h-full my-auto'
+                  }`}
+                >
+                  <Image
+                    src={activeItem.image}
+                    alt={activeItem.name}
+                    fill
+                    className={`object-contain drop-shadow-2xl opacity-90 ${activeItem.id === 'service-berkala' ? 'object-center' : 'object-left lg:object-center'}`}
+                    priority
+                  />
+                </div>
 
                 {/* Hotspots Overlay */}
                 <div className="absolute inset-0 w-full h-full pointer-events-none">
