@@ -47,7 +47,7 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
             640: { padding: '5%', gap: '1rem' },
           }
         }}
-        onMove={(splide, newIndex) => setCurrentIndex(newIndex)}
+        onMove={(splide: any, newIndex: number) => setCurrentIndex(newIndex)}
       >
         <SplideTrack className="py-4 md:py-8">
           {promos.map((promo, i) => (
