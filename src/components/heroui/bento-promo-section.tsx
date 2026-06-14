@@ -217,7 +217,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
                   <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden bg-[#3b2161] group shadow-lg">
                     <Image src={img} alt={title} fill className="object-cover opacity-60 mix-blend-overlay transition-transform duration-700 group-hover:scale-105" />
                     <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/60 to-transparent">
-                      <h3 className="text-white text-xl font-bold mb-2 line-clamp-2">"{title}"</h3>
+                      <h3 className="text-white text-xl font-bold mb-2 line-clamp-2">&quot;{title}&quot;</h3>
                       <p className="text-white/60 text-sm">Promo Terbatas</p>
                     </div>
                   </Link>
@@ -266,7 +266,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
               if (patternIdx === 11) {
                 // 12. BOTTOM RIGHT (Stacked white boxes)
                 return (
-                  <div className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden bg-[#f4f5f9] dark:bg-neutral-900 p-4 lg:p-6 flex flex-col gap-4 shadow-lg">
+                  <div key={promo.id || idx} className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden bg-[#f4f5f9] dark:bg-neutral-900 p-4 lg:p-6 flex flex-col gap-4 shadow-lg">
                     <Link href={`/promosi/${promo.slug}`} className="flex-1 bg-white dark:bg-neutral-800 rounded-2xl p-5 lg:p-6 flex items-center gap-4 lg:gap-6 group hover:shadow-md transition-shadow">
                        <span className="text-3xl lg:text-4xl font-black text-[#6d28d9]">2x</span>
                        <p className="text-gray-800 dark:text-gray-200 text-xs lg:text-sm font-semibold leading-snug line-clamp-2">{title}</p>
