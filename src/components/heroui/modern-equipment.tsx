@@ -183,9 +183,6 @@ export default function ModernEquipmentShowcase() {
                 {activeItem.description}
               </p>
               
-              <a href="#" className="text-sm font-bold text-[#394263] hover:text-black transition-colors">
-                Read More
-              </a>
 
               {/* Vertical Action Buttons */}
               <div className="hidden md:flex flex-col gap-4 mt-16">
