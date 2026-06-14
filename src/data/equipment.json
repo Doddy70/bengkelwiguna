@@ -131,7 +131,7 @@
     "id": "kuras-radiator",
     "name": "Kuras Radiator",
     "category": "Cooling System Care",
-    "image": "/images/equipment/Prestone Coolant Changer.png",
+    "image": "/images/equipment/Kuras-radiator.png",
     "imagePosition": "left",
     "description": "Sistem kuras radiator vakum otomatis yang menjamin penggantian cairan pendingin 100% bersih tanpa ada udara terjebak (angin palsu).",
     "suggestedQuestions": [
@@ -151,7 +151,7 @@
         "title": "Kuras Radiator Prestone", "subtitle": "Kuras Vakum Bebas Angin Palsu",
         "lineAngle": -45, "lineLength": 410,
         "labelOffsetX": 280, "labelOffsetY": -290,
-        "imageUrl": "/images/equipment/Prestone Coolant Changer.png"
+        "imageUrl": "/images/equipment/Kuras-radiator.png"
       }
     ],
     "specs": {
