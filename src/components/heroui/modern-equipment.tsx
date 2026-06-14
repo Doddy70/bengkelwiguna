@@ -309,9 +309,17 @@ export default function ModernEquipmentShowcase() {
                   )}
                 </AnimatePresence>
 
-                <div className="mt-6 flex justify-between items-center">
-                  <p className="text-[12px] font-bold text-[#8b95a5]">Total Value</p>
-                  <p className="text-[1.25rem] font-bold text-[#2d3142]">{activeItem.specs?.totalValue || "$1,299"}</p>
+                <div className="mt-6 flex justify-end items-center w-full">
+                  <a 
+                    href="https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
+                    <button className="w-full py-3 bg-[#224297] text-white text-[14px] font-semibold rounded-xl shadow-lg hover:bg-[#1a3275] hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                      Booking Now
+                    </button>
+                  </a>
                 </div>
               </div>
             </motion.div>
