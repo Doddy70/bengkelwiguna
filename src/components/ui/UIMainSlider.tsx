@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -40,7 +40,7 @@ export default function UIMainSlider({ slides, onSlideClick }: UIMainSliderProps
 
   if (!slides || slides.length === 0) return null;
 
-  const activeSlide = slides[currentIndex];
+
   const Splide = SplideComponent;
   const Slide = SplideSlideComponent;
 

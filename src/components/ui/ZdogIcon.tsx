@@ -139,7 +139,7 @@ export default function ZdogIcon({ type, color = "#224297", size = 40 }: ZdogIco
       });
     } else if (type === "speed") {
       // Lightning/Speed icon
-      const bolt = new Zdog.Shape({
+      new Zdog.Shape({
         addTo: illo,
         path: [
           { x: 5, y: -20 },

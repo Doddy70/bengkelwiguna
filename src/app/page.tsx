@@ -152,12 +152,12 @@ export default async function HomePage() {
       <PartnerLogos />
 
       {/* SECTION 2: PROMOSI - Bento Grid Layout */}
-      {(promosiBulananList.length > 0 || promosiRegularList.length > 0) && (
+      {(promosiBulananList.length > 0 || promosiRegularList.length > 0) ? (
         <BentoPromoSection
           promos={promosiRegularList}
           promoBulanan={promosiBulananList}
         />
-      )}
+      ) : null}
 
       {/* SECTION: TABS (No Drama Service Process) - Full Width with Boxed Inner */}
       <section id="why-wiguna" className="bg-white w-full hidden lg:block">

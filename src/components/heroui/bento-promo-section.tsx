@@ -7,7 +7,7 @@
  * - Custom Asymmetric BentoGrid for Regular Promos below (matching reference design)
  */
 
-import React from 'react';
+import React, { useMemo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
@@ -24,20 +24,22 @@ interface BentoPromoSectionProps {
 
 const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], promoBulanan = [] }) => {
   // Filter out any promos that are explicitly categorized as "seasonal" or "bulanan"
-  const regularPromos = promos.filter(p => {
-    const terms = p._embedded?.['wp:term']?.flat() || [];
-    const hasSeasonalTerm = terms.some(t => 
-      t.slug.toLowerCase().includes('seasonal') || 
-      t.name.toLowerCase().includes('seasonal')
-    );
-    const isSeasonalCat = p.kategori_promosi?.toLowerCase().includes('seasonal');
-    const isJenisSeasonal = String(p.jenis_promosi) === 'bulanan' || String(p.jenis_promosi) === 'seasonal';
-    
-    // Also explicitly exclude if it matches a slug in promoBulanan
-    const isInBulanan = promoBulanan.some(pb => pb.slug === p.slug);
+  const regularPromos = useMemo(() => {
+    return promos.filter(p => {
+      const terms = p._embedded?.['wp:term']?.flat() || [];
+      const hasSeasonalTerm = terms.some(t => 
+        t.slug.toLowerCase().includes('seasonal') || 
+        t.name.toLowerCase().includes('seasonal')
+      );
+      const isSeasonalCat = p.kategori_promosi?.toLowerCase().includes('seasonal');
+      const isJenisSeasonal = String(p.jenis_promosi) === 'bulanan' || String(p.jenis_promosi) === 'seasonal';
+      
+      // Also explicitly exclude if it matches a slug in promoBulanan
+      const isInBulanan = promoBulanan.some(pb => pb.slug === p.slug);
 
-    return !hasSeasonalTerm && !isSeasonalCat && !isJenisSeasonal && !isInBulanan;
-  }); // Removed .slice(0, 5) to allow all backend data
+      return !hasSeasonalTerm && !isSeasonalCat && !isJenisSeasonal && !isInBulanan;
+    });
+  }, [promos, promoBulanan]); // Removed .slice(0, 5) to allow all backend data
 
   const seasonalPromos = promoBulanan || [];
 
