@@ -169,7 +169,7 @@
     "id": "kaki-kaki",
     "name": "Kaki Kaki",
     "category": "Suspension & Understeer",
-    "image": "/images/equipment/Shaking-Pro-1.png",
+    "image": "/images/equipment/kaki-kaki.png",
     "imagePosition": "left",
     "description": "Teknologi tercanggih Kyoto Shaking Machine yang mampu mensimulasikan guncangan jalan rusak secara statis untuk deteksi bunyi kaki-kaki akurat.",
     "suggestedQuestions": [
@@ -189,7 +189,7 @@
         "title": "Kyoto Shaking Machine", "subtitle": "Pendeteksi Bunyi Kaki-Kaki",
         "lineAngle": -60, "lineLength": 370,
         "labelOffsetX": 180, "labelOffsetY": -320,
-        "imageUrl": "/images/equipment/Shaking-Pro-1.png"
+        "imageUrl": "/images/equipment/kaki-kaki.png"
       }
     ],
     "specs": {
