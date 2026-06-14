@@ -355,8 +355,8 @@ export default function ModernEquipmentShowcase() {
                       {renderIcon("/lottie/bubble.json", 24)}
                     </div>
                     <div>
-                      <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Wiguna AI</h3>
-                      <p className="text-[12px] text-[#8b95a5]">Selalu online membantu</p>
+                      <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Tanya Layanan</h3>
+                      <p className="text-[12px] text-[#8b95a5]">Asisten Cerdas 24/7</p>
                     </div>
                   </div>
                   <button className="w-9 h-9 rounded-[1rem] bg-white/60 shadow-sm flex items-center justify-center text-[#8b95a5] hover:text-[#2d3142] transition-colors">
