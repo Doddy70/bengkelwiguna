@@ -16,12 +16,13 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
 
   // Auto play
   useEffect(() => {
-    if (servicesData.length <= 1) return;
+    const totalSlides = 5; // customImages length
+    if (totalSlides <= 1) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % servicesData.length);
+      setCurrentIndex((prev) => (prev + 1) % totalSlides);
     }, 5000);
     return () => clearInterval(interval);
-  }, [servicesData.length]);
+  }, []);
 
   if (!servicesData || servicesData.length === 0) return null;
 
@@ -34,8 +35,15 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
     "/images/hero/slider-6.jpg"
   ];
 
-  const currentService = servicesData[currentIndex % servicesData.length];
-  const title = typeof currentService.title === 'string' ? currentService.title : currentService.title?.rendered || 'Layanan Profesional';
+  const customTaglines = [
+    "Bengkel One Stop Service Terpercaya",
+    "Pengecekan Mesin & Transmisi Presisi",
+    "Layanan Ganti Ban & Spooring",
+    "Perawatan Engine Flush Maksimal",
+    "Servis Kaki-Kaki & Suspensi Tuntas"
+  ];
+  
+  const title = customTaglines[currentIndex % customTaglines.length];
   // Override the dynamic API image with our custom local images
   const image = customImages[currentIndex % customImages.length];
 
