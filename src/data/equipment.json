@@ -75,7 +75,8 @@
         "title": "Kyoto Shaking Machine", "subtitle": "Pendeteksi Bunyi Kaki-Kaki",
         "lineAngle": -60, "lineLength": 370,
         "labelOffsetX": 180, "labelOffsetY": -320,
-        "imageUrl": "/images/equipment/kaki-kaki.png"
+        "imageUrl": "/images/equipment/kaki-kaki.png",
+        "details": "Pemeriksaan kaki-kaki mobil menggunakan *Kyoto Shaking Machine* untuk pemeriksaan yang lebih akurat dan tanpa tipu-tipu, dengan biaya cek Rp 250.000,\n*Note: GRATIS biaya cek jika ada pembelian parts diatas Rp. 1 juta"
       }
     ],
     "specs": {
@@ -113,7 +114,8 @@
         "title": "Stinger System", "subtitle": "Injeksi Cairan Khusus",
         "lineAngle": -45, "lineLength": 350,
         "labelOffsetX": 250, "labelOffsetY": -250,
-        "imageUrl": "/images/equipment/Stinger-Promo.png"
+        "imageUrl": "/images/equipment/Stinger-Promo.png",
+        "details": "Perawatan mesin level semi overhaul menggunakan sistem *Stinger Flushing* untuk membuang kerak membandel tanpa bongkar blok. Mengembalikan performa mesin seperti baru secara cepat dan aman."
       }
     ],
     "specs": {
@@ -151,7 +153,8 @@
         "title": "Kuras Radiator Prestone", "subtitle": "Kuras Vakum Bebas Angin Palsu",
         "lineAngle": -45, "lineLength": 410,
         "labelOffsetX": 280, "labelOffsetY": -290,
-        "imageUrl": "/images/equipment/Kuras-radiator.png"
+        "imageUrl": "/images/equipment/Kuras-radiator.png",
+        "details": "Sistem kuras radiator vakum otomatis menggunakan *Prestone Coolant Changer* yang menjamin penggantian cairan pendingin 100% bersih tanpa ada udara terjebak (angin palsu). Mesin terhindar dari overheat."
       }
     ],
     "specs": {
@@ -189,7 +192,8 @@
         "title": "Kyoto Flushing AC", "subtitle": "Digital Recovery & Vakum",
         "lineAngle": -30, "lineLength": 380,
         "labelOffsetX": 300, "labelOffsetY": -180,
-        "imageUrl": "/images/equipment/reset_ac.png"
+        "imageUrl": "/images/equipment/reset_ac.png",
+        "details": "Perawatan total sistem pendingin kabin menggunakan *Kyoto Flushing Machine*. Mengganti oli kompresor secara 100% vakum digital yang presisi, memastikan kabin mobil kembali dingin maksimal."
       }
     ],
     "specs": {

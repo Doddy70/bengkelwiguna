@@ -71,7 +71,7 @@ const HudHotspot = ({ top, left, title, subtitle, lineAngle, lineLength, labelOf
 
 export default function ModernEquipmentShowcase() {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
-  const [revealedImage, setRevealedImage] = useState<string | null>(null);
+  const [activeHotspot, setActiveHotspot] = useState<any | null>(null);
   const activeItem = equipmentData[activeItemIndex];
 
   return (
@@ -90,7 +90,7 @@ export default function ModernEquipmentShowcase() {
               key={item.id}
               onClick={() => {
                 setActiveItemIndex(idx);
-                setRevealedImage(null);
+                setActiveHotspot(null);
               }}
               className={`px-5 py-2.5 rounded-[1.5rem] text-[13px] font-bold transition-all ${
                 activeItemIndex === idx 
@@ -156,7 +156,7 @@ export default function ModernEquipmentShowcase() {
                        labelOffsetY={hotspot.labelOffsetY}
                        delay={0.4 + (index * 0.2)}
                        imageUrl={hotspot.imageUrl}
-                       onClick={() => setRevealedImage(hotspot.imageUrl)}
+                       onClick={() => setActiveHotspot(hotspot)}
                      />
                    ))}
                 </div>
@@ -209,18 +209,18 @@ export default function ModernEquipmentShowcase() {
                 <div className="flex justify-between items-start mb-7">
                   <div>
                     <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Spesifikasi Detail</h3>
-                    <p className="text-[13px] text-[#8b95a5] mt-1">{revealedImage ? "Equipment Preview" : "Pilih titik komponen"}</p>
+                    <p className="text-[13px] text-[#8b95a5] mt-1">{activeHotspot ? (activeItem.id === 'service-berkala' || !activeHotspot.details ? "Equipment Preview" : "Detail Informasi") : "Pilih titik komponen"}</p>
                   </div>
                   <button 
                     className="w-9 h-9 rounded-[1rem] bg-white shadow-sm flex items-center justify-center text-[#8b95a5] hover:text-[#2d3142]"
-                    onClick={() => setRevealedImage(null)}
+                    onClick={() => setActiveHotspot(null)}
                   >
                     <FeatherIcons.X size={16} />
                   </button>
                 </div>
 
                 <AnimatePresence mode="wait">
-                  {!revealedImage ? (
+                  {!activeHotspot ? (
                     <motion.div 
                       key="specs"
                       initial={{ opacity: 0, scale: 0.95 }}
@@ -287,7 +287,7 @@ export default function ModernEquipmentShowcase() {
                         })}
                       </div>
                     </motion.div>
-                  ) : (
+                  ) : activeItem.id === 'service-berkala' || !activeHotspot.details ? (
                     <motion.div 
                       key="image"
                       initial={{ opacity: 0, scale: 0.95 }}
@@ -297,10 +297,24 @@ export default function ModernEquipmentShowcase() {
                       className="w-full h-[280px] relative rounded-[1.5rem] overflow-hidden bg-white/40 flex items-center justify-center p-4 border border-white/60 shadow-inner"
                     >
                       <Image 
-                        src={revealedImage} 
+                        src={activeHotspot.imageUrl} 
                         alt="Product Preview" 
                         fill 
                         className="object-contain p-4 drop-shadow-xl hover:scale-110 transition-transform duration-500"
+                      />
+                    </motion.div>
+                  ) : (
+                    <motion.div 
+                      key="details"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.2 }}
+                      className="w-full min-h-[280px] relative rounded-[1.5rem] bg-white/40 flex flex-col justify-center p-6 border border-white/60 shadow-inner"
+                    >
+                      <p 
+                        className="text-[14px] leading-relaxed text-[#2d3142]" 
+                        dangerouslySetInnerHTML={{ __html: activeHotspot.details.replace(/\n/g, '<br/>').replace(/\*(.*?)\*/g, '<strong>$1</strong>') }} 
                       />
                     </motion.div>
                   )}
