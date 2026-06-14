@@ -1,5 +1,56 @@
 [
   {
+    "id": "service-berkala",
+    "name": "Service Berkala",
+    "category": "Perawatan Rutin",
+    "image": "/images/equipment/fortuner.png",
+    "description": "Perawatan preventif komprehensif menggunakan SOP ketat untuk mengembalikan performa mobil.",
+    "suggestedQuestions": [
+      "Apa saja yang diganti saat servis?",
+      "Kapan waktu terbaik untuk servis berkala?",
+      "Apa bedanya dengan tune up biasa?",
+      "Berapa lama estimasi pengerjaannya?"
+    ],
+    "highlights": [
+      { "icon": "CheckCircle", "title": "Cek 40+ Titik", "subtitle": "Inspeksi Menyeluruh" },
+      { "icon": "Zap", "title": "Tarikan Enteng", "subtitle": "Performa Maksimal" },
+      { "icon": "Shield", "title": "Preventif", "subtitle": "Cegah Kerusakan" }
+    ],
+    "hotspots": [
+      {
+        "top": "45%", "left": "28%",
+        "title": "Ganti Oli Mesin", "subtitle": "Oli 100% Sintetis & Filter",
+        "lineAngle": -52, "lineLength": 300,
+        "labelOffsetX": 220, "labelOffsetY": -280,
+        "imageUrl": "/images/equipment/fortuner.png"
+      },
+      {
+        "top": "70%", "left": "20%",
+        "title": "Cek Rem & Kaki-Kaki", "subtitle": "Keamanan Berkendara",
+        "lineAngle": -73, "lineLength": 320,
+        "labelOffsetX": 110, "labelOffsetY": -360,
+        "imageUrl": "/images/equipment/fortuner.png"
+      },
+      {
+        "top": "38%", "left": "38%",
+        "title": "Filter Udara & AC", "subtitle": "Udara Kabin Segar",
+        "lineAngle": -22, "lineLength": 260,
+        "labelOffsetX": 240, "labelOffsetY": -100,
+        "imageUrl": "/images/equipment/fortuner.png"
+      }
+    ],
+    "specs": {
+      "akurasi": "100",
+      "garansi": "Basic",
+      "totalValue": "Rp 850k",
+      "features": [
+        { "icon": "Cpu", "title": "Sistem", "subtitle": "Auto-check" },
+        { "icon": "UserCheck", "title": "Mekanik", "subtitle": "Sertifikasi" },
+        { "icon": "Wifi", "title": "Report", "subtitle": "Digital" }
+      ]
+    }
+  },
+  {
     "id": "kyoto-shaking",
     "name": "Kyoto Shaking Machine",
     "category": "Kaki-Kaki & Suspensi",
@@ -15,7 +66,26 @@
       { "icon": "Crosshair", "title": "Akurasi 100%", "subtitle": "Tanpa Tebak-tebakan" },
       { "icon": "Shield", "title": "Tanpa Tes Jalan", "subtitle": "Sangat Aman" },
       { "icon": "Activity", "title": "Real Simulation", "subtitle": "Kondisi Nyata" }
-    ]
+    ],
+    "hotspots": [
+      {
+        "top": "70%", "left": "20%",
+        "title": "Kyoto Shaking Machine", "subtitle": "Pendeteksi Bunyi Kaki-Kaki",
+        "lineAngle": -73, "lineLength": 370,
+        "labelOffsetX": 110, "labelOffsetY": -360,
+        "imageUrl": "/images/equipment/Shaking-Pro-1.png"
+      }
+    ],
+    "specs": {
+      "akurasi": "99",
+      "garansi": "Basic",
+      "totalValue": "Rp 250k",
+      "features": [
+        { "icon": "Cpu", "title": "Sistem", "subtitle": "Simulasi" },
+        { "icon": "UserCheck", "title": "Sertifikasi", "subtitle": "Included" },
+        { "icon": "Wifi", "title": "Update", "subtitle": "Live" }
+      ]
+    }
   },
   {
     "id": "stinger",
@@ -33,7 +103,26 @@
       { "icon": "Cpu", "title": "Level Pabrikan", "subtitle": "Standar Tinggi" },
       { "icon": "Activity", "title": "Live Data", "subtitle": "Diagnosa Akurat" },
       { "icon": "CheckCircle", "title": "System Reset", "subtitle": "Optimasi Full" }
-    ]
+    ],
+    "hotspots": [
+      {
+        "top": "45%", "left": "28%",
+        "title": "Stinger Scanner", "subtitle": "Diagnosa Sistem & Sensor",
+        "lineAngle": -52, "lineLength": 350,
+        "labelOffsetX": 220, "labelOffsetY": -280,
+        "imageUrl": "/images/equipment/Stinger-Promo.png"
+      }
+    ],
+    "specs": {
+      "akurasi": "100",
+      "garansi": "Pro",
+      "totalValue": "Rp 150k",
+      "features": [
+        { "icon": "Cpu", "title": "Scanner", "subtitle": "Pabrikan" },
+        { "icon": "UserCheck", "title": "Report", "subtitle": "Cetak" },
+        { "icon": "Wifi", "title": "Update", "subtitle": "Cloud" }
+      ]
+    }
   },
   {
     "id": "coolant-changer",
@@ -51,7 +140,26 @@
       { "icon": "Droplet", "title": "Vacuum Tech", "subtitle": "Kuras Sempurna" },
       { "icon": "Thermometer", "title": "Anti Overheat", "subtitle": "Suhu Terjaga" },
       { "icon": "Shield", "title": "Safe Process", "subtitle": "Tanpa Resiko" }
-    ]
+    ],
+    "hotspots": [
+      {
+        "top": "52%", "left": "5%",
+        "title": "Kuras Radiator Prestone", "subtitle": "Kuras Vakum Bebas Angin Palsu",
+        "lineAngle": -53, "lineLength": 410,
+        "labelOffsetX": 250, "labelOffsetY": -330,
+        "imageUrl": "/images/equipment/Prestone Coolant Changer.png"
+      }
+    ],
+    "specs": {
+      "akurasi": "100",
+      "garansi": "Basic",
+      "totalValue": "Rp 350k",
+      "features": [
+        { "icon": "Cpu", "title": "Vakum", "subtitle": "Otomatis" },
+        { "icon": "UserCheck", "title": "Sertifikasi", "subtitle": "Standard" },
+        { "icon": "Wifi", "title": "Sistem", "subtitle": "Tertutup" }
+      ]
+    }
   },
   {
     "id": "engine-flush",
@@ -69,6 +177,25 @@
       { "icon": "Zap", "title": "Performa Baru", "subtitle": "Tarikan Enteng" },
       { "icon": "Filter", "title": "Detoks Mesin", "subtitle": "Kerak Hilang" },
       { "icon": "Settings", "title": "Engine Smooth", "subtitle": "Suara Halus" }
-    ]
+    ],
+    "hotspots": [
+      {
+        "top": "38%", "left": "38%",
+        "title": "Engine Flushing", "subtitle": "Pembersihan Karbon Mesin",
+        "lineAngle": -22, "lineLength": 260,
+        "labelOffsetX": 240, "labelOffsetY": -100,
+        "imageUrl": "/images/equipment/Flushing.png"
+      }
+    ],
+    "specs": {
+      "akurasi": "95",
+      "garansi": "Plus",
+      "totalValue": "Rp 400k",
+      "features": [
+        { "icon": "Cpu", "title": "Tekanan", "subtitle": "Tinggi" },
+        { "icon": "UserCheck", "title": "Hasil", "subtitle": "Terlihat" },
+        { "icon": "Wifi", "title": "Proses", "subtitle": "Aman" }
+      ]
+    }
   }
 ]

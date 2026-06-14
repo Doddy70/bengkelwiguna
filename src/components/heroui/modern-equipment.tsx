@@ -116,49 +116,22 @@ export default function ModernEquipmentShowcase() {
 
                 {/* Hotspots Overlay */}
                 <div className="absolute inset-0 w-full h-full pointer-events-none">
-                   {/* 1. Radiator -> Card Prestone di atas kaca mobil depan */}
-                   <HudHotspot 
-                     top="52%" left="5%" 
-                     title="Mesin Kuras Radiator Prestone" subtitle="Cegah Overheat & Perpanjang Usia Mesin"
-                     lineAngle={-53} lineLength={410}
-                     labelOffsetX={250} labelOffsetY={-330}
-                     delay={0.4}
-                     imageUrl="/images/equipment/Prestone Coolant Changer.png"
-                     onClick={() => setRevealedImage("/images/equipment/Prestone Coolant Changer.png")}
-                   />
-                   
-                   {/* 2. Ban Depan -> Card Kyoto Shaking Machine di atas kap mobil */}
-                   <HudHotspot 
-                     top="70%" left="20%" 
-                     title="Kyoto Shaking Machine" subtitle="Alat Pendeteksi Bunyi Pada Kaki-Kaki Mobil"
-                     lineAngle={-73} lineLength={370}
-                     labelOffsetX={110} labelOffsetY={-360}
-                     delay={0.6}
-                     imageUrl="/images/equipment/Shaking-Pro-1.png"
-                     onClick={() => setRevealedImage("/images/equipment/Shaking-Pro-1.png")}
-                   />
-
-                   {/* 3. Blok Mesin -> Card Stinger Engine Flush di atas kap mesin */}
-                   <HudHotspot 
-                     top="45%" left="28%" 
-                     title="Stinger Engine Flush" subtitle="Semi Overhaul & Bersih Ruang Mesin"
-                     lineAngle={-52} lineLength={350}
-                     labelOffsetX={220} labelOffsetY={-280}
-                     delay={0.8}
-                     imageUrl="/images/equipment/Stinger-Promo.png"
-                     onClick={() => setRevealedImage("/images/equipment/Stinger-Promo.png")}
-                   />
-
-                   {/* 4. Dashboard Depan -> Card Kyoto Flushing menyebar ke ruang kosong */}
-                   <HudHotspot 
-                     top="38%" left="38%" 
-                     title="Kyoto Flushing Machine" subtitle="Solusi Masalah AC Tidak Dingin"
-                     lineAngle={-22} lineLength={260}
-                     labelOffsetX={240} labelOffsetY={-100}
-                     delay={1.0}
-                     imageUrl="/images/equipment/Flushing.png"
-                     onClick={() => setRevealedImage("/images/equipment/Flushing.png")}
-                   />
+                   {activeItem.hotspots?.map((hotspot: any, index: number) => (
+                     <HudHotspot 
+                       key={`${activeItem.id}-hotspot-${index}`}
+                       top={hotspot.top} 
+                       left={hotspot.left} 
+                       title={hotspot.title} 
+                       subtitle={hotspot.subtitle}
+                       lineAngle={hotspot.lineAngle} 
+                       lineLength={hotspot.lineLength}
+                       labelOffsetX={hotspot.labelOffsetX} 
+                       labelOffsetY={hotspot.labelOffsetY}
+                       delay={0.4 + (index * 0.2)}
+                       imageUrl={hotspot.imageUrl}
+                       onClick={() => setRevealedImage(hotspot.imageUrl)}
+                     />
+                   ))}
                 </div>
               </div>
             </motion.div>
@@ -212,7 +185,7 @@ export default function ModernEquipmentShowcase() {
                 <div className="flex justify-between items-start mb-7">
                   <div>
                     <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Spesifikasi Detail</h3>
-                    <p className="text-[13px] text-[#8b95a5] mt-1">{revealedImage ? "Equipment Preview" : "Select options to see"}</p>
+                    <p className="text-[13px] text-[#8b95a5] mt-1">{revealedImage ? "Equipment Preview" : "Pilih titik komponen"}</p>
                   </div>
                   <button 
                     className="w-9 h-9 rounded-[1rem] bg-white shadow-sm flex items-center justify-center text-[#8b95a5] hover:text-[#2d3142]"
@@ -246,7 +219,7 @@ export default function ModernEquipmentShowcase() {
                           <div className="flex items-center gap-4">
                             <FeatherIcons.ChevronLeft size={18} className="text-[#394263] cursor-pointer" />
                             <div className="text-center">
-                              <p className="text-[22px] font-bold text-[#2d3142] leading-none">99</p>
+                              <p className="text-[22px] font-bold text-[#2d3142] leading-none">{activeItem.specs?.akurasi || 99}</p>
                               <p className="text-[10px] text-[#8b95a5] font-medium">%</p>
                             </div>
                             <FeatherIcons.ChevronRight size={18} className="text-[#394263] cursor-pointer" />
@@ -266,7 +239,7 @@ export default function ModernEquipmentShowcase() {
                           </div>
                           <div className="flex items-center gap-4">
                             <FeatherIcons.ChevronLeft size={18} className="text-[#394263] cursor-pointer" />
-                            <p className="text-[15px] font-bold text-[#2d3142] w-12 text-center">Basic</p>
+                            <p className="text-[15px] font-bold text-[#2d3142] w-12 text-center">{activeItem.specs?.garansi || "Basic"}</p>
                             <FeatherIcons.ChevronRight size={18} className="text-[#394263] cursor-pointer" />
                           </div>
                         </div>
@@ -274,27 +247,18 @@ export default function ModernEquipmentShowcase() {
 
                       {/* Features Grid */}
                       <div className="grid grid-cols-3 gap-3">
-                        <div className="bg-white rounded-[1.25rem] py-4 px-2 flex flex-col items-center justify-center gap-1 shadow-sm">
-                          <div className="w-8 h-8 rounded-full bg-[#f2f4f7] flex items-center justify-center mb-1">
-                            <FeatherIcons.Cpu size={16} className="text-[#394263]" />
-                          </div>
-                          <p className="text-[12px] font-bold text-[#2d3142]">Sistem</p>
-                          <p className="text-[10px] text-[#8b95a5]">Auto-check</p>
-                        </div>
-                        <div className="bg-white/30 rounded-[1.25rem] py-4 px-2 flex flex-col items-center justify-center gap-1 border border-white/50">
-                          <div className="w-8 h-8 rounded-full flex items-center justify-center mb-1">
-                            <FeatherIcons.UserCheck size={16} className="text-[#8b95a5]" />
-                          </div>
-                          <p className="text-[12px] font-bold text-[#8b95a5]">Sertifikasi</p>
-                          <p className="text-[10px] text-[#8b95a5]">Not included</p>
-                        </div>
-                        <div className="bg-white rounded-[1.25rem] py-4 px-2 flex flex-col items-center justify-center gap-1 shadow-sm">
-                          <div className="w-8 h-8 rounded-full bg-[#f2f4f7] flex items-center justify-center mb-1">
-                            <FeatherIcons.Wifi size={16} className="text-[#394263]" />
-                          </div>
-                          <p className="text-[12px] font-bold text-[#2d3142]">Update</p>
-                          <p className="text-[10px] text-[#8b95a5]">Unlimited</p>
-                        </div>
+                        {activeItem.specs?.features?.map((feature: any, idx: number) => {
+                          const IconComponent = (FeatherIcons as any)[feature.icon] || FeatherIcons.CheckCircle;
+                          return (
+                            <div key={idx} className="bg-white rounded-[1.25rem] py-4 px-2 flex flex-col items-center justify-center gap-1 shadow-sm">
+                              <div className="w-8 h-8 rounded-full bg-[#f2f4f7] flex items-center justify-center mb-1">
+                                <IconComponent size={16} className="text-[#394263]" />
+                              </div>
+                              <p className="text-[12px] font-bold text-[#2d3142]">{feature.title}</p>
+                              <p className="text-[10px] text-[#8b95a5]">{feature.subtitle}</p>
+                            </div>
+                          );
+                        })}
                       </div>
                     </motion.div>
                   ) : (
@@ -318,7 +282,7 @@ export default function ModernEquipmentShowcase() {
 
                 <div className="mt-6 flex justify-between items-center">
                   <p className="text-[12px] font-bold text-[#8b95a5]">Total Value</p>
-                  <p className="text-[1.25rem] font-bold text-[#2d3142]">$1,299</p>
+                  <p className="text-[1.25rem] font-bold text-[#2d3142]">{activeItem.specs?.totalValue || "$1,299"}</p>
                 </div>
               </div>
             </motion.div>
@@ -358,7 +322,7 @@ export default function ModernEquipmentShowcase() {
                     </div>
                     <div>
                       <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Wiguna AI</h3>
-                      <p className="text-[12px] text-[#8b95a5]">Always online to help</p>
+                      <p className="text-[12px] text-[#8b95a5]">Selalu online membantu</p>
                     </div>
                   </div>
                   <button className="w-9 h-9 rounded-[1rem] bg-white/60 shadow-sm flex items-center justify-center text-[#8b95a5] hover:text-[#2d3142] transition-colors">
@@ -384,7 +348,7 @@ export default function ModernEquipmentShowcase() {
                   <div className="flex items-start justify-end gap-3">
                     <div className="bg-[#2d3142] rounded-[1.2rem] rounded-tr-sm px-4 py-3 shadow-md max-w-[80%]">
                       <p className="text-[13px] text-white">
-                        Apa keunggulan utamanya?
+                        {activeItem.suggestedQuestions && activeItem.suggestedQuestions.length > 0 ? activeItem.suggestedQuestions[0] : "Apa keunggulan utamanya?"}
                       </p>
                     </div>
                   </div>
@@ -394,7 +358,7 @@ export default function ModernEquipmentShowcase() {
                 <div className="mt-2 bg-white rounded-full p-1.5 flex items-center shadow-inner border border-gray-100">
                   <input 
                     type="text" 
-                    placeholder="Keunggulan kyoto?" 
+                    placeholder={`Tanya seputar ${activeItem.name}...`} 
                     className="flex-1 bg-transparent px-4 py-2 text-[13px] text-[#2d3142] outline-none placeholder-[#8b95a5]"
                     readOnly
                   />
