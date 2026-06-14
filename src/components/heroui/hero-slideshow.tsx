@@ -165,15 +165,17 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
                 <Icon icon="solar:arrow-right-up-linear" className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
             </Link>
-            <Link
-              href={`/services/${currentService.slug}`}
-              className="group inline-flex items-center justify-between gap-3 sm:gap-6 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white text-gray-900 font-bold hover:bg-gray-100 transition-all w-auto"
+            <a
+              href="https://wa.me/6287817773888?text=halo%20minna,%20saya%20ingin%20konsultasi%20seputar%20kendaraan%20saya"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center justify-between gap-3 sm:gap-6 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white text-gray-900 font-bold hover:bg-gray-100 transition-all w-auto shadow-lg"
             >
-              <span className="text-sm sm:text-base max-w-[120px] sm:max-w-none truncate">Lihat {title}</span>
-              <div className="bg-gray-900 text-white rounded-full p-1 group-hover:translate-x-1 transition-transform duration-300">
-                <Icon icon="solar:arrow-right-linear" className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="text-sm sm:text-base">Konsultasi Gratis</span>
+              <div className="bg-green-500 text-white rounded-full p-1 group-hover:scale-110 transition-transform duration-300">
+                <Icon icon="fa6-brands:whatsapp" className="w-4 h-4 sm:w-5 sm:h-5" />
               </div>
-            </Link>
+            </a>
           </div>
         </div>
       </div>
