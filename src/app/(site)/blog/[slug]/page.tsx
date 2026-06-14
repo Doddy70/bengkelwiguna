@@ -19,6 +19,8 @@ import { extractRankMathSEO, generateMetadataFromSEO } from "@/lib/rank-math";
 import JsonLd from "@/components/layout/JsonLd";
 import { generateArticleSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import BlogSidebar from "@/components/ui/BlogSidebar";
+import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { TableOfContents } from "@/components/ui/TableOfContents";
 import { Icon } from "@iconify/react";
 
 interface BlogPageProps {
@@ -60,9 +62,18 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
         
         <div className="blog-wrap font-dm">
             <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pb-24 pb-20 justify-center">
-                <div className="blog-title bg-light-blue-banner lg:pt-32 pt-24 font-dm rounded-3xl mb-12">
+                <div className="blog-title bg-light-blue-banner lg:pt-32 pt-24 font-dm rounded-3xl mb-12 relative overflow-hidden">
                     {/* Post Title */}
-                    <div className="lg:w-10/12 text-center pb-12 mx-auto">
+                    <div className="lg:w-10/12 text-center pb-12 mx-auto relative z-10">
+                        <div className="flex justify-center mb-8" data-aos="fade-down">
+                            <Breadcrumb 
+                                items={[
+                                  { label: 'Beranda', href: '/' },
+                                  { label: 'Artikel', href: '/blog' },
+                                  { label: title || 'Post' }
+                                ]} 
+                            />
+                        </div>
                         <div className="flex justify-center mb-4">
                             <div className="px-4 py-1.5 border border-brand-blue/10 rounded-full text-xs font-bold uppercase text-brand-blue bg-brand-blue/5 shadow-sm flex items-center gap-2 w-auto" data-aos="zoom-in">
                                 Edukasi Otomotif
@@ -99,6 +110,9 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                     <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-16 gap-12 relative">
                         {/* Article Content */}
                         <div className="lg:col-span-2">
+                            <div className="block lg:hidden mb-8">
+                                <TableOfContents />
+                            </div>
                             <article 
                                 className="prose prose-lg lg:prose-xl max-w-none dark:prose-invert blog-content-area
                                 prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-gray-900
@@ -128,6 +142,9 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
 
                         {/* Sidebar */}
                         <div className="w-full">
+                            <div className="hidden lg:block sticky top-24 z-30 mb-10">
+                                <TableOfContents />
+                            </div>
                             <BlogSidebar 
                                 categories={allCategories} 
                                 relatedPosts={relatedPosts} 
