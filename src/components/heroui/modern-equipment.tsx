@@ -122,7 +122,13 @@ export default function ModernEquipmentShowcase() {
               transition={{ duration: 1.2, ease: smoothBezier }}
               className="absolute inset-0 flex justify-center items-center z-10 pointer-events-none w-full h-full"
             >
-              <div className="relative w-full h-full max-w-[1100px] lg:scale-100 xl:scale-[1.1] lg:translate-x-[5%] lg:-translate-y-4">
+              <div 
+                className={`relative w-full h-full ${
+                  activeItem.id === 'service-berkala' 
+                    ? 'max-w-[1100px] lg:scale-100 xl:scale-[1.1] lg:translate-x-[5%] lg:-translate-y-4' 
+                    : 'max-w-[700px] lg:scale-90 xl:scale-[1.0] lg:-translate-x-[15%] lg:translate-y-12'
+                }`}
+              >
                       <Image
                         src={activeItem.image}
                         alt={activeItem.name}
