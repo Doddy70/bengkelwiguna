@@ -64,6 +64,7 @@ export interface Promosi extends WPPost {
   tanggal_selesai?: string;
   gallery?: string[];
   manfaat?: string;
+  kategori_promosi?: string;
   /** Jenis promosi: 'bulanan' untuk promo bulanan (hero slider), 'regular' untuk promo regular (carousel) */
   jenis_promosi?: 'bulanan' | 'regular';
   is_active?: boolean;

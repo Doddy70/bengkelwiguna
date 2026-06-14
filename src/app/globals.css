@@ -761,3 +761,194 @@ body.dark {
     
 
 }
+
+/* ============================================
+   MODAL ANIMATION PRINCIPLES (Disney 12)
+   Applied for smooth, non-jarring transitions
+   ============================================ */
+
+/* Principle 2: Anticipation - Button press effect */
+.modal-trigger-anticipation {
+    transition: transform 100ms ease-out;
+}
+.modal-trigger-anticipation:active {
+    transform: scale(0.95);
+}
+
+/* Principle 3: Staging - Backdrop blur effect */
+.modal-backdrop-staging {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+/* Principle 5: Follow Through - Content stagger animation */
+@keyframes modalContentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content-stagger > * {
+    animation: modalContentFadeIn 300ms ease-out forwards;
+    opacity: 0;
+}
+
+.modal-content-stagger > *:nth-child(1) { animation-delay: 50ms; }
+.modal-content-stagger > *:nth-child(2) { animation-delay: 100ms; }
+.modal-content-stagger > *:nth-child(3) { animation-delay: 150ms; }
+.modal-content-stagger > *:nth-child(4) { animation-delay: 200ms; }
+.modal-content-stagger > *:nth-child(5) { animation-delay: 250ms; }
+
+/* Principle 6: Ease In & Ease Out - Custom cubic-bezier */
+.modal-ease-enter {
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-ease-exit {
+    animation-timing-function: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* Principle 7: Arcs - Modal origin animation */
+@keyframes modalArcEnter {
+    0% {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+    }
+    60% {
+        opacity: 1;
+        transform: scale(1.02) translateY(-2px); /* Slight overshoot */
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes modalArcExit {
+    0% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+}
+
+.modal-arc-enter {
+    animation: modalArcEnter 400ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.modal-arc-exit {
+    animation: modalArcExit 200ms cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+/* Principle 9: Timing - Precise timing control */
+.modal-backdrop-enter {
+    transition: opacity 250ms ease-out;
+}
+
+.modal-backdrop-exit {
+    transition: opacity 200ms ease-in;
+}
+
+/* Principle 10: Exaggeration - Shake on error */
+@keyframes modalShake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.modal-shake {
+    animation: modalShake 300ms ease-in-out;
+}
+
+/* Principle 11: Solid Drawing - Consistent shadows */
+.modal-solid-shadow {
+    box-shadow:
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        0 12px 24px -8px rgba(0, 0, 0, 0.15);
+}
+
+/* Close button bounce effect */
+@keyframes closeButtonBounce {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.modal-close-bounce {
+    animation: closeButtonBounce 200ms ease-out forwards;
+}
+
+/* WhatsApp button pulse effect */
+@keyframes whatsappPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 177, 79, 0.4); }
+    70% { box-shadow: 0 0 0 12px rgba(0, 177, 79, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 177, 79, 0); }
+}
+
+.modal-whatsapp-pulse {
+    animation: whatsappPulse 2s infinite;
+}
+
+/* Hero image zoom on load */
+@keyframes heroImageZoom {
+    from { transform: scale(1.05); }
+    to { transform: scale(1); }
+}
+
+.modal-hero-zoom {
+    animation: heroImageZoom 600ms ease-out forwards;
+}
+
+/* Badge entrance */
+@keyframes badgeEntrance {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal-badge-enter {
+    animation: badgeEntrance 300ms cubic-bezier(0.16, 1, 0.3, 1) 100ms forwards;
+    opacity: 0;
+}
+
+/* ============================================
+   MODAL SCROLLBAR STYLING
+   ============================================ */
+
+/* Custom scrollbar for modal content */
+.modal-scroll-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-scroll-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.modal-scroll-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.modal-scroll-content::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+/* Firefox scrollbar */
+.modal-scroll-content {
+  scrollbar-width: thin;
+  scrollbar-color: #c1c1c1 #f1f1f1;
+}

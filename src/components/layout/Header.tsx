@@ -22,6 +22,7 @@ interface HeaderProps {
     menuItems?: NavMenuItem[];
     spesialisData?: LayananSpesialis[];
     servicesData?: Service[];
+    hideOnTop?: boolean;
 }
 
 export default function Header({
@@ -36,7 +37,8 @@ export default function Header({
     showSearch = true,
     menuItems = [],
     spesialisData = [],
-    servicesData = []
+    servicesData = [],
+    hideOnTop = false
 }: HeaderProps) {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
@@ -84,25 +86,25 @@ export default function Header({
         {
             title: 'Perawatan Rutin',
             items: [
-                { name: 'Ganti Oli', href: '/services/ganti-oli', icon: '🛢️' },
-                { name: 'Ganti Ban', href: '/services/ganti-ban', icon: '🔘' },
-                { name: 'Spooring & Balancing', href: '/services/spooring-balancing', icon: '⚙️' },
+                { name: 'Tune Up', href: '/services/tune-up', icon: '🛢️' },
+                { name: 'Ganti Ban', href: '/services/ganti-ban', icon: '🛞' },
+                { name: 'Spooring', href: '/services/spooring', icon: '⚖️' },
             ]
         },
         {
             title: 'Servis AC',
             items: [
-                { name: 'Service AC Mobil', href: '/services/service-ac', icon: '❄️' },
-                { name: 'Flush AC', href: '/services/flush-ac', icon: '🧊' },
-                { name: 'Tambah Freon', href: '/services/tambah-freon', icon: '💨' },
+                { name: 'Service AC Mobil', href: '/services/servis-ac-mobil', icon: '❄️' },
+                { name: 'Flush AC', href: '/services/flushing-ac', icon: '🌬️' },
+                { name: 'Tambah Freon', href: '/services/isi-freon-ac', icon: '💨' },
             ]
         },
         {
             title: 'Kaki-Kaki',
             items: [
-                { name: 'Shockbreaker', href: '/services/shockbreaker', icon: '🔧' },
-                { name: 'Kaki-Kaki / Suspensi', href: '/services/kaki-kaki', icon: '🦵' },
-                { name: 'Busi & Koil', href: '/services/busi-koil', icon: '⚡' },
+                { name: 'Servis Rem', href: '/services/servis-rem', icon: '🔧' },
+                { name: 'Kaki-Kaki / Suspensi', href: '/services/servis-kaki-kaki', icon: '🦵' },
+                { name: 'Balancing', href: '/services/balancing', icon: '⚡' },
             ]
         },
         {
@@ -115,10 +117,13 @@ export default function Header({
         }
     ];
 
+    // Determine header visibility classes based on hideOnTop and scrolled state
+    const visibilityClass = hideOnTop && !scrolled ? 'opacity-0 pointer-events-none -translate-y-4' : 'opacity-100 pointer-events-auto translate-y-0';
+
     return (
         <>
             <header
-                className={`header-wrapper w-full ${position} top-0 left-0 z-40 transition-all duration-300 ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${scrolled ? "scroll-header shadow-md" : `${bgColor}`}`}
+                className={`header-wrapper w-full ${position} top-0 left-0 z-40 transition-all duration-500 ${visibilityClass} ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${scrolled ? "glass-header bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-200/50" : `${bgColor}`}`}
             >
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className={`${headerClass === "bg-color-none" ? "bg-gray-100 rounded-lg px-3" : ""}`}>
@@ -173,23 +178,29 @@ export default function Header({
                                             className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
                                             onMouseEnter={() => setLayananOpen(true)}
                                         >
-                                            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 min-w-[600px]">
-                                                <div className="grid grid-cols-4 gap-6">
+                                            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 w-[850px]">
+                                                <div className="grid grid-cols-4 gap-8">
                                                     {serviceCategories.map((category, catIndex) => (
                                                         <div key={catIndex}>
-                                                            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-3">
+                                                            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4 px-2">
                                                                 {category.title}
                                                             </h3>
-                                                            <ul className="space-y-2">
+                                                            <ul className="space-y-1">
                                                                 {category.items.map((item, itemIndex) => (
                                                                     <li key={itemIndex}>
                                                                         <Link
                                                                             href={item.href}
                                                                             onClick={() => setLayananOpen(false)}
-                                                                            className="flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-brand-blue hover:bg-brand-blue/5 rounded-lg transition-colors text-sm"
+                                                                            className="group flex items-start gap-3 p-2 rounded-xl hover:bg-gray-50 transition-all"
                                                                         >
-                                                                            <span className="text-base">{item.icon}</span>
-                                                                            {String(item.name)}
+                                                                            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100/80 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-gray-200 transition-all flex-shrink-0">
+                                                                                <span className="text-sm">{item.icon}</span>
+                                                                            </div>
+                                                                            <div className="flex flex-col pt-1">
+                                                                                <span className="text-sm font-medium text-gray-600 group-hover:text-brand-blue transition-colors leading-snug">
+                                                                                    {String(item.name)}
+                                                                                </span>
+                                                                            </div>
                                                                         </Link>
                                                                     </li>
                                                                 ))}

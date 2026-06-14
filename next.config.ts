@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import path from "path";
 
 const nextConfig: NextConfig = {
   // ✅ ENABLE IMAGE OPTIMIZATION (removed unoptimized: true)
@@ -98,37 +99,12 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // ✅ OUTPUT FILE TRACING ROOT (removed hardcoded absolute path)
-  // outputFileTracingRoot: path.join(__dirname, "bengkel-wiguna-nextjs"),
+  // ✅ OUTPUT FILE TRACING ROOT
+  outputFileTracingRoot: path.join(__dirname),
 
   // ✅ WEBPACK OPTIMIZATION
   webpack: (config, { isServer }) => {
-    // Optimize chunks
-    config.optimization.splitChunks = {
-      chunks: 'all',
-      minSize: 20000,
-      maxSize: 244000,
-      cacheGroups: {
-        default: false,
-        vendors: false,
-        // Vendor chunk for node_modules
-        vendor: {
-          name: 'vendor',
-          chunks: 'all',
-          test: /[\\/]node_modules[\\/]/,
-          priority: 20,
-        },
-        // Common chunks
-        common: {
-          name: 'common',
-          minChunks: 2,
-          chunks: 'all',
-          priority: 10,
-          reuseExistingChunk: true,
-        },
-      },
-    };
-
+    // Let Next.js handle splitChunks natively to avoid './chunks/../undefined.js' module errors during SSG.
     return config;
   },
 };

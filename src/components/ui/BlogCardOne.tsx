@@ -24,54 +24,76 @@ export default function BlogCardOne({ post, index = 0 }: BlogCardOneProps) {
     return (
         <Link
             href={`/${post.slug}`}
-            className="border border-gray-200 rounded-xl overflow-hidden flex flex-col hover:shadow-xs transition-shadow duration-300"
+            className="group relative bg-[#141415] border border-[#494453] rounded-xl overflow-hidden
+                       hover:border-[#5E6AD2] hover:shadow-[0_8px_30px_rgba(94,106,210,0.15)]
+                       transition-all duration-300 ease-out"
             data-aos="zoom-in"
         >
-            {/* ✅ CLS PREVENTION: Explicit aspect ratio container */}
+            {/* Image Container with Framer-style overlay */}
             <div className="overflow-hidden relative" style={{ aspectRatio: '16/10' }}>
                 <Image
                     src={post.image}
                     alt={post.title}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 hover:scale-105"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                     loading="lazy"
-                    quality={75}
+                    quality={80}
                 />
+                {/* Gradient overlay on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent
+                                opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
-            <div className="p-4">
-                <div className="flex flex-col px-1">
-                    <div className="flex flex-row text-gray-600 text-sm mb-2 font-medium" suppressHydrationWarning>
-                        <span>{post.date}</span>
-                        <span className="mx-1">•</span>
-                        <span>{post.readTime}</span>
+
+            {/* Content Container */}
+            <div className="p-5">
+                <div className="flex flex-col">
+                    {/* Meta info - Framer style */}
+                    <div className="flex flex-row items-center gap-2 mb-3">
+                        <span className="text-[#D1CFD0] text-sm font-medium">{post.date}</span>
+                        <span className="w-1 h-1 rounded-full bg-[#494453]" />
+                        <span className="text-[#D1CFD0] text-sm font-medium">{post.readTime}</span>
                     </div>
-                    <h2 className="lg:text-3xl text-2xl text-gray-900 font-semibold mb-1 leading-snug line-clamp-2">
+
+                    {/* Title - Inter 700 */}
+                    <h2 className="text-[#F8F8F1] text-xl font-bold leading-tight mb-2 line-clamp-2
+                                   group-hover:text-[#5E6AD2] transition-colors duration-200">
                         {post.title}
                     </h2>
-                    <p className="text-gray-700 font-medium mt-1 lg:pr-20 text-[17px] line-clamp-3">
+
+                    {/* Excerpt - Inter 500 */}
+                    <p className="text-[#89786E] text-base font-medium leading-relaxed line-clamp-3 mb-4">
                         {post.excerpt}
                     </p>
-                    <div className="flex flex-row gap-3 mt-4 items-center">
-                        <Image
-                            src={post.authorAvatar}
-                            alt={post.author}
-                            width={44}
-                            height={44}
-                            className="w-11 h-11 rounded-full object-cover"
-                            loading="lazy"
-                        />
+
+                    {/* Author Section */}
+                    <div className="flex flex-row gap-3 items-center pt-3 border-t border-[#494453]/50">
+                        <div className="relative">
+                            <Image
+                                src={post.authorAvatar}
+                                alt={post.author}
+                                width={40}
+                                height={40}
+                                className="w-10 h-10 rounded-full object-cover ring-2 ring-[#494453]
+                                           group-hover:ring-[#5E6AD2] transition-all duration-300"
+                                loading="lazy"
+                            />
+                        </div>
                         <div className="flex flex-col">
-                            <span className="text-base text-gray-900 font-medium leading-5">
+                            <span className="text-[#F8F8F1] text-sm font-semibold leading-tight">
                                 {post.author}
                             </span>
-                            <span className="text-sm text-gray-600 font-medium leading-5">
+                            <span className="text-[#D1CFD0] text-xs font-medium leading-tight">
                                 {post.authorPosition}
                             </span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* Focus ring for accessibility */}
+            <div className="absolute inset-0 rounded-xl ring-2 ring-[#5E6AD2] ring-offset-2 ring-offset-[#141415]
+                            opacity-0 focus-within:opacity-100 transition-opacity duration-200 pointer-events-none" />
         </Link>
     );
 }

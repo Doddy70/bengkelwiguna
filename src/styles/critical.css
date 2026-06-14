@@ -67,8 +67,10 @@ body {
 
 @media (max-width: 767px) {
   .h5-banner-area {
-    padding-top: 110px;
-    padding-bottom: 50px;
+    justify-content: center;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    min-height: 100vh;
   }
 }
 

@@ -94,25 +94,25 @@ export default function MobileMenu({
         {
             title: 'Perawatan Rutin',
             items: [
-                { name: 'Ganti Oli', href: '/services/ganti-oli' },
+                { name: 'Tune Up', href: '/services/tune-up' },
                 { name: 'Ganti Ban', href: '/services/ganti-ban' },
-                { name: 'Spooring & Balancing', href: '/services/spooring-balancing' },
+                { name: 'Spooring', href: '/services/spooring' },
             ]
         },
         {
             title: 'Servis AC',
             items: [
-                { name: 'Service AC Mobil', href: '/services/service-ac' },
-                { name: 'Flush AC', href: '/services/flush-ac' },
-                { name: 'Tambah Freon', href: '/services/tambah-freon' },
+                { name: 'Service AC Mobil', href: '/services/servis-ac-mobil' },
+                { name: 'Flush AC', href: '/services/flushing-ac' },
+                { name: 'Tambah Freon', href: '/services/isi-freon-ac' },
             ]
         },
         {
             title: 'Kaki-Kaki',
             items: [
-                { name: 'Shockbreaker', href: '/services/shockbreaker' },
-                { name: 'Kaki-Kaki / Suspensi', href: '/services/kaki-kaki' },
-                { name: 'Busi & Koil', href: '/services/busi-koil' },
+                { name: 'Servis Rem', href: '/services/servis-rem' },
+                { name: 'Kaki-Kaki / Suspensi', href: '/services/servis-kaki-kaki' },
+                { name: 'Balancing', href: '/services/balancing' },
             ]
         },
         {

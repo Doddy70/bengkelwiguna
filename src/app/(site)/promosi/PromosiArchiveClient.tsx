@@ -1,117 +1,66 @@
-/**
- * Promosi Archive Client — Bengkel Wiguna
- * Refactored for clean 3-column grid without filters/sidebar
- */
-
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowUpRight, Tag, Calendar } from "lucide-react";
 import { Promosi } from "@/types/wordpress";
+import UIMainSlider, { UIMainSlide } from "@/components/ui/UIMainSlider";
+import { useDisclosure } from "@nextui-org/react";
+import PromoModal from "@/components/heroui/PromoModal";
 
-interface PromoCardProps {
-  promo: any;
-}
-
-function PromoCard({ promo }: PromoCardProps) {
-  const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || ''
+function PromoGlassCard({ promo, onClick }: { promo: Promosi; onClick: () => void }) {
+  const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
   
-  // Calculate discount
-  const hasDiscount = promo.harga_asli && promo.harga_promo
-  const getDiscountPercent = () => {
-    if (!hasDiscount) return 0
-    const promoPrice = parseFloat(promo.harga_promo.replace(/[^0-9.]/g, '') || '0')
-    const originalPrice = parseFloat(promo.harga_asli.replace(/[^0-9.]/g, '') || '0')
-    if (!originalPrice) return 0
-    return Math.round((1 - promoPrice / originalPrice) * 100)
-  }
-  const discountPercent = getDiscountPercent()
+  // Calculate discount for Sale badge
+  const hasDiscount = promo.harga_asli && promo.harga_promo;
 
   return (
-    <div className="group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-gray-100 dark:border-gray-700 flex flex-col h-full" data-aos="zoom-in">
-      {/* Promo Image Container */}
-      <div className="relative h-64 overflow-hidden bg-gray-100 dark:bg-gray-900">
+    <div className="group relative p-4 rounded-[24px] border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] backdrop-blur-xl bg-white/40 flex flex-col transition-all hover:shadow-xl hover:-translate-y-1">
+      {/* Sale Badge */}
+      {hasDiscount && (
+        <div className="absolute top-4 left-4 z-10 bg-gray-900 text-white text-[11px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-md">
+          Sale
+        </div>
+      )}
+      
+      {/* Image */}
+      <div 
+        className="relative w-full aspect-[4/5] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100/50 cursor-pointer"
+        onClick={onClick}
+      >
         {promo.featured_img ? (
           <Image
             src={promo.featured_img}
             alt={title}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-brand-blue to-[#050b14] flex items-center justify-center">
-            <span className="text-6xl opacity-20">🔥</span>
-          </div>
+          <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-50">No Image</div>
         )}
-        
-        {/* Badges */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-            <div className="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg italic">
-                Hot Promo
-            </div>
-            {hasDiscount && discountPercent > 0 && (
-                <div className="bg-green-500 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg italic">
-                    {discountPercent}% OFF
-                </div>
-            )}
-        </div>
       </div>
-
+      
       {/* Content */}
-      <div className="p-8 flex flex-col flex-grow">
-        {/* Title */}
-        <h3 className="text-xl lg:text-2xl font-black text-gray-900 dark:text-white mb-3 group-hover:text-brand-blue transition-colors italic tracking-tighter uppercase leading-tight">
-          <Link href={`/promosi/${promo.slug}`}>{title}</Link>
-        </h3>
-
-        {/* Validity Meta */}
-        <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-gray-400 mb-4">
-            <Calendar size={14} className="text-brand-blue" />
-            <span>{promo.tanggal_selesai ? `Hingga ${promo.tanggal_selesai}` : 'Promo Terbatas'}</span>
+      <div className="flex flex-col flex-1 px-1">
+        <h3 className="text-[15px] font-semibold text-gray-900 mb-1.5 line-clamp-2 leading-tight">{title}</h3>
+        <div className="flex items-center gap-2 mb-5 mt-auto">
+          <span className="text-[15px] font-bold text-gray-900">{promo.harga_promo || 'Hubungi Kami'}</span>
+          {hasDiscount && (
+            <span className="text-xs text-gray-400 line-through">{promo.harga_asli}</span>
+          )}
         </div>
-
-        {/* Excerpt Fallback Logic */}
-        <p className="text-gray-600 dark:text-gray-400 font-medium text-sm leading-relaxed line-clamp-2 mb-6">
-            {(promo.excerpt?.rendered || promo.excerpt || promo.content?.rendered || promo.content || '')
-                .replace(/<[^>]*>/g, '')
-                .replace(/\s+/g, ' ')
-                .trim()
-                .slice(0, 100)}...
-        </p>
-
-        {/* Pricing */}
-        <div className="mb-8">
-            <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-black text-brand-blue dark:text-brand-gold italic tracking-tighter uppercase">
-                    {promo.harga_promo || 'Hubungi Kami'}
-                </span>
-                {promo.harga_asli && (
-                    <span className="text-sm text-gray-400 line-through font-bold">
-                        {promo.harga_asli}
-                    </span>
-                )}
-            </div>
-        </div>
-
-        {/* Action */}
-        <div className="mt-auto pt-6 border-t border-gray-50 dark:border-gray-700 flex items-center justify-between">
-          <Link
-            href={`/promosi/${promo.slug}`}
-            className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest text-brand-blue hover:text-brand-gold transition-all group/btn"
-          >
-            Ambil Promo 
-            <span className="group-hover/btn:translate-x-1 transition-transform">→</span>
-          </Link>
-          
-          <div className="w-10 h-10 rounded-full bg-gray-50 dark:bg-gray-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-              <Tag size={18} className="text-brand-blue" />
-          </div>
-        </div>
+        
+        {/* Animated Button */}
+        <button 
+          onClick={onClick}
+          className="mt-auto relative overflow-hidden w-full bg-white border border-gray-200 text-gray-900 text-[13px] font-bold py-2.5 rounded-lg text-center transition-all duration-300 group-hover:border-[#224297] group-hover:text-white"
+        >
+          {/* Background sliding effect */}
+          <span className="absolute inset-0 bg-[#224297] translate-y-[101%] transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
+          <span className="relative z-10 transition-colors duration-300">Lihat Detail Promo</span>
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
 interface PromosiArchiveProps {
@@ -119,52 +68,90 @@ interface PromosiArchiveProps {
 }
 
 export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [selectedPromo, setSelectedPromo] = useState<Promosi | null>(null);
+
+  const handleOpenPromo = (promo: Promosi) => {
+    setSelectedPromo(promo);
+    onOpen();
+  };
+
+  // Pisahkan Promo Bulanan/Seasonal dan Promo Lainnya
+  const isSeasonal = (p: Promosi) => p.kategori_promosi && (
+    p.kategori_promosi.toLowerCase().includes("bulanan") || 
+    p.kategori_promosi.toLowerCase().includes("seasonal")
+  );
+
+  let monthlyPromos = promos.filter(p => isSeasonal(p));
+  let otherPromos = promos.filter(p => !isSeasonal(p));
+
+  // Fallback jika tidak ada kategori "Bulanan"/"Seasonal" sama sekali, ambil 3 promo pertama
+  if (monthlyPromos.length === 0 && promos.length > 0) {
+    monthlyPromos = promos.slice(0, 3);
+    otherPromos = promos.slice(3);
+  }
+
+  // Map untuk UIMainSlider (Promo Bulanan)
+  const slides: UIMainSlide[] = monthlyPromos.map((promo, idx) => {
+    const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
+    const rawExcerpt = typeof promo.excerpt === 'string' ? promo.excerpt : promo.excerpt?.rendered || '';
+    const subtitle = rawExcerpt 
+      ? rawExcerpt.replace(/(<([^>]+)>)/gi, "").slice(0, 100) + "..." 
+      : "Promo Spesial Bengkel Wiguna";
+
+    return {
+      id: promo.id || idx,
+      src: promo.featured_img || "/images/promosi/promo-default.jpg",
+      title: title,
+      subtitle: subtitle,
+      link: `/promosi/${promo.slug}`, // Currently UIMainSlider doesn't use this link, but we keep it for data structure
+    };
+  });
+
   return (
-    <div className="bg-white dark:bg-gray-950">
-      {/* Branded Header Section */}
-      <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 relative z-10">
-          <div className="max-w-3xl">
-            <span className="inline-block bg-brand-gold text-brand-blue px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 shadow-xl shadow-yellow-900/10">
-              Penawaran Terbatas
-            </span>
-            <h1 className="text-4xl lg:text-7xl font-black text-gray-900 mb-6 italic tracking-tighter uppercase leading-[0.85]">
-              Promosi <br /><span className="text-brand-blue">Eksklusif</span>
-            </h1>
-            <p className="text-gray-800 font-bold text-lg lg:text-xl max-w-xl leading-relaxed">
-              Dapatkan keuntungan maksimal dengan paket promosi pilihan untuk penghematan perawatan mobil Anda.
-            </p>
-          </div>
+    <>
+      <div className="bg-[#F8F9FB] min-h-screen pt-28 pb-20 overflow-hidden relative">
+        {/* Background Decorative Elements for Liquid Glass feel */}
+        <div className="absolute top-40 -left-64 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob"></div>
+        <div className="absolute top-40 -right-64 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
+
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-3 mt-12 text-sm font-bold uppercase tracking-widest text-gray-500">
-            <Link href="/" className="hover:text-brand-blue transition-colors">Home</Link>
-            <span className="text-brand-gold">/</span>
-            <span className="text-gray-900">Promosi</span>
-          </nav>
-        </div>
-      </section>
-
-      {/* Main Grid Content */}
-      <div className="promosi-archive-wrap py-20 lg:py-32">
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
-          {/* Grid without sidebar or filters */}
-          <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 lg:gap-10">
-            {promos.map((promo: any) => (
-              <PromoCard key={promo.id} promo={promo} />
-            ))}
+          {/* Section 1: Promo Bulanan (UIMainSlider) */}
+          <div className="mb-20">
+            {slides.length > 0 ? (
+              <UIMainSlider 
+                slides={slides} 
+                onSlideClick={(idx) => handleOpenPromo(monthlyPromos[idx])}
+              />
+            ) : (
+              <div className="h-[350px] bg-white rounded-2xl flex items-center justify-center text-gray-400 shadow-sm ring-1 ring-black/5">
+                Tidak ada promo bulanan saat ini.
+              </div>
+            )}
           </div>
 
-          {/* Empty State */}
-          {promos.length === 0 && (
-            <div className="text-center py-32 bg-gray-50 dark:bg-gray-900 rounded-3xl border-2 border-dashed border-gray-200 dark:border-gray-800">
-              <span className="text-8xl mb-6 block">🔥</span>
-              <h3 className="text-3xl font-black text-gray-900 dark:text-white mb-4 uppercase tracking-tighter italic">Belum Ada Promo Aktif</h3>
-              <p className="text-gray-500 font-medium text-lg">Nantikan penawaran spesial kami berikutnya!</p>
+          {/* Section 2: Promo Lainnya (4-Grid Liquid Glass Cards) */}
+          {otherPromos.length > 0 && (
+            <div className="mt-20">
+              <div className="text-center mb-10">
+                <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-2">Promo Lainnya</h2>
+                <p className="text-gray-500">Jelajahi berbagai paket servis dan penawaran menarik lainnya.</p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {otherPromos.map(promo => (
+                  <PromoGlassCard key={promo.slug} promo={promo} onClick={() => handleOpenPromo(promo)} />
+                ))}
+              </div>
             </div>
           )}
+
         </div>
       </div>
-    </div>
-  )
+
+      {/* Popout Promo Modal */}
+      <PromoModal isOpen={isOpen} onOpenChange={onOpenChange} promo={selectedPromo} />
+    </>
+  );
 }

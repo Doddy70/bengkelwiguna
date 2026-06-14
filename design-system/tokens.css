@@ -1,0 +1,20 @@
+:root {
+  --color-primary: oklch(0.984165 0.02418 94.0618);
+  --color-secondary: oklch(0.886277 0.00824 278.623 / 0.4);
+  --font-heading: Inter;
+  --font-body: Inter;
+  --space-1: 2px;
+  --space-2: 4px;
+  --space-3: 6px;
+  --space-4: 8px;
+  --space-5: 10px;
+  --space-6: 12px;
+  --space-7: 14px;
+  --space-8: 16px;
+  --space-9: 20px;
+  --space-10: 24px;
+  --space-11: 32px;
+  --space-12: 48px;
+  --space-13: 60px;
+  --space-14: 64px;
+}

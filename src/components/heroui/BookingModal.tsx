@@ -85,11 +85,13 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 </div>
               )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 gap-y-6 mt-4">
                 <Input
                   autoFocus
                   name="nama-depan"
                   label="Nama Lengkap"
+                  placeholder="Masukkan nama Anda"
+                  labelPlacement="outside"
                   variant="bordered"
                   isInvalid={hasError('nama-depan')}
                   errorMessage={getError('nama-depan')}
@@ -99,6 +101,8 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   name="telepon"
                   label="Nomer Tlp. / Whatsapp"
                   type="tel"
+                  placeholder="0812xxxxxx"
+                  labelPlacement="outside"
                   variant="bordered"
                   isRequired
                   isInvalid={hasError('telepon')}
@@ -108,6 +112,8 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="merek-mobil"
                   label="Merek Mobil"
+                  placeholder="Contoh: Honda CRV"
+                  labelPlacement="outside"
                   variant="bordered"
                   isRequired
                   isInvalid={hasError('merek-mobil')}
@@ -117,6 +123,8 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="tahun-mobil"
                   label="Tahun Mobil"
+                  placeholder="Contoh: 2019"
+                  labelPlacement="outside"
                   variant="bordered"
                   isRequired
                   isInvalid={hasError('tahun-mobil')}
@@ -126,6 +134,8 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Input
                   name="nomer-polisi"
                   label="No. Polisi"
+                  placeholder="Contoh: B 1234 ABC"
+                  labelPlacement="outside"
                   variant="bordered"
                   isRequired
                   isInvalid={hasError('nomer-polisi')}
@@ -135,6 +145,8 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Select 
                   name="pilihan-servis"
                   label="Pilihan Treatment / Servis" 
+                  placeholder="Pilih jenis servis"
+                  labelPlacement="outside"
                   variant="bordered"
                   defaultSelectedKeys={serviceName ? [serviceName] : []}
                   popoverProps={{
@@ -160,8 +172,8 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   name="tanggal"
                   label="Tanggal Kedatangan"
                   type="date"
+                  labelPlacement="outside"
                   variant="bordered"
-                  placeholder=" " 
                   isRequired
                   isInvalid={hasError('tanggal')}
                   errorMessage={getError('tanggal')}
@@ -170,6 +182,8 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 <Select 
                   name="jam-datang"
                   label="Jam Kedatangan" 
+                  placeholder="Pilih jam"
+                  labelPlacement="outside"
                   variant="bordered"
                   popoverProps={{
                     classNames: {
@@ -196,10 +210,12 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                 </Select>
               </div>
 
-              <div className="mt-2">
+              <div className="mt-6 mb-2">
                 <Textarea
                   name="keluhan-kendaraan"
                   label="Keluhan Kendaraan"
+                  placeholder="Ceritakan masalah mobil Anda di sini..."
+                  labelPlacement="outside"
                   variant="bordered"
                   isInvalid={hasError('keluhan-kendaraan')}
                   errorMessage={getError('keluhan-kendaraan')}

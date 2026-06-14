@@ -1,15 +1,22 @@
 /**
  * WordPress API Client — Bengkel Wiguna Next.js
  * Integration with WordPress REST API via bw-headless-cms plugin
+ *
+ * Performance Best Practices Applied:
+ * - React.cache() for per-request deduplication (Vercel Rule 3.9)
+ * - Circuit Breaker pattern (resilience)
+ * - Exponential backoff with jitter (reliability)
+ * - Parallel fetching with Promise.all() (Vercel Rule 1.5)
  */
 
-import { 
-  Service, 
-  Promosi, 
-  PaketService, 
-  LayananSpesialis, 
-  WPPost, 
-  PaginatedPosts, 
+import { cache } from 'react'
+import {
+  Service,
+  Promosi,
+  PaketService,
+  LayananSpesialis,
+  WPPost,
+  PaginatedPosts,
   FaqItem,
   NavMenu
 } from "@/types/wordpress";
@@ -424,9 +431,13 @@ async function apiFetchPaginated<T>(
 // SERVICES (Custom Post Type)
 // ============================================
 
-export async function getAllServices(): Promise<Service[]> {
+/**
+ * Cached version for per-request deduplication
+ * Vercel Best Practice Rule 3.9: Per-Request Deduplication with React.cache()
+ */
+export const getAllServices = cache(async (): Promise<Service[]> => {
   return (await apiFetch<Service[]>('/services-full?per_page=99', 'bw', REVALIDATE_LIST, ['services', 'all-services'])) ?? []
-}
+})
 
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
   if (!isValidSlug(slug)) return null
@@ -441,9 +452,13 @@ export async function getServicesForSitemap(): Promise<Service[]> {
 // PROMOSI (Custom Post Type)
 // ============================================
 
-export async function getAllPromosi(): Promise<Promosi[]> {
+/**
+ * Cached version for per-request deduplication
+ * Vercel Best Practice Rule 3.9: Per-Request Deduplication with React.cache()
+ */
+export const getAllPromosi = cache(async (): Promise<Promosi[]> => {
   return (await apiFetch<Promosi[]>('/promosi-active', 'bw', REVALIDATE_LIST, ['promosi', 'all-promosi'])) ?? []
-}
+})
 
 export async function getPromosiBySlug(slug: string): Promise<Promosi | null> {
   if (!isValidSlug(slug)) return null
@@ -454,21 +469,6 @@ export async function getPromosiForSitemap(): Promise<Promosi[]> {
   return (await apiFetch<Promosi[]>('/promosi-active?per_page=99', 'bw', REVALIDATE_LIST, ['sitemap'])) ?? []
 }
 
-/**
- * Get Promosi Bulanan (Monthly Promotions) - for Hero Slider
- * These are the main/focus promotions displayed in the big slider
- */
-export async function getPromosiBulanan(): Promise<Promosi[]> {
-  return (await apiFetch<Promosi[]>('/promosi-active?jenis_promosi=bulanan', 'bw', REVALIDATE_LIST, ['promosi', 'bulanan'])) ?? []
-}
-
-/**
- * Get Promosi Regular (Regular Promotions) - for Carousel
- * These are secondary promotions displayed in the carousel below
- */
-export async function getPromosiRegular(): Promise<Promosi[]> {
-  return (await apiFetch<Promosi[]>('/promosi-active?jenis_promosi=regular', 'bw', REVALIDATE_LIST, ['promosi', 'regular'])) ?? []
-}
 
 // ============================================
 // PAKET SERVICE (Custom Post Type)
@@ -527,9 +527,13 @@ export async function bwFetch<T>(endpoint: string, options: any = {}): Promise<T
 // LAYANAN SPESIALIS (Custom Post Type with FAQ)
 // ============================================
 
-export async function getAllLayananSpesialis(): Promise<LayananSpesialis[]> {
+/**
+ * Cached version for per-request deduplication
+ * Vercel Best Practice Rule 3.9: Per-Request Deduplication with React.cache()
+ */
+export const getAllLayananSpesialis = cache(async (): Promise<LayananSpesialis[]> => {
   return (await apiFetch<LayananSpesialis[]>('/layanan-spesialis-full', 'bw', REVALIDATE_LIST, ['layanan-spesialis', 'all-spesialis'])) ?? []
-}
+})
 
 export async function getLayananSpesialisBySlug(slug: string): Promise<LayananSpesialis | null> {
   if (!isValidSlug(slug)) return null
@@ -544,6 +548,11 @@ export async function getLayananSpesialisForSitemap(): Promise<LayananSpesialis[
 // BLOG POSTS (Standard WordPress)
 // ============================================
 
+/**
+ * Cached version for per-request deduplication
+ * Note: Cannot use cache() directly due to page/perPage parameters
+ * Use the factory pattern below for deduplication
+ */
 export async function getAllPosts(page = 1, perPage = 12): Promise<PaginatedPosts<WPPost>> {
   const safePage = Math.max(1, page)
   return apiFetchPaginated<WPPost>(
@@ -552,6 +561,19 @@ export async function getAllPosts(page = 1, perPage = 12): Promise<PaginatedPost
     ['posts', 'all-posts']
   )
 }
+
+/**
+ * Cached posts fetcher with page parameter
+ * Vercel Best Practice Rule 3.9: Per-Request Deduplication
+ */
+export const getCachedPosts = cache(async (page: number, perPage: number): Promise<PaginatedPosts<WPPost>> => {
+  const safePage = Math.max(1, page)
+  return apiFetchPaginated<WPPost>(
+    `/posts?page=${safePage}&per_page=${perPage}&_embed=1`,
+    REVALIDATE_LIST,
+    ['posts', 'all-posts']
+  )
+})
 
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
   if (!isValidSlug(slug)) return null

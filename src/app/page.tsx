@@ -9,8 +9,7 @@ import Link from 'next/link'
 import {
   getAllServices,
   getAllPromosi,
-  getPromosiBulanan,
-  getPromosiRegular,
+  getHomepageSettings,
   getAllPosts,
   getPageBySlug,
   getHomepageFaqs,
@@ -22,7 +21,7 @@ import {
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
 
 // 1. CRITICAL: Hero Section & Header (Above-the-fold)
-import PerspectiveServiceSlider from '@/components/sections/PerspectiveServiceSlider'
+import HeroSlideshow from '@/components/heroui/hero-slideshow'
 import Header from '@/components/layout/Header'
 import JsonLd from '@/components/layout/JsonLd'
 import { generateLocalBusinessSchema, generateWebsiteSchema, generateFAQSchema, generateAggregateRatingSchema, generateOrganizationSchema } from '@/lib/seo'
@@ -32,13 +31,12 @@ import { defaultFaqs } from '@/const/faqData'
 const GoogleReviews = dynamic(() => import('@/components/sections/GoogleReviews'))
 const YoutubeEducation = dynamic(() => import('@/components/sections/YoutubeEducation'))
 const SpesialisSlider = dynamic(() => import('@/components/heroui/spesialis-slider'))
-const PromoSlider = dynamic(() => import('@/components/heroui/promo-slider'))
-const PromoHeroSlider = dynamic(() => import('@/components/heroui/promo-hero-slider'))
+const BentoPromoSection = dynamic(() => import('@/components/heroui/bento-promo-section'))
 const FooterModern = dynamic(() => import('@/components/heroui/footer-modern'))
 const PageTitle3 = dynamic(() => import('@/components/ui/PageTitle3'))
 const Button = dynamic(() => import('@/components/ui/Button'))
 const BlogCardOne = dynamic(() => import('@/components/ui/BlogCardOne'))
-const Tabs = dynamic(() => import('@/components/ui/Tab'))
+const ModernEquipmentShowcase = dynamic(() => import('@/components/heroui/modern-equipment'))
 
 // 3. SEO OPTIMIZATION: Trust Signals & FAQ
 import PartnerLogos from '@/components/sections/PartnerLogos'
@@ -85,31 +83,41 @@ export async function generateMetadata() {
 
 export default async function HomePage() {
   // Parallel Fetching
-  const [services, promosi, blogResult, dynamicFaqs, menuData, spesialis] = await Promise.all([
+  const [services, allPromosi, blogResult, dynamicFaqs, menuData, spesialis, hpSettings] = await Promise.all([
     getAllServices(),
     getAllPromosi(),
     getAllPosts(1, 3), // Fetch 3 latest posts
     getHomepageFaqs(),
     getNavigationMenu('main-menu'),
-    getAllLayananSpesialis()
+    getAllLayananSpesialis(),
+    getHomepageSettings()
   ])
 
-  if (process.env.NODE_ENV === 'development') {
-    console.log('[HomePage] Data loaded:', {
-        servicesCount: Array.isArray(services) ? services.length : 'null',
-        promosiCount: Array.isArray(promosi) ? promosi.length : 'null',
-        postsCount: blogResult?.posts?.length || 0,
-        faqsCount: dynamicFaqs?.length || 0,
-        menuItems: menuData?.items?.length || 0,
-        spesialisCount: Array.isArray(spesialis) ? spesialis.length : 0
-    })
-  }
-
+  const promoBulananSlugs = hpSettings?.promo_bulanan || [];
   const servicesList = Array.isArray(services) ? services : []
-  const promosiList = Array.isArray(promosi) ? promosi.slice(0, 3) : []
+  let promosiBulananList = Array.isArray(allPromosi) ? allPromosi.filter(p => promoBulananSlugs.includes(p.slug)) : []
+  let promosiRegularList = Array.isArray(allPromosi) ? allPromosi.filter(p => !promoBulananSlugs.includes(p.slug)) : []
   const postsList = blogResult?.posts || []
   const menuItems = menuData?.items || []
   const spesialisData = Array.isArray(spesialis) ? spesialis : []
+
+  // Fallback if no promo bulanan is selected
+  if (promosiBulananList.length === 0 && Array.isArray(allPromosi) && allPromosi.length > 0) {
+    promosiBulananList = allPromosi.slice(0, 3);
+    promosiRegularList = allPromosi.slice(3);
+  }
+
+  if (process.env.NODE_ENV === 'development') {
+    console.log('[HomePage] Data loaded:', {
+        servicesCount: servicesList.length,
+        promosiBulananCount: promosiBulananList.length,
+        promosiRegularCount: promosiRegularList.length,
+        postsCount: postsList.length,
+        faqsCount: dynamicFaqs?.length || 0,
+        menuItems: menuItems.length,
+        spesialisCount: spesialisData.length
+    })
+  }
 
   // Reconcile FAQ format (WP: {q, a} vs UI: {question, answer})
   const faqItems = dynamicFaqs.length > 0 
@@ -124,7 +132,7 @@ export default async function HomePage() {
       <JsonLd data={generateFAQSchema(faqItems.map(f => ({ q: f.question, a: f.answer })))} />
       <JsonLd data={generateAggregateRatingSchema()} />
       
-      {/* HOMEPAGE HEADER (Fixed, Transparent with blur) */}
+      {/* HOMEPAGE HEADER (Hidden on Top, Appears on Scroll) */}
       <Header
         position="fixed"
         bgColor="bg-white/70 backdrop-blur-xl border-b border-white/30 shadow-lg"
@@ -132,58 +140,28 @@ export default async function HomePage() {
         menuItems={menuItems}
         spesialisData={spesialisData}
         servicesData={servicesList}
+        hideOnTop={true}
       />
 
-      {/* SECTION 1: HERO (Perspective Slider with Background Image) */}
-      <section id="hero" className="relative">
-         <PerspectiveServiceSlider servicesData={servicesList} />
+      {/* SECTION 1: HERO (Liquid Glass Slideshow) */}
+      <section id="hero" className="relative w-full">
+         <HeroSlideshow servicesData={servicesList} />
       </section>
 
       {/* PARTNER LOGOS */}
       <PartnerLogos />
 
-      {/* SECTION 2: PROMOSI (Bexon Style Carousel) */}
-      {promosiList.length > 0 && (
-        <section id="promosi" className="lg:py-24 py-12 bg-gray-50 overflow-hidden">
-          <div className="max-w-screen-xl mx-auto boxed-layout-gap">
-            <div className="flex flex-col gap-8">
-              <div className="flex justify-between items-end">
-                <PageTitle3
-                    badgeText="🔥 PROMO TERBARU"
-                    title="Penawaran Spesial untuk Anda"
-                    subtitle="Hemat hingga 20% untuk perawatan kendaraan. Promo terbatas, jangan sampai terlewat!"
-                    widthClass="w-full lg:w-7/12"
-                    alignment="start"
-                    padding="pb-0"
-                />
-                <div className="hidden lg:block">
-                  <Button href="/promosi" label="Lihat Semua Promo" bgColor="bg-brand-blue" textColor="text-white" />
-                </div>
-              </div>
-
-              <div className="promo-slider-container pb-10">
-                <PromoSlider items={promosiList} />
-              </div>
-            </div>
-          </div>
-        </section>
+      {/* SECTION 2: PROMOSI - Bento Grid Layout */}
+      {(promosiBulananList.length > 0 || promosiRegularList.length > 0) && (
+        <BentoPromoSection
+          promos={promosiRegularList}
+          promoBulanan={promosiBulananList}
+        />
       )}
 
-      {/* SECTION: TABS (No Drama Service Process) */}
-      <section id="why-wiguna" className="lg:py-24 py-12 bg-white">
-        <div className="max-w-screen-xl mx-auto boxed-layout-gap">
-            <div className="text-center mb-16">
-                <PageTitle3
-                    badgeText="💎 ONE STOP SERVICE"
-                    title="Solusi Lengkap untuk Kendaraan Anda"
-                    subtitle="Bengkel Wiguna hadir sebagai solusi lengkap untuk semua jenis kendaraan, mulai dari mobil pribadi, niaga, hingga kendaraan operasional perusahaan."
-                    widthClass="w-full"
-                    alignment="center"
-                    padding="pb-0"
-                />
-            </div>
-            <Tabs />
-        </div>
+      {/* SECTION: TABS (No Drama Service Process) - Full Width with Boxed Inner */}
+      <section id="why-wiguna" className="bg-white w-full hidden lg:block">
+          <ModernEquipmentShowcase />
       </section>
 
       {/* SECTION 3: GOOGLE REVIEWS */}

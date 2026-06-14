@@ -1,14 +1,14 @@
 {
   "project": "bengkel-wiguna",
   "version": "1.1.0",
-  "lastUpdated": "2026-06-14T00:15:00+07:00",
+  "lastUpdated": "2026-06-14T00:30:00+07:00",
   "lastAgent": {
-    "name": "Gemini 3.1 Pro (High)",
-    "email": "noreply@google.com",
-    "action": "Task 5 Complete: Preload LCP Image"
+    "name": "Claude Opus 4.8",
+    "email": "noreply@anthropic.com",
+    "action": "Dev server started, session recap saved"
   },
   "lastCommit": {
-    "hash": null,
+    "hash": "dbeaf36",
     "message": "perf: preload LCP image with high priority",
     "author": "Gemini 3.1 Pro (High)",
     "date": "2026-06-14T00:20:00+07:00",
@@ -21,8 +21,16 @@
     "upstream": "origin/main",
     "ahead": 0,
     "behind": 0,
-    "status": "modified"
+    "status": "modified",
+    "uncommittedFiles": 26,
+    "note": "Working tree has uncommitted changes - needs git add/commit before next task"
   },
+  "devServer": {
+    "status": "running",
+    "url": "http://localhost:3000",
+    "started": "2026-06-14T00:30:00+07:00"
+  },
+  "sessionFile": ".maestro/sessions/2026-06-14_perf-optimization-dev-server.md",
   "performance": {
     "baseline": {
       "date": "2026-06-12",

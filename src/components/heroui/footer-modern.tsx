@@ -10,6 +10,8 @@ import { Button, Input, Link } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import DarkToggle from "../layout/DarkToggle";
+import TiltCard from "../ui/TiltCard";
+import ZdogIcon from "../ui/ZdogIcon";
 
 type SocialIconProps = Omit<IconProps, "icon">;
 
@@ -96,30 +98,44 @@ export default function FooterModern() {
       <div className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-12 sm:pt-16 lg:px-8">
         {/* Desktop: 4 Column Layout | Tablet: 2 Column | Mobile: 1 Column */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
-          {/* Column 1: Customer Support Widget */}
+          {/* Column 1: Customer Support Widget (REPLACED WITH 3D WIDGET) */}
           <div className="space-y-6">
-            {/* Customer Support Widget */}
             <div>
-              <h3 className="text-xs font-bold text-gray-900 dark:text-white uppercase tracking-wider mb-3">Konsultasi Gratis</h3>
-              <Link
-                href="https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
-                isExternal
-                className="block hover:opacity-90 transition-opacity"
-              >
-                <Image
-                  src="/images/Custmer-Support-Widget.png.avif"
-                  alt="Bengkel Wiguna Customer Support"
-                  width={280}
-                  height={93}
-                  className="h-auto w-full max-w-[280px]"
-                />
-              </Link>
+              <h3 className="text-xs font-black text-brand-blue dark:text-[#ffd900] uppercase tracking-[0.2em] mb-4">Konsultasi Gratis</h3>
+              
+              <TiltCard options={{ max: 20, perspective: 1000, scale: 1.05 }}>
+                <Link
+                  href="https://wa.me/6287817773888?text=Halo%20Asisten%20Wiguna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya.%20(web)"
+                  isExternal
+                  className="block group"
+                >
+                  <div className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-5 rounded-[2rem] border border-gray-100 dark:border-gray-700 shadow-xl overflow-hidden group-hover:border-brand-blue/30 transition-colors">
+                    
+                    {/* Background Pattern */}
+                    <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/5 rounded-full -mr-8 -mt-8 blur-2xl group-hover:bg-brand-blue/10 transition-colors"></div>
+                    
+                    <div className="flex items-center gap-4 relative z-10">
+                      <div className="w-16 h-16 rounded-2xl bg-brand-blue flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform duration-500" style={{ transformStyle: 'preserve-3d' }}>
+                        <div style={{ transform: 'translateZ(30px)' }}>
+                          <ZdogIcon type="message" size={40} color="#fff" />
+                        </div>
+                      </div>
+                      
+                      <div style={{ transform: 'translateZ(20px)' }}>
+                        <p className="text-[10px] font-black text-brand-blue dark:text-[#ffd900] uppercase tracking-widest mb-0.5">Online Now</p>
+                        <h4 className="text-gray-900 dark:text-white font-black text-lg leading-tight">Asisten Wiguna</h4>
+                        <p className="text-[11px] text-gray-500 dark:text-gray-400 font-bold mt-1">Chat via WhatsApp &rarr;</p>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </TiltCard>
             </div>
 
             {/* Social Icons */}
-            <div className="flex space-x-5">
+            <div className="flex space-x-5 px-2">
               {footerNavigation.social.map((item) => (
-                <Link key={item.name} isExternal className="text-gray-400 hover:text-[#224297] transition-colors" href={item.href}>
+                <Link key={item.name} isExternal className="text-gray-400 hover:text-[#224297] dark:hover:text-[#ffd900] transition-colors hover:scale-110" href={item.href}>
                   <span className="sr-only">{item.name}</span>
                   <item.icon aria-hidden="true" className="w-5 h-5" />
                 </Link>
@@ -175,7 +191,7 @@ export default function FooterModern() {
                 className="bg-white dark:bg-gray-900 rounded-xl w-full lg:w-80"
                 size="sm"
               />
-              <Button className="bg-brand-blue text-white shadow-md font-medium rounded-xl w-full sm:w-auto" type="submit">
+              <Button className="bg-brand-blue text-white shadow-md font-medium rounded-xl w-full sm:w-auto hover:bg-blue-800 transition-colors" type="submit">
                 Berlangganan
               </Button>
             </form>
@@ -184,11 +200,11 @@ export default function FooterModern() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6 border-t border-gray-100 dark:border-gray-800">
-          <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left">
+          <p className="text-xs sm:text-sm text-gray-400 text-center sm:text-left font-medium">
             &copy; 2026 Bengkel Wiguna. Hak Cipta Dilindungi.
           </p>
           <div className="flex items-center gap-3">
-            <span className="text-xs text-gray-400">Tema:</span>
+            <span className="text-xs text-gray-400 font-bold uppercase tracking-widest">Tema:</span>
             <DarkToggle />
           </div>
         </div>

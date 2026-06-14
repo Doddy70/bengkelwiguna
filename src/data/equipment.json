@@ -1,0 +1,74 @@
+[
+  {
+    "id": "kyoto-shaking",
+    "name": "Kyoto Shaking Machine",
+    "category": "Kaki-Kaki & Suspensi",
+    "image": "/images/equipment/fortuner.png",
+    "description": "Teknologi tercanggih yang mampu mensimulasikan guncangan jalan rusak secara statis untuk deteksi kaki-kaki akurat.",
+    "suggestedQuestions": [
+      "Mesin ini buat apa sih?",
+      "Kegunaannya buat apa saja?",
+      "Berapa lama pengerjaannya?",
+      "Apa benefit yang dirasakan?"
+    ],
+    "highlights": [
+      { "icon": "Crosshair", "title": "Akurasi 100%", "subtitle": "Tanpa Tebak-tebakan" },
+      { "icon": "Shield", "title": "Tanpa Tes Jalan", "subtitle": "Sangat Aman" },
+      { "icon": "Activity", "title": "Real Simulation", "subtitle": "Kondisi Nyata" }
+    ]
+  },
+  {
+    "id": "stinger",
+    "name": "Stinger Scanner",
+    "category": "Engine & ECU Diagnostic",
+    "image": "/images/equipment/Stinger-Promo.png",
+    "description": "Scanner level pabrikan untuk mendeteksi malfungsi sensor dan sistem komputer mesin secara akurat.",
+    "suggestedQuestions": [
+      "Alat scanner ini buat apa sih?",
+      "Bisa deteksi kerusakan apa saja?",
+      "Berapa lama waktu diagnosanya?",
+      "Apa keuntungan cek komputer?"
+    ],
+    "highlights": [
+      { "icon": "Cpu", "title": "Level Pabrikan", "subtitle": "Standar Tinggi" },
+      { "icon": "Activity", "title": "Live Data", "subtitle": "Diagnosa Akurat" },
+      { "icon": "CheckCircle", "title": "System Reset", "subtitle": "Optimasi Full" }
+    ]
+  },
+  {
+    "id": "coolant-changer",
+    "name": "Prestone Coolant Changer",
+    "category": "Cooling System Care",
+    "image": "/images/equipment/Prestone Coolant Changer.png",
+    "description": "Sistem kuras radiator vakum otomatis yang menjamin penggantian cairan pendingin 100% bersih.",
+    "suggestedQuestions": [
+      "Alat Coolant Changer buat apa?",
+      "Kenapa harus pakai alat ini?",
+      "Berapa lama proses kurasnya?",
+      "Apa manfaatnya buat mesin?"
+    ],
+    "highlights": [
+      { "icon": "Droplet", "title": "Vacuum Tech", "subtitle": "Kuras Sempurna" },
+      { "icon": "Thermometer", "title": "Anti Overheat", "subtitle": "Suhu Terjaga" },
+      { "icon": "Shield", "title": "Safe Process", "subtitle": "Tanpa Resiko" }
+    ]
+  },
+  {
+    "id": "engine-flush",
+    "name": "Mesin Engine Flush",
+    "category": "Advanced Engine Care",
+    "image": "/images/equipment/Flushing.png",
+    "description": "Mesin pembersih internal mesin bertekanan tinggi untuk membuang endapan lumpur oli dan kerak.",
+    "suggestedQuestions": [
+      "Mesin flushing ini buat apa?",
+      "Cara kerjanya gimana sih?",
+      "Berapa lama pengerjaannya?",
+      "Apa bedanya hasil setelah flush?"
+    ],
+    "highlights": [
+      { "icon": "Zap", "title": "Performa Baru", "subtitle": "Tarikan Enteng" },
+      { "icon": "Filter", "title": "Detoks Mesin", "subtitle": "Kerak Hilang" },
+      { "icon": "Settings", "title": "Engine Smooth", "subtitle": "Suara Halus" }
+    ]
+  }
+]

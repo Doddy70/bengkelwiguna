@@ -1,0 +1,29 @@
+[
+    {
+        "id": 1,
+        "image": "/images/feedback-member-1.svg",
+        "text": "What used to take us 4 hours to create now takes 30 minutes—and updates happen in seconds.",
+        "rating": 4.5,
+        "avatar": "/images/avatars/user.png",
+        "name": "Goria Coast",
+        "position": " CEO of Exsit"
+    },
+    {
+        "id": 2,
+        "image": "/images/feedback-member-1.svg",
+        "text": "Incredible experience from start to finish. The team is responsive, professional. dashboard interface",
+        "rating": 4.4,
+        "avatar": "/images/avatars/user.png",
+        "name": "Novita Thomson",
+        "position": "Founder of Exsit"
+    },
+    {
+        "id": 3,
+        "image": "/images/feedback-member-1.svg",
+        "text": "If I need a video today, I can get it today—no waitlists, no delays, no relying on third-party vendors.",
+        "rating": 4.2,
+        "avatar": "/images/avatars/user.png",
+        "name": "Pandit Coast",
+        "position": "Developer of Exsit"
+    }
+]

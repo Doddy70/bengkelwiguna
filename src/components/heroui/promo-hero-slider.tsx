@@ -1,37 +1,37 @@
-/**
- * PromoHeroSlider — Big Full-Width Slider for Promosi Bulanan (Monthly Promotions)
- * This is the main hero slider displayed prominently on the homepage
- *
- * ✅ PERFORMANCE OPTIMIZATION:
- * - Lazy loading for non-visible images
- * - Proper sizing attributes
- * - CLS prevention with explicit aspect ratios
- * - Auto-pause on hover
- */
-
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Icon } from "@iconify/react";
-import { stripHtml } from "@/lib/wordpress";
 import { Promosi } from "@/types/wordpress";
+import { Icon } from "@iconify/react";
 
 interface PromoHeroSliderProps {
   items: Promosi[];
 }
 
 export default function PromoHeroSlider({ items = [] }: PromoHeroSliderProps) {
-  const [SplideComponent, setSplideComponent] = useState<React.ComponentType<any> | null>(null);
-  const [SplideSlideComponent, setSplideSlideComponent] = useState<React.ComponentType<any> | null>(null);
+  const [SplideComponent, setSplideComponent] = useState<any>(null);
+  const [SplideSlideComponent, setSplideSlideComponent] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const splideRef = useRef<any>(null);
+  const thumbsContainerRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll the thumbnail container when activeIndex changes
+  useEffect(() => {
+    if (thumbsContainerRef.current && items.length > 3) {
+      const activeThumb = thumbsContainerRef.current.children[activeIndex] as HTMLElement;
+      if (activeThumb) {
+        activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    }
+  }, [activeIndex, items.length]);
 
   useEffect(() => {
     const loadSplide = async () => {
       try {
-        // Import Splide JS only (CSS should be handled at layout level)
+        await import("@splidejs/splide/dist/css/splide.min.css");
         const { Splide, SplideSlide } = await import("@splidejs/react-splide");
         setSplideComponent(() => Splide);
         setSplideSlideComponent(() => SplideSlide);
@@ -40,43 +40,15 @@ export default function PromoHeroSlider({ items = [] }: PromoHeroSliderProps) {
         console.warn('Splide loading failed:', error);
       }
     };
-
     loadSplide();
   }, []);
 
   if (!items || items.length === 0) return null;
 
-  const splideOptions = {
-    type: "loop" as const,
-    perPage: 1,
-    perMove: 1,
-    gap: "0px",
-    pagination: true,
-    arrows: true,
-    autoplay: true,
-    interval: 6000,
-    speed: 1000,
-    pauseOnHover: true,
-    pauseOnFocus: true,
-    updateOnMove: true,
-    classes: {
-      pagination: "splide__pagination promo-hero-pagination",
-      page: "splide__pagination__page promo-hero-page",
-    },
-  };
-
-  // Skeleton loading state
   if (!isLoaded || !SplideComponent || !SplideSlideComponent) {
     return (
-      <div className="promo-hero-container relative w-full">
-        <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-gradient-to-r from-brand-blue/10 to-brand-gold/10 animate-pulse">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center">
-              <div className="w-16 h-16 border-4 border-brand-blue/20 border-t-brand-blue rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-400">Memuat promo...</p>
-            </div>
-          </div>
-        </div>
+      <div className="w-full mb-16 px-4 lg:px-8">
+        <div className="bg-brand-blue rounded-xl h-[400px] md:h-[500px] animate-pulse w-full"></div>
       </div>
     );
   }
@@ -84,137 +56,178 @@ export default function PromoHeroSlider({ items = [] }: PromoHeroSliderProps) {
   const Splide = SplideComponent;
   const Slide = SplideSlideComponent;
 
-  return (
-    <div className="promo-hero-container relative w-full">
-      <Splide
-        options={splideOptions}
-        onMove={(splide: any) => setCurrentSlide(splide.index)}
-      >
-        {items.map((promo, index) => {
-          const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered;
-          const excerpt = stripHtml(typeof promo.excerpt === 'string' ? promo.excerpt : promo.excerpt?.rendered);
-          const imageUrl = promo.featured_img || "/images/promosi/promo-default.jpg";
-          const isActive = index === currentSlide;
+  // Format Date helper
+  const formatDateToIndonesian = (dateStr?: string) => {
+    if (!dateStr) return null;
+    try {
+      const date = new Date(dateStr);
+      return new Intl.DateTimeFormat('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }).format(date);
+    } catch (e) { return dateStr; }
+  };
 
-          return (
-            <Slide key={promo.id}>
-              <div className="promo-hero-slide relative w-full h-[400px] md:h-[500px] lg:h-[600px]">
-                {/* Background Image */}
-                <div className="absolute inset-0">
+  return (
+    <div className="w-full mb-20 px-4 lg:px-8">
+      <div className="w-full max-w-[1400px] mx-auto">
+
+        {/* Main Slider Area */}
+        <div className="w-full relative rounded-2xl overflow-hidden">
+          <Splide
+            ref={splideRef}
+            options={{
+              type: "loop",
+              perPage: 1,
+              arrows: false,
+              pagination: false,
+              autoplay: true,
+              interval: 6000,
+              speed: 800,
+              breakpoints: {
+                1024: { height: "500px" },
+                768: { height: "400px" },
+                480: { height: "350px" },
+              },
+            }}
+            onMoved={(_splide: any, newIndex: number) => setActiveIndex(newIndex)}
+          >
+            {items.map((promo, index) => {
+              const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered;
+              const imageUrl = promo.featured_img || "/images/promosi/promo-default.jpg";
+              const endDate = formatDateToIndonesian(promo.tanggal_selesai);
+
+              return (
+                <Slide key={promo.id} className="relative overflow-hidden rounded-2xl h-[350px] md:h-[400px] lg:h-[500px] bg-black">
+
+                  {/* Background Image */}
                   <Image
                     src={imageUrl}
                     alt={title || "Promo Bengkel Wiguna"}
                     fill
                     priority={index === 0}
-                    quality={90}
+                    quality={95}
                     sizes="100vw"
-                    className={`object-cover transition-all duration-1000 ${isActive ? 'scale-100' : 'scale-105'}`}
+                    className="object-cover opacity-90 transition-transform duration-[10000ms] hover:scale-110"
                   />
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/40 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/60 to-transparent" />
-                </div>
 
-                {/* Content */}
-                <div className="relative h-full max-w-screen-xl mx-auto px-4 flex items-center">
-                  <div className="max-w-2xl">
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 bg-brand-gold text-gray-900 font-bold px-4 py-2 rounded-full text-sm mb-4 shadow-lg">
-                      <span className="text-lg">🔥</span>
-                      <span>PROMO BULANAN</span>
-                    </div>
+                  {/* Gradient Overlay (Left to Right) */}
+                  <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
 
-                    {/* Title */}
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight">
-                      {title}
-                    </h2>
+                  {/* Content Overlay */}
+                  <div className="absolute inset-0 z-20 p-8 md:p-12 lg:p-16 flex flex-col justify-between w-full md:w-2/3 lg:w-1/2">
 
-                    {/* Excerpt */}
-                    <p className="text-lg md:text-xl text-white/90 mb-6 leading-relaxed line-clamp-2">
-                      {excerpt}
-                    </p>
-
-                    {/* Price & Discount */}
-                    {promo.harga_promo && (
-                      <div className="flex items-center gap-4 mb-6">
-                        {promo.harga_asli && (
-                          <span className="text-xl text-white/60 line-through">
-                            Rp {promo.harga_asli}
-                          </span>
-                        )}
-                        <span className="text-3xl font-black text-brand-gold">
-                          Rp {promo.harga_promo}
+                    {/* Top Label */}
+                    <div className="flex flex-row gap-4 items-center">
+                      <div className="w-14 h-14 bg-brand-gold rounded-full flex items-center justify-center shadow-lg">
+                        <Icon icon="solar:tag-price-bold-duotone" className="w-7 h-7 text-brand-blue" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-white/80 text-sm font-semibold tracking-wider uppercase">
+                          Promo Bulan Ini
                         </span>
                         {promo.diskon_persen && (
-                          <span className="bg-red-500 text-white font-bold px-3 py-1 rounded-lg text-sm">
-                            -{promo.diskon_persen}%
+                          <span className="text-brand-gold font-bold">
+                            Diskon {promo.diskon_persen}%
                           </span>
                         )}
                       </div>
-                    )}
+                    </div>
 
-                    {/* CTA Button */}
-                    <Link
-                      href={`/promosi/${promo.slug}`}
-                      className="inline-flex items-center gap-3 bg-brand-gold hover:bg-brand-gold/90 text-gray-900 font-bold px-8 py-4 rounded-xl text-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
-                    >
-                      <span>Ambil Promo Sekarang</span>
-                      <Icon icon="solar:arrow-right-linear" width={24} />
-                    </Link>
+                    {/* Main Title & Price */}
+                    <div className="text-white flex flex-col mt-auto">
+                      <h2 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight mb-4 text-balance drop-shadow-md">
+                        {title}
+                      </h2>
+
+                      {promo.harga_promo && (
+                        <div className="flex items-end gap-3 mb-6">
+                          <span className="text-4xl md:text-5xl font-black text-brand-gold drop-shadow-md">
+                            {promo.harga_promo}
+                          </span>
+                          {promo.harga_asli && (
+                            <span className="text-xl md:text-2xl font-bold text-gray-400 line-through mb-1">
+                              {promo.harga_asli}
+                            </span>
+                          )}
+                        </div>
+                      )}
+
+                      <div className="flex flex-wrap gap-4 mt-2">
+                        <Link
+                          href={`/promosi/${promo.slug}`}
+                          className="inline-flex items-center gap-2 bg-brand-gold hover:bg-white text-brand-blue px-6 py-3 rounded-full text-sm font-bold transition-all shadow-lg hover:shadow-xl"
+                        >
+                          Lihat Promo
+                          <Icon icon="solar:arrow-right-linear" width={18} />
+                        </Link>
+                        {endDate && (
+                          <span className="inline-flex items-center gap-2 px-4 py-3 bg-white/10 backdrop-blur-md rounded-full text-sm font-medium text-white border border-white/20">
+                            Berakhir: {endDate}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+
+                  </div>
+                </Slide>
+              );
+            })}
+          </Splide>
+        </div>
+
+        {/* Thumbnails Row (Horizontal Scroll) */}
+        <div 
+          ref={thumbsContainerRef}
+          className="flex flex-nowrap overflow-x-auto gap-4 mt-4 lg:mt-6 pb-4 snap-x"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {/* Hide scrollbar for Chrome/Safari/Webkit */}
+          <style dangerouslySetInnerHTML={{__html: `
+            .overflow-x-auto::-webkit-scrollbar { display: none; }
+          `}} />
+          
+          {items.map((thumb, index) => {
+            const title = typeof thumb.title === 'string' ? thumb.title : thumb.title?.rendered;
+            const isActive = index === activeIndex;
+            return (
+              <div
+                key={thumb.id}
+                onClick={() => splideRef.current?.go(index)}
+                className={`flex-none w-[85%] sm:w-[70%] md:w-[calc(50%-8px)] lg:w-[calc(33.333%-11px)] flex flex-row gap-4 items-center rounded-2xl p-4 lg:p-5 cursor-pointer transition-all duration-300 snap-center ${isActive
+                    ? "shadow-lg bg-brand-blue transform -translate-y-1"
+                    : "hover:shadow-md bg-white border border-gray-100"
+                  }`}
+              >
+                {/* Number Circle */}
+                <div className="flex-shrink-0">
+                  <div className={`flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 rounded-full text-2xl font-black transition-colors ${isActive ? "bg-white text-brand-blue" : "bg-gray-100 text-gray-500"
+                    }`}>
+                    {index + 1}
                   </div>
                 </div>
 
-                {/* Decorative Elements */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-brand-gold/10 rounded-full -mr-48 -mt-48 blur-3xl" />
-                <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-blue/20 rounded-full -ml-32 -mb-32 blur-3xl" />
+                {/* Text Content */}
+                <div className="flex flex-col overflow-hidden">
+                  <h3 className={`text-base lg:text-lg font-bold truncate transition-colors ${isActive ? "text-white" : "text-gray-900"
+                    }`}>
+                    {title}
+                  </h3>
+                  {thumb.harga_promo ? (
+                    <p className={`text-sm font-semibold mt-0.5 transition-colors ${isActive ? "text-brand-gold" : "text-brand-blue"
+                      }`}>
+                      Mulai {thumb.harga_promo}
+                    </p>
+                  ) : (
+                    <p className={`text-sm mt-0.5 transition-colors ${isActive ? "text-white/80" : "text-gray-500"
+                      }`}>
+                      Lihat penawaran
+                    </p>
+                  )}
+                </div>
               </div>
-            </Slide>
-          );
-        })}
-      </Splide>
+            );
+          })}
+        </div>
 
-      {/* Navigation Arrows Custom Style */}
-      <style jsx global>{`
-        .promo-hero-pagination {
-          bottom: 30px !important;
-          gap: 8px;
-        }
-        .promo-hero-page {
-          background: rgba(255,255,255,0.4);
-          width: 12px;
-          height: 12px;
-          transition: all 0.3s ease;
-          border-radius: 50%;
-        }
-        .promo-hero-page.is-active {
-          background: #ffd900;
-          transform: scale(1.3);
-          box-shadow: 0 0 20px rgba(255,217,0,0.5);
-        }
-        .promo-hero-slide .splide__arrow {
-          background: rgba(255,255,255,0.9);
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-          transition: all 0.3s ease;
-        }
-        .promo-hero-slide .splide__arrow:hover {
-          background: white;
-          transform: scale(1.1);
-        }
-        .promo-hero-slide .splide__arrow--prev {
-          left: 20px;
-        }
-        .promo-hero-slide .splide__arrow--next {
-          right: 20px;
-        }
-        .promo-hero-slide .splide__arrow svg {
-          fill: #224297;
-          width: 24px;
-          height: 24px;
-        }
-      `}</style>
+      </div>
     </div>
   );
 }

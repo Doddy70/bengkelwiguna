@@ -1,38 +1,32 @@
-/**
- * PromoSlider — High Fidelity Bexon-style Carousel
- * Optimized for Core Web Vitals
- *
- * ✅ PERFORMANCE OPTIMIZATION:
- * - Lazy loading for non-visible images
- * - Proper sizing attributes
- * - CLS prevention with explicit aspect ratios
- */
-
 "use client";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Icon } from "@iconify/react";
 import { stripHtml } from "@/lib/wordpress";
 import { Promosi } from "@/types/wordpress";
+import { useDisclosure } from "@nextui-org/react";
+import PromoModal from "@/components/heroui/PromoModal";
 
 interface PromoSliderProps {
   items: Promosi[];
 }
 
 export default function PromoSlider({ items = [] }: PromoSliderProps) {
-  const [SplideComponent, setSplideComponent] = useState<React.ComponentType<any> | null>(null);
-  const [SplideSlideComponent, setSplideSlideComponent] = useState<React.ComponentType<any> | null>(null);
+  const [SplideComponent, setSplideComponent] = useState<any>(null);
+  const [SplideSlideComponent, setSplideSlideComponent] = useState<any>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [selectedPromo, setSelectedPromo] = useState<Promosi | null>(null);
+
+  const handleOpenPromo = (promo: Promosi) => {
+    setSelectedPromo(promo);
+    onOpen();
+  };
 
   useEffect(() => {
-    // Lazy load Splide when component is visible
     const loadSplide = async () => {
       try {
-        // Import Splide CSS from the correct path
         await import("@splidejs/splide/dist/css/splide.min.css");
-
         const { Splide, SplideSlide } = await import("@splidejs/react-splide");
         setSplideComponent(() => Splide);
         setSplideSlideComponent(() => SplideSlide);
@@ -42,7 +36,6 @@ export default function PromoSlider({ items = [] }: PromoSliderProps) {
       }
     };
 
-    // Use Intersection Observer for lazy loading
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -53,7 +46,7 @@ export default function PromoSlider({ items = [] }: PromoSliderProps) {
       { rootMargin: '200px' }
     );
 
-    const element = document.getElementById('promo-slider-container');
+    const element = document.getElementById('promo-regular-slider');
     if (element) {
       observer.observe(element);
     } else {
@@ -65,40 +58,35 @@ export default function PromoSlider({ items = [] }: PromoSliderProps) {
 
   if (!items || items.length === 0) return null;
 
+  // ✅ REMOVED ARROWS - Only dot pagination
   const splideOptions = {
-    type: "loop" as const,
+    type: "slide" as const,
     perPage: 3,
     perMove: 1,
-    gap: "30px",
+    gap: "32px",
     pagination: true,
-    arrows: true,
-    autoplay: true,
-    interval: 5000,
-    speed: 800,
+    arrows: false,
+    drag: true,
     breakpoints: {
-      1200: { perPage: 3, gap: "20px" },
-      992: { perPage: 2, gap: "20px" },
-      768: { perPage: 1, gap: "15px" },
+      1024: { perPage: 2, gap: "24px" },
+      640: { perPage: 1, gap: "16px" },
     },
     classes: {
-      pagination: "splide__pagination promo-splide-pagination",
-      page: "splide__pagination__page promo-splide-page",
+      pagination: 'splide__pagination nio-card-pagination',
+      page: 'splide__pagination__page nio-card-page',
     },
   };
 
-  // ✅ Skeleton loading state
   if (!isLoaded || !SplideComponent || !SplideSlideComponent) {
     return (
-      <div id="promo-slider-container" className="promo-slider-wrapper relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div id="promo-regular-slider" className="w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {[1, 2, 3].map((i) => (
-            <div key={i} className="animate-pulse">
-              <div className="h-[360px] bg-gray-200 rounded-t-[12px]"></div>
-              <div className="p-6 bg-white border rounded-b-[12px]">
-                <div className="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
-                <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
-                <div className="h-4 bg-gray-200 rounded w-1/2"></div>
-              </div>
+            <div key={i} className="animate-pulse flex flex-col gap-4">
+              <div className="h-[280px] bg-gray-100 rounded-3xl"></div>
+              <div className="h-5 bg-gray-100 rounded w-1/2"></div>
+              <div className="h-4 bg-gray-50 rounded w-full"></div>
+              <div className="h-4 bg-gray-50 rounded w-3/4"></div>
             </div>
           ))}
         </div>
@@ -110,96 +98,106 @@ export default function PromoSlider({ items = [] }: PromoSliderProps) {
   const Slide = SplideSlideComponent;
 
   return (
-    <div id="promo-slider-container" className="promo-slider-wrapper relative">
-      <Splide
-        options={splideOptions}
-      >
-        {items.map((promo, index) => {
-          const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered;
-          const excerpt = stripHtml(typeof promo.excerpt === 'string' ? promo.excerpt : promo.excerpt?.rendered);
-          const formattedIndex = String(index + 1).padStart(2, "0");
-          const imageUrl = promo.featured_img || "/images/service/service-oli.svg";
+    <div id="promo-regular-slider" className="w-full pb-8">
+      <div className="relative">
+        <Splide options={splideOptions}>
+          {items.map((promo) => {
+            const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered;
+            const excerpt = stripHtml(typeof promo.excerpt === 'string' ? promo.excerpt : promo.excerpt?.rendered);
+            const imageUrl = promo.featured_img || "/images/promosi/promo-default.jpg";
 
-          return (
-            <Slide key={promo.id}>
-              <div className="promo-card-bexon group">
-                {/* 1. Full Image Header - CLS PREVENTION: Explicit height */}
-                <div className="promo-card-thumb relative overflow-hidden rounded-t-[12px] bg-gray-50 h-[360px]">
-                  <Link href={`/promosi/${promo.slug}`} className="block w-full h-full p-2">
+            return (
+              <Slide key={promo.id}>
+                <button
+                  onClick={() => handleOpenPromo(promo)}
+                  className="group block h-full flex flex-col cursor-pointer bg-white/60 backdrop-blur-3xl border border-white shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] rounded-[2rem] p-3.5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/80 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] hover:-translate-y-2 text-left w-full"
+                >
+
+                  {/* Clean Image Card */}
+                  <div className="relative w-full aspect-[4/5] rounded-[1.25rem] overflow-hidden bg-gray-100 mb-4">
+                    {/* Discount Badge */}
+                    {promo.diskon_persen && (
+                      <div className="absolute top-4 left-4 z-10 bg-[#00B14F] text-white text-[10px] font-bold py-1.5 px-3 rounded-full shadow-md tracking-wide">
+                        {promo.diskon_persen}% OFF
+                      </div>
+                    )}
+
                     <Image
                       src={imageUrl}
-                      alt={title || "Promo Bengkel Wiguna"}
+                      alt={title || "Promo"}
                       fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 400px"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                      quality={75}
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110"
                     />
-                  </Link>
-                  <div className="absolute top-4 right-4 bg-brand-gold text-gray-900 font-bold px-4 py-1 rounded-full text-xs z-10 shadow-lg">
-                    PROMO
                   </div>
-                </div>
 
-                {/* 2. Content Area */}
-                <div className="promo-card-body p-6 bg-white border-x border-b border-gray-100 rounded-b-[12px] shadow-sm group-hover:shadow-xl transition-all duration-300">
-                  <div className="flex items-start gap-4 mb-3">
-                    <span className="text-3xl font-black text-gray-600 group-hover:text-brand-gold transition-colors duration-300" suppressHydrationWarning>
-                      {formattedIndex}.
-                    </span>
-                    <div>
-                      <h4 className="text-xl font-bold text-gray-900 group-hover:text-brand-blue transition-colors mb-2 line-clamp-2">
-                        <Link href={`/promosi/${promo.slug}`}>{title}</Link>
-                      </h4>
-                      <p className="text-gray-500 text-sm line-clamp-2 leading-relaxed">
-                        {excerpt}
-                      </p>
+                  {/* Minimalist Text Below Image */}
+                  <div className="flex flex-col flex-grow px-2 pb-2">
+                    <h4 className="text-base font-bold text-gray-900 mb-1 truncate group-hover:text-[#00B14F] transition-colors">
+                      {title}
+                    </h4>
+
+                    <p className="text-xs text-gray-500 font-medium truncate mb-3">
+                      {excerpt || "Spesial Bengkel Wiguna"}
+                    </p>
+
+                    <div className="mt-auto flex items-center gap-x-2">
+                      {promo.harga_promo ? (
+                        <>
+                          <span className="text-lg font-bold text-gray-900">
+                            {promo.harga_promo}
+                          </span>
+                          {promo.harga_asli && (
+                            <span className="text-xs font-semibold text-gray-400 line-through">
+                              {promo.harga_asli}
+                            </span>
+                          )}
+                        </>
+                      ) : (
+                        <span className="text-lg font-bold text-gray-900">
+                          {promo.harga_asli || "Lihat Detail"}
+                        </span>
+                      )}
                     </div>
                   </div>
 
-                  <div className="flex justify-between items-center mt-6 pt-4 border-t border-gray-50">
-                    <Link
-                      href={`/promosi/${promo.slug}`}
-                      className="inline-flex items-center gap-2 text-brand-blue font-bold text-sm hover:gap-3 transition-all"
-                    >
-                      AMBIL PROMO <Icon icon="solar:arrow-right-linear" width={18} />
-                    </Link>
-                    <Icon
-                      icon="solar:tag-bold-duotone"
-                      className="text-brand-gold opacity-30 group-hover:opacity-100 transition-opacity"
-                      width={24}
-                    />
-                  </div>
-                </div>
-              </div>
-            </Slide>
-          );
-        })}
-      </Splide>
+                </button>
+              </Slide>
+            );
+          })}
+        </Splide>
 
-      <style jsx global>{`
-        .promo-splide-pagination {
-          bottom: -40px;
-        }
-        .promo-splide-page {
-          background: #ddd;
-          width: 8px;
-          height: 8px;
-          transition: all 0.3s ease;
-        }
-        .promo-splide-page.is-active {
-          background: #224297;
-          transform: scale(1.5);
-        }
-        .promo-card-bexon {
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-        }
-        .promo-card-bexon:hover .promo-card-body {
-            border-bottom-color: #191d85;
-        }
-      `}</style>
+        <PromoModal isOpen={isOpen} onOpenChange={onOpenChange} promo={selectedPromo} />
+
+        {/* Original Light Style Dot Pagination */}
+        <style jsx global>{`
+          .nio-card-pagination {
+            bottom: -30px !important;
+            padding: 0 !important;
+          }
+          .nio-card-page {
+            background: #e5e7eb !important;
+            border: none !important;
+            width: 8px !important;
+            height: 8px !important;
+            margin: 3px !important;
+            transition: all 0.3s ease !important;
+            opacity: 1 !important;
+          }
+          .nio-card-page.is-active {
+            background: #00B14F !important;
+            transform: scale(1.3) !important;
+            width: 16px !important;
+            border-radius: 4px !important;
+          }
+          .nio-card-page:hover {
+            background: #d1d5db !important;
+          }
+          .nio-card-page.is-active:hover {
+            background: #00B14F !important;
+          }
+        `}</style>
+      </div>
     </div>
   );
 }
