@@ -123,13 +123,13 @@ export default function ModernEquipmentShowcase() {
               className="absolute inset-0 flex justify-center items-center z-10 pointer-events-none w-full h-full"
             >
               <div className="relative w-full h-full max-w-[1100px] lg:scale-100 xl:scale-[1.1] lg:translate-x-[5%] lg:-translate-y-4">
-                <Image
-                  src={activeItem.image}
-                  alt={activeItem.name}
-                  fill
-                  className="object-contain drop-shadow-2xl"
-                  priority
-                />
+                      <Image
+                        src={activeItem.image}
+                        alt={activeItem.name}
+                        fill
+                        className={`object-contain drop-shadow-2xl opacity-90 ${activeItem.imagePosition === 'left' ? 'object-left' : 'object-center'}`}
+                        priority
+                      />
 
                 {/* Hotspots Overlay */}
                 <div className="absolute inset-0 w-full h-full pointer-events-none">

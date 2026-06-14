@@ -4,6 +4,7 @@
     "name": "Service Berkala",
     "category": "Perawatan Rutin",
     "image": "/images/equipment/fortuner.png",
+    "imagePosition": "center",
     "description": "Perawatan preventif komprehensif menggunakan SOP ketat untuk mengembalikan performa mobil.",
     "suggestedQuestions": [
       "Apa saja yang diganti saat servis?",
@@ -51,85 +52,88 @@
     }
   },
   {
-    "id": "kyoto-shaking",
-    "name": "Kyoto Shaking Machine",
-    "category": "Kaki-Kaki & Suspensi",
-    "image": "/images/equipment/fortuner.png",
-    "description": "Teknologi tercanggih yang mampu mensimulasikan guncangan jalan rusak secara statis untuk deteksi kaki-kaki akurat.",
-    "suggestedQuestions": [
-      "Mesin ini buat apa sih?",
-      "Kegunaannya buat apa saja?",
-      "Berapa lama pengerjaannya?",
-      "Apa benefit yang dirasakan?"
-    ],
-    "highlights": [
-      { "icon": "Crosshair", "title": "Akurasi 100%", "subtitle": "Tanpa Tebak-tebakan" },
-      { "icon": "Shield", "title": "Tanpa Tes Jalan", "subtitle": "Sangat Aman" },
-      { "icon": "Activity", "title": "Real Simulation", "subtitle": "Kondisi Nyata" }
-    ],
-    "hotspots": [
-      {
-        "top": "70%", "left": "20%",
-        "title": "Kyoto Shaking Machine", "subtitle": "Pendeteksi Bunyi Kaki-Kaki",
-        "lineAngle": -73, "lineLength": 370,
-        "labelOffsetX": 110, "labelOffsetY": -360,
-        "imageUrl": "/images/equipment/Shaking-Pro-1.png"
-      }
-    ],
-    "specs": {
-      "metric1": { "label": "Akurasi Diagnosa", "sublabel": "Tanpa tebak-tebakan", "value": "99.9", "unit": "%", "icon": "/lottie/tick-circle.json" },
-      "metric2": { "label": "Keamanan", "sublabel": "Tanpa tes jalan", "value": "100", "unit": "% Aman", "icon": "/lottie/settings.json" },
-      "totalValue": "Rp 250k",
-      "features": [
-        { "icon": "/lottie/clock.json", "title": "Simulasi", "subtitle": "Cepat" },
-        { "icon": "/lottie/tick-circle.json", "title": "Sertifikasi", "subtitle": "Included" },
-        { "icon": "/lottie/settings.json", "title": "Getaran", "subtitle": "Realtime" }
-      ]
-    }
-  },
-  {
-    "id": "stinger",
-    "name": "Stinger Scanner",
-    "category": "Engine & ECU Diagnostic",
+    "id": "semi-overhaul",
+    "name": "Semi Overhaul",
+    "category": "Engine Recovery",
     "image": "/images/equipment/Stinger-Promo.png",
-    "description": "Scanner level pabrikan untuk mendeteksi malfungsi sensor dan sistem komputer mesin secara akurat.",
+    "imagePosition": "left",
+    "description": "Perawatan mesin level semi overhaul menggunakan sistem Stinger Flushing untuk membuang kerak membandel tanpa bongkar blok.",
     "suggestedQuestions": [
-      "Alat scanner ini buat apa sih?",
-      "Bisa deteksi kerusakan apa saja?",
-      "Berapa lama waktu diagnosanya?",
-      "Apa keuntungan cek komputer?"
+      "Apa bedanya semi overhaul dengan turun mesin?",
+      "Apakah aman untuk mobil tua?",
+      "Berapa lama prosesnya?",
+      "Seberapa efektif membuang kerak oli?"
     ],
     "highlights": [
-      { "icon": "Cpu", "title": "Level Pabrikan", "subtitle": "Standar Tinggi" },
-      { "icon": "Activity", "title": "Live Data", "subtitle": "Diagnosa Akurat" },
-      { "icon": "CheckCircle", "title": "System Reset", "subtitle": "Optimasi Full" }
+      { "icon": "Cpu", "title": "Sistem Stinger", "subtitle": "Akurasi Tinggi" },
+      { "icon": "Activity", "title": "Tanpa Bongkar", "subtitle": "Waktu Singkat" },
+      { "icon": "CheckCircle", "title": "Performa Pulih", "subtitle": "Mesin Bersih" }
     ],
     "hotspots": [
       {
-        "top": "45%", "left": "28%",
-        "title": "Stinger Scanner", "subtitle": "Diagnosa Sistem & Sensor",
-        "lineAngle": -52, "lineLength": 350,
-        "labelOffsetX": 220, "labelOffsetY": -280,
+        "top": "45%", "left": "15%",
+        "title": "Stinger System", "subtitle": "Injeksi Cairan Khusus",
+        "lineAngle": -45, "lineLength": 350,
+        "labelOffsetX": 250, "labelOffsetY": -250,
         "imageUrl": "/images/equipment/Stinger-Promo.png"
       }
     ],
     "specs": {
-      "metric1": { "label": "Durasi Scan", "sublabel": "Pengecekan full", "value": "15", "unit": "Min", "icon": "/lottie/clock.json" },
-      "metric2": { "label": "Deteksi Sensor", "sublabel": "Semua sistem ECU", "value": "All", "unit": "Sys", "icon": "/lottie/cpu.json" },
-      "totalValue": "Rp 150k",
+      "metric1": { "label": "Tingkat Bersih", "sublabel": "Pembuangan kerak", "value": "95", "unit": "%", "icon": "/lottie/tick-circle.json" },
+      "metric2": { "label": "Durasi", "sublabel": "Proses sirkulasi", "value": "120", "unit": "Min", "icon": "/lottie/clock.json" },
+      "totalValue": "Rp 1.5Jt",
       "features": [
-        { "icon": "/lottie/cpu.json", "title": "Scanner", "subtitle": "Pabrikan" },
-        { "icon": "/lottie/tick-circle.json", "title": "Report", "subtitle": "Digital" },
-        { "icon": "/lottie/settings.json", "title": "Reset", "subtitle": "Error Code" }
+        { "icon": "/lottie/settings.json", "title": "Sirkulasi", "subtitle": "High Press" },
+        { "icon": "/lottie/flash.json", "title": "Tenaga", "subtitle": "Terangkat" },
+        { "icon": "/lottie/cpu.json", "title": "Reset", "subtitle": "Parameter" }
       ]
     }
   },
   {
-    "id": "coolant-changer",
-    "name": "Prestone Coolant Changer",
+    "id": "reset-ac",
+    "name": "Reset AC",
+    "category": "Climate Control",
+    "image": "/images/equipment/Flushing.png",
+    "imagePosition": "left",
+    "description": "Perawatan total sistem pendingin kabin menggunakan mesin Kyoto Flushing Machine, mengganti oli kompresor secara 100% vakum.",
+    "suggestedQuestions": [
+      "Alat Kyoto Flushing ini untuk apa?",
+      "Kenapa AC mobil bisa kurang dingin?",
+      "Berapa lama pengerjaannya?",
+      "Apakah freon juga diganti baru?"
+    ],
+    "highlights": [
+      { "icon": "Crosshair", "title": "Flushing 100%", "subtitle": "Oli Lama Terbuang" },
+      { "icon": "Shield", "title": "Vakum Digital", "subtitle": "Sangat Presisi" },
+      { "icon": "Activity", "title": "Suhu Dingin", "subtitle": "Kabin Nyaman" }
+    ],
+    "hotspots": [
+      {
+        "top": "35%", "left": "10%",
+        "title": "Kyoto Flushing AC", "subtitle": "Digital Recovery & Vakum",
+        "lineAngle": -30, "lineLength": 380,
+        "labelOffsetX": 300, "labelOffsetY": -180,
+        "imageUrl": "/images/equipment/Flushing.png"
+      }
+    ],
+    "specs": {
+      "metric1": { "label": "Vakum Digital", "sublabel": "Akurasi timbangan", "value": "100", "unit": "%", "icon": "/lottie/tick-circle.json" },
+      "metric2": { "label": "Suhu Kabin", "sublabel": "Suhu minimal", "value": "Terkecil", "unit": "Celcius", "icon": "/lottie/speedometer.json" },
+      "totalValue": "Rp 650k",
+      "features": [
+        { "icon": "/lottie/settings.json", "title": "Oli", "subtitle": "Kompresor" },
+        { "icon": "/lottie/filter.json", "title": "Freon", "subtitle": "Murni" },
+        { "icon": "/lottie/clock.json", "title": "Durasi", "subtitle": "Cepat" }
+      ]
+    }
+  },
+  {
+    "id": "kuras-radiator",
+    "name": "Kuras Radiator",
     "category": "Cooling System Care",
     "image": "/images/equipment/Prestone Coolant Changer.png",
-    "description": "Sistem kuras radiator vakum otomatis yang menjamin penggantian cairan pendingin 100% bersih.",
+    "imagePosition": "left",
+    "description": "Sistem kuras radiator vakum otomatis yang menjamin penggantian cairan pendingin 100% bersih tanpa ada udara terjebak (angin palsu).",
     "suggestedQuestions": [
       "Alat Coolant Changer buat apa?",
       "Kenapa harus pakai alat ini?",
@@ -143,10 +147,10 @@
     ],
     "hotspots": [
       {
-        "top": "52%", "left": "5%",
+        "top": "40%", "left": "12%",
         "title": "Kuras Radiator Prestone", "subtitle": "Kuras Vakum Bebas Angin Palsu",
-        "lineAngle": -53, "lineLength": 410,
-        "labelOffsetX": 250, "labelOffsetY": -330,
+        "lineAngle": -45, "lineLength": 410,
+        "labelOffsetX": 280, "labelOffsetY": -290,
         "imageUrl": "/images/equipment/Prestone Coolant Changer.png"
       }
     ],
@@ -162,39 +166,40 @@
     }
   },
   {
-    "id": "engine-flush",
-    "name": "Mesin Engine Flush",
-    "category": "Advanced Engine Care",
-    "image": "/images/equipment/Flushing.png",
-    "description": "Mesin pembersih internal mesin bertekanan tinggi untuk membuang endapan lumpur oli dan kerak.",
+    "id": "kaki-kaki",
+    "name": "Kaki Kaki",
+    "category": "Suspension & Understeer",
+    "image": "/images/equipment/Shaking-Pro-1.png",
+    "imagePosition": "left",
+    "description": "Teknologi tercanggih Kyoto Shaking Machine yang mampu mensimulasikan guncangan jalan rusak secara statis untuk deteksi bunyi kaki-kaki akurat.",
     "suggestedQuestions": [
-      "Mesin flushing ini buat apa?",
-      "Cara kerjanya gimana sih?",
+      "Mesin ini buat apa sih?",
+      "Kegunaannya buat apa saja?",
       "Berapa lama pengerjaannya?",
-      "Apa bedanya hasil setelah flush?"
+      "Apa benefit yang dirasakan?"
     ],
     "highlights": [
-      { "icon": "Zap", "title": "Performa Baru", "subtitle": "Tarikan Enteng" },
-      { "icon": "Filter", "title": "Detoks Mesin", "subtitle": "Kerak Hilang" },
-      { "icon": "Settings", "title": "Engine Smooth", "subtitle": "Suara Halus" }
+      { "icon": "Crosshair", "title": "Akurasi 100%", "subtitle": "Tanpa Tebak-tebakan" },
+      { "icon": "Shield", "title": "Tanpa Tes Jalan", "subtitle": "Sangat Aman" },
+      { "icon": "Activity", "title": "Real Simulation", "subtitle": "Kondisi Nyata" }
     ],
     "hotspots": [
       {
-        "top": "38%", "left": "38%",
-        "title": "Engine Flushing", "subtitle": "Pembersihan Karbon Mesin",
-        "lineAngle": -22, "lineLength": 260,
-        "labelOffsetX": 240, "labelOffsetY": -100,
-        "imageUrl": "/images/equipment/Flushing.png"
+        "top": "60%", "left": "15%",
+        "title": "Kyoto Shaking Machine", "subtitle": "Pendeteksi Bunyi Kaki-Kaki",
+        "lineAngle": -60, "lineLength": 370,
+        "labelOffsetX": 180, "labelOffsetY": -320,
+        "imageUrl": "/images/equipment/Shaking-Pro-1.png"
       }
     ],
     "specs": {
-      "metric1": { "label": "Pembersihan", "sublabel": "Buang lumpur oli", "value": "99", "unit": "%", "icon": "/lottie/filter.json" },
-      "metric2": { "label": "Tekanan", "sublabel": "Aman & konstan", "value": "High", "unit": "Press", "icon": "/lottie/speedometer.json" },
-      "totalValue": "Rp 400k",
+      "metric1": { "label": "Akurasi Diagnosa", "sublabel": "Tanpa tebak-tebakan", "value": "99.9", "unit": "%", "icon": "/lottie/tick-circle.json" },
+      "metric2": { "label": "Keamanan", "sublabel": "Tanpa tes jalan", "value": "100", "unit": "% Aman", "icon": "/lottie/settings.json" },
+      "totalValue": "Rp 250k",
       "features": [
-        { "icon": "/lottie/flash.json", "title": "Suara", "subtitle": "Halus" },
-        { "icon": "/lottie/tick-circle.json", "title": "Hasil", "subtitle": "Terlihat" },
-        { "icon": "/lottie/settings.json", "title": "Proses", "subtitle": "Aman" }
+        { "icon": "/lottie/clock.json", "title": "Simulasi", "subtitle": "Cepat" },
+        { "icon": "/lottie/tick-circle.json", "title": "Sertifikasi", "subtitle": "Included" },
+        { "icon": "/lottie/settings.json", "title": "Getaran", "subtitle": "Realtime" }
       ]
     }
   }
