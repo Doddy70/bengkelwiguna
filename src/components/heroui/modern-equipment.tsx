@@ -63,30 +63,7 @@ export default function ModernEquipmentShowcase() {
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-white/60 blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#dbe4f0]/60 blur-[120px] pointer-events-none"></div>
 
-      {/* Header */}
-      <header className="relative z-50 flex items-center justify-between w-full max-w-[1500px] mx-auto px-6 md:px-10 pt-8">
-        <div className="flex items-center gap-3 w-[300px]">
-          <div className="w-8 h-8 rounded-full bg-[#2d3142] flex items-center justify-center text-white shadow-md">
-            <FeatherIcons.ChevronRight size={18} strokeWidth={3} />
-          </div>
-          <span className="text-[#2d3142] text-xl font-bold tracking-tight">Wiguna Tech</span>
-        </div>
 
-        <div className="hidden md:flex items-center gap-2 bg-white/40 backdrop-blur-xl p-1.5 rounded-[2rem] shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-white/50">
-          <button className="px-6 py-2.5 bg-white rounded-[1.5rem] text-sm font-bold text-[#2d3142] shadow-sm">Service</button>
-          <button className="px-6 py-2.5 rounded-[1.5rem] text-sm font-semibold text-[#6b7280] hover:bg-white/50 transition-colors">Sparepart</button>
-          <button className="px-6 py-2.5 rounded-[1.5rem] text-sm font-semibold text-[#6b7280] hover:bg-white/50 transition-colors">Konsultasi</button>
-        </div>
-
-        <div className="flex justify-end items-center gap-4 w-[300px]">
-          <button className="w-11 h-11 rounded-full bg-white/50 backdrop-blur-md border border-white/60 flex items-center justify-center text-[#2d3142] hover:bg-white transition-colors">
-            <FeatherIcons.Search size={18} />
-          </button>
-          <button className="px-6 py-2.5 rounded-full bg-[#2d3142] text-white text-sm font-semibold hover:bg-blue-600 transition-colors shadow-lg shadow-blue-900/20">
-            Booking
-          </button>
-        </div>
-      </header>
 
       {/* Center Tabs (Equipment Selection) */}
       <div className="relative z-50 flex justify-center mt-6">
