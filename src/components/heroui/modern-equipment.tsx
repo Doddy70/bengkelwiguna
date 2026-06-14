@@ -3,9 +3,26 @@ import React, { useState } from "react";
 import Image from "next/image";
 import * as FeatherIcons from "react-feather";
 import { motion, AnimatePresence } from "framer-motion";
+import { Player } from "@lottiefiles/react-lottie-player";
 import equipmentData from "@/data/equipment.json";
 
 type FeatherIconKeys = keyof typeof FeatherIcons;
+
+const renderIcon = (iconStr: string, size = 18, colorClass = "text-[#394263]") => {
+  if (iconStr?.endsWith(".json")) {
+    return (
+      <Player
+        autoplay
+        loop
+        src={iconStr}
+        style={{ height: size + 4, width: size + 4 }}
+      />
+    );
+  }
+  const IconComponent = (FeatherIcons as any)[iconStr] || FeatherIcons.CheckCircle;
+  return <IconComponent size={size} className={colorClass} />;
+};
+
 const smoothBezier = [0.32, 0.72, 0, 1] as const;
 
 const HudHotspot = ({ top, left, title, subtitle, lineAngle, lineLength, labelOffsetX, labelOffsetY, delay = 0, imageUrl, onClick }: any) => {
@@ -205,41 +222,44 @@ export default function ModernEquipmentShowcase() {
                       transition={{ duration: 0.2 }}
                     >
                       <div className="space-y-4 mb-5">
-                        {/* Base Fee Row */}
+                        {/* Metric 1 Row */}
                         <div className="bg-white rounded-[1.5rem] p-4 flex items-center justify-between shadow-sm">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-[1rem] bg-[#f2f4f7] flex items-center justify-center text-[#394263]">
-                              <FeatherIcons.Crosshair size={18} />
+                            <div className="w-10 h-10 rounded-[1rem] bg-[#f2f4f7] flex items-center justify-center">
+                              {renderIcon(activeItem.specs?.metric1?.icon || "Crosshair", 18)}
                             </div>
                             <div>
-                              <p className="text-[14px] font-bold text-[#2d3142]">Akurasi</p>
-                              <p className="text-[11px] text-[#8b95a5]">Tingkat presisi</p>
+                              <p className="text-[14px] font-bold text-[#2d3142]">{activeItem.specs?.metric1?.label || "Akurasi"}</p>
+                              <p className="text-[11px] text-[#8b95a5]">{activeItem.specs?.metric1?.sublabel || "Tingkat presisi"}</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-4">
                             <FeatherIcons.ChevronLeft size={18} className="text-[#394263] cursor-pointer" />
                             <div className="text-center">
-                              <p className="text-[22px] font-bold text-[#2d3142] leading-none">{activeItem.specs?.akurasi || 99}</p>
-                              <p className="text-[10px] text-[#8b95a5] font-medium">%</p>
+                              <p className="text-[22px] font-bold text-[#2d3142] leading-none">{activeItem.specs?.metric1?.value || 99}</p>
+                              <p className="text-[10px] text-[#8b95a5] font-medium">{activeItem.specs?.metric1?.unit || "%"}</p>
                             </div>
                             <FeatherIcons.ChevronRight size={18} className="text-[#394263] cursor-pointer" />
                           </div>
                         </div>
 
-                        {/* Insurance Row */}
+                        {/* Metric 2 Row */}
                         <div className="bg-white rounded-[1.5rem] p-4 flex items-center justify-between shadow-sm">
                           <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-[1rem] bg-[#f2f4f7] flex items-center justify-center text-[#394263]">
-                              <FeatherIcons.Shield size={18} />
+                            <div className="w-10 h-10 rounded-[1rem] bg-[#f2f4f7] flex items-center justify-center">
+                              {renderIcon(activeItem.specs?.metric2?.icon || "Shield", 18)}
                             </div>
                             <div>
-                              <p className="text-[14px] font-bold text-[#2d3142]">Garansi</p>
-                              <p className="text-[11px] text-[#8b95a5]">Pick a Plan</p>
+                              <p className="text-[14px] font-bold text-[#2d3142]">{activeItem.specs?.metric2?.label || "Garansi"}</p>
+                              <p className="text-[11px] text-[#8b95a5]">{activeItem.specs?.metric2?.sublabel || "Pick a Plan"}</p>
                             </div>
                           </div>
                           <div className="flex items-center gap-4">
                             <FeatherIcons.ChevronLeft size={18} className="text-[#394263] cursor-pointer" />
-                            <p className="text-[15px] font-bold text-[#2d3142] w-12 text-center">{activeItem.specs?.garansi || "Basic"}</p>
+                            <div className="text-center">
+                              <p className="text-[15px] font-bold text-[#2d3142] leading-none">{activeItem.specs?.metric2?.value || "Basic"}</p>
+                              <p className="text-[10px] text-[#8b95a5] font-medium">{activeItem.specs?.metric2?.unit || ""}</p>
+                            </div>
                             <FeatherIcons.ChevronRight size={18} className="text-[#394263] cursor-pointer" />
                           </div>
                         </div>
@@ -248,14 +268,13 @@ export default function ModernEquipmentShowcase() {
                       {/* Features Grid */}
                       <div className="grid grid-cols-3 gap-3">
                         {activeItem.specs?.features?.map((feature: any, idx: number) => {
-                          const IconComponent = (FeatherIcons as any)[feature.icon] || FeatherIcons.CheckCircle;
                           return (
                             <div key={idx} className="bg-white rounded-[1.25rem] py-4 px-2 flex flex-col items-center justify-center gap-1 shadow-sm">
                               <div className="w-8 h-8 rounded-full bg-[#f2f4f7] flex items-center justify-center mb-1">
-                                <IconComponent size={16} className="text-[#394263]" />
+                                {renderIcon(feature.icon, 16)}
                               </div>
                               <p className="text-[12px] font-bold text-[#2d3142]">{feature.title}</p>
-                              <p className="text-[10px] text-[#8b95a5]">{feature.subtitle}</p>
+                              <p className="text-[10px] text-[#8b95a5] text-center">{feature.subtitle}</p>
                             </div>
                           );
                         })}
@@ -317,8 +336,8 @@ export default function ModernEquipmentShowcase() {
                 {/* Header */}
                 <div className="flex justify-between items-center px-1">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[1rem] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-sm">
-                      <FeatherIcons.MessageSquare size={18} />
+                    <div className="w-10 h-10 rounded-[1rem] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-sm overflow-hidden">
+                      {renderIcon("/lottie/bubble.json", 24)}
                     </div>
                     <div>
                       <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Wiguna AI</h3>

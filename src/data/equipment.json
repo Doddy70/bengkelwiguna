@@ -40,13 +40,13 @@
       }
     ],
     "specs": {
-      "akurasi": "100",
-      "garansi": "Basic",
+      "metric1": { "label": "Waktu Pengerjaan", "sublabel": "Estimasi selesai", "value": "60", "unit": "Min", "icon": "/lottie/speedometer.json" },
+      "metric2": { "label": "Pengecekan", "sublabel": "Titik inspeksi", "value": "40+", "unit": "Titik", "icon": "/lottie/tick-circle.json" },
       "totalValue": "Rp 850k",
       "features": [
-        { "icon": "Cpu", "title": "Sistem", "subtitle": "Auto-check" },
-        { "icon": "UserCheck", "title": "Mekanik", "subtitle": "Sertifikasi" },
-        { "icon": "Wifi", "title": "Report", "subtitle": "Digital" }
+        { "icon": "/lottie/flash.json", "title": "Performa", "subtitle": "Maksimal" },
+        { "icon": "/lottie/filter.json", "title": "Filter", "subtitle": "Pembersihan" },
+        { "icon": "/lottie/cpu.json", "title": "Scanner", "subtitle": "ECU Check" }
       ]
     }
   },
@@ -77,13 +77,13 @@
       }
     ],
     "specs": {
-      "akurasi": "99",
-      "garansi": "Basic",
+      "metric1": { "label": "Akurasi Diagnosa", "sublabel": "Tanpa tebak-tebakan", "value": "99.9", "unit": "%", "icon": "/lottie/tick-circle.json" },
+      "metric2": { "label": "Keamanan", "sublabel": "Tanpa tes jalan", "value": "100", "unit": "% Aman", "icon": "/lottie/settings.json" },
       "totalValue": "Rp 250k",
       "features": [
-        { "icon": "Cpu", "title": "Sistem", "subtitle": "Simulasi" },
-        { "icon": "UserCheck", "title": "Sertifikasi", "subtitle": "Included" },
-        { "icon": "Wifi", "title": "Update", "subtitle": "Live" }
+        { "icon": "/lottie/clock.json", "title": "Simulasi", "subtitle": "Cepat" },
+        { "icon": "/lottie/tick-circle.json", "title": "Sertifikasi", "subtitle": "Included" },
+        { "icon": "/lottie/settings.json", "title": "Getaran", "subtitle": "Realtime" }
       ]
     }
   },
@@ -114,13 +114,13 @@
       }
     ],
     "specs": {
-      "akurasi": "100",
-      "garansi": "Pro",
+      "metric1": { "label": "Durasi Scan", "sublabel": "Pengecekan full", "value": "15", "unit": "Min", "icon": "/lottie/clock.json" },
+      "metric2": { "label": "Deteksi Sensor", "sublabel": "Semua sistem ECU", "value": "All", "unit": "Sys", "icon": "/lottie/cpu.json" },
       "totalValue": "Rp 150k",
       "features": [
-        { "icon": "Cpu", "title": "Scanner", "subtitle": "Pabrikan" },
-        { "icon": "UserCheck", "title": "Report", "subtitle": "Cetak" },
-        { "icon": "Wifi", "title": "Update", "subtitle": "Cloud" }
+        { "icon": "/lottie/cpu.json", "title": "Scanner", "subtitle": "Pabrikan" },
+        { "icon": "/lottie/tick-circle.json", "title": "Report", "subtitle": "Digital" },
+        { "icon": "/lottie/settings.json", "title": "Reset", "subtitle": "Error Code" }
       ]
     }
   },
@@ -151,13 +151,13 @@
       }
     ],
     "specs": {
-      "akurasi": "100",
-      "garansi": "Basic",
+      "metric1": { "label": "Kemurnian", "sublabel": "Bebas kerak karat", "value": "100", "unit": "% Bersih", "icon": "/lottie/tick-circle.json" },
+      "metric2": { "label": "Suhu Mesin", "sublabel": "Optimal", "value": "Anti", "unit": "Panas", "icon": "/lottie/settings.json" },
       "totalValue": "Rp 350k",
       "features": [
-        { "icon": "Cpu", "title": "Vakum", "subtitle": "Otomatis" },
-        { "icon": "UserCheck", "title": "Sertifikasi", "subtitle": "Standard" },
-        { "icon": "Wifi", "title": "Sistem", "subtitle": "Tertutup" }
+        { "icon": "/lottie/settings.json", "title": "Vakum", "subtitle": "Otomatis" },
+        { "icon": "/lottie/flash.json", "title": "Sirkulasi", "subtitle": "Lancar" },
+        { "icon": "/lottie/tick-circle.json", "title": "Sistem", "subtitle": "Tertutup" }
       ]
     }
   },
@@ -188,13 +188,13 @@
       }
     ],
     "specs": {
-      "akurasi": "95",
-      "garansi": "Plus",
+      "metric1": { "label": "Pembersihan", "sublabel": "Buang lumpur oli", "value": "99", "unit": "%", "icon": "/lottie/filter.json" },
+      "metric2": { "label": "Tekanan", "sublabel": "Aman & konstan", "value": "High", "unit": "Press", "icon": "/lottie/speedometer.json" },
       "totalValue": "Rp 400k",
       "features": [
-        { "icon": "Cpu", "title": "Tekanan", "subtitle": "Tinggi" },
-        { "icon": "UserCheck", "title": "Hasil", "subtitle": "Terlihat" },
-        { "icon": "Wifi", "title": "Proses", "subtitle": "Aman" }
+        { "icon": "/lottie/flash.json", "title": "Suara", "subtitle": "Halus" },
+        { "icon": "/lottie/tick-circle.json", "title": "Hasil", "subtitle": "Terlihat" },
+        { "icon": "/lottie/settings.json", "title": "Proses", "subtitle": "Aman" }
       ]
     }
   }
