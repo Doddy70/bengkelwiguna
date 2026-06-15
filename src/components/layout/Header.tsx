@@ -143,135 +143,143 @@ export default function Header({
 
                             {/* Desktop Navigation - Hidden on mobile */}
                             <div className="hidden lg:flex items-center gap-1">
-                                {/* Beranda */}
-                                <Link
-                                    href="/"
-                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
-                                >
-                                    Beranda
-                                </Link>
+                                {(() => {
+                                    const itemsToRender = menuItems && menuItems.length > 0 
+                                        ? menuItems.map(item => ({
+                                            title: item.name || item.label || "",
+                                            href: item.path || "/",
+                                            subMenu: item.children?.map((child: any) => ({
+                                                title: child.name || child.label || child.title || "",
+                                                href: child.path || "/"
+                                            }))
+                                        }))
+                                        : [
+                                            { title: 'Beranda', href: '/' },
+                                            { title: 'Layanan', href: '/services', isMegaMenu: true },
+                                            { title: 'Promosi', href: '/promosi' },
+                                            { title: 'Paket Service', href: '/paket-service' },
+                                            { title: 'Spesialis', href: '/layanan-spesialis' },
+                                            { title: 'Tentang Wiguna', href: '/tentang-wiguna' },
+                                            { title: 'Blog', href: '/blog' },
+                                            { title: 'Lokasi', href: '/lokasi' },
+                                        ];
 
-                                {/* Layanan - with Mega Menu */}
-                                <div
-                                    ref={layananRef}
-                                    className="relative"
-                                    onMouseEnter={() => setLayananOpen(true)}
-                                    onMouseLeave={() => setLayananOpen(false)}
-                                >
-                                    <button
-                                        className={`flex items-center gap-1 px-4 py-7 font-medium text-sm transition-colors ${
-                                            layananOpen ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'
-                                        }`}
-                                        aria-expanded={layananOpen}
-                                        aria-haspopup="true"
-                                    >
-                                        Layanan
-                                        <ChevronDown
-                                            size={14}
-                                            className={`transition-transform duration-200 ${layananOpen ? 'rotate-180' : ''}`}
-                                        />
-                                    </button>
+                                    return itemsToRender.map((item, index) => {
+                                        const isLayanan = item.title.toLowerCase() === 'layanan' || (item as any).isMegaMenu;
 
-                                    {/* Mega Menu Dropdown */}
-                                    {layananOpen && (
-                                        <div
-                                            className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
-                                            onMouseEnter={() => setLayananOpen(true)}
-                                        >
-                                            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 w-[850px]">
-                                                <div className="grid grid-cols-4 gap-8">
-                                                    {serviceCategories.map((category, catIndex) => (
-                                                        <div key={catIndex}>
-                                                            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4 px-2">
-                                                                {category.title}
-                                                            </h3>
-                                                            <ul className="space-y-1">
-                                                                {category.items.map((item, itemIndex) => (
-                                                                    <li key={itemIndex}>
-                                                                        <Link
-                                                                            href={item.href}
-                                                                            onClick={() => setLayananOpen(false)}
-                                                                            className="group flex items-start gap-3 p-2 rounded-xl hover:bg-gray-50 transition-all"
-                                                                        >
-                                                                            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100/80 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-gray-200 transition-all flex-shrink-0">
-                                                                                <span className="text-sm">{item.icon}</span>
-                                                                            </div>
-                                                                            <div className="flex flex-col pt-1">
-                                                                                <span className="text-sm font-medium text-gray-600 group-hover:text-brand-blue transition-colors leading-snug">
-                                                                                    {String(item.name)}
-                                                                                </span>
-                                                                            </div>
-                                                                        </Link>
-                                                                    </li>
-                                                                ))}
-                                                            </ul>
-                                                        </div>
-                                                    ))}
-                                                </div>
-
-                                                {/* CTA Banner */}
-                                                <div className="mt-6 pt-6 border-t border-gray-100">
-                                                    <Link
-                                                        href="/services"
-                                                        onClick={() => setLayananOpen(false)}
-                                                        className="flex items-center justify-between px-4 py-3 bg-brand-blue/5 hover:bg-brand-blue/10 rounded-xl transition-colors"
+                                        if (isLayanan) {
+                                            return (
+                                                <div
+                                                    key={index}
+                                                    ref={layananRef}
+                                                    className="relative"
+                                                    onMouseEnter={() => setLayananOpen(true)}
+                                                    onMouseLeave={() => setLayananOpen(false)}
+                                                >
+                                                    <button
+                                                        className={`flex items-center gap-1 px-4 py-7 font-medium text-sm transition-colors ${
+                                                            layananOpen ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'
+                                                        }`}
+                                                        aria-expanded={layananOpen}
+                                                        aria-haspopup="true"
                                                     >
-                                                        <span className="font-semibold text-brand-blue">Lihat Semua Layanan</span>
-                                                        <ChevronRight size={18} className="text-brand-blue" />
-                                                    </Link>
+                                                        {item.title}
+                                                        <ChevronDown
+                                                            size={14}
+                                                            className={`transition-transform duration-200 ${layananOpen ? 'rotate-180' : ''}`}
+                                                        />
+                                                    </button>
+
+                                                    {/* Mega Menu Dropdown */}
+                                                    {layananOpen && (
+                                                        <div
+                                                            className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200"
+                                                            onMouseEnter={() => setLayananOpen(true)}
+                                                        >
+                                                            <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 p-8 w-[850px]">
+                                                                <div className="grid grid-cols-4 gap-8">
+                                                                    {serviceCategories.map((category, catIndex) => (
+                                                                        <div key={catIndex}>
+                                                                            <h3 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4 px-2">
+                                                                                {category.title}
+                                                                            </h3>
+                                                                            <ul className="space-y-1">
+                                                                                {category.items.map((subItem, itemIndex) => (
+                                                                                    <li key={itemIndex}>
+                                                                                        <Link
+                                                                                            href={subItem.href}
+                                                                                            onClick={() => setLayananOpen(false)}
+                                                                                            className="group flex items-start gap-3 p-2 rounded-xl hover:bg-gray-50 transition-all"
+                                                                                        >
+                                                                                            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100/80 group-hover:bg-white group-hover:shadow-sm border border-transparent group-hover:border-gray-200 transition-all flex-shrink-0">
+                                                                                                <span className="text-sm">{subItem.icon}</span>
+                                                                                            </div>
+                                                                                            <div className="flex flex-col pt-1">
+                                                                                                <span className="text-sm font-medium text-gray-600 group-hover:text-brand-blue transition-colors leading-snug">
+                                                                                                    {String(subItem.name)}
+                                                                                                </span>
+                                                                                            </div>
+                                                                                        </Link>
+                                                                                    </li>
+                                                                                ))}
+                                                                            </ul>
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+
+                                                                {/* CTA Banner */}
+                                                                <div className="mt-6 pt-6 border-t border-gray-100">
+                                                                    <Link
+                                                                        href="/services"
+                                                                        onClick={() => setLayananOpen(false)}
+                                                                        className="flex items-center justify-between px-4 py-3 bg-brand-blue/5 hover:bg-brand-blue/10 rounded-xl transition-colors"
+                                                                    >
+                                                                        <span className="font-semibold text-brand-blue">Lihat Semua Layanan</span>
+                                                                        <ChevronRight size={18} className="text-brand-blue" />
+                                                                    </Link>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
+                                            );
+                                        }
 
-                                {/* Promosi */}
-                                <Link
-                                    href="/promosi"
-                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
-                                >
-                                    Promosi
-                                </Link>
+                                        if ((item as any).subMenu && (item as any).subMenu.length > 0) {
+                                            return (
+                                                <div key={index} className="relative group">
+                                                    <button className="flex items-center gap-1 px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors">
+                                                        {item.title}
+                                                        <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
+                                                    </button>
+                                                    <div className="absolute top-full left-0 pt-2 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                                                        <div className="bg-white rounded-xl shadow-lg border border-gray-100 py-2 w-48">
+                                                            {(item as any).subMenu.map((sub: any, subIndex: number) => (
+                                                                <Link
+                                                                    key={subIndex}
+                                                                    href={sub.href}
+                                                                    className="block px-4 py-2 text-sm text-gray-700 hover:text-brand-blue hover:bg-gray-50 transition-colors"
+                                                                >
+                                                                    {sub.title}
+                                                                </Link>
+                                                            ))}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            );
+                                        }
 
-                                {/* Paket Service */}
-                                <Link
-                                    href="/paket-service"
-                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
-                                >
-                                    Paket Service
-                                </Link>
-
-                                {/* Layanan Spesialis */}
-                                <Link
-                                    href="/layanan-spesialis"
-                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
-                                >
-                                    Spesialis
-                                </Link>
-
-                                {/* Tentang Wiguna */}
-                                <Link
-                                    href="/tentang-wiguna"
-                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
-                                >
-                                    Tentang Wiguna
-                                </Link>
-
-                                {/* Blog */}
-                                <Link
-                                    href="/blog"
-                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
-                                >
-                                    Blog
-                                </Link>
-
-                                {/* Lokasi */}
-                                <Link
-                                    href="/lokasi"
-                                    className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
-                                >
-                                    Lokasi
-                                </Link>
+                                        return (
+                                            <Link
+                                                key={index}
+                                                href={item.href || '/'}
+                                                className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                            >
+                                                {item.title}
+                                            </Link>
+                                        );
+                                    });
+                                })()}
                             </div>
 
                             {/* Right Side Actions */}

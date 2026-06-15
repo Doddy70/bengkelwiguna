@@ -112,8 +112,8 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
     <>
       <div className="bg-[#F8F9FB] min-h-screen pt-28 pb-20 overflow-hidden relative">
         {/* Background Decorative Elements for Liquid Glass feel */}
-        <div className="absolute top-40 -left-64 w-96 h-96 bg-blue-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob"></div>
-        <div className="absolute top-40 -right-64 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-40 -left-64 w-96 h-96 bg-[#224297] rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob"></div>
+        <div className="absolute top-40 -right-64 w-96 h-96 bg-[#ffd900] rounded-full mix-blend-multiply filter blur-[128px] opacity-40 animate-blob animation-delay-2000"></div>
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           

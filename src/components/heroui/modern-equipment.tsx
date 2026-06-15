@@ -36,9 +36,9 @@ const HudHotspot = ({ top, left, title, subtitle, lineAngle, lineLength, labelOf
         className="relative group cursor-pointer"
         onClick={onClick}
       >
-        <div className="absolute inset-0 bg-blue-500 rounded-full blur-[8px] opacity-60 animate-pulse"></div>
-        <div className="relative w-4 h-4 bg-white border-2 border-blue-500 rounded-full shadow-[0_0_15px_rgba(59,130,246,0.8)] z-10"></div>
-        <div className="absolute inset-[-10px] rounded-full border border-blue-400/30 animate-ping"></div>
+        <div className="absolute inset-0 bg-[#ffd900] rounded-full blur-[8px] opacity-60 animate-pulse"></div>
+        <div className="relative w-4 h-4 bg-white border-2 border-[#ffd900] rounded-full shadow-[0_0_15px_rgba(255,217,0,0.8)] z-10"></div>
+        <div className="absolute inset-[-10px] rounded-full border border-[#ffd900]/30 animate-ping"></div>
       </motion.div>
 
       {/* Connecting Line */}
@@ -46,7 +46,7 @@ const HudHotspot = ({ top, left, title, subtitle, lineAngle, lineLength, labelOf
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: lineLength, opacity: 1 }}
         transition={{ duration: 0.8, delay: delay + 0.3, ease: smoothBezier }}
-        className="absolute top-1/2 left-1/2 h-[1px] bg-gradient-to-r from-blue-500 to-transparent origin-left z-0"
+        className="absolute top-1/2 left-1/2 h-[1px] bg-gradient-to-r from-[#ffd900] to-transparent origin-left z-0"
         style={{ transform: `translateY(-50%) rotate(${lineAngle}deg)` }}
       />
 
@@ -365,7 +365,7 @@ export default function ModernEquipmentShowcase() {
                 {/* Header */}
                 <div className="flex justify-between items-center px-1">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-[1rem] bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white shadow-sm overflow-hidden">
+                    <div className="w-10 h-10 rounded-[1rem] bg-gradient-to-br from-[#224297] to-[#1a356d] flex items-center justify-center text-white shadow-sm overflow-hidden">
                       {renderIcon("/lottie/bubble.json", 24)}
                     </div>
                     <div>
@@ -382,7 +382,7 @@ export default function ModernEquipmentShowcase() {
                 <div className="flex flex-col gap-3 mt-2">
                   {/* Bot Message */}
                   <div className="flex items-start gap-3">
-                    <div className="w-7 h-7 rounded-full bg-blue-500 flex items-center justify-center text-white shrink-0 mt-1 shadow-md">
+                    <div className="w-7 h-7 rounded-full bg-[#224297] flex items-center justify-center text-white shrink-0 mt-1 shadow-md">
                       <FeatherIcons.Zap size={12} fill="white" />
                     </div>
                     <div className="bg-white rounded-[1.2rem] rounded-tl-sm p-4 shadow-sm border border-white/60 max-w-[85%]">
@@ -410,7 +410,7 @@ export default function ModernEquipmentShowcase() {
                     className="flex-1 bg-transparent px-4 py-2 text-[13px] text-[#2d3142] outline-none placeholder-[#8b95a5]"
                     readOnly
                   />
-                  <button className="w-9 h-9 rounded-full bg-[#2d3142] flex items-center justify-center text-white hover:bg-blue-600 transition-colors shadow-md shrink-0">
+                  <button className="w-9 h-9 rounded-full bg-[#2d3142] flex items-center justify-center text-white hover:bg-[#224297] transition-colors shadow-md shrink-0">
                     <FeatherIcons.Send size={14} className="-ml-0.5" />
                   </button>
                 </div>
