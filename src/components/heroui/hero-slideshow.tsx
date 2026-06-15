@@ -59,7 +59,7 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
   return (
     <section className="w-full bg-white dark:bg-black p-2 sm:p-3 lg:p-4">
       {/* Boxed, rounded container matching the reference design */}
-      <div className="relative w-full h-[90svh] lg:h-[92vh] min-h-[700px] lg:min-h-[820px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
+      <div className="relative w-full h-[70svh] lg:h-[75vh] min-h-[500px] lg:min-h-[650px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
         
         {/* Background Images Crossfade */}
         <AnimatePresence mode="popLayout">

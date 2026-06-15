@@ -1,13 +1,8 @@
-/**
- * BexonStyle FAQ Section — Bengkel Wiguna
- * Accordion + Sidebar CTA
- */
-
 "use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ChevronDown } from "lucide-react";
+import { Icon } from "@iconify/react";
 import { defaultFaqs } from "@/const/faqData";
 
 interface FaqItem {
@@ -29,85 +24,138 @@ export default function FaqSectionHomepage({
   };
 
   return (
-    <section className="lg:py-24 py-12 bg-gray-50 dark:bg-gray-950">
-      <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
-        <div className="grid lg:grid-cols-2 gap-16 items-stretch">
-          
-          {/* Kolom Kiri: FAQ Accordion */}
-          <div className="flex flex-col justify-center">
-            <div className="mb-10">
-                <span className="inline-block bg-brand-gold text-brand-blue px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4 shadow-xl shadow-yellow-900/10">
-                    Bantuan & FAQ
-                </span>
-                <h2 className="text-4xl font-black text-gray-900 dark:text-white mb-4 italic tracking-tighter uppercase">
-                    Pertanyaan Umum
-                </h2>
-                <p className="text-gray-600 dark:text-gray-400 font-medium text-lg">
-                    Temukan jawaban cepat seputar layanan kami.
-                </p>
-            </div>
+    <section className="py-12 lg:py-24 bg-white dark:bg-gray-950 font-dm">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Outer Wrapper with Light Background */}
+        <div className="bg-[#f2f6ff] dark:bg-blue-900/10 rounded-[2.5rem] p-8 lg:p-16">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+            
+            {/* Kolom Kiri: Header & FAQ Accordion */}
+            <div className="flex flex-col justify-center h-full">
+              
+              <div className="mb-10 max-w-xl">
+                  <h2 className="text-4xl md:text-5xl font-semibold text-[#1a2b5e] dark:text-white mb-6 tracking-tight leading-[1.1]">
+                      Mekanik Ahli & Bersertifikat
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                      Lakukan konsultasi kendaraan Anda hari ini dan dapatkan perawatan terpercaya dari tenaga mekanik profesional dan berpengalaman kami.
+                  </p>
+              </div>
 
-            <div className="space-y-4">
-              {items.map((faq, index) => (
-                <div
-                  key={index}
-                  className="bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 shadow-sm overflow-hidden transition-all duration-300"
-                >
-                  <button
-                    onClick={() => toggleFaq(index)}
-                    className="w-full flex items-center justify-between p-6 text-left"
-                  >
-                    <span className="text-lg font-black text-gray-900 dark:text-white pr-4 italic tracking-tighter">
-                      {faq.question}
-                    </span>
-                    <span
-                      className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
-                        openIndex === index
-                          ? "bg-brand-blue text-white rotate-180"
-                          : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
+              {/* Accordion Container */}
+              <div className="space-y-4 mb-12">
+                {items.slice(0, 4).map((faq, index) => {
+                  const isOpen = openIndex === index;
+                  
+                  return (
+                    <div
+                      key={index}
+                      className={`overflow-hidden transition-all duration-500 rounded-2xl ${
+                        isOpen 
+                          ? "bg-gradient-to-r from-[#224297] to-[#162d6b] shadow-xl" 
+                          : "bg-white dark:bg-gray-900 shadow-sm hover:shadow-md cursor-pointer"
                       }`}
+                      onClick={() => !isOpen && toggleFaq(index)}
                     >
-                      <ChevronDown size={18} />
-                    </span>
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      openIndex === index ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <div className="px-6 pb-6 text-gray-600 dark:text-gray-400 font-medium leading-relaxed">
-                      {faq.answer}
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+                      <div className="p-6 lg:p-8 flex items-start justify-between gap-4">
+                        <div className="flex-1">
+                          <h3 className={`text-lg lg:text-xl font-medium tracking-tight transition-colors duration-300 ${
+                            isOpen ? "text-white mb-4" : "text-gray-900 dark:text-white"
+                          }`}>
+                            {faq.question}
+                          </h3>
+                          
+                          {/* Answer Content - Only visible when open */}
+                          <div
+                            className={`transition-all duration-500 overflow-hidden ${
+                              isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                            }`}
+                          >
+                            <ul className="text-white/90 space-y-3 font-light text-sm lg:text-base">
+                              <li className="flex items-start gap-3">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#ffd900] shrink-0 mt-2"></span>
+                                <span className="leading-relaxed">{faq.answer}</span>
+                              </li>
+                            </ul>
+                          </div>
+                        </div>
 
-          {/* Kolom Kanan: Image + CTA Overlay */}
-          <div className="lg:sticky lg:top-32 h-full" data-aos="fade-left">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full min-h-[400px]">
-              <Image
-                src="/images/faq-bg.jpg"
-                alt="FAQ Bengkel Wiguna"
-                fill
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-10">
-                <h3 className="text-2xl font-black text-white italic uppercase tracking-tighter mb-4">
-                    Masih punya pertanyaan lain?
-                </h3>
+                        {/* Toggle Icon */}
+                        <button 
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleFaq(index);
+                          }}
+                          className={`shrink-0 transition-transform duration-300 flex items-center justify-center ${
+                            isOpen ? "text-white rotate-0" : "text-gray-400 -rotate-90"
+                          }`}
+                          aria-label="Toggle FAQ"
+                        >
+                          <Icon 
+                            icon={isOpen ? "material-symbols:arrow-outward-rounded" : "material-symbols:arrow-drop-down-rounded"} 
+                            width={32} 
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* CTA Button */}
+              <div>
                 <a
-                    href="https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-3 w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg"
+                  href="https://wa.me/6287817773888"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-4 bg-[#224297] hover:bg-[#1a3478] text-white py-3.5 pl-8 pr-3.5 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 group"
                 >
-                    <span className="text-xl">💬</span>
-                    Chat Konsultasi Sekarang
+                  Konsultasi Sekarang
+                  <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#224297] group-hover:bg-[#ffd900] group-hover:text-[#224297] transition-colors">
+                    <Icon icon="material-symbols:arrow-outward-rounded" width={20} />
+                  </span>
                 </a>
               </div>
+
             </div>
+
+            {/* Kolom Kanan: Image + Floating Card */}
+            <div className="relative w-full h-[400px] lg:h-auto min-h-[500px] rounded-[2rem] overflow-hidden shadow-2xl">
+              <Image
+                src="/images/faq-bg.jpg"
+                alt="Tim Mekanik Bengkel Wiguna"
+                fill
+                className="object-cover object-center"
+              />
+              
+              {/* Floating Graph Card */}
+              <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-[-3rem] bg-white dark:bg-gray-900 p-5 rounded-2xl shadow-2xl z-10 w-[240px] border border-gray-100 dark:border-gray-800 hidden md:block">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="w-10 h-10 rounded-full overflow-hidden relative shrink-0">
+                    <Image src="/images/faq-bg.jpg" alt="Avatar" fill className="object-cover" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-gray-500 font-medium">Layanan Wiguna</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white">Kepuasan Pelanggan</p>
+                  </div>
+                </div>
+
+                {/* CSS Bar Chart */}
+                <div className="flex items-end justify-between gap-1.5 h-20 w-full mt-2">
+                  <div className="w-full bg-[#224297]/20 rounded-t-sm h-[30%]"></div>
+                  <div className="w-full bg-[#224297]/30 rounded-t-sm h-[45%]"></div>
+                  <div className="w-full bg-[#224297]/40 rounded-t-sm h-[60%]"></div>
+                  <div className="w-full bg-[#224297]/50 rounded-t-sm h-[75%]"></div>
+                  <div className="w-full bg-[#224297] rounded-t-sm h-[100%] shadow-[0_0_10px_rgba(34,66,151,0.5)]"></div>
+                  <div className="w-full bg-[#ffd900] rounded-t-sm h-[85%]"></div>
+                  <div className="w-full bg-[#224297]/60 rounded-t-sm h-[65%]"></div>
+                  <div className="w-full bg-[#224297]/40 rounded-t-sm h-[50%]"></div>
+                </div>
+              </div>
+
+            </div>
+
           </div>
         </div>
       </div>
