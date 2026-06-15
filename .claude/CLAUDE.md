@@ -1,80 +1,55 @@
 # Project: Bengkel Wiguna — Agent Handoff Instructions
 
-> **VERSION:** 1.1.0  
-> **LAST UPDATED:** 2026-06-14  
+> **VERSION:** 2.0.0  
+> **LAST UPDATED:** 2026-06-15  
 > **DOCUMENT TYPE:** Primary Agent Instruction File  
 > **READ FIRST:** Ya — file ini dibaca duluan oleh setiap agent sebelum mulai bekerja
 
 ---
 
-## 🎯 STATUS SAAT INI (Last Updated: 2026-06-14)
+## 🎯 STATUS SAAT INI (Last Updated: 2026-06-15)
 
-### Core Web Vitals Performance (Baseline)
-| Metric | Before | Target | Status |
-|--------|--------|--------|--------|
-| **LCP** | **6.4s** | ≤2.5s | 🔴 CRITICAL |
-| **FCP** | **1.85s** | ≤1.8s | ⚠️  NEEDS WORK |
-| **TBT** | **160ms** | ≤200ms | ✅ ACCEPTABLE |
-| **CLS** | **0** | ≤0.1 | ✅ EXCELLENT |
+### Project Architecture: V3 Redesign
+Proyek ini sekarang berada di iterasi ketiga (V3) dengan fokus pada UI/UX yang lebih modern, dinamis, dan premium menggunakan gaya Bento Grid.
 
-### Overall Scores (Mobile)
-| Category | Score | Status |
-|----------|-------|--------|
-| Performance | 72 | 🔴 NEEDS WORK |
-| Accessibility | 91 | ✅ GOOD |
-| Best Practices | 96 | ✅ EXCELLENT |
-| SEO | 100 | ✅ PERFECT |
-
-### Audit Source
-- **Tool:** Google PageSpeed Insights
-- **Device:** Mobile (Emulated Moto G Power)
-- **Date:** 2026-06-12
-- **Screenshot:** `.claude/notes/audit-2026-06-12.md`
+- **Frontend:** Next.js 15.5+ (App Router) di root direktori (`src/`). Folder `bexon/` lama sudah tidak digunakan.
+- **Styling:** Tailwind CSS 4.x + HeroUI (NextUI)
+- **Animations:** Framer Motion + SplideJS
+- **Backend:** WordPress Headless CMS
 
 ---
 
 ## 🔧 WORKFLOW BERLANJUT
 
 ### ✅ YANG SUDAH SELESAI
-1. PageSpeed Insights audit — masalah teridentifikasi
-2. Best practices recommendations — dokumentasi lengkap
-3. Skor performa baseline — tercatat
+1. Fix bug *auto-play loop* di Hero Slider.
+2. Redesign Blog Archive ke Bento Card style.
+3. Redesign Seasonal Promo Slider ke Bento Card style.
 
 ### 🚧 SEDANG BERLANJUT
-1. **Render-blocking resources** — perlu implementasi (890ms savings potential)
-2. **Image optimization** — perlu implementasi (92 KiB savings potential)
+1. **Refine Bento Grid Brand Colors** — mengganti warna *template* generik ke warna *brand* asli.
 
 ### 📋 TUGAS SELANJUTNYA (Priority Order)
 
-| # | Task | Priority | Estimated Savings | Branch |
-|---|------|----------|-------------------|--------|
-| 1 | Inline Critical CSS | 🔴 HIGH | ~300ms FCP | `perf/inline-critical-css` |
-| 2 | Minifikasi CSS & JS | 🔴 HIGH | ~200ms | `perf/minify-assets` |
-| 3 | Konversi Hero ke WebP | 🔴 HIGH | ~500ms LCP | `perf/convert-hero-webp` |
-| 4 | Lazy Loading Images | 🔴 HIGH | ~400ms LCP | `perf/lazy-loading` |
-| 5 | Preload LCP Image | 🔴 HIGH | ~200ms LCP | `perf/preload-lcp` |
-| 6 | Browser Caching | 🟡 MEDIUM | ~200ms (repeat) | `perf/browser-caching` |
-| 7 | Gzip/Brotli Compression | 🟡 MEDIUM | ~60-70% size | `perf/compression` |
-| 8 | CDN Setup | 🟡 MEDIUM | ~300ms | `perf/cdn-setup` |
-| 9 | Lighthouse CI | 🟡 MEDIUM | Regression prevention | `perf/lighthouse-ci` |
-| 10 | Web Vitals RUM | 🟢 LOW | Real monitoring | `perf/web-vitals-rum` |
+| # | Task | Priority | Status | Branch |
+|---|------|----------|--------|--------|
+| 1 | Refine Bento Grid Colors | 🔴 HIGH | In Progress | `feat/bento-brand-refinement` |
+| 2 | Sync Navigation Menu | 🟡 MEDIUM | Pending | `feat/nav-menu-sync` |
+| 3 | Domain Authority Audit | 🟢 LOW | Paused | `chore/seo-audit` |
 
 ---
 
 ## 🚫 JANGAN LAKUKAN (Constraints)
 
 > [!IMPORTANT]
-> **Zero Initiative Rule:** Agent DILARANG mengubah UI/UX, layout, warna, spacing tanpa izin eksplisit user.
+> **Zero Initiative Rule:** Agent DILARANG mengubah UI/UX, layout, warna, spacing tanpa izin eksplisit user. Ikuti sistem desain HeroUI + Tailwind 4.
 
-1. ❌ **Jangan hapus atau modifikasi file tanpa persetujuan**
-2. ❌ **Jangan push langsung ke branch utama** — gunakan feature branch
-3. ❌ **Jangan ubah struktur folder yang sudah ada**
-4. ❌ **Jangan hapus branch yang sudah dimerge**
-5. ❌ **Jangan matikan lighthouse audit di pipeline**
-6. ❌ **Jangan hilangkan CLS tracking** (sudah 0, pertahankan)
-7. ❌ **Jangan ubah brand colors** — Blue (`#224297`), Gold (`#ffd900`)
-8. ❌ **Jangan ubah URL slug yang sudah ada**
-9. ❌ **Jangan tambahkan library baru** tanpa konfirmasi
+1. ❌ **Jangan gunakan fetch() langsung** — Gunakan utility di `src/lib/wordpress.ts` (`bwFetch` / `wpFetch`).
+2. ❌ **Jangan push langsung ke main** — gunakan feature branch.
+3. ❌ **Jangan hapus branch yang sudah dimerge**.
+4. ❌ **Jangan matikan verifikasi build** di pre-push hook.
+5. ❌ **Jangan ubah brand colors** — Blue (`#224297`), Gold (`#ffd900`).
+6. ❌ **Jangan ubah URL slug yang sudah ada**.
 
 ---
 
@@ -82,32 +57,20 @@
 
 ```
 new bengkel wiguna/
-├── bexon/                          # ⭐ ACTIVE FRONTEND (Stable)
-│   ├── src/
-│   │   ├── app/                    # Next.js App Router
-│   │   ├── components/             # UI Components
-│   │   └── lib/                    # Utilities (wpFetch, bwFetch)
-│   └── public/                     # Static assets
-├── bengkel-wiguna-nextjs/          # ⚠️ DEPRECATED (Paused)
+├── src/                            # ⭐ ACTIVE FRONTEND (V3)
+│   ├── app/                        # Next.js App Router
+│   ├── components/                 # UI Components (HeroUI, Layout, etc)
+│   ├── lib/                        # Utilities (wordpress.ts)
+│   └── data/                       # Static JSON data
+├── public/                         # Static assets
 ├── .claude/                        # ⬅️ AGENT KNOWLEDGE BASE
 │   ├── CLAUDE.md                   # ⭐ INSTRUKSI UTAMA (INI)
 │   ├── state.json                  # 📊 Current progress state
-│   ├── workflow.md                # 📝 Step-by-step workflow
-│   ├── tasks.md                   # 📋 Task list
-│   ├── conventions.md             # 📜 Coding standards
-│   ├── changelog.md               # 🔄 History log
-│   └── notes/
-│       ├── audit-2026-06-12.md    # 📸 PageSpeed findings
-│       └── decisions.md           # 🏛️ Architecture decisions
+│   └── tasks.md                    # 📋 Task list
 ├── .maestro/                       # Maestro agent context
-│   └── sessions/                  # Session history
-├── scripts/                        # Automation scripts
-│   ├── agent-start.sh             # 🚀 Agent bootstrapper
-│   └── validate.sh                # 🔍 Pre-push validator
+│   └── sessions/                   # Session history
 ├── .git/hooks/
-│   └── pre-push                   # 🛡️ Auto-guard hook
-├── lighthouse.config.js            # ⚡ Lighthouse CI
-├── PERFORMANCE.md                 # 📊 Public performance report
+│   └── pre-push                    # 🛡️ Auto-guard hook
 └── README.md                       # 📖 Project README
 ```
 
@@ -119,93 +82,32 @@ new bengkel wiguna/
 |------|--------|
 | `AGENT_SYNC.md` | ⭐ Single source of truth untuk semua agent |
 | `.claude/state.json` | State machine progress terkini |
-| `.claude/workflow.md` | Detail workflow & step-by-step |
 | `.claude/tasks.md` | Task breakdown dengan status |
-| `.claude/conventions.md` | Coding standards |
-| `.claude/changelog.md` | Riwayat perubahan |
-| `.maestro.md` | Maestro agent context |
-| `conductor/workflow.md` | CDD methodology |
-| `docs/performance-audit.md` | PageSpeed audit details |
-| `docs/best-practices.md` | Best practices recommendations |
-
----
-
-## 👤 LAST AGENT
-
-- **Agent:** Claude Opus 4.8 (1M context)
-- **Date:** 2026-06-14
-- **Action:** Workflow synchronization — created AGENT_SYNC.md, updated conductor/workflow.md, synchronized GEMINI.md and CLAUDE.md
-- **Git Commit:** (lihat `.claude/state.json` → `lastCommit`)
-- **Next Agent:** Lanjutkan dari task list di `.claude/tasks.md` (browser-caching task)
+| `GEMINI.md` | Aturan spesifik untuk agent Gemini |
 
 ---
 
 ## 🚀 CARA MEMULAI (untuk Agent Baru)
 
 ```bash
-# 1. Baca instruksi utama (single source of truth)
+# 1. Baca instruksi utama
 cat AGENT_SYNC.md
 
-# 2. Baca context bisnis
-cat .maestro.md
-
-# 3. Lihat state terkini
-cat .claude/state.json | jq '.'
-
-# 4. Lihat task list
+# 2. Lihat task list
 cat .claude/tasks.md
 
-# 5. Check git status
+# 3. Check git status
 git status
-git log -1 --pretty="%h %s"
 
-# 6. Pilih task pertama dari tasks.md (yang PENDING & HIGH priority)
-# 7. Buat feature branch
-git checkout -b perf/inline-critical-css
+# 4. Kerjakan task (Atomic Tasks)
 
-# 8. Kerjakan task
-# 9. Update state.json setelah selesai
-# 10. Commit dengan conventional commits
-# 11. Push & buat PR
-```
-
----
-
-## 📊 QUICK REFERENCE
-
-### Build Commands
-```bash
-# Build validation (inside bexon/)
+# 5. Build validation & Type Check
 npm run build --turbopack
-
-# Lighthouse audit
-npm run lighthouse
-
-# Run dev server
-npm run dev
+npx tsc --noEmit
 ```
 
-### Performance Targets
-| Metric | Current | Target | Gap |
-|--------|---------|--------|-----|
-| Performance Score | 72 | 90 | +18 |
-| LCP | 6.4s | ≤2.5s | -3.9s |
-| FCP | 1.85s | ≤1.8s | -0.05s |
-| TBT | 160ms | ≤200ms | ✅ |
-| CLS | 0 | ≤0.1 | ✅ |
-
 ---
 
-## ⚠️ EMERGENCY CONTACTS
-
-Jika ada pertanyaan atau blocker:
-1. Baca `.claude/workflow.md` untuk step-by-step
-2. Baca `.claude/conventions.md` untuk coding standards
-3. Baca `.maestro.md` untuk arsitektur umum project
-4. Hubungi user untuk persetujuan perubahan
-
----
-
-**Generated by:** Claude Opus 4.8  
-**Date:** 2026-06-14  
-**Version:** 1.1.0
+**Generated by:** Gemini 3.1 Pro (High)  
+**Date:** 2026-06-15  
+**Version:** 2.0.0
