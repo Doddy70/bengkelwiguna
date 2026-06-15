@@ -18,6 +18,7 @@ import { Icon } from '@iconify/react';
 import { Promosi } from '@/types/wordpress';
 import PageTitle3 from '@/components/ui/PageTitle3';
 import dynamic from 'next/dynamic';
+import WigunaCard from '@/components/ui/WigunaCard';
 
 const SeasonalPromoSlider = dynamic(() => import('./seasonal-promo-slider'), { ssr: false });
 
@@ -70,43 +71,43 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
     // Row 1: 3 cards (idx 0,1,2). Row 2: 2 cards (idx 3 is 1-col, idx 4 is 2-col).
     const isWide = idx % 5 === 4;
 
-    return (
-      <Link
-        href={`/promosi/${promo.slug}`}
-        key={promo.id || idx}
-        className={`bg-white dark:bg-neutral-900 rounded-[2rem] border border-gray-100 dark:border-neutral-800 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-500 p-3 sm:p-4 flex flex-col ${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} h-full group`}
-      >
-        {/* Graphic Container (Inner padded look from reference) */}
-        <div className={`relative w-full rounded-[1.5rem] overflow-hidden bg-gradient-to-br from-[#224297]/5 to-[#ffd900]/10 dark:from-[#224297]/20 dark:to-[#ffd900]/5 flex-shrink-0 flex items-center justify-center p-6 ${isWide ? 'h-48 md:h-64' : 'aspect-[4/3] lg:aspect-[1/1]'}`}>
-          <Image
-            src={img}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-            sizes={isWide ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 1024px) 50vw, 33vw"}
-          />
-          {/* Discount Badge */}
-          {promo.diskon_persen && (
-            <div className="absolute top-4 left-4 z-20">
-              <span className="inline-block bg-[#ffd900] text-black text-[10px] sm:text-xs font-black px-3 py-1 sm:px-4 sm:py-2 rounded-full shadow-sm">
-                {promo.diskon_persen}% OFF
-              </span>
-            </div>
-          )}
-        </div>
+    const discountText = promo.diskon_persen ? `${promo.diskon_persen}% OFF` : undefined;
 
-        {/* Text Area */}
-        <div className="pt-5 px-2 pb-2 flex flex-col flex-1 justify-between">
-          <div>
-            <h3 className="text-gray-900 dark:text-white font-bold text-lg lg:text-xl leading-snug mb-2 line-clamp-1 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
-              {title}
-            </h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 font-medium">
-              {excerpt}
-            </p>
-          </div>
-        </div>
-      </Link>
+    const metaItems = [
+      { icon: 'solar:ticket-linear', text: promo.jenis_promosi || 'Promo Spesial' }
+    ];
+
+    const handleClaimPromo = (e: React.MouseEvent) => {
+      e.preventDefault();
+      const whatsappNumber = "6281223555021"; // default Wiguna WA
+      const text = encodeURIComponent(`Halo Bengkel Wiguna, saya ingin klaim promo: ${title}`);
+      window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+    };
+
+    return (
+      <div
+        key={promo.id || idx}
+        className={`${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} h-full`}
+      >
+        <WigunaCard
+          href={`/promosi/${promo.slug}`}
+          image={img}
+          title={title}
+          excerpt={excerpt}
+          variant="overlay"
+          badgeText={discountText}
+          tag={promo.kategori_promosi || 'PROMO'}
+          metaItems={metaItems}
+          buttonText="Klaim Promo"
+          secondaryIcon="solar:heart-linear"
+          onSecondaryClick={(e) => {
+            e.preventDefault();
+            // Optional favorite state or WA redirect
+            handleClaimPromo(e);
+          }}
+          onButtonClick={handleClaimPromo}
+        />
+      </div>
     );
   };
 

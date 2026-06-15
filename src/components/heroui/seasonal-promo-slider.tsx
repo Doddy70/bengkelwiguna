@@ -5,7 +5,7 @@
  * Designed to match the aesthetic of ss.png with Bengkel Wiguna brand guidelines.
  */
 
-import React, { useRef, useMemo } from 'react';
+import React, { useRef, useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Splide, SplideSlide, SplideTrack } from '@splidejs/react-splide';
@@ -19,6 +19,7 @@ interface SeasonalPromoSliderProps {
 
 const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }) => {
   const splideRef = useRef<any>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Map each promo into an alternating text card and image card sequence
   const slides = useMemo(() => {
@@ -63,20 +64,10 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
   return (
     <div className="w-full relative seasonal-promo-slider overflow-x-hidden py-6">
       {/* Header Container */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-8 sm:mb-12">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
-          {/* Sisi Kiri: Judul Dua Baris */}
-          <div className="flex flex-col">
-            <span className="text-sm font-bold uppercase tracking-widest text-[#224297] mb-2">
-              🔥 PROMO BULANAN
-            </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black uppercase tracking-tight text-gray-900 leading-[1.1] font-sans">
-              PROMO BULANAN,<br />BENGKEL WIGUNA
-            </h2>
-          </div>
-
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-6 sm:mb-8">
+        <div className="flex justify-end">
           {/* Sisi Kanan: Navigasi Bulat Kustom */}
-          <div className="flex gap-3 self-end sm:self-auto">
+          <div className="flex gap-3">
             <button
               onClick={() => splideRef.current?.splide.go('<')}
               className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#224297] hover:text-white hover:border-[#224297] transition-all duration-300"
@@ -113,6 +104,7 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
               640: { gap: '1rem' }
             }
           }}
+          onMoved={(_: any, newIndex: number) => setCurrentIndex(newIndex)}
         >
           <SplideTrack className="overflow-visible py-4">
             {slides.map((slide) => {
@@ -186,6 +178,22 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
             })}
           </SplideTrack>
         </Splide>
+
+        {/* Indicator Dots */}
+        <div className="flex items-center justify-center gap-2 mt-8 z-10 relative">
+          {slides.map((_, i) => (
+            <button
+              key={i}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                i === currentIndex
+                  ? 'bg-[#224297] dark:bg-[#ffd900] w-8'
+                  : 'bg-gray-300 dark:bg-neutral-800 hover:bg-gray-400 dark:hover:bg-neutral-700 w-2.5'
+              }`}
+              onClick={() => splideRef.current?.splide.go(i)}
+              aria-label={`Go to slide ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       <style dangerouslySetInnerHTML={{__html: `
