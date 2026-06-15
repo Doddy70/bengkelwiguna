@@ -4,12 +4,16 @@ import './perspective-slider.scss';
 import './hero-styles.scss';
 import '@splidejs/splide/dist/css/splide.min.css';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-import { Sora, DM_Sans, Mona_Sans } from 'next/font/google';
+import { Sora, DM_Sans, Mona_Sans, Geist } from 'next/font/google';
 import ClientProviders from "@/components/providers/ClientProviders";
 import CookieConsent from "@/components/heroui/cookie-consent";
 import { Viewport } from "next";
 import fs from 'fs';
 import path from 'path';
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+
 
 // ✅ FORCE DYNAMIC RENDERING - Required for WordPress API integration
 export const dynamic = 'force-dynamic'
@@ -193,7 +197,7 @@ const speculationRules = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={`${sora.variable} ${dmSans.variable} ${monaSans.variable}`}>
+    <html lang="id" className={cn(sora.variable, dmSans.variable, monaSans.variable, "font-sans", geist.variable)}>
       <head>
         {/* ✅ Preload LCP Hero Images based on viewport */}
         <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
