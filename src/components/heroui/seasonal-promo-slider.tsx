@@ -2,7 +2,7 @@
 
 /**
  * SeasonalPromoSlider - Premium Alternating Cards Slider (Text & Image)
- * Designed to match the aesthetic of ss.png with Bengkel Wiguna brand guidelines.
+ * Designed to match the aesthetic of the user's mockup with Bengkel Wiguna brand guidelines.
  */
 
 import React, { useRef, useMemo, useState } from 'react';
@@ -15,9 +15,17 @@ import { Icon } from '@iconify/react';
 
 interface SeasonalPromoSliderProps {
   promos: Promosi[];
+  title?: string | string[]; // Title string or array of strings for exact line breaks
+  subtitle?: string;
+  showArrows?: boolean;
 }
 
-const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }) => {
+const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({
+  promos = [],
+  title,
+  subtitle,
+  showArrows = true,
+}) => {
   const splideRef = useRef<any>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -63,28 +71,53 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
 
   return (
     <div className="w-full relative seasonal-promo-slider overflow-x-hidden py-6">
-      {/* Header Container */}
-      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-6 sm:mb-8">
-        <div className="flex justify-end">
-          {/* Sisi Kanan: Navigasi Bulat Kustom */}
-          <div className="flex gap-3">
-            <button
-              onClick={() => splideRef.current?.splide.go('<')}
-              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#224297] hover:text-white hover:border-[#224297] transition-all duration-300"
-              aria-label="Previous Slide"
-            >
-              <Icon icon="solar:arrow-left-linear" className="w-5 h-5" />
-            </button>
-            <button
-              onClick={() => splideRef.current?.splide.go('>')}
-              className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-[#224297] hover:text-white hover:border-[#224297] transition-all duration-300"
-              aria-label="Next Slide"
-            >
-              <Icon icon="solar:arrow-right-linear" className="w-5 h-5" />
-            </button>
+      {/* Header Container (Title on the Left, Custom Navigation Arrows on the Right) */}
+      {(title || showArrows) && (
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-8 sm:mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            {title && (
+              <div className="flex flex-col">
+                {subtitle && (
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#224297]/5 dark:bg-[#ffd900]/10 border border-[#224297]/10 dark:border-[#ffd900]/20 rounded-full text-[11px] font-black uppercase tracking-wider text-[#224297] dark:text-[#ffd900] mb-4 w-fit">
+                    {subtitle}
+                  </span>
+                )}
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-none uppercase font-sans text-[#1c150c] dark:text-white">
+                  {typeof title === 'string' ? (
+                    title
+                  ) : (
+                    title.map((line, idx) => (
+                      <span key={idx} className="block">
+                        {line}
+                      </span>
+                    ))
+                  )}
+                </h2>
+              </div>
+            )}
+
+            {/* Sisi Kanan: Navigasi Bulat Kustom (Mockup Style) */}
+            {showArrows && (
+              <div className="flex gap-3 shrink-0 self-end md:mb-2 ml-auto">
+                <button
+                  onClick={() => splideRef.current?.splide.go('<')}
+                  className="w-12 h-12 rounded-full border border-neutral-300 dark:border-neutral-700 flex items-center justify-center text-neutral-600 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-300"
+                  aria-label="Previous Slide"
+                >
+                  <Icon icon="solar:arrow-left-linear" className="w-5 h-5" />
+                </button>
+                <button
+                  onClick={() => splideRef.current?.splide.go('>')}
+                  className="w-12 h-12 rounded-full bg-neutral-900 dark:bg-white text-white dark:text-neutral-900 flex items-center justify-center hover:bg-neutral-800 dark:hover:bg-neutral-100 transition-all duration-300 shadow-sm"
+                  aria-label="Next Slide"
+                >
+                  <Icon icon="solar:arrow-right-linear" className="w-5 h-5" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
-      </div>
+      )}
 
       {/* Slider Container */}
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -109,7 +142,7 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
           <SplideTrack className="overflow-visible py-4">
             {slides.map((slide) => {
               const { promo, type, isDark, id } = slide;
-              const title = getPromoTitle(promo);
+              const titleText = getPromoTitle(promo);
               const excerpt = getPromoExcerpt(promo);
               const img = getPromoImg(promo);
 
@@ -121,19 +154,19 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
                       href={`/promosi/${promo.slug}`}
                       className={`block w-[280px] sm:w-[350px] md:w-[380px] h-[360px] sm:h-[420px] md:h-[440px] rounded-[2.5rem] p-8 sm:p-10 flex flex-col justify-between transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(34,66,151,0.08)] group ${
                         isDark
-                          ? 'bg-[#224297] text-white'
-                          : 'bg-[#f4f6fa] text-[#224297]'
+                          ? 'bg-[#1c150c] dark:bg-neutral-900 text-white'
+                          : 'bg-[#f4ede4] dark:bg-neutral-950 text-[#1c150c] dark:text-neutral-100'
                       }`}
                     >
                       <div className="flex flex-col h-full justify-between">
                         <div className="flex flex-col">
-                          <h3 className={`text-2xl sm:text-3xl font-black tracking-tight leading-tight uppercase font-sans line-clamp-3 ${
-                            isDark ? 'text-white' : 'text-[#224297]'
+                          <h3 className={`text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight font-sans line-clamp-3 ${
+                            isDark ? 'text-white' : 'text-[#1c150c] dark:text-white'
                           }`}>
-                            {title}
+                            {titleText}
                           </h3>
                           <p className={`text-xs sm:text-sm mt-4 sm:mt-6 line-clamp-4 font-medium leading-relaxed ${
-                            isDark ? 'text-white/80' : 'text-gray-500'
+                            isDark ? 'text-[#e3ded6] dark:text-neutral-300' : 'text-[#6e675c] dark:text-neutral-400'
                           }`}>
                             {excerpt}
                           </p>
@@ -141,8 +174,8 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
 
                         {/* Progress Bar Style Accent Line */}
                         <div className="relative w-full h-[2px] mt-8">
-                          <div className={`absolute inset-0 h-full w-full ${isDark ? 'bg-white/10' : 'bg-[#224297]/10'}`} />
-                          <div className={`absolute left-0 top-0 h-full w-1/4 ${isDark ? 'bg-[#ffd900]' : 'bg-[#224297]'}`} />
+                          <div className={`absolute inset-0 h-full w-full ${isDark ? 'bg-white/10' : 'bg-[#1c150c]/10 dark:bg-white/10'}`} />
+                          <div className={`absolute left-0 top-0 h-full w-1/4 ${isDark ? 'bg-[#ffd900] dark:bg-[#ffd900]' : 'bg-[#1c150c] dark:bg-[#ffd900]'}`} />
                         </div>
                       </div>
                     </Link>
@@ -150,11 +183,11 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
                     /* 2. KARTU GAMBAR */
                     <Link
                       href={`/promosi/${promo.slug}`}
-                      className="block w-[280px] sm:w-[350px] md:w-[380px] h-[360px] sm:h-[420px] md:h-[440px] rounded-[2.5rem] overflow-hidden relative group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 bg-gray-100"
+                      className="block w-[280px] sm:w-[350px] md:w-[380px] h-[360px] sm:h-[420px] md:h-[440px] rounded-[2.5rem] overflow-hidden relative group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)] transition-all duration-500 bg-neutral-100 dark:bg-neutral-900"
                     >
                       <Image
                         src={img}
-                        alt={title}
+                        alt={titleText}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 1024px) 100vw, 30vw"
@@ -186,8 +219,8 @@ const SeasonalPromoSlider: React.FC<SeasonalPromoSliderProps> = ({ promos = [] }
               key={i}
               className={`h-2.5 rounded-full transition-all duration-300 ${
                 i === currentIndex
-                  ? 'bg-[#224297] dark:bg-[#ffd900] w-8'
-                  : 'bg-gray-300 dark:bg-neutral-800 hover:bg-gray-400 dark:hover:bg-neutral-700 w-2.5'
+                  ? 'bg-neutral-800 dark:bg-[#ffd900] w-8'
+                  : 'bg-neutral-300 dark:bg-neutral-800 hover:bg-neutral-400 dark:hover:bg-neutral-700 w-2.5'
               }`}
               onClick={() => splideRef.current?.splide.go(i)}
               aria-label={`Go to slide ${i + 1}`}
