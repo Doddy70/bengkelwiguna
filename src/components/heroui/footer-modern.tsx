@@ -10,8 +10,6 @@ import { Button, Input, Link } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import DarkToggle from "../layout/DarkToggle";
-import TiltCard from "../ui/TiltCard";
-import ZdogIcon from "../ui/ZdogIcon";
 
 type SocialIconProps = Omit<IconProps, "icon">;
 
@@ -21,12 +19,6 @@ const footerNavigation = {
     { name: "Tune Up", href: "/services" },
     { name: "Servis AC", href: "/services" },
     { name: "Kaki-Kaki & Rem", href: "/services" },
-  ],
-  spesialis: [
-    { name: "Layanan Spesialis", href: "/layanan-spesialis" },
-    { name: "Semi Overhaul", href: "/layanan-spesialis" },
-    { name: "Scanner Komputer", href: "/layanan-spesialis" },
-    { name: "Spooring 3D", href: "/layanan-spesialis" },
   ],
   blog: [
     { name: "Tips Otomotif", href: "/blog" },
@@ -97,39 +89,27 @@ export default function FooterModern() {
     <footer className="flex w-full flex-col bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
       <div className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-12 sm:pt-16 lg:px-8">
         {/* Desktop: 4 Column Layout | Tablet: 2 Column | Mobile: 1 Column */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-10">
-          {/* Column 1: Customer Support Widget (REPLACED WITH 3D WIDGET) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+          {/* Column 1: Customer Support Widget (REPLACED WITH IMAGE) */}
           <div className="space-y-6">
             <div>
               <h3 className="text-xs font-black text-brand-blue dark:text-[#ffd900] uppercase tracking-[0.2em] mb-4">Konsultasi Gratis</h3>
               
-              <TiltCard options={{ max: 20, perspective: 1000, scale: 1.05 }}>
-                <Link
-                  href="https://wa.me/6287817773888?text=Halo%20Asisten%20Wiguna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya.%20(web)"
-                  isExternal
-                  className="block group"
-                >
-                  <div className="relative bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 p-5 rounded-[2rem] border border-gray-100 dark:border-gray-700 shadow-xl overflow-hidden group-hover:border-brand-blue/30 transition-colors">
-                    
-                    {/* Background Pattern */}
-                    <div className="absolute top-0 right-0 w-24 h-24 bg-brand-blue/5 rounded-full -mr-8 -mt-8 blur-2xl group-hover:bg-brand-blue/10 transition-colors"></div>
-                    
-                    <div className="flex items-center gap-4 relative z-10">
-                      <div className="w-16 h-16 rounded-2xl bg-brand-blue flex items-center justify-center shadow-lg group-hover:rotate-6 transition-transform duration-500" style={{ transformStyle: 'preserve-3d' }}>
-                        <div style={{ transform: 'translateZ(30px)' }}>
-                          <ZdogIcon type="message" size={40} color="#fff" />
-                        </div>
-                      </div>
-                      
-                      <div style={{ transform: 'translateZ(20px)' }}>
-                        <p className="text-[10px] font-black text-brand-blue dark:text-[#ffd900] uppercase tracking-widest mb-0.5">Online Now</p>
-                        <h4 className="text-gray-900 dark:text-white font-black text-lg leading-tight">Asisten Wiguna</h4>
-                        <p className="text-[11px] text-gray-500 dark:text-gray-400 font-bold mt-1">Chat via WhatsApp &rarr;</p>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-              </TiltCard>
+              <Link
+                href="https://wa.me/6287817773888?text=Halo%20Asisten%20Wiguna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya.%20(web)"
+                isExternal
+                className="block hover:opacity-90 transition-opacity"
+              >
+                <div className="relative w-full max-w-[240px] aspect-[215/104] overflow-hidden">
+                  <Image
+                    src="/images/cs-support.png"
+                    alt="Konsultasi Gratis Asisten Wiguna"
+                    width={220}
+                    height={100}
+                    className="rounded-2xl w-full h-auto object-contain"
+                  />
+                </div>
+              </Link>
             </div>
 
             {/* Social Icons */}
@@ -148,17 +128,12 @@ export default function FooterModern() {
             {renderList({ title: "Layanan Service", items: footerNavigation.services })}
           </div>
 
-          {/* Column 3: Spesialis */}
-          <div>
-            {renderList({ title: "Layanan Spesialis", items: footerNavigation.spesialis })}
-          </div>
-
-          {/* Column 4: Blog & Edukasi */}
+          {/* Column 3: Blog & Edukasi */}
           <div>
             {renderList({ title: "Blog & Edukasi", items: footerNavigation.blog })}
           </div>
 
-          {/* Column 5: Company & Legal */}
+          {/* Column 4: Company & Legal */}
           <div>
             {renderList({ title: "Perusahaan", items: footerNavigation.company })}
             <div className="mt-8">
