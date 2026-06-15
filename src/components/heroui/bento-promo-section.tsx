@@ -1,10 +1,14 @@
 "use client";
 
 /**
- * BentoPromoSection - Modern Bento Grid Layout for Promotions
- * Features:
- * - Coverflow slider for Seasonal Promos on top
- * - Custom Asymmetric BentoGrid for Regular Promos below (matching reference design)
+ * BentoPromoSection - Optimized Bento Grid Layout for Promotions
+ *
+ * Improvements:
+ * - Brand-consistent colors (Blue #224297, Gold #ffd900)
+ * - Cleaner 6-pattern system
+ * - Better hover interactions
+ * - Improved mobile responsiveness
+ * - Glassmorphism accents
  */
 
 import React, { useMemo } from 'react';
@@ -22,30 +26,33 @@ interface BentoPromoSectionProps {
   promoBulanan?: Promosi[];
 }
 
+// Brand Colors
+const BRAND_BLUE = '#224297';
+const BRAND_GOLD = '#ffd900';
+const BRAND_BLUE_LIGHT = '#3b5db3';
+const BRAND_BLUE_DARK = '#1a356d';
+
 const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], promoBulanan = [] }) => {
-  // Filter out any promos that are explicitly categorized as "seasonal" or "bulanan"
+  // Filter out seasonal/bulanan promos for regular grid
   const regularPromos = useMemo(() => {
     return promos.filter(p => {
       const terms = p._embedded?.['wp:term']?.flat() || [];
-      const hasSeasonalTerm = terms.some(t => 
-        t.slug.toLowerCase().includes('seasonal') || 
+      const hasSeasonalTerm = terms.some(t =>
+        t.slug.toLowerCase().includes('seasonal') ||
         t.name.toLowerCase().includes('seasonal')
       );
       const isSeasonalCat = p.kategori_promosi?.toLowerCase().includes('seasonal');
       const isJenisSeasonal = String(p.jenis_promosi) === 'bulanan' || String(p.jenis_promosi) === 'seasonal';
-      
-      // Also explicitly exclude if it matches a slug in promoBulanan
       const isInBulanan = promoBulanan.some(pb => pb.slug === p.slug);
-
       return !hasSeasonalTerm && !isSeasonalCat && !isJenisSeasonal && !isInBulanan;
     });
-  }, [promos, promoBulanan]); // Removed .slice(0, 5) to allow all backend data
+  }, [promos, promoBulanan]);
 
   const seasonalPromos = promoBulanan || [];
 
   if (regularPromos.length === 0 && seasonalPromos.length === 0) return null;
 
-  // Extract titles safely
+  // Safe data extractors
   const getPromoTitle = (p: Promosi) => typeof p.title === 'string' ? p.title : p.title?.rendered || 'Promo Spesial';
   const getPromoExcerpt = (p: Promosi) => {
     const raw = typeof p.excerpt === 'string' ? p.excerpt : p.excerpt?.rendered || '';
@@ -53,9 +60,277 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
   };
   const getPromoImg = (p: Promosi) => p.featured_img || p._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/hero-desktop.webp';
 
+  // 6-PATTERN SYSTEM (cycling through cleaner designs)
+  const PATTERNS = [
+    // Pattern 0: Full-width Hero Card (Image + Gradient + Glassmorphism)
+    (promo: Promosi, idx: number, total: number) => {
+      const title = getPromoTitle(promo);
+      const img = getPromoImg(promo);
+      return (
+        <Link
+          href={`/promosi/${promo.slug}`}
+          key={promo.id || idx}
+          className="col-span-1 md:col-span-2 lg:col-span-2 row-span-1 relative rounded-3xl overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500"
+        >
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 66vw, 33vw"
+          />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
+
+          {/* Glassmorphism Badge */}
+          <div className="absolute top-4 left-4">
+            {promo.diskon_persen && (
+              <span className="inline-block backdrop-blur-md bg-[#ffd900]/90 text-black text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+                {promo.diskon_persen}% OFF
+              </span>
+            )}
+          </div>
+
+          {/* Content */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+            <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl p-4 lg:p-6">
+              <h3 className="text-white text-xl lg:text-2xl font-bold mb-2 group-hover:text-[#ffd900] transition-colors">
+                {title}
+              </h3>
+              <div className="flex items-center gap-2 text-white/80 text-sm">
+                <Icon icon="solar:calendar-bold" className="w-4 h-4 text-[#ffd900]" />
+                <span>Berlaku terbatas</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Arrow CTA */}
+          <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
+            <Icon icon="solar:arrow-right-up-linear" className="w-5 h-5 text-white" />
+          </div>
+        </Link>
+      );
+    },
+
+    // Pattern 1: Brand Blue Card (Solid Color + Text)
+    (promo: Promosi, idx: number, total: number) => {
+      const title = getPromoTitle(promo);
+      const excerpt = getPromoExcerpt(promo);
+      return (
+        <Link
+          href={`/promosi/${promo.slug}`}
+          key={promo.id || idx}
+          className="col-span-1 row-span-1 relative rounded-3xl overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col justify-between p-6 lg:p-8"
+          style={{ backgroundColor: BRAND_BLUE }}
+        >
+          {/* Decorative Circle */}
+          <div className="absolute -top-12 -right-12 w-32 h-32 rounded-full bg-white/10 group-hover:bg-white/20 transition-all duration-500" />
+          <div className="absolute -bottom-8 -left-8 w-24 h-24 rounded-full bg-white/5" />
+
+          {/* Content */}
+          <div className="relative z-10">
+            <div className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full mb-4">
+              <Icon icon="solar:tag-price-linear" className="w-4 h-4 text-[#ffd900]" />
+              <span className="text-white/90 text-xs font-semibold uppercase tracking-wide">Promo</span>
+            </div>
+            <h3 className="text-white text-xl lg:text-2xl font-bold mb-3 leading-tight">
+              {title}
+            </h3>
+            <p className="text-white/70 text-sm line-clamp-2">
+              {excerpt}
+            </p>
+          </div>
+
+          {/* CTA */}
+          <div className="relative z-10 mt-6">
+            <div className="inline-flex items-center gap-2 bg-[#ffd900] text-black px-5 py-2.5 rounded-full font-bold text-sm group-hover:gap-4 transition-all">
+              Klaim Sekarang
+              <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
+            </div>
+          </div>
+        </Link>
+      );
+    },
+
+    // Pattern 2: Glassmorphism Card (Image + Glass)
+    (promo: Promosi, idx: number, total: number) => {
+      const title = getPromoTitle(promo);
+      const img = getPromoImg(promo);
+      return (
+        <Link
+          href={`/promosi/${promo.slug}`}
+          key={promo.id || idx}
+          className="col-span-1 row-span-1 relative rounded-3xl overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500"
+        >
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+            sizes="(max-width: 1024px) 50vw, 33vw"
+          />
+
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
+
+          {/* Glass Content */}
+          <div className="absolute inset-x-0 bottom-0 p-6">
+            <div className="backdrop-blur-xl bg-white/20 border border-white/30 rounded-2xl p-5 shadow-xl">
+              <h3 className="text-white font-bold text-lg mb-2 line-clamp-2">
+                {title}
+              </h3>
+              <div className="flex items-center justify-between">
+                <span className="text-[#ffd900] font-bold text-sm">Lihat Detail</span>
+                <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center group-hover:bg-[#ffd900] group-hover:text-black transition-all">
+                  <Icon icon="solar:arrow-right-linear" className="w-4 h-4 text-white" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
+      );
+    },
+
+    // Pattern 3: Split Card (Left Text + Right Image)
+    (promo: Promosi, idx: number, total: number) => {
+      const title = getPromoTitle(promo);
+      const excerpt = getPromoExcerpt(promo);
+      const img = getPromoImg(promo);
+      return (
+        <Link
+          href={`/promosi/${promo.slug}`}
+          key={promo.id || idx}
+          className="col-span-1 md:col-span-2 row-span-1 relative rounded-3xl overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col md:flex-row"
+        >
+          {/* Text Side */}
+          <div className="flex-1 p-6 lg:p-8 flex flex-col justify-center bg-white dark:bg-neutral-900">
+            <div className="flex items-center gap-2 text-[#224297] mb-3">
+              <Icon icon="solar:star-bold" className="w-5 h-5 text-[#ffd900]" />
+              <span className="text-xs font-bold uppercase tracking-wider">Pilihan Terbaik</span>
+            </div>
+            <h3 className="text-gray-900 dark:text-white text-xl lg:text-2xl font-bold mb-3 leading-tight">
+              {title}
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2 mb-4">
+              {excerpt}
+            </p>
+            <div className="mt-auto">
+              <span className="inline-flex items-center gap-2 text-[#224297] font-semibold text-sm group-hover:gap-3 transition-all">
+                Selengkapnya
+                <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
+              </span>
+            </div>
+          </div>
+
+          {/* Image Side */}
+          <div className="relative w-full md:w-1/2 aspect-[4/3] md:aspect-auto">
+            <Image
+              src={img}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </Link>
+      );
+    },
+
+    // Pattern 4: Brand Gradient Card (Blue/Gold + Glassmorphism)
+    (promo: Promosi, idx: number, total: number) => {
+      const title = getPromoTitle(promo);
+      return (
+        <Link
+          href={`/promosi/${promo.slug}`}
+          key={promo.id || idx}
+          className="col-span-1 row-span-1 relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#224297] via-[#224297]/90 to-[#1a356d] group shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col items-center justify-center p-6 lg:p-8"
+        >
+          {/* Glassmorphism Overlay */}
+          <div className="absolute inset-0 backdrop-blur-sm bg-white/[0.05] border border-white/10 rounded-3xl" />
+
+          {/* Decorative Elements */}
+          <div className="absolute -top-16 -right-16 w-40 h-40 bg-[#ffd900]/10 rounded-full blur-2xl" />
+          <div className="absolute -bottom-16 -left-16 w-32 h-32 bg-white/5 rounded-full blur-xl" />
+
+          {/* Logo */}
+          <div className="relative z-10 w-20 h-20 lg:w-24 lg:h-24 mb-4 group-hover:scale-110 transition-transform duration-500">
+            <Image src="/images/logo/logo-square.avif" alt="Bengkel Wiguna" fill className="object-contain" />
+          </div>
+
+          {/* Title */}
+          <h3 className="relative z-10 text-white font-bold text-center text-lg mb-2 line-clamp-2 drop-shadow-sm">
+            {title}
+          </h3>
+
+          {/* Arrow */}
+          <div className="relative z-10 w-10 h-10 rounded-full border-2 border-[#ffd900]/50 flex items-center justify-center mt-4 group-hover:border-[#ffd900] group-hover:bg-[#ffd900] group-hover:text-black transition-all duration-300">
+            <Icon icon="solar:arrow-right-linear" className="w-5 h-5 text-[#ffd900]/70 group-hover:text-black transition-colors" />
+          </div>
+        </Link>
+      );
+    },
+
+    // Pattern 5: Ticket/Stamp Card (Coupon Style - Brand Colors)
+    (promo: Promosi, idx: number, total: number) => {
+      const title = getPromoTitle(promo);
+      const excerpt = getPromoExcerpt(promo);
+      return (
+        <Link
+          href={`/promosi/${promo.slug}`}
+          key={promo.id || idx}
+          className="col-span-1 row-span-1 relative rounded-3xl overflow-hidden bg-gradient-to-br from-white to-[#224297]/5 dark:from-neutral-900 dark:to-[#224297]/20 group shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col"
+        >
+          {/* Glassmorphism Accent */}
+          <div className="absolute inset-0 backdrop-blur-sm bg-white/30 border border-[#224297]/10 rounded-3xl" />
+
+          {/* Main Content */}
+          <div className="relative flex-1 p-6 lg:p-8 flex flex-col justify-center">
+            <div className="flex items-start justify-between mb-4">
+              <div>
+                <span className="inline-block bg-gradient-to-r from-[#ffd900] to-[#ffd900]/80 text-black text-xs font-bold px-3 py-1 rounded-full mb-2 shadow-sm">
+                  PROMO
+                </span>
+                <h3 className="text-[#224297] dark:text-white text-lg lg:text-xl font-bold leading-tight">
+                  {title}
+                </h3>
+              </div>
+              <Icon icon="solar:gift-linear" className="w-8 h-8 text-[#ffd900]" />
+            </div>
+            <p className="text-gray-600 dark:text-gray-400 text-sm line-clamp-2">
+              {excerpt}
+            </p>
+          </div>
+
+          {/* Bottom Coupon Strip */}
+          <div className="relative px-6 py-4 border-t-2 border-dashed border-[#224297]/20 bg-[#224297]/5 dark:bg-[#224297]/10">
+            {/* Ticket Cutouts */}
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white dark:bg-neutral-900 border-2 border-[#224297]/20" />
+
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2 text-xs text-[#224297]/70 font-mono uppercase tracking-wider">
+                <Icon icon="bi:upc-scan" className="w-5 h-5" />
+                <span>Kode</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="font-mono font-bold text-[#224297]">WG-{promo.id || 'PROMO'}</span>
+                <Icon icon="solar:copy-linear" className="w-4 h-4 text-[#224297]/50" />
+              </div>
+            </div>
+          </div>
+        </Link>
+      );
+    },
+  ];
+
   return (
-    <section id="promosi" className="lg:py-24 py-12 bg-gray-100 dark:bg-neutral-950 relative overflow-hidden">
-      
+    <section id="promosi" className="lg:py-24 py-16 bg-gradient-to-b from-gray-50 to-white dark:from-neutral-950 dark:to-neutral-900 relative overflow-hidden">
+
+      {/* Background Decorative Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#224297]/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#ffd900]/5 rounded-full blur-3xl" />
+      </div>
+
       {/* Header Container */}
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-12">
@@ -67,15 +342,17 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
             alignment="start"
             padding="pb-0"
           />
-          <div className="mb-4">
-            <Link 
-              href="/promosi" 
-              className="group inline-flex items-center gap-2 text-sm font-medium bg-white dark:bg-neutral-900 px-6 py-3 rounded-full text-blue-700 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 shadow-sm transition-all hover:shadow-md"
-            >
-              Lihat Semua Promo
-              <Icon icon="solar:arrow-right-linear" className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
+          <Link
+            href="/promosi"
+            className="group relative inline-flex items-center gap-2 text-sm font-medium px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all hover:-translate-y-0.5 overflow-hidden"
+          >
+            {/* Glassmorphism Background */}
+            <div className="absolute inset-0 bg-gradient-to-r from-[#224297] to-[#1a356d] rounded-full" />
+            <div className="absolute inset-0 backdrop-blur-sm bg-white/10 rounded-full" />
+
+            <span className="relative z-10 text-white">Lihat Semua Promo</span>
+            <Icon icon="solar:arrow-right-linear" className="relative z-10 w-4 h-4 text-[#ffd900] group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
 
@@ -86,203 +363,27 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
         </div>
       )}
 
-      {/* CUSTOM ASYMMETRIC BENTO GRID (Reference Style) */}
+      {/* BENTO GRID - 6 Pattern System */}
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {regularPromos.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 auto-rows-[250px] lg:auto-rows-[300px] grid-flow-dense">
-            {regularPromos.map((promo, idx) => {
-              const title = getPromoTitle(promo);
-              const excerpt = getPromoExcerpt(promo);
-              const img = getPromoImg(promo);
-              
-              // Use modulo 12 so we cycle through 12 distinctly unique card layouts
-              // (5 cards from Design 1, 7 cards from Design 2)
-              const patternIdx = idx % 12;
-              
-              if (patternIdx === 0) {
-                // 1. TALL LEFT CARD (Image)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 md:col-span-2 lg:col-span-1 row-span-1 md:row-span-2 relative rounded-[2rem] overflow-hidden group shadow-lg">
-                    <Image src={img} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="(max-width: 1024px) 100vw, 33vw" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                    <div className="absolute bottom-0 left-0 p-8 w-full">
-                      <h3 className="text-white text-2xl lg:text-3xl font-bold mb-2">{title}</h3>
-                      <p className="text-white/80 line-clamp-2">{excerpt}</p>
-                    </div>
-                  </Link>
-                );
-              }
-              
-              if (patternIdx === 1) {
-                // 2. TOP MIDDLE SQUARE (Brand Green/Blue bg with text)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden bg-[#169b56] dark:bg-emerald-700 flex items-center justify-center p-8 text-center group shadow-lg">
-                    {/* Blurred background image effect */}
-                    <div className="absolute inset-0 opacity-40 mix-blend-overlay">
-                      <Image src={img} alt={title} fill className="object-cover blur-2xl scale-150" />
-                    </div>
-                    <h3 className="relative z-10 text-white text-2xl lg:text-3xl font-bold tracking-tight leading-snug group-hover:scale-105 transition-transform duration-500 drop-shadow-md">
-                      {title}
-                    </h3>
-                  </Link>
-                );
-              }
-              
-              if (patternIdx === 2) {
-                // 3. TOP RIGHT TICKET (Split design)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 row-span-1 rounded-[2rem] overflow-hidden bg-white dark:bg-neutral-800 flex flex-col group shadow-lg hover:shadow-xl transition-shadow relative">
-                    <div className="flex-1 p-6 lg:p-8 flex flex-col justify-center">
-                      <span className="text-xs font-bold tracking-wider text-green-600 dark:text-emerald-400 uppercase mb-2">PROMO DISCOUNT</span>
-                      <h3 className="text-gray-900 dark:text-white text-xl lg:text-2xl font-bold leading-tight line-clamp-2">{title}</h3>
-                      <p className="text-[#169b56] font-black text-2xl lg:text-3xl mt-4">Klaim Promo</p>
-                    </div>
-                    <div className="p-4 px-6 border-t-2 border-dashed border-gray-200 dark:border-neutral-700 bg-gray-50 dark:bg-neutral-800/80 flex justify-between items-center relative">
-                      {/* Ticket cutouts (matching the page background color) */}
-                      <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-neutral-950 absolute -left-3 -top-3"></div>
-                      <div className="w-6 h-6 rounded-full bg-gray-100 dark:bg-neutral-950 absolute -right-3 -top-3"></div>
-                      
-                      <div className="text-xs text-gray-500 font-mono tracking-widest flex items-center gap-2">
-                        <span>DISCOUNT CODE</span>
-                      </div>
-                      <div className="text-xs text-gray-900 dark:text-white font-mono tracking-widest flex items-center gap-2">
-                        <Icon icon="bi:upc-scan" className="text-3xl text-gray-400" />
-                        WG-{promo.id || '24X'}
-                      </div>
-                    </div>
-                  </Link>
-                );
-              }
-              
-              if (patternIdx === 3) {
-                // 4. BOTTOM MIDDLE SQUARE (White Logo/Icon)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 row-span-1 rounded-[2rem] overflow-hidden bg-white dark:bg-neutral-800 flex flex-col items-center justify-center p-8 text-center group shadow-lg">
-                    <div className="w-24 h-24 mb-6 relative group-hover:scale-110 transition-transform duration-500 drop-shadow-sm">
-                       <Image src="/images/logo/logo-square.avif" alt="Bengkel Wiguna" fill className="object-contain" />
-                    </div>
-                    <h3 className="text-gray-900 dark:text-white font-bold text-xl">{title}</h3>
-                  </Link>
-                );
-              }
-              
-              if (patternIdx === 4) {
-                // 5. BOTTOM RIGHT SQUARE (Image with dark pill overlay)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 md:col-span-2 lg:col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden group shadow-lg">
-                    <Image src={img} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors duration-500" />
-                    <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between bg-black/60 backdrop-blur-md border border-white/10 p-3 pl-5 rounded-full">
-                      <h3 className="text-white font-medium text-sm lg:text-base line-clamp-1 flex-1 mr-4">{title}</h3>
-                      <div className="w-10 h-10 rounded-full bg-white text-gray-900 flex items-center justify-center shrink-0">
-                        <Icon icon="solar:arrow-right-up-linear" className="w-5 h-5" />
-                      </div>
-                    </div>
-                  </Link>
-                );
-              }
-
-              // --- DESIGN 2: Reference Image Layout (7 cards) ---
-
-              if (patternIdx === 5) {
-                // 6. TOP LEFT WIDE (Light bg, giant text, purple button)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 md:col-span-2 row-span-1 relative rounded-[2rem] overflow-hidden bg-[#f4f5f9] dark:bg-neutral-900 p-8 flex flex-col md:flex-row items-start md:items-center justify-between group shadow-lg">
-                    <div className="relative z-10">
-                       <h3 className="text-[#6d28d9] dark:text-[#8b5cf6] text-4xl lg:text-5xl font-black mb-3 tracking-tighter leading-none line-clamp-2">{title}</h3>
-                       <p className="text-gray-800 dark:text-gray-300 font-medium text-base max-w-sm line-clamp-2">{excerpt}</p>
-                    </div>
-                    <div className="mt-6 md:mt-0 px-6 py-3 rounded-full bg-gradient-to-r from-[#9333ea] to-[#c026d3] text-white font-bold flex items-center gap-3 shadow-lg group-hover:scale-105 transition-transform z-10 shrink-0">
-                       Klaim Promo <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center text-[#9333ea]"><Icon icon="solar:arrow-right-linear" /></div>
-                    </div>
-                  </Link>
-                );
-              }
-
-              if (patternIdx === 6) {
-                // 7. TOP RIGHT (Image with warm overlay and left text)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden group shadow-lg">
-                    <Image src={img} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#d97743]/90 via-[#d97743]/50 to-transparent dark:from-[#9c4c23]/90" />
-                    <div className="absolute inset-y-0 left-0 p-8 w-2/3 flex flex-col justify-center">
-                      <h3 className="text-white text-xl lg:text-2xl font-bold mb-2 leading-snug line-clamp-3">{title}</h3>
-                      <p className="text-white/80 text-sm line-clamp-2">Detail Promosi</p>
-                    </div>
-                  </Link>
-                );
-              }
-
-              if (patternIdx === 7) {
-                // 8. MIDDLE LEFT (Purple bg, image mixblend)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden bg-[#3b2161] group shadow-lg">
-                    <Image src={img} alt={title} fill className="object-cover opacity-60 mix-blend-overlay transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 flex flex-col justify-end p-8 bg-gradient-to-t from-black/60 to-transparent">
-                      <h3 className="text-white text-xl font-bold mb-2 line-clamp-2">&quot;{title}&quot;</h3>
-                      <p className="text-white/60 text-sm">Promo Terbatas</p>
-                    </div>
-                  </Link>
-                );
-              }
-
-              if (patternIdx === 8) {
-                // 9. MIDDLE CENTER (Solid Purple with Logo)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden bg-gradient-to-br from-[#7e22ce] to-[#6d28d9] flex items-center justify-center p-8 group shadow-lg">
-                    <div className="w-24 h-24 relative group-hover:scale-110 transition-transform duration-500 brightness-0 invert drop-shadow-lg">
-                       <Image src="/images/logo/logo-square.avif" alt="Bengkel Wiguna" fill className="object-contain" />
-                    </div>
-                  </Link>
-                );
-              }
-
-              if (patternIdx === 9) {
-                // 10. MIDDLE RIGHT (Pink/Soft bg image)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden group shadow-lg">
-                    <Image src={img} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/40 to-transparent" />
-                    <div className="absolute inset-y-0 left-0 p-8 w-2/3 flex flex-col justify-center">
-                      <h3 className="text-white text-xl font-bold mb-2 line-clamp-2">{title}</h3>
-                      <p className="text-white/70 text-sm line-clamp-1">Pelajari lebih lanjut</p>
-                    </div>
-                  </Link>
-                );
-              }
-
-              if (patternIdx === 10) {
-                // 11. BOTTOM LEFT WIDE (Green/Teal bg with left text)
-                return (
-                  <Link href={`/promosi/${promo.slug}`} key={promo.id || idx} className="col-span-1 md:col-span-2 row-span-1 relative rounded-[2rem] overflow-hidden group shadow-lg">
-                    <Image src={img} alt={title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#205141]/95 via-[#205141]/60 to-transparent" />
-                    <div className="absolute inset-y-0 left-0 p-8 w-full md:w-1/2 flex flex-col justify-center">
-                      <h3 className="text-white text-2xl lg:text-3xl font-bold mb-3 leading-snug line-clamp-2">{title}</h3>
-                      <p className="text-white/80 line-clamp-2">{excerpt}</p>
-                    </div>
-                  </Link>
-                );
-              }
-
-              if (patternIdx === 11) {
-                // 12. BOTTOM RIGHT (Stacked white boxes)
-                return (
-                  <div key={promo.id || idx} className="col-span-1 row-span-1 relative rounded-[2rem] overflow-hidden bg-[#f4f5f9] dark:bg-neutral-900 p-4 lg:p-6 flex flex-col gap-4 shadow-lg">
-                    <Link href={`/promosi/${promo.slug}`} className="flex-1 bg-white dark:bg-neutral-800 rounded-2xl p-5 lg:p-6 flex items-center gap-4 lg:gap-6 group hover:shadow-md transition-shadow">
-                       <span className="text-3xl lg:text-4xl font-black text-[#6d28d9]">2x</span>
-                       <p className="text-gray-800 dark:text-gray-200 text-xs lg:text-sm font-semibold leading-snug line-clamp-2">{title}</p>
-                    </Link>
-                    <Link href={`/promosi/${promo.slug}`} className="flex-1 bg-white dark:bg-neutral-800 rounded-2xl p-5 lg:p-6 flex items-center gap-4 lg:gap-6 group hover:shadow-md transition-shadow">
-                       <span className="text-3xl lg:text-4xl font-black text-[#ffd900] dark:text-[#ffea66]">#1</span>
-                       <p className="text-gray-800 dark:text-gray-200 text-xs lg:text-sm font-semibold leading-snug line-clamp-2">{excerpt}</p>
-                    </Link>
-                  </div>
-                );
-              }
-
-              return null;
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 auto-rows-[280px] lg:auto-rows-[320px] grid-flow-dense">
+            {regularPromos.slice(0, 9).map((promo, idx) => {
+              const patternIdx = idx % PATTERNS.length;
+              return PATTERNS[patternIdx](promo, idx, regularPromos.length);
             })}
+          </div>
+        )}
+
+        {/* View All CTA */}
+        {regularPromos.length > 9 && (
+          <div className="mt-8 text-center">
+            <Link
+              href="/promosi"
+              className="inline-flex items-center gap-3 bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700 text-gray-900 dark:text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold group"
+            >
+              Lihat Semua Promo ({regularPromos.length - 9} lagi)
+              <Icon icon="solar:arrow-right-linear" className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         )}
       </div>
