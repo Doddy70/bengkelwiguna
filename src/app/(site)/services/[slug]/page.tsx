@@ -5,9 +5,9 @@
 
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
-import Link from 'next/link'
 import ServiceSidebar from '@/components/ui/ServiceSidebar'
 import BookingTrigger from '@/components/heroui/BookingTrigger'
+import Breadcrumb from '@/components/ui/Breadcrumb'
 
 import { getServiceBySlug, getAllServices, stripHtml } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
@@ -73,26 +73,17 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
 
         {/* Content */}
         <div className="relative z-10 w-full max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 pb-10 lg:pb-14">
-          {/* Breadcrumb */}
-          <nav className="flex items-center flex-wrap gap-1.5 mb-5 text-sm font-semibold" aria-label="Breadcrumb">
-            <Link
-              href="/"
-              className="text-white/70 hover:text-[#ffd900] transition-colors duration-200"
-            >
-              Home
-            </Link>
-            <span className="text-[#ffd900] mx-1">/</span>
-            <Link
-              href="/services"
-              className="text-white/70 hover:text-[#ffd900] transition-colors duration-200"
-            >
-              Layanan
-            </Link>
-            <span className="text-[#ffd900] mx-1">/</span>
-            <span className="text-white font-bold truncate max-w-[220px] md:max-w-none">
-              {title}
-            </span>
-          </nav>
+          {/* SEO-Optimized Breadcrumb */}
+          <Breadcrumb
+            variant="location"
+            showHome={true}
+            homeLabel="Home"
+            items={[
+              { label: "Layanan", href: "/services" },
+              { label: title }
+            ]}
+            className="mb-6"
+          />
 
           {/* Badge */}
           <span className="inline-block bg-[#ffd900] text-[#224297] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4 shadow-lg shadow-yellow-900/20">

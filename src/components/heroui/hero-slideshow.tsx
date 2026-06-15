@@ -5,18 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { Service } from "@/types/wordpress";
 
-interface HeroSlideshowProps {
-  servicesData: Service[];
-}
-
-export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps) {
+export default function HeroSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto play
+  // Auto play - single static slide
   useEffect(() => {
-    const totalSlides = 5; // customImages length
+    const totalSlides = 1; // Single static image
     if (totalSlides <= 1) return;
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % totalSlides);
@@ -24,28 +19,10 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
     return () => clearInterval(interval);
   }, []);
 
-  if (!servicesData || servicesData.length === 0) return null;
-
-  // Custom static images requested by the user
-  const customImages = [
-    "/images/hero/slider-1.jpg",
-    "/images/hero/slider-2.jpg",
-    "/images/hero/slider-4.jpg",
-    "/images/hero/slider-5.jpg",
-    "/images/hero/slider-6.jpg"
-  ];
-
-  const customTaglines = [
-    "Bengkel One Stop Service Terpercaya",
-    "Pengecekan Mesin & Transmisi Presisi",
-    "Layanan Ganti Ban & Spooring",
-    "Perawatan Engine Flush Maksimal",
-    "Servis Kaki-Kaki & Suspensi Tuntas"
-  ];
-  
-  const title = customTaglines[currentIndex % customTaglines.length];
-  // Override the dynamic API image with our custom local images
-  const image = customImages[currentIndex % customImages.length];
+  // Static image and content
+  const image = "/images/hero/slider-1.jpg";
+  const title = "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak";
+  const subtitle = "One Stop Service Profesional, jujur, terpercaya";
 
   // Menu items for the glassmorphism floating menu
   const menuItems = [
@@ -60,8 +37,8 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
     <section className="w-full bg-white dark:bg-black p-2 sm:p-3 lg:p-4">
       {/* Boxed, rounded container matching the reference design */}
       <div className="relative w-full h-[70svh] lg:h-[75vh] min-h-[500px] lg:min-h-[650px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
-        
-        {/* Background Images Crossfade */}
+
+        {/* Background Image */}
         <AnimatePresence mode="popLayout">
           <motion.div
             key={currentIndex}
@@ -80,36 +57,36 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
               sizes="100vw"
               quality={90}
             />
-            {/* Subtle gradient overlay to ensure text readability */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
+            {/* Gradient overlay for text readability */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
           </motion.div>
         </AnimatePresence>
 
-        {/* Top Bar Navigation (Inside Hero, assuming global Header is hidden on top) */}
-        <div className="absolute top-0 left-0 right-0 z-20 px-6 sm:px-10 py-6 sm:py-8 flex justify-between items-center">
-          {/* Logo */}
+        {/* Top Bar Navigation (Inside Hero) */}
+        <div className="absolute top-0 left-0 right-0 z-20 px-6 sm:px-10 py-5 sm:py-6 flex justify-between items-center">
+          {/* Logo - Smaller Size */}
           <Link href="/">
             <Image
               src="/images/logo/logo-panjang-bengkelwiguna-cropped.png"
               alt="Bengkel Wiguna"
-              width={130}
-              height={40}
-              className="h-7 sm:h-9 w-auto object-contain drop-shadow-md"
+              width={100}
+              height={32}
+              className="h-6 sm:h-7 w-auto object-contain drop-shadow-md"
               onError={(e) => {
-                // Fallback to text if white logo fails to load
                 e.currentTarget.style.display = 'none';
-                e.currentTarget.parentElement?.insertAdjacentHTML('beforeend', '<span class="text-2xl font-black text-white italic tracking-tighter">WIGUNA</span>');
+                e.currentTarget.parentElement?.insertAdjacentHTML('beforeend', '<span class="text-xl font-black text-white italic tracking-tighter">WIGUNA</span>');
               }}
             />
           </Link>
 
-          {/* Contact Button */}
-          <Link 
-            href="https://wa.me/6287817773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
+          {/* Chat Minna Button - Inline Single Line */}
+          <Link
+            href="https://wa.me/6287817773888?text=halo%20minna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
             target="_blank"
-            className="bg-[#ffd900] hover:bg-[#e6c300] text-black px-5 py-2.5 rounded-full font-bold text-sm sm:text-base shadow-lg hover:scale-105 transition-all"
+            className="inline-flex items-center gap-2 bg-[#ffd900] hover:bg-[#e6c300] text-black px-4 py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg hover:scale-105 transition-all whitespace-nowrap"
           >
-            Chat Minna
+            <Icon icon="fa6-brands:whatsapp" className="w-4 h-4" />
+            <span>Chat Minna</span>
           </Link>
         </div>
 
@@ -122,8 +99,8 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
             </div>
             <nav className="flex flex-col gap-3 mt-2">
               {menuItems.map((item, idx) => (
-                <Link 
-                  key={idx} 
+                <Link
+                  key={idx}
                   href={item.href}
                   className="text-white/70 hover:text-white hover:translate-x-1 font-medium text-lg transition-all duration-300"
                 >
@@ -134,21 +111,27 @@ export default function HeroSlideshow({ servicesData = [] }: HeroSlideshowProps)
           </div>
         </div>
 
-        {/* Text Area (Middle Left) */}
+        {/* Text Area - Single Title & Subtitle */}
         <div className="absolute top-1/2 -translate-y-1/2 left-0 z-20 px-6 sm:px-10 lg:px-20 w-full pointer-events-none">
           <div className="max-w-4xl pointer-events-auto">
             <AnimatePresence mode="wait">
-              <motion.h1
+              <motion.div
                 key={currentIndex}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}
-                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-white tracking-tight leading-[1.1]"
               >
-                <span className="block">{title},</span>
-                <span className="block font-medium text-white/90">Selesai Tanpa Drama.</span>
-              </motion.h1>
+                {/* Main Title */}
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-4">
+                  {title}
+                </h1>
+
+                {/* Subtitle */}
+                <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium">
+                  {subtitle}
+                </p>
+              </motion.div>
             </AnimatePresence>
           </div>
         </div>

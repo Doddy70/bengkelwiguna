@@ -79,7 +79,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
     if (variant === 'overlay') {
       /* === 1. OVERLAY VARIANT (PHILIPPINES STYLE) === */
       return (
-        <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden flex flex-col justify-end p-6 group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5 min-h-[380px] sm:min-h-[440px] bg-neutral-900 border border-white/10">
+        <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden flex flex-col justify-end p-6 group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5 min-h-[460px] bg-neutral-900 border border-white/10">
           {/* Badge at Top-Left */}
           {badgeText && (
             <div className="absolute top-6 left-6 z-10">

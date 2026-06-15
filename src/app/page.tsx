@@ -146,7 +146,7 @@ export default async function HomePage() {
 
       {/* SECTION 1: HERO (Liquid Glass Slideshow) */}
       <section id="hero" className="relative w-full">
-         <HeroSlideshow servicesData={servicesList} />
+         <HeroSlideshow />
       </section>
 
       {/* PARTNER LOGOS */}
