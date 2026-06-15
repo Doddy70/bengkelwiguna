@@ -5,8 +5,8 @@ import Image from "next/image";
 import { Promosi } from "@/types/wordpress";
 import { useDisclosure } from "@nextui-org/react";
 import PromoModal from "@/components/heroui/PromoModal";
+import PromoCarousel from "@/components/ui/PromoCarousel";
 import WigunaCard from "@/components/ui/WigunaCard";
-import SeasonalPromoSlider from "@/components/heroui/seasonal-promo-slider";
 
 interface PromosiArchiveProps {
   promos: Promosi[];
@@ -15,6 +15,7 @@ interface PromosiArchiveProps {
 export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedPromo, setSelectedPromo] = useState<Promosi | null>(null);
+  const [openPromoSlug, setOpenPromoSlug] = useState<string | null>(null);
 
   const handleOpenPromo = (promo: Promosi) => {
     setSelectedPromo(promo);
@@ -23,7 +24,7 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
 
   // Pisahkan Promo Bulanan/Seasonal dan Promo Lainnya
   const isSeasonal = (p: Promosi) => p.kategori_promosi && (
-    p.kategori_promosi.toLowerCase().includes("bulanan") || 
+    p.kategori_promosi.toLowerCase().includes("bulanan") ||
     p.kategori_promosi.toLowerCase().includes("seasonal")
   );
 
@@ -46,13 +47,13 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          
-          {/* Section 1: Promo Bulanan / Seasonal Slider */}
+
+          {/* Section 1: Promo Bulanan / Seasonal Slider - Apple Cards Carousel */}
           {monthlyPromos.length > 0 && (
             <div className="mb-20">
-              <SeasonalPromoSlider
+              <PromoCarousel
                 promos={monthlyPromos}
-                title={["PROMO BULAN INI,", "PILIHAN TERBAIK"]}
+                title="PROMO BULAN INI, PILIHAN TERBAIK"
                 subtitle="🔥 Promo Terbatas"
               />
             </div>
@@ -113,7 +114,6 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
               </div>
             </div>
           )}
-
         </div>
       </div>
 
