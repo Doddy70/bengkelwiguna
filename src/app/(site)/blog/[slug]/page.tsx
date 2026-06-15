@@ -61,103 +61,111 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
         ])} />
         
         <div className="blog-wrap font-dm">
-            <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pb-24 pb-20 justify-center">
-                <div className="blog-title bg-light-blue-banner lg:pt-32 pt-24 font-dm rounded-3xl mb-12 relative overflow-hidden">
-                    {/* Post Title */}
-                    <div className="lg:w-10/12 text-center pb-12 mx-auto relative z-10">
-                        <div className="flex justify-center mb-8" data-aos="fade-down">
+            <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-16 py-12 justify-center">
+                {/* Main Content Grid */}
+                <div className="grid lg:grid-cols-[1fr_350px] grid-cols-1 lg:gap-16 gap-12 relative items-start">
+                    
+                    {/* Article Content */}
+                    <div className="w-full">
+                        {/* Breadcrumb */}
+                        <div className="mb-6">
                             <Breadcrumb 
                                 items={[
-                                  { label: 'Beranda', href: '/' },
-                                  { label: 'Artikel', href: '/blog' },
-                                  { label: title || 'Post' }
+                                  { label: 'Home', href: '/' },
+                                  { label: 'Our Blogs', href: '/blog' },
+                                  { label: 'Otomotif' }
                                 ]} 
                             />
                         </div>
-                        <div className="flex justify-center mb-4">
-                            <div className="px-4 py-1.5 border border-brand-blue/10 rounded-full text-xs font-bold uppercase text-brand-blue bg-brand-blue/5 shadow-sm flex items-center gap-2 w-auto" data-aos="zoom-in">
-                                Edukasi Otomotif
-                            </div>
-                        </div>
-                        <h1 className="text-3xl md:text-5xl lg:text-6xl text-gray-900 font-black mb-6 leading-[1.1] tracking-tighter" data-aos="fade-up">
+
+                        {/* Title */}
+                        <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] text-gray-900 dark:text-white font-black mb-8 leading-[1.15] tracking-tight">
                             {title}
                         </h1>
-                        <div className="flex items-center justify-center gap-4 text-gray-500 font-bold text-xs uppercase tracking-widest" data-aos="fade-up" data-aos-delay="100">
-                            <span>Bengkel Wiguna</span>
-                            <span className="w-1.5 h-1.5 rounded-full bg-brand-gold"></span>
-                            <span suppressHydrationWarning>{formatDate(post.date)}</span>
-                        </div>
-                    </div>
-                </div>
 
-                {/* Featured Image */}
-                {featuredImage && (
-                    <div className="lg:w-11/12 justify-center pb-16 mx-auto" data-aos="fade-up">
-                        <div className="relative aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl shadow-gray-200">
-                            <Image 
-                                src={featuredImage} 
-                                alt={title || "Blog Bengkel Wiguna"} 
-                                fill
-                                className="object-cover"
-                                priority 
-                            />
-                        </div>
-                    </div>
-                )}
-
-                {/* Main Content Grid */}
-                <div className="lg:w-11/12 mx-auto">
-                    <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-16 gap-12 relative">
-                        {/* Article Content */}
-                        <div className="lg:col-span-2">
-                            <div className="block lg:hidden mb-8">
-                                <TableOfContents />
-                            </div>
-                            <article 
-                                className="prose prose-lg lg:prose-xl max-w-none dark:prose-invert blog-content-area
-                                prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-gray-900
-                                prose-p:text-gray-700 prose-p:leading-relaxed prose-p:font-medium
-                                prose-a:text-brand-blue prose-a:no-underline hover:prose-a:underline
-                                prose-strong:text-gray-900 prose-strong:font-black
-                                prose-img:rounded-2xl prose-img:shadow-lg
-                                prose-blockquote:border-l-brand-gold prose-blockquote:bg-gray-50 prose-blockquote:p-8 prose-blockquote:rounded-r-2xl prose-blockquote:font-bold prose-blockquote:italic"
-                                dangerouslySetInnerHTML={{ __html: content || "" }}
-                            />
-
-                            {/* Share & Tags Section */}
-                            <div className="mt-16 pt-8 border-t border-gray-100 flex flex-wrap justify-between items-center gap-6">
-                                <div className="flex items-center gap-4">
-                                    <span className="text-sm font-black uppercase text-gray-400 tracking-widest">Bagikan:</span>
-                                    <div className="flex gap-2">
-                                        <a href={`https://wa.me/?text=${encodeURIComponent(title + ' ')}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-green-500 text-white flex items-center justify-center hover:scale-110 transition-transform">
-                                            <Icon icon="fa6-brands:whatsapp" width={18} />
-                                        </a>
-                                        <a href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent('')}`} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center hover:scale-110 transition-transform">
-                                            <Icon icon="fa6-brands:facebook" width={18} />
-                                        </a>
+                        {/* Meta Data Bar */}
+                        <div className="flex flex-wrap justify-between items-center gap-4 mb-8 pb-6 border-b border-gray-100 dark:border-neutral-800">
+                            <div className="flex flex-wrap items-center gap-4 lg:gap-6 text-sm font-bold text-gray-600 dark:text-gray-400">
+                                {/* Author */}
+                                <div className="flex items-center gap-2">
+                                    <div className="w-8 h-8 rounded-full bg-[#224297] flex items-center justify-center text-white overflow-hidden shadow-sm">
+                                        <Image src="/images/logo-icon.png" alt="Admin Wiguna" width={20} height={20} className="object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
                                     </div>
+                                    <span className="text-gray-900 dark:text-white">Admin Wiguna</span>
+                                </div>
+                                
+                                {/* Category */}
+                                <div className="flex items-center gap-2 bg-gray-100 dark:bg-neutral-800 px-3 py-1 rounded-full">
+                                    <span className="text-gray-900 dark:text-white">Tips & Edukasi</span>
+                                </div>
+                                
+                                {/* Reading Time */}
+                                <div className="flex items-center gap-2">
+                                    <Icon icon="solar:clock-circle-linear" width={18} />
+                                    <span>5 min read</span>
+                                </div>
+                                
+                                {/* Date */}
+                                <div className="flex items-center gap-2">
+                                    <Icon icon="solar:calendar-linear" width={18} />
+                                    <span suppressHydrationWarning>{formatDate(post.date)}</span>
                                 </div>
                             </div>
+                            
+                            {/* Like Button */}
+                            <button className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center hover:bg-red-50 hover:border-red-100 hover:text-red-500 transition-colors">
+                                <Icon icon="solar:heart-linear" width={20} />
+                            </button>
                         </div>
 
-                        {/* Sidebar */}
-                        <div className="w-full">
-                            <div className="hidden lg:block sticky top-24 z-30 mb-10">
-                                <TableOfContents />
+                        {/* Featured Image */}
+                        {featuredImage && (
+                            <div className="relative aspect-[16/9] lg:aspect-[21/10] rounded-3xl overflow-hidden mb-12 shadow-lg">
+                                <Image 
+                                    src={featuredImage} 
+                                    alt={title || "Blog Bengkel Wiguna"} 
+                                    fill
+                                    className="object-cover"
+                                    priority 
+                                />
                             </div>
-                            <BlogSidebar 
-                                categories={allCategories} 
-                                relatedPosts={relatedPosts} 
-                            />
+                        )}
+
+                        <div className="block lg:hidden mb-8">
+                            <TableOfContents />
+                        </div>
+
+                        {/* Article Body */}
+                        <article 
+                            className="prose prose-lg max-w-none dark:prose-invert blog-content-area
+                            prose-headings:font-black prose-headings:tracking-tighter prose-headings:text-gray-900
+                            prose-p:text-gray-700 prose-p:leading-relaxed prose-p:font-medium
+                            prose-a:text-[#224297] prose-a:no-underline hover:prose-a:underline
+                            prose-strong:text-gray-900 prose-strong:font-black
+                            prose-img:rounded-2xl prose-img:shadow-lg
+                            prose-blockquote:border-l-4 prose-blockquote:border-[#ffd900] prose-blockquote:bg-gray-50 prose-blockquote:p-6 prose-blockquote:rounded-r-xl prose-blockquote:font-bold prose-blockquote:italic
+                            prose-ul:list-disc prose-ul:pl-6 prose-li:marker:text-[#224297]"
+                            dangerouslySetInnerHTML={{ __html: content || "" }}
+                        />
+                    </div>
+
+                    {/* Sidebar */}
+                    <div className="w-full lg:sticky lg:top-24">
+                        <BlogSidebar 
+                            categories={allCategories} 
+                            relatedPosts={relatedPosts} 
+                        />
+                        <div className="hidden lg:block mt-8">
+                            <TableOfContents />
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
         
         <PopularPost posts={popularPosts} />
         </div>
-    );
+      </div>
+    </div>
+  );
 }
 
 /**

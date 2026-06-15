@@ -3,57 +3,68 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "react-feather";
 import { Service } from "@/types/wordpress";
-import PageTitle from "@/components/ui/PageTitle";
-import { Breadcrumb } from "@/components/ui/Breadcrumb";
+import { Icon } from "@iconify/react";
 
 // Helper to clean excerpt
 const getCleanExcerpt = (service: any) => {
   const rawExcerpt = service.excerpt?.rendered || service.excerpt || '';
   const rawContent = service.content?.rendered || service.content || '';
   const sourceText = rawExcerpt || rawContent;
-  return sourceText.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0, 100);
+  return sourceText.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0, 100) + '...';
 }
 
-const ServiceCard = ({ service }: { service: any }) => {
+const ServiceCard = ({ service, index }: { service: any, index: number }) => {
     const title = typeof service.title === 'string' ? service.title : service.title?.rendered || '';
     const excerpt = getCleanExcerpt(service);
     
+    // Assign generic icons based on category/index just for visual appeal
+    const icons = [
+        "solar:settings-minimalistic-bold",
+        "solar:wheel-bold",
+        "solar:snowflake-bold",
+        "solar:shield-check-bold",
+        "solar:bolt-bold",
+        "solar:wrench-bold"
+    ];
+    const cardIcon = icons[index % icons.length];
+    
     return (
-        <div className="flex flex-col gap-2">
-            <div className="relative overflow-hidden rounded-xl bg-gray-100 aspect-[2/3]">
-                <Link href={`/services/${service.slug}`} className="group block relative w-full h-full">
-                    {service.featured_img ? (
-                        <Image
-                            src={service.featured_img}
-                            alt={title}
-                            className="rounded-xl overflow-hidden object-cover transition-transform duration-500 group-hover:scale-105"
-                            fill
-                            sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                    ) : (
-                        <div className="w-full h-full flex items-center justify-center bg-gray-200">
-                            <span className="text-gray-400">No Image</span>
-                        </div>
-                    )}
-                </Link>
+        <div className="bg-[#f8f9fc] dark:bg-neutral-900 rounded-[2rem] p-8 lg:p-10 flex flex-col group hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-neutral-800">
+            {/* Top Left Icon Pill */}
+            <div className="w-14 h-14 rounded-full bg-white dark:bg-neutral-800 shadow-sm flex items-center justify-center mb-8 shrink-0">
+                <div className="w-10 h-10 rounded-full bg-[#224297] flex items-center justify-center text-white">
+                    <Icon icon={cardIcon} width={20} />
+                </div>
             </div>
-            <div className="mb-2 mt-2">
-                <Link href={`/services/${service.slug}`}>
-                    <span className="block text-xl font-semibold text-gray-900 mb-1 hover:text-[#224297] transition-colors">{title}</span>
+
+            {/* Content */}
+            <div className="flex-1 flex flex-col">
+                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 leading-snug group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
+                    {title}
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-8 flex-1">
+                    {excerpt}
+                </p>
+
+                {/* Bottom Read More Action */}
+                <Link href={`/services/${service.slug}`} className="flex items-center gap-3 mt-auto w-fit">
+                    <div className="w-8 h-8 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
+                        <Icon icon="solar:add-circle-bold" width={24} className="opacity-0 hidden" /> {/* Hidden icon, just using css to make a cross */}
+                        <Icon icon="solar:add-linear" width={18} />
+                    </div>
+                    <span className="text-sm font-bold text-gray-900 dark:text-white group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
+                        Read More
+                    </span>
                 </Link>
-                <p className="text-sm font-medium text-gray-500 mt-[2px] mb-2 line-clamp-2">{excerpt}</p>
             </div>
         </div>
     );
 };
 
 export default function ServicesArchiveClient({ services }: { services: Service[] }) {
-    const [selectedCategory, setSelectedCategory] = useState<string>("");
-    const [selectedSort, setSelectedSort] = useState("");
+    const [selectedCategory, setSelectedCategory] = useState<string>("Semua Layanan");
 
-    // Setup categories based on keywords
     const categories = [
         { name: "Semua Layanan", keywords: [] },
         { name: "Perawatan Mesin", keywords: ["mesin", "oli", "tune up", "carbon", "detox", "berkala"] },
@@ -82,144 +93,140 @@ export default function ServicesArchiveClient({ services }: { services: Service[
                 }
             }
         }
-        
-        // Sorting
-        if (selectedSort === "a-z") {
-            result.sort((a, b) => {
-                const ta = typeof a.title === 'string' ? a.title : a.title?.rendered || '';
-                const tb = typeof b.title === 'string' ? b.title : b.title?.rendered || '';
-                return ta.localeCompare(tb);
-            });
-        } else if (selectedSort === "z-a") {
-            result.sort((a, b) => {
-                const ta = typeof a.title === 'string' ? a.title : a.title?.rendered || '';
-                const tb = typeof b.title === 'string' ? b.title : b.title?.rendered || '';
-                return tb.localeCompare(ta);
-            });
-        }
 
         return result;
-    }, [services, selectedCategory, selectedSort]);
+    }, [services, selectedCategory]);
+    
+    
+    // For the hero bento cards, we'll try to use the first two service images if available
+    const heroImage1 = services.length > 0 && services[0].featured_img ? services[0].featured_img : "/images/hero-desktop.webp";
+    const heroImage2 = services.length > 1 && services[1].featured_img ? services[1].featured_img : "/images/hero-desktop.webp";
 
     return (
-        <>
-            <PageTitle title="Layanan Bengkel Wiguna" subtitle="" />
-            <div className="flex justify-center text-center">
-                <Breadcrumb items={[{ label: "Home", href: "/" }, { label: "Layanan" }]} />
-            </div>
+        <div className="bg-white dark:bg-neutral-950 min-h-screen pb-24 font-dm">
             
-            <div className="shop-wrap font-sans lg:pt-20 pt-12">
-                <div className="max-w-screen-xl mx-auto px-4 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pb-24 pb-12">
-                    <div className="grid lg:grid-cols-4 grid-cols-1 lg:gap-10 relative lg:space-y-0 space-y-8">
+            {/* HERO SECTION */}
+            <section className="pt-32 lg:pt-40 pb-16 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Hero Header */}
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-16">
+                    <div className="lg:col-span-8 flex flex-col">
+                        <div className="flex items-center gap-2 text-sm font-bold text-gray-500 mb-8">
+                            <Icon icon="solar:home-2-linear" width={18} />
+                            <span>Home</span>
+                            <span className="text-gray-300">/</span>
+                            <span className="text-gray-900 dark:text-white">Service</span>
+                        </div>
                         
-                        {/* Filters Sidebar */}
-                        <div className="w-full">
-                            <h2 className="text-gray-900 mt-2 text-2xl font-bold mb-6">Filter Layanan</h2>
-
-                            {/* Categories */}
-                            <div className="flex flex-col gap-2 mb-6 pb-6 border-b border-gray-100">
-                                <h3 className="text-base font-semibold text-gray-900 mb-4 uppercase tracking-widest">Kategori</h3>
-                                {categories.map((cat, i) => {
-                                    let count = 0;
-                                    if (cat.name === "Semua Layanan") {
-                                        count = services.length;
-                                    } else if (cat.name === "Layanan Lainnya") {
-                                        const otherKeywords = categories.flatMap(c => c.keywords).filter(k => k !== "other");
-                                        count = services.filter(s => {
-                                            const t = (typeof s.title === 'string' ? s.title : s.title?.rendered || '').toLowerCase();
-                                            return !otherKeywords.some(k => t.includes(k));
-                                        }).length;
-                                    } else {
-                                        count = services.filter(s => {
-                                            const t = (typeof s.title === 'string' ? s.title : s.title?.rendered || '').toLowerCase();
-                                            return cat.keywords.some(k => t.includes(k));
-                                        }).length;
-                                    }
-
-                                    return (
-                                        <div key={i} className="flex justify-between items-center group cursor-pointer" onClick={() => setSelectedCategory(cat.name)}>
-                                            <div className="flex items-center gap-3">
-                                                <div className={`w-4 h-4 rounded-full border flex items-center justify-center ${selectedCategory === cat.name || (selectedCategory === "" && cat.name === "Semua Layanan") ? "border-[#224297]" : "border-gray-300"}`}>
-                                                    {(selectedCategory === cat.name || (selectedCategory === "" && cat.name === "Semua Layanan")) && (
-                                                        <div className="w-2 h-2 bg-[#224297] rounded-full"></div>
-                                                    )}
-                                                </div>
-                                                <label className={`text-base font-medium cursor-pointer transition-colors ${selectedCategory === cat.name || (selectedCategory === "" && cat.name === "Semua Layanan") ? "text-[#224297] font-bold" : "text-gray-600 group-hover:text-gray-900"}`}>
-                                                    {cat.name}
-                                                </label>
-                                            </div>
-                                            <span className="text-sm text-gray-400 font-medium bg-gray-50 px-2 py-0.5 rounded-md">
-                                                {count}
-                                            </span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-
-                            {/* Banner CTA */}
-                            <div className="relative rounded-2xl overflow-hidden mt-8 shadow-md">
-                                <div className="absolute inset-0 bg-[#224297] opacity-90 z-10"></div>
-                                <div className="absolute inset-0 bg-[url('/images/hero-desktop.webp')] bg-cover bg-center opacity-30 z-0"></div>
-                                <div className="relative z-20 w-full text-white text-center p-8 flex flex-col items-center">
-                                    <span className="uppercase text-xs font-bold tracking-widest text-[#ffd900] mb-2">Konsultasi Gratis</span>
-                                    <h2 className="text-2xl font-black mt-1 mb-6 leading-tight italic">
-                                        TANYA MINNA SEKARANG
-                                    </h2>
-                                    <a
-                                        href="https://wa.me/6281717773888?text=Halo%20Minna,%20saya%20ingin%20tanya%20layanan%20bengkel"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="px-6 py-3 bg-[#ffd900] text-[#224297] text-sm font-bold uppercase tracking-widest rounded-lg hover:bg-white transition-colors w-full"
-                                    >
-                                        Chat WhatsApp
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Service Listing */}
-                        <div className="col-span-3">
-                            {/* Sorting Header */}
-                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center pb-4 border-b border-gray-100 mb-6 gap-4">
-                                <p className="m-0 text-sm md:text-base font-medium text-gray-500">
-                                    Menampilkan <span className="font-bold text-gray-900">{filteredServices.length}</span> layanan
-                                    {selectedCategory && selectedCategory !== "Semua Layanan" ? ` untuk "${selectedCategory}"` : ""}
-                                </p>
-                                <select
-                                    value={selectedSort}
-                                    onChange={(e) => setSelectedSort(e.target.value)}
-                                    className="w-full sm:w-auto text-sm font-medium px-4 py-2.5 appearance-none pr-10 border border-gray-200 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-[#224297] transition duration-300 bg-white"
-                                    aria-label="Urutkan"
-                                    style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%236b7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundPosition: 'right 0.75rem center', backgroundRepeat: 'no-repeat', backgroundSize: '1rem 1rem' }}
-                                >
-                                    <option value="">Rekomendasi</option>
-                                    <option value="a-z">A - Z</option>
-                                    <option value="z-a">Z - A</option>
-                                </select>
-                            </div>
-
-                            {/* Service Grid */}
-                            {filteredServices.length > 0 ? (
-                                <div className="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-6 gap-y-10 relative">
-                                    {filteredServices.map((service) => (
-                                        <ServiceCard key={service.id} service={service} />
-                                    ))}
-                                </div>
-                            ) : (
-                                <div className="text-center py-20 bg-gray-50 rounded-2xl border border-gray-100">
-                                    <p className="text-gray-500 font-medium">Tidak ada layanan yang ditemukan untuk kategori ini.</p>
-                                    <button 
-                                        onClick={() => setSelectedCategory("")}
-                                        className="mt-4 px-6 py-2 bg-[#224297] text-white rounded-lg text-sm font-bold"
-                                    >
-                                        Tampilkan Semua
-                                    </button>
-                                </div>
-                            )}
-                        </div>
+                        <h1 className="text-5xl md:text-6xl lg:text-[4.5rem] font-semibold text-gray-900 dark:text-white tracking-tight leading-[1.1]">
+                            Solusi Perawatan <br/> Kendaraan Terbaik
+                        </h1>
+                    </div>
+                    
+                    <div className="lg:col-span-4 flex flex-col justify-end lg:pt-20">
+                        <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed mb-8">
+                            Bengkel Wiguna menyediakan layanan otomotif inovatif dan terpercaya untuk menyelesaikan masalah kendaraan Anda dan memberikan hasil yang terukur.
+                        </p>
+                        <a href="https://wa.me/6281717773888" target="_blank" rel="noopener noreferrer" className="bg-[#ffd900] hover:bg-[#e6c300] text-[#224297] font-bold px-8 py-3.5 rounded-full w-fit transition-all hover:scale-105 shadow-sm">
+                            Konsultasi Gratis
+                        </a>
                     </div>
                 </div>
-            </div>
-        </>
+
+                {/* Hero Bento Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
+                    {/* Image Card 1 */}
+                    <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[400px] rounded-[2rem] overflow-hidden">
+                        <Image src={heroImage1} alt="Bengkel Wiguna Activity 1" fill className="object-cover" />
+                    </div>
+                    
+                    {/* Stat Card */}
+                    <div className="bg-[#f0f4ff] dark:bg-blue-900/20 w-full aspect-[4/3] md:aspect-auto md:h-[400px] rounded-[2rem] p-8 lg:p-10 flex flex-col justify-between border border-blue-50 dark:border-blue-900/30">
+                        <div>
+                            <p className="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 mb-2">Ulasan</p>
+                            <p className="text-xl lg:text-2xl text-gray-600 dark:text-gray-300 flex items-center gap-2">Google <Icon icon="flat-color-icons:google" width={24} /></p>
+                        </div>
+                        
+                        <div>
+                            <h2 className="text-6xl lg:text-7xl font-medium text-gray-900 dark:text-white tracking-tight mb-6">
+                                8k+
+                            </h2>
+                            
+                            {/* Avatar Stack */}
+                            <div className="flex -space-x-3">
+                                <div className="w-12 h-12 rounded-full bg-[#224297] flex items-center justify-center text-white border-2 border-[#f0f4ff] shadow-sm z-10">
+                                    <Icon icon="solar:user-bold" width={20} />
+                                </div>
+                                <div className="w-12 h-12 rounded-full bg-[#ffd900] flex items-center justify-center text-[#224297] border-2 border-[#f0f4ff] shadow-sm z-20">
+                                    <Icon icon="solar:user-bold" width={20} />
+                                </div>
+                                <div className="w-12 h-12 rounded-full bg-blue-400 flex items-center justify-center text-white border-2 border-[#f0f4ff] shadow-sm z-30">
+                                    <Icon icon="solar:user-bold" width={20} />
+                                </div>
+                                <div className="w-12 h-12 rounded-full bg-gray-900 flex items-center justify-center text-white border-2 border-[#f0f4ff] shadow-sm z-40">
+                                    <Icon icon="solar:add-linear" width={20} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Image Card 2 */}
+                    <div className="relative w-full aspect-[4/3] md:aspect-auto md:h-[400px] rounded-[2rem] overflow-hidden">
+                        <Image src={heroImage2} alt="Bengkel Wiguna Activity 2" fill className="object-cover" />
+                    </div>
+                </div>
+            </section>
+
+            {/* SERVICES GRID SECTION */}
+            <section className="pt-16 pb-16 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                {/* Section Header */}
+                <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center mb-16">
+                    <div className="lg:col-span-8 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+                        <span className="text-gray-400 font-medium text-lg whitespace-nowrap">Our Service</span>
+                        <h2 className="text-4xl md:text-5xl font-semibold text-gray-900 dark:text-white tracking-tight leading-tight">
+                            Solusi Komprehensif, Semua <br className="hidden md:block" /> di Satu Tempat
+                        </h2>
+                    </div>
+                    <div className="lg:col-span-4">
+                        <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed border-l-2 border-gray-200 dark:border-gray-800 pl-4">
+                            Dari perawatan mesin, AC, hingga perbaikan kaki-kaki—kami memberikan layanan end-to-end yang disesuaikan dengan kebutuhan kendaraan Anda secara profesional.
+                        </p>
+                    </div>
+                </div>
+
+                {/* Filter Tabs */}
+                <div className="flex flex-wrap gap-3 mb-10">
+                    {categories.map((cat) => (
+                        <button
+                            key={cat.name}
+                            onClick={() => setSelectedCategory(cat.name)}
+                            className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${
+                                selectedCategory === cat.name
+                                    ? "bg-[#224297] text-white shadow-md"
+                                    : "bg-gray-100 dark:bg-neutral-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-neutral-700"
+                            }`}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
+                </div>
+
+                {/* Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    {filteredServices.length > 0 ? (
+                        filteredServices.map((service, index) => (
+                            <ServiceCard key={service.id} service={service} index={index} />
+                        ))
+                    ) : (
+                        <div className="col-span-full py-12 text-center text-gray-500">
+                            Layanan tidak ditemukan untuk kategori ini.
+                        </div>
+                    )}
+                </div>
+
+            </section>
+
+        </div>
     );
 }

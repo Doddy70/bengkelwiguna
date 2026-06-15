@@ -55,304 +55,280 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
     return result;
   }, [posts, selectedCategory]);
 
-  const featuredPost = filteredPosts[0];
-  const bentoPosts = filteredPosts.slice(1);
+  const post1 = filteredPosts[0];
+  const post2 = filteredPosts[1];
+  const post3 = filteredPosts[2];
+  const post4 = filteredPosts[3];
+  const bentoPosts = filteredPosts.slice(4);
 
   return (
     <>
-      {/* === BENTO CARD HERO HEADER === */}
-      <div className="bg-gradient-to-br from-[#050b14] to-[#224297] lg:pt-24 pt-16 pb-12 lg:pb-16">
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
-          {/* Bento Grid Header */}
-          <div className="grid lg:grid-cols-3 gap-4 lg:gap-6">
+      {/* === NEW ASYMMETRIC BENTO HERO HEADER === */}
+      <div className="bg-[#fcfcfc] dark:bg-neutral-950 pt-32 pb-12 lg:pb-16 font-dm">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Header Title & Button */}
+          <div className="flex justify-between items-end mb-8">
+            <h1 className="text-6xl lg:text-8xl font-black text-gray-900 dark:text-white tracking-tighter uppercase leading-none">BLOG</h1>
+            <Link href="#semua-artikel" className="hidden sm:flex items-center gap-3 bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 text-gray-900 dark:text-white px-6 py-3 rounded-full font-semibold transition-colors">
+              Read Our Blog <Icon icon="solar:arrow-right-linear" width={20} />
+            </Link>
+          </div>
 
-            {/* === MAIN FEATURED CARD (Large) === */}
-            {featuredPost && (
-              <Link
-                href={`/blog/${featuredPost.slug}`}
-                className="lg:col-span-2 row-span-2 relative rounded-[2rem] overflow-hidden group shadow-xl hover:shadow-2xl transition-all duration-500 min-h-[400px] lg:min-h-[500px]"
-              >
+          {/* 5-Box Asymmetrical Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-5 auto-rows-[250px] lg:auto-rows-[280px]">
+            
+            {/* Box 1: Featured Card (Left) */}
+            {post1 && (
+              <Link href={`/blog/${post1.slug}`} className="lg:col-span-5 lg:row-span-2 relative rounded-[2.5rem] overflow-hidden group shadow-lg hover:shadow-xl transition-all block">
                 <Image
-                  src={featuredPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
-                  alt={getRenderedTitle(featuredPost)}
+                  src={post1._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
+                  alt={getRenderedTitle(post1)}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                  priority
                 />
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+                
+                {/* Fire icon at top left */}
+                <div className="absolute top-6 left-6 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-xl shadow-sm">
+                  🔥
+                </div>
 
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-
-                {/* Decorative Elements */}
-                <div className="absolute -top-20 -right-20 w-60 h-60 bg-white/10 rounded-full blur-3xl" />
-                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#ffd900]/20 rounded-full blur-2xl" />
-
-                {/* Content */}
-                <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8 z-10">
-                  <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-[1.5rem] p-6 lg:p-8">
-                    {/* Badge */}
-                    <span className="inline-block bg-[#ffd900] text-black text-xs font-black px-4 py-2 rounded-full mb-4 uppercase tracking-wider">
-                      Latest Article
+                {/* Text Block Cutout (Bottom Left) */}
+                <div className="absolute bottom-0 left-0 bg-[#fcfcfc] dark:bg-neutral-950 pt-6 pr-6 lg:pt-8 lg:pr-8 rounded-tr-[2.5rem] w-full md:w-5/6 group-hover:bg-white dark:group-hover:bg-neutral-900 transition-colors">
+                  {/* CSS Hack for inverted corner */}
+                  <div className="absolute -top-10 left-0 w-10 h-10 bg-transparent rounded-bl-[2.5rem] shadow-[-20px_20px_0_20px_#fcfcfc] dark:shadow-[-20px_20px_0_20px_#0a0a0a] group-hover:shadow-[-20px_20px_0_20px_white] dark:group-hover:shadow-[-20px_20px_0_20px_#171717] transition-shadow" />
+                  <div className="absolute bottom-0 -right-10 w-10 h-10 bg-transparent rounded-bl-[2.5rem] shadow-[-20px_20px_0_20px_#fcfcfc] dark:shadow-[-20px_20px_0_20px_#0a0a0a] group-hover:shadow-[-20px_20px_0_20px_white] dark:group-hover:shadow-[-20px_20px_0_20px_#171717] transition-shadow" />
+                  
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-500 mb-3 uppercase tracking-wide">
+                    <span className="text-[#224297] dark:text-[#ffd900]">
+                      {post1._embedded?.['wp:term']?.[0]?.[0]?.name || 'Berita'}
                     </span>
+                    <span className="w-1 h-1 rounded-full bg-gray-300" />
+                    <span>{formatDate(post1.date)}</span>
+                  </div>
+                  <h2 className="text-3xl lg:text-4xl xl:text-[2.5rem] font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3">
+                    {getRenderedTitle(post1)}
+                  </h2>
+                </div>
+              </Link>
+            )}
 
-                    <h2 className="text-white text-2xl lg:text-4xl font-bold mb-3 leading-tight group-hover:text-[#ffd900] transition-colors">
-                      {getRenderedTitle(featuredPost)}
-                    </h2>
+            {/* Box 2: Highlight Card (Middle Top) */}
+            {post2 && (
+              <Link href={`/blog/${post2.slug}`} className="lg:col-span-4 lg:row-span-1 rounded-[2.5rem] bg-[#d4f99d] dark:bg-[#224297]/30 p-6 lg:p-8 flex flex-col justify-between group shadow-lg hover:shadow-xl transition-all relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+                
+                <div className="relative z-10 flex justify-between items-start mb-4">
+                  <div className="flex items-center gap-2 text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
+                    <span>{post2._embedded?.['wp:term']?.[0]?.[0]?.name || 'Tips'}</span>
+                    <span className="w-1 h-1 rounded-full bg-gray-400" />
+                    <span>Bengkel Wiguna</span>
+                  </div>
+                  <div className="w-10 h-10 rounded-full border border-gray-900/10 dark:border-white/10 flex items-center justify-center group-hover:bg-white dark:group-hover:bg-neutral-800 transition-colors">
+                    <Icon icon="solar:arrow-right-up-linear" width={20} className="text-gray-900 dark:text-white" />
+                  </div>
+                </div>
 
-                    <p className="text-white/80 text-sm lg:text-base mb-4 line-clamp-2">
-                      {getRenderedExcerpt(featuredPost)}
-                    </p>
-
-                    <div className="flex items-center justify-between">
-                      <span className="text-white/60 text-xs lg:text-sm">
-                        {formatDate(featuredPost.date)}
-                      </span>
-                      <div className="bg-[#ffd900] text-black px-5 py-2.5 rounded-full font-bold text-sm hover:scale-105 hover:bg-white transition-all flex items-center gap-2">
-                        Baca Selengkapnya
-                        <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
-                      </div>
+                <div className="relative z-10">
+                  <h3 className="text-2xl lg:text-3xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3 mb-4">
+                    {getRenderedTitle(post2)}
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="border-t border-gray-900/10 dark:border-white/10 pt-3 flex justify-between items-center group/link">
+                      <p className="text-sm font-bold text-gray-800 dark:text-gray-200 line-clamp-1 flex-1">
+                        {getRenderedExcerpt(post2)}
+                      </p>
+                      <Icon icon="solar:arrow-right-linear" className="w-5 h-5 text-gray-900 dark:text-white group-hover/link:translate-x-1 transition-transform" />
                     </div>
                   </div>
                 </div>
               </Link>
             )}
 
-            {/* === CATEGORY FILTER CARD === */}
-            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-[1.5rem] p-6 lg:p-8">
-              <h3 className="text-white text-lg font-bold mb-4">Filter Kategori</h3>
-              <div className="space-y-3">
-                <button
-                  onClick={() => setSelectedCategory("")}
-                  className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${
-                    selectedCategory === ""
-                      ? 'bg-[#ffd900] text-black font-bold'
-                      : 'bg-white/10 text-white hover:bg-white/20'
-                  }`}
-                >
-                  <span>Semua Artikel</span>
-                  <Icon icon="solar:alt-arrow-right-linear" className="w-4 h-4" />
-                </button>
-                {categories.slice(0, 4).map((cat) => (
+            {/* Box 3: Visual/Video Card (Middle Bottom) */}
+            {post3 && (
+              <Link href={`/blog/${post3.slug}`} className="lg:col-span-4 lg:row-span-1 relative rounded-[2.5rem] overflow-hidden group shadow-lg hover:shadow-xl transition-all flex flex-col justify-end p-6 lg:p-8">
+                <Image
+                  src={post3._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
+                  alt={getRenderedTitle(post3)}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                
+                {/* Play Button Overlay */}
+                <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                  <div className="w-14 h-14 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white">
+                    <Icon icon="solar:play-bold" width={24} className="ml-1" />
+                  </div>
+                </div>
+
+                <div className="relative z-10 mt-auto">
+                  <div className="flex items-center gap-2 text-xs font-bold text-white/80 mb-2">
+                    <span>{formatDate(post3.date)}</span>
+                    <span className="w-1 h-1 rounded-full bg-white/50" />
+                    <span>5 Min</span>
+                  </div>
+                  <h3 className="text-xl font-black text-white leading-[1.1] tracking-tight uppercase line-clamp-2">
+                    {getRenderedTitle(post3)}
+                  </h3>
+                </div>
+              </Link>
+            )}
+
+            {/* Box 4: Vertical Card (Right Top) */}
+            {post4 && (
+              <Link href={`/blog/${post4.slug}`} className="lg:col-span-3 lg:row-span-1 rounded-[2.5rem] bg-[#cce2ec] dark:bg-neutral-800 p-6 flex flex-col group shadow-lg hover:shadow-xl transition-all overflow-hidden relative">
+                <div className="flex items-center gap-2 text-xs font-bold text-gray-600 dark:text-gray-400 mb-2 z-10">
+                  <span>{post4._embedded?.['wp:term']?.[0]?.[0]?.name || 'Info'}</span>
+                  <span className="w-1 h-1 rounded-full bg-gray-400" />
+                  <span>{formatDate(post4.date)}</span>
+                </div>
+                <h3 className="text-xl lg:text-2xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3 mb-4 z-10">
+                  {getRenderedTitle(post4)}
+                </h3>
+                
+                {/* Image fills the bottom */}
+                <div className="absolute bottom-0 left-0 right-0 h-3/5 rounded-t-[1.5rem] overflow-hidden mt-auto">
+                  <Image
+                    src={post4._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
+                    alt={getRenderedTitle(post4)}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 25vw"
+                  />
+                </div>
+              </Link>
+            )}
+
+            {/* Box 5: Categories / Tags Grid (Right Bottom) */}
+            <div className="lg:col-span-3 lg:row-span-1 rounded-[2.5rem] bg-[#e6d5f7] dark:bg-[#224297] p-6 lg:p-8 flex flex-col justify-between shadow-lg relative overflow-hidden group">
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl" />
+              
+              <div className="flex flex-wrap gap-2 relative z-10">
+                {categories.slice(0, 8).map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.slug)}
-                    className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center justify-between ${
-                      selectedCategory === cat.slug
-                        ? 'bg-[#ffd900] text-black font-bold'
-                        : 'bg-white/10 text-white hover:bg-white/20'
-                    }`}
+                    className="bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-[#ffd900] text-gray-900 dark:text-white hover:text-[#224297] dark:hover:text-black text-xs font-bold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
                   >
-                    <span>{cat.name}</span>
-                    <Icon icon="solar:alt-arrow-right-linear" className="w-4 h-4" />
+                    {cat.name}
                   </button>
                 ))}
               </div>
+
+              <div className="flex justify-between items-end mt-6 relative z-10">
+                <span className="font-bold text-gray-900 dark:text-white text-sm">View All Categories</span>
+                <button 
+                  onClick={() => setSelectedCategory("")}
+                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-900 hover:scale-110 hover:bg-[#ffd900] transition-all shadow-md"
+                >
+                  <Icon icon="solar:arrow-right-linear" width={20} />
+                </button>
+              </div>
             </div>
+
           </div>
         </div>
       </div>
 
-      {/* === ASYMMETRIC BENTO GRID ARTICLES === */}
-      <div className="blog-wrap font-dm bg-gray-50">
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:py-16 py-12">
+      {/* === RECENT BLOG POSTS GRID === */}
+      <div id="semua-artikel" className="blog-wrap font-dm bg-white dark:bg-neutral-950">
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-20 py-16">
 
           {/* Section Header */}
-          <div className="mb-10">
-            <h2 className="lg:text-4xl md:text-3xl text-2xl font-bold text-gray-900 mb-2">
-              Semua Artikel
-            </h2>
-            <p className="text-gray-500 text-sm">
-              {filteredPosts.length} artikel tersedia
-            </p>
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <h2 className="lg:text-4xl md:text-3xl text-2xl font-black text-gray-900 dark:text-white mb-2 tracking-tight">
+                Artikel Terbaru
+              </h2>
+              <p className="text-gray-500 dark:text-gray-400 text-sm font-medium">
+                {filteredPosts.length} artikel tersedia
+              </p>
+            </div>
+            <Link 
+              href="/blog" 
+              className="hidden md:inline-flex items-center justify-center bg-blue-50 dark:bg-[#224297]/10 text-[#224297] dark:text-[#ffd900] font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#224297] hover:text-white dark:hover:bg-[#ffd900] dark:hover:text-black transition-colors"
+            >
+              Lihat Semua
+            </Link>
           </div>
 
-          {/* === ASYMMETRIC BENTO GRID === */}
-          {bentoPosts.length > 0 && (
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-6 auto-rows-auto">
-
-              {/* Row 1: Large Card (Left) + 2 Medium Cards (Right) */}
-              <div className="lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 lg:auto-rows-[320px]">
-                {bentoPosts[0] && (
-                  <Link
-                    href={`/blog/${bentoPosts[0].slug}`}
-                    className="relative rounded-[1.5rem] overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500 min-h-[280px] lg:min-h-full"
-                  >
+          {/* === 3-COLUMN UNIFORM GRID === */}
+          {bentoPosts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+              {bentoPosts.map((post) => (
+                <Link
+                  key={post.id}
+                  href={`/blog/${post.slug}`}
+                  className="flex flex-col group"
+                >
+                  {/* Image */}
+                  <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 bg-gray-100 dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800">
                     <Image
-                      src={bentoPosts[0]._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
-                      alt={getRenderedTitle(bentoPosts[0])}
+                      src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
+                      alt={getRenderedTitle(post)}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                      sizes="(max-width: 1024px) 100vw, 66vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                    <div className="absolute inset-x-0 bottom-0 p-5 lg:p-6 z-10">
-                      <div className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-xl p-4 lg:p-5">
-                        <span className="inline-block bg-[#ffd900] text-black text-xs font-bold px-3 py-1 rounded-full mb-2">
-                          Artikel
-                        </span>
-                        <h3 className="text-white font-bold text-lg lg:text-xl leading-tight line-clamp-2 group-hover:text-[#ffd900] transition-colors">
-                          {getRenderedTitle(bentoPosts[0])}
-                        </h3>
-                        <p className="text-white/70 text-sm mt-2 line-clamp-2">
-                          {getRenderedExcerpt(bentoPosts[0])}
-                        </p>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex flex-col flex-1">
+                    {/* Title with Arrow */}
+                    <div className="flex justify-between items-start gap-4 mb-3">
+                      <h3 className="text-xl font-black text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
+                        {getRenderedTitle(post)}
+                      </h3>
+                      <Icon 
+                        icon="solar:arrow-right-up-linear" 
+                        className="w-6 h-6 text-gray-400 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors flex-shrink-0 mt-0.5" 
+                      />
+                    </div>
+
+                    {/* Excerpt */}
+                    <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-3 mb-6">
+                      {getRenderedExcerpt(post)}
+                    </p>
+
+                    {/* Meta Row */}
+                    <div className="flex items-center gap-3 mt-auto pt-4">
+                      <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200 dark:bg-neutral-800 flex-shrink-0">
+                        <Image src="/images/logo-icon.png" alt="Admin" width={32} height={32} className="object-cover p-1" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                      </div>
+                      <div className="flex items-center text-xs font-bold text-gray-900 dark:text-white">
+                        <span>Admin Wiguna</span>
+                        <span className="mx-2 text-gray-300 dark:text-gray-600">•</span>
+                        <span>{formatDate(post.date)}</span>
                       </div>
                     </div>
-                  </Link>
-                )}
-
-                <div className="flex flex-col gap-4 lg:gap-6">
-                  {bentoPosts.slice(1, 3).map((post) => (
-                    <Link
-                      key={post.id}
-                      href={`/blog/${post.slug}`}
-                      className="relative rounded-[1.5rem] overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500 flex-1 min-h-[140px]"
-                    >
-                      <Image
-                        src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
-                        alt={getRenderedTitle(post)}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 1024px) 100vw, 33vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                      <div className="absolute inset-0 flex flex-col justify-end p-4 z-10">
-                        <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-4">
-                          <span className="inline-block bg-[#224297] text-white text-xs font-bold px-3 py-1 rounded-full mb-2">
-                            Tips
-                          </span>
-                          <h3 className="text-white font-bold text-sm lg:text-base leading-tight line-clamp-2 group-hover:text-[#ffd900] transition-colors">
-                            {getRenderedTitle(post)}
-                          </h3>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              {/* Right Column: 3 Small Cards */}
-              <div className="lg:col-span-1 flex flex-col gap-4 lg:gap-6">
-                {bentoPosts.slice(3, 6).map((post) => (
-                  <Link
-                    key={post.id}
-                    href={`/blog/${post.slug}`}
-                    className="relative rounded-[1.5rem] overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500 min-h-[160px] bg-gradient-to-br from-[#224297] to-[#1a356d]"
-                  >
-                    <div className="absolute -top-12 -right-12 w-32 h-32 bg-white/10 rounded-full blur-xl" />
-                    <div className="absolute inset-0 flex flex-col justify-between p-4 z-10">
-                      <div className="flex items-start justify-between">
-                        <span className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full">
-                          <Icon icon="solar:star-bold" className="w-4 h-4 text-[#ffd900]" />
-                          <span className="text-white/90 text-xs font-semibold">Featured</span>
-                        </span>
-                        <div className="w-8 h-8 rounded-full bg-[#ffd900] flex items-center justify-center">
-                          <Icon icon="solar:arrow-right-linear" className="w-4 h-4 text-black" />
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-white font-bold text-sm leading-tight line-clamp-2 group-hover:text-[#ffd900] transition-colors">
-                          {getRenderedTitle(post)}
-                        </h3>
-                        <p className="text-white/60 text-xs mt-2">
-                          {formatDate(post.date)}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-
-              {/* Row 2: 4 Equal Cards */}
-              {bentoPosts.slice(6, 10).length > 0 && (
-                <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-                  {bentoPosts.slice(6, 10).map((post) => (
-                    <Link
-                      key={post.id}
-                      href={`/blog/${post.slug}`}
-                      className="relative rounded-[1.5rem] overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500 aspect-[4/3]"
-                    >
-                      <Image
-                        src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
-                        alt={getRenderedTitle(post)}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                      <div className="absolute inset-x-0 bottom-0 p-4 z-10">
-                        <div className="backdrop-blur-md bg-white/10 border border-white/20 rounded-xl p-4">
-                          <h3 className="text-white font-bold text-sm leading-tight line-clamp-2 group-hover:text-[#ffd900] transition-colors">
-                            {getRenderedTitle(post)}
-                          </h3>
-                          <p className="text-white/60 text-xs mt-2">
-                            {formatDate(post.date)}
-                          </p>
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-
-              {/* Row 3: Split Cards */}
-              {bentoPosts.slice(10, 14).length > 0 && (
-                <div className="lg:col-span-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-                  {bentoPosts.slice(10, 14).map((post) => (
-                    <Link
-                      key={post.id}
-                      href={`/blog/${post.slug}`}
-                      className="relative rounded-[1.5rem] overflow-hidden group shadow-lg hover:shadow-xl transition-all duration-500 flex flex-col lg:flex-row"
-                    >
-                      <div className="relative w-full lg:w-2/5 aspect-video lg:aspect-auto min-h-[160px] lg:min-h-full">
-                        <Image
-                          src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
-                          alt={getRenderedTitle(post)}
-                          fill
-                          className="object-cover transition-transform duration-700 group-hover:scale-105"
-                          sizes="(max-width: 1024px) 100vw, 40vw"
-                        />
-                      </div>
-                      <div className="w-full lg:w-3/5 bg-white p-5 flex flex-col justify-center">
-                        <span className="inline-block bg-[#224297]/10 text-[#224297] text-xs font-bold px-3 py-1 rounded-full mb-3 w-fit">
-                          Panduan
-                        </span>
-                        <h3 className="text-gray-900 font-bold text-base leading-tight line-clamp-2 group-hover:text-[#224297] transition-colors">
-                          {getRenderedTitle(post)}
-                        </h3>
-                        <p className="text-gray-500 text-sm mt-2 line-clamp-2">
-                          {getRenderedExcerpt(post)}
-                        </p>
-                        <div className="flex items-center gap-2 mt-4 text-[#224297] font-semibold text-sm group-hover:gap-3 transition-all">
-                          Baca
-                          <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
-                        </div>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              )}
-
-              {/* Load More Button */}
-              {bentoPosts.length >= 10 && (
-                <div className="lg:col-span-3 flex text-center justify-center mt-8">
-                  <button className="inline-flex items-center justify-center gap-3 px-8 py-4 text-white text-base font-bold bg-[#224297] hover:bg-[#1a356d] rounded-full transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 group">
-                    Muat Lebih Banyak
-                    <Icon icon="solar:arrow-down-linear" className="w-5 h-5 group-hover:translate-y-1 transition-transform" />
-                  </button>
-                </div>
-              )}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-gray-50 dark:bg-neutral-900/50 rounded-[2rem] border-2 border-dashed border-gray-200 dark:border-neutral-800">
+              <Icon icon="solar:document-text-linear" className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
+              <h3 className="text-xl font-bold text-gray-500 dark:text-gray-400">Tidak ada artikel ditemukan.</h3>
+              <p className="text-gray-400 dark:text-gray-500 mt-2">Coba pilih kategori lain.</p>
             </div>
           )}
 
-          {/* Empty State */}
-          {bentoPosts.length === 0 && (
-            <div className="text-center py-20 bg-white rounded-2xl border-2 border-dashed border-gray-200">
-              <Icon icon="solar:document-text-linear" className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <h3 className="text-xl font-bold text-gray-500">Tidak ada artikel ditemukan.</h3>
-              <p className="text-gray-400 mt-2">Coba pilih kategori lain.</p>
+          {/* Load More Button */}
+          {bentoPosts.length >= 10 && (
+            <div className="flex justify-center mt-16 pt-8 border-t border-gray-100 dark:border-neutral-800">
+              <button className="inline-flex items-center justify-center gap-3 px-8 py-4 text-gray-900 dark:text-white text-sm font-bold border-2 border-gray-200 dark:border-neutral-700 hover:border-[#224297] dark:hover:border-[#ffd900] rounded-[1rem] transition-all hover:bg-gray-50 dark:hover:bg-neutral-900">
+                Muat Lebih Banyak Artikel
+                <Icon icon="solar:arrow-down-linear" className="w-5 h-5" />
+              </button>
             </div>
           )}
+
         </div>
       </div>
     </>

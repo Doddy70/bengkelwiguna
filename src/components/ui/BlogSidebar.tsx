@@ -15,38 +15,55 @@ interface BlogSidebarProps {
 export default function BlogSidebar({ categories, relatedPosts }: BlogSidebarProps) {
   return (
     <aside className="w-full space-y-8">
-      {/* Categories */}
+      
+      {/* 1. Share on Social Media */}
+      <div className="bg-gray-50 dark:bg-neutral-900/50 p-6 lg:p-8 rounded-[2rem] border border-gray-100 dark:border-neutral-800">
+        <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-6">
+          Bagikan Artikel Ini
+        </h3>
+        <div className="flex gap-4">
+          <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#224297] hover:border-[#224297] hover:bg-[#224297]/5 transition-all">
+            <Icon icon="fa6-brands:instagram" width={18} />
+          </a>
+          <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-black hover:border-black hover:bg-black/5 dark:hover:text-white dark:hover:border-white transition-all">
+            <Icon icon="fa6-brands:x-twitter" width={18} />
+          </a>
+          <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#1877F2] hover:border-[#1877F2] hover:bg-[#1877F2]/5 transition-all">
+            <Icon icon="fa6-brands:facebook-f" width={18} />
+          </a>
+          <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#0A66C2] hover:border-[#0A66C2] hover:bg-[#0A66C2]/5 transition-all">
+            <Icon icon="fa6-brands:linkedin-in" width={18} />
+          </a>
+          <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#224297] hover:border-[#224297] hover:bg-[#224297]/5 transition-all ml-auto">
+            <Icon icon="solar:forward-bold" width={18} />
+          </a>
+        </div>
+      </div>
+
+      {/* 2. All Tags (Categories as Pills) */}
       {categories.length > 0 && (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-            <Icon icon="solar:folder-list-bold" className="text-brand-blue" width={24} />
-            Kategori
+        <div className="bg-white dark:bg-neutral-900 p-6 lg:p-8 rounded-[2rem] border border-gray-100 dark:border-neutral-800 shadow-sm">
+          <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-6">
+            Kategori Topik
           </h3>
-          <ul className="space-y-3">
+          <div className="flex flex-wrap gap-3">
             {categories.map((cat) => (
-              <li key={cat.id}>
-                <Link 
-                  href={`/blog?category=${cat.id}`}
-                  className="flex justify-between items-center group"
-                >
-                  <span className="text-gray-700 group-hover:text-brand-blue transition-colors font-medium">
-                    {cat.name}
-                  </span>
-                  <span className="bg-gray-100 text-gray-500 text-xs px-2 py-1 rounded-full group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                    {cat.count}
-                  </span>
-                </Link>
-              </li>
+              <Link 
+                key={cat.id}
+                href={`/blog?category=${cat.id}`}
+                className="bg-gray-50 dark:bg-neutral-800 hover:bg-[#224297] dark:hover:bg-[#ffd900] text-gray-700 dark:text-gray-300 hover:text-white dark:hover:text-black px-4 py-2 rounded-full text-xs font-bold transition-colors border border-gray-100 dark:border-neutral-700 hover:border-transparent"
+              >
+                {cat.name}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
       )}
 
-      {/* Related Articles */}
+      {/* 3. Related Blogs */}
       {relatedPosts.length > 0 && (
-        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-          <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-            <Icon icon="solar:document-add-bold" className="text-brand-blue" width={24} />
+        <div className="bg-white dark:bg-neutral-900 p-6 lg:p-8 rounded-[2rem] border border-gray-100 dark:border-neutral-800 shadow-sm">
+          <h3 className="text-sm font-bold text-gray-900 dark:text-white mb-6">
             Artikel Terkait
           </h3>
           <div className="space-y-6">
@@ -54,8 +71,8 @@ export default function BlogSidebar({ categories, relatedPosts }: BlogSidebarPro
               const featuredImg = getFeaturedImage(post);
               const title = typeof post.title === 'string' ? post.title : post.title?.rendered;
               return (
-                <Link key={post.id} href={`/blog/${post.slug}`} className="flex gap-4 group">
-                  <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-gray-50">
+                <Link key={post.id} href={`/blog/${post.slug}`} className="flex gap-5 group items-center">
+                  <div className="relative w-24 h-20 flex-shrink-0 rounded-[1rem] overflow-hidden bg-gray-50 dark:bg-neutral-800">
                     {featuredImg ? (
                       <Image
                         src={featuredImg}
@@ -64,18 +81,19 @@ export default function BlogSidebar({ categories, relatedPosts }: BlogSidebarPro
                         className="object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-gray-100">
-                         <Icon icon="solar:document-bold" className="text-gray-300" width={32} />
+                      <div className="w-full h-full flex items-center justify-center">
+                         <Icon icon="solar:document-bold" className="text-gray-300 dark:text-gray-600" width={24} />
                       </div>
                     )}
                   </div>
-                  <div className="flex flex-col justify-center">
-                    <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:text-brand-blue transition-colors leading-snug">
+                  <div className="flex flex-col justify-center flex-1">
+                    <div className="flex items-center gap-2 text-[11px] text-gray-500 dark:text-gray-400 mb-1.5 font-bold uppercase">
+                      <Icon icon="solar:calendar-linear" width={14} />
+                      <span>{formatDate(post.date)}</span>
+                    </div>
+                    <h4 className="text-sm font-bold text-gray-900 dark:text-white line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors leading-snug">
                       {title}
                     </h4>
-                    <span className="text-[10px] text-gray-400 mt-1 uppercase font-bold tracking-wider">
-                      {formatDate(post.date)}
-                    </span>
                   </div>
                 </Link>
               );
@@ -84,59 +102,36 @@ export default function BlogSidebar({ categories, relatedPosts }: BlogSidebarPro
         </div>
       )}
 
-      {/* Promo Banner */}
-      <div className="relative rounded-2xl overflow-hidden group aspect-[4/5] shadow-xl">
-        <div className="absolute inset-0 bg-brand-blue">
-            <div className="absolute inset-0 opacity-20 bg-[url('https://backend.bengkelwiguna.com/wp-content/uploads/2025/12/mesin-mobil-lemot.jpg')] bg-cover bg-center"></div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-blue via-brand-blue/60 to-transparent p-8 flex flex-col justify-end text-white">
-          <div className="w-12 h-1 bg-brand-gold mb-4"></div>
-          <h3 className="text-2xl font-black mb-3 italic tracking-tight leading-none uppercase">
-            Promo Servis <br/>Bulan Ini
-          </h3>
-          <p className="text-sm text-white/70 mb-6 font-medium">Dapatkan diskon hingga 20% untuk Tune Up & Ganti Oli.</p>
-          <Link
-            href="/promosi"
-            className="bg-brand-gold text-brand-blue text-center py-4 rounded-xl font-black uppercase tracking-widest text-xs hover:bg-white transition-all shadow-lg shadow-brand-gold/20"
-          >
-            Lihat Promo
-          </Link>
-        </div>
-      </div>
-
-      {/* Services Quick Links */}
-      <div className="bg-gray-50 p-6 rounded-xl shadow-sm border border-gray-100">
-        <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-          <Icon icon="solar:settings-bold" className="text-brand-blue" width={24} />
-          Layanan Populer
+      {/* 4. Newsletter Box */}
+      <div className="bg-gray-50 dark:bg-neutral-900/50 p-6 lg:p-8 rounded-[2rem] border border-gray-100 dark:border-neutral-800 flex flex-col items-center text-center">
+        <h3 className="text-2xl lg:text-3xl font-black text-gray-900 dark:text-white mb-4 leading-tight">
+          Berlangganan Promo
         </h3>
-        <ul className="space-y-3">
-          <li>
-            <Link href="/services" className="flex items-center gap-3 text-gray-700 hover:text-brand-blue transition-colors font-medium group">
-              <span className="w-2 h-2 bg-brand-gold rounded-full"></span>
-              Service Berkala
-            </Link>
-          </li>
-          <li>
-            <Link href="/layanan-spesialis" className="flex items-center gap-3 text-gray-700 hover:text-brand-blue transition-colors font-medium group">
-              <span className="w-2 h-2 bg-brand-gold rounded-full"></span>
-              Scanner Komputer
-            </Link>
-          </li>
-          <li>
-            <Link href="/layanan-spesialis" className="flex items-center gap-3 text-gray-700 hover:text-brand-blue transition-colors font-medium group">
-              <span className="w-2 h-2 bg-brand-gold rounded-full"></span>
-              Semi Overhaul
-            </Link>
-          </li>
-          <li>
-            <Link href="/lokasi" className="flex items-center gap-3 text-gray-700 hover:text-brand-blue transition-colors font-medium group">
-              <span className="w-2 h-2 bg-brand-gold rounded-full"></span>
-              Kunjungi Bengkel
-            </Link>
-          </li>
-        </ul>
+        <p className="text-gray-600 dark:text-gray-400 text-sm font-medium mb-8 leading-relaxed">
+          Dapatkan wawasan ahli tentang perawatan mobil, tips edukasi otomotif, dan info diskon spesial Bengkel Wiguna ke email Anda.
+        </p>
+        
+        <form className="w-full space-y-3" onSubmit={(e) => e.preventDefault()}>
+          <div className="relative w-full">
+            <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+              <Icon icon="solar:letter-linear" width={20} className="text-gray-400" />
+            </div>
+            <input 
+              type="email" 
+              placeholder="contoh@email.com" 
+              className="w-full bg-white dark:bg-neutral-950 border border-gray-200 dark:border-neutral-800 text-gray-900 dark:text-white text-sm rounded-[1rem] pl-12 pr-4 py-4 focus:outline-none focus:border-[#224297] dark:focus:border-[#ffd900] transition-colors shadow-sm"
+              required
+            />
+          </div>
+          <button 
+            type="submit"
+            className="w-full bg-white dark:bg-neutral-800 border border-gray-200 dark:border-neutral-700 text-gray-900 dark:text-white text-sm font-bold rounded-[1rem] py-4 hover:bg-[#224297] hover:text-white dark:hover:bg-[#ffd900] dark:hover:text-black hover:border-transparent transition-all shadow-sm"
+          >
+            Berlangganan Sekarang
+          </button>
+        </form>
       </div>
+      
     </aside>
   );
 }

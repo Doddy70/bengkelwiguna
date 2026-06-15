@@ -1,13 +1,3 @@
-/**
- * YoutubeEducation — High Fidelity Restoration
- * Optimized version with lazy loading for Splide and GLightbox
- *
- * ✅ PERFORMANCE OPTIMIZATION:
- * - Dynamic import of Splide and GLightbox
- * - Intersection Observer for lazy loading
- * - Reduced motion support
- */
-
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
@@ -64,9 +54,9 @@ export default function YoutubeEducation() {
   const [SplideSlideComponent, setSplideSlideComponent] = useState<React.ComponentType<any> | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
+  const splideRef = useRef<any>(null);
 
   useEffect(() => {
-    // Lazy load Splide and GLightbox when section is visible
     const loadLibraries = async () => {
       try {
         const [splideModule, glightboxModule] = await Promise.all([
@@ -74,10 +64,7 @@ export default function YoutubeEducation() {
           import("glightbox")
         ]);
 
-        // Import Splide CSS from the correct path
         await import("@splidejs/splide/dist/css/splide.min.css");
-
-        // Import GLightbox CSS
         await import("glightbox/dist/css/glightbox.css");
 
         const { Splide, SplideSlide } = splideModule;
@@ -87,7 +74,6 @@ export default function YoutubeEducation() {
         setSplideSlideComponent(() => SplideSlide);
         setIsLoaded(true);
 
-        // Initialize GLightbox after a small delay
         setTimeout(() => {
           GLightbox({
             selector: ".video-glightbox",
@@ -99,7 +85,6 @@ export default function YoutubeEducation() {
       }
     };
 
-    // Use Intersection Observer for lazy loading
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -113,7 +98,6 @@ export default function YoutubeEducation() {
     if (sectionRef.current) {
       observer.observe(sectionRef.current);
     } else {
-      // Fallback: load immediately
       loadLibraries();
     }
 
@@ -121,40 +105,29 @@ export default function YoutubeEducation() {
   }, []);
 
   const splideOptions = {
-    type: "loop" as const,
-    perPage: 3,
+    type: "loop",
+    perPage: 4, 
     gap: "24px",
-    arrows: true,
+    arrows: false,
     pagination: false,
     breakpoints: {
+      1280: { perPage: 3 },
       1024: { perPage: 2 },
       640: { perPage: 1 },
     },
-    // ✅ Performance options
     rewind: false,
     updateOnMove: true,
     autoWidth: false,
     autoHeight: false,
   };
 
-  // ✅ Skeleton loading state
   if (!isLoaded || !SplideComponent || !SplideSlideComponent) {
     return (
-      <section ref={sectionRef} className="py-24 bg-white overflow-hidden">
-        <div className="max-w-screen-xl mx-auto boxed-layout-gap">
-          <div className="animate-pulse">
-            <div className="h-6 bg-gray-200 rounded w-32 mb-4"></div>
-            <div className="h-12 bg-gray-200 rounded w-96 mb-12"></div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {[1, 2, 3].map((i) => (
-                <div key={i}>
-                  <div className="h-64 bg-gray-100 rounded-xl mb-4"></div>
-                  <div className="h-4 bg-gray-200 rounded w-24 mb-2"></div>
-                  <div className="h-6 bg-gray-200 rounded w-full"></div>
-                </div>
-              ))}
-            </div>
-          </div>
+      <section ref={sectionRef} className="py-24 bg-[#EFEFE9] overflow-hidden min-h-[600px] flex items-center justify-center">
+        <div className="animate-pulse flex gap-6">
+            <div className="w-64 h-96 bg-gray-200 rounded-[2rem]"></div>
+            <div className="w-64 h-96 bg-gray-200 rounded-[2rem]"></div>
+            <div className="w-64 h-96 bg-gray-200 rounded-[2rem]"></div>
         </div>
       </section>
     );
@@ -164,71 +137,73 @@ export default function YoutubeEducation() {
   const Slide = SplideSlideComponent;
 
   return (
-    <section ref={sectionRef} className="py-24 bg-white overflow-hidden">
-      <div className="max-w-screen-xl mx-auto boxed-layout-gap">
-
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-[#EFEFE9] dark:bg-[#1a1a1a] overflow-hidden font-dm transition-colors duration-500">
+      <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Header Section */}
-        <div className="flex justify-between items-end mb-12">
-          <div className="flex flex-col gap-2 text-left">
-            <span className="text-brand-blue font-bold uppercase tracking-widest text-sm">
-              YOUTUBE PLAYLIST
-            </span>
-            <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
-              Edukasi & Tips <span className="text-brand-blue">Perawatan Mobil</span>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 lg:mb-16 gap-6 border-b border-gray-300 dark:border-gray-800 pb-8">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold text-gray-900 dark:text-white tracking-tight leading-none uppercase">
+                Youtube Playlist
             </h2>
-          </div>
-
-          <div className="hidden md:flex gap-4">
-            <button className="splide__arrow--prev-custom w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center text-gray-400 hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all">
-              <Icon icon="solar:alt-arrow-left-linear" width={24} />
-            </button>
-            <button className="splide__arrow--next-custom w-12 h-12 rounded-full border-2 border-gray-100 flex items-center justify-center text-gray-400 hover:bg-brand-blue hover:text-white hover:border-brand-blue transition-all">
-              <Icon icon="solar:alt-arrow-right-linear" width={24} />
-            </button>
-          </div>
+            <a href="https://www.youtube.com/@bengkelwiguna" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold tracking-widest uppercase hover:text-brand-blue dark:hover:text-[#ffd900] dark:text-gray-300 transition-colors pb-2">
+                Show More <Icon icon="solar:alt-arrow-right-linear" width={18} />
+            </a>
         </div>
 
-        {/* Video Slider */}
-        <div className="w-full">
-          <Splide
-            options={splideOptions}
-          >
-            {videoPlaylist.map((video) => (
-              <Slide key={video.id}>
-                <a
-                  href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
-                  className="video-glightbox block group"
+        {/* Carousel Section */}
+        <div className="w-full relative">
+            <Splide
+                ref={splideRef}
+                options={splideOptions}
+                className="!pb-0" 
+            >
+                {/* All Videos Mapped Purely as Thumbnails */}
+                {videoPlaylist.map((video) => (
+                    <Slide key={video.id}>
+                        <a href={`https://www.youtube.com/watch?v=${video.youtubeId}`} className="video-glightbox group w-full aspect-[9/13] relative rounded-[2rem] overflow-hidden block">
+                            <Image src={video.thumbnail} alt={video.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0" />
+                            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors"></div>
+                            
+                            {/* WATCH Pill */}
+                            <div className="absolute top-6 right-6 bg-white rounded-full px-4 py-2 flex items-center gap-2 shadow-lg hover:scale-105 transition-transform">
+                                <span className="text-xs font-bold uppercase tracking-widest text-gray-900">WATCH</span>
+                                <Icon icon="solar:alt-arrow-right-linear" width={16} className="text-gray-900" />
+                            </div>
+                            
+                            {/* Title */}
+                            <div className="absolute bottom-8 left-6 right-6">
+                                <h3 className="text-white text-2xl lg:text-3xl font-medium line-clamp-4 leading-tight">
+                                    {video.title}
+                                </h3>
+                            </div>
+                        </a>
+                    </Slide>
+                ))}
+
+            </Splide>
+        </div>
+
+        {/* Footer Section: Description & Arrows */}
+        <div className="mt-12 lg:mt-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+            <p className="text-gray-600 dark:text-gray-400 max-w-md text-lg leading-relaxed">
+                Temukan berbagai sensasi baru, tonton tips perawatan mobil eksklusif, edukasi mesin, dan nikmati videonya secara gratis.
+            </p>
+
+            {/* Custom Carousel Navigation */}
+            <div className="flex gap-4">
+                <button 
+                    onClick={() => splideRef.current?.splide?.go('<')}
+                    className="w-16 h-16 rounded-full border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white transition-colors"
                 >
-                  {/* ✅ CLS PREVENTION: Explicit aspect ratio */}
-                  <div className="relative w-full" style={{ aspectRatio: '16/9' }}>
-                    <Image
-                      src={video.thumbnail}
-                      alt={video.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 400px"
-                      className="object-cover group-hover:scale-110 transition-transform duration-700 rounded-xl"
-                      loading="lazy"
-                      decoding="async"
-                    />
-
-                    {/* Play Button Overlay */}
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-brand-blue/30 transition-colors flex items-center justify-center z-10 rounded-xl">
-                      <div className="w-16 h-16 rounded-full bg-brand-blue/90 border-2 border-brand-gold flex items-center justify-center text-white shadow-2xl transform group-hover:scale-110 transition-transform">
-                        <Icon icon="solar:play-bold" width={24} className="ml-1" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2 mt-4">
-                    <span className="text-brand-blue font-bold text-xs uppercase tracking-wider">{video.category}</span>
-                    <h4 className="text-lg font-bold text-gray-900 leading-snug group-hover:text-brand-blue transition-colors">
-                      {video.title}
-                    </h4>
-                  </div>
-                </a>
-              </Slide>
-            ))}
-          </Splide>
+                    <Icon icon="solar:alt-arrow-left-linear" width={24} />
+                </button>
+                <button 
+                    onClick={() => splideRef.current?.splide?.go('>')}
+                    className="w-16 h-16 rounded-full bg-[#DDFB88] border-2 border-[#DDFB88] flex items-center justify-center text-gray-900 hover:bg-[#cbe878] hover:border-[#cbe878] transition-colors"
+                >
+                    <Icon icon="solar:alt-arrow-right-linear" width={24} />
+                </button>
+            </div>
         </div>
 
       </div>

@@ -11,7 +11,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, Link } from "@nextui-org/react";
+import Link from "next/link";
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { stripHtml } from "@/lib/wordpress";
@@ -112,55 +112,56 @@ export default function SpesialisSlider({ items }: SpesialisSliderProps) {
 
           return (
             <Slide key={item.id || index}>
-              <Link href={`/services/${item.slug}`} className="block w-full">
-                <Card
-                  isPressable
-                  className="w-full brand-rounded overflow-hidden group border-none bg-gray-100"
-                  shadow="sm"
-                >
-                  <CardBody className="p-0 relative" style={{ aspectRatio: '3/4' }}>
-                    {/* Image Background */}
-                    <div className="absolute inset-0 z-0 bg-brand-blue/5">
-                      {featuredImage ? (
-                        <Image
-                          src={featuredImage}
-                          alt={typeof title === 'string' ? title : 'Layanan Bengkel Wiguna'}
-                          fill
-                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                          className="object-cover group-hover:scale-110 transition-transform duration-700"
-                          loading="lazy"
-                          quality={75}
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <Icon icon="solar:transmission-bold" className="text-brand-blue/20" width={80} />
-                        </div>
-                      )}
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10 opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
+              <Link href={`/services/${item.slug}`} className="block w-full h-full outline-none">
+                <div className="relative rounded-[2.5rem] p-3 group shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.1)] hover:-translate-y-1 transition-all duration-500 backdrop-blur-2xl bg-gradient-to-b from-white/90 to-white/40 dark:from-neutral-800/80 dark:to-neutral-900/40 border border-white/80 dark:border-white/10 flex flex-col h-full">
+                  
+                  {/* Image Area with padding inside the glass card */}
+                  <div className="relative w-full aspect-[4/3] sm:aspect-[16/10] rounded-[1.5rem] overflow-hidden shadow-inner">
+                    {featuredImage ? (
+                      <Image
+                        src={featuredImage}
+                        alt={typeof title === 'string' ? title : 'Layanan Bengkel Wiguna'}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                        quality={75}
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center bg-black/5 dark:bg-neutral-800/40">
+                        <Icon icon="solar:transmission-bold" className="text-[#224297]/20" width={80} />
+                      </div>
+                    )}
+                  </div>
 
-                    {/* Content Overlay */}
-                    <div className="absolute bottom-0 left-0 w-full p-8 z-20 flex flex-col gap-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-10 h-1 bg-brand-gold brand-rounded" />
-                        <span className="text-white/80 text-xs font-bold uppercase tracking-widest">
+                  {/* Text Area */}
+                  <div className="px-4 py-6 md:px-5 flex flex-col justify-between flex-1 relative z-10">
+                    <div>
+                      <div className="flex items-center gap-2 mb-3">
+                        <div className="w-8 h-1 bg-[#ffd900] rounded-full shadow-[0_2px_4px_rgba(255,217,0,0.3)]" />
+                        <span className="text-[#224297] dark:text-[#ffd900] text-[11px] font-bold uppercase tracking-widest">
                           Layanan Unggulan
                         </span>
                       </div>
-                      <h3 className="text-white text-2xl font-bold leading-tight line-clamp-2">
+                      
+                      <h3 className="text-gray-900 dark:text-white text-xl md:text-2xl font-bold leading-tight mb-3 line-clamp-2">
                         {title}
                       </h3>
-                      <p className="text-white/70 text-sm line-clamp-2 mb-2">
+                      
+                      <p className="text-gray-500 dark:text-gray-400 text-sm line-clamp-2 mb-6 font-medium">
                         {excerpt}
                       </p>
-                      <div className="flex items-center text-brand-gold font-bold text-sm group-hover:gap-3 transition-all duration-300">
-                        Selengkapnya
-                        <Icon icon="solar:arrow-right-linear" width={18} />
-                      </div>
                     </div>
-                  </CardBody>
-                </Card>
+                    
+                    {/* "Activity" Style CTA Button */}
+                    <div className="mt-auto flex items-center justify-between w-full bg-white/50 dark:bg-black/20 backdrop-blur-md border border-white/70 dark:border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8),0_4px_12px_rgba(0,0,0,0.03)] rounded-2xl px-5 py-3 group-hover:bg-white/80 dark:group-hover:bg-white/10 transition-colors duration-300">
+                      <span className="text-[#224297] dark:text-white font-bold text-sm">
+                        Selengkapnya
+                      </span>
+                      <Icon icon="solar:arrow-right-linear" width={20} className="text-gray-400 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] group-hover:translate-x-1 transition-all duration-300" />
+                    </div>
+                  </div>
+                </div>
               </Link>
             </Slide>
           );
