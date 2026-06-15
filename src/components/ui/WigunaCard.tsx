@@ -28,6 +28,7 @@ export interface WigunaCardProps {
   onButtonClick?: (e: React.MouseEvent) => void;
   onSecondaryClick?: (e: React.MouseEvent) => void;
   secondaryIcon?: string;
+  linkClassName?: string;
 }
 
 const WigunaCard: React.FC<WigunaCardProps> = ({
@@ -47,6 +48,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
   onButtonClick,
   onSecondaryClick,
   secondaryIcon = 'solar:heart-linear',
+  linkClassName,
 }) => {
   
   // Decide image aspect ratio classes
@@ -258,7 +260,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
   // If href is specified and there's no custom onClick, render as Next.js Link
   if (href && !onClick) {
     return (
-      <Link href={href} className="block h-full cursor-pointer">
+      <Link href={href} className={`block h-full cursor-pointer ${linkClassName || ''}`}>
         {renderCardContent()}
       </Link>
     );
@@ -266,7 +268,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
 
   // Otherwise, render as a clickable div
   return (
-    <div onClick={handleCardClick} className="block h-full cursor-pointer">
+    <div onClick={handleCardClick} className={`block h-full cursor-pointer ${linkClassName || ''}`}>
       {renderCardContent()}
     </div>
   );

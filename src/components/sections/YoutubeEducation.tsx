@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import { Icon } from "@iconify/react";
-import Image from "next/image";
+import WigunaCard from "@/components/ui/WigunaCard";
 
 const videoPlaylist = [
   {
@@ -157,28 +157,36 @@ export default function YoutubeEducation() {
                 options={splideOptions}
                 className="!pb-0" 
             >
-                {/* All Videos Mapped Purely as Thumbnails */}
-                {videoPlaylist.map((video) => (
-                    <Slide key={video.id}>
-                        <a href={`https://www.youtube.com/watch?v=${video.youtubeId}`} className="video-glightbox group w-full aspect-[9/13] relative rounded-[2rem] overflow-hidden block">
-                            <Image src={video.thumbnail} alt={video.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                            <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors"></div>
-                            
-                            {/* WATCH Pill */}
-                            <div className="absolute top-6 right-6 bg-white rounded-full px-4 py-2 flex items-center gap-2 shadow-lg hover:scale-105 transition-transform">
-                                <span className="text-xs font-bold uppercase tracking-widest text-gray-900">WATCH</span>
-                                <Icon icon="solar:alt-arrow-right-linear" width={16} className="text-gray-900" />
-                            </div>
-                            
-                            {/* Title */}
-                            <div className="absolute bottom-8 left-6 right-6">
-                                <h3 className="text-white text-2xl lg:text-3xl font-medium line-clamp-4 leading-tight">
-                                    {video.title}
-                                </h3>
-                            </div>
-                        </a>
-                    </Slide>
-                ))}
+                {/* All Videos Mapped as WigunaCard Overlay */}
+                {videoPlaylist.map((video) => {
+                    const handleWatch = (e: React.MouseEvent) => {
+                        e.preventDefault();
+                        const parent = e.currentTarget.closest('.video-glightbox') as HTMLElement;
+                        if (parent) {
+                            parent.click();
+                        }
+                    };
+
+                    return (
+                        <Slide key={video.id}>
+                            <WigunaCard
+                                href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+                                image={video.thumbnail}
+                                title={video.title}
+                                variant="overlay"
+                                tag={video.category}
+                                buttonText="Watch Video"
+                                secondaryIcon="solar:play-linear"
+                                linkClassName="video-glightbox block h-full"
+                                metaItems={[
+                                    { icon: 'solar:videocamera-record-linear', text: 'YouTube' }
+                                ]}
+                                onButtonClick={handleWatch}
+                                onSecondaryClick={handleWatch}
+                            />
+                        </Slide>
+                    );
+                })}
 
             </Splide>
         </div>
