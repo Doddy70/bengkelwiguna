@@ -16,10 +16,10 @@ export function generateLocalBusinessSchema() {
     "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Jl. K.H.M. Yusuf Raya No.22, Mekar Jaya, Kec. Sukmajaya",
+      "streetAddress": "Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji",
       "addressLocality": "Kota Depok",
       "addressRegion": "Jawa Barat",
-      "postalCode": "16411",
+      "postalCode": "16423",
       "addressCountry": "ID"
     },
     "geo": {
@@ -210,10 +210,10 @@ export function generateOrganizationSchema() {
     "email": "info@bengkelwiguna.com",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Jl. K.H.M. Yusuf Raya No.22, Mekar Jaya, Kec. Sukmajaya",
+      "streetAddress": "Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji",
       "addressLocality": "Kota Depok",
       "addressRegion": "Jawa Barat",
-      "postalCode": "16411",
+      "postalCode": "16423",
       "addressCountry": "ID"
     },
     "sameAs": [
