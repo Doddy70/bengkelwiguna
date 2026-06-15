@@ -96,7 +96,7 @@ export default function ContactPage() {
                                     </div>
                                     <div className="flex-1">
                                         <p className="font-bold text-white">Kunjungi Bengkel</p>
-                                        <p className="text-sm text-white/70">Jl. Margonda No.268, Kemiri Muka, Kota Depok</p>
+                                        <p className="text-sm text-white/70">Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423</p>
                                     </div>
                                     <ArrowUpRight className="w-5 h-5 text-[#ffd-yellow] group-hover:translate-x-1 transition-transform" />
                                 </a>

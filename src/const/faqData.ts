@@ -13,7 +13,7 @@ export const defaultFaqs = [
   },
   {
     question: "Bagaimana cara booking service di Bengkel Wiguna?",
-    answer: "Anda bisa booking melalui WhatsApp di 0878-1777-3888 atau datang langsung ke bengkel kami di Jl. K.H.M. Yusuf Raya No.22, Mekar Jaya, Kec. Sukmajaya, Kota Depok.",
+    answer: "Anda bisa booking melalui WhatsApp di 0878-1777-3888 atau datang langsung ke bengkel kami di Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423.",
   },
   {
     question: "Apakah Bengkel Wiguna menerima semua jenis mobil?",

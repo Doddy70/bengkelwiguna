@@ -123,7 +123,7 @@ export default function TermsPage() {
                 <div className="grid md:grid-cols-3 gap-6 text-sm">
                 <div>
                     <p className="font-semibold mb-1">Alamat:</p>
-                    <p>Jl. Margonda No.268, Kemiri Muka, Beji, Depok 16423</p>
+                    <p>Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423</p>
                 </div>
                 <div>
                     <p className="font-semibold mb-1">Email:</p>

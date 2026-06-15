@@ -274,7 +274,7 @@ export default function TentangWigunaPage() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-900 mb-1">Lokasi</h3>
-                <p className="text-gray-600">Jl. K.H.M. Yusuf Raya No.22<br />Sukmajaya, Kota Depok</p>
+                <p className="text-gray-600">Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423</p>
               </div>
             </div>
 
