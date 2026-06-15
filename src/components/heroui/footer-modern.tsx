@@ -33,10 +33,6 @@ const footerNavigation = {
     { name: "Promosi", href: "/promosi" },
     { name: "Blog & Tips", href: "/blog" },
   ],
-  legal: [
-    { name: "Kebijakan Privasi", href: "/privacy" },
-    { name: "Syarat & Ketentuan", href: "/terms" },
-  ],
   social: [
     {
       name: "Facebook",
@@ -88,25 +84,25 @@ export default function FooterModern() {
   return (
     <footer className="flex w-full flex-col bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800">
       <div className="mx-auto w-full max-w-screen-xl px-4 pb-8 pt-12 sm:pt-16 lg:px-8">
-        {/* Desktop: 4 Column Layout | Tablet: 2 Column | Mobile: 1 Column */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-          {/* Column 1: Customer Support Widget (REPLACED WITH IMAGE) */}
-          <div className="space-y-6">
+        {/* Desktop: Weighted 4-Column (3+1+1+1) | Tablet: 2 Column | Mobile: 1 Column */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-10">
+          {/* Column 1: Customer Support Widget — wider (col-span-3) */}
+          <div className="lg:col-span-3 space-y-6">
             <div>
               <h3 className="text-xs font-black text-brand-blue dark:text-[#ffd900] uppercase tracking-[0.2em] mb-4">Konsultasi Gratis</h3>
-              
+
               <Link
                 href="https://wa.me/6287817773888?text=Halo%20Asisten%20Wiguna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya.%20(web)"
                 isExternal
                 className="block hover:opacity-90 transition-opacity"
               >
-                <div className="relative w-full max-w-[240px] aspect-[215/104] overflow-hidden">
+                <div className="relative w-full max-w-[320px] aspect-[320/130] overflow-hidden">
                   <Image
                     src="/images/cs-support.png"
                     alt="Konsultasi Gratis Asisten Wiguna"
-                    width={220}
-                    height={100}
-                    className="rounded-2xl w-full h-auto object-contain"
+                    fill
+                    className="object-contain"
+                    sizes="320px"
                   />
                 </div>
               </Link>
@@ -133,12 +129,9 @@ export default function FooterModern() {
             {renderList({ title: "Blog & Edukasi", items: footerNavigation.blog })}
           </div>
 
-          {/* Column 4: Company & Legal */}
-          <div>
+          {/* Column 4: Perusahaan */}
+          <div className="lg:col-span-1">
             {renderList({ title: "Perusahaan", items: footerNavigation.company })}
-            <div className="mt-8">
-              {renderList({ title: "Legal", items: footerNavigation.legal })}
-            </div>
           </div>
         </div>
 

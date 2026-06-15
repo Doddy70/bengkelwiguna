@@ -84,10 +84,15 @@ export default function ServicesArchiveClient({ services }: { services: Service[
     const heroImage2 = services.length > 1 && services[1].featured_img ? services[1].featured_img : "/images/hero-desktop.webp";
 
     return (
-        <div className="bg-white dark:bg-neutral-950 min-h-screen pb-24 font-dm">
+        <div className="relative bg-white dark:bg-neutral-950 min-h-screen pb-24 font-dm">
+            {/* Page Background Image */}
+            <div className="fixed inset-0 z-0">
+              <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
+              <div className="absolute inset-0 bg-white/85 dark:bg-neutral-950/90" />
+            </div>
             
             {/* HERO SECTION */}
-            <section className="pt-32 lg:pt-40 pb-16 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="relative z-10 pt-32 lg:pt-40 pb-16 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* Hero Header */}
                 <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-16">
@@ -159,7 +164,7 @@ export default function ServicesArchiveClient({ services }: { services: Service[
             </section>
 
             {/* SERVICES GRID SECTION */}
-            <section className="pt-16 pb-16 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="relative z-10 pt-16 pb-16 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* Section Header */}
                 <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-center mb-16">

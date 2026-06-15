@@ -25,11 +25,11 @@ export default function FaqSectionHomepage({
 
   return (
     <section className="py-12 lg:py-24 bg-white dark:bg-gray-950 font-dm">
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
         
-        {/* Outer Wrapper with Light Background */}
-        <div className="bg-[#f2f6ff] dark:bg-blue-900/10 rounded-[2.5rem] p-8 lg:p-16">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
+        {/* Outer Wrapper with Light Background — full-width */}
+        <div className="bg-[#f2f6ff] dark:bg-blue-900/10 rounded-[2.5rem] p-6 lg:p-12 min-h-[480px]">
+          <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
             
             {/* Kolom Kiri: Header & FAQ Accordion */}
             <div className="flex flex-col justify-center h-full">
@@ -44,7 +44,7 @@ export default function FaqSectionHomepage({
               </div>
 
               {/* Accordion Container */}
-              <div className="space-y-4 mb-12">
+              <div className="space-y-3 mb-8">
                 {items.slice(0, 4).map((faq, index) => {
                   const isOpen = openIndex === index;
                   
@@ -58,7 +58,7 @@ export default function FaqSectionHomepage({
                       }`}
                       onClick={() => !isOpen && toggleFaq(index)}
                     >
-                      <div className="p-6 lg:p-8 flex items-start justify-between gap-4">
+                      <div className="p-5 lg:p-6 flex items-start justify-between gap-4">
                         <div className="flex-1">
                           <h3 className={`text-lg lg:text-xl font-medium tracking-tight transition-colors duration-300 ${
                             isOpen ? "text-white mb-4" : "text-gray-900 dark:text-white"
@@ -121,7 +121,7 @@ export default function FaqSectionHomepage({
             </div>
 
             {/* Kolom Kanan: Image + Floating Card */}
-            <div className="relative w-full h-[400px] lg:h-auto min-h-[500px] rounded-[2rem] overflow-hidden shadow-2xl">
+            <div className="relative w-full h-[360px] lg:h-auto min-h-[420px] rounded-[2rem] overflow-hidden shadow-2xl">
               <Image
                 src="/images/faq-bg.jpg"
                 alt="Tim Mekanik Bengkel Wiguna"

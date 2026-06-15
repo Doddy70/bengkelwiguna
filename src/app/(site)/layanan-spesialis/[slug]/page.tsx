@@ -65,52 +65,77 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
         { name: title, url: `https://bengkelwiguna.com/layanan-spesialis/${slug}` }
       ])} />
 
-      {/* Branded Page Title Section */}
-      <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">
-        <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 relative z-10">
-          <div className="max-w-3xl">
-            <span className="inline-block bg-brand-gold text-brand-blue px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 shadow-xl shadow-yellow-900/10">
-              🔧 Layanan Spesialis
-            </span>
-            <h1 className="text-4xl lg:text-7xl font-black text-gray-900 mb-6 italic tracking-tighter uppercase leading-[0.85]">
-              {title}
-            </h1>
-            <p className="text-gray-800 font-bold text-lg lg:text-xl max-w-xl leading-relaxed">
-              Solusi perbaikan tingkat lanjut menggunakan teknologi <span className="text-brand-blue">{layanan.teknologi_spesialis || 'Modern'}</span> untuk hasil yang presisi.
-            </p>
-          </div>
-          
+      {/* ═══ Hero Header — Featured Image as Background ═══ */}
+      <section className="relative w-full lg:min-h-[420px] min-h-[340px] overflow-hidden flex items-end">
+        {/* Background Image */}
+        {layanan.featured_img ? (
+          <Image
+            src={layanan.featured_img}
+            alt={title}
+            fill
+            className="object-cover"
+            priority
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#224297] to-[#0f1d45]" />
+        )}
+
+        {/* Gradient Overlay — bottom-heavy for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 pb-10 lg:pb-14">
           {/* Breadcrumb */}
-          <nav className="flex items-center gap-3 mt-12 text-sm font-bold uppercase tracking-widest text-gray-500">
-            <Link href="/" className="hover:text-brand-blue transition-colors">Home</Link>
-            <span className="text-brand-gold">/</span>
-            <Link href="/layanan-spesialis" className="hover:text-brand-blue transition-colors">Spesialis</Link>
-            <span className="text-brand-gold">/</span>
-            <span className="text-gray-900">{slug}</span>
+          <nav className="flex items-center flex-wrap gap-1.5 mb-5 text-sm font-semibold" aria-label="Breadcrumb">
+            <Link
+              href="/"
+              className="text-white/70 hover:text-[#ffd900] transition-colors duration-200"
+            >
+              Home
+            </Link>
+            <span className="text-[#ffd900] mx-1">/</span>
+            <Link
+              href="/layanan-spesialis"
+              className="text-white/70 hover:text-[#ffd900] transition-colors duration-200"
+            >
+              Layanan Spesialis
+            </Link>
+            <span className="text-[#ffd900] mx-1">/</span>
+            <span className="text-white font-bold truncate max-w-[220px] md:max-w-none">
+              {title}
+            </span>
           </nav>
+
+          {/* Badge */}
+          <span className="inline-block bg-[#ffd900] text-[#224297] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4 shadow-lg shadow-yellow-900/20">
+            🔧 Layanan Spesialis
+          </span>
+
+          {/* Title */}
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-[1.1] tracking-tight max-w-3xl">
+            {title}
+          </h1>
+
+          {/* Excerpt */}
+          <p className="text-white/80 font-medium text-base md:text-lg max-w-2xl leading-relaxed mb-0">
+            Solusi perbaikan tingkat lanjut menggunakan teknologi {layanan.teknologi_spesialis || 'Modern'} untuk hasil yang presisi.
+          </p>
         </div>
       </section>
 
-      {/* Main Content Section (Bexon Template Style) */}
-      <section className="lg:py-24 py-12 bg-white dark:bg-gray-950">
+      {/* Page Background Image */}
+      <div className="fixed inset-0 z-0">
+        <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
+        <div className="absolute inset-0 bg-white/88 dark:bg-neutral-950/90" />
+      </div>
+
+      {/* Main Content Section */}
+      <section className="relative z-10 lg:py-24 py-12 bg-white dark:bg-gray-950">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <div className="grid lg:grid-cols-4 lg:gap-16 gap-10 relative">
             
             {/* 1. Main Content Area (col-span-3) */}
             <div className="lg:col-span-3">
-              {layanan.featured_img && (
-                <div className="mb-12 rounded-3xl overflow-hidden shadow-2xl relative aspect-[16/9] group" data-aos="fade-up">
-                  <Image
-                    src={layanan.featured_img}
-                    alt={title || 'Layanan Spesialis Bengkel Wiguna'}
-                    fill
-                    className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                </div>
-              )}
-
               {/* Technology Highlight */}
               {layanan.teknologi_spesialis && (
                   <div className="mb-12 p-8 bg-brand-blue text-white rounded-3xl shadow-xl relative overflow-hidden" data-aos="fade-up">

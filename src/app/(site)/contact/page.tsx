@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import Image from "next/image";
 import { ArrowUpRight, MessageCircle, Phone, MapPin, Clock, Star, CheckCircle2 } from 'lucide-react';
 
 export default function ContactPage() {
@@ -12,8 +13,13 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="bg-[#fcfcfc] dark:bg-neutral-950 font-dm min-h-screen pt-32 pb-20">
-            <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative font-dm min-h-screen pt-32 pb-20">
+            {/* Fixed Page Background Image */}
+            <div className="fixed inset-0 z-0">
+              <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
+              <div className="absolute inset-0 bg-[#fcfcfc]/85 dark:bg-neutral-950/90" />
+            </div>
+            <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-12 grid-cols-1 gap-12 lg:gap-16 items-start">
                     
                     {/* Left Column - Text and Info Cards */}
@@ -250,7 +256,7 @@ export default function ContactPage() {
             </div>
 
             {/* List Services Section */}
-            <section className="mt-24 py-16 bg-gray-50 dark:bg-neutral-900/30 border-t border-b border-gray-100 dark:border-neutral-900">
+            <section className="relative z-10 mt-24 py-16 bg-gray-50/80 dark:bg-neutral-900/30 border-t border-b border-gray-100 dark:border-neutral-900">
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h3 className="text-lg font-black tracking-wider uppercase text-center text-[#224297] dark:text-[#ffd900] mb-8">
                         Layanan Bengkel Wiguna

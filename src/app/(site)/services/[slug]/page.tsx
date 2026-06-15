@@ -53,40 +53,72 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         { name: title, url: `https://bengkelwiguna.com/services/${slug}` }
       ])} />
 
-      <div className='blog-wrap font-sans bg-white'>
-        <div className='max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pb-24 pb-20 justify-center'>
-          
-          {/* Title Area using single-blog-2 structure */}
-          <div className='blog-title bg-light-blue-banner lg:pt-12 pt-8 rounded-b-3xl mb-10'>
-            <div className='lg:w-8/12 text-center pb-12 mx-auto lg:pt-12 pt-8'>
-              <div className='flex justify-center mb-4'>
-                <div className='px-4 py-1.5 border border-gray-200 rounded-lg text-xs font-bold uppercase tracking-widest text-[#224297] bg-white shadow-sm flex items-center gap-2 w-auto' data-aos='zoom-in' data-aos-delay='0' data-aos-duration='400'>
-                  Detail Layanan
-                </div>
-              </div>
-              <h1 className='text-3xl md:text-5xl text-gray-900 font-bold mb-4 leading-tight' data-aos='fade-up' data-aos-duration='400' data-delay='0'>
-                {title}
-              </h1>
-              <p className='text-gray-600 font-medium text-lg mb-0 mx-auto max-w-2xl px-4' data-aos='fade-up' data-aos-duration='400' data-delay='100'>
-                {excerpt}
-              </p>
-            </div>
-          </div>
+      {/* ═══ Hero Header — Featured Image as Background ═══ */}
+      <section className="relative w-full lg:min-h-[420px] min-h-[340px] overflow-hidden flex items-end">
+        {/* Background Image */}
+        {service.featured_img ? (
+          <Image
+            src={service.featured_img}
+            alt={title}
+            fill
+            className="object-cover"
+            priority
+          />
+        ) : (
+          <div className="absolute inset-0 bg-gradient-to-br from-[#224297] to-[#0f1d45]" />
+        )}
 
-          {/* Featured Image matching single-blog-2 width and styling */}
-          {service.featured_img && (
-            <div className='lg:w-11/12 justify-center pb-14 mx-auto' data-aos='fade-up' data-aos-duration='400' data-delay='0'>
-              <div className="relative aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-xl">
-                  <Image 
-                    src={service.featured_img} 
-                    alt={title} 
-                    fill
-                    className='object-cover w-full transition-transform duration-700 hover:scale-105' 
-                    priority
-                  />
-              </div>
-            </div>
-          )}
+        {/* Gradient Overlay — bottom-heavy for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
+
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 pb-10 lg:pb-14">
+          {/* Breadcrumb */}
+          <nav className="flex items-center flex-wrap gap-1.5 mb-5 text-sm font-semibold" aria-label="Breadcrumb">
+            <Link
+              href="/"
+              className="text-white/70 hover:text-[#ffd900] transition-colors duration-200"
+            >
+              Home
+            </Link>
+            <span className="text-[#ffd900] mx-1">/</span>
+            <Link
+              href="/services"
+              className="text-white/70 hover:text-[#ffd900] transition-colors duration-200"
+            >
+              Layanan
+            </Link>
+            <span className="text-[#ffd900] mx-1">/</span>
+            <span className="text-white font-bold truncate max-w-[220px] md:max-w-none">
+              {title}
+            </span>
+          </nav>
+
+          {/* Badge */}
+          <span className="inline-block bg-[#ffd900] text-[#224297] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4 shadow-lg shadow-yellow-900/20">
+            Detail Layanan
+          </span>
+
+          {/* Title */}
+          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-[1.1] tracking-tight max-w-3xl">
+            {title}
+          </h1>
+
+          {/* Excerpt */}
+          <p className="text-white/80 font-medium text-base md:text-lg max-w-2xl leading-relaxed mb-0">
+            {excerpt}
+          </p>
+        </div>
+      </section>
+
+      {/* Page Background Image */}
+      <div className="fixed inset-0 z-0">
+        <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
+        <div className="absolute inset-0 bg-white/88 dark:bg-neutral-950/90" />
+      </div>
+
+      <div className='relative z-10 blog-wrap font-sans'>
+        <div className='max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pb-24 pb-20 justify-center pt-12'>
 
           {/* Content Grid & Sidebar matching single-blog-2 2:1 ratio */}
           <div className='lg:w-11/12 mx-auto'>

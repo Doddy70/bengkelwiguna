@@ -7,8 +7,13 @@ import { ArrowUpRight, ArrowDown, Star, Target, Award, ShieldCheck } from "lucid
 
 export default function TentangWigunaPage() {
   return (
-    <div className="bg-[#fcfcfc] dark:bg-neutral-950 font-dm min-h-screen pt-32 pb-20">
-      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="relative font-dm min-h-screen pt-32 pb-20">
+      {/* Fixed Page Background Image */}
+      <div className="fixed inset-0 z-0">
+        <Image src="/images/bg-footer-inner.webp" alt="" fill className="object-cover" aria-hidden="true" />
+        <div className="absolute inset-0 bg-[#fcfcfc]/85 dark:bg-neutral-950/90" />
+      </div>
+      <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* === 1. HEADER TITLE & SUBTITLE === */}
         <div className="grid lg:grid-cols-12 grid-cols-1 gap-6 mb-12 items-end">
