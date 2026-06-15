@@ -17,146 +17,207 @@ interface FaqSectionProps {
 export default function FaqSectionHomepage({
   items = defaultFaqs,
 }: FaqSectionProps) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="py-12 lg:py-24 bg-white dark:bg-gray-950 font-dm">
-      <div className="w-full px-4 sm:px-6 lg:px-8">
-        
-        {/* Outer Wrapper with Light Background — full-width */}
-        <div className="bg-[#f2f6ff] dark:bg-blue-900/10 rounded-[2.5rem] p-6 lg:p-12 min-h-[480px]">
-          <div className="max-w-screen-xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
-            
-            {/* Kolom Kiri: Header & FAQ Accordion */}
-            <div className="flex flex-col justify-center h-full">
-              
-              <div className="mb-10 max-w-xl">
-                  <h2 className="text-4xl md:text-5xl font-semibold text-[#1a2b5e] dark:text-white mb-6 tracking-tight leading-[1.1]">
-                      Mekanik Ahli & Bersertifikat
-                  </h2>
-                  <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
-                      Lakukan konsultasi kendaraan Anda hari ini dan dapatkan perawatan terpercaya dari tenaga mekanik profesional dan berpengalaman kami.
-                  </p>
-              </div>
+    <section className="py-12 lg:py-24 bg-white dark:bg-neutral-950 font-dm overflow-hidden">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 
-              {/* Accordion Container */}
-              <div className="space-y-3 mb-8">
-                {items.slice(0, 4).map((faq, index) => {
-                  const isOpen = openIndex === index;
-                  
-                  return (
-                    <div
-                      key={index}
-                      className={`overflow-hidden transition-all duration-500 rounded-2xl ${
-                        isOpen 
-                          ? "bg-gradient-to-r from-[#224297] to-[#162d6b] shadow-xl" 
-                          : "bg-white dark:bg-gray-900 shadow-sm hover:shadow-md cursor-pointer"
-                      }`}
-                      onClick={() => !isOpen && toggleFaq(index)}
-                    >
-                      <div className="p-5 lg:p-6 flex items-start justify-between gap-4">
-                        <div className="flex-1">
-                          <h3 className={`text-lg lg:text-xl font-medium tracking-tight transition-colors duration-300 ${
-                            isOpen ? "text-white mb-4" : "text-gray-900 dark:text-white"
-                          }`}>
-                            {faq.question}
-                          </h3>
-                          
-                          {/* Answer Content - Only visible when open */}
-                          <div
-                            className={`transition-all duration-500 overflow-hidden ${
-                              isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
-                            }`}
-                          >
-                            <ul className="text-white/90 space-y-3 font-light text-sm lg:text-base">
-                              <li className="flex items-start gap-3">
-                                <span className="w-1.5 h-1.5 rounded-full bg-[#ffd900] shrink-0 mt-2"></span>
-                                <span className="leading-relaxed">{faq.answer}</span>
-                              </li>
-                            </ul>
+        {/* Section Header */}
+        <div className="text-center mb-12 lg:mb-16">
+          <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#224297]/10 dark:bg-[#224297]/20 rounded-full text-xs font-bold uppercase tracking-wider text-[#224297] dark:text-[#ffd900] mb-4">
+            FAQ
+          </span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 dark:text-white tracking-tight uppercase mb-4">
+            TANYA JAWAB
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+            Pertanyaan Umum tentang Bengkel Wiguna
+          </p>
+        </div>
+
+        {/* Main Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+
+          {/* Left Column: FAQ Accordions */}
+          <div className="space-y-4">
+            {items.slice(0, 5).map((faq, index) => {
+              const isOpen = openIndex === index;
+
+              return (
+                <div
+                  key={index}
+                  className={`relative overflow-hidden rounded-2xl transition-all duration-500 ${
+                    isOpen
+                      ? "bg-white dark:bg-gray-800 shadow-xl shadow-[#224297]/10"
+                      : "bg-white/80 dark:bg-gray-900/50 backdrop-blur-sm shadow-lg hover:shadow-xl cursor-pointer border border-gray-100 dark:border-gray-800"
+                  }`}
+                  onClick={() => !isOpen && toggleFaq(index)}
+                >
+                  {/* Glassmorphism border effect */}
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 via-transparent to-white/20 dark:from-gray-800/40 dark:via-transparent dark:to-gray-800/20 pointer-events-none" />
+
+                  <div className="relative p-6 lg:p-7">
+                    <div className="flex items-start gap-5">
+                      {/* Number Badge */}
+                      <div className={`shrink-0 w-10 h-10 rounded-xl flex items-center justify-center font-black text-lg transition-colors duration-300 ${
+                        isOpen
+                          ? "bg-[#224297] text-white"
+                          : "bg-[#224297]/10 text-[#224297] dark:bg-[#ffd900]/10 dark:text-[#ffd900]"
+                      }`}>
+                        {String(index + 1).padStart(2, '0')}
+                      </div>
+
+                      <div className="flex-1">
+                        {/* Question */}
+                        <h3 className={`text-lg lg:text-xl font-bold tracking-tight transition-colors duration-300 mb-0 ${
+                          isOpen
+                            ? "text-[#224297] dark:text-white"
+                            : "text-gray-900 dark:text-white"
+                        }`}>
+                          {faq.question}
+                        </h3>
+
+                        {/* Answer - Smooth expand/collapse */}
+                        <div className={`transition-all duration-500 ease-out ${
+                          isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0 overflow-hidden"
+                        }`}>
+                          <div className="pt-4 border-t border-gray-100 dark:border-gray-700">
+                            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                              {faq.answer}
+                            </p>
+
+                            {/* Quick Actions */}
+                            <div className="mt-4 flex items-center gap-3">
+                              <a
+                                href="https://wa.me/6287817773888"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-sm font-medium text-[#224297] dark:text-[#ffd900] hover:underline"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <Icon icon="fa6-brands:whatsapp" className="w-4 h-4" />
+                                Tanya via WhatsApp
+                              </a>
+                            </div>
                           </div>
                         </div>
-
-                        {/* Toggle Icon */}
-                        <button 
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleFaq(index);
-                          }}
-                          className={`shrink-0 transition-transform duration-300 flex items-center justify-center ${
-                            isOpen ? "text-white rotate-0" : "text-gray-400 -rotate-90"
-                          }`}
-                          aria-label="Toggle FAQ"
-                        >
-                          <Icon 
-                            icon={isOpen ? "material-symbols:arrow-outward-rounded" : "material-symbols:arrow-drop-down-rounded"} 
-                            width={32} 
-                          />
-                        </button>
                       </div>
+
+                      {/* Expand Icon */}
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleFaq(index);
+                        }}
+                        className={`shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          isOpen
+                            ? "bg-[#ffd900] text-[#224297] rotate-180"
+                            : "bg-gray-100 dark:bg-gray-800 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        }`}
+                        aria-label={isOpen ? "Collapse" : "Expand"}
+                      >
+                        <Icon icon="solar:alt-arrow-down-linear" width={18} />
+                      </button>
                     </div>
-                  );
-                })}
-              </div>
+                  </div>
+                </div>
+              );
+            })}
 
-              {/* CTA Button */}
-              <div>
-                <a
-                  href="https://wa.me/6287817773888"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-4 bg-[#224297] hover:bg-[#1a3478] text-white py-3.5 pl-8 pr-3.5 rounded-full font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 group"
-                >
-                  Konsultasi Sekarang
-                  <span className="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#224297] group-hover:bg-[#ffd900] group-hover:text-[#224297] transition-colors">
-                    <Icon icon="material-symbols:arrow-outward-rounded" width={20} />
-                  </span>
-                </a>
-              </div>
+            {/* CTA Card */}
+            <div className="mt-8">
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#224297] to-[#0f1d45] p-6 lg:p-8">
+                {/* Decorative blobs */}
+                <div className="absolute -top-20 -right-20 w-40 h-40 bg-[#ffd900]/20 rounded-full blur-3xl" />
+                <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-[#224297]/40 rounded-full blur-3xl" />
 
+                <div className="relative flex flex-col sm:flex-row items-center justify-between gap-6">
+                  <div className="text-center sm:text-left">
+                    <h4 className="text-xl font-bold text-white mb-2">
+                      Still have questions?
+                    </h4>
+                    <p className="text-white/70 text-sm">
+                      Chat with our team directly
+                    </p>
+                  </div>
+                  <a
+                    href="https://wa.me/6287817773888"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 inline-flex items-center gap-3 px-6 py-3 bg-[#ffd900] hover:bg-yellow-400 text-[#224297] font-bold rounded-full transition-all hover:shadow-lg hover:-translate-y-0.5"
+                  >
+                    <Icon icon="fa6-brands:whatsapp" className="w-5 h-5" />
+                    Chat Minna
+                  </a>
+                </div>
+              </div>
             </div>
+          </div>
 
-            {/* Kolom Kanan: Image + Floating Card */}
-            <div className="relative w-full h-[360px] lg:h-auto min-h-[420px] rounded-[2rem] overflow-hidden shadow-2xl">
+          {/* Right Column: Image with Glassmorphism */}
+          <div className="relative lg:sticky lg:top-24">
+            {/* Main Image Container */}
+            <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
               <Image
                 src="/images/faq-bg.jpg"
                 alt="Tim Mekanik Bengkel Wiguna"
                 fill
-                className="object-cover object-center"
+                className="object-cover"
               />
-              
-              {/* Floating Graph Card */}
-              <div className="absolute bottom-6 left-6 lg:bottom-10 lg:left-[-3rem] bg-white dark:bg-gray-900 p-5 rounded-2xl shadow-2xl z-10 w-[240px] border border-gray-100 dark:border-gray-800 hidden md:block">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full overflow-hidden relative shrink-0">
-                    <Image src="/images/faq-bg.jpg" alt="Avatar" fill className="object-cover" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-gray-500 font-medium">Layanan Wiguna</p>
-                    <p className="text-sm font-bold text-gray-900 dark:text-white">Kepuasan Pelanggan</p>
-                  </div>
-                </div>
 
-                {/* CSS Bar Chart */}
-                <div className="flex items-end justify-between gap-1.5 h-20 w-full mt-2">
-                  <div className="w-full bg-[#224297]/20 rounded-t-sm h-[30%]"></div>
-                  <div className="w-full bg-[#224297]/30 rounded-t-sm h-[45%]"></div>
-                  <div className="w-full bg-[#224297]/40 rounded-t-sm h-[60%]"></div>
-                  <div className="w-full bg-[#224297]/50 rounded-t-sm h-[75%]"></div>
-                  <div className="w-full bg-[#224297] rounded-t-sm h-[100%] shadow-[0_0_10px_rgba(34,66,151,0.5)]"></div>
-                  <div className="w-full bg-[#ffd900] rounded-t-sm h-[85%]"></div>
-                  <div className="w-full bg-[#224297]/60 rounded-t-sm h-[65%]"></div>
-                  <div className="w-full bg-[#224297]/40 rounded-t-sm h-[50%]"></div>
+              {/* Glassmorphism Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/30 via-white/10 to-transparent dark:from-gray-900/30 dark:via-gray-900/10 dark:to-transparent" />
+
+              {/* Bottom gradient for text readability */}
+              <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/60 to-transparent" />
+
+              {/* Floating Trust Card */}
+              <div className="absolute bottom-6 left-6 right-6">
+                <div className="bg-white/90 backdrop-blur-xl dark:bg-gray-900/90 rounded-2xl p-5 shadow-2xl border border-white/20">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#ffd900] ring-offset-2 ring-offset-white dark:ring-offset-gray-900">
+                      <Image
+                        src="/images/cs-support.png"
+                        alt="Customer Support"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500 dark:text-gray-400 font-medium">Online 24/7</p>
+                      <p className="font-bold text-gray-900 dark:text-white">Asisten Wiguna</p>
+                    </div>
+                  </div>
+
+                  {/* Stats */}
+                  <div className="grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <p className="text-2xl font-black text-[#224297] dark:text-[#ffd900]">15+</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Tahun</p>
+                    </div>
+                    <div className="border-x border-gray-200 dark:border-gray-700">
+                      <p className="text-2xl font-black text-[#224297] dark:text-[#ffd900]">10K+</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Pelanggan</p>
+                    </div>
+                    <div>
+                      <p className="text-2xl font-black text-[#224297] dark:text-[#ffd900]">4.9</p>
+                      <p className="text-xs text-gray-500 dark:text-gray-400">Rating</p>
+                    </div>
+                  </div>
                 </div>
               </div>
-
             </div>
 
+            {/* Decorative Elements */}
+            <div className="absolute -z-10 top-8 -right-8 w-32 h-32 bg-[#ffd900]/20 rounded-full blur-3xl" />
+            <div className="absolute -z-10 -bottom-8 -left-8 w-40 h-40 bg-[#224297]/20 rounded-full blur-3xl" />
           </div>
+
         </div>
       </div>
     </section>

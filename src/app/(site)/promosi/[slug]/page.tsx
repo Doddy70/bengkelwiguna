@@ -7,8 +7,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Icon } from '@iconify/react'
-import { getPromosiBySlug, getAllPromosi, stripHtml } from '@/lib/wordpress'
-import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
+import { getPromosiBySlug, getAllPromosi } from '@/lib/wordpress'
 import JsonLd from '@/components/layout/JsonLd'
 import { generateBreadcrumbSchema } from '@/lib/seo'
 
@@ -26,15 +25,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || ''
+  // Strip HTML tags manually
   const excerptRaw = typeof promo.excerpt === 'string' ? promo.excerpt : promo.excerpt?.rendered || ''
-  const excerpt = stripHtml(excerptRaw)
+  const excerptText = excerptRaw.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim()
 
   return {
     title: `${title} | Bengkel Wiguna`,
-    description: excerpt || 'Promo spesial dari Bengkel Wiguna untuk perawatan kendaraan Anda.',
+    description: excerptText || 'Promo spesial dari Bengkel Wiguna untuk perawatan kendaraan Anda.',
     openGraph: {
       title: title,
-      description: excerpt,
+      description: excerptText || '',
       images: promo.featured_img ? [{ url: promo.featured_img }] : [],
     }
   }
@@ -51,8 +51,10 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
   const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || ''
   const contentRaw = typeof promo.content === 'string' ? promo.content : promo.content?.rendered || ''
   const content = contentRaw
+  // Use excerpt if available, otherwise use first 200 chars of content
   const excerptRaw = typeof promo.excerpt === 'string' ? promo.excerpt : promo.excerpt?.rendered || ''
-  const excerpt = stripHtml(excerptRaw)
+  const excerptFallback = contentRaw.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0, 200)
+  const excerpt = excerptRaw || excerptFallback
   const featuredImage = promo.featured_img || '/images/promo-default.jpg'
 
   // Get related promos
