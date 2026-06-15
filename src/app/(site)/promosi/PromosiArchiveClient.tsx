@@ -6,62 +6,9 @@ import { Promosi } from "@/types/wordpress";
 import UIMainSlider, { UIMainSlide } from "@/components/ui/UIMainSlider";
 import { useDisclosure } from "@nextui-org/react";
 import PromoModal from "@/components/heroui/PromoModal";
+import WigunaCard from "@/components/ui/WigunaCard";
 
-function PromoGlassCard({ promo, onClick }: { promo: Promosi; onClick: () => void }) {
-  const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
-  
-  // Calculate discount for Sale badge
-  const hasDiscount = promo.harga_asli && promo.harga_promo;
 
-  return (
-    <div className="group relative p-4 rounded-[24px] border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] backdrop-blur-xl bg-white/40 flex flex-col transition-all hover:shadow-xl hover:-translate-y-1">
-      {/* Sale Badge */}
-      {hasDiscount && (
-        <div className="absolute top-4 left-4 z-10 bg-gray-900 text-white text-[11px] uppercase tracking-wider font-bold px-2.5 py-1 rounded-md">
-          Sale
-        </div>
-      )}
-      
-      {/* Image */}
-      <div 
-        className="relative w-full aspect-[4/5] bg-gray-100 rounded-xl overflow-hidden mb-4 border border-gray-100/50 cursor-pointer"
-        onClick={onClick}
-      >
-        {promo.featured_img ? (
-          <Image
-            src={promo.featured_img}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-400 bg-gray-50">No Image</div>
-        )}
-      </div>
-      
-      {/* Content */}
-      <div className="flex flex-col flex-1 px-1">
-        <h3 className="text-[15px] font-semibold text-gray-900 mb-1.5 line-clamp-2 leading-tight">{title}</h3>
-        <div className="flex items-center gap-2 mb-5 mt-auto">
-          <span className="text-[15px] font-bold text-gray-900">{promo.harga_promo || 'Hubungi Kami'}</span>
-          {hasDiscount && (
-            <span className="text-xs text-gray-400 line-through">{promo.harga_asli}</span>
-          )}
-        </div>
-        
-        {/* Animated Button */}
-        <button 
-          onClick={onClick}
-          className="mt-auto relative overflow-hidden w-full bg-white border border-gray-200 text-gray-900 text-[13px] font-bold py-2.5 rounded-lg text-center transition-all duration-300 group-hover:border-[#224297] group-hover:text-white"
-        >
-          {/* Background sliding effect */}
-          <span className="absolute inset-0 bg-[#224297] translate-y-[101%] transition-transform duration-300 ease-out group-hover:translate-y-0"></span>
-          <span className="relative z-10 transition-colors duration-300">Lihat Detail Promo</span>
-        </button>
-      </div>
-    </div>
-  );
-}
 
 interface PromosiArchiveProps {
   promos: Promosi[];
@@ -141,7 +88,29 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {otherPromos.map(promo => (
-                  <PromoGlassCard key={promo.slug} promo={promo} onClick={() => handleOpenPromo(promo)} />
+                  <div key={promo.slug}>
+                    <WigunaCard
+                      image={promo.featured_img || "/images/promosi/promo-default.jpg"}
+                      imageAspectRatio="4/5"
+                      tag={promo.kategori_promosi || "Promo Spesial"}
+                      title={typeof promo.title === 'string' ? promo.title : promo.title?.rendered || ''}
+                      excerpt={(() => {
+                        const raw = typeof promo.excerpt === 'string' ? promo.excerpt : (promo.excerpt as any)?.rendered || '';
+                        return raw ? raw.replace(/<[^>]*>/g, '').trim().slice(0, 100) + '...' : undefined;
+                      })()}
+                      variant="overlay"
+                      price={promo.harga_promo || 'Hubungi Kami'}
+                      oldPrice={promo.harga_asli && promo.harga_promo ? promo.harga_asli : undefined}
+                      badgeText={promo.harga_asli && promo.harga_promo ? "Sale" : undefined}
+                      buttonText="Lihat Detail"
+                      secondaryIcon="solar:chat-round-line-linear"
+                      onClick={() => handleOpenPromo(promo)}
+                      onSecondaryClick={() => {
+                        const titleStr = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
+                        window.open(`https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20tertarik%20dengan%20promo%20${encodeURIComponent(titleStr)}`, '_blank');
+                      }}
+                    />
+                  </div>
                 ))}
               </div>
             </div>

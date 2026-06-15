@@ -10,6 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from '@iconify/react';
 import { WPPost } from "@/types/wordpress";
+import WigunaCard from "@/components/ui/WigunaCard";
 
 // Brand Colors
 const BRAND_BLUE = '#224297';
@@ -262,53 +263,34 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
           {bentoPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
               {bentoPosts.map((post) => (
-                <Link
-                  key={post.id}
-                  href={`/blog/${post.slug}`}
-                  className="flex flex-col group"
-                >
-                  {/* Image */}
-                  <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6 bg-gray-100 dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800">
-                    <Image
-                      src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
-                      alt={getRenderedTitle(post)}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex flex-col flex-1">
-                    {/* Title with Arrow */}
-                    <div className="flex justify-between items-start gap-4 mb-3">
-                      <h3 className="text-xl font-black text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
-                        {getRenderedTitle(post)}
-                      </h3>
-                      <Icon 
-                        icon="solar:arrow-right-up-linear" 
-                        className="w-6 h-6 text-gray-400 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors flex-shrink-0 mt-0.5" 
-                      />
-                    </div>
-
-                    {/* Excerpt */}
-                    <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed line-clamp-3 mb-6">
-                      {getRenderedExcerpt(post)}
-                    </p>
-
-                    {/* Meta Row */}
-                    <div className="flex items-center gap-3 mt-auto pt-4">
-                      <div className="w-8 h-8 rounded-full overflow-hidden bg-gray-200 dark:bg-neutral-800 flex-shrink-0">
-                        <Image src="/images/logo-icon.png" alt="Admin" width={32} height={32} className="object-cover p-1" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
-                      </div>
-                      <div className="flex items-center text-xs font-bold text-gray-900 dark:text-white">
-                        <span>Admin Wiguna</span>
-                        <span className="mx-2 text-gray-300 dark:text-gray-600">•</span>
-                        <span>{formatDate(post.date)}</span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
+                <div key={post.id}>
+                  <WigunaCard
+                    href={`/blog/${post.slug}`}
+                    image={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || "/images/blog-default.jpg"}
+                    tag={post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Berita'}
+                    title={getRenderedTitle(post)}
+                    excerpt={getRenderedExcerpt(post)}
+                    variant="split"
+                    imageAspectRatio="4/3"
+                    buttonText="Baca Artikel"
+                    secondaryIcon="solar:share-linear"
+                    metaItems={[
+                      { icon: 'solar:user-linear', text: 'Admin Wiguna' },
+                      { icon: 'solar:calendar-linear', text: formatDate(post.date) }
+                    ]}
+                    onSecondaryClick={() => {
+                      if (typeof window !== 'undefined' && navigator.share) {
+                        navigator.share({
+                          title: getRenderedTitle(post),
+                          url: `${window.location.origin}/blog/${post.slug}`
+                        }).catch(() => {});
+                      } else if (typeof window !== 'undefined') {
+                        navigator.clipboard.writeText(`${window.location.origin}/blog/${post.slug}`);
+                        alert("Link artikel berhasil disalin!");
+                      }
+                    }}
+                  />
+                </div>
               ))}
             </div>
           ) : (

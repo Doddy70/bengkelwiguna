@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Service } from "@/types/wordpress";
 import { Icon } from "@iconify/react";
+import WigunaCard from "@/components/ui/WigunaCard";
 
 // Helper to clean excerpt
 const getCleanExcerpt = (service: any) => {
@@ -18,47 +19,27 @@ const ServiceCard = ({ service, index }: { service: any, index: number }) => {
     const title = typeof service.title === 'string' ? service.title : service.title?.rendered || '';
     const excerpt = getCleanExcerpt(service);
     
-    // Assign generic icons based on category/index just for visual appeal
-    const icons = [
-        "solar:settings-minimalistic-bold",
-        "solar:wheel-bold",
-        "solar:snowflake-bold",
-        "solar:shield-check-bold",
-        "solar:bolt-bold",
-        "solar:wrench-bold"
-    ];
-    const cardIcon = icons[index % icons.length];
-    
     return (
-        <div className="bg-[#f8f9fc] dark:bg-neutral-900 rounded-[2rem] p-8 lg:p-10 flex flex-col group hover:shadow-xl transition-all duration-300 border border-transparent hover:border-gray-100 dark:hover:border-neutral-800">
-            {/* Top Left Icon Pill */}
-            <div className="w-14 h-14 rounded-full bg-white dark:bg-neutral-800 shadow-sm flex items-center justify-center mb-8 shrink-0">
-                <div className="w-10 h-10 rounded-full bg-[#224297] flex items-center justify-center text-white">
-                    <Icon icon={cardIcon} width={20} />
-                </div>
-            </div>
-
-            {/* Content */}
-            <div className="flex-1 flex flex-col">
-                <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 leading-snug group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
-                    {title}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed mb-8 flex-1">
-                    {excerpt}
-                </p>
-
-                {/* Bottom Read More Action */}
-                <Link href={`/services/${service.slug}`} className="flex items-center gap-3 mt-auto w-fit">
-                    <div className="w-8 h-8 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
-                        <Icon icon="solar:add-circle-bold" width={24} className="opacity-0 hidden" /> {/* Hidden icon, just using css to make a cross */}
-                        <Icon icon="solar:add-linear" width={18} />
-                    </div>
-                    <span className="text-sm font-bold text-gray-900 dark:text-white group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
-                        Read More
-                    </span>
-                </Link>
-            </div>
-        </div>
+        <WigunaCard
+            href={`/services/${service.slug}`}
+            image={service.featured_img || "/images/hero-desktop.webp"}
+            imageAspectRatio="16/10"
+            tag={service.kategori_layanan || "Layanan"}
+            title={title}
+            excerpt={excerpt}
+            variant="split"
+            buttonText="Selengkapnya"
+            secondaryIcon="solar:chat-round-line-linear"
+            metaItems={[
+                { icon: 'solar:shield-check-linear', text: 'Gratis Diagnosa' },
+                { icon: 'solar:tuning-linear', text: 'Teknisi Ahli' }
+            ]}
+            onSecondaryClick={() => {
+                if (typeof window !== 'undefined') {
+                    window.open(`https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20tanya%20tentang%20layanan%20${encodeURIComponent(title)}`, '_blank');
+                }
+            }}
+        />
     );
 };
 
