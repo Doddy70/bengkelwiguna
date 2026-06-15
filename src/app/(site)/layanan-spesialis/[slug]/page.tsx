@@ -5,6 +5,7 @@
 
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import PageTitle3 from '@/components/ui/PageTitle3'
 import Button from '@/components/ui/Button'
