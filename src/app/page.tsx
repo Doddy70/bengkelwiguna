@@ -120,7 +120,7 @@ export default async function HomePage() {
   }
 
   // Reconcile FAQ format (WP: {q, a} vs UI: {question, answer})
-  const faqItems = dynamicFaqs.length > 0 
+  const faqItems = (dynamicFaqs && Array.isArray(dynamicFaqs) && dynamicFaqs.length > 0) 
     ? dynamicFaqs.map(f => ({ question: f.q, answer: f.a }))
     : defaultFaqs;
 
