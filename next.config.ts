@@ -105,6 +105,10 @@ const nextConfig: NextConfig = {
   // ✅ WEBPACK OPTIMIZATION
   webpack: (config, { isServer }) => {
     // Let Next.js handle splitChunks natively to avoid './chunks/../undefined.js' module errors during SSG.
+    // Disable webpack cache on Vercel to prevent build failures from corrupted restored cache
+    if (process.env.VERCEL) {
+      config.cache = false;
+    }
     return config;
   },
 };
