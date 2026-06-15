@@ -9,42 +9,42 @@ const videoPlaylist = [
     id: 1,
     title: "Setir Mobil Miring atau Lari Kiri Kanan? Ini Solusinya!",
     youtubeId: "WdvoqAxUyyk",
-    thumbnail: "https://img.youtube.com/vi/WdvoqAxUyyk/hqdefault.jpg",
+    thumbnail: "https://img.youtube.com/vi/WdvoqAxUyyk/maxresdefault.jpg",
     category: "Spooring & Balancing"
   },
   {
     id: 2,
     title: "Pentingnya Filter AC Mobil! Jangan Tunggu Sampai Bau",
     youtubeId: "NsYl85Xb_lY",
-    thumbnail: "https://img.youtube.com/vi/NsYl85Xb_lY/hqdefault.jpg",
+    thumbnail: "https://img.youtube.com/vi/NsYl85Xb_lY/maxresdefault.jpg",
     category: "AC Mobil"
   },
   {
     id: 3,
     title: "Mobil Gak Kuat Nanjak? Jalur Oli Mesin Bisa Jadi Mampet!",
     youtubeId: "kKYBezWYfY4",
-    thumbnail: "https://img.youtube.com/vi/kKYBezWYfY4/hqdefault.jpg",
+    thumbnail: "https://img.youtube.com/vi/kKYBezWYfY4/maxresdefault.jpg",
     category: "Mesin & Ganti Oli"
   },
   {
     id: 4,
     title: "Penyebab Evaporator AC Kotor & AC Mobil Gak Dingin",
     youtubeId: "prQqmha71Vk",
-    thumbnail: "https://img.youtube.com/vi/prQqmha71Vk/hqdefault.jpg",
+    thumbnail: "https://img.youtube.com/vi/prQqmha71Vk/maxresdefault.jpg",
     category: "AC Mobil"
   },
   {
     id: 5,
     title: "Kaki-Kaki Honda CR-V Bunyi Gluduk & Jedug? Ini Sebabnya!",
     youtubeId: "oV7iQkVbJQ0",
-    thumbnail: "https://img.youtube.com/vi/oV7iQkVbJQ0/hqdefault.jpg",
+    thumbnail: "https://img.youtube.com/vi/oV7iQkVbJQ0/maxresdefault.jpg",
     category: "Kaki-Kaki Mobil"
   },
   {
     id: 6,
     title: "Rem Mobil Bunyi Cit-Cit? Bahaya Jangan Tunggu Blong!",
     youtubeId: "Tm98X91q1Ds",
-    thumbnail: "https://img.youtube.com/vi/Tm98X91q1Ds/hqdefault.jpg",
+    thumbnail: "https://img.youtube.com/vi/Tm98X91q1Ds/maxresdefault.jpg",
     category: "Sistem Rem"
   }
 ];
@@ -123,7 +123,7 @@ export default function YoutubeEducation() {
 
   if (!isLoaded || !SplideComponent || !SplideSlideComponent) {
     return (
-      <section ref={sectionRef} className="py-24 bg-[#EFEFE9] overflow-hidden min-h-[600px] flex items-center justify-center">
+      <section ref={sectionRef} className="py-24 bg-[#f0f4ff] dark:bg-slate-900 overflow-hidden min-h-[600px] flex items-center justify-center">
         <div className="animate-pulse flex gap-6">
             <div className="w-64 h-96 bg-gray-200 rounded-[2rem]"></div>
             <div className="w-64 h-96 bg-gray-200 rounded-[2rem]"></div>
@@ -137,7 +137,7 @@ export default function YoutubeEducation() {
   const Slide = SplideSlideComponent;
 
   return (
-    <section ref={sectionRef} className="py-20 lg:py-32 bg-[#EFEFE9] dark:bg-[#1a1a1a] overflow-hidden font-dm transition-colors duration-500">
+    <section ref={sectionRef} className="py-20 lg:py-32 bg-[#f0f4ff] dark:bg-slate-900 overflow-hidden font-dm transition-colors duration-500">
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
@@ -161,7 +161,7 @@ export default function YoutubeEducation() {
                 {videoPlaylist.map((video) => (
                     <Slide key={video.id}>
                         <a href={`https://www.youtube.com/watch?v=${video.youtubeId}`} className="video-glightbox group w-full aspect-[9/13] relative rounded-[2rem] overflow-hidden block">
-                            <Image src={video.thumbnail} alt={video.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105 grayscale group-hover:grayscale-0" />
+                            <Image src={video.thumbnail} alt={video.title} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
                             <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors"></div>
                             
                             {/* WATCH Pill */}
@@ -193,13 +193,13 @@ export default function YoutubeEducation() {
             <div className="flex gap-4">
                 <button 
                     onClick={() => splideRef.current?.splide?.go('<')}
-                    className="w-16 h-16 rounded-full border-2 border-gray-300 dark:border-gray-700 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:border-gray-900 dark:hover:border-white hover:text-gray-900 dark:hover:text-white transition-colors"
+                    className="w-16 h-16 rounded-full border-2 border-brand-blue/30 text-brand-blue dark:border-white/20 dark:text-white hover:border-brand-blue hover:bg-brand-blue/5 transition-colors flex items-center justify-center"
                 >
                     <Icon icon="solar:alt-arrow-left-linear" width={24} />
                 </button>
                 <button 
                     onClick={() => splideRef.current?.splide?.go('>')}
-                    className="w-16 h-16 rounded-full bg-[#DDFB88] border-2 border-[#DDFB88] flex items-center justify-center text-gray-900 hover:bg-[#cbe878] hover:border-[#cbe878] transition-colors"
+                    className="w-16 h-16 rounded-full bg-brand-gold border-2 border-brand-gold flex items-center justify-center text-black hover:bg-[#e6c300] hover:border-[#e6c300] transition-colors"
                 >
                     <Icon icon="solar:alt-arrow-right-linear" width={24} />
                 </button>
