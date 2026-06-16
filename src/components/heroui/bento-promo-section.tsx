@@ -103,12 +103,13 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
           metaItems={metaItems}
           buttonText="Klaim Promo"
           secondaryIcon="solar:heart-linear"
-          onSecondaryClick={(e) => {
+          onSecondaryClick={(e: React.MouseEvent) => {
             e.preventDefault();
             // Optional favorite state or WA redirect
             handleClaimPromo(e);
           }}
           onButtonClick={handleClaimPromo}
+          isWide={isWide}
         />
       </div>
     );

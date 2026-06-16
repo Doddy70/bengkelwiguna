@@ -33,6 +33,7 @@ export interface WigunaCardProps {
   onSecondaryClick?: (e: React.MouseEvent) => void;
   secondaryIcon?: string;
   linkClassName?: string;
+  isWide?: boolean;
 }
 
 // ============================================
@@ -52,6 +53,7 @@ interface FramedCardProps {
   buttonText?: string;
   onButtonClick?: (e: React.MouseEvent) => void;
   onWhatsAppClick?: (e: React.MouseEvent) => void;
+  isWide?: boolean;
 }
 
 export const FramedCard: React.FC<FramedCardProps> = ({
@@ -66,11 +68,12 @@ export const FramedCard: React.FC<FramedCardProps> = ({
   buttonText = 'Lihat Detail',
   onButtonClick,
   onWhatsAppClick,
+  isWide = false,
 }) => {
   return (
-    <div className="group relative bg-white rounded-3xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col p-2 h-full">
+    <div className={`group relative bg-white rounded-3xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex ${isWide ? 'flex-col md:flex-row' : 'flex-col'} p-2 h-full overflow-hidden`}>
       {/* Image Container */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-gray-50 rounded-2xl">
+      <div className={`relative overflow-hidden bg-gray-50 rounded-2xl shrink-0 ${isWide ? 'w-full md:w-[45%] h-52 md:h-full' : 'aspect-[4/3] w-full'}`}>
         <Image
           src={image}
           alt={title}
@@ -109,59 +112,63 @@ export const FramedCard: React.FC<FramedCardProps> = ({
       </div>
 
       {/* Content Container */}
-      <div className="flex flex-col flex-1 p-5">
-        {/* Title */}
-        <h3 className="text-xl font-black text-gray-900 tracking-tight uppercase leading-tight mb-2 group-hover:text-[#224297] transition-colors line-clamp-2">
-          {title}
-        </h3>
+      <div className="flex flex-col flex-1 p-5 justify-between min-w-0">
+        <div>
+          {/* Title */}
+          <h3 className="text-xl font-black text-gray-900 tracking-tight uppercase leading-tight mb-2 group-hover:text-[#224297] transition-colors line-clamp-2">
+            {title}
+          </h3>
 
-        {/* Excerpt */}
-        {excerpt && (
-          <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
-            {excerpt}
-          </p>
-        )}
+          {/* Excerpt */}
+          {excerpt && (
+            <p className="text-gray-500 text-sm leading-relaxed line-clamp-3 md:line-clamp-4 mb-4">
+              {excerpt}
+            </p>
+          )}
+        </div>
 
-        {/* Price */}
-        {(price || oldPrice) && (
-          <div className="flex items-center gap-2 mb-4">
-            {price && <span className="text-xl font-black text-[#224297]">{price}</span>}
-            {oldPrice && <span className="text-sm text-gray-400 line-through">{oldPrice}</span>}
+        <div>
+          {/* Price */}
+          {(price || oldPrice) && (
+            <div className="flex items-center gap-2 mb-4">
+              {price && <span className="text-xl font-black text-[#224297]">{price}</span>}
+              {oldPrice && <span className="text-sm text-gray-400 line-through">{oldPrice}</span>}
+            </div>
+          )}
+
+          {/* Meta Items */}
+          {metaItems.length > 0 && (
+            <div className="flex flex-wrap items-center gap-3 mb-4">
+              {metaItems.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-1.5 text-xs text-gray-500">
+                  <Icon icon={item.icon} className="w-4 h-4 text-[#224297]" />
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Action Buttons */}
+          <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
+            <button
+              onClick={onButtonClick}
+              className="flex-1 py-3 px-5 rounded-xl bg-gray-900 hover:bg-[#224297] text-white font-bold text-sm text-center transition-all duration-300 shadow-sm hover:shadow-md"
+            >
+              {buttonText}
+            </button>
+            <button
+              onClick={onWhatsAppClick}
+              className="w-11 h-11 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-900 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
+              aria-label="Chat WhatsApp"
+            >
+              <Icon icon="fa6-brands:whatsapp" className="w-5 h-5" />
+            </button>
           </div>
-        )}
-
-        {/* Meta Items */}
-        {metaItems.length > 0 && (
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            {metaItems.map((item, idx) => (
-              <div key={idx} className="flex items-center gap-1.5 text-xs text-gray-500">
-                <Icon icon={item.icon} className="w-4 h-4 text-[#224297]" />
-                <span>{item.text}</span>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* Action Buttons */}
-        <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-100">
-          <button
-            onClick={onButtonClick}
-            className="flex-1 py-3 px-5 rounded-xl bg-gray-900 hover:bg-[#224297] text-white font-bold text-sm text-center transition-all duration-300 shadow-sm hover:shadow-md"
-          >
-            {buttonText}
-          </button>
-          <button
-            onClick={onWhatsAppClick}
-            className="w-11 h-11 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-900 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
-            aria-label="Chat WhatsApp"
-          >
-            <Icon icon="fa6-brands:whatsapp" className="w-5 h-5" />
-          </button>
         </div>
       </div>
 
       {/* Bottom Accent Line */}
-      <div className="h-1 bg-gradient-to-r from-[#224297] to-[#ffd900] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#224297] to-[#ffd900] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
     </div>
   );
 };
@@ -307,6 +314,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
   onSecondaryClick,
   secondaryIcon = 'solar:heart-linear',
   linkClassName,
+  isWide = false,
 }) => {
   // Decide image aspect ratio classes
   const aspectClass = {
@@ -367,6 +375,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
       buttonText={buttonText}
       onButtonClick={() => onButtonClick?.({} as React.MouseEvent)}
       onWhatsAppClick={onSecondaryClick}
+      isWide={isWide}
     />
   );
 
