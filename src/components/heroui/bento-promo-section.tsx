@@ -81,8 +81,9 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
 
     const handleClaimPromo = (e: React.MouseEvent) => {
       e.preventDefault();
-      const whatsappNumber = "6281223555021"; // default Wiguna WA
-      const text = encodeURIComponent(`Halo Bengkel Wiguna, saya ingin klaim promo: ${title}`);
+      const whatsappNumber = "6281717773888"; // Wiguna WA
+      const promoName = title.trim();
+      const text = encodeURIComponent(`Halo, saya tertarik dengan promo: ${promoName}`);
       window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
     };
 
