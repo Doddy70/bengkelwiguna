@@ -2,23 +2,14 @@
  * AI Gateway Test Script — Bengkel Wiguna
  * Tests the AI Gateway connection with streaming response
  *
- * Setup Options:
- * 1. AI Gateway (Vercel): Requires credit card on Vercel account
- * 2. Direct API Key: Set OPENAI_API_KEY or ANTHROPIC_API_KEY in .env.local
+ * ⚠️ AI Gateway requires credit card on Vercel:
+ * Visit: https://vercel.com/d?to=%2F%5Bteam%5D%2F%7E%2Fai%3Fmodal%3Dadd-credit-card
  */
 
-// Option 1: AI Gateway (requires Vercel credit card)
-// import { streamText } from 'ai'
-
-// Option 2: Direct OpenAI API
-import { streamText, createOpenAI } from 'ai'
-
-const openai = createOpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-})
+import { streamText } from 'ai'
 
 const result = streamText({
-  model: openai('gpt-4o'),
+  model: 'openai/gpt-4o',
   system: 'Kamu adalah asisten yang helpful untuk Bengkel Wiguna, bengkel mobil profesional di Depok, Indonesia. Selalu jawab dalam Bahasa Indonesia.',
   prompt: 'Halo! Apa layanan terbaik yang ditawarkan Bengkel Wiguna?',
 })
