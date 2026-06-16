@@ -2,18 +2,36 @@
  * Schema.org JSON-LD Utilities — Bengkel Wiguna Next.js
  * Generates structured data for LocalBusiness, Services, Articles, and more.
  * Compliant with Google's rich results guidelines.
+ * Enhanced with sameAs links for AI/Knowledge Graph recognition.
  */
+
+// Canonical phone number (standardized)
+const CANONICAL_PHONE = "+6281717773888";
+const CANONICAL_WA = "https://wa.me/6281717773888";
+
+// Brand colors for reference
+const BRAND = {
+  BLUE: "#224297",
+  GOLD: "#ffd900",
+  NAME: "Bengkel Wiguna",
+  TAGLINE: "No Drama, No Bongkar-Bongkar, No Tebak-Tebak, No Tipu-Tipu"
+};
 
 export function generateLocalBusinessSchema() {
   return {
     "@context": "https://schema.org",
     "@type": ["LocalBusiness", "AutoRepairShop"],
     "@id": "https://bengkelwiguna.com/#localbusiness",
-    "name": "Bengkel Wiguna",
+    "name": BRAND.NAME,
+    "alternateName": ["Wiguna Workshop", "Bengkel Wiguna Depok"],
+    "description": `${BRAND.TAGLINE}. Bengkel One Stop Service terpercaya di Depok sejak 2010. Perawatan mobil profesional dengan teknisi berpengalaman.`,
     "image": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
     "url": "https://bengkelwiguna.com",
-    "telephone": "+6287817773888",
+    "telephone": CANONICAL_PHONE,
     "priceRange": "$$",
+    "slogan": BRAND.TAGLINE,
+    "foundingDate": "2010",
+    "foundingLocation": "Depok, Jawa Barat, Indonesia",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji",
@@ -41,19 +59,154 @@ export function generateLocalBusinessSchema() {
         "closes": "15:00"
       }
     ],
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "Depok"
+      },
+      {
+        "@type": "State",
+        "name": "Jawa Barat"
+      },
+      {
+        "@type": "Country",
+        "name": "Indonesia"
+      }
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Layanan Servis Mobil",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Servis Ringan"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Perbaikan Mesin"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Spooring & Balancing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Service AC Mobil"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Detailing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Body Repair"
+          }
+        }
+      ]
+    },
     "sameAs": [
       "https://www.instagram.com/bengkelwiguna/",
-      "https://www.facebook.com/bengkelwiguna"
+      "https://www.facebook.com/bengkelwiguna",
+      "https://www.tiktok.com/@bengkelwiguna",
+      "https://www.youtube.com/@bengkelwiguna",
+      "https://wa.me/6281717773888",
+      // Wikidata will be added after entry is created
+      // "https://www.wikidata.org/wiki/QXXXXXXX"
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+6287817773888",
+      "telephone": CANONICAL_PHONE,
       "contactType": "customer service",
       "availableLanguage": ["Indonesian", "English"],
       "areaServed": "ID",
       "contactOption": ["WhatsApp", "TollFree"],
-      "url": "https://wa.me/6287817773888"
+      "url": CANONICAL_WA
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "127",
+      "bestRating": "5"
     }
+  };
+}
+
+export function generateOrganizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://bengkelwiguna.com/#organization",
+    "name": BRAND.NAME,
+    "alternateName": ["Wiguna Workshop", "Bengkel Wiguna Depok"],
+    "description": `${BRAND.TAGLINE}. Bengkel One Stop Service terpercaya di Depok sejak 2010.`,
+    "url": "https://bengkelwiguna.com",
+    "logo": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
+    "image": "https://bengkelwiguna.com/images/about/bbbb.jpg",
+    "telephone": CANONICAL_PHONE,
+    "email": "info@bengkelwiguna.com",
+    "foundingDate": "2010",
+    "foundingLocation": "Depok, Jawa Barat, Indonesia",
+    "slogan": BRAND.TAGLINE,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji",
+      "addressLocality": "Kota Depok",
+      "addressRegion": "Jawa Barat",
+      "postalCode": "16423",
+      "addressCountry": "ID"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -6.402460,
+      "longitude": 106.840610
+    },
+    "sameAs": [
+      "https://www.instagram.com/bengkelwiguna/",
+      "https://www.facebook.com/bengkelwiguna",
+      "https://www.tiktok.com/@bengkelwiguna",
+      "https://www.youtube.com/@bengkelwiguna",
+      CANONICAL_WA
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": CANONICAL_PHONE,
+      "contactType": "customer service",
+      "availableLanguage": ["Indonesian", "English"],
+      "areaServed": "ID",
+      "contactOption": "WhatsApp",
+      "url": CANONICAL_WA
+    },
+    "knowsAbout": [
+      "Car Maintenance",
+      "Auto Repair",
+      "Vehicle Diagnostics",
+      "Car Service",
+      "Automotive Repair"
+    ],
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "license",
+        "name": "Izin Bengkel Resmi"
+      }
+    ]
   };
 }
 
@@ -63,9 +216,10 @@ export function generateWebsiteSchema() {
     "@type": "WebSite",
     "@id": "https://bengkelwiguna.com/#website",
     "url": "https://bengkelwiguna.com",
-    "name": "Bengkel Wiguna",
+    "name": `${BRAND.NAME} - Bengkel Mobil Terpercaya di Depok`,
+    "description": `${BRAND.TAGLINE}. Layanan servis mobil profesional di Depok. Booking sekarang!`,
     "publisher": {
-      "@id": "https://bengkelwiguna.com/#localbusiness"
+      "@id": "https://bengkelwiguna.com/#organization"
     },
     "potentialAction": {
       "@type": "SearchAction",
@@ -74,6 +228,10 @@ export function generateWebsiteSchema() {
         "urlTemplate": "https://bengkelwiguna.com/search?q={search_term_string}"
       },
       "query-input": "required name=search_term_string"
+    },
+    "inLanguage": "id-ID",
+    "isPartOf": {
+      "@id": "https://bengkelwiguna.com/#organization"
     }
   };
 }
@@ -83,13 +241,21 @@ export function generateServiceSchema(service: any) {
     "@context": "https://schema.org",
     "@type": "Service",
     "serviceType": "Auto Repair Service",
-    "provider": {
-      "@id": "https://bengkelwiguna.com/#localbusiness"
-    },
     "name": service.title?.rendered || service.title || "Layanan Bengkel Wiguna",
     "description": service.excerpt?.rendered || service.excerpt || "",
     "image": service.featured_img || null,
-    "url": `https://bengkelwiguna.com/services/${service.slug}`
+    "url": `https://bengkelwiguna.com/services/${service.slug}`,
+    "provider": {
+      "@id": "https://bengkelwiguna.com/#localbusiness"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Depok"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": service.title?.rendered || service.title
+    }
   };
 }
 
@@ -104,15 +270,20 @@ export function generateArticleSchema(post: any) {
     "dateModified": post.modified || post.date,
     "author": {
       "@type": "Organization",
-      "name": "Bengkel Wiguna",
+      "name": BRAND.NAME,
       "url": "https://bengkelwiguna.com"
     },
     "publisher": {
-      "@id": "https://bengkelwiguna.com/#localbusiness"
+      "@id": "https://bengkelwiguna.com/#organization"
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
       "@id": `https://bengkelwiguna.com/blog/${post.slug}`
+    },
+    "about": {
+      "@type": "Thing",
+      "name": "Car Maintenance",
+      "description": "Tips and guides for car maintenance and repair"
     }
   };
 }
@@ -126,7 +297,11 @@ export function generateFAQSchema(faqs: Array<{ q: string, a: string }>) {
       "name": faq.q,
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": faq.a
+        "text": faq.a,
+        "answeredBy": {
+          "@type": "Organization",
+          "name": BRAND.NAME
+        }
       }
     }))
   };
@@ -160,7 +335,20 @@ export function generateAggregateRatingSchema() {
     "ratingValue": "4.8",
     "reviewCount": "127",
     "bestRating": "5",
-    "worstRating": "1"
+    "worstRating": "1",
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "name": BRAND.NAME,
+      "image": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
+      "telephone": CANONICAL_PHONE,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Margonda No.268",
+        "addressLocality": "Depok",
+        "addressRegion": "Jawa Barat",
+        "addressCountry": "ID"
+      }
+    }
   };
 }
 
@@ -194,41 +382,53 @@ export function generateSpecialOfferSchema(promo: any) {
 }
 
 /**
- * Organization Schema (standalone)
- * For about/contact pages or when needed separately
+ * About Page Schema
+ * For /tentang-wiguna page
  */
-export function generateOrganizationSchema() {
+export function generateAboutPageSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": "https://bengkelwiguna.com/#organization",
-    "name": "Bengkel Wiguna",
-    "url": "https://bengkelwiguna.com",
-    "logo": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
-    "description": "Bengkel One Stop Service terpercaya di Depok sejak 2010. Perawatan mobil profesional dengan teknisi berpengalaman.",
-    "telephone": "+6287817773888",
-    "email": "info@bengkelwiguna.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji",
-      "addressLocality": "Kota Depok",
-      "addressRegion": "Jawa Barat",
-      "postalCode": "16423",
-      "addressCountry": "ID"
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@id": "https://bengkelwiguna.com/#organization"
     },
-    "sameAs": [
-      "https://www.instagram.com/bengkelwiguna/",
-      "https://www.facebook.com/bengkelwiguna",
-      "https://www.tiktok.com/@bengkelwiguna"
-    ],
+    "description": `${BRAND.TAGLINE}. Bengkel One Stop Service terpercaya yang telah menjadi bagian dari perjalanan masyarakat Depok dan sekitarnya dalam merawat kendaraan mereka sejak lebih dari dua dekade lalu.`,
+    "about": {
+      "@type": "Organization",
+      "name": BRAND.NAME,
+      "description": "Bengkel One Stop Service terpercaya di Depok",
+      "foundingDate": "2010",
+      "foundingLocation": "Depok, Jawa Barat",
+      "telephone": CANONICAL_PHONE,
+      "areaServed": {
+        "@type": "City",
+        "name": "Depok"
+      }
+    }
+  };
+}
+
+/**
+ * Contact Page Schema
+ * For /lokasi page
+ */
+export function generateContactPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@id": "https://bengkelwiguna.com/#localbusiness"
+    },
+    "description": "Hubungi Bengkel Wiguna untuk reservasi servis atau konsultasi gratis",
+    "url": "https://bengkelwiguna.com/lokasi",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": "+6287817773888",
+      "telephone": CANONICAL_PHONE,
       "contactType": "customer service",
-      "availableLanguage": ["Indonesian", "English"],
+      "availableLanguage": ["Indonesian"],
       "areaServed": "ID",
       "contactOption": "WhatsApp",
-      "url": "https://wa.me/6287817773888"
+      "url": CANONICAL_WA
     }
   };
 }
