@@ -54,4 +54,9 @@ GEMINI.md
 Prompt Onboard.md
 bw-headless-cms-latest.zip
 bengkel-wiguna-nextjs/
-Exist/
+# aapanel deployment artifacts
+aapanel-deployment/
+build-aapanel.sh
+release-aapanel.zip
+ecosystem.config.js
+AAPANEL_OPTIMIZATION_GUIDE.md
