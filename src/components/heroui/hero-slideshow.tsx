@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -9,20 +9,57 @@ import { Icon } from "@iconify/react";
 export default function HeroSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Auto play - single static slide
+  // Slides data - Multiple images with same title/description
+  const slides = [
+    {
+      image: "/images/hero/slider-1.jpg",
+      title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
+      subtitle: "One Stop Service Profesional, jujur, terpercaya",
+    },
+    {
+      image: "/images/hero/slider-2.jpg",
+      title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
+      subtitle: "One Stop Service Profesional, jujur, terpercaya",
+    },
+    {
+      image: "/images/hero/slider-4.jpg",
+      title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
+      subtitle: "One Stop Service Profesional, jujur, terpercaya",
+    },
+    {
+      image: "/images/hero/slider-5.jpg",
+      title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
+      subtitle: "One Stop Service Profesional, jujur, terpercaya",
+    },
+    {
+      image: "/images/hero/slider-6.jpg",
+      title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
+      subtitle: "One Stop Service Profesional, jujur, terpercaya",
+    },
+  ];
+
+  // Auto play slideshow
   useEffect(() => {
-    const totalSlides = 1; // Single static image
-    if (totalSlides <= 1) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % totalSlides);
-    }, 5000);
+      setCurrentIndex((prev) => (prev + 1) % slides.length);
+    }, 6000); // 6 seconds per slide
     return () => clearInterval(interval);
+  }, [slides.length]);
+
+  // Manual navigation
+  const goToSlide = useCallback((index: number) => {
+    setCurrentIndex(index);
   }, []);
 
-  // Static image and content
-  const image = "/images/hero/slider-1.jpg";
-  const title = "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak";
-  const subtitle = "One Stop Service Profesional, jujur, terpercaya";
+  const goToPrev = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length);
+  }, [slides.length]);
+
+  const goToNext = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % slides.length);
+  }, [slides.length]);
+
+  const currentSlide = slides[currentIndex];
 
   // Menu items for the glassmorphism floating menu
   const menuItems = [
@@ -38,7 +75,7 @@ export default function HeroSlideshow() {
       {/* Boxed, rounded container matching the reference design */}
       <div className="relative w-full h-[70svh] lg:h-[75vh] min-h-[500px] lg:min-h-[650px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
 
-        {/* Background Image */}
+        {/* Background Slideshow */}
         <AnimatePresence mode="popLayout">
           <motion.div
             key={currentIndex}
@@ -49,11 +86,11 @@ export default function HeroSlideshow() {
             className="absolute inset-0 z-0"
           >
             <Image
-              src={image}
-              alt={title}
+              src={currentSlide.image}
+              alt={currentSlide.title}
               fill
               className="object-cover"
-              priority
+              priority={currentIndex === 0}
               sizes="100vw"
               quality={90}
             />
@@ -81,7 +118,7 @@ export default function HeroSlideshow() {
 
           {/* Chat Minna Button - Inline Single Line */}
           <Link
-            href="https://wa.me/6287817773888?text=halo%20minna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
+            href="https://wa.me/6281717773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya.%20(web)"
             target="_blank"
             className="inline-flex items-center gap-2 bg-[#ffd900] hover:bg-[#e6c300] text-black px-4 py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg hover:scale-105 transition-all whitespace-nowrap"
           >
@@ -124,12 +161,12 @@ export default function HeroSlideshow() {
               >
                 {/* Main Title */}
                 <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.1] mb-4">
-                  {title}
+                  {currentSlide.title}
                 </h1>
 
                 {/* Subtitle */}
                 <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium">
-                  {subtitle}
+                  {currentSlide.subtitle}
                 </p>
               </motion.div>
             </AnimatePresence>
@@ -149,7 +186,7 @@ export default function HeroSlideshow() {
               </div>
             </Link>
             <a
-              href="https://wa.me/6287817773888?text=halo%20minna,%20saya%20ingin%20konsultasi%20seputar%20kendaraan%20saya"
+              href="https://wa.me/6281717773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20konsultasi%20seputar%20kendaraan%20saya"
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center justify-between gap-3 sm:gap-6 px-5 sm:px-6 py-3 sm:py-4 rounded-full bg-white text-gray-900 font-bold hover:bg-gray-100 transition-all w-auto shadow-lg"
@@ -161,6 +198,38 @@ export default function HeroSlideshow() {
             </a>
           </div>
         </div>
+
+        {/* Slide Navigation - Bottom Center */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 flex items-center gap-2">
+          {slides.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => goToSlide(idx)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                idx === currentIndex
+                  ? 'w-8 bg-[#ffd900]'
+                  : 'bg-white/30 hover:bg-white/50'
+              }`}
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Arrow Navigation - Left/Right */}
+        <button
+          onClick={goToPrev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110"
+          aria-label="Previous slide"
+        >
+          <Icon icon="solar:arrow-left-linear" className="w-5 h-5" />
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110"
+          aria-label="Next slide"
+        >
+          <Icon icon="solar:arrow-right-linear" className="w-5 h-5" />
+        </button>
       </div>
     </section>
   );
