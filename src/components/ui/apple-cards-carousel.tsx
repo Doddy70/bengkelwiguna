@@ -1,305 +1,304 @@
 "use client";
-import React, {
-  useEffect,
-  useRef,
-  useState,
-  createContext,
-  useContext,
-} from "react";
-import {
-  IconArrowNarrowLeft,
-  IconArrowNarrowRight,
-  IconX,
-} from "@tabler/icons-react";
-import { cn } from "@/lib/utils";
-import { AnimatePresence, motion } from "motion/react";
-import Image, { ImageProps } from "next/image";
-import { useOutsideClick } from "@/hooks/use-outside-click";
 
-interface CarouselProps {
-  items: React.ReactNode[];
-  initialScroll?: number;
+/**
+ * Apple Cards Carousel - Liquid Glass Inspired Design
+ * Inspired by SwiftUI Liquid Glass principles
+ * Semi-transparent cards with backdrop blur effects
+ */
+
+import React, { useState } from 'react';
+import Image from 'next/image';
+import { Icon } from '@iconify/react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+interface PromoItem {
+  id: number;
+  slug: string;
+  title: string | { rendered: string };
+  excerpt?: string | { rendered: string };
+  featured_img?: string;
+  diskon_persen?: string;
+  harga_promo?: string;
+  harga_asli?: string;
+  kategori_promosi?: string;
 }
 
-type Card = {
-  src: string;
-  title: string;
-  category: string;
-  content: React.ReactNode;
-};
+interface PromoCarouselProps {
+  promos: PromoItem[];
+  title?: string;
+  subtitle?: string;
+}
 
-export const CarouselContext = createContext<{
-  onCardClose: (index: number) => void;
-  currentIndex: number;
-}>({
-  onCardClose: () => {},
-  currentIndex: 0,
-});
-
-export const Carousel = ({ items, initialScroll = 0 }: CarouselProps) => {
-  const carouselRef = React.useRef<HTMLDivElement>(null);
-  const [canScrollLeft, setCanScrollLeft] = React.useState(false);
-  const [canScrollRight, setCanScrollRight] = React.useState(true);
+export default function PromoCarousel({ promos, title, subtitle }: PromoCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
-  useEffect(() => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollLeft = initialScroll;
-      checkScrollability();
-    }
-  }, [initialScroll]);
+  const getTitle = (p: PromoItem) =>
+    typeof p.title === 'string' ? p.title : p.title?.rendered || 'Promo Spesial';
 
-  const checkScrollability = () => {
-    if (carouselRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
-    }
+  const getExcerpt = (p: PromoItem) => {
+    const raw = typeof p.excerpt === 'string' ? p.excerpt : p.excerpt?.rendered || '';
+    return raw.replace(/<[^>]*>/g, '').trim() || 'Dapatkan penawaran menarik di Bengkel Wiguna.';
   };
 
+  const getImage = (p: PromoItem) =>
+    p.featured_img || '/images/promosi/promo-default.jpg';
+
   const scrollLeft = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
+    setCurrentIndex((prev) => (prev === 0 ? promos.length - 1 : prev - 1));
   };
 
   const scrollRight = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
+    setCurrentIndex((prev) => (prev === promos.length - 1 ? 0 : prev + 1));
   };
 
-  const handleCardClose = (index: number) => {
-    if (carouselRef.current) {
-      const cardWidth = isMobile() ? 230 : 384; // (md:w-96)
-      const gap = isMobile() ? 4 : 8;
-      const scrollPosition = (cardWidth + gap) * (index + 1);
-      carouselRef.current.scrollTo({
-        left: scrollPosition,
-        behavior: "smooth",
-      });
-      setCurrentIndex(index);
-    }
-  };
+  if (!promos.length) return null;
 
-  const isMobile = () => {
-    return window && window.innerWidth < 768;
-  };
+  const currentPromo = promos[currentIndex];
 
   return (
-    <CarouselContext.Provider
-      value={{ onCardClose: handleCardClose, currentIndex }}
-    >
-      <div className="relative w-full">
-        <div
-          className="flex w-full overflow-x-scroll overscroll-x-auto scroll-smooth py-10 [scrollbar-width:none] md:py-20"
-          ref={carouselRef}
-          onScroll={checkScrollability}
-        >
-          <div
-            className={cn(
-              "absolute right-0 z-[1000] h-auto w-[5%] overflow-hidden bg-gradient-to-l",
-            )}
-          ></div>
-
-          <div
-            className={cn(
-              "flex flex-row justify-start gap-4 md:gap-6",
-              "w-full", 
-            )}
-          >
-            {items.map((item, index) => (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 20,
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  transition: {
-                    duration: 0.5,
-                    delay: 0.2 * index,
-                    ease: "easeOut",
-                  },
-                }}
-                key={"card" + index}
-                className="rounded-3xl last:pr-[5%] md:last:pr-[33%]"
-              >
-                {item}
-              </motion.div>
-            ))}
-          </div>
+    <div className="relative w-full">
+      {/* Section Header */}
+      {title && (
+        <div className="text-center mb-8">
+          <h2 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight mb-2">
+            {title}
+          </h2>
+          {subtitle && (
+            <p className="text-white/60 text-sm font-medium">{subtitle}</p>
+          )}
         </div>
-        <div className="absolute top-0 md:top-4 right-4 md:right-10 z-50 flex justify-end gap-2 pointer-events-auto">
-          <button
-            className="relative z-40 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
-            onClick={scrollLeft}
-            disabled={!canScrollLeft}
+      )}
+
+      {/* Carousel Container */}
+      <div className="relative flex items-center justify-center">
+        {/* Navigation Buttons */}
+        <button
+          onClick={scrollLeft}
+          className="absolute left-0 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white transition-all duration-300 hover:scale-110 shadow-lg -translate-x-2"
+          aria-label="Previous"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+
+        <button
+          onClick={scrollRight}
+          className="absolute right-0 z-40 flex items-center justify-center w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white transition-all duration-300 hover:scale-110 shadow-lg translate-x-2"
+          aria-label="Next"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
+
+        {/* Cards Container */}
+        <div className="flex items-center justify-center gap-4 md:gap-6 overflow-hidden px-8 md:px-16">
+          {/* Left Card (Smaller, Dimmed) */}
+          <motion.div
+            key={`left-${currentIndex}`}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 0.5, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="hidden md:block w-64 h-[380px] flex-shrink-0"
           >
-            <IconArrowNarrowLeft className="h-6 w-6 text-gray-500 dark:text-gray-300" />
-          </button>
-          <button
-            className="relative z-40 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-neutral-800 dark:hover:bg-neutral-700 transition-colors disabled:opacity-50"
-            onClick={scrollRight}
-            disabled={!canScrollRight}
+            <div className="relative h-full rounded-[2rem] overflow-hidden">
+              <Image
+                src={getImage(promos[(currentIndex - 1 + promos.length) % promos.length])}
+                alt=""
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+          </motion.div>
+
+          {/* Center Card (Main, Expanded) */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`center-${currentIndex}`}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.5, ease: 'easeOut' }}
+              className="relative w-[320px] md:w-[420px] h-[480px] md:h-[520px] flex-shrink-0 cursor-pointer"
+              onClick={() => setExpandedIndex(currentIndex)}
+            >
+              {/* Glass Card */}
+              <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden group">
+                {/* Background Image */}
+                <Image
+                  src={getImage(currentPromo)}
+                  alt={getTitle(currentPromo)}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority
+                />
+
+                {/* Glass Overlay - Liquid Glass Inspired */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+
+                {/* Top Badges */}
+                <div className="absolute top-6 left-6 right-6 z-20 flex items-center justify-between">
+                  <span className="px-4 py-2 bg-[#ffd900] text-black text-xs font-black uppercase tracking-wider rounded-full shadow-lg">
+                    {currentPromo.kategori_promosi || 'Promo Spesial'}
+                  </span>
+                  {currentPromo.diskon_persen && (
+                    <span className="px-4 py-2 bg-[#25D366] text-white text-xs font-black uppercase tracking-wider rounded-full shadow-lg">
+                      {currentPromo.diskon_persen}% OFF
+                    </span>
+                  )}
+                </div>
+
+                {/* Bottom Glass Content Panel */}
+                <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-8 backdrop-blur-2xl bg-white/10 border-t border-white/20">
+                  {/* Glass Effect Line */}
+                  <div className="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
+
+                  <h3 className="text-2xl md:text-3xl font-black text-white uppercase tracking-tight leading-tight mb-2 group-hover:text-[#ffd900] transition-colors duration-300">
+                    {getTitle(currentPromo)}
+                  </h3>
+
+                  <p className="text-white/80 text-sm md:text-base leading-relaxed line-clamp-2 mb-4">
+                    {getExcerpt(currentPromo)}
+                  </p>
+
+                  {/* Price & CTA */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-baseline gap-2">
+                      {currentPromo.harga_promo && (
+                        <>
+                          <span className="text-2xl font-black text-[#ffd900]">
+                            {currentPromo.harga_promo}
+                          </span>
+                          {currentPromo.harga_asli && (
+                            <span className="text-sm text-white/50 line-through">
+                              {currentPromo.harga_asli}
+                            </span>
+                          )}
+                        </>
+                      )}
+                    </div>
+
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const waText = encodeURIComponent(`Halo, saya tertarik dengan promo: ${getTitle(currentPromo)}`);
+                        window.open(`https://wa.me/6281717773888?text=${waText}`, '_blank');
+                      }}
+                      className="flex items-center gap-2 px-5 py-3 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                    >
+                      <Icon icon="fa6-brands:whatsapp" className="w-5 h-5" />
+                      <span>Klaim</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Hover Glow Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#224297]/20 to-transparent" />
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Right Card (Smaller, Dimmed) */}
+          <motion.div
+            key={`right-${currentIndex}`}
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 0.5, x: 0 }}
+            transition={{ duration: 0.5 }}
+            className="hidden md:block w-64 h-[380px] flex-shrink-0"
           >
-            <IconArrowNarrowRight className="h-6 w-6 text-gray-500 dark:text-gray-300" />
-          </button>
+            <div className="relative h-full rounded-[2rem] overflow-hidden">
+              <Image
+                src={getImage(promos[(currentIndex + 1) % promos.length])}
+                alt=""
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+          </motion.div>
         </div>
       </div>
-    </CarouselContext.Provider>
-  );
-};
 
-export const Card = ({
-  card,
-  index,
-  layout = false,
-}: {
-  card: Card;
-  index: number;
-  layout?: boolean;
-}) => {
-  const [open, setOpen] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { onCardClose, currentIndex } = useContext(CarouselContext);
+      {/* Dot Indicators */}
+      <div className="flex justify-center items-center gap-2 mt-8">
+        {promos.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              idx === currentIndex
+                ? 'w-8 bg-[#ffd900]'
+                : 'w-2 bg-white/30 hover:bg-white/50'
+            }`}
+            aria-label={`Go to slide ${idx + 1}`}
+          />
+        ))}
+      </div>
 
-  useEffect(() => {
-    function onKeyDown(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        handleClose();
-      }
-    }
-
-    if (open) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
-
-  useOutsideClick(containerRef, () => handleClose());
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-    onCardClose(index);
-  };
-
-  return (
-    <>
+      {/* Expanded Modal */}
       <AnimatePresence>
-        {open && (
-          <div className="fixed inset-0 z-50 h-screen overflow-auto">
+        {expandedIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl"
+            onClick={() => setExpandedIndex(null)}
+          >
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 h-full w-full bg-black/80 backdrop-blur-lg"
-            />
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              ref={containerRef}
-              layoutId={layout ? `card-${card.title}` : undefined}
-              className="relative z-[60] mx-auto my-10 h-fit max-w-5xl rounded-3xl bg-white p-4 font-sans md:p-10 dark:bg-neutral-900"
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-4xl max-h-[90vh] overflow-auto rounded-[2rem] bg-white dark:bg-neutral-900 shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
+              {/* Close Button */}
               <button
-                className="sticky top-4 right-0 ml-auto flex h-8 w-8 items-center justify-center rounded-full bg-black dark:bg-white"
-                onClick={handleClose}
+                onClick={() => setExpandedIndex(null)}
+                className="absolute top-4 right-4 z-10 w-12 h-12 rounded-full bg-gray-100 dark:bg-neutral-800 hover:bg-gray-200 dark:hover:bg-neutral-700 flex items-center justify-center transition-colors"
               >
-                <IconX className="h-6 w-6 text-neutral-100 dark:text-neutral-900" />
+                <X className="w-6 h-6" />
               </button>
-              <motion.p
-                layoutId={layout ? `category-${card.title}` : undefined}
-                className="text-base font-medium text-black dark:text-white"
-              >
-                {card.category}
-              </motion.p>
-              <motion.p
-                layoutId={layout ? `title-${card.title}` : undefined}
-                className="mt-4 text-2xl font-semibold text-neutral-700 md:text-5xl dark:text-white"
-              >
-                {card.title}
-              </motion.p>
-              <div className="py-10">{card.content}</div>
+
+              {/* Modal Content */}
+              <div className="relative aspect-video">
+                <Image
+                  src={getImage(promos[expandedIndex])}
+                  alt={getTitle(promos[expandedIndex])}
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+
+                {/* Content Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-8">
+                  <span className="inline-block px-4 py-2 bg-[#ffd900] text-black text-sm font-black uppercase tracking-wider rounded-full mb-4">
+                    {promos[expandedIndex].kategori_promosi || 'Promo Spesial'}
+                  </span>
+                  <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight mb-4">
+                    {getTitle(promos[expandedIndex])}
+                  </h2>
+                  <p className="text-white/80 text-lg leading-relaxed mb-6">
+                    {getExcerpt(promos[expandedIndex])}
+                  </p>
+                  <button
+                    onClick={() => {
+                      const waText = encodeURIComponent(`Halo, saya tertarik dengan promo: ${getTitle(promos[expandedIndex])}`);
+                      window.open(`https://wa.me/6281717773888?text=${waText}`, '_blank');
+                    }}
+                    className="flex items-center gap-3 px-8 py-4 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white font-bold text-lg transition-all duration-300 shadow-lg"
+                  >
+                    <Icon icon="fa6-brands:whatsapp" className="w-6 h-6" />
+                    Klaim Promo via WhatsApp
+                  </button>
+                </div>
+              </div>
             </motion.div>
-          </div>
+          </motion.div>
         )}
       </AnimatePresence>
-      <motion.button
-        layoutId={layout ? `card-${card.title}` : undefined}
-        onClick={handleOpen}
-        className="relative z-10 flex h-80 w-56 flex-col items-start justify-start overflow-hidden rounded-3xl bg-black md:h-[40rem] md:w-96 shrink-0 group"
-      >
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-30 h-full bg-gradient-to-b from-black/50 via-transparent to-transparent" />
-        <div className="relative z-40 p-8">
-          <motion.p
-            layoutId={layout ? `category-${card.category}` : undefined}
-            className="text-left font-sans text-sm font-medium text-white md:text-base"
-          >
-            {card.category}
-          </motion.p>
-          <motion.p
-            layoutId={layout ? `title-${card.title}` : undefined}
-            className="mt-2 max-w-xs text-left font-sans text-xl font-semibold [text-wrap:balance] text-white md:text-3xl"
-          >
-            {card.title}
-          </motion.p>
-        </div>
-        {/* Latar Belakang Blur (Contextual Background) */}
-        <BlurImage
-          src={card.src}
-          alt="Background Blur"
-          fill
-          className="absolute inset-0 z-0 object-cover blur-2xl opacity-60 scale-125 transition-transform duration-700 group-hover:scale-150"
-        />
-
-        {/* Gambar Utama (Utuh tanpa terpotong) */}
-        <BlurImage
-          src={card.src}
-          alt={card.title}
-          fill
-          className="absolute inset-0 z-10 object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.5)] transition-transform duration-700 group-hover:scale-105"
-        />
-      </motion.button>
-    </>
+    </div>
   );
-};
-
-export const BlurImage = ({
-  height,
-  width,
-  src,
-  className,
-  alt,
-  ...rest
-}: ImageProps) => {
-  const [isLoading, setLoading] = useState(true);
-  return (
-    <img
-      className={cn(
-        "h-full w-full transition duration-300",
-        isLoading ? "blur-sm" : "blur-0",
-        className,
-      )}
-      onLoad={() => setLoading(false)}
-      src={src as string}
-      width={width}
-      height={height}
-      loading="lazy"
-      decoding="async"
-      blurDataURL={typeof src === "string" ? src : undefined}
-      alt={alt ? alt : "Background of a beautiful view"}
-      {...rest}
-    />
-  );
-};
+}

@@ -1,15 +1,19 @@
 "use client";
 
 /**
- * WigunaCard - Reusable UI Card Component
- * Replicates the Travel Card mockup design (Split vs Full-bleed Overlay)
- * Optimized for Bengkel Wiguna V3 brand colors and responsive spacing.
+ * WigunaCard - Enhanced UI Card Components
+ * Two variants: Framed Card (Bento Grid) & Overlay Card (Apple Carousel)
+ * Inspired by Liquid Glass design principles
  */
 
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
+
+// ============================================
+// TYPES
+// ============================================
 
 export interface WigunaCardProps {
   href?: string;
@@ -31,6 +35,239 @@ export interface WigunaCardProps {
   linkClassName?: string;
 }
 
+// ============================================
+// FRAMED CARD (Bento Grid Style)
+// Inspired by clean card design with subtle shadows
+// ============================================
+
+interface FramedCardProps {
+  image: string;
+  tag?: string;
+  title: string;
+  excerpt?: string;
+  price?: string;
+  oldPrice?: string;
+  badgeText?: string;
+  metaItems?: Array<{ icon: string; text: string }>;
+  buttonText?: string;
+  onButtonClick?: (e: React.MouseEvent) => void;
+  onWhatsAppClick?: (e: React.MouseEvent) => void;
+}
+
+export const FramedCard: React.FC<FramedCardProps> = ({
+  image,
+  tag,
+  title,
+  excerpt,
+  price,
+  oldPrice,
+  badgeText,
+  metaItems = [],
+  buttonText = 'Lihat Detail',
+  onButtonClick,
+  onWhatsAppClick,
+}) => {
+  return (
+    <div className="group relative bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col">
+      {/* Image Container */}
+      <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+
+        {/* Top Badges */}
+        <div className="absolute top-4 left-4 flex flex-col gap-2">
+          {tag && (
+            <span className="inline-block bg-[#224297] text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
+              {tag}
+            </span>
+          )}
+          {badgeText && (
+            <span className="inline-block bg-[#ffd900] text-black text-[10px] font-black px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
+              {badgeText}
+            </span>
+          )}
+        </div>
+
+        {/* Hover Overlay with Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+
+      {/* Content Container */}
+      <div className="flex flex-col flex-1 p-5">
+        {/* Title */}
+        <h3 className="text-xl font-black text-gray-900 tracking-tight uppercase leading-tight mb-2 group-hover:text-[#224297] transition-colors line-clamp-2">
+          {title}
+        </h3>
+
+        {/* Excerpt */}
+        {excerpt && (
+          <p className="text-gray-500 text-sm leading-relaxed line-clamp-2 mb-4 flex-1">
+            {excerpt}
+          </p>
+        )}
+
+        {/* Price */}
+        {(price || oldPrice) && (
+          <div className="flex items-center gap-2 mb-4">
+            {price && <span className="text-xl font-black text-[#224297]">{price}</span>}
+            {oldPrice && <span className="text-sm text-gray-400 line-through">{oldPrice}</span>}
+          </div>
+        )}
+
+        {/* Meta Items */}
+        {metaItems.length > 0 && (
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            {metaItems.map((item, idx) => (
+              <div key={idx} className="flex items-center gap-1.5 text-xs text-gray-500">
+                <Icon icon={item.icon} className="w-4 h-4 text-[#224297]" />
+                <span>{item.text}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div className="flex items-center gap-3 mt-auto">
+          <button
+            onClick={onButtonClick}
+            className="flex-1 py-3 px-5 rounded-full bg-[#224297] hover:bg-[#1a356d] text-white font-bold text-sm text-center transition-all duration-300 shadow-sm hover:shadow-md"
+          >
+            {buttonText}
+          </button>
+          <button
+            onClick={onWhatsAppClick}
+            className="w-11 h-11 rounded-full bg-[#ffd900] hover:bg-yellow-400 text-black flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
+            aria-label="Chat WhatsApp"
+          >
+            <Icon icon="fa6-brands:whatsapp" className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      {/* Bottom Accent Line */}
+      <div className="h-1 bg-gradient-to-r from-[#224297] to-[#ffd900] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+    </div>
+  );
+};
+
+// ============================================
+// OVERLAY CARD (Apple Carousel Style)
+// Inspired by Liquid Glass principles
+// Semi-transparent with backdrop blur
+// ============================================
+
+interface OverlayCardProps {
+  image: string;
+  tag?: string;
+  title: string;
+  excerpt?: string;
+  badgeText?: string;
+  price?: string;
+  oldPrice?: string;
+  onButtonClick?: (e: React.MouseEvent) => void;
+  onWhatsAppClick?: (e: React.MouseEvent) => void;
+}
+
+export const OverlayCard: React.FC<OverlayCardProps> = ({
+  image,
+  tag,
+  title,
+  excerpt,
+  badgeText,
+  price,
+  oldPrice,
+  onButtonClick,
+  onWhatsAppClick,
+}) => {
+  return (
+    <div className="group relative h-[460px] rounded-[2rem] overflow-hidden flex flex-col justify-end">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
+
+      {/* Glass Overlay - Inspired by Liquid Glass */}
+      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+
+      {/* Glass Content Panel - Frosted Glass Effect */}
+      <div className="relative z-20 p-6 backdrop-blur-xl bg-white/10 border border-white/20 rounded-b-[2rem]">
+        {/* Top Row - Badges */}
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            {tag && (
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#ffd900]">
+                {tag}
+              </span>
+            )}
+          </div>
+          {badgeText && (
+            <span className="px-3 py-1 bg-[#ffd900] text-black text-[10px] font-black uppercase tracking-wider rounded-full shadow-lg">
+              {badgeText}
+            </span>
+          )}
+        </div>
+
+        {/* Title */}
+        <h3 className="text-2xl font-black text-white uppercase tracking-tight leading-tight mb-2 group-hover:text-[#ffd900] transition-colors duration-300 line-clamp-2">
+          {title}
+        </h3>
+
+        {/* Excerpt */}
+        {excerpt && (
+          <p className="text-white/80 text-sm leading-relaxed line-clamp-2 mb-3">
+            {excerpt}
+          </p>
+        )}
+
+        {/* Price */}
+        {(price || oldPrice) && (
+          <div className="flex items-center gap-2 mb-4">
+            {price && <span className="text-xl font-black text-[#ffd900]">{price}</span>}
+            {oldPrice && <span className="text-sm text-white/50 line-through">{oldPrice}</span>}
+          </div>
+        )}
+
+        {/* Action Buttons */}
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onButtonClick}
+            className="flex-1 py-3 px-5 rounded-full bg-white/20 hover:bg-white hover:text-[#224297] backdrop-blur-md border border-white/30 text-white font-bold text-sm text-center transition-all duration-300"
+          >
+            Lihat Promo
+          </button>
+          <button
+            onClick={onWhatsAppClick}
+            className="w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+            aria-label="Chat WhatsApp"
+          >
+            <Icon icon="fa6-brands:whatsapp" className="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+
+      {/* Subtle Glow Effect on Hover */}
+      <div className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-t from-[#224297]/30 to-transparent" />
+      </div>
+    </div>
+  );
+};
+
+// ============================================
+// LEGACY COMPONENT (Kept for backward compatibility)
+// ============================================
+
 const WigunaCard: React.FC<WigunaCardProps> = ({
   href,
   image,
@@ -50,7 +287,6 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
   secondaryIcon = 'solar:heart-linear',
   linkClassName,
 }) => {
-  
   // Decide image aspect ratio classes
   const aspectClass = {
     '4/3': 'aspect-[4/3]',
@@ -59,7 +295,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
     'square': 'aspect-square',
   }[imageAspectRatio];
 
-  // Helper to handle clicks on the card itself
+  // Handle clicks on the card itself
   const handleCardClick = (e: React.MouseEvent) => {
     if (onClick) {
       onClick(e);
@@ -74,204 +310,49 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
     }
   };
 
-  // Card Content JSX
-  const renderCardContent = () => {
-    if (variant === 'overlay') {
-      /* === 1. OVERLAY VARIANT (PHILIPPINES STYLE) === */
-      return (
-        <div className="relative w-full h-[460px] rounded-[2.5rem] overflow-hidden flex flex-col justify-end p-6 group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5 bg-neutral-900 border border-white/10">
-          {/* Badge at Top-Left */}
-          {badgeText && (
-            <div className="absolute top-6 left-6 z-10">
-              <span className="inline-block bg-[#ffd900] text-black text-xs font-black px-4 py-2 rounded-full shadow-md uppercase tracking-wider">
-                {badgeText}
-              </span>
-            </div>
-          )}
-
-          {/* Background Image */}
-          <div className="absolute inset-0 z-0">
-            <Image
-              src={image}
-              alt={title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-            {/* Matte gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10" />
-          </div>
-
-          {/* Interactive Floating / Blur Content Panel */}
-          <div className="relative z-10 w-full flex flex-col pt-8">
-            {/* Tag / Category */}
-            {tag && (
-              <span className="text-[11px] font-black uppercase tracking-widest text-[#ffd900] mb-2">
-                {tag}
-              </span>
-            )}
-
-            {/* Title */}
-            <h3 className="text-white text-2xl font-black tracking-tight leading-snug line-clamp-2 uppercase font-sans group-hover:text-[#ffd900] transition-colors mb-2">
-              {title}
-            </h3>
-
-            {/* Excerpt */}
-            {excerpt && (
-              <p className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-3 mb-4 font-medium">
-                {excerpt}
-              </p>
-            )}
-
-            {/* Price section if available */}
-            {(price || oldPrice) && (
-              <div className="flex items-center gap-2 mb-4">
-                {price && <span className="text-lg font-black text-[#ffd900]">{price}</span>}
-                {oldPrice && <span className="text-xs text-white/50 line-through">{oldPrice}</span>}
-              </div>
-            )}
-
-            {/* Meta Row (Icons) */}
-            {metaItems.length > 0 && (
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6">
-                {metaItems.map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-1.5 text-xs font-bold text-white/85">
-                    <Icon icon={item.icon} className="w-4 h-4 text-[#ffd900] shrink-0" />
-                    <span>{item.text}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {/* Action Buttons Row */}
-            <div className="flex items-center gap-3">
-              {/* Primary Action Button */}
-              <button
-                onClick={(e) => stopPropagation(e, onButtonClick || onClick)}
-                className="flex-1 py-3 px-6 rounded-full bg-white/10 hover:bg-[#224297] hover:text-white backdrop-blur-md border border-white/20 hover:border-[#224297] text-white font-bold text-sm text-center transition-all duration-300"
-              >
-                {buttonText}
-              </button>
-
-              {/* Secondary Heart/WhatsApp Action Button */}
-              <button
-                onClick={(e) => stopPropagation(e, onSecondaryClick)}
-                className="w-12 h-12 rounded-full bg-white/10 hover:bg-[#ffd900] hover:text-black backdrop-blur-md border border-white/20 hover:border-[#ffd900] text-white flex items-center justify-center transition-all duration-300"
-                aria-label="Secondary Action"
-              >
-                <Icon icon={secondaryIcon} className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      /* === 2. SPLIT VARIANT (SINGAPORE STYLE) === */
-      return (
-        <div className="relative bg-white dark:bg-neutral-900 border border-gray-100/80 dark:border-neutral-800 rounded-[2.5rem] p-4 flex flex-col h-[460px] group hover:shadow-[0_20px_40px_rgba(34,66,151,0.06)] hover:-translate-y-1.5 transition-all duration-500 ease-out shadow-sm">
-          {/* Top Image Container */}
-          <div className={`relative w-full overflow-hidden rounded-[1.8rem] bg-gray-50 dark:bg-neutral-800 ${aspectClass} mb-5`}>
-            <Image
-              src={image}
-              alt={title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-            {/* Tag / Category Badge on Top-Right of Image if Split */}
-            {tag && (
-              <div className="absolute top-4 right-4 z-10">
-                <span className="inline-block bg-[#224297] dark:bg-[#ffd900] text-white dark:text-black text-[10px] font-black px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
-                  {tag}
-                </span>
-              </div>
-            )}
-            {/* Discount Badge on Top-Left of Image if Split */}
-            {badgeText && (
-              <div className="absolute top-4 left-4 z-10">
-                <span className="inline-block bg-[#ffd900] text-black text-[10px] font-black px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
-                  {badgeText}
-                </span>
-              </div>
-            )}
-          </div>
-
-          {/* Bottom Card Body */}
-          <div className="flex-1 flex flex-col justify-between px-2 pb-2">
-            <div>
-              {/* Title */}
-              <h3 className="text-xl sm:text-2xl font-black text-gray-900 dark:text-white leading-snug tracking-tight uppercase font-sans group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors mb-2 line-clamp-2">
-                {title}
-              </h3>
-
-              {/* Excerpt */}
-              {excerpt && (
-                <p className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm leading-relaxed line-clamp-3 mb-4 font-medium">
-                  {excerpt}
-                </p>
-              )}
-
-              {/* Price Tag */}
-              {(price || oldPrice) && (
-                <div className="flex items-center gap-2 mb-4">
-                  {price && <span className="text-lg font-black text-[#224297] dark:text-[#ffd900]">{price}</span>}
-                  {oldPrice && <span className="text-xs text-gray-400 dark:text-gray-500 line-through">{oldPrice}</span>}
-                </div>
-              )}
-
-              {/* Meta Row (Icons) */}
-              {metaItems.length > 0 && (
-                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-6">
-                  {metaItems.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-1.5 text-xs font-bold text-gray-500 dark:text-gray-400">
-                      <Icon icon={item.icon} className="w-4 h-4 text-[#224297] dark:text-[#ffd900] shrink-0" />
-                      <span>{item.text}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Action Buttons Row */}
-            <div className="flex items-center gap-3 mt-auto">
-              {/* Primary Action Button */}
-              <button
-                onClick={(e) => stopPropagation(e, onButtonClick || onClick)}
-                className="flex-1 py-3 px-6 rounded-full bg-gray-100/90 hover:bg-[#224297] text-gray-800 hover:text-white font-bold text-sm text-center transition-all duration-300 border border-transparent hover:border-[#224297] dark:bg-neutral-800 dark:hover:bg-[#ffd900] dark:text-gray-200 dark:hover:text-black dark:hover:border-[#ffd900]"
-              >
-                {buttonText}
-              </button>
-
-              {/* Secondary Heart/WhatsApp Action Button */}
-              <button
-                onClick={(e) => stopPropagation(e, onSecondaryClick)}
-                className="w-12 h-12 rounded-full bg-gray-100/90 hover:bg-[#ffd900] text-gray-600 hover:text-black flex items-center justify-center transition-all duration-300 dark:bg-neutral-800 dark:hover:bg-[#ffd900] dark:text-gray-300 dark:hover:text-black"
-                aria-label="Secondary Action"
-              >
-                <Icon icon={secondaryIcon} className="w-5 h-5" />
-              </button>
-            </div>
-          </div>
-        </div>
-      );
-    }
-  };
-
-  // If href is specified and there's no custom onClick, render as Next.js Link
-  if (href && !onClick) {
-    return (
-      <Link href={href} className={`block h-full cursor-pointer ${linkClassName || ''}`}>
-        {renderCardContent()}
-      </Link>
+  // Use the new components based on variant
+  if (variant === 'overlay') {
+    const OverlayContent = (
+      <OverlayCard
+        image={image}
+        tag={tag}
+        title={title}
+        excerpt={excerpt}
+        badgeText={badgeText}
+        price={price}
+        oldPrice={oldPrice}
+        onButtonClick={onButtonClick}
+        onWhatsAppClick={onSecondaryClick}
+      />
     );
+
+    if (href && !onClick) {
+      return <Link href={href} className={`block ${linkClassName || ''}`}>{OverlayContent}</Link>;
+    }
+    return <div onClick={handleCardClick} className={`block ${linkClassName || ''}`}>{OverlayContent}</div>;
   }
 
-  // Otherwise, render as a clickable div
-  return (
-    <div onClick={handleCardClick} className={`block h-full cursor-pointer ${linkClassName || ''}`}>
-      {renderCardContent()}
-    </div>
+  // Split variant uses FramedCard
+  const FramedContent = (
+    <FramedCard
+      image={image}
+      tag={tag}
+      title={title}
+      excerpt={excerpt}
+      price={price}
+      oldPrice={oldPrice}
+      badgeText={badgeText}
+      metaItems={metaItems}
+      buttonText={buttonText}
+      onButtonClick={() => onButtonClick?.({} as React.MouseEvent)}
+      onWhatsAppClick={onSecondaryClick}
+    />
   );
+
+  if (href && !onClick) {
+    return <Link href={href} className={`block ${linkClassName || ''}`}>{FramedContent}</Link>;
+  }
+  return <div onClick={handleCardClick} className={`block ${linkClassName || ''}`}>{FramedContent}</div>;
 };
 
 export default WigunaCard;
