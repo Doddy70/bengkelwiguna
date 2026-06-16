@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 const Player = dynamic(() => import("@lottiefiles/react-lottie-player").then(mod => mod.Player), { ssr: false });
 import equipmentData from "@/data/equipment.json";
+import PageTitle3 from "@/components/ui/PageTitle3";
 
 type FeatherIconKeys = keyof typeof FeatherIcons;
 
@@ -81,10 +82,19 @@ export default function ModernEquipmentShowcase() {
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-white/60 blur-[120px] pointer-events-none"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[#dbe4f0]/60 blur-[120px] pointer-events-none"></div>
 
-
+      {/* Section Title */}
+      <div className="relative z-50 pt-16 px-4">
+        <PageTitle3
+          badgeText="🛠️ HOTSPOT INTERAKTIF"
+          title="Eksplorasi Fasilitas & Alat Modern"
+          subtitle="Tekan atau klik titik kuning (hotspot) pada gambar di bawah untuk mempelajari fitur, fungsi, dan keunggulan teknologi bengkel kami."
+          alignment="center"
+          widthClass="w-full max-w-3xl mx-auto"
+        />
+      </div>
 
       {/* Center Tabs (Equipment Selection) */}
-      <div className="relative z-50 flex justify-center mt-6">
+      <div className="relative z-50 flex justify-center mt-8">
         <div className="flex items-center gap-2 p-1.5 bg-white/40 backdrop-blur-md rounded-[2rem] border border-white/60 shadow-sm">
           {equipmentData.map((item: any, idx: number) => (
             <button 
@@ -126,18 +136,12 @@ export default function ModernEquipmentShowcase() {
               <div className="relative w-full h-full max-w-[1100px] lg:scale-100 xl:scale-[1.1] lg:translate-x-[5%] lg:-translate-y-4">
                 
                 {/* Product Image Layer */}
-                <div 
-                  className={`absolute inset-0 transition-all duration-700 ${
-                    activeItem.id === 'service-berkala' 
-                      ? 'w-full h-full' 
-                      : 'w-full lg:w-[55%] lg:-translate-x-12 lg:translate-y-12 h-[80%] lg:h-full my-auto'
-                  }`}
-                >
+                <div className="absolute inset-0 transition-all duration-700 w-full h-full">
                   <Image
                     src={activeItem.image}
                     alt={activeItem.name}
                     fill
-                    className={`object-contain drop-shadow-2xl opacity-90 ${activeItem.id === 'service-berkala' ? 'object-center' : 'object-left lg:object-center'}`}
+                    className="object-contain drop-shadow-2xl opacity-90 object-center"
                     priority
                   />
                 </div>
