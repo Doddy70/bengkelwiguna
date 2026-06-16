@@ -25,6 +25,7 @@ const PromoCarousel = dynamic(() => import('@/components/ui/PromoCarousel'), { s
 interface BentoPromoSectionProps {
   promos: Promosi[];
   promoBulanan?: Promosi[];
+  showPromoBulanan?: boolean;
 }
 
 // Brand Colors
@@ -33,7 +34,7 @@ const BRAND_GOLD = '#ffd900';
 const BRAND_BLUE_LIGHT = '#3b5db3';
 const BRAND_BLUE_DARK = '#1a356d';
 
-const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], promoBulanan = [] }) => {
+const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], promoBulanan = [], showPromoBulanan = true }) => {
   const [visibleCount, setVisibleCount] = useState(5);
 
   // Filter out seasonal/bulanan promos for regular grid
@@ -51,7 +52,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
     });
   }, [promos, promoBulanan]);
 
-  const seasonalPromos = promoBulanan || [];
+  const seasonalPromos = showPromoBulanan ? (promoBulanan || []) : [];
 
   if (regularPromos.length === 0 && seasonalPromos.length === 0) return null;
 
@@ -173,7 +174,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
               onClick={() => setVisibleCount(prev => prev + 5)}
               className="inline-flex items-center gap-3 bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700 text-gray-900 dark:text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold group cursor-pointer border border-transparent dark:border-white/10"
             >
-              Muat Lebih Banyak ({regularPromos.length - visibleCount} lagi)
+              Load More ({regularPromos.length - visibleCount})
               <Icon icon="solar:round-alt-arrow-down-linear" className="w-5 h-5 group-hover:translate-y-1 transition-transform text-[#224297] dark:text-[#ffd900]" />
             </button>
           </div>

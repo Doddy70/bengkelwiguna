@@ -102,17 +102,14 @@ export default async function HomePage() {
   let promosiBulananList: Promosi[] = [];
   let promosiRegularList: Promosi[] = [];
 
-  if (showPromoBulanan) {
-    promosiBulananList = Array.isArray(allPromosi) ? allPromosi.filter(p => promoBulananSlugs.includes(p.slug)) : [];
-    promosiRegularList = Array.isArray(allPromosi) ? allPromosi.filter(p => !promoBulananSlugs.includes(p.slug)) : [];
-    
-    // Fallback if no promo bulanan is selected
-    if (promosiBulananList.length === 0 && Array.isArray(allPromosi) && allPromosi.length > 0) {
-      promosiBulananList = allPromosi.slice(0, 6);
-      promosiRegularList = allPromosi.slice(6);
-    }
-  } else {
-    promosiRegularList = Array.isArray(allPromosi) ? allPromosi : [];
+  // Always separate lists based on selected promo bulanan slugs to keep regular grid clean
+  promosiBulananList = Array.isArray(allPromosi) ? allPromosi.filter(p => promoBulananSlugs.includes(p.slug)) : [];
+  promosiRegularList = Array.isArray(allPromosi) ? allPromosi.filter(p => !promoBulananSlugs.includes(p.slug)) : [];
+  
+  // Apply fallback only if showPromoBulanan is enabled and no specific items are checked
+  if (showPromoBulanan && promosiBulananList.length === 0 && Array.isArray(allPromosi) && allPromosi.length > 0) {
+    promosiBulananList = allPromosi.slice(0, 6);
+    promosiRegularList = allPromosi.slice(6);
   }
 
   const postsList = blogResult?.posts || []
@@ -168,6 +165,7 @@ export default async function HomePage() {
         <BentoPromoSection
           promos={promosiRegularList}
           promoBulanan={promosiBulananList}
+          showPromoBulanan={showPromoBulanan}
         />
       ) : null}
 
