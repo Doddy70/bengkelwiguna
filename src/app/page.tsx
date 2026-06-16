@@ -244,7 +244,7 @@ export default async function HomePage() {
         {/* Background Image & Gradient */}
         <div className="absolute inset-0 z-0">
           <Image
-            src="/images/bg-default-page.webp"
+            src="/images/uber-hero.jpg"
             alt="Bengkel Wiguna Profesional"
             fill
             className="object-cover"
