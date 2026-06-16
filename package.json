@@ -21,7 +21,7 @@
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@tabler/icons-react": "^3.44.0",
     "@types/three": "^0.184.1",
-    "ai": "^6.0.205",
+    "ai": "^6.0.206",
     "aos": "^2.3.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^1.2.1",
