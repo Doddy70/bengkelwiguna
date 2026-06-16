@@ -158,7 +158,7 @@ export default function Header({
                                             { title: 'Layanan', href: '/services', isMegaMenu: true },
                                             { title: 'Promosi', href: '/promosi' },
                                             { title: 'Paket Service', href: '/paket-service' },
-                                            { title: 'Spesialis', href: '/layanan-spesialis' },
+                                            { title: 'Layanan Spesialis', href: '/layanan-spesialis' },
                                             { title: 'Tentang Wiguna', href: '/tentang-wiguna' },
                                             { title: 'Blog', href: '/blog' },
                                             { title: 'Lokasi', href: '/lokasi' },
