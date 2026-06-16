@@ -342,7 +342,7 @@ class BW_REST_API_Controller extends WP_REST_Controller {
         $settings = get_option('bw_homepage_settings', []);
         
         if ($section === 'show_promo_bulanan') {
-            $settings[$section] = (bool)$params;
+            $settings[$section] = isset($params['value']) ? (bool)$params['value'] : false;
         } else {
             $settings[$section] = bw_sanitize_array_helper($params);
         }

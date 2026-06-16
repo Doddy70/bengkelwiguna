@@ -480,7 +480,7 @@ class BW_Admin_Settings {
                                 fetch(apiEndpointShowPromoBulanan, {
                                     method: 'PATCH',
                                     headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': '<?php echo wp_create_nonce('wp_rest'); ?>' },
-                                    body: JSON.stringify(showPromoBulananVal)
+                                    body: JSON.stringify({ value: showPromoBulananVal })
                                 })
                             ])
                             .then(() => {
