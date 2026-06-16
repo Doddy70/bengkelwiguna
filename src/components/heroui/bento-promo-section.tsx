@@ -43,9 +43,12 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
       const terms = p._embedded?.['wp:term']?.flat() || [];
       const hasSeasonalTerm = terms.some(t =>
         t.slug.toLowerCase().includes('seasonal') ||
-        t.name.toLowerCase().includes('seasonal')
+        t.name.toLowerCase().includes('seasonal') ||
+        t.slug.toLowerCase().includes('bulanan') ||
+        t.name.toLowerCase().includes('bulanan')
       );
-      const isSeasonalCat = p.kategori_promosi?.toLowerCase().includes('seasonal');
+      const isSeasonalCat = p.kategori_promosi?.toLowerCase().includes('seasonal') || 
+                            p.kategori_promosi?.toLowerCase().includes('bulanan');
       const isJenisSeasonal = String(p.jenis_promosi) === 'bulanan' || String(p.jenis_promosi) === 'seasonal';
       const isInBulanan = promoBulanan.some(pb => pb.slug === p.slug);
       return !hasSeasonalTerm && !isSeasonalCat && !isJenisSeasonal && !isInBulanan;

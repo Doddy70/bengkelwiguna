@@ -468,7 +468,7 @@ class BW_REST_API_Controller extends WP_REST_Controller {
     }
 
     public function get_promosis($request) {
-        $transient_key = 'bw_promosi_active_v3';
+        $transient_key = 'bw_promosi_active_v4';
         $promosis = get_transient($transient_key);
 
         if (false === $promosis) {
@@ -484,6 +484,17 @@ class BW_REST_API_Controller extends WP_REST_Controller {
             foreach ($query->posts as $post) {
                 $tanggal_selesai = get_post_meta($post->ID, 'tanggal_selesai', true);
                 if (empty($tanggal_selesai) || strtotime($tanggal_selesai) >= strtotime($today)) {
+                    $terms = get_the_terms($post->ID, 'promosi_category');
+                    $kategori_promosi = '';
+                    $jenis_promosi = 'regular';
+                    if (!empty($terms) && !is_wp_error($terms)) {
+                        $kategori_promosi = $terms[0]->name;
+                        $term_slug = $terms[0]->slug;
+                        if ($term_slug === 'seasonal' || $term_slug === 'bulanan') {
+                            $jenis_promosi = 'bulanan';
+                        }
+                    }
+
                     $promosis[] = [
                         'id'              => $post->ID,
                         'title'           => $post->post_title,
@@ -497,6 +508,8 @@ class BW_REST_API_Controller extends WP_REST_Controller {
                         'tanggal_mulai'   => get_post_meta($post->ID, 'tanggal_mulai', true),
                         'tanggal_selesai' => get_post_meta($post->ID, 'tanggal_selesai', true),
                         'gallery'         => $this->resolve_gallery_urls($post->ID),
+                        'kategori_promosi' => $kategori_promosi,
+                        'jenis_promosi'    => $jenis_promosi,
                     ];
                 }
             }
@@ -507,7 +520,7 @@ class BW_REST_API_Controller extends WP_REST_Controller {
 
     public function get_promosi_item($request) {
         $slug = sanitize_text_field($request->get_param('slug'));
-        $transient_key = 'bw_promosi_' . md5($slug);
+        $transient_key = 'bw_promosi_v4_' . md5($slug);
         $promo = get_transient($transient_key);
 
         if (false === $promo) {
@@ -524,6 +537,17 @@ class BW_REST_API_Controller extends WP_REST_Controller {
             }
 
             $post = $query->posts[0];
+            $terms = get_the_terms($post->ID, 'promosi_category');
+            $kategori_promosi = '';
+            $jenis_promosi = 'regular';
+            if (!empty($terms) && !is_wp_error($terms)) {
+                $kategori_promosi = $terms[0]->name;
+                $term_slug = $terms[0]->slug;
+                if ($term_slug === 'seasonal' || $term_slug === 'bulanan') {
+                    $jenis_promosi = 'bulanan';
+                }
+            }
+
             $promo = [
                 'id'              => $post->ID,
                 'title'           => $post->post_title,
@@ -537,6 +561,8 @@ class BW_REST_API_Controller extends WP_REST_Controller {
                 'tanggal_mulai'   => get_post_meta($post->ID, 'tanggal_mulai', true),
                 'tanggal_selesai' => get_post_meta($post->ID, 'tanggal_selesai', true),
                 'gallery'         => $this->resolve_gallery_urls($post->ID),
+                'kategori_promosi' => $kategori_promosi,
+                'jenis_promosi'    => $jenis_promosi,
             ];
             set_transient($transient_key, $promo, 12 * HOUR_IN_SECONDS);
         }
