@@ -29,7 +29,7 @@ class BW_REST_API_Controller extends WP_REST_Controller {
             ]
         ]);
 
-        register_rest_route($this->namespace, '/homepage-settings/(?P<section>[a-z-]+)', [
+        register_rest_route($this->namespace, '/homepage-settings/(?P<section>[a-z_-]+)', [
             [
                 'methods'             => WP_REST_Server::READABLE,
                 'callback'            => [$this, 'get_homepage_section'],
