@@ -7,6 +7,7 @@ import { useDisclosure } from "@nextui-org/react";
 import PromoModal from "@/components/heroui/PromoModal";
 import PromoCarousel from "@/components/ui/PromoCarousel";
 import WigunaCard from "@/components/ui/WigunaCard";
+import PromoPageTitle from "@/components/ui/PromoPageTitle";
 
 interface PromosiArchiveProps {
   promos: Promosi[];
@@ -47,6 +48,16 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+          {/* Page Title Header */}
+          <PromoPageTitle
+            badgeText="🔥 PROMO SPESIAL"
+            badgeIcon="solar:tag-price-linear"
+            title="Penawaran Menarik untuk Anda"
+            subtitle="Hemat hingga 20% untuk perawatan kendaraan. Promo terbatas waktu!"
+            alignment="center"
+            showDecorative={true}
+          />
 
           {/* Section 1: Promo Bulanan / Seasonal Slider - Apple Cards Carousel */}
           {monthlyPromos.length > 0 && (
@@ -105,7 +116,7 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
                         onClick={() => handleOpenPromo(promo)}
                         onSecondaryClick={() => {
                           const titleStr = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
-                          window.open(`https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20tertarik%20dengan%20promo%20${encodeURIComponent(titleStr)}`, '_blank');
+                          window.open(`https://wa.me/6281717773888?text=${encodeURIComponent(`Halo, saya tertarik dengan promo: ${titleStr}`)}`, '_blank');
                         }}
                       />
                     </div>
