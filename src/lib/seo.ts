@@ -5,9 +5,12 @@
  * Enhanced with sameAs links for AI/Knowledge Graph recognition.
  */
 
-// Canonical phone number (standardized)
-const CANONICAL_PHONE = "+6281717773888";
-const CANONICAL_WA = "https://wa.me/6281717773888";
+// Phone Strategy:
+// - 6287817773888: Customer Service (existing customers)
+// - 6281717773888: Funneling (new customer acquisition)
+const PHONE_CS = "+6287817773888"; // Customer Service
+const PHONE_WA = "+6281717773888"; // WhatsApp Funneling
+const WA_URL = "https://wa.me/6281717773888";
 
 // Brand colors for reference
 const BRAND = {
@@ -27,7 +30,7 @@ export function generateLocalBusinessSchema() {
     "description": `${BRAND.TAGLINE}. Bengkel One Stop Service terpercaya di Depok sejak 2010. Perawatan mobil profesional dengan teknisi berpengalaman.`,
     "image": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
     "url": "https://bengkelwiguna.com",
-    "telephone": CANONICAL_PHONE,
+    "telephone": PHONE_CS,
     "priceRange": "$$",
     "slogan": BRAND.TAGLINE,
     "foundingDate": "2010",
@@ -130,15 +133,27 @@ export function generateLocalBusinessSchema() {
       // Wikidata will be added after entry is created
       // "https://www.wikidata.org/wiki/QXXXXXXX"
     ],
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": CANONICAL_PHONE,
-      "contactType": "customer service",
-      "availableLanguage": ["Indonesian", "English"],
-      "areaServed": "ID",
-      "contactOption": ["WhatsApp", "TollFree"],
-      "url": CANONICAL_WA
-    },
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": PHONE_CS,
+        "contactType": "customer service",
+        "availableLanguage": ["Indonesian", "English"],
+        "areaServed": "ID",
+        "contactOption": "TollFree",
+        "description": "Customer Service untuk pelanggan existing"
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": PHONE_WA,
+        "contactType": "sales",
+        "contactOption": "WhatsApp",
+        "availableLanguage": ["Indonesian"],
+        "areaServed": "ID",
+        "url": WA_URL,
+        "description": "WhatsApp untuk reservasi dan konsultasi pelanggan baru"
+      }
+    ],
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.8",
@@ -159,7 +174,7 @@ export function generateOrganizationSchema() {
     "url": "https://bengkelwiguna.com",
     "logo": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
     "image": "https://bengkelwiguna.com/images/about/bbbb.jpg",
-    "telephone": CANONICAL_PHONE,
+    "telephone": PHONE_CS,
     "email": "info@bengkelwiguna.com",
     "foundingDate": "2010",
     "foundingLocation": "Depok, Jawa Barat, Indonesia",
@@ -182,16 +197,16 @@ export function generateOrganizationSchema() {
       "https://www.facebook.com/bengkelwiguna",
       "https://www.tiktok.com/@bengkelwiguna",
       "https://www.youtube.com/@bengkelwiguna",
-      CANONICAL_WA
+      WA_URL
     ],
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": CANONICAL_PHONE,
+      "telephone": PHONE_CS,
       "contactType": "customer service",
       "availableLanguage": ["Indonesian", "English"],
       "areaServed": "ID",
       "contactOption": "WhatsApp",
-      "url": CANONICAL_WA
+      "url": WA_URL
     },
     "knowsAbout": [
       "Car Maintenance",
@@ -340,7 +355,7 @@ export function generateAggregateRatingSchema() {
       "@type": "LocalBusiness",
       "name": BRAND.NAME,
       "image": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
-      "telephone": CANONICAL_PHONE,
+      "telephone": PHONE_CS,
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Jl. Margonda No.268",
@@ -399,7 +414,7 @@ export function generateAboutPageSchema() {
       "description": "Bengkel One Stop Service terpercaya di Depok",
       "foundingDate": "2010",
       "foundingLocation": "Depok, Jawa Barat",
-      "telephone": CANONICAL_PHONE,
+      "telephone": PHONE_CS,
       "areaServed": {
         "@type": "City",
         "name": "Depok"
@@ -423,12 +438,12 @@ export function generateContactPageSchema() {
     "url": "https://bengkelwiguna.com/lokasi",
     "contactPoint": {
       "@type": "ContactPoint",
-      "telephone": CANONICAL_PHONE,
+      "telephone": PHONE_CS,
       "contactType": "customer service",
       "availableLanguage": ["Indonesian"],
       "areaServed": "ID",
       "contactOption": "WhatsApp",
-      "url": CANONICAL_WA
+      "url": WA_URL
     }
   };
 }
