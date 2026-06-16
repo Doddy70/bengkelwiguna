@@ -11,9 +11,10 @@ import PromoPageTitle from "@/components/ui/PromoPageTitle";
 
 interface PromosiArchiveProps {
   promos: Promosi[];
+  showPromoBulanan?: boolean;
 }
 
-export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
+export default function PromosiArchiveClient({ promos, showPromoBulanan = true }: PromosiArchiveProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedPromo, setSelectedPromo] = useState<Promosi | null>(null);
   const [openPromoSlug, setOpenPromoSlug] = useState<string | null>(null);
@@ -29,13 +30,20 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
     p.kategori_promosi.toLowerCase().includes("seasonal")
   );
 
-  let monthlyPromos = promos.filter(p => isSeasonal(p));
-  let otherPromos = promos.filter(p => !isSeasonal(p));
+  let monthlyPromos: Promosi[] = [];
+  let otherPromos: Promosi[] = [];
 
-  // Fallback jika tidak ada kategori "Bulanan"/"Seasonal" sama sekali, ambil 3 promo pertama
-  if (monthlyPromos.length === 0 && promos.length > 0) {
-    monthlyPromos = promos.slice(0, 3);
-    otherPromos = promos.slice(3);
+  if (showPromoBulanan) {
+    monthlyPromos = promos.filter(p => isSeasonal(p));
+    otherPromos = promos.filter(p => !isSeasonal(p));
+
+    // Fallback jika tidak ada kategori "Bulanan"/"Seasonal" sama sekali, ambil 3 promo pertama
+    if (monthlyPromos.length === 0 && promos.length > 0) {
+      monthlyPromos = promos.slice(0, 3);
+      otherPromos = promos.slice(3);
+    }
+  } else {
+    otherPromos = promos;
   }
 
   return (

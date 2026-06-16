@@ -12,7 +12,7 @@ interface BlogSidebarProps {
   relatedPosts: WPPost[];
 }
 
-export default function BlogSidebar({ categories, relatedPosts }: BlogSidebarProps) {
+export default function BlogSidebar({ categories = [], relatedPosts = [] }: BlogSidebarProps) {
   return (
     <aside className="w-full space-y-8">
       

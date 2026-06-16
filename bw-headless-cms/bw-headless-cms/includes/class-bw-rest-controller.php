@@ -272,7 +272,12 @@ class BW_REST_API_Controller extends WP_REST_Controller {
                     'blogs' => true,
                 ],
                 'promo_bulanan' => [],
+                'show_promo_bulanan' => true,
             ]);
+        }
+
+        if (!isset($settings['show_promo_bulanan'])) {
+            $settings['show_promo_bulanan'] = true;
         }
 
         return rest_ensure_response($settings);
@@ -291,6 +296,7 @@ class BW_REST_API_Controller extends WP_REST_Controller {
             'business' => bw_sanitize_array_helper($params['business'] ?? []),
             'sections' => bw_sanitize_array_helper($params['sections'] ?? []),
             'seo' => bw_sanitize_array_helper($params['seo'] ?? []),
+            'show_promo_bulanan' => isset($params['show_promo_bulanan']) ? (bool)$params['show_promo_bulanan'] : true,
             'updated_at' => current_time('mysql'),
         ];
 
@@ -308,6 +314,12 @@ class BW_REST_API_Controller extends WP_REST_Controller {
         $settings = get_option('bw_homepage_settings', []);
 
         if (!isset($settings[$section])) {
+            if ($section === 'show_promo_bulanan') {
+                return rest_ensure_response([
+                    'section' => $section,
+                    'data' => true,
+                ]);
+            }
             return new WP_Error('section_not_found', 'Section tidak ditemukan', ['status' => 404]);
         }
 
@@ -321,14 +333,20 @@ class BW_REST_API_Controller extends WP_REST_Controller {
         $section = $request->get_param('section');
         $params = $request->get_json_params();
 
-        $allowed_sections = ['hero', 'services', 'business', 'sections', 'seo', 'cta', 'faq', 'promo_bulanan'];
+        $allowed_sections = ['hero', 'services', 'business', 'sections', 'seo', 'cta', 'faq', 'promo_bulanan', 'show_promo_bulanan'];
 
         if (!in_array($section, $allowed_sections)) {
             return new WP_Error('invalid_section', 'Section tidak valid', ['status' => 400]);
         }
 
         $settings = get_option('bw_homepage_settings', []);
-        $settings[$section] = bw_sanitize_array_helper($params);
+        
+        if ($section === 'show_promo_bulanan') {
+            $settings[$section] = (bool)$params;
+        } else {
+            $settings[$section] = bw_sanitize_array_helper($params);
+        }
+        
         $settings['updated_at'] = current_time('mysql');
 
         update_option('bw_homepage_settings', $settings);

@@ -89,7 +89,7 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                                 {/* Author */}
                                 <div className="flex items-center gap-2">
                                     <div className="w-8 h-8 rounded-full bg-[#224297] flex items-center justify-center text-white overflow-hidden shadow-sm">
-                                        <Image src="/images/logo-icon.png" alt="Admin Wiguna" width={20} height={20} className="object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                                        <Image src="/images/logo/wb-logo.png" alt="Admin Wiguna" width={20} height={20} className="object-contain" />
                                     </div>
                                     <span className="text-gray-900 dark:text-white">Admin Wiguna</span>
                                 </div>
@@ -152,8 +152,8 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                     {/* Sidebar */}
                     <div className="w-full lg:sticky lg:top-24">
                         <BlogSidebar 
-                            categories={allCategories} 
-                            relatedPosts={relatedPosts} 
+                            categories={allCategories || []} 
+                            relatedPosts={relatedPosts || []} 
                         />
                         <div className="hidden lg:block mt-8">
                             <TableOfContents />
@@ -161,7 +161,7 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                     </div>
                 </div>
         
-        <PopularPost posts={popularPosts} />
+        <PopularPost posts={popularPosts || []} />
         </div>
       </div>
     </div>

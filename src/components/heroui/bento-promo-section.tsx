@@ -90,7 +90,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
     return (
       <div
         key={promo.id || idx}
-        className={`${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} min-h-[500px] md:h-[480px]`}
+        className={`${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} flex flex-col`}
       >
         <WigunaCard
           href={`/promosi/${promo.slug}`}

@@ -73,7 +73,7 @@ export const FramedCard: React.FC<FramedCardProps> = ({
   return (
     <div className={`group relative bg-white rounded-3xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex ${isWide ? 'flex-col md:flex-row' : 'flex-col'} p-2 h-full overflow-hidden`}>
       {/* Image Container */}
-      <div className={`relative overflow-hidden bg-gray-50 rounded-2xl shrink-0 ${isWide ? 'w-full md:w-[45%] h-52 md:h-full' : 'aspect-[16/10] md:aspect-[4/3] w-full'}`}>
+      <div className={`relative overflow-hidden bg-gray-50 rounded-2xl shrink-0 ${isWide ? 'w-full md:w-[45%] h-52 md:h-auto md:self-stretch' : 'aspect-[16/10] md:aspect-[4/3] w-full'}`}>
         <Image
           src={image}
           alt={title}
@@ -158,7 +158,7 @@ export const FramedCard: React.FC<FramedCardProps> = ({
             </button>
             <button
               onClick={onWhatsAppClick}
-              className="w-11 h-11 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-900 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
+              className="w-11 h-11 rounded-xl bg-[#224297] hover:bg-[#1a356d] text-white flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
               aria-label="Chat WhatsApp"
             >
               <Icon icon="fa6-brands:whatsapp" className="w-5 h-5" />

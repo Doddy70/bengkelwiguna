@@ -20,6 +20,7 @@ import {
   formatDate
 } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
+import { Promosi } from '@/types/wordpress'
 
 // 1. CRITICAL: Hero Section & Header (Above-the-fold)
 import HeroSlideshow from '@/components/heroui/hero-slideshow'
@@ -94,19 +95,29 @@ export default async function HomePage() {
     getHomepageSettings()
   ])
 
+  const showPromoBulanan = hpSettings?.show_promo_bulanan !== false;
   const promoBulananSlugs = hpSettings?.promo_bulanan || [];
   const servicesList = Array.isArray(services) ? services : []
-  let promosiBulananList = Array.isArray(allPromosi) ? allPromosi.filter(p => promoBulananSlugs.includes(p.slug)) : []
-  let promosiRegularList = Array.isArray(allPromosi) ? allPromosi.filter(p => !promoBulananSlugs.includes(p.slug)) : []
+  
+  let promosiBulananList: Promosi[] = [];
+  let promosiRegularList: Promosi[] = [];
+
+  if (showPromoBulanan) {
+    promosiBulananList = Array.isArray(allPromosi) ? allPromosi.filter(p => promoBulananSlugs.includes(p.slug)) : [];
+    promosiRegularList = Array.isArray(allPromosi) ? allPromosi.filter(p => !promoBulananSlugs.includes(p.slug)) : [];
+    
+    // Fallback if no promo bulanan is selected
+    if (promosiBulananList.length === 0 && Array.isArray(allPromosi) && allPromosi.length > 0) {
+      promosiBulananList = allPromosi.slice(0, 6);
+      promosiRegularList = allPromosi.slice(6);
+    }
+  } else {
+    promosiRegularList = Array.isArray(allPromosi) ? allPromosi : [];
+  }
+
   const postsList = blogResult?.posts || []
   const menuItems = menuData?.items || []
   const spesialisData = Array.isArray(spesialis) ? spesialis : []
-
-  // Fallback if no promo bulanan is selected
-  if (promosiBulananList.length === 0 && Array.isArray(allPromosi) && allPromosi.length > 0) {
-    promosiBulananList = allPromosi.slice(0, 6);
-    promosiRegularList = allPromosi.slice(6);
-  }
 
   if (process.env.NODE_ENV === 'development') {
     console.log('[HomePage] Data loaded:', {

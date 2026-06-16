@@ -4,7 +4,7 @@
  */
 
 import PromosiArchiveClient from './PromosiArchiveClient'
-import { getAllPromosi } from '@/lib/wordpress'
+import { getAllPromosi, getHomepageSettings } from '@/lib/wordpress'
 
 export const revalidate = 60
 
@@ -14,10 +14,14 @@ export const metadata = {
 }
 
 export default async function PromosiPage() {
-  const promosi = await getAllPromosi()
+  const [promosi, hpSettings] = await Promise.all([
+    getAllPromosi(),
+    getHomepageSettings()
+  ])
   const promosiList = Array.isArray(promosi) ? promosi : []
+  const showPromoBulanan = hpSettings?.show_promo_bulanan !== false
 
   return (
-    <PromosiArchiveClient promos={promosiList} />
+    <PromosiArchiveClient promos={promosiList} showPromoBulanan={showPromoBulanan} />
   )
 }

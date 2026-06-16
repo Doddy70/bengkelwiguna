@@ -306,6 +306,14 @@ class BW_Admin_Settings {
                             </div>
 
                             <h3 style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 20px;">Pengaturan Promo Bulanan</h3>
+                            <div class="components-base-control" style="margin-bottom: 20px; border: 1px solid #ddd; padding: 15px; border-radius: 4px; background: #fafafa;">
+                                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer; font-weight: 600;">
+                                    <input type="checkbox" name="show_promo_bulanan" id="show_promo_bulanan" value="1" style="margin: 0;" />
+                                    Tampilkan Section Promo Bulanan (Apple Card Carousel)
+                                </label>
+                                <span class="components-base-control__help" style="margin-top: 4px; display: block;">Matikan/hidupkan tampilan Promo Bulanan di homepage dan halaman Promosi.</span>
+                            </div>
+
                             <p style="margin-bottom: 15px; font-size: 13px; color: #666;">Pilih promosi yang akan ditampilkan di Vertical Slider (Promo Bulanan). Promosi yang tidak dicentang otomatis masuk ke Promo Reguler.</p>
                             <div id="bw-promo-bulanan-list" style="margin-bottom: 15px; border: 1px solid #ddd; padding: 15px; border-radius: 4px; background: #fafafa; max-height: 250px; overflow-y: auto;">
                                 <span class="spinner is-active" style="float: none; margin: 0;"></span> <span style="font-size: 13px;">Loading promosi...</span>
@@ -328,6 +336,7 @@ class BW_Admin_Settings {
                     const apiEndpointFaq = '/wp-json/bw/v1/homepage-settings/faq';
                     const apiEndpointPromoBulanan = '/wp-json/bw/v1/homepage-settings/promo_bulanan';
                     const apiEndpointPromosiActive = '/wp-json/bw/v1/promosi-active';
+                    const apiEndpointShowPromoBulanan = '/wp-json/bw/v1/homepage-settings/show_promo_bulanan';
                     
                     const form = document.getElementById('bw-theme-form');
                     const btnSave = document.getElementById('bw-save-theme');
@@ -361,8 +370,9 @@ class BW_Admin_Settings {
                         fetch(apiEndpointCta).then(res => res.json()).catch(() => ({})),
                         fetch(apiEndpointFaq).then(res => res.json()).catch(() => ({})),
                         fetch(apiEndpointPromoBulanan).then(res => res.json()).catch(() => ({})),
-                        fetch(apiEndpointPromosiActive).then(res => res.json()).catch(() => ([]))
-                    ]).then(([resHero, resCta, resFaq, resPromoBulanan, resPromosiActive]) => {
+                        fetch(apiEndpointPromosiActive).then(res => res.json()).catch(() => ([])),
+                        fetch(apiEndpointShowPromoBulanan).then(res => res.json()).catch(() => ({}))
+                    ]).then(([resHero, resCta, resFaq, resPromoBulanan, resPromosiActive, resShowPromoBulanan]) => {
                         if (resHero.data && resHero.data.theme) {
                             document.getElementById('hero_title').value = resHero.data.theme.title || '';
                             document.getElementById('hero_bg_image').value = resHero.data.theme.bgImage || '';
@@ -381,6 +391,10 @@ class BW_Admin_Settings {
                                 parsed.forEach(item => addFaqItem(item.q, item.a));
                             } catch(e) {}
                         }
+                        
+                        // Set Show Promo Bulanan Checkbox
+                        const showPromoBulanan = resShowPromoBulanan && resShowPromoBulanan.data !== false;
+                        document.getElementById('show_promo_bulanan').checked = showPromoBulanan;
                         
                         // Render Promo Bulanan Checkboxes
                         const promoListContainer = document.getElementById('bw-promo-bulanan-list');
@@ -424,6 +438,8 @@ class BW_Admin_Settings {
                             selectedPromos.push(cb.value);
                         });
 
+                        const showPromoBulananVal = document.getElementById('show_promo_bulanan').checked;
+
                         Promise.all([
                             fetch(apiEndpointHero).then(res => res.json()).catch(() => ({})),
                             fetch(apiEndpointCta).then(res => res.json()).catch(() => ({})),
@@ -460,6 +476,11 @@ class BW_Admin_Settings {
                                     method: 'PATCH',
                                     headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': '<?php echo wp_create_nonce('wp_rest'); ?>' },
                                     body: JSON.stringify(selectedPromos)
+                                }),
+                                fetch(apiEndpointShowPromoBulanan, {
+                                    method: 'PATCH',
+                                    headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': '<?php echo wp_create_nonce('wp_rest'); ?>' },
+                                    body: JSON.stringify(showPromoBulananVal)
                                 })
                             ])
                             .then(() => {

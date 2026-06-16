@@ -3,7 +3,7 @@
     "id": "service-berkala",
     "name": "Service Berkala",
     "category": "Perawatan Rutin",
-    "image": "/images/equipment/fortuner_tools.png",
+    "image": "/images/hotspot/fortuner_tools.png",
     "imagePosition": "center",
     "description": "Perawatan preventif komprehensif menggunakan SOP ketat untuk mengembalikan performa mobil.",
     "suggestedQuestions": [
@@ -23,21 +23,21 @@
         "title": "Ganti Oli Mesin", "subtitle": "Oli 100% Sintetis & Filter",
         "lineAngle": -52, "lineLength": 300,
         "labelOffsetX": 220, "labelOffsetY": -280,
-        "imageUrl": "/images/equipment/fortuner_tools.png"
+        "imageUrl": "/images/hotspot/fortuner_tools.png"
       },
       {
         "top": "70%", "left": "20%",
         "title": "Cek Rem & Kaki-Kaki", "subtitle": "Keamanan Berkendara",
         "lineAngle": -73, "lineLength": 320,
         "labelOffsetX": 110, "labelOffsetY": -360,
-        "imageUrl": "/images/equipment/fortuner_tools.png"
+        "imageUrl": "/images/hotspot/fortuner_tools.png"
       },
       {
         "top": "38%", "left": "38%",
         "title": "Filter Udara & AC", "subtitle": "Udara Kabin Segar",
         "lineAngle": -22, "lineLength": 260,
         "labelOffsetX": 240, "labelOffsetY": -100,
-        "imageUrl": "/images/equipment/fortuner_tools.png"
+        "imageUrl": "/images/hotspot/fortuner_tools.png"
       }
     ],
     "specs": {
@@ -55,7 +55,7 @@
     "id": "cek-kaki-kaki",
     "name": "Cek Kaki Kaki",
     "category": "Suspension & Understeer",
-    "image": "/images/equipment/Fortuner_Kyoto.png",
+    "image": "/images/hotspot/Fortuner_Kyoto.png",
     "imagePosition": "left",
     "description": "Teknologi tercanggih Kyoto Shaking Machine yang mampu mensimulasikan guncangan jalan rusak secara statis untuk deteksi bunyi kaki-kaki akurat.",
     "suggestedQuestions": [
@@ -75,7 +75,7 @@
         "title": "Kyoto Shaking Machine", "subtitle": "Diagnosis akurat visual, kinestatis, dan suara",
         "lineAngle": -60, "lineLength": 370,
         "labelOffsetX": 180, "labelOffsetY": -320,
-        "imageUrl": "/images/equipment/Fortuner_Kyoto.png",
+        "imageUrl": "/images/hotspot/Fortuner_Kyoto.png",
         "details": "Pemeriksaan kaki-kaki mobil menggunakan *Kyoto Shaking Machine* untuk pemeriksaan yang lebih akurat dan tanpa tipu-tipu, dengan biaya cek Rp 250.000,\n*Note: GRATIS biaya cek jika ada pembelian parts diatas Rp. 1 juta"
       }
     ],
@@ -94,7 +94,7 @@
     "id": "semi-overhaul",
     "name": "Semi Overhaul",
     "category": "Engine Recovery",
-    "image": "/images/equipment/fortuner_stinger.png",
+    "image": "/images/hotspot/fortuner_stinger.png",
     "imagePosition": "left",
     "description": "Perawatan mesin level semi overhaul menggunakan sistem Stinger Flushing untuk membuang kerak membandel tanpa bongkar blok.",
     "suggestedQuestions": [
@@ -114,7 +114,7 @@
         "title": "Stinger Engine Flush", "subtitle": "Mencegah kerusakan turun mesin",
         "lineAngle": -45, "lineLength": 350,
         "labelOffsetX": 250, "labelOffsetY": -250,
-        "imageUrl": "/images/equipment/fortuner_stinger.png",
+        "imageUrl": "/images/hotspot/fortuner_stinger.png",
         "details": "Treatment semi overhaul lebih cepat dan biaya lebih murah dibandingkan overhaul total.\n✅ Untuk sludge berat & kerak tebal\n✅ Bongkar sebagian untuk bersihin total mesin\n\nJangan Tunggu Mobil Anda Jantungan dan Mogok di Jalan! segera lakukan treatment Semi Overhaul di Bengkel Wiguna sekarang❗"
       }
     ],
@@ -133,7 +133,7 @@
     "id": "coolant-changer",
     "name": "Coolant Changer",
     "category": "Cooling System Care",
-    "image": "/images/equipment/fortuner_coolant.png",
+    "image": "/images/hotspot/fortuner_coolant.png",
     "imagePosition": "left",
     "description": "Sistem kuras radiator vakum otomatis yang menjamin penggantian cairan pendingin 100% bersih tanpa ada udara terjebak (angin palsu).",
     "suggestedQuestions": [
@@ -153,7 +153,7 @@
         "title": "Kuras Radiator Prestone", "subtitle": "Kuras Vakum Bebas Angin Palsu",
         "lineAngle": -45, "lineLength": 410,
         "labelOffsetX": 280, "labelOffsetY": -290,
-        "imageUrl": "/images/equipment/fortuner_coolant.png",
+        "imageUrl": "/images/hotspot/fortuner_coolant.png",
         "details": "Prestone Coolant Changer adalah: mesin yang dirancang untuk mengganti cairan coolant Anda secara menyeluruh, menguras dan mengisi kembali cairan coolant pada kendaraan Anda hingga bagian dalam."
       }
     ],
@@ -172,7 +172,7 @@
     "id": "reset-ac",
     "name": "Reset AC",
     "category": "Climate Control",
-    "image": "/images/equipment/fortuner_ac.png",
+    "image": "/images/hotspot/fortuner_ac.png",
     "imagePosition": "left",
     "description": "Perawatan total sistem pendingin kabin menggunakan mesin Kyoto Flushing Machine, mengganti oli kompresor secara 100% vakum.",
     "suggestedQuestions": [
@@ -192,7 +192,7 @@
         "title": "Kyoto Flushing AC", "subtitle": "Digital Recovery & Vakum",
         "lineAngle": -30, "lineLength": 380,
         "labelOffsetX": 300, "labelOffsetY": -180,
-        "imageUrl": "/images/equipment/fortuner_ac.png",
+        "imageUrl": "/images/hotspot/fortuner_ac.png",
         "details": "📌 Paket Reset AC Mobil – Mulai Rp600rb ❄️\nCocok untuk AC yang mulai kurang dingin, bau, atau anginnya lemah.\nSudah termasuk flushing AC, vacuum, isi freon, pembersihan evaporator & blower 👍"
       }
     ],
