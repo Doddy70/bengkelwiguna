@@ -81,16 +81,16 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
 
     const handleClaimPromo = (e: React.MouseEvent) => {
       e.preventDefault();
-      const whatsappNumber = "6281717773888"; // Wiguna WA
       const promoName = title.trim();
-      const text = encodeURIComponent(`Halo, saya tertarik dengan promo: ${promoName}`);
-      window.open(`https://wa.me/${whatsappNumber}?text=${text}`, '_blank');
+      const prefix = promoName.toLowerCase().startsWith('promo') ? '' : 'Promo ';
+      const text = encodeURIComponent(`${prefix}${promoName}`);
+      window.open(`https://api.whatsapp.com/send/?phone=6281717773888&text=${text}`, '_blank');
     };
 
     return (
       <div
         key={promo.id || idx}
-        className={`${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} h-[460px]`}
+        className={`${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} min-h-[500px] md:h-[480px]`}
       >
         <WigunaCard
           href={`/promosi/${promo.slug}`}

@@ -161,8 +161,10 @@ export default function PromoCarousel({ promos, title, subtitle }: PromoCarousel
                   onClick={(e) => {
                     e.preventDefault();
                     e.stopPropagation();
-                    const text = encodeURIComponent(`Halo Bengkel Wiguna, saya ingin bertanya tentang promo: ${promoTitle}`);
-                    window.open(`https://wa.me/6281717773888?text=${text}`, '_blank');
+                    const promoName = promoTitle.trim();
+                    const prefix = promoName.toLowerCase().startsWith('promo') ? '' : 'Promo ';
+                    const text = encodeURIComponent(`${prefix}${promoName}`);
+                    window.open(`https://api.whatsapp.com/send/?phone=6281717773888&text=${text}`, '_blank');
                   }}
                   className="w-10 h-10 rounded-full bg-white/15 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white hover:bg-[#25D366] hover:text-white transition-all"
                 >
@@ -170,10 +172,17 @@ export default function PromoCarousel({ promos, title, subtitle }: PromoCarousel
                 </button>
               </div>
 
+              {/* Gradient Blur Layer - Inspired by Liquid Glass progressive blur */}
+              <div 
+                className="absolute bottom-0 inset-x-0 h-[65%] z-10 backdrop-blur-2xl bg-black/25 pointer-events-none"
+                style={{
+                  maskImage: 'linear-gradient(to top, black 0%, rgba(0,0,0,0.95) 45%, transparent 100%)',
+                  WebkitMaskImage: 'linear-gradient(to top, black 0%, rgba(0,0,0,0.95) 45%, transparent 100%)'
+                }}
+              />
+
               {/* Bottom Liquid Glass Content Panel */}
-              <div className="absolute bottom-0 inset-x-0 z-20 p-6 md:p-8 backdrop-blur-xl bg-black/15 border-t border-white/10 text-white flex flex-col justify-end">
-                {/* Accent Top Glass Line */}
-                <div className="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+              <div className="absolute bottom-0 inset-x-0 z-20 p-6 md:p-8 text-white flex flex-col justify-end">
 
                 {/* Title and Price Row */}
                 <div className="flex justify-between items-start gap-4 mb-2">
@@ -231,7 +240,11 @@ export default function PromoCarousel({ promos, title, subtitle }: PromoCarousel
                       Reservasi
                     </span>
                     <a
-                      href={`https://wa.me/6281717773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20booking%20promo%20${encodeURIComponent(promoTitle)}`}
+                      href={`https://api.whatsapp.com/send/?phone=6281717773888&text=${encodeURIComponent(
+                        promoTitle.toLowerCase().startsWith('promo') 
+                          ? promoTitle.trim() 
+                          : `Promo ${promoTitle.trim()}`
+                      )}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs md:text-sm font-extrabold text-[#25D366] hover:underline truncate inline-flex items-center gap-1"

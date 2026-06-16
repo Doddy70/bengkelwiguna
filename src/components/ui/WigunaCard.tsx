@@ -73,7 +73,7 @@ export const FramedCard: React.FC<FramedCardProps> = ({
   return (
     <div className={`group relative bg-white rounded-3xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex ${isWide ? 'flex-col md:flex-row' : 'flex-col'} p-2 h-full overflow-hidden`}>
       {/* Image Container */}
-      <div className={`relative overflow-hidden bg-gray-50 rounded-2xl shrink-0 ${isWide ? 'w-full md:w-[45%] h-52 md:h-full' : 'aspect-[4/3] w-full'}`}>
+      <div className={`relative overflow-hidden bg-gray-50 rounded-2xl shrink-0 ${isWide ? 'w-full md:w-[45%] h-52 md:h-full' : 'aspect-[16/10] md:aspect-[4/3] w-full'}`}>
         <Image
           src={image}
           alt={title}
@@ -152,7 +152,7 @@ export const FramedCard: React.FC<FramedCardProps> = ({
           <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
             <button
               onClick={onButtonClick}
-              className="flex-1 py-3 px-5 rounded-xl bg-gray-900 hover:bg-[#224297] text-white font-bold text-sm text-center transition-all duration-300 shadow-sm hover:shadow-md"
+              className="flex-1 py-3 px-5 rounded-xl bg-[#224297] hover:bg-[#1a356d] text-white font-bold text-sm text-center transition-all duration-300 shadow-sm hover:shadow-md"
             >
               {buttonText}
             </button>
@@ -191,6 +191,7 @@ interface OverlayCardProps {
   onWhatsAppClick?: (e: React.MouseEvent) => void;
   buttonText?: string;
   secondaryIcon?: string;
+  metaItems?: Array<{ icon: string; text: string }>;
 }
 
 export const OverlayCard: React.FC<OverlayCardProps> = ({
@@ -205,6 +206,7 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
   onWhatsAppClick,
   buttonText = 'Lihat Detail',
   secondaryIcon,
+  metaItems = [],
 }) => {
   const isWhatsApp = !secondaryIcon || secondaryIcon.includes('whatsapp');
   const secondaryBtnBg = isWhatsApp 
@@ -253,7 +255,16 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
         </div>
       </div>
 
-      <div className="relative z-20 p-6 backdrop-blur-md bg-white/5 border-t border-white/10">
+      {/* Gradient Blur Layer - Inspired by Liquid Glass progressive blur */}
+      <div 
+        className="absolute bottom-0 inset-x-0 h-[60%] z-10 backdrop-blur-2xl bg-black/25 pointer-events-none"
+        style={{
+          maskImage: 'linear-gradient(to top, black 0%, rgba(0,0,0,0.95) 45%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(to top, black 0%, rgba(0,0,0,0.95) 45%, transparent 100%)'
+        }}
+      />
+
+      <div className="relative z-20 p-6">
 
         {/* Title */}
         <h3 className="text-2xl font-black text-white uppercase tracking-tight leading-tight mb-2 group-hover:text-[#ffd900] transition-colors duration-300 line-clamp-2">
@@ -272,6 +283,18 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
           <div className="flex items-center gap-2 mb-4">
             {price && <span className="text-xl font-black text-[#ffd900]">{price}</span>}
             {oldPrice && <span className="text-sm text-white/50 line-through">{oldPrice}</span>}
+          </div>
+        )}
+
+        {/* Meta Items (rendered dynamically for video/other tags) */}
+        {metaItems && metaItems.length > 0 && (
+          <div className="flex flex-wrap items-center gap-3 mb-4 text-white/75 text-xs font-semibold">
+            {metaItems.map((item, idx) => (
+              <div key={idx} className="flex items-center gap-1.5">
+                <Icon icon={item.icon} className="w-4 h-4 text-[#ffd900]" />
+                <span>{item.text}</span>
+              </div>
+            ))}
           </div>
         )}
 
@@ -363,13 +386,14 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
         onWhatsAppClick={onSecondaryClick}
         buttonText={buttonText}
         secondaryIcon={secondaryIcon}
+        metaItems={metaItems}
       />
     );
 
     if (href && !onClick) {
-      return <Link href={href} className={`block ${linkClassName || ''}`}>{OverlayContent}</Link>;
+      return <Link href={href} className={`block h-full ${linkClassName || ''}`}>{OverlayContent}</Link>;
     }
-    return <div onClick={handleCardClick} className={`block ${linkClassName || ''}`}>{OverlayContent}</div>;
+    return <div onClick={handleCardClick} className={`block h-full ${linkClassName || ''}`}>{OverlayContent}</div>;
   }
 
   // Split variant uses FramedCard
@@ -391,9 +415,9 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
   );
 
   if (href && !onClick) {
-    return <Link href={href} className={`block ${linkClassName || ''}`}>{FramedContent}</Link>;
+    return <Link href={href} className={`block h-full ${linkClassName || ''}`}>{FramedContent}</Link>;
   }
-  return <div onClick={handleCardClick} className={`block ${linkClassName || ''}`}>{FramedContent}</div>;
+  return <div onClick={handleCardClick} className={`block h-full ${linkClassName || ''}`}>{FramedContent}</div>;
 };
 
 export default WigunaCard;

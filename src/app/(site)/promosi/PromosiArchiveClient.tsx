@@ -116,7 +116,10 @@ export default function PromosiArchiveClient({ promos }: PromosiArchiveProps) {
                         onClick={() => handleOpenPromo(promo)}
                         onSecondaryClick={() => {
                           const titleStr = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
-                          window.open(`https://wa.me/6281717773888?text=${encodeURIComponent(`Halo, saya tertarik dengan promo: ${titleStr}`)}`, '_blank');
+                          const promoName = titleStr.trim();
+                          const prefix = promoName.toLowerCase().startsWith('promo') ? '' : 'Promo ';
+                          const text = encodeURIComponent(`${prefix}${promoName}`);
+                          window.open(`https://api.whatsapp.com/send/?phone=6281717773888&text=${text}`, '_blank');
                         }}
                       />
                     </div>
