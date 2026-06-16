@@ -709,14 +709,17 @@ export async function getNavigationMenu(menuLocation: string = 'main-menu'): Pro
           target: item.target || '',
           classes: item.classes || [],
           menu_item_parent: item.menu_item_parent === '0' ? 0 : parseInt(item.menu_item_parent),
-          children: (item.child_items || []).map((child: any) => ({
-            id: child.ID,
-            name: child.title,
-            label: child.title,
-            path: normalizePath(child.url),
-            target: child.target || '',
-            classes: child.classes || [],
-          }))
+          children: (function mapChildren(childItems: any[]): any[] {
+            return (childItems || []).map((child: any) => ({
+              id: child.ID,
+              name: child.title,
+              label: child.title,
+              path: normalizePath(child.url),
+              target: child.target || '',
+              classes: child.classes || [],
+              children: mapChildren(child.child_items || [])
+            }));
+          })(item.child_items || [])
         }))
       }
 

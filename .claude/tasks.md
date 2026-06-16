@@ -1,27 +1,15 @@
 # Task List — Bengkel Wiguna V3 (UI/UX Redesign)
 
-> **VERSION:** 2.0.0  
+> **VERSION:** 2.1.0  
 > **LAST UPDATED:** 2026-06-15  
 
 ---
 
-## 🎨 ACTIVE PHASE: UI/UX Redesign (Bento Grid)
+## 🎨 ACTIVE PHASE: Functional Sync & Polish
 
-### Task 1: Refine Bento Grid Brand Colors
-- **Status:** 🚧 IN PROGRESS
-- **Priority:** 🔴 HIGH
-- **Branch:** `feat/bento-brand-refinement`
-- **Files:** `src/components/ui/TiltCard.tsx`, `src/components/heroui/bento-promo-section.tsx` (or similar)
-- **Action Needed:**
-  1. Change generic template gradients (Purple/Pink/Green) to brand Blue (`#224297`) & Gold (`#ffd900`).
-  2. Implement Apple-style Liquid Glassmorphism effects per user guidelines.
-  3. Ensure UI components look premium and high-end.
-
----
-
-### Task 2: Synchronize Navigation Menu
+### Task 1: Synchronize Navigation Menu
 - **Status:** 📋 PENDING
-- **Priority:** 🟡 MEDIUM
+- **Priority:** 🔴 HIGH
 - **Branch:** `feat/nav-menu-sync`
 - **Files:** `src/components/layout/Header.tsx`, `src/components/layout/MobileMenu.tsx`
 - **Action Needed:**
@@ -31,7 +19,7 @@
 
 ---
 
-### Task 3: Domain Authority Audit
+### Task 2: Domain Authority Audit
 - **Status:** ⏸️ PAUSED (Waiting for User Data)
 - **Priority:** 🟢 LOW
 - **Action Needed:**
@@ -40,12 +28,17 @@
 
 ---
 
-## ✅ RECENTLY COMPLETED
+## ✅ RECENTLY COMPLETED (Claude UI/UX Overhaul)
 
-- [x] **Fix Hero Slider Auto-play Loop Bug**: Decoupled slider from dynamic length, fixed to 5 static images.
-- [x] **Blog Archive Bento Grid**: Redesigned blog cards.
-- [x] **Seasonal Promo Slider**: Transformed into Bento card style.
-- [x] **Performance Optimizations**: Critical CSS, Minify Assets, LCP optimization (Archived from V2).
+- [x] **Promo Bulanan / Apple Cards Carousel**: Integrated Aceternity UI carousel, added detail page route.
+- [x] **FAQ Section Glassmorphism**: Redesigned FAQ section.
+- [x] **Footer Redesign**: 4-column layout and updated support widget.
+- [x] **About & Contact Pages**: Fresh layouts based on mockups with floating labels.
+- [x] **Homepage CTA**: Split layout with cutout video card.
+- [x] **Promosi Page & Seasonal Promo**: WigunaCard overlay/split variants, 3-column grid.
+- [x] **Brand Colors Refinement**: Enforced Blue (`#224297`) & Gold (`#ffd900`) across components.
+- [x] **Blog Archive & YouTube Playlist**: WigunaCard overlay style.
+- [x] **Fix Hero Slider Auto-play Loop Bug**: Static images decoupling.
 
 ---
 

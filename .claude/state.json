@@ -1,35 +1,39 @@
 {
   "project": "bengkel-wiguna-v3",
-  "version": "2.0.0",
-  "lastUpdated": "2026-06-15T12:00:00+07:00",
+  "version": "2.1.0",
+  "lastUpdated": "2026-06-15T21:40:00+07:00",
   "lastAgent": {
     "name": "Gemini 3.1 Pro (High)",
-    "action": "Synchronized project state files to reflect V3 architecture"
+    "action": "Synchronized workflow tasks with latest Claude implementations (UI/UX overhaul)"
   },
   "lastCommit": {
-    "hash": "d539614",
-    "message": "chore: ignore Exist folder",
-    "branch": "feat/bento-brand-refinement"
+    "hash": "83603f9",
+    "message": "feat(promosi): integrate Apple Cards Carousel for promo bulanan section",
+    "branch": "main"
   },
   "architecture": {
     "frontend": "Root directory (src/)",
     "framework": "Next.js 15.5+ (App Router + Turbopack)",
-    "styling": "Tailwind CSS 4.x + HeroUI",
+    "styling": "Tailwind CSS 4.x + HeroUI + Aceternity UI",
     "animations": "Framer Motion + SplideJS",
     "backend": "WordPress Headless CMS"
   },
   "workflow": {
-    "currentPhase": "UI_UX_REDESIGN",
+    "currentPhase": "UI_UX_REFINEMENT",
     "activeTasks": [
-      "bento-brand-refinement"
+      "nav-menu-sync"
     ],
     "completedTasks": [
       "hero-slider-fix",
       "blog-archive-bento",
-      "seasonal-promo-bento"
+      "seasonal-promo-bento",
+      "bento-brand-refinement",
+      "aceternity-carousel",
+      "glassmorphism-faq",
+      "about-contact-redesign",
+      "footer-redesign"
     ],
     "pendingTasks": [
-      "nav-menu-sync",
       "domain-authority-audit"
     ]
   },
@@ -43,14 +47,9 @@
     }
   },
   "tasks": {
-    "bento-brand-refinement": {
-      "status": "IN_PROGRESS",
-      "priority": "HIGH",
-      "description": "Refactor Bento Grid Cards to match Wiguna Blue/Gold brand guidelines and add glassmorphism effects."
-    },
     "nav-menu-sync": {
       "status": "PENDING",
-      "priority": "MEDIUM",
+      "priority": "HIGH",
       "description": "Address the frontend-backend navigation menu discrepancy (dynamic vs hardcoded)."
     },
     "domain-authority-audit": {

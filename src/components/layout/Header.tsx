@@ -144,7 +144,7 @@ export default function Header({
                             {/* Desktop Navigation - Hidden on mobile */}
                             <div className="hidden lg:flex items-center gap-1">
                                 {(() => {
-                                    const itemsToRender = menuItems && menuItems.length > 0 
+                                    const itemsToRender = menuItems && menuItems.length > 0
                                         ? menuItems.map(item => ({
                                             title: item.name || item.label || "",
                                             href: item.path || "/",
@@ -177,9 +177,8 @@ export default function Header({
                                                     onMouseLeave={() => setLayananOpen(false)}
                                                 >
                                                     <button
-                                                        className={`flex items-center gap-1 px-4 py-7 font-medium text-sm transition-colors ${
-                                                            layananOpen ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'
-                                                        }`}
+                                                        className={`flex items-center gap-1 px-4 py-7 font-medium text-sm transition-colors ${layananOpen ? 'text-brand-blue' : 'text-gray-700 hover:text-brand-blue'
+                                                            }`}
                                                         aria-expanded={layananOpen}
                                                         aria-haspopup="true"
                                                     >

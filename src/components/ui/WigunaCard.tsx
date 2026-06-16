@@ -79,7 +79,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
     if (variant === 'overlay') {
       /* === 1. OVERLAY VARIANT (PHILIPPINES STYLE) === */
       return (
-        <div className="relative w-full h-full rounded-[2.5rem] overflow-hidden flex flex-col justify-end p-6 group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5 min-h-[460px] bg-neutral-900 border border-white/10">
+        <div className="relative w-full h-[460px] rounded-[2.5rem] overflow-hidden flex flex-col justify-end p-6 group shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-1.5 bg-neutral-900 border border-white/10">
           {/* Badge at Top-Left */}
           {badgeText && (
             <div className="absolute top-6 left-6 z-10">
@@ -168,7 +168,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
     } else {
       /* === 2. SPLIT VARIANT (SINGAPORE STYLE) === */
       return (
-        <div className="bg-white dark:bg-neutral-900 border border-gray-100/80 dark:border-neutral-800 rounded-[2.5rem] p-4 flex flex-col h-full group hover:shadow-[0_20px_40px_rgba(34,66,151,0.06)] hover:-translate-y-1.5 transition-all duration-500 ease-out shadow-sm">
+        <div className="relative bg-white dark:bg-neutral-900 border border-gray-100/80 dark:border-neutral-800 rounded-[2.5rem] p-4 flex flex-col h-[460px] group hover:shadow-[0_20px_40px_rgba(34,66,151,0.06)] hover:-translate-y-1.5 transition-all duration-500 ease-out shadow-sm">
           {/* Top Image Container */}
           <div className={`relative w-full overflow-hidden rounded-[1.8rem] bg-gray-50 dark:bg-neutral-800 ${aspectClass} mb-5`}>
             <Image

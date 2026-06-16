@@ -160,7 +160,7 @@ export default function HomePage() {
                                 fontFamily="font-merri"
                             />
                             <div>
-                                <Button href="/about" label="Explore integrations" bgColor="bg-gray-900" textColor="text-white" className="py-4" />
+                                <Button href="/about" label="Explore integrations" intent="outline" className="py-4" />
                             </div>
                         </div>
                     </div>
@@ -264,7 +264,7 @@ export default function HomePage() {
                             textWeigth="font-marmal"
                         />
                         <div className="lg:text-right mt-auto">
-                            <Button href="/about" label="Our service" bgColor="bg-lime-400" textColor="text-gray-900" className="py-4" />
+                            <Button href="/about" label="Our service" intent="secondary" className="py-4" />
                         </div>
                     </div>
                     <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 mb-6">
@@ -365,7 +365,7 @@ export default function HomePage() {
                                 <h3 className="text-white font-medium text-3xl ">Ready to start your success story</h3>
                                 <div className="flex flex-row justify-between mt-auto">
                                     <div className="mt-auto">
-                                        <Button href="/about" label="See more" bgColor="bg-lime-400" textColor="text-gray-900" />
+                                        <Button href="/about" label="See more" intent="secondary" />
                                     </div>
 
                                 </div>
@@ -389,7 +389,7 @@ export default function HomePage() {
                             fontFamily="font-merri"
                         />
                         <div className="lg:text-right mt-auto">
-                            <Button href="/blog-1" label="Check out more blogs" bgColor="bg-lime-400" textColor="text-gray-900" />
+                            <Button href="/blog-1" label="Check out more blogs" intent="secondary" />
                         </div>
                     </div>
                     <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-6 relative lg:space-y-0 space-y-5">

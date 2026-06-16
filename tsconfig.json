@@ -30,5 +30,5 @@
     ".next/types/**/*.ts",
     "types/**/*.d.ts"
   ],
-  "exclude": ["node_modules", "_archived_files", "bengkel-wiguna-nextjs", "Exist"]
+  "exclude": ["node_modules", "_archived_files", "bengkel-wiguna-nextjs", "Exist", "aapanel-deployment"]
 }

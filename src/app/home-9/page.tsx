@@ -57,7 +57,7 @@ export default function HomePage() {
                             subtitleClass="xl:w-[75%]"
                         />
                         <div className="lg:text-right mt-auto">
-                            <Button href="/about" label="Our service" bgColor="bg-blue-800" textColor="text-white" className="py-4" />
+                            <Button href="/about" label="Our service" intent="primary" className="py-4" />
                         </div>
                     </div>
                     <div className="grid lg:grid-cols-3 grid-cols-1 gap-6 mb-6">

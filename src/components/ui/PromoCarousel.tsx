@@ -40,7 +40,7 @@ export default function PromoCarousel({ promos, title, subtitle }: PromoCarousel
                   src={promoImage}
                   alt={promoTitle}
                   fill
-                  className="object-cover"
+                  className="object-contain p-4 bg-white/5 dark:bg-black/20"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {/* Gradient overlay */}
@@ -96,7 +96,7 @@ export default function PromoCarousel({ promos, title, subtitle }: PromoCarousel
   });
 
   return (
-    <section className="w-full py-12 lg:py-20 bg-white dark:bg-neutral-950 font-sans overflow-hidden">
+    <section className="w-full font-sans overflow-hidden">
       {/* Header */}
       {(title || subtitle) && (
         <div className="px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto mb-8">

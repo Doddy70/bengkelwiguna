@@ -3,22 +3,33 @@
 import { FC, ReactNode, MouseEventHandler } from "react";
 import { ArrowUpRight } from "react-feather";
 import Link from "next/link";
+import { cva, type VariantProps } from "class-variance-authority";
+import { twMerge } from "tailwind-merge";
 
-interface ButtonProps {
-    href?: string;
-    onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
-    label: string;
-    icon?: ReactNode;
-    padding?: string;
-    bgColor?: string;        // e.g. "bg-blue-600"
-    hoverBgColor?: string;  // optional override e.g. "hover:bg-blue-700"
-    textColor?: string;
-    className?: string;
-    type?: "button" | "submit" | "reset";
-    target?: string;
-}
+const buttonVariants = cva(
+  "inline-flex justify-between items-center group gap-2 text-base font-medium rounded-lg transition btn-transition duration-300",
+  {
+    variants: {
+      intent: {
+        primary: "bg-[#224297] text-white hover:bg-[#1a3567]",
+        secondary: "bg-[#ffd900] text-black hover:bg-[#e6c300]",
+        outline: "bg-transparent border border-gray-300 text-gray-800 hover:bg-gray-100",
+        ghost: "bg-transparent text-gray-800 hover:bg-gray-100",
+        destructive: "bg-red-600 text-white hover:bg-red-700",
+      },
+      size: {
+        small: "px-4 py-2",
+        medium: "px-6 py-3",
+        large: "px-8 py-4",
+      },
+    },
+    defaultVariants: {
+      intent: "primary",
+      size: "medium",
+    },
+  }
+);
 
-// ✅ Static Tailwind-safe hover map
 const HOVER_MAP: Record<string, string> = {
     "bg-blue-600": "hover:bg-blue-800",
     "bg-orange-500": "hover:bg-orange-600",
@@ -35,27 +46,57 @@ const HOVER_MAP: Record<string, string> = {
     "bg-[#224297]": "hover:bg-[#1a3567]",
 };
 
+export interface ButtonProps extends VariantProps<typeof buttonVariants> {
+    href?: string;
+    onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+    label: string;
+    icon?: ReactNode;
+    padding?: string;
+    bgColor?: string;
+    hoverBgColor?: string;
+    textColor?: string;
+    className?: string;
+    type?: "button" | "submit" | "reset";
+    target?: string;
+}
+
 const Button: FC<ButtonProps> = ({
     href,
     onClick,
     label,
     icon = <ArrowUpRight size={20} className="group-hover:translate-x-1 transition duration-300" />,
-    padding = "px-6 py-3",
-    bgColor = "bg-blue-600",
+    padding,
+    bgColor,
     hoverBgColor,
-    textColor = "text-white",
-    className = "",
+    textColor,
+    className,
     type = "button",
-    target
-}: ButtonProps) => {
-    const safeHoverClass = hoverBgColor || HOVER_MAP[bgColor] || "hover:opacity-90";
-    const baseClasses = `inline-flex justify-between items-center group gap-2 ${padding} ${textColor} text-base font-medium rounded-lg ${bgColor} ${safeHoverClass} transition btn-transition duration-300 ${className}`;
+    target,
+    intent,
+    size
+}) => {
+    const hasLegacyStyles = bgColor || textColor || padding;
+    const legacyHoverBg = bgColor && (hoverBgColor || HOVER_MAP[bgColor] || "hover:opacity-90");
+
+    const variantClasses = buttonVariants({ 
+        intent: intent || (hasLegacyStyles ? null : undefined), 
+        size: size || (padding ? null : undefined),
+    });
+
+    const classes = twMerge(
+        variantClasses,
+        padding,
+        bgColor,
+        legacyHoverBg,
+        textColor,
+        className
+    );
 
     if (href) {
         return (
             <Link
                 href={href}
-                className={baseClasses}
+                className={classes}
                 onClick={onClick as any}
                 data-aos="zoom-in"
                 target={target}
@@ -70,7 +111,7 @@ const Button: FC<ButtonProps> = ({
         <button
             type={type}
             onClick={onClick as any}
-            className={baseClasses}
+            className={classes}
             data-aos="zoom-in"
         >
             <span>{label}</span>

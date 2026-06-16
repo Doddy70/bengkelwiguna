@@ -104,8 +104,8 @@ export default async function HomePage() {
 
   // Fallback if no promo bulanan is selected
   if (promosiBulananList.length === 0 && Array.isArray(allPromosi) && allPromosi.length > 0) {
-    promosiBulananList = allPromosi.slice(0, 3);
-    promosiRegularList = allPromosi.slice(3);
+    promosiBulananList = allPromosi.slice(0, 6);
+    promosiRegularList = allPromosi.slice(6);
   }
 
   if (process.env.NODE_ENV === 'development') {
@@ -184,7 +184,7 @@ export default async function HomePage() {
               padding="pb-0"
             />
             <div className="lg:text-right mt-auto">
-              <Button href="/services" label="Semua Layanan" bgColor="bg-brand-blue" textColor="text-white" />
+              <Button href="/services" label="Semua Layanan" intent="primary" />
             </div>
           </div>
           <SpesialisSlider items={servicesList} />

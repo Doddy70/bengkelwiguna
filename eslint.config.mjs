@@ -27,6 +27,8 @@ const eslintConfig = [
       ".claude/**",
       "_archived_files/**",
       ".agents/**",
+      "aapanel-deployment/**",
+      ".vercel/**",
     ],
   },
   ...compat.extends("next/core-web-vitals", "next/typescript"),

@@ -154,6 +154,33 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
               </Link>
             )}
 
+            {/* Box 5: Categories / Tags Grid (Right Top) */}
+            <div className="lg:col-span-3 lg:row-span-1 rounded-[2.5rem] bg-[#e6d5f7] dark:bg-[#224297] p-6 lg:p-8 flex flex-col justify-between shadow-lg relative overflow-hidden group">
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl" />
+              
+              <div className="flex flex-wrap gap-2 relative z-10">
+                {categories.slice(0, 8).map((cat) => (
+                  <button
+                    key={cat.id}
+                    onClick={() => setSelectedCategory(cat.slug)}
+                    className="bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-[#ffd900] text-gray-900 dark:text-white hover:text-[#224297] dark:hover:text-black text-xs font-bold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+                  >
+                    {cat.name}
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex justify-between items-end mt-6 relative z-10">
+                <span className="font-bold text-gray-900 dark:text-white text-sm">View All Categories</span>
+                <button 
+                  onClick={() => setSelectedCategory("")}
+                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-900 hover:scale-110 hover:bg-[#ffd900] transition-all shadow-md"
+                >
+                  <Icon icon="solar:arrow-right-linear" width={20} />
+                </button>
+              </div>
+            </div>
+
             {/* Box 3: Visual/Video Card (Middle Bottom) */}
             {post3 && (
               <Link href={`/blog/${post3.slug}`} className="lg:col-span-4 lg:row-span-1 relative rounded-[2.5rem] overflow-hidden group shadow-lg hover:shadow-xl transition-all flex flex-col justify-end p-6 lg:p-8">
@@ -186,7 +213,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
               </Link>
             )}
 
-            {/* Box 4: Vertical Card (Right Top) */}
+            {/* Box 4: Vertical Card (Right Bottom) */}
             {post4 && (
               <Link href={`/blog/${post4.slug}`} className="lg:col-span-3 lg:row-span-1 rounded-[2.5rem] bg-[#cce2ec] dark:bg-neutral-800 p-6 flex flex-col group shadow-lg hover:shadow-xl transition-all overflow-hidden relative">
                 <div className="flex items-center gap-2 text-xs font-bold text-gray-600 dark:text-gray-400 mb-2 z-10">
@@ -210,33 +237,6 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 </div>
               </Link>
             )}
-
-            {/* Box 5: Categories / Tags Grid (Right Bottom) */}
-            <div className="lg:col-span-3 lg:row-span-1 rounded-[2.5rem] bg-[#e6d5f7] dark:bg-[#224297] p-6 lg:p-8 flex flex-col justify-between shadow-lg relative overflow-hidden group">
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl" />
-              
-              <div className="flex flex-wrap gap-2 relative z-10">
-                {categories.slice(0, 8).map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setSelectedCategory(cat.slug)}
-                    className="bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-[#ffd900] text-gray-900 dark:text-white hover:text-[#224297] dark:hover:text-black text-xs font-bold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
-                  >
-                    {cat.name}
-                  </button>
-                ))}
-              </div>
-
-              <div className="flex justify-between items-end mt-6 relative z-10">
-                <span className="font-bold text-gray-900 dark:text-white text-sm">View All Categories</span>
-                <button 
-                  onClick={() => setSelectedCategory("")}
-                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-900 hover:scale-110 hover:bg-[#ffd900] transition-all shadow-md"
-                >
-                  <Icon icon="solar:arrow-right-linear" width={20} />
-                </button>
-              </div>
-            </div>
 
           </div>
         </div>

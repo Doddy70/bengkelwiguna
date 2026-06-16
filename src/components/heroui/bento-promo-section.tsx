@@ -11,7 +11,7 @@
  * - Glassmorphism accents
  */
 
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
@@ -20,7 +20,7 @@ import PageTitle3 from '@/components/ui/PageTitle3';
 import dynamic from 'next/dynamic';
 import WigunaCard from '@/components/ui/WigunaCard';
 
-const SeasonalPromoSlider = dynamic(() => import('./seasonal-promo-slider'), { ssr: false });
+const PromoCarousel = dynamic(() => import('@/components/ui/PromoCarousel'), { ssr: false });
 
 interface BentoPromoSectionProps {
   promos: Promosi[];
@@ -34,6 +34,8 @@ const BRAND_BLUE_LIGHT = '#3b5db3';
 const BRAND_BLUE_DARK = '#1a356d';
 
 const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], promoBulanan = [] }) => {
+  const [visibleCount, setVisibleCount] = useState(5);
+
   // Filter out seasonal/bulanan promos for regular grid
   const regularPromos = useMemo(() => {
     return promos.filter(p => {
@@ -87,7 +89,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
     return (
       <div
         key={promo.id || idx}
-        className={`${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} h-full`}
+        className={`${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} h-[460px]`}
       >
         <WigunaCard
           href={`/promosi/${promo.slug}`}
@@ -145,10 +147,10 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
         </div>
       </div>
 
-      {/* Seasonal Promo Coverflow Slider - FULLWIDTH */}
+      {/* Seasonal Promo Coverflow Slider */}
       {seasonalPromos.length > 0 && (
-        <div className="w-full relative z-10 mb-12 lg:mb-20">
-          <SeasonalPromoSlider promos={seasonalPromos} />
+        <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-12 lg:mb-20">
+          <PromoCarousel promos={seasonalPromos} />
         </div>
       )}
 
@@ -156,21 +158,31 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {regularPromos.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 grid-flow-dense items-stretch">
-            {regularPromos.slice(0, 9).map((promo, idx) => (
+            {regularPromos.slice(0, visibleCount).map((promo, idx) => (
               StandardBentoCard(promo, idx)
             ))}
           </div>
         )}
 
-        {/* View All CTA */}
-        {regularPromos.length > 9 && (
+        {/* Load More / View All CTA */}
+        {regularPromos.length > visibleCount ? (
+          <div className="mt-8 flex justify-center items-center gap-4">
+            <button
+              onClick={() => setVisibleCount(prev => prev + 5)}
+              className="inline-flex items-center gap-3 bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700 text-gray-900 dark:text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold group cursor-pointer border border-transparent dark:border-white/10"
+            >
+              Muat Lebih Banyak ({regularPromos.length - visibleCount} lagi)
+              <Icon icon="solar:round-alt-arrow-down-linear" className="w-5 h-5 group-hover:translate-y-1 transition-transform text-[#224297] dark:text-[#ffd900]" />
+            </button>
+          </div>
+        ) : regularPromos.length > 0 && (
           <div className="mt-8 text-center">
             <Link
               href="/promosi"
-              className="inline-flex items-center gap-3 bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700 text-gray-900 dark:text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold group"
+              className="inline-flex items-center gap-3 bg-[#224297] hover:bg-[#1a356d] text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold group"
             >
-              Lihat Semua Promo ({regularPromos.length - 9} lagi)
-              <Icon icon="solar:arrow-right-linear" className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              Jelajahi Semua Promo
+              <Icon icon="solar:arrow-right-linear" className="w-5 h-5 group-hover:translate-x-1 transition-transform text-[#ffd900]" />
             </Link>
           </div>
         )}
