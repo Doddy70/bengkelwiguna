@@ -189,6 +189,8 @@ interface OverlayCardProps {
   oldPrice?: string;
   onButtonClick?: (e: React.MouseEvent) => void;
   onWhatsAppClick?: (e: React.MouseEvent) => void;
+  buttonText?: string;
+  secondaryIcon?: string;
 }
 
 export const OverlayCard: React.FC<OverlayCardProps> = ({
@@ -201,7 +203,14 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
   oldPrice,
   onButtonClick,
   onWhatsAppClick,
+  buttonText = 'Lihat Detail',
+  secondaryIcon,
 }) => {
+  const isWhatsApp = !secondaryIcon || secondaryIcon.includes('whatsapp');
+  const secondaryBtnBg = isWhatsApp 
+    ? 'bg-[#25D366] hover:bg-[#128C7E] text-white' 
+    : 'bg-white hover:bg-gray-100 text-gray-900';
+
   return (
     <div className="group relative h-[460px] rounded-[2.5rem] overflow-hidden flex flex-col justify-end">
       {/* Background Image */}
@@ -272,14 +281,14 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
             onClick={onButtonClick}
             className="flex-1 py-3 px-5 rounded-full bg-white/20 hover:bg-white hover:text-[#224297] backdrop-blur-md border border-white/30 text-white font-bold text-sm text-center transition-all duration-300"
           >
-            Lihat Promo
+            {buttonText}
           </button>
           <button
             onClick={onWhatsAppClick}
-            className="w-12 h-12 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-            aria-label="Chat WhatsApp"
+            className={`w-12 h-12 rounded-full ${secondaryBtnBg} flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105`}
+            aria-label="Action Button"
           >
-            <Icon icon="fa6-brands:whatsapp" className="w-6 h-6" />
+            <Icon icon={secondaryIcon || "fa6-brands:whatsapp"} className="w-6 h-6" />
           </button>
         </div>
       </div>
@@ -352,6 +361,8 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
         oldPrice={oldPrice}
         onButtonClick={onButtonClick}
         onWhatsAppClick={onSecondaryClick}
+        buttonText={buttonText}
+        secondaryIcon={secondaryIcon}
       />
     );
 
