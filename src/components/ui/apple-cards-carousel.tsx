@@ -136,20 +136,38 @@ export default function PromoCarousel({ promos, title, subtitle }: PromoCarousel
                 {/* Glass Overlay - Liquid Glass Inspired */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
 
-                {/* Top Badges */}
-                <div className="absolute top-6 left-6 right-6 z-20 flex items-center justify-between">
-                  <span className="px-4 py-2 bg-[#ffd900] text-black text-xs font-black uppercase tracking-wider rounded-full shadow-lg">
-                    {currentPromo.kategori_promosi || 'Promo Spesial'}
-                  </span>
-                  {currentPromo.diskon_persen && (
-                    <span className="px-4 py-2 bg-[#25D366] text-white text-xs font-black uppercase tracking-wider rounded-full shadow-lg">
-                      {currentPromo.diskon_persen}% OFF
+                {/* Top Floating Badges & Icons */}
+                <div className="absolute top-6 left-6 right-6 z-30 flex items-start justify-between">
+                  <div className="flex flex-col gap-2">
+                    <span className="inline-flex items-center gap-1.5 bg-white text-gray-800 text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+                      <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                      {currentPromo.kategori_promosi || 'Promo Spesial'}
                     </span>
-                  )}
+                    {currentPromo.diskon_persen && (
+                      <span className="inline-flex px-3 py-1.5 bg-[#25D366] text-white text-[10px] font-black uppercase tracking-wider rounded-full shadow-lg w-fit">
+                        {currentPromo.diskon_persen}% OFF
+                      </span>
+                    )}
+                  </div>
+                  
+                  <div className="flex flex-col gap-2">
+                     <button 
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/40 transition-colors"
+                     >
+                        <Icon icon="solar:link-linear" className="w-5 h-5" />
+                     </button>
+                     <button 
+                        onClick={(e) => e.stopPropagation()}
+                        className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/40 transition-colors"
+                     >
+                        <Icon icon="solar:heart-linear" className="w-5 h-5" />
+                     </button>
+                  </div>
                 </div>
 
                 {/* Bottom Glass Content Panel */}
-                <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-8 backdrop-blur-2xl bg-white/10 border-t border-white/20">
+                <div className="absolute bottom-0 left-0 right-0 z-20 p-6 md:p-8 backdrop-blur-md bg-white/5 border-t border-white/10">
                   {/* Glass Effect Line */}
                   <div className="absolute -top-px left-8 right-8 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent" />
 

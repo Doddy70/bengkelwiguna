@@ -68,9 +68,9 @@ export const FramedCard: React.FC<FramedCardProps> = ({
   onWhatsAppClick,
 }) => {
   return (
-    <div className="group relative bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col">
+    <div className="group relative bg-white rounded-3xl border border-gray-200 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 flex flex-col p-2 h-full">
       {/* Image Container */}
-      <div className="relative aspect-[4/3] overflow-hidden bg-gray-50">
+      <div className="relative aspect-[4/3] overflow-hidden bg-gray-50 rounded-2xl">
         <Image
           src={image}
           alt={title}
@@ -82,7 +82,8 @@ export const FramedCard: React.FC<FramedCardProps> = ({
         {/* Top Badges */}
         <div className="absolute top-4 left-4 flex flex-col gap-2">
           {tag && (
-            <span className="inline-block bg-[#224297] text-white text-[10px] font-black px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
+            <span className="inline-flex items-center gap-1.5 bg-white text-gray-800 text-xs font-bold px-3 py-1.5 rounded-full shadow-md">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
               {tag}
             </span>
           )}
@@ -93,8 +94,18 @@ export const FramedCard: React.FC<FramedCardProps> = ({
           )}
         </div>
 
+        {/* Top Right Floating Icons */}
+        <div className="absolute top-4 right-4 flex flex-col gap-2">
+           <button className="w-8 h-8 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/40 transition-colors">
+              <Icon icon="solar:link-linear" className="w-4 h-4" />
+           </button>
+           <button className="w-8 h-8 rounded-full bg-black/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-black/40 transition-colors">
+              <Icon icon="solar:heart-linear" className="w-4 h-4" />
+           </button>
+        </div>
+
         {/* Hover Overlay with Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
       </div>
 
       {/* Content Container */}
@@ -132,16 +143,16 @@ export const FramedCard: React.FC<FramedCardProps> = ({
         )}
 
         {/* Action Buttons */}
-        <div className="flex items-center gap-3 mt-auto">
+        <div className="flex items-center gap-3 mt-auto pt-4 border-t border-gray-100">
           <button
             onClick={onButtonClick}
-            className="flex-1 py-3 px-5 rounded-full bg-[#224297] hover:bg-[#1a356d] text-white font-bold text-sm text-center transition-all duration-300 shadow-sm hover:shadow-md"
+            className="flex-1 py-3 px-5 rounded-xl bg-gray-900 hover:bg-[#224297] text-white font-bold text-sm text-center transition-all duration-300 shadow-sm hover:shadow-md"
           >
             {buttonText}
           </button>
           <button
             onClick={onWhatsAppClick}
-            className="w-11 h-11 rounded-full bg-[#ffd900] hover:bg-yellow-400 text-black flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
+            className="w-11 h-11 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-900 flex items-center justify-center transition-all duration-300 shadow-sm hover:shadow-md"
             aria-label="Chat WhatsApp"
           >
             <Icon icon="fa6-brands:whatsapp" className="w-5 h-5" />
@@ -185,7 +196,7 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
   onWhatsAppClick,
 }) => {
   return (
-    <div className="group relative h-[460px] rounded-[2rem] overflow-hidden flex flex-col justify-end">
+    <div className="group relative h-[460px] rounded-[2.5rem] overflow-hidden flex flex-col justify-end">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -201,22 +212,32 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
       <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
 
       {/* Glass Content Panel - Frosted Glass Effect */}
-      <div className="relative z-20 p-6 backdrop-blur-xl bg-white/10 border border-white/20 rounded-b-[2rem]">
-        {/* Top Row - Badges */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            {tag && (
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#ffd900]">
-                {tag}
-              </span>
-            )}
-          </div>
+      {/* Top Floating Badges */}
+      <div className="absolute top-6 left-6 right-6 z-30 flex items-start justify-between pointer-events-none">
+        <div className="flex flex-col gap-2">
+          {tag && (
+            <span className="inline-flex items-center gap-1.5 bg-white text-gray-800 text-xs font-bold px-3 py-1.5 rounded-full shadow-md pointer-events-auto">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-500" />
+              {tag}
+            </span>
+          )}
           {badgeText && (
-            <span className="px-3 py-1 bg-[#ffd900] text-black text-[10px] font-black uppercase tracking-wider rounded-full shadow-lg">
+            <span className="inline-flex px-3 py-1.5 bg-[#25D366] text-white text-[10px] font-black uppercase tracking-wider rounded-full shadow-lg pointer-events-auto">
               {badgeText}
             </span>
           )}
         </div>
+        <div className="flex flex-col gap-2">
+           <button className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/40 transition-colors pointer-events-auto">
+              <Icon icon="solar:link-linear" className="w-5 h-5" />
+           </button>
+           <button className="w-10 h-10 rounded-full bg-black/20 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-black/40 transition-colors pointer-events-auto">
+              <Icon icon="solar:heart-linear" className="w-5 h-5" />
+           </button>
+        </div>
+      </div>
+
+      <div className="relative z-20 p-6 backdrop-blur-md bg-white/5 border-t border-white/10">
 
         {/* Title */}
         <h3 className="text-2xl font-black text-white uppercase tracking-tight leading-tight mb-2 group-hover:text-[#ffd900] transition-colors duration-300 line-clamp-2">

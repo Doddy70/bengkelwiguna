@@ -97,7 +97,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
           image={img}
           title={title}
           excerpt={excerpt}
-          variant="overlay"
+          variant="split"
           badgeText={discountText}
           tag={promo.kategori_promosi || 'PROMO'}
           metaItems={metaItems}
