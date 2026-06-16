@@ -493,7 +493,7 @@ export async function getPaketServiceBySlug(slug: string): Promise<PaketService 
  */
 export async function getHomepageSettings(): Promise<any> {
   return bwFetch('/homepage-settings', {
-    next: { revalidate: REVALIDATE_SINGLE, tags: ['settings', 'homepage'] }
+    next: { revalidate: 0, tags: ['settings', 'homepage'] }
   })
 }
 
