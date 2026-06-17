@@ -1,53 +1,168 @@
 [
   {
-    "id": "service-berkala",
-    "name": "Service Berkala",
-    "category": "Perawatan Rutin",
-    "image": "/images/hotspot/fortuner_tools.png",
-    "imagePosition": "center",
-    "description": "Perawatan preventif komprehensif menggunakan SOP ketat untuk mengembalikan performa mobil.",
+    "id": "semi-overhaul",
+    "name": "Semi Overhaul",
+    "category": "Engine Recovery",
+    "image": "/images/hotspot/fortuner_stinger.png",
+    "imagePosition": "left",
+    "description": "Perawatan mesin level semi overhaul menggunakan sistem Stinger Flushing untuk membuang kerak membandel tanpa bongkar blok.",
     "suggestedQuestions": [
-      "Apa saja yang diganti saat servis?",
-      "Kapan waktu terbaik untuk servis berkala?",
-      "Apa bedanya dengan tune up biasa?",
-      "Berapa lama estimasi pengerjaannya?"
+      "Apa bedanya semi overhaul dengan turun mesin?",
+      "Apakah aman untuk mobil tua?",
+      "Berapa lama prosesnya?",
+      "Seberapa efektif membuang kerak oli?"
     ],
     "highlights": [
-      { "icon": "CheckCircle", "title": "Cek 40+ Titik", "subtitle": "Inspeksi Menyeluruh" },
-      { "icon": "Zap", "title": "Tarikan Enteng", "subtitle": "Performa Maksimal" },
-      { "icon": "Shield", "title": "Preventif", "subtitle": "Cegah Kerusakan" }
+      {
+        "icon": "Cpu",
+        "title": "Sistem Stinger",
+        "subtitle": "Akurasi Tinggi"
+      },
+      {
+        "icon": "Activity",
+        "title": "Tanpa Bongkar",
+        "subtitle": "Waktu Singkat"
+      },
+      {
+        "icon": "CheckCircle",
+        "title": "Performa Pulih",
+        "subtitle": "Mesin Bersih"
+      }
     ],
     "hotspots": [
       {
-        "top": "45%", "left": "28%",
-        "title": "Ganti Oli Mesin", "subtitle": "Oli 100% Sintetis & Filter",
-        "lineAngle": -52, "lineLength": 300,
-        "labelOffsetX": 220, "labelOffsetY": -280,
-        "imageUrl": "/images/hotspot/fortuner_tools.png"
+        "top": "25%",
+        "left": "50%",
+        "title": "Pembersihan Sludge & Kerak",
+        "subtitle": "Stinger Engine Flush melarutkan lumpur oli dan kerak karbon di area atas mesin.",
+        "labelOffsetX": 80,
+        "labelOffsetY": -40,
+        "widgetTitle": "Gejala Umum",
+        "widgetDesc": "Tumpukan sludge mengurangi pelumasan di Cylinder Head, menyebabkan mesin ngelitik.",
+        "widgetAction": "Melarutkan lumpur oli (oil sludge) dan kerak karbon.",
+        "widgetMetric1": {
+          "label": "Kerak Terbuang",
+          "value": "99"
+        },
+        "widgetMetric2": {
+          "label": "Visibilitas",
+          "value": "100"
+        },
+        "nodeIcon": "Cpu"
       },
       {
-        "top": "70%", "left": "20%",
-        "title": "Cek Rem & Kaki-Kaki", "subtitle": "Keamanan Berkendara",
-        "lineAngle": -73, "lineLength": 320,
-        "labelOffsetX": 110, "labelOffsetY": -360,
-        "imageUrl": "/images/hotspot/fortuner_tools.png"
+        "top": "40%",
+        "left": "65%",
+        "title": "Sirkulasi Oli Optimal",
+        "subtitle": "Membersihkan jalur pelumasan sehingga oli baru dapat bersirkulasi maksimal.",
+        "labelOffsetX": 110,
+        "labelOffsetY": -10,
+        "widgetTitle": "Potensi Masalah",
+        "widgetDesc": "Saluran oli yang tersumbat menyebabkan sirkulasi buruk dan overheat ringan.",
+        "widgetAction": "Membersihkan jalur pelumasan untuk sirkulasi oli baru.",
+        "widgetMetric1": {
+          "label": "Flow Rate",
+          "value": "Max"
+        },
+        "widgetMetric2": {
+          "label": "Sumbatan",
+          "value": "0"
+        },
+        "nodeIcon": "Droplet"
       },
       {
-        "top": "38%", "left": "38%",
-        "title": "Filter Udara & AC", "subtitle": "Udara Kabin Segar",
-        "lineAngle": -22, "lineLength": 260,
-        "labelOffsetX": 240, "labelOffsetY": -100,
-        "imageUrl": "/images/hotspot/fortuner_tools.png"
+        "top": "55%",
+        "left": "45%",
+        "title": "Proteksi Keausan Komponen",
+        "subtitle": "Mengurangi gesekan antar komponen seperti ring piston dan camshaft.",
+        "labelOffsetX": -180,
+        "labelOffsetY": 20,
+        "widgetTitle": "Dampak Jangka Panjang",
+        "widgetDesc": "Gesekan berlebih memperpendek usia komponen dan menyebabkan turun mesin total.",
+        "widgetAction": "Gesekan berkurang, ring piston dan camshaft terlindungi.",
+        "widgetMetric1": {
+          "label": "Friction",
+          "value": "Low"
+        },
+        "widgetMetric2": {
+          "label": "Lifespan",
+          "value": "+5Y"
+        },
+        "nodeIcon": "Shield"
+      },
+      {
+        "top": "45%",
+        "left": "30%",
+        "title": "Kembalikan Performa & Efisiensi",
+        "subtitle": "Mesin lebih responsif, idle halus, dan BBM efisien berkat pembakaran optimal.",
+        "labelOffsetX": -160,
+        "labelOffsetY": -20,
+        "widgetTitle": "Keluhan Pengendara",
+        "widgetDesc": "Tarikan terasa berat, BBM boros, dan putaran idle mesin tidak stabil.",
+        "widgetAction": "Meningkatkan kompresi dan efisiensi pembakaran bahan bakar.",
+        "widgetMetric1": {
+          "label": "Performa",
+          "value": "Max"
+        },
+        "widgetMetric2": {
+          "label": "Efisiensi",
+          "value": "Opt"
+        },
+        "nodeIcon": "Zap"
+      },
+      {
+        "top": "75%",
+        "left": "55%",
+        "title": "Cegah Kerusakan Berulang",
+        "subtitle": "Endapan kotoran di bak oli terbuang tuntas, menekan risiko kerusakan.",
+        "labelOffsetX": 80,
+        "labelOffsetY": 50,
+        "widgetTitle": "Tindakan Akhir",
+        "widgetDesc": "Kotoran sisa yang mengendap di karter dapat tersedot kembali oleh pompa oli.",
+        "widgetAction": "Membuang penyebab utama masalah dari dasar bak oli.",
+        "widgetMetric1": {
+          "label": "Endapan",
+          "value": "0"
+        },
+        "widgetMetric2": {
+          "label": "Risiko",
+          "value": "Safe"
+        },
+        "nodeIcon": "Crosshair"
       }
     ],
     "specs": {
-      "metric1": { "label": "Waktu Pengerjaan", "sublabel": "Estimasi selesai", "value": "60", "unit": "Min", "icon": "/lottie/speedometer.json" },
-      "metric2": { "label": "Pengecekan", "sublabel": "Titik inspeksi", "value": "40+", "unit": "Titik", "icon": "/lottie/tick-circle.json" },
-      "totalValue": "Rp 850k",
+      "metric1": {
+        "label": "Tingkat Bersih",
+        "sublabel": "Pembuangan kerak",
+        "value": "95",
+        "unit": "%",
+        "icon": "/lottie/tick-circle.json"
+      },
+      "metric2": {
+        "label": "Durasi",
+        "sublabel": "Proses sirkulasi",
+        "value": "120",
+        "unit": "Min",
+        "icon": "/lottie/clock.json"
+      },
+      "totalValue": "Rp 1.5Jt",
       "features": [
-        { "icon": "/lottie/flash.json", "title": "Performa", "subtitle": "Maksimal" },
-        { "icon": "/lottie/filter.json", "title": "Filter", "subtitle": "Pembersihan" },
-        { "icon": "/lottie/cpu.json", "title": "Scanner", "subtitle": "ECU Check" }
+        {
+          "icon": "/lottie/settings.json",
+          "title": "Sirkulasi",
+          "subtitle": "High Press"
+        },
+        {
+          "icon": "/lottie/flash.json",
+          "title": "Tenaga",
+          "subtitle": "Terangkat"
+        },
+        {
+          "icon": "/lottie/cpu.json",
+          "title": "Reset",
+          "subtitle": "Parameter"
+        }
       ]
     }
   },
@@ -65,106 +180,83 @@
       "Apa benefit yang dirasakan?"
     ],
     "highlights": [
-      { "icon": "Crosshair", "title": "Akurasi 100%", "subtitle": "Tanpa Tebak-tebakan" },
-      { "icon": "Shield", "title": "Tanpa Tes Jalan", "subtitle": "Sangat Aman" },
-      { "icon": "Activity", "title": "Real Simulation", "subtitle": "Kondisi Nyata" }
+      {
+        "icon": "Crosshair",
+        "title": "Akurasi 100%",
+        "subtitle": "Tanpa Tebak-tebakan"
+      },
+      {
+        "icon": "Shield",
+        "title": "Tanpa Tes Jalan",
+        "subtitle": "Sangat Aman"
+      },
+      {
+        "icon": "Activity",
+        "title": "Real Simulation",
+        "subtitle": "Kondisi Nyata"
+      }
     ],
     "hotspots": [
       {
-        "top": "60%", "left": "15%",
-        "title": "Kyoto Shaking Machine", "subtitle": "Diagnosis akurat visual, kinestatis, dan suara",
-        "lineAngle": -60, "lineLength": 370,
-        "labelOffsetX": 180, "labelOffsetY": -320,
+        "top": "60%",
+        "left": "15%",
+        "title": "Kyoto Shaking Machine",
+        "subtitle": "Diagnosis akurat visual, kinestatis, dan suara",
+        "lineAngle": -60,
+        "lineLength": 370,
+        "labelOffsetX": 180,
+        "labelOffsetY": -320,
         "imageUrl": "/images/hotspot/Fortuner_Kyoto.png",
-        "details": "Pemeriksaan kaki-kaki mobil menggunakan *Kyoto Shaking Machine* untuk pemeriksaan yang lebih akurat dan tanpa tipu-tipu, dengan biaya cek Rp 250.000,\n*Note: GRATIS biaya cek jika ada pembelian parts diatas Rp. 1 juta"
+        "details": "Pemeriksaan kaki-kaki mobil menggunakan *Kyoto Shaking Machine* untuk pemeriksaan yang lebih akurat dan tanpa tipu-tipu, dengan biaya cek Rp 250.000,\n*Note: GRATIS biaya cek jika ada pembelian parts diatas Rp. 1 juta",
+        "diagnosa": "Komponen suspensi (shockbreaker, bushing, tie rod) mengalami keausan atau kelonggaran.",
+        "gejala": "Terdengar bunyi 'gluduk-gluduk' saat melewati jalan rusak, atau mobil terasa limbung.",
+        "tindakan": "Simulasi jalan rusak menggunakan Kyoto Shaking Machine untuk deteksi sumber bunyi dengan akurasi 100% tanpa perlu tes jalan.",
+        "nodeIcon": "Activity",
+        "widgetTitle": "Gejala Umum",
+        "widgetDesc": "Terdengar bunyi 'gluduk-gluduk' saat melewati jalan rusak, atau mobil terasa limbung.",
+        "widgetAction": "Simulasi jalan rusak menggunakan Kyoto Shaking Machine untuk deteksi sumber bunyi dengan akurasi 100% tanpa perlu tes jalan.",
+        "widgetMetric1": {
+          "label": "Status",
+          "value": "Cek"
+        },
+        "widgetMetric2": {
+          "label": "Kondisi",
+          "value": "Aman"
+        }
       }
     ],
     "specs": {
-      "metric1": { "label": "Akurasi Diagnosa", "sublabel": "Tanpa tebak-tebakan", "value": "99.9", "unit": "%", "icon": "/lottie/tick-circle.json" },
-      "metric2": { "label": "Keamanan", "sublabel": "Tanpa tes jalan", "value": "100", "unit": "% Aman", "icon": "/lottie/settings.json" },
+      "metric1": {
+        "label": "Akurasi Diagnosa",
+        "sublabel": "Tanpa tebak-tebakan",
+        "value": "99.9",
+        "unit": "%",
+        "icon": "/lottie/tick-circle.json"
+      },
+      "metric2": {
+        "label": "Keamanan",
+        "sublabel": "Tanpa tes jalan",
+        "value": "100",
+        "unit": "% Aman",
+        "icon": "/lottie/settings.json"
+      },
       "totalValue": "Rp 250k",
       "features": [
-        { "icon": "/lottie/clock.json", "title": "Simulasi", "subtitle": "Cepat" },
-        { "icon": "/lottie/tick-circle.json", "title": "Sertifikasi", "subtitle": "Included" },
-        { "icon": "/lottie/settings.json", "title": "Getaran", "subtitle": "Realtime" }
-      ]
-    }
-  },
-  {
-    "id": "semi-overhaul",
-    "name": "Semi Overhaul",
-    "category": "Engine Recovery",
-    "image": "/images/hotspot/fortuner_stinger.png",
-    "imagePosition": "left",
-    "description": "Perawatan mesin level semi overhaul menggunakan sistem Stinger Flushing untuk membuang kerak membandel tanpa bongkar blok.",
-    "suggestedQuestions": [
-      "Apa bedanya semi overhaul dengan turun mesin?",
-      "Apakah aman untuk mobil tua?",
-      "Berapa lama prosesnya?",
-      "Seberapa efektif membuang kerak oli?"
-    ],
-    "highlights": [
-      { "icon": "Cpu", "title": "Sistem Stinger", "subtitle": "Akurasi Tinggi" },
-      { "icon": "Activity", "title": "Tanpa Bongkar", "subtitle": "Waktu Singkat" },
-      { "icon": "CheckCircle", "title": "Performa Pulih", "subtitle": "Mesin Bersih" }
-    ],
-    "hotspots": [
-      {
-        "top": "45%", "left": "15%",
-        "title": "Stinger Engine Flush", "subtitle": "Mencegah kerusakan turun mesin",
-        "lineAngle": -45, "lineLength": 350,
-        "labelOffsetX": 250, "labelOffsetY": -250,
-        "imageUrl": "/images/hotspot/fortuner_stinger.png",
-        "details": "Treatment semi overhaul lebih cepat dan biaya lebih murah dibandingkan overhaul total.\n✅ Untuk sludge berat & kerak tebal\n✅ Bongkar sebagian untuk bersihin total mesin\n\nJangan Tunggu Mobil Anda Jantungan dan Mogok di Jalan! segera lakukan treatment Semi Overhaul di Bengkel Wiguna sekarang❗"
-      }
-    ],
-    "specs": {
-      "metric1": { "label": "Tingkat Bersih", "sublabel": "Pembuangan kerak", "value": "95", "unit": "%", "icon": "/lottie/tick-circle.json" },
-      "metric2": { "label": "Durasi", "sublabel": "Proses sirkulasi", "value": "120", "unit": "Min", "icon": "/lottie/clock.json" },
-      "totalValue": "Rp 1.5Jt",
-      "features": [
-        { "icon": "/lottie/settings.json", "title": "Sirkulasi", "subtitle": "High Press" },
-        { "icon": "/lottie/flash.json", "title": "Tenaga", "subtitle": "Terangkat" },
-        { "icon": "/lottie/cpu.json", "title": "Reset", "subtitle": "Parameter" }
-      ]
-    }
-  },
-  {
-    "id": "coolant-changer",
-    "name": "Coolant Changer",
-    "category": "Cooling System Care",
-    "image": "/images/hotspot/fortuner_coolant.png",
-    "imagePosition": "left",
-    "description": "Sistem kuras radiator vakum otomatis yang menjamin penggantian cairan pendingin 100% bersih tanpa ada udara terjebak (angin palsu).",
-    "suggestedQuestions": [
-      "Alat Coolant Changer buat apa?",
-      "Kenapa harus pakai alat ini?",
-      "Berapa lama proses kurasnya?",
-      "Apa manfaatnya buat mesin?"
-    ],
-    "highlights": [
-      { "icon": "Droplet", "title": "Vacuum Tech", "subtitle": "Kuras Sempurna" },
-      { "icon": "Thermometer", "title": "Anti Overheat", "subtitle": "Suhu Terjaga" },
-      { "icon": "Shield", "title": "Safe Process", "subtitle": "Tanpa Resiko" }
-    ],
-    "hotspots": [
-      {
-        "top": "40%", "left": "12%",
-        "title": "Kuras Radiator Prestone", "subtitle": "Kuras Vakum Bebas Angin Palsu",
-        "lineAngle": -45, "lineLength": 410,
-        "labelOffsetX": 280, "labelOffsetY": -290,
-        "imageUrl": "/images/hotspot/fortuner_coolant.png",
-        "details": "Prestone Coolant Changer adalah: mesin yang dirancang untuk mengganti cairan coolant Anda secara menyeluruh, menguras dan mengisi kembali cairan coolant pada kendaraan Anda hingga bagian dalam."
-      }
-    ],
-    "specs": {
-      "metric1": { "label": "Kemurnian", "sublabel": "Bebas kerak karat", "value": "100", "unit": "% Bersih", "icon": "/lottie/tick-circle.json" },
-      "metric2": { "label": "Suhu Mesin", "sublabel": "Optimal", "value": "Anti", "unit": "Panas", "icon": "/lottie/settings.json" },
-      "totalValue": "Rp 350k",
-      "features": [
-        { "icon": "/lottie/settings.json", "title": "Vakum", "subtitle": "Otomatis" },
-        { "icon": "/lottie/flash.json", "title": "Sirkulasi", "subtitle": "Lancar" },
-        { "icon": "/lottie/tick-circle.json", "title": "Sistem", "subtitle": "Tertutup" }
+        {
+          "icon": "/lottie/clock.json",
+          "title": "Simulasi",
+          "subtitle": "Cepat"
+        },
+        {
+          "icon": "/lottie/tick-circle.json",
+          "title": "Sertifikasi",
+          "subtitle": "Included"
+        },
+        {
+          "icon": "/lottie/settings.json",
+          "title": "Getaran",
+          "subtitle": "Realtime"
+        }
       ]
     }
   },
@@ -182,28 +274,322 @@
       "Apakah freon juga diganti baru?"
     ],
     "highlights": [
-      { "icon": "Crosshair", "title": "Flushing 100%", "subtitle": "Oli Lama Terbuang" },
-      { "icon": "Shield", "title": "Vakum Digital", "subtitle": "Sangat Presisi" },
-      { "icon": "Activity", "title": "Suhu Dingin", "subtitle": "Kabin Nyaman" }
+      {
+        "icon": "Crosshair",
+        "title": "Flushing 100%",
+        "subtitle": "Oli Lama Terbuang"
+      },
+      {
+        "icon": "Shield",
+        "title": "Vakum Digital",
+        "subtitle": "Sangat Presisi"
+      },
+      {
+        "icon": "Activity",
+        "title": "Suhu Dingin",
+        "subtitle": "Kabin Nyaman"
+      }
     ],
     "hotspots": [
       {
-        "top": "35%", "left": "10%",
-        "title": "Kyoto Flushing AC", "subtitle": "Digital Recovery & Vakum",
-        "lineAngle": -30, "lineLength": 380,
-        "labelOffsetX": 300, "labelOffsetY": -180,
+        "top": "35%",
+        "left": "10%",
+        "title": "Kyoto Flushing AC",
+        "subtitle": "Digital Recovery & Vakum",
+        "lineAngle": -30,
+        "lineLength": 380,
+        "labelOffsetX": 300,
+        "labelOffsetY": -180,
         "imageUrl": "/images/hotspot/fortuner_ac.png",
-        "details": "📌 Paket Reset AC Mobil – Mulai Rp600rb ❄️\nCocok untuk AC yang mulai kurang dingin, bau, atau anginnya lemah.\nSudah termasuk flushing AC, vacuum, isi freon, pembersihan evaporator & blower 👍"
+        "details": "📌 Paket Reset AC Mobil – Mulai Rp600rb ❄️\nCocok untuk AC yang mulai kurang dingin, bau, atau anginnya lemah.\nSudah termasuk flushing AC, vacuum, isi freon, pembersihan evaporator & blower 👍",
+        "diagnosa": "Oli kompresor AC sudah jenuh atau volume freon berkurang drastis.",
+        "gejala": "Hembusan AC siang hari tidak dingin, hanya keluar angin, atau tercium bau tidak sedap dari kisi-kisi AC.",
+        "tindakan": "Flushing AC 100% menggunakan Kyoto Flushing Machine, menguras oli kompresor lama dan mengisi freon baru dengan takaran digital yang sangat presisi.",
+        "nodeIcon": "Command",
+        "widgetTitle": "Gejala Umum",
+        "widgetDesc": "Hembusan AC siang hari tidak dingin, hanya keluar angin, atau tercium bau tidak sedap dari kisi-kisi AC.",
+        "widgetAction": "Flushing AC 100% menggunakan Kyoto Flushing Machine, menguras oli kompresor lama dan mengisi freon baru dengan takaran digital yang sangat presisi.",
+        "widgetMetric1": {
+          "label": "Status",
+          "value": "Cek"
+        },
+        "widgetMetric2": {
+          "label": "Kondisi",
+          "value": "Aman"
+        }
       }
     ],
     "specs": {
-      "metric1": { "label": "Vakum Digital", "sublabel": "Akurasi timbangan", "value": "100", "unit": "%", "icon": "/lottie/tick-circle.json" },
-      "metric2": { "label": "Suhu Kabin", "sublabel": "Suhu minimal", "value": "Terkecil", "unit": "Celcius", "icon": "/lottie/speedometer.json" },
+      "metric1": {
+        "label": "Vakum Digital",
+        "sublabel": "Akurasi timbangan",
+        "value": "100",
+        "unit": "%",
+        "icon": "/lottie/tick-circle.json"
+      },
+      "metric2": {
+        "label": "Suhu Kabin",
+        "sublabel": "Suhu minimal",
+        "value": "Terkecil",
+        "unit": "Celcius",
+        "icon": "/lottie/speedometer.json"
+      },
       "totalValue": "Rp 650k",
       "features": [
-        { "icon": "/lottie/settings.json", "title": "Oli", "subtitle": "Kompresor" },
-        { "icon": "/lottie/filter.json", "title": "Freon", "subtitle": "Murni" },
-        { "icon": "/lottie/clock.json", "title": "Durasi", "subtitle": "Cepat" }
+        {
+          "icon": "/lottie/settings.json",
+          "title": "Oli",
+          "subtitle": "Kompresor"
+        },
+        {
+          "icon": "/lottie/filter.json",
+          "title": "Freon",
+          "subtitle": "Murni"
+        },
+        {
+          "icon": "/lottie/clock.json",
+          "title": "Durasi",
+          "subtitle": "Cepat"
+        }
+      ]
+    }
+  },
+  {
+    "id": "coolant-changer",
+    "name": "Kuras Radiator",
+    "category": "Cooling System Care",
+    "image": "/images/hotspot/fortuner_coolant.png",
+    "imagePosition": "left",
+    "description": "Sistem kuras radiator vakum otomatis yang menjamin penggantian cairan pendingin 100% bersih tanpa ada udara terjebak (angin palsu).",
+    "suggestedQuestions": [
+      "Alat Coolant Changer buat apa?",
+      "Kenapa harus pakai alat ini?",
+      "Berapa lama proses kurasnya?",
+      "Apa manfaatnya buat mesin?"
+    ],
+    "highlights": [
+      {
+        "icon": "Droplet",
+        "title": "Vacuum Tech",
+        "subtitle": "Kuras Sempurna"
+      },
+      {
+        "icon": "Thermometer",
+        "title": "Anti Overheat",
+        "subtitle": "Suhu Terjaga"
+      },
+      {
+        "icon": "Shield",
+        "title": "Safe Process",
+        "subtitle": "Tanpa Resiko"
+      }
+    ],
+    "hotspots": [
+      {
+        "top": "40%",
+        "left": "12%",
+        "title": "Kuras Radiator Prestone",
+        "subtitle": "Kuras Vakum Bebas Angin Palsu",
+        "lineAngle": -45,
+        "lineLength": 410,
+        "labelOffsetX": 280,
+        "labelOffsetY": -290,
+        "imageUrl": "/images/hotspot/fortuner_coolant.png",
+        "details": "Prestone Coolant Changer adalah: mesin yang dirancang untuk mengganti cairan coolant Anda secara menyeluruh, menguras dan mengisi kembali cairan coolant pada kendaraan Anda hingga bagian dalam.",
+        "diagnosa": "Cairan pendingin (coolant) mulai keruh, berkarat, atau ada gelembung udara (angin palsu) di sistem radiator.",
+        "gejala": "Indikator temperatur mesin sering naik mendekati batas merah (overheat) saat jalan macet.",
+        "tindakan": "Kuras radiator 100% menggunakan Prestone Coolant Changer dengan teknologi vakum otomatis yang membebaskan sistem dari angin palsu.",
+        "nodeIcon": "Thermometer",
+        "widgetTitle": "Gejala Umum",
+        "widgetDesc": "Indikator temperatur mesin sering naik mendekati batas merah (overheat) saat jalan macet.",
+        "widgetAction": "Kuras radiator 100% menggunakan Prestone Coolant Changer dengan teknologi vakum otomatis yang membebaskan sistem dari angin palsu.",
+        "widgetMetric1": {
+          "label": "Status",
+          "value": "Cek"
+        },
+        "widgetMetric2": {
+          "label": "Kondisi",
+          "value": "Aman"
+        }
+      }
+    ],
+    "specs": {
+      "metric1": {
+        "label": "Kemurnian",
+        "sublabel": "Bebas kerak karat",
+        "value": "100",
+        "unit": "% Bersih",
+        "icon": "/lottie/tick-circle.json"
+      },
+      "metric2": {
+        "label": "Suhu Mesin",
+        "sublabel": "Optimal",
+        "value": "Anti",
+        "unit": "Panas",
+        "icon": "/lottie/settings.json"
+      },
+      "totalValue": "Rp 350k",
+      "features": [
+        {
+          "icon": "/lottie/settings.json",
+          "title": "Vakum",
+          "subtitle": "Otomatis"
+        },
+        {
+          "icon": "/lottie/flash.json",
+          "title": "Sirkulasi",
+          "subtitle": "Lancar"
+        },
+        {
+          "icon": "/lottie/tick-circle.json",
+          "title": "Sistem",
+          "subtitle": "Tertutup"
+        }
+      ]
+    }
+  },
+  {
+    "id": "service-berkala",
+    "name": "Service Berkala",
+    "category": "Perawatan Rutin",
+    "image": "/images/hotspot/fortuner_tools.png",
+    "imagePosition": "center",
+    "description": "Perawatan preventif komprehensif menggunakan SOP ketat untuk mengembalikan performa mobil.",
+    "suggestedQuestions": [
+      "Apa saja yang diganti saat servis?",
+      "Kapan waktu terbaik untuk servis berkala?",
+      "Apa bedanya dengan tune up biasa?",
+      "Berapa lama estimasi pengerjaannya?"
+    ],
+    "highlights": [
+      {
+        "icon": "CheckCircle",
+        "title": "Cek 40+ Titik",
+        "subtitle": "Inspeksi Menyeluruh"
+      },
+      {
+        "icon": "Zap",
+        "title": "Tarikan Enteng",
+        "subtitle": "Performa Maksimal"
+      },
+      {
+        "icon": "Shield",
+        "title": "Preventif",
+        "subtitle": "Cegah Kerusakan"
+      }
+    ],
+    "hotspots": [
+      {
+        "top": "45%",
+        "left": "28%",
+        "title": "Ganti Oli Mesin",
+        "subtitle": "Oli 100% Sintetis & Filter",
+        "lineAngle": -52,
+        "lineLength": 300,
+        "labelOffsetX": 220,
+        "labelOffsetY": -280,
+        "imageUrl": "/images/hotspot/fortuner_tools.png",
+        "diagnosa": "Oli mesin terkontaminasi kotoran, menyebabkan pelumasan berkurang.",
+        "gejala": "Tarikan mesin berat, suhu mesin cepat panas, dan suara mesin lebih kasar dari biasanya.",
+        "tindakan": "Penggantian oli 100% sintetis beserta filter oli untuk perlindungan maksimal.",
+        "nodeIcon": "Droplet",
+        "widgetTitle": "Gejala Umum",
+        "widgetDesc": "Tarikan mesin berat, suhu mesin cepat panas, dan suara mesin lebih kasar dari biasanya.",
+        "widgetAction": "Penggantian oli 100% sintetis beserta filter oli untuk perlindungan maksimal.",
+        "widgetMetric1": {
+          "label": "Status",
+          "value": "Cek"
+        },
+        "widgetMetric2": {
+          "label": "Kondisi",
+          "value": "Aman"
+        }
+      },
+      {
+        "top": "70%",
+        "left": "20%",
+        "title": "Cek Rem & Kaki-Kaki",
+        "subtitle": "Keamanan Berkendara",
+        "lineAngle": -73,
+        "lineLength": 320,
+        "labelOffsetX": 110,
+        "labelOffsetY": -360,
+        "imageUrl": "/images/hotspot/fortuner_tools.png",
+        "diagnosa": "Kampas rem mulai menipis atau ada masalah pada suspensi bawah.",
+        "gejala": "Bunyi berdecit saat mengerem, atau setir terasa bergetar dan tidak stabil pada kecepatan tinggi.",
+        "tindakan": "Inspeksi kaki-kaki menyeluruh dan pembersihan area rem (Brake Cleaner).",
+        "nodeIcon": "Disc",
+        "widgetTitle": "Gejala Umum",
+        "widgetDesc": "Bunyi berdecit saat mengerem, atau setir terasa bergetar dan tidak stabil pada kecepatan tinggi.",
+        "widgetAction": "Inspeksi kaki-kaki menyeluruh dan pembersihan area rem (Brake Cleaner).",
+        "widgetMetric1": {
+          "label": "Status",
+          "value": "Cek"
+        },
+        "widgetMetric2": {
+          "label": "Kondisi",
+          "value": "Aman"
+        }
+      },
+      {
+        "top": "38%",
+        "left": "38%",
+        "title": "Filter Udara & AC",
+        "subtitle": "Udara Kabin Segar",
+        "lineAngle": -22,
+        "lineLength": 260,
+        "labelOffsetX": 240,
+        "labelOffsetY": -100,
+        "imageUrl": "/images/hotspot/fortuner_tools.png",
+        "diagnosa": "Filter kabin dan filter udara mesin kotor/tersumbat.",
+        "gejala": "AC kurang dingin, hembusan angin pelan, dan tarikan mesin sedikit tertahan.",
+        "tindakan": "Pembersihan atau penggantian filter udara dan AC untuk pernapasan mesin dan kabin yang sehat.",
+        "nodeIcon": "Wind",
+        "widgetTitle": "Gejala Umum",
+        "widgetDesc": "AC kurang dingin, hembusan angin pelan, dan tarikan mesin sedikit tertahan.",
+        "widgetAction": "Pembersihan atau penggantian filter udara dan AC untuk pernapasan mesin dan kabin yang sehat.",
+        "widgetMetric1": {
+          "label": "Status",
+          "value": "Cek"
+        },
+        "widgetMetric2": {
+          "label": "Kondisi",
+          "value": "Aman"
+        }
+      }
+    ],
+    "specs": {
+      "metric1": {
+        "label": "Waktu Pengerjaan",
+        "sublabel": "Estimasi selesai",
+        "value": "60",
+        "unit": "Min",
+        "icon": "/lottie/speedometer.json"
+      },
+      "metric2": {
+        "label": "Pengecekan",
+        "sublabel": "Titik inspeksi",
+        "value": "40+",
+        "unit": "Titik",
+        "icon": "/lottie/tick-circle.json"
+      },
+      "totalValue": "Rp 850k",
+      "features": [
+        {
+          "icon": "/lottie/flash.json",
+          "title": "Performa",
+          "subtitle": "Maksimal"
+        },
+        {
+          "icon": "/lottie/filter.json",
+          "title": "Filter",
+          "subtitle": "Pembersihan"
+        },
+        {
+          "icon": "/lottie/cpu.json",
+          "title": "Scanner",
+          "subtitle": "ECU Check"
+        }
       ]
     }
   }

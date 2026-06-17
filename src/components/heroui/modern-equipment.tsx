@@ -31,7 +31,7 @@ const HudHotspot = ({ top, left, title, subtitle, lineAngle, lineLength, labelOf
   return (
     <div className="absolute z-20" style={{ top, left }}>
       {/* Glowing Dot */}
-      <motion.div 
+      <motion.div
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, delay }}
@@ -44,7 +44,7 @@ const HudHotspot = ({ top, left, title, subtitle, lineAngle, lineLength, labelOf
       </motion.div>
 
       {/* Connecting Line */}
-      <motion.div 
+      <motion.div
         initial={{ width: 0, opacity: 0 }}
         animate={{ width: lineLength, opacity: 1 }}
         transition={{ duration: 0.8, delay: delay + 0.3, ease: smoothBezier }}
@@ -53,7 +53,7 @@ const HudHotspot = ({ top, left, title, subtitle, lineAngle, lineLength, labelOf
       />
 
       {/* Label Box */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 10, scale: 0.9 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.4, delay: delay + 0.8 }}
@@ -62,8 +62,8 @@ const HudHotspot = ({ top, left, title, subtitle, lineAngle, lineLength, labelOf
         style={{ top: labelOffsetY, left: labelOffsetX }}
       >
         <div className="flex items-center gap-2 mb-1.5">
-           <div className="w-2 h-2 rounded-full bg-[#2d3142] shadow-[0_0_5px_rgba(45,49,66,0.5)]"></div>
-           <h5 className="text-[13px] font-bold text-[#2d3142] leading-none">{title}</h5>
+          <div className="w-2 h-2 rounded-full bg-[#2d3142] shadow-[0_0_5px_rgba(45,49,66,0.5)]"></div>
+          <h5 className="text-[13px] font-bold text-[#2d3142] leading-none">{title}</h5>
         </div>
         <p className="text-[11px] text-[#8b95a5] pl-4 leading-snug">{subtitle}</p>
       </motion.div>
@@ -97,17 +97,16 @@ export default function ModernEquipmentShowcase() {
       <div className="relative z-50 flex justify-center mt-8">
         <div className="flex items-center gap-2 p-1.5 bg-white/40 backdrop-blur-md rounded-[2rem] border border-white/60 shadow-sm">
           {equipmentData.map((item: any, idx: number) => (
-            <button 
+            <button
               key={item.id}
               onClick={() => {
                 setActiveItemIndex(idx);
                 setActiveHotspot(null);
               }}
-              className={`px-5 py-2.5 rounded-[1.5rem] text-[13px] font-bold transition-all ${
-                activeItemIndex === idx 
-                  ? "bg-white text-[#2d3142] shadow-sm scale-100" 
+              className={`px-5 py-2.5 rounded-[1.5rem] text-[13px] font-bold transition-all ${activeItemIndex === idx
+                  ? "bg-white text-[#2d3142] shadow-sm scale-100"
                   : "bg-transparent text-[#8b95a5] hover:text-[#2d3142] hover:bg-white/30 scale-95"
-              }`}
+                }`}
             >
               {item.name.replace("Mesin ", "")}
             </button>
@@ -118,7 +117,7 @@ export default function ModernEquipmentShowcase() {
       {/* Main Content Area - Desktop Layout */}
       <div className="relative w-full max-w-[1500px] mx-auto h-[85vh] min-h-[800px] mt-4 lg:mt-8">
         <AnimatePresence mode="wait">
-          <motion.div 
+          <motion.div
             key={activeItem.id}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -127,14 +126,14 @@ export default function ModernEquipmentShowcase() {
             className="w-full h-full relative"
           >
             {/* Center Image */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.2, ease: smoothBezier }}
               className="absolute inset-0 flex justify-center items-center z-10 pointer-events-none w-full h-full"
             >
               <div className="relative w-full h-full max-w-[1100px] lg:scale-100 xl:scale-[1.1] lg:translate-x-[5%] lg:-translate-y-4">
-                
+
                 {/* Product Image Layer */}
                 <div className="absolute inset-0 transition-all duration-700 w-full h-full">
                   <Image
@@ -148,28 +147,28 @@ export default function ModernEquipmentShowcase() {
 
                 {/* Hotspots Overlay */}
                 <div className="absolute inset-0 w-full h-full pointer-events-none">
-                   {activeItem.hotspots?.map((hotspot: any, index: number) => (
-                     <HudHotspot 
-                       key={`${activeItem.id}-hotspot-${index}`}
-                       top={hotspot.top} 
-                       left={hotspot.left} 
-                       title={hotspot.title} 
-                       subtitle={hotspot.subtitle}
-                       lineAngle={hotspot.lineAngle} 
-                       lineLength={hotspot.lineLength}
-                       labelOffsetX={hotspot.labelOffsetX} 
-                       labelOffsetY={hotspot.labelOffsetY}
-                       delay={0.4 + (index * 0.2)}
-                       imageUrl={hotspot.imageUrl}
-                       onClick={() => setActiveHotspot(hotspot)}
-                     />
-                   ))}
+                  {activeItem.hotspots?.map((hotspot: any, index: number) => (
+                    <HudHotspot
+                      key={`${activeItem.id}-hotspot-${index}`}
+                      top={hotspot.top}
+                      left={hotspot.left}
+                      title={hotspot.title}
+                      subtitle={hotspot.subtitle}
+                      lineAngle={hotspot.lineAngle}
+                      lineLength={hotspot.lineLength}
+                      labelOffsetX={hotspot.labelOffsetX}
+                      labelOffsetY={hotspot.labelOffsetY}
+                      delay={0.4 + (index * 0.2)}
+                      imageUrl={hotspot.imageUrl}
+                      onClick={() => setActiveHotspot(hotspot)}
+                    />
+                  ))}
                 </div>
               </div>
             </motion.div>
 
             {/* Top Left: Title & Description */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.1, ease: smoothBezier }}
@@ -183,11 +182,11 @@ export default function ModernEquipmentShowcase() {
                   <FeatherIcons.Repeat size={18} />
                 </button>
               </div>
-              
+
               <p className="text-[#6b7280] text-sm lg:text-[15px] leading-relaxed mb-6 max-w-[340px]">
                 {activeItem.description}
               </p>
-              
+
 
               {/* Vertical Action Buttons */}
               <div className="hidden md:flex flex-col gap-4 mt-16">
@@ -204,7 +203,7 @@ export default function ModernEquipmentShowcase() {
             </motion.div>
 
             {/* Top Right: Specs Widget */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.9, delay: 0.2, ease: smoothBezier }}
@@ -216,7 +215,7 @@ export default function ModernEquipmentShowcase() {
                     <h3 className="text-[1.1rem] font-bold text-[#2d3142]">Info Detail</h3>
                     <p className="text-[13px] text-[#8b95a5] mt-1">{activeHotspot ? (activeItem.id === 'service-berkala' || !activeHotspot.details ? "Equipment Preview" : "Detail Informasi") : "Pilih titik komponen"}</p>
                   </div>
-                  <button 
+                  <button
                     className="w-9 h-9 rounded-[1rem] bg-white shadow-sm flex items-center justify-center text-[#8b95a5] hover:text-[#2d3142]"
                     onClick={() => setActiveHotspot(null)}
                   >
@@ -226,7 +225,7 @@ export default function ModernEquipmentShowcase() {
 
                 <AnimatePresence mode="wait">
                   {!activeHotspot ? (
-                    <motion.div 
+                    <motion.div
                       key="specs"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -293,7 +292,7 @@ export default function ModernEquipmentShowcase() {
                       </div>
                     </motion.div>
                   ) : activeItem.id === 'service-berkala' || !activeHotspot.details ? (
-                    <motion.div 
+                    <motion.div
                       key="image"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -301,15 +300,15 @@ export default function ModernEquipmentShowcase() {
                       transition={{ duration: 0.2 }}
                       className="w-full h-[280px] relative rounded-[1.5rem] overflow-hidden bg-white/40 flex items-center justify-center p-4 border border-white/60 shadow-inner"
                     >
-                      <Image 
-                        src={activeHotspot.imageUrl} 
-                        alt="Product Preview" 
-                        fill 
+                      <Image
+                        src={activeHotspot.imageUrl}
+                        alt="Product Preview"
+                        fill
                         className="object-contain p-4 drop-shadow-xl hover:scale-110 transition-transform duration-500"
                       />
                     </motion.div>
                   ) : (
-                    <motion.div 
+                    <motion.div
                       key="details"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -317,18 +316,18 @@ export default function ModernEquipmentShowcase() {
                       transition={{ duration: 0.2 }}
                       className="w-full min-h-[280px] relative rounded-[1.5rem] bg-white/40 flex flex-col justify-center p-6 border border-white/60 shadow-inner"
                     >
-                      <p 
-                        className="text-[14px] leading-relaxed text-[#2d3142]" 
-                        dangerouslySetInnerHTML={{ __html: activeHotspot.details.replace(/\n/g, '<br/>').replace(/\*(.*?)\*/g, '<strong>$1</strong>') }} 
+                      <p
+                        className="text-[14px] leading-relaxed text-[#2d3142]"
+                        dangerouslySetInnerHTML={{ __html: activeHotspot.details.replace(/\n/g, '<br/>').replace(/\*(.*?)\*/g, '<strong>$1</strong>') }}
                       />
                     </motion.div>
                   )}
                 </AnimatePresence>
 
                 <div className="mt-6 flex justify-end items-center w-full">
-                  <a 
-                    href="https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)" 
-                    target="_blank" 
+                  <a
+                    href="https://wa.me/6281717773888?text=halo%20mon,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya%20di%20bengkel%20wiguna.%20(web)"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="w-full"
                   >
@@ -341,7 +340,7 @@ export default function ModernEquipmentShowcase() {
             </motion.div>
 
             {/* Bottom Left: Panduan & FAQ */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.4, ease: smoothBezier }}
@@ -359,14 +358,14 @@ export default function ModernEquipmentShowcase() {
             </motion.div>
 
             {/* Bottom Center: Wiguna AI Chatbox */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.3, ease: smoothBezier }}
               className="absolute bottom-10 left-1/2 -translate-x-1/2 z-40 w-full max-w-[460px]"
             >
               <div className="bg-white/60 backdrop-blur-[32px] rounded-t-[2.5rem] rounded-b-[2rem] p-6 shadow-[0_16px_48px_rgba(0,0,0,0.08)] border border-white/60 flex flex-col gap-4">
-                
+
                 {/* Header */}
                 <div className="flex justify-between items-center px-1">
                   <div className="flex items-center gap-3">
@@ -409,9 +408,9 @@ export default function ModernEquipmentShowcase() {
 
                 {/* Input Field */}
                 <div className="mt-2 bg-white rounded-full p-1.5 flex items-center shadow-inner border border-gray-100">
-                  <input 
-                    type="text" 
-                    placeholder={`Tanya seputar ${activeItem.name}...`} 
+                  <input
+                    type="text"
+                    placeholder={`Tanya seputar ${activeItem.name}...`}
                     className="flex-1 bg-transparent px-4 py-2 text-[13px] text-[#2d3142] outline-none placeholder-[#8b95a5]"
                     readOnly
                   />
@@ -424,7 +423,7 @@ export default function ModernEquipmentShowcase() {
             </motion.div>
 
             {/* Bottom Right: Layanan Edukasi */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, delay: 0.5, ease: smoothBezier }}
