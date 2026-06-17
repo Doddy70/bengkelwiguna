@@ -279,32 +279,45 @@ export default function ModernEquipmentShowcase() {
               </div>
             )}
 
-            {/* 6. Testimoni Kontekstual */}
-            {activeHotspot && activeHotspot.testimonial && (
-              <div className="mt-2 bg-gray-50/80 p-5 rounded-xl border border-gray-100 relative">
-                <div className="flex text-yellow-400 mb-2.5">
-                  {[...Array(5)].map((_, i) => <FeatherIcons.Star key={i} size={12} className="fill-current" />)}
+            {/* 6 & 7. Testimoni & Action Button (Unified Dark Card) */}
+            <div className="mt-4 bg-[#181d27] rounded-2xl border border-gray-700/50 overflow-hidden shadow-2xl">
+              {activeHotspot && activeHotspot.testimonial && (
+                <div className="p-4 sm:p-5">
+                  <div className="flex items-start justify-between">
+                    <div>
+                      <div className="flex items-center gap-2.5 mb-1">
+                        <h4 className="text-white font-bold text-[15px]">{activeHotspot.testimonial.author.split(',')[0]}</h4>
+                        <span className="px-2 py-0.5 bg-green-500/10 text-green-400 border border-green-500/20 text-[10px] font-bold tracking-wide rounded-full">
+                          Pelanggan
+                        </span>
+                      </div>
+                      <p className="text-gray-400 text-[13px]">{activeHotspot.testimonial.author.split(',').slice(1).join(',')}</p>
+                    </div>
+                    <div className="shrink-0 ml-4">
+                      <div className="w-11 h-11 rounded-full bg-gray-700 flex items-center justify-center border-2 border-gray-600 overflow-hidden">
+                        <FeatherIcons.User size={20} className="text-gray-400" />
+                      </div>
+                    </div>
+                  </div>
+                  <p className="text-gray-300 text-[13.5px] italic mt-4 leading-relaxed">
+                    &quot;{activeHotspot.testimonial.quote}&quot;
+                  </p>
                 </div>
-                <p className="text-[13px] italic text-gray-600 leading-relaxed mb-3">&quot;{activeHotspot.testimonial.quote}&quot;</p>
-                <div className="text-[12px] font-bold text-gray-800">
-                  - {activeHotspot.testimonial.author.split(',')[0]}
-                  <span className="block text-gray-400 font-normal mt-0.5">{activeHotspot.testimonial.author.split(',').slice(1).join(',')}</span>
+              )}
+
+              {!activeHotspot && (
+                <div className="p-5 text-center opacity-60">
+                  <FeatherIcons.MousePointer size={28} className="mx-auto mb-2 text-gray-400" />
+                  <p className="text-[13px] text-gray-300">Klik titik (hotspot) untuk melihat detail.</p>
                 </div>
+              )}
+
+              <div className="flex border-t border-gray-700/50">
+                <button className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-[#181d27] hover:bg-[#202634] transition-colors text-white font-semibold text-[14px]">
+                  <FeatherIcons.Calendar size={16} className="text-gray-400" />
+                  Booking Sekarang
+                </button>
               </div>
-            )}
-
-            {!activeHotspot && (
-               <div className="text-center py-10 opacity-60">
-                 <FeatherIcons.MousePointer size={32} className="mx-auto mb-3 text-gray-400" />
-                 <p className="text-sm">Klik titik (hotspot) pada gambar kendaraan untuk melihat detail perawatan.</p>
-               </div>
-            )}
-
-            {/* 7. Action Buttons / Sticky Footer */}
-            <div className="mt-2 sticky bottom-0 bg-white pt-2 pb-1">
-              <Button className="w-full bg-[#263e7c] text-white font-bold text-[14px] shadow-md shadow-blue-900/20" size="lg" radius="md">
-                Booking Sekarang
-              </Button>
             </div>
           </CardBody>
         </Card>
