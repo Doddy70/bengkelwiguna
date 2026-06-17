@@ -107,23 +107,8 @@ export default function ModernEquipmentShowcase() {
           <h1 className="text-xl font-bold text-gray-800 tracking-tight hidden sm:block">Wiguna Diagnostics</h1>
         </div>
 
-        <div className="flex items-center gap-2 bg-white/60 lg:bg-white/40 backdrop-blur-xl rounded-full p-1.5 shadow-sm lg:shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] border border-white/60 overflow-x-auto scrollbar-hide max-w-[50vw] sm:max-w-none">
-          {equipmentData.map((item: any, idx: number) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                setActiveItemIndex(idx);
-                setActiveHotspot(null);
-              }}
-              className={`px-4 lg:px-5 py-2 rounded-full text-[12px] lg:text-[13px] font-semibold transition-all duration-300 flex items-center gap-2 shrink-0 ${
-                activeItemIndex === idx
-                  ? "bg-white text-gray-800 shadow-md"
-                  : "bg-transparent text-gray-500 hover:text-gray-800"
-              }`}
-            >
-              {item.name.replace("Mesin ", "")}
-            </button>
-          ))}
+        <div className="flex items-center gap-2 bg-white/60 lg:bg-white/40 backdrop-blur-xl rounded-full p-1.5 shadow-sm lg:shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] border border-white/60 hidden">
+          {/* Tabs moved to left side vertical menu */}
         </div>
 
         <div className="flex items-center gap-4">
@@ -147,17 +132,25 @@ export default function ModernEquipmentShowcase() {
           Teknologi canggih {activeItem.name} yang mampu mensimulasikan guncangan jalan rusak secara statis untuk deteksi yang akurat.
         </p>
 
-        {/* Circular tool buttons - Horizontal on mobile, vertical on desktop */}
-        <div className="flex flex-row lg:flex-col gap-4 lg:gap-5 justify-center">
-          <button className="w-12 h-12 lg:w-14 lg:h-14 bg-white rounded-full flex items-center justify-center text-gray-600 shadow-sm hover:shadow-md transition-all group">
-            <FeatherIcons.Target size={20} className="group-hover:scale-110 transition-transform" />
-          </button>
-          <button className="w-12 h-12 lg:w-14 lg:h-14 bg-white rounded-full flex items-center justify-center text-gray-600 shadow-sm hover:shadow-md transition-all group">
-            <FeatherIcons.Layers size={20} className="group-hover:scale-110 transition-transform" />
-          </button>
-          <button className="w-12 h-12 lg:w-14 lg:h-14 bg-white rounded-full flex items-center justify-center text-gray-600 shadow-sm hover:shadow-md transition-all group">
-            <FeatherIcons.Sliders size={20} className="group-hover:scale-110 transition-transform" />
-          </button>
+        {/* Menu Tabs - Vertical on Desktop, Horizontal on Mobile */}
+        <div className="flex flex-row lg:flex-col gap-2 lg:gap-3 justify-start lg:justify-center overflow-x-auto w-full lg:w-auto pb-4 lg:pb-0 scrollbar-hide">
+          {equipmentData.map((item: any, idx: number) => (
+            <button
+              key={item.id}
+              onClick={() => {
+                setActiveItemIndex(idx);
+                setActiveHotspot(null);
+              }}
+              className={`px-5 lg:px-6 py-3 lg:py-3.5 rounded-full lg:rounded-2xl text-[13px] lg:text-[14px] font-bold transition-all duration-300 flex items-center justify-center lg:justify-start gap-3 shrink-0 whitespace-nowrap border ${
+                activeItemIndex === idx
+                  ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30 border-blue-500"
+                  : "bg-white/60 backdrop-blur-md hover:bg-white text-gray-600 border-white/50"
+              }`}
+            >
+              <div className={`w-2 h-2 rounded-full ${activeItemIndex === idx ? "bg-white" : "bg-gray-400"}`}></div>
+              {item.name}
+            </button>
+          ))}
         </div>
       </div>
 
@@ -202,16 +195,16 @@ export default function ModernEquipmentShowcase() {
       </div>
 
       {/* 4. RIGHT FLOATING AREA (Info Detail Card) */}
-      <div className="relative lg:absolute lg:top-[120px] lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto w-full max-w-[500px] lg:w-[380px] px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none">
-        <Card className="bg-white/80 backdrop-blur-xl shadow-2xl border border-white/60 p-2" radius="lg">
+      <div className="relative lg:absolute lg:top-[120px] lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto w-full max-w-[540px] lg:w-[460px] px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none">
+        <Card className="bg-gradient-to-br from-white/50 to-white/20 backdrop-blur-[40px] backdrop-saturate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/70 rounded-[2rem] p-2" radius="none">
           <CardHeader className="flex justify-between items-center px-5 pt-5 pb-2">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
-                <FeatherIcons.Crosshair size={18} />
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
+                <FeatherIcons.Crosshair size={20} />
               </div>
               <div>
-                <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Area Terpilih</p>
-                <h3 className="text-[16px] font-bold text-gray-800 leading-tight">
+                <p className="text-[11px] text-gray-400 uppercase tracking-widest font-bold">Area Terpilih</p>
+                <h3 className="text-[18px] font-bold text-gray-800 leading-tight mt-0.5">
                   {activeHotspot ? activeHotspot.title : activeItem.name}
                 </h3>
               </div>
@@ -224,7 +217,7 @@ export default function ModernEquipmentShowcase() {
           <CardBody className="gap-4 px-5 pb-5 pt-2 max-h-[70vh] overflow-y-auto scrollbar-hide">
             
             {/* 2. Deskripsi Singkat */}
-            <p className="text-[13px] text-gray-600 leading-relaxed m-0 border-b border-gray-100 pb-4">
+            <p className="text-[14px] text-gray-600 leading-relaxed m-0 border-b border-gray-100 pb-4">
               {activeHotspot ? activeHotspot.treatment : activeItem.description}
             </p>
 
@@ -234,10 +227,10 @@ export default function ModernEquipmentShowcase() {
                 {activeItem.impactScores?.map((score: any, idx: number) => {
                   const Icon = (FeatherIcons as any)[score.icon] || FeatherIcons.CheckCircle;
                   return (
-                    <div key={idx} className="flex-1 bg-white/60 p-2.5 rounded-xl border border-gray-100 shadow-sm text-center">
-                      <Icon size={14} className="text-blue-500 mx-auto mb-1.5" />
-                      <p className="text-[10px] text-gray-500 leading-tight mb-0.5">{score.title}</p>
-                      <p className="text-[11px] font-bold text-gray-800">{score.value}</p>
+                    <div key={idx} className="flex-1 bg-white/60 p-3 rounded-xl border border-gray-100 shadow-sm text-center">
+                      <Icon size={16} className="text-blue-500 mx-auto mb-2" />
+                      <p className="text-[11px] text-gray-500 leading-tight mb-1">{score.title}</p>
+                      <p className="text-[13px] font-bold text-gray-800">{score.value}</p>
                     </div>
                   );
                 })}
@@ -249,9 +242,9 @@ export default function ModernEquipmentShowcase() {
               <div className="pt-1">
                 <ul className="space-y-2">
                   {activeHotspot.impacts.map((impact: string, idx: number) => (
-                    <li key={idx} className="text-[13px] text-gray-700 flex items-start gap-2.5">
-                      <FeatherIcons.Check size={16} className="text-green-500 shrink-0" />
-                      <span className="leading-tight">{impact}</span>
+                    <li key={idx} className="text-[14px] text-gray-700 flex items-start gap-3">
+                      <FeatherIcons.Check size={18} className="text-green-500 shrink-0 mt-0.5" />
+                      <span className="leading-relaxed">{impact}</span>
                     </li>
                   ))}
                 </ul>
@@ -261,23 +254,23 @@ export default function ModernEquipmentShowcase() {
             {/* 5. Before vs After */}
             {activeHotspot && activeHotspot.beforeAfter && (
               <div className="flex flex-col sm:flex-row gap-3 mt-1">
-                <div className="flex-1 bg-red-50/40 p-3 rounded-xl border border-red-100/50">
-                  <p className="text-[11px] font-bold text-red-600 mb-2 uppercase tracking-wide">Sebelum</p>
-                  <ul className="space-y-1.5">
+                <div className="flex-1 bg-red-50/40 p-4 rounded-xl border border-red-100/50">
+                  <p className="text-[12px] font-bold text-red-600 mb-2.5 uppercase tracking-wide">Sebelum</p>
+                  <ul className="space-y-2">
                     {activeHotspot.beforeAfter.before.map((b: string, i: number) => (
-                      <li key={i} className="text-[11px] text-gray-600 flex items-start gap-1.5 leading-tight">
-                        <span className="w-1 h-1 rounded-full bg-red-400 mt-1.5 shrink-0" />
+                      <li key={i} className="text-[12px] text-gray-600 flex items-start gap-2 leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 shrink-0" />
                         <span>{b}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-                <div className="flex-1 bg-green-50/40 p-3 rounded-xl border border-green-100/50">
-                  <p className="text-[11px] font-bold text-green-600 mb-2 uppercase tracking-wide">Sesudah</p>
-                  <ul className="space-y-1.5">
+                <div className="flex-1 bg-green-50/40 p-4 rounded-xl border border-green-100/50">
+                  <p className="text-[12px] font-bold text-green-600 mb-2.5 uppercase tracking-wide">Sesudah</p>
+                  <ul className="space-y-2">
                     {activeHotspot.beforeAfter.after.map((a: string, i: number) => (
-                      <li key={i} className="text-[11px] text-gray-600 flex items-start gap-1.5 leading-tight">
-                        <span className="w-1 h-1 rounded-full bg-green-500 mt-1.5 shrink-0" />
+                      <li key={i} className="text-[12px] text-gray-600 flex items-start gap-2 leading-relaxed">
+                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 shrink-0" />
                         <span>{a}</span>
                       </li>
                     ))}
@@ -288,12 +281,12 @@ export default function ModernEquipmentShowcase() {
 
             {/* 6. Testimoni Kontekstual */}
             {activeHotspot && activeHotspot.testimonial && (
-              <div className="mt-1 bg-gray-50/80 p-4 rounded-xl border border-gray-100 relative">
-                <div className="flex text-yellow-400 mb-2">
-                  {[...Array(5)].map((_, i) => <FeatherIcons.Star key={i} size={10} className="fill-current" />)}
+              <div className="mt-2 bg-gray-50/80 p-5 rounded-xl border border-gray-100 relative">
+                <div className="flex text-yellow-400 mb-2.5">
+                  {[...Array(5)].map((_, i) => <FeatherIcons.Star key={i} size={12} className="fill-current" />)}
                 </div>
-                <p className="text-[12px] italic text-gray-600 leading-relaxed mb-3">&quot;{activeHotspot.testimonial.quote}&quot;</p>
-                <div className="text-[11px] font-bold text-gray-800">
+                <p className="text-[13px] italic text-gray-600 leading-relaxed mb-3">&quot;{activeHotspot.testimonial.quote}&quot;</p>
+                <div className="text-[12px] font-bold text-gray-800">
                   - {activeHotspot.testimonial.author.split(',')[0]}
                   <span className="block text-gray-400 font-normal mt-0.5">{activeHotspot.testimonial.author.split(',').slice(1).join(',')}</span>
                 </div>
@@ -320,26 +313,17 @@ export default function ModernEquipmentShowcase() {
       {/* AI CHAT REMOVED PER IMPLEMENTATION PLAN */}
 
       {/* 6. BOTTOM PILLS - Hidden on mobile to reduce clutter, visible on Desktop */}
-      <div className="hidden lg:flex absolute bottom-[5%] left-[5%] xl:left-[8%] z-30 pointer-events-auto">
-        <div className="bg-white/80 backdrop-blur-xl rounded-full py-3 px-5 flex items-center gap-5 shadow-lg border border-white cursor-pointer hover:bg-white transition-colors">
-          <div>
-            <h4 className="text-[14px] font-bold text-gray-800 leading-tight">Panduan & FAQ</h4>
-            <p className="text-[11.5px] text-gray-500">Solusi Mandiri</p>
-          </div>
-          <div className="w-9 h-9 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-400 shadow-sm">
-            <FeatherIcons.ArrowUpRight size={16} />
-          </div>
-        </div>
-      </div>
-
       <div className="hidden lg:flex absolute bottom-[5%] right-[5%] xl:right-[8%] z-30 pointer-events-auto">
-        <div className="bg-white/80 backdrop-blur-xl rounded-full py-3 px-5 flex items-center gap-5 shadow-lg border border-white cursor-pointer hover:bg-white transition-colors">
-          <div>
-            <h4 className="text-[14px] font-bold text-gray-800 leading-tight">Layanan Edukasi</h4>
-            <p className="text-[11.5px] text-gray-500">Access Support Instantly</p>
+        <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-3 pr-6 flex items-center gap-4 shadow-lg border border-white cursor-pointer hover:bg-white transition-colors">
+          <div className="flex -space-x-2 overflow-hidden pl-1">
+            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2.25&w=256&h=256&q=80" alt="" />
+            <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
           </div>
-          <div className="w-9 h-9 rounded-full bg-white border border-gray-100 flex items-center justify-center text-gray-400 shadow-sm">
-            <FeatherIcons.ArrowUpRight size={16} />
+          <div className="flex flex-col">
+            <h4 className="text-[14px] font-bold text-gray-900 leading-none">672 orang</h4>
+            <p className="text-[11.5px] text-gray-500 mt-1">Puas dengan Treatment Kami</p>
           </div>
         </div>
       </div>

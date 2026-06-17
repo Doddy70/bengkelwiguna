@@ -14,46 +14,46 @@ import React, { useEffect, useState } from "react";
 import { Link, Button } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 
-const googleReviews = [
+const fallbackReviews = [
   {
-    name: "Budi Santoso",
-    initial: "B",
+    name: "Rio Pratama",
+    initial: "R",
     bgColor: "bg-blue-50",
     textColor: "text-blue-600",
-    role: "Local Guide • 42 Ulasan",
-    date: "1 minggu yang lalu",
+    role: "Local Guide",
+    date: "2 bulan yang lalu",
     rating: 5,
-    text: "Sangat puas service AC mobil di Bengkel Wiguna Margonda. Dinginnya awet kembali seperti baru dan pengerjaannya sangat transparan. Montirnya ramah dan menjelaskan masalah evaporator dengan detail tanpa asal tembak ganti part.",
+    text: "Tim mekanik bisa kasih masukan & opsi prioritas penggantian spare part. Sangat membantu untuk menyesuaikan dengan budget.",
   },
   {
-    name: "Rian Hidayat",
-    initial: "R",
+    name: "Ahmad Rizky",
+    initial: "A",
     bgColor: "bg-stone-100",
     textColor: "text-stone-700",
-    role: "Pemilik Toyota Alphard",
-    date: "2 minggu yang lalu",
+    role: "Pelanggan Setia",
+    date: "4 bulan yang lalu",
     rating: 5,
-    text: "Montir spesialis kaki-kaki mobil di Margonda paling recommended ya di sini. Alphard saya yang sempat bunyi gruduk-gruduk di bagian roda depan sekarang sudah sunyi senyap dan stabil setelah diganti bushing dan spooring balancing 3D.",
+    text: "Pelayanan sangat memuaskan. Teknisi mas-mas Jawa dan bapak-bapak Boyolalinya bagus sekali cara melayaninya. Ramah dan solutif.",
+  },
+  {
+    name: "Lucky Ruslan",
+    initial: "L",
+    bgColor: "bg-pink-50",
+    textColor: "text-pink-600",
+    role: "Local Guide",
+    date: "Setahun lalu",
+    rating: 5,
+    text: "Pengerjaannya sangat transparan. Montirnya ramah dan menjelaskan masalah kendaraan dengan detail tanpa asal tembak ganti part.",
   },
   {
     name: "Siti Rahma",
     initial: "S",
-    bgColor: "bg-pink-50",
-    textColor: "text-pink-600",
-    role: "Local Guide • 18 Ulasan",
-    date: "3 minggu yang lalu",
-    rating: 5,
-    text: "Layanan ganti oli rutin dan engine flushing di sini cepat sekali. Harganya sangat transparan, ada rincian sebelum dikerjakan. Ruang tunggunya bersih ber-AC nyaman dan kopi gratisnya mantap. Pasti kembali servis rutin di sini.",
-  },
-  {
-    name: "Agus Pratama",
-    initial: "A",
     bgColor: "bg-green-50",
     textColor: "text-green-600",
     role: "Pemilik Honda Civic",
-    date: "1 bulan yang lalu",
+    date: "3 minggu yang lalu",
     rating: 5,
-    text: "Spooring balancing 3D-nya luar biasa presisi. Setir mobil yang tadinya miring ke kiri dan lari-lari saat kecepatan tinggi sekarang lurus mantap kembali stabil. Harganya pun sangat bersahabat dibanding bengkel resmi.",
+    text: "Layanan ganti oli rutin dan engine flushing di sini cepat sekali. Harganya sangat transparan, ada rincian sebelum dikerjakan.",
   },
   {
     name: "Dewi Lestari",
@@ -63,7 +63,7 @@ const googleReviews = [
     role: "Local Guide • 89 Ulasan",
     date: "1 bulan yang lalu",
     rating: 5,
-    text: "Suka banget sama kejujuran Bengkel Wiguna. Gak ada pemaksaan ganti suku cadang jika masih layak pakai. Semua dicek menyeluruh dan pengerjaannya rapi sekali. Benar-benar bengkel One Stop Service terbaik di Depok!",
+    text: "Suka banget sama kejujuran Bengkel Wiguna. Gak ada pemaksaan ganti suku cadang jika masih layak pakai. Semua dicek menyeluruh dan pengerjaannya rapi sekali.",
   },
 ];
 
@@ -80,14 +80,56 @@ export default function GoogleReviews() {
   const [SplideComponent, setSplideComponent] = useState<React.ComponentType<any> | null>(null);
   const [SplideSlideComponent, setSplideSlideComponent] = useState<React.ComponentType<any> | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  
+  // States for Live API Data
+  const [reviewsList, setReviewsList] = useState<any[]>(fallbackReviews);
+  const [totalRatings, setTotalRatings] = useState<number>(896);
+  const [avgRating, setAvgRating] = useState<number>(4.7);
+
+  useEffect(() => {
+    // Fetch live reviews from internal API
+    const fetchLiveReviews = async () => {
+      try {
+        const res = await fetch('/api/reviews');
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.reviews) {
+            // Map the API structure to our component structure
+            const mappedReviews = data.reviews.map((r: any, idx: number) => {
+              const bgColors = ["bg-blue-50", "bg-stone-100", "bg-pink-50", "bg-green-50", "bg-orange-50"];
+              const textColors = ["text-blue-600", "text-stone-700", "text-pink-600", "text-green-600", "text-orange-600"];
+              const colorIdx = idx % bgColors.length;
+              
+              return {
+                name: r.author_name,
+                initial: r.author_name ? r.author_name.charAt(0) : "A",
+                bgColor: bgColors[colorIdx],
+                textColor: textColors[colorIdx],
+                role: "Local Guide",
+                date: r.relative_time_description,
+                rating: r.rating,
+                text: r.text,
+                photoUrl: r.profile_photo_url,
+              };
+            });
+            setReviewsList(mappedReviews);
+            if (data.rating) setAvgRating(data.rating);
+            if (data.user_ratings_total) setTotalRatings(data.user_ratings_total);
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch live reviews, falling back to static data.");
+      }
+    };
+
+    fetchLiveReviews();
+  }, []);
 
   useEffect(() => {
     // Lazy load Splide
     const loadSplide = async () => {
       try {
-        // Import Splide CSS from the correct path
         await import("@splidejs/splide/dist/css/splide.min.css");
-
         const { Splide, SplideSlide } = await import("@splidejs/react-splide");
         setSplideComponent(() => Splide);
         setSplideSlideComponent(() => SplideSlide);
@@ -97,7 +139,6 @@ export default function GoogleReviews() {
       }
     };
 
-    // Use Intersection Observer to lazy load when visible
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
@@ -112,7 +153,6 @@ export default function GoogleReviews() {
     if (element) {
       observer.observe(element);
     } else {
-      // Fallback: load immediately if element not found
       loadSplide();
     }
 
@@ -131,7 +171,6 @@ export default function GoogleReviews() {
       1024: { perPage: 2 },
       640: { perPage: 1 },
     },
-    // ✅ Performance options
     rewind: false,
     updateOnMove: true,
     autoWidth: false,
@@ -139,7 +178,6 @@ export default function GoogleReviews() {
   };
 
   if (!isLoaded || !SplideComponent || !SplideSlideComponent) {
-    // ✅ Skeleton loading state
     return (
       <section className="py-24 bg-[#f9fbfd] overflow-hidden">
         <div className="max-w-screen-xl mx-auto boxed-layout-gap">
@@ -182,7 +220,7 @@ export default function GoogleReviews() {
             </div>
             <div className="flex-grow">
               <div className="flex items-center gap-2">
-                <span className="text-2xl font-black text-[#1a3567]">4.9</span>
+                <span className="text-2xl font-black text-[#1a3567]">{avgRating.toFixed(1)}</span>
                 <div className="flex text-brand-gold">
                   {[...Array(5)].map((_, i) => (
                     <Icon key={i} icon="solar:star-bold" width={16} />
@@ -190,7 +228,7 @@ export default function GoogleReviews() {
                 </div>
               </div>
               <p className="text-xs text-gray-500 font-medium mt-1 uppercase tracking-tighter">
-                Berdasarkan 328 ulasan Google
+                Berdasarkan {totalRatings} ulasan Google
               </p>
             </div>
             <Button
@@ -210,15 +248,19 @@ export default function GoogleReviews() {
             options={splideOptions}
             className="reviews-splide"
           >
-            {googleReviews.map((review, idx) => (
+            {reviewsList.map((review, idx) => (
               <Slide key={idx}>
                 <div className="bg-white brand-rounded p-8 shadow-sm border border-gray-50 h-[320px] flex flex-col hover:shadow-xl transition-all duration-500">
 
                   {/* Reviewer Info */}
                   <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-black ${review.bgColor} ${review.textColor}`}>
-                      {review.initial}
-                    </div>
+                    {review.photoUrl ? (
+                      <img src={review.photoUrl} alt={review.name} className="w-12 h-12 rounded-full object-cover" />
+                    ) : (
+                      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-black ${review.bgColor} ${review.textColor}`}>
+                        {review.initial}
+                      </div>
+                    )}
                     <div className="flex flex-col">
                       <h4 className="font-bold text-[#1a3567] text-base leading-none mb-1">{review.name}</h4>
                       <span className="text-[11px] text-gray-400 font-bold uppercase tracking-tight">{review.role}</span>
@@ -231,7 +273,7 @@ export default function GoogleReviews() {
                   {/* Rating & Date */}
                   <div className="flex items-center gap-2 mb-4">
                     <div className="flex text-brand-gold gap-0.5">
-                      {[...Array(5)].map((_, i) => (
+                      {[...Array(review.rating || 5)].map((_, i) => (
                         <Icon key={i} icon="solar:star-bold" width={14} />
                       ))}
                     </div>

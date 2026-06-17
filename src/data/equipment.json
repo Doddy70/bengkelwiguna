@@ -35,8 +35,8 @@
         "left": "25%",
         "title": "Ruang Bakar",
         "subtitle": "Stinger Engine Flush melarutkan lumpur oli dan kerak karbon di area atas mesin.",
-        "labelOffsetX": -50,
-        "labelOffsetY": -120,
+        "labelOffsetX": -180,
+        "labelOffsetY": -160,
         "nodeIcon": "Cpu",
         "treatment": "Pembersihan kerak karbon pada ruang bakar dan piston.",
         "impacts": [
@@ -66,8 +66,8 @@
         "left": "28%",
         "title": "Sistem Pelumasan",
         "subtitle": "Membersihkan jalur pelumasan sehingga oli baru dapat bersirkulasi maksimal.",
-        "labelOffsetX": 200,
-        "labelOffsetY": -80,
+        "labelOffsetX": 150,
+        "labelOffsetY": 20,
         "nodeIcon": "Droplet",
         "treatment": "Pembersihan jalur oli menggunakan Engine Lubrication Flush.",
         "impacts": [
@@ -97,8 +97,8 @@
         "left": "32%",
         "title": "Fuel System",
         "subtitle": "Mengurangi gesekan antar komponen seperti ring piston dan camshaft.",
-        "labelOffsetX": 250,
-        "labelOffsetY": -150,
+        "labelOffsetX": 180,
+        "labelOffsetY": -120,
         "nodeIcon": "Shield",
         "treatment": "Pembersihan deposit pada sistem bahan bakar.",
         "impacts": [
@@ -128,8 +128,8 @@
         "left": "15%",
         "title": "Cooling System",
         "subtitle": "Mesin lebih responsif, idle halus, dan BBM efisien berkat pembakaran optimal.",
-        "labelOffsetX": -100,
-        "labelOffsetY": -80,
+        "labelOffsetX": -180,
+        "labelOffsetY": 20,
         "nodeIcon": "Zap",
         "treatment": "Optimalisasi sistem pendingin mesin.",
         "impacts": [
@@ -160,7 +160,7 @@
         "title": "Bak Oli (Karter)",
         "subtitle": "Endapan kotoran di bak oli terbuang tuntas, menekan risiko kerusakan.",
         "labelOffsetX": 150,
-        "labelOffsetY": 50,
+        "labelOffsetY": 120,
         "nodeIcon": "Crosshair",
         "treatment": "Penyedotan sisa endapan di dasar karter oli.",
         "impacts": [

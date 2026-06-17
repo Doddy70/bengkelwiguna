@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Promosi } from "@/types/wordpress";
 import { useDisclosure } from "@nextui-org/react";
+import { Icon } from "@iconify/react";
 import PromoModal from "@/components/heroui/PromoModal";
 import PromoCarousel from "@/components/ui/PromoCarousel";
-import WigunaCard from "@/components/ui/WigunaCard";
-import PromoPageTitle from "@/components/ui/PromoPageTitle";
+import PromoBentoCard from "@/components/ui/PromoBentoCard";
 
 interface PromosiArchiveProps {
   promos: Promosi[];
@@ -17,14 +17,12 @@ interface PromosiArchiveProps {
 export default function PromosiArchiveClient({ promos, showPromoBulanan = true }: PromosiArchiveProps) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedPromo, setSelectedPromo] = useState<Promosi | null>(null);
-  const [openPromoSlug, setOpenPromoSlug] = useState<string | null>(null);
 
   const handleOpenPromo = (promo: Promosi) => {
     setSelectedPromo(promo);
     onOpen();
   };
 
-  // Pisahkan Promo Bulanan/Seasonal dan Promo Lainnya
   const isSeasonal = (p: Promosi) => p.kategori_promosi && (
     p.kategori_promosi.toLowerCase().includes("bulanan") ||
     p.kategori_promosi.toLowerCase().includes("seasonal")
@@ -37,7 +35,6 @@ export default function PromosiArchiveClient({ promos, showPromoBulanan = true }
     monthlyPromos = promos.filter(p => isSeasonal(p));
     otherPromos = promos.filter(p => !isSeasonal(p));
 
-    // Fallback jika tidak ada kategori "Bulanan"/"Seasonal" sama sekali, ambil 3 promo pertama
     if (monthlyPromos.length === 0 && promos.length > 0) {
       monthlyPromos = promos.slice(0, 3);
       otherPromos = promos.slice(3);
@@ -46,100 +43,90 @@ export default function PromosiArchiveClient({ promos, showPromoBulanan = true }
     otherPromos = promos;
   }
 
+
+
   return (
     <>
-      <div className="relative min-h-screen pt-32 pb-20 overflow-hidden font-dm">
-        {/* Fixed Page Background Image */}
-        <div className="fixed inset-0 z-0">
-          <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
-          <div className="absolute inset-0 bg-[#fcfcfc]/85 dark:bg-neutral-950/90" />
+      <div className="relative min-h-screen pt-20 pb-20 overflow-hidden font-dm bg-slate-50">
+        {/* Light Abstract Background */}
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-100/50 blur-[120px] rounded-full mix-blend-multiply" />
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#ffd900]/10 blur-[120px] rounded-full mix-blend-multiply" />
+          <div className="absolute inset-0 bg-[url('/images/noise.png')] opacity-[0.02] mix-blend-overlay" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
-          {/* Page Title Header */}
-          <PromoPageTitle
-            badgeText="🔥 PROMO SPESIAL"
-            badgeIcon="solar:tag-price-linear"
-            title="Penawaran Menarik untuk Anda"
-            subtitle="Hemat hingga 20% untuk perawatan kendaraan. Promo terbatas waktu!"
-            alignment="center"
-            showDecorative={true}
-          />
+          {/* Custom Unique Header - Light Mode */}
+          <div className="relative pt-6 pb-12 md:pt-8 md:pb-16 flex flex-col items-center justify-center text-center">
+            <div className="relative z-10 flex flex-col items-center gap-6">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md ring-1 ring-black/5 rounded-full text-xs font-black uppercase tracking-widest text-[#224297] shadow-sm">
+                <Icon icon="solar:tag-price-bold" className="w-4 h-4 text-[#ffd900]" />
+                Promo Spesial Wiguna
+              </span>
+              
+              <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tighter leading-[1.05] max-w-4xl drop-shadow-sm">
+                Temukan <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#224297] to-[#4A6BCC]">Penawaran</span> Terbaik Untuk Mobil Anda
+              </h1>
+              
+              <p className="text-lg md:text-xl text-slate-600 font-medium max-w-2xl mt-4">
+                Jangan lewatkan diskon servis rutin, paket hemat, dan perawatan spesialis dengan harga transparan dan jujur.
+              </p>
+            </div>
+          </div>
 
           {/* Section 1: Promo Bulanan / Seasonal Slider - Apple Cards Carousel */}
           {monthlyPromos.length > 0 && (
-            <div className="mb-20">
+            <div className="mb-24">
               <PromoCarousel
                 promos={monthlyPromos}
-                title="PROMO BULAN INI, PILIHAN TERBAIK"
-                subtitle="🔥 Promo Terbatas"
+                title="PROMO BULAN INI"
+                subtitle="🔥 Pilihan Terbaik"
               />
             </div>
           )}
 
-          {/* Section 2: Promo Lainnya (Bento Grid Cards) */}
+          {/* Section 2: Promo Lainnya (Bento Grid Cards with Liquid Glass) */}
           {otherPromos.length > 0 && (
-            <div className="mt-24 -mx-4 sm:-mx-6 lg:-mx-8 relative">
-              {/* Background Image */}
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src="/images/promo-bg.webp"
-                  alt=""
-                  fill
-                  className="object-cover"
-                  aria-hidden="true"
-                />
-                <div className="absolute inset-0 bg-black/70" />
+            <div className="mt-12 relative z-10">
+              <div className="text-center mb-12 flex flex-col items-center">
+                <Icon icon="solar:stars-bold-duotone" className="w-10 h-10 text-slate-300 mb-4" />
+                <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tight">Eksplorasi Layanan</h2>
+                <p className="text-slate-500 text-sm font-medium mt-2">Pilih paket promo yang sesuai dengan kebutuhan Anda</p>
               </div>
 
-              {/* Content */}
-              <div className="relative z-10 px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-                <div className="text-center mb-12">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-[11px] font-black uppercase tracking-wider text-[#ffd900] mb-3">
-                    🏷️ Penawaran Lainnya
-                  </span>
-                  <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">Promo Lainnya</h2>
-                  <p className="text-white/60 text-sm font-medium mt-2">Jelajahi berbagai paket servis dan penawaran menarik lainnya.</p>
-                </div>
+              {/* 4-Column Grid Container */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {otherPromos.map((promo, idx) => {
+                  const titleStr = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
+                  const rawExcerpt = typeof promo.excerpt === 'string' ? promo.excerpt : (promo.excerpt as any)?.rendered || '';
+                  const excerptStr = rawExcerpt ? rawExcerpt.replace(/<[^>]*>/g, '').trim().slice(0, 100) + '...' : undefined;
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {otherPromos.map(promo => (
-                    <div key={promo.slug}>
-                      <WigunaCard
-                        image={promo.featured_img || "/images/promosi/promo-default.jpg"}
-                        imageAspectRatio="4/5"
-                        tag={promo.kategori_promosi || "Promo Spesial"}
-                        title={typeof promo.title === 'string' ? promo.title : promo.title?.rendered || ''}
-                        excerpt={(() => {
-                          const raw = typeof promo.excerpt === 'string' ? promo.excerpt : (promo.excerpt as any)?.rendered || '';
-                          return raw ? raw.replace(/<[^>]*>/g, '').trim().slice(0, 100) + '...' : undefined;
-                        })()}
-                        variant="overlay"
-                        price={promo.harga_promo || 'Hubungi Kami'}
-                        oldPrice={promo.harga_asli && promo.harga_promo ? promo.harga_asli : undefined}
-                        badgeText={promo.harga_asli && promo.harga_promo ? "Sale" : undefined}
-                        buttonText="Klaim Promo"
-                        secondaryIcon="solar:heart-linear"
-                        onClick={() => handleOpenPromo(promo)}
-                        onSecondaryClick={() => {
-                          const titleStr = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
-                          const promoName = titleStr.trim();
-                          const prefix = promoName.toLowerCase().startsWith('promo') ? '' : 'Promo ';
-                          const text = encodeURIComponent(`${prefix}${promoName}`);
-                          window.open(`https://api.whatsapp.com/send/?phone=6281717773888&text=${text}`, '_blank');
-                        }}
-                      />
-                    </div>
-                  ))}
-                </div>
+                  return (
+                    <PromoBentoCard
+                      key={promo.slug}
+                      image={promo.featured_img || "/images/promosi/promo-default.jpg"}
+                      tag={promo.kategori_promosi || "Spesial"}
+                      title={titleStr}
+                      excerpt={excerptStr}
+                      price={promo.harga_promo || 'Hubungi Kami'}
+                      oldPrice={promo.harga_asli && promo.harga_promo ? promo.harga_asli : undefined}
+                      onClick={() => handleOpenPromo(promo)}
+                      onWhatsAppClick={() => {
+                        const promoName = titleStr.trim();
+                        const prefix = promoName.toLowerCase().startsWith('promo') ? '' : 'Promo ';
+                        const text = encodeURIComponent(`${prefix}${promoName}`);
+                        window.open(`https://api.whatsapp.com/send/?phone=6281717773888&text=${text}`, '_blank');
+                      }}
+                    />
+                  );
+                })}
               </div>
             </div>
           )}
         </div>
       </div>
 
-      {/* Popout Promo Modal */}
       <PromoModal isOpen={isOpen} onOpenChange={onOpenChange} promo={selectedPromo} />
     </>
   );

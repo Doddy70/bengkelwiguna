@@ -120,10 +120,11 @@ export default function HeroSlideshow() {
             </Link>
           </div>
 
-          {/* Center Flyout Menu (Tailwind UI style) */}
-          <div className="hidden lg:flex flex-1 justify-center relative z-50">
+          {/* Right Controls: Flyout Menu & Chat Minna */}
+          <div className="flex-1 flex justify-end items-center gap-x-2 sm:gap-x-4 relative z-50">
+            {/* Flyout Menu (Tailwind UI style) */}
             <div 
-              className="relative"
+              className="hidden lg:block relative"
               onMouseEnter={() => setIsMenuOpen(true)}
               onMouseLeave={() => setIsMenuOpen(false)}
             >
@@ -139,44 +140,41 @@ export default function HeroSlideshow() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: 10 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute left-1/2 mt-2 flex w-screen max-w-md -translate-x-1/2 px-4"
+                    className="absolute right-0 mt-2 w-[400px] bg-slate-800/90 backdrop-blur-xl border border-white/10 rounded-[1.5rem] overflow-hidden shadow-2xl"
                   >
-                    <div className="w-full flex-auto overflow-hidden rounded-3xl bg-white/10 backdrop-blur-3xl border border-white/20 text-sm/6 shadow-2xl">
-                      <div className="p-4">
-                        {menuItems.map((item, idx) => (
-                          <div key={idx} className="group relative flex gap-x-6 rounded-2xl p-4 hover:bg-white/10 transition-colors">
-                            <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-white/10 group-hover:bg-[#ffd900] transition-colors">
-                              <Icon icon={item.icon} className="h-6 w-6 text-white group-hover:text-[#224297] transition-colors" />
-                            </div>
-                            <div>
-                              <Link href={item.href} className="font-semibold text-white">
-                                {item.label}
-                                <span className="absolute inset-0" />
-                              </Link>
-                              <p className="mt-1 text-white/70 group-hover:text-white/90">{item.desc}</p>
-                            </div>
+                    <div className="p-3 flex flex-col gap-1">
+                      {menuItems.map((item, idx) => (
+                        <Link 
+                          key={idx} 
+                          href={item.href}
+                          className="group flex items-start gap-4 p-3 rounded-xl hover:bg-white/10 transition-all"
+                        >
+                          <div className="flex items-center justify-center w-11 h-11 bg-white/5 rounded-xl group-hover:bg-[#ffd900] transition-colors flex-shrink-0">
+                            <Icon icon={item.icon} className="w-5 h-5 text-white/70 group-hover:text-black transition-colors" />
                           </div>
-                        ))}
-                      </div>
-                      <div className="grid grid-cols-2 divide-x divide-white/10 bg-white/5 border-t border-white/10">
-                        <Link href="/services" className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-white hover:bg-white/10 transition-colors">
-                          <Icon icon="solar:square-alt-arrow-right-linear" className="h-5 w-5 flex-none text-white/70" />
-                          Lihat Semua
+                          <div className="flex flex-col">
+                            <span className="text-white font-bold text-sm mb-0.5">{item.label}</span>
+                            <span className="text-white/60 text-xs">{item.desc}</span>
+                          </div>
                         </Link>
-                        <a href="https://wa.me/6287817773888" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-white hover:bg-white/10 transition-colors">
-                          <Icon icon="fa6-brands:whatsapp" className="h-5 w-5 flex-none text-white/70" />
-                          Hubungi Kami
-                        </a>
-                      </div>
+                      ))}
+                    </div>
+                    <div className="grid grid-cols-2 divide-x divide-white/10 border-t border-white/10 bg-white/5">
+                      <Link href="/services" className="flex items-center justify-center gap-2 p-4 text-sm text-white font-bold hover:bg-white/10 transition-colors">
+                        <Icon icon="solar:round-alt-arrow-right-linear" className="w-5 h-5 text-white/60" />
+                        Lihat Semua
+                      </Link>
+                      <a href="https://wa.me/6287817773888" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 p-4 text-sm text-white font-bold hover:bg-white/10 transition-colors">
+                        <Icon icon="fa6-brands:whatsapp" className="w-5 h-5 text-white/60" />
+                        Hubungi Kami
+                      </a>
                     </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
-          </div>
 
-          {/* Chat Minna Button - Inline Single Line */}
-          <div className="flex-1 flex justify-end">
+            {/* Chat Minna Button - Inline Single Line */}
             <Link
               href="https://wa.me/6281717773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya.%20(web)"
               target="_blank"
