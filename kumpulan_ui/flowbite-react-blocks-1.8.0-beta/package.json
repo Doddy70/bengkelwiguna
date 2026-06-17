@@ -1,0 +1,49 @@
+{
+  "name": "flowbite-react-blocks",
+  "version": "1.3.0-beta",
+  "private": true,
+  "description": "Flowbite Blocks in React",
+  "homepage": "https://github.com/themesberg/flowbite-react-blocks",
+  "bugs": "https://github.com/themesberg/flowbite-react-blocks/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/themesberg/flowbite-react-blocks.git"
+  },
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "next build",
+    "dev": "next dev --turbo",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "flowbite-react": "0.10.1",
+    "flowbite-react-icons": "^1.0.8",
+    "next": "14.2.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.2.1",
+    "tailwind-merge": "^2.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.19",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-tailwindcss": "^3.15.1",
+    "flowbite-typography": "^1.0.3",
+    "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4",
+    "prettier-plugin-tailwindcss": "^0.5.14",
+    "tailwindcss": "^3.4.3",
+    "typescript": "^5"
+  }
+}

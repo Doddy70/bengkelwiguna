@@ -31,132 +31,186 @@
     ],
     "hotspots": [
       {
-        "top": "25%",
-        "left": "50%",
-        "title": "Pembersihan Sludge & Kerak",
-        "subtitle": "Stinger Engine Flush melarutkan lumpur oli dan kerak karbon di area atas mesin.",
-        "labelOffsetX": 80,
-        "labelOffsetY": -40,
-        "widgetTitle": "Gejala Umum",
-        "widgetDesc": "Tumpukan sludge mengurangi pelumasan di Cylinder Head, menyebabkan mesin ngelitik.",
-        "widgetAction": "Melarutkan lumpur oli (oil sludge) dan kerak karbon.",
-        "widgetMetric1": {
-          "label": "Kerak Terbuang",
-          "value": "99"
-        },
-        "widgetMetric2": {
-          "label": "Visibilitas",
-          "value": "100"
-        },
-        "nodeIcon": "Cpu"
-      },
-      {
         "top": "40%",
-        "left": "65%",
-        "title": "Sirkulasi Oli Optimal",
-        "subtitle": "Membersihkan jalur pelumasan sehingga oli baru dapat bersirkulasi maksimal.",
-        "labelOffsetX": 110,
-        "labelOffsetY": -10,
-        "widgetTitle": "Potensi Masalah",
-        "widgetDesc": "Saluran oli yang tersumbat menyebabkan sirkulasi buruk dan overheat ringan.",
-        "widgetAction": "Membersihkan jalur pelumasan untuk sirkulasi oli baru.",
-        "widgetMetric1": {
-          "label": "Flow Rate",
-          "value": "Max"
+        "left": "25%",
+        "title": "Ruang Bakar",
+        "subtitle": "Stinger Engine Flush melarutkan lumpur oli dan kerak karbon di area atas mesin.",
+        "labelOffsetX": -50,
+        "labelOffsetY": -120,
+        "nodeIcon": "Cpu",
+        "treatment": "Pembersihan kerak karbon pada ruang bakar dan piston.",
+        "impacts": [
+          "Tarikan lebih responsif",
+          "Idle lebih stabil",
+          "Mesin lebih halus"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Mesin terasa berat",
+            "Getaran meningkat",
+            "Konsumsi BBM boros"
+          ],
+          "after": [
+            "Akselerasi lebih ringan",
+            "Getaran berkurang",
+            "Pembakaran lebih optimal"
+          ]
         },
-        "widgetMetric2": {
-          "label": "Sumbatan",
-          "value": "0"
-        },
-        "nodeIcon": "Droplet"
-      },
-      {
-        "top": "55%",
-        "left": "45%",
-        "title": "Proteksi Keausan Komponen",
-        "subtitle": "Mengurangi gesekan antar komponen seperti ring piston dan camshaft.",
-        "labelOffsetX": -180,
-        "labelOffsetY": 20,
-        "widgetTitle": "Dampak Jangka Panjang",
-        "widgetDesc": "Gesekan berlebih memperpendek usia komponen dan menyebabkan turun mesin total.",
-        "widgetAction": "Gesekan berkurang, ring piston dan camshaft terlindungi.",
-        "widgetMetric1": {
-          "label": "Friction",
-          "value": "Low"
-        },
-        "widgetMetric2": {
-          "label": "Lifespan",
-          "value": "+5Y"
-        },
-        "nodeIcon": "Shield"
+        "testimonial": {
+          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
+          "author": "Budi, Toyota Avanza 2018"
+        }
       },
       {
         "top": "45%",
-        "left": "30%",
-        "title": "Kembalikan Performa & Efisiensi",
+        "left": "28%",
+        "title": "Sistem Pelumasan",
+        "subtitle": "Membersihkan jalur pelumasan sehingga oli baru dapat bersirkulasi maksimal.",
+        "labelOffsetX": 200,
+        "labelOffsetY": -80,
+        "nodeIcon": "Droplet",
+        "treatment": "Pembersihan jalur oli menggunakan Engine Lubrication Flush.",
+        "impacts": [
+          "Sirkulasi oli lebih lancar",
+          "Mengurangi gesekan internal",
+          "Melindungi komponen mesin"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Mesin terasa berat",
+            "Getaran meningkat",
+            "Konsumsi BBM boros"
+          ],
+          "after": [
+            "Akselerasi lebih ringan",
+            "Getaran berkurang",
+            "Pembakaran lebih optimal"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
+          "author": "Budi, Toyota Avanza 2018"
+        }
+      },
+      {
+        "top": "35%",
+        "left": "32%",
+        "title": "Fuel System",
+        "subtitle": "Mengurangi gesekan antar komponen seperti ring piston dan camshaft.",
+        "labelOffsetX": 250,
+        "labelOffsetY": -150,
+        "nodeIcon": "Shield",
+        "treatment": "Pembersihan deposit pada sistem bahan bakar.",
+        "impacts": [
+          "Pembakaran lebih optimal",
+          "Konsumsi BBM lebih efisien",
+          "Respons akselerasi meningkat"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Mesin terasa berat",
+            "Getaran meningkat",
+            "Konsumsi BBM boros"
+          ],
+          "after": [
+            "Akselerasi lebih ringan",
+            "Getaran berkurang",
+            "Pembakaran lebih optimal"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
+          "author": "Budi, Toyota Avanza 2018"
+        }
+      },
+      {
+        "top": "45%",
+        "left": "15%",
+        "title": "Cooling System",
         "subtitle": "Mesin lebih responsif, idle halus, dan BBM efisien berkat pembakaran optimal.",
-        "labelOffsetX": -160,
-        "labelOffsetY": -20,
-        "widgetTitle": "Keluhan Pengendara",
-        "widgetDesc": "Tarikan terasa berat, BBM boros, dan putaran idle mesin tidak stabil.",
-        "widgetAction": "Meningkatkan kompresi dan efisiensi pembakaran bahan bakar.",
-        "widgetMetric1": {
-          "label": "Performa",
-          "value": "Max"
+        "labelOffsetX": -100,
+        "labelOffsetY": -80,
+        "nodeIcon": "Zap",
+        "treatment": "Optimalisasi sistem pendingin mesin.",
+        "impacts": [
+          "Temperatur lebih stabil",
+          "Mencegah overheat",
+          "Performa lebih konsisten"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Mesin terasa berat",
+            "Getaran meningkat",
+            "Konsumsi BBM boros"
+          ],
+          "after": [
+            "Akselerasi lebih ringan",
+            "Getaran berkurang",
+            "Pembakaran lebih optimal"
+          ]
         },
-        "widgetMetric2": {
-          "label": "Efisiensi",
-          "value": "Opt"
-        },
-        "nodeIcon": "Zap"
+        "testimonial": {
+          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
+          "author": "Budi, Toyota Avanza 2018"
+        }
       },
       {
         "top": "75%",
-        "left": "55%",
-        "title": "Cegah Kerusakan Berulang",
+        "left": "28%",
+        "title": "Bak Oli (Karter)",
         "subtitle": "Endapan kotoran di bak oli terbuang tuntas, menekan risiko kerusakan.",
-        "labelOffsetX": 80,
+        "labelOffsetX": 150,
         "labelOffsetY": 50,
-        "widgetTitle": "Tindakan Akhir",
-        "widgetDesc": "Kotoran sisa yang mengendap di karter dapat tersedot kembali oleh pompa oli.",
-        "widgetAction": "Membuang penyebab utama masalah dari dasar bak oli.",
-        "widgetMetric1": {
-          "label": "Endapan",
-          "value": "0"
+        "nodeIcon": "Crosshair",
+        "treatment": "Penyedotan sisa endapan di dasar karter oli.",
+        "impacts": [
+          "Oli baru tidak tercemar",
+          "Pompa oli bekerja ringan"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Mesin terasa berat",
+            "Getaran meningkat",
+            "Konsumsi BBM boros"
+          ],
+          "after": [
+            "Akselerasi lebih ringan",
+            "Getaran berkurang",
+            "Pembakaran lebih optimal"
+          ]
         },
-        "widgetMetric2": {
-          "label": "Risiko",
-          "value": "Safe"
-        },
-        "nodeIcon": "Crosshair"
+        "testimonial": {
+          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
+          "author": "Budi, Toyota Avanza 2018"
+        }
       }
     ],
     "specs": {
       "metric1": {
-        "label": "Tingkat Bersih",
-        "sublabel": "Pembuangan kerak",
-        "value": "95",
-        "unit": "%",
-        "icon": "/lottie/tick-circle.json"
+        "label": "Respons Mesin",
+        "sublabel": "Akselerasi",
+        "value": "Max",
+        "unit": "",
+        "icon": "/lottie/flash.json"
       },
       "metric2": {
-        "label": "Durasi",
-        "sublabel": "Proses sirkulasi",
-        "value": "120",
-        "unit": "Min",
-        "icon": "/lottie/clock.json"
+        "label": "Efisiensi",
+        "sublabel": "Pembakaran",
+        "value": "Opt",
+        "unit": "",
+        "icon": "/lottie/settings.json"
       },
       "totalValue": "Rp 1.5Jt",
       "features": [
         {
-          "icon": "/lottie/settings.json",
-          "title": "Sirkulasi",
-          "subtitle": "High Press"
+          "icon": "/lottie/tick-circle.json",
+          "title": "Kebersihan",
+          "subtitle": "Internal Mesin"
         },
         {
-          "icon": "/lottie/flash.json",
-          "title": "Tenaga",
-          "subtitle": "Terangkat"
+          "icon": "/lottie/clock.json",
+          "title": "Durasi",
+          "subtitle": "120 Min"
         },
         {
           "icon": "/lottie/cpu.json",
@@ -164,7 +218,24 @@
           "subtitle": "Parameter"
         }
       ]
-    }
+    },
+    "impactScores": [
+      {
+        "icon": "Zap",
+        "title": "Respons Mesin",
+        "value": "Meningkat"
+      },
+      {
+        "icon": "Activity",
+        "title": "Efisiensi BBM",
+        "value": "Optimal"
+      },
+      {
+        "icon": "Shield",
+        "title": "Kebersihan",
+        "value": "Maksimal"
+      }
+    ]
   },
   {
     "id": "cek-kaki-kaki",
@@ -198,59 +269,179 @@
     ],
     "hotspots": [
       {
-        "top": "60%",
-        "left": "15%",
-        "title": "Kyoto Shaking Machine",
-        "subtitle": "Diagnosis akurat visual, kinestatis, dan suara",
+        "top": "65%",
+        "left": "22%",
+        "title": "Shockbreaker",
+        "treatment": "Pengecekan redaman dan kebocoran menggunakan Kyoto Shaking Machine.",
+        "impacts": [
+          "Redaman kembali optimal",
+          "Kendaraan lebih nyaman"
+        ],
         "lineAngle": -60,
         "lineLength": 370,
-        "labelOffsetX": 180,
-        "labelOffsetY": -320,
-        "imageUrl": "/images/hotspot/Fortuner_Kyoto.png",
-        "details": "Pemeriksaan kaki-kaki mobil menggunakan *Kyoto Shaking Machine* untuk pemeriksaan yang lebih akurat dan tanpa tipu-tipu, dengan biaya cek Rp 250.000,\n*Note: GRATIS biaya cek jika ada pembelian parts diatas Rp. 1 juta",
-        "diagnosa": "Komponen suspensi (shockbreaker, bushing, tie rod) mengalami keausan atau kelonggaran.",
-        "gejala": "Terdengar bunyi 'gluduk-gluduk' saat melewati jalan rusak, atau mobil terasa limbung.",
-        "tindakan": "Simulasi jalan rusak menggunakan Kyoto Shaking Machine untuk deteksi sumber bunyi dengan akurasi 100% tanpa perlu tes jalan.",
-        "nodeIcon": "Activity",
-        "widgetTitle": "Gejala Umum",
-        "widgetDesc": "Terdengar bunyi 'gluduk-gluduk' saat melewati jalan rusak, atau mobil terasa limbung.",
-        "widgetAction": "Simulasi jalan rusak menggunakan Kyoto Shaking Machine untuk deteksi sumber bunyi dengan akurasi 100% tanpa perlu tes jalan.",
-        "widgetMetric1": {
-          "label": "Status",
-          "value": "Cek"
+        "labelOffsetX": -100,
+        "labelOffsetY": -100,
+        "beforeAfter": {
+          "before": [
+            "Bunyi gluduk-gluduk",
+            "Mobil terasa limbung",
+            "Setir tidak stabil"
+          ],
+          "after": [
+            "Suspensi senyap",
+            "Handling stabil",
+            "Presisi berkendara pulih"
+          ]
         },
-        "widgetMetric2": {
-          "label": "Kondisi",
-          "value": "Aman"
-        }
+        "testimonial": {
+          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
+          "author": "Andi, Honda HRV 2019"
+        },
+        "nodeIcon": "Activity"
+      },
+      {
+        "top": "75%",
+        "left": "18%",
+        "title": "Tie Rod",
+        "treatment": "Pengecekan kelonggaran pada end tie rod dan long tie rod.",
+        "impacts": [
+          "Kemudi lebih presisi",
+          "Mengurangi gejala limbung"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Bunyi gluduk-gluduk",
+            "Mobil terasa limbung",
+            "Setir tidak stabil"
+          ],
+          "after": [
+            "Suspensi senyap",
+            "Handling stabil",
+            "Presisi berkendara pulih"
+          ]
+        },
+        "testimonial": {
+          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
+          "author": "Andi, Honda HRV 2019"
+        },
+        "nodeIcon": "Activity",
+        "labelOffsetX": 150,
+        "labelOffsetY": -50
+      },
+      {
+        "top": "80%",
+        "left": "22%",
+        "title": "Ball Joint",
+        "treatment": "Deteksi bunyi abnormal dan oblak pada sendi suspensi.",
+        "impacts": [
+          "Mengurangi bunyi saat jalan rusak",
+          "Stabilitas meningkat"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Bunyi gluduk-gluduk",
+            "Mobil terasa limbung",
+            "Setir tidak stabil"
+          ],
+          "after": [
+            "Suspensi senyap",
+            "Handling stabil",
+            "Presisi berkendara pulih"
+          ]
+        },
+        "testimonial": {
+          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
+          "author": "Andi, Honda HRV 2019"
+        },
+        "nodeIcon": "Activity",
+        "labelOffsetX": -120,
+        "labelOffsetY": 50
+      },
+      {
+        "top": "85%",
+        "left": "25%",
+        "title": "Bushing Arm",
+        "treatment": "Inspeksi keretakan karet bushing pada lower arm.",
+        "impacts": [
+          "Getaran berkurang",
+          "Suspensi lebih senyap"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Bunyi gluduk-gluduk",
+            "Mobil terasa limbung",
+            "Setir tidak stabil"
+          ],
+          "after": [
+            "Suspensi senyap",
+            "Handling stabil",
+            "Presisi berkendara pulih"
+          ]
+        },
+        "testimonial": {
+          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
+          "author": "Andi, Honda HRV 2019"
+        },
+        "nodeIcon": "Activity",
+        "labelOffsetX": 200,
+        "labelOffsetY": 80
+      },
+      {
+        "top": "75%",
+        "left": "22%",
+        "title": "Wheel Bearing",
+        "treatment": "Pengecekan putaran roda dari hambatan dan suara dengung.",
+        "impacts": [
+          "Putaran roda lebih halus",
+          "Mengurangi bunyi dengung"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Bunyi gluduk-gluduk",
+            "Mobil terasa limbung",
+            "Setir tidak stabil"
+          ],
+          "after": [
+            "Suspensi senyap",
+            "Handling stabil",
+            "Presisi berkendara pulih"
+          ]
+        },
+        "testimonial": {
+          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
+          "author": "Andi, Honda HRV 2019"
+        },
+        "nodeIcon": "Activity",
+        "labelOffsetX": 150,
+        "labelOffsetY": 150
       }
     ],
     "specs": {
       "metric1": {
-        "label": "Akurasi Diagnosa",
-        "sublabel": "Tanpa tebak-tebakan",
-        "value": "99.9",
+        "label": "Stabilitas",
+        "sublabel": "Kendaraan",
+        "value": "100",
         "unit": "%",
         "icon": "/lottie/tick-circle.json"
       },
       "metric2": {
-        "label": "Keamanan",
-        "sublabel": "Tanpa tes jalan",
-        "value": "100",
-        "unit": "% Aman",
+        "label": "Presisi",
+        "sublabel": "Kemudi",
+        "value": "High",
+        "unit": "",
         "icon": "/lottie/settings.json"
       },
       "totalValue": "Rp 250k",
       "features": [
         {
+          "icon": "/lottie/tick-circle.json",
+          "title": "Kenyamanan",
+          "subtitle": "Suspensi"
+        },
+        {
           "icon": "/lottie/clock.json",
           "title": "Simulasi",
           "subtitle": "Cepat"
-        },
-        {
-          "icon": "/lottie/tick-circle.json",
-          "title": "Sertifikasi",
-          "subtitle": "Included"
         },
         {
           "icon": "/lottie/settings.json",
@@ -258,11 +449,28 @@
           "subtitle": "Realtime"
         }
       ]
-    }
+    },
+    "impactScores": [
+      {
+        "icon": "Target",
+        "title": "Presisi Kemudi",
+        "value": "Akurat"
+      },
+      {
+        "icon": "Feather",
+        "title": "Kenyamanan",
+        "value": "Senyap"
+      },
+      {
+        "icon": "Shield",
+        "title": "Stabilitas",
+        "value": "Maksimal"
+      }
+    ]
   },
   {
     "id": "reset-ac",
-    "name": "Reset AC",
+    "name": "Flushing AC",
     "category": "Climate Control",
     "image": "/images/hotspot/fortuner_ac.png",
     "imagePosition": "left",
@@ -292,54 +500,145 @@
     ],
     "hotspots": [
       {
-        "top": "35%",
-        "left": "10%",
-        "title": "Kyoto Flushing AC",
-        "subtitle": "Digital Recovery & Vakum",
+        "top": "45%",
+        "left": "45%",
+        "title": "Evaporator",
+        "treatment": "Pembersihan jalur sirkulasi evaporator dengan vakum digital.",
+        "impacts": [
+          "Udara lebih dingin",
+          "Mengurangi bau tidak sedap"
+        ],
         "lineAngle": -30,
         "lineLength": 380,
-        "labelOffsetX": 300,
-        "labelOffsetY": -180,
-        "imageUrl": "/images/hotspot/fortuner_ac.png",
-        "details": "📌 Paket Reset AC Mobil – Mulai Rp600rb ❄️\nCocok untuk AC yang mulai kurang dingin, bau, atau anginnya lemah.\nSudah termasuk flushing AC, vacuum, isi freon, pembersihan evaporator & blower 👍",
-        "diagnosa": "Oli kompresor AC sudah jenuh atau volume freon berkurang drastis.",
-        "gejala": "Hembusan AC siang hari tidak dingin, hanya keluar angin, atau tercium bau tidak sedap dari kisi-kisi AC.",
-        "tindakan": "Flushing AC 100% menggunakan Kyoto Flushing Machine, menguras oli kompresor lama dan mengisi freon baru dengan takaran digital yang sangat presisi.",
-        "nodeIcon": "Command",
-        "widgetTitle": "Gejala Umum",
-        "widgetDesc": "Hembusan AC siang hari tidak dingin, hanya keluar angin, atau tercium bau tidak sedap dari kisi-kisi AC.",
-        "widgetAction": "Flushing AC 100% menggunakan Kyoto Flushing Machine, menguras oli kompresor lama dan mengisi freon baru dengan takaran digital yang sangat presisi.",
-        "widgetMetric1": {
-          "label": "Status",
-          "value": "Cek"
+        "labelOffsetX": -80,
+        "labelOffsetY": -120,
+        "beforeAfter": {
+          "before": [
+            "AC kurang dingin",
+            "Hembusan pelan",
+            "Bau apek di kabin"
+          ],
+          "after": [
+            "Suhu kabin cepat dingin",
+            "Angin kencang",
+            "Udara lebih segar"
+          ]
         },
-        "widgetMetric2": {
-          "label": "Kondisi",
-          "value": "Aman"
-        }
+        "testimonial": {
+          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
+          "author": "Rina, Mitsubishi Xpander 2021"
+        },
+        "nodeIcon": "Wind"
+      },
+      {
+        "top": "48%",
+        "left": "42%",
+        "title": "Blower",
+        "treatment": "Pengecekan dan pembersihan kotoran pada bilah blower.",
+        "impacts": [
+          "Hembusan udara lebih kuat",
+          "Distribusi udara lebih merata"
+        ],
+        "beforeAfter": {
+          "before": [
+            "AC kurang dingin",
+            "Hembusan pelan",
+            "Bau apek di kabin"
+          ],
+          "after": [
+            "Suhu kabin cepat dingin",
+            "Angin kencang",
+            "Udara lebih segar"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
+          "author": "Rina, Mitsubishi Xpander 2021"
+        },
+        "nodeIcon": "Wind",
+        "labelOffsetX": 200,
+        "labelOffsetY": -100
+      },
+      {
+        "top": "45%",
+        "left": "35%",
+        "title": "Jalur Freon",
+        "treatment": "Flushing total jalur AC dan pengisian freon murni secara akurat.",
+        "impacts": [
+          "Sistem AC lebih bersih",
+          "Pendinginan lebih konsisten"
+        ],
+        "beforeAfter": {
+          "before": [
+            "AC kurang dingin",
+            "Hembusan pelan",
+            "Bau apek di kabin"
+          ],
+          "after": [
+            "Suhu kabin cepat dingin",
+            "Angin kencang",
+            "Udara lebih segar"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
+          "author": "Rina, Mitsubishi Xpander 2021"
+        },
+        "nodeIcon": "Wind",
+        "labelOffsetX": -100,
+        "labelOffsetY": -50
+      },
+      {
+        "top": "40%",
+        "left": "55%",
+        "title": "Area Kabin",
+        "treatment": "Penyaringan sirkulasi udara interior kendaraan.",
+        "impacts": [
+          "Kualitas udara lebih baik",
+          "Kabin lebih nyaman"
+        ],
+        "beforeAfter": {
+          "before": [
+            "AC kurang dingin",
+            "Hembusan pelan",
+            "Bau apek di kabin"
+          ],
+          "after": [
+            "Suhu kabin cepat dingin",
+            "Angin kencang",
+            "Udara lebih segar"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
+          "author": "Rina, Mitsubishi Xpander 2021"
+        },
+        "nodeIcon": "Wind",
+        "labelOffsetX": 250,
+        "labelOffsetY": -150
       }
     ],
     "specs": {
       "metric1": {
-        "label": "Vakum Digital",
-        "sublabel": "Akurasi timbangan",
-        "value": "100",
-        "unit": "%",
+        "label": "Kualitas",
+        "sublabel": "Pendinginan",
+        "value": "Max",
+        "unit": "",
         "icon": "/lottie/tick-circle.json"
       },
       "metric2": {
-        "label": "Suhu Kabin",
-        "sublabel": "Suhu minimal",
-        "value": "Terkecil",
-        "unit": "Celcius",
-        "icon": "/lottie/speedometer.json"
+        "label": "Aliran Udara",
+        "sublabel": "Kabin",
+        "value": "Strong",
+        "unit": "",
+        "icon": "/lottie/settings.json"
       },
       "totalValue": "Rp 650k",
       "features": [
         {
-          "icon": "/lottie/settings.json",
-          "title": "Oli",
-          "subtitle": "Kompresor"
+          "icon": "/lottie/tick-circle.json",
+          "title": "Kebersihan",
+          "subtitle": "Sistem AC"
         },
         {
           "icon": "/lottie/filter.json",
@@ -352,7 +651,24 @@
           "subtitle": "Cepat"
         }
       ]
-    }
+    },
+    "impactScores": [
+      {
+        "icon": "Wind",
+        "title": "Suhu Kabin",
+        "value": "Dingin"
+      },
+      {
+        "icon": "Activity",
+        "title": "Kualitas Udara",
+        "value": "Segar"
+      },
+      {
+        "icon": "Shield",
+        "title": "Kompresor",
+        "value": "Awet"
+      }
+    ]
   },
   {
     "id": "coolant-changer",
@@ -386,54 +702,116 @@
     ],
     "hotspots": [
       {
-        "top": "40%",
+        "top": "45%",
         "left": "12%",
-        "title": "Kuras Radiator Prestone",
-        "subtitle": "Kuras Vakum Bebas Angin Palsu",
+        "title": "Radiator",
+        "treatment": "Kuras total sistem radiator tanpa menyisakan angin palsu (air pocket).",
+        "impacts": [
+          "Pendinginan lebih optimal",
+          "Mengurangi risiko overheat"
+        ],
         "lineAngle": -45,
         "lineLength": 410,
-        "labelOffsetX": 280,
-        "labelOffsetY": -290,
-        "imageUrl": "/images/hotspot/fortuner_coolant.png",
-        "details": "Prestone Coolant Changer adalah: mesin yang dirancang untuk mengganti cairan coolant Anda secara menyeluruh, menguras dan mengisi kembali cairan coolant pada kendaraan Anda hingga bagian dalam.",
-        "diagnosa": "Cairan pendingin (coolant) mulai keruh, berkarat, atau ada gelembung udara (angin palsu) di sistem radiator.",
-        "gejala": "Indikator temperatur mesin sering naik mendekati batas merah (overheat) saat jalan macet.",
-        "tindakan": "Kuras radiator 100% menggunakan Prestone Coolant Changer dengan teknologi vakum otomatis yang membebaskan sistem dari angin palsu.",
-        "nodeIcon": "Thermometer",
-        "widgetTitle": "Gejala Umum",
-        "widgetDesc": "Indikator temperatur mesin sering naik mendekati batas merah (overheat) saat jalan macet.",
-        "widgetAction": "Kuras radiator 100% menggunakan Prestone Coolant Changer dengan teknologi vakum otomatis yang membebaskan sistem dari angin palsu.",
-        "widgetMetric1": {
-          "label": "Status",
-          "value": "Cek"
+        "labelOffsetX": -100,
+        "labelOffsetY": -100,
+        "beforeAfter": {
+          "before": [
+            "Air radiator kotor/karatan",
+            "Suhu mesin cepat naik",
+            "Risiko overheat tinggi"
+          ],
+          "after": [
+            "Jalur pendingin bersih",
+            "Temperatur stabil",
+            "Mesin aman untuk jarak jauh"
+          ]
         },
-        "widgetMetric2": {
-          "label": "Kondisi",
-          "value": "Aman"
-        }
+        "testimonial": {
+          "quote": "Sering was-was kalau macet karena indikator suhu naik. Setelah kuras radiator di Wiguna, suhu mobil tetap aman walau macet parah.",
+          "author": "Denny, Toyota Innova 2015"
+        },
+        "nodeIcon": "Thermometer"
+      },
+      {
+        "top": "50%",
+        "left": "20%",
+        "title": "Water Pump",
+        "treatment": "Pengecekan kelancaran sirkulasi coolant melalui pompa air.",
+        "impacts": [
+          "Sirkulasi coolant lebih lancar",
+          "Menjaga temperatur kerja mesin"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Air radiator kotor/karatan",
+            "Suhu mesin cepat naik",
+            "Risiko overheat tinggi"
+          ],
+          "after": [
+            "Jalur pendingin bersih",
+            "Temperatur stabil",
+            "Mesin aman untuk jarak jauh"
+          ]
+        },
+        "testimonial": {
+          "quote": "Sering was-was kalau macet karena indikator suhu naik. Setelah kuras radiator di Wiguna, suhu mobil tetap aman walau macet parah.",
+          "author": "Denny, Toyota Innova 2015"
+        },
+        "nodeIcon": "Thermometer",
+        "labelOffsetX": 150,
+        "labelOffsetY": -150
+      },
+      {
+        "top": "45%",
+        "left": "28%",
+        "title": "Engine Block",
+        "treatment": "Penggantian coolant lama yang berkarat di area jaket pendingin blok mesin.",
+        "impacts": [
+          "Mengurangi karat",
+          "Mencegah penumpukan kerak"
+        ],
+        "beforeAfter": {
+          "before": [
+            "Air radiator kotor/karatan",
+            "Suhu mesin cepat naik",
+            "Risiko overheat tinggi"
+          ],
+          "after": [
+            "Jalur pendingin bersih",
+            "Temperatur stabil",
+            "Mesin aman untuk jarak jauh"
+          ]
+        },
+        "testimonial": {
+          "quote": "Sering was-was kalau macet karena indikator suhu naik. Setelah kuras radiator di Wiguna, suhu mobil tetap aman walau macet parah.",
+          "author": "Denny, Toyota Innova 2015"
+        },
+        "nodeIcon": "Thermometer",
+        "labelOffsetX": 200,
+        "labelOffsetY": -50
       }
     ],
     "specs": {
       "metric1": {
-        "label": "Kemurnian",
-        "sublabel": "Bebas kerak karat",
+        "label": "Efektivitas",
+        "sublabel": "Pendinginan",
         "value": "100",
-        "unit": "% Bersih",
+        "unit": "%",
         "icon": "/lottie/tick-circle.json"
       },
       "metric2": {
-        "label": "Suhu Mesin",
-        "sublabel": "Optimal",
-        "value": "Anti",
-        "unit": "Panas",
+        "label": "Stabilitas",
+        "sublabel": "Temperatur",
+        "value": "Safe",
+        "unit": "",
         "icon": "/lottie/settings.json"
       },
       "totalValue": "Rp 350k",
       "features": [
         {
-          "icon": "/lottie/settings.json",
-          "title": "Vakum",
-          "subtitle": "Otomatis"
+          "icon": "/lottie/tick-circle.json",
+          "title": "Proteksi",
+          "subtitle": "Korosi"
         },
         {
           "icon": "/lottie/flash.json",
@@ -441,12 +819,29 @@
           "subtitle": "Lancar"
         },
         {
-          "icon": "/lottie/tick-circle.json",
+          "icon": "/lottie/settings.json",
           "title": "Sistem",
           "subtitle": "Tertutup"
         }
       ]
-    }
+    },
+    "impactScores": [
+      {
+        "icon": "Thermometer",
+        "title": "Suhu Mesin",
+        "value": "Stabil"
+      },
+      {
+        "icon": "Droplet",
+        "title": "Sirkulasi",
+        "value": "Lancar"
+      },
+      {
+        "icon": "Shield",
+        "title": "Sistem",
+        "value": "Bebas Karat"
+      }
+    ]
   },
   {
     "id": "service-berkala",
@@ -480,14 +875,14 @@
     ],
     "hotspots": [
       {
-        "top": "45%",
+        "top": "75%",
         "left": "28%",
         "title": "Ganti Oli Mesin",
         "subtitle": "Oli 100% Sintetis & Filter",
         "lineAngle": -52,
         "lineLength": 300,
-        "labelOffsetX": 220,
-        "labelOffsetY": -280,
+        "labelOffsetX": 200,
+        "labelOffsetY": 50,
         "imageUrl": "/images/hotspot/fortuner_tools.png",
         "diagnosa": "Oli mesin terkontaminasi kotoran, menyebabkan pelumasan berkurang.",
         "gejala": "Tarikan mesin berat, suhu mesin cepat panas, dan suara mesin lebih kasar dari biasanya.",
@@ -506,14 +901,14 @@
         }
       },
       {
-        "top": "70%",
-        "left": "20%",
+        "top": "75%",
+        "left": "22%",
         "title": "Cek Rem & Kaki-Kaki",
         "subtitle": "Keamanan Berkendara",
         "lineAngle": -73,
         "lineLength": 320,
-        "labelOffsetX": 110,
-        "labelOffsetY": -360,
+        "labelOffsetX": -100,
+        "labelOffsetY": 100,
         "imageUrl": "/images/hotspot/fortuner_tools.png",
         "diagnosa": "Kampas rem mulai menipis atau ada masalah pada suspensi bawah.",
         "gejala": "Bunyi berdecit saat mengerem, atau setir terasa bergetar dan tidak stabil pada kecepatan tinggi.",
@@ -532,14 +927,14 @@
         }
       },
       {
-        "top": "38%",
-        "left": "38%",
+        "top": "45%",
+        "left": "45%",
         "title": "Filter Udara & AC",
         "subtitle": "Udara Kabin Segar",
         "lineAngle": -22,
         "lineLength": 260,
-        "labelOffsetX": 240,
-        "labelOffsetY": -100,
+        "labelOffsetX": 150,
+        "labelOffsetY": -150,
         "imageUrl": "/images/hotspot/fortuner_tools.png",
         "diagnosa": "Filter kabin dan filter udara mesin kotor/tersumbat.",
         "gejala": "AC kurang dingin, hembusan angin pelan, dan tarikan mesin sedikit tertahan.",

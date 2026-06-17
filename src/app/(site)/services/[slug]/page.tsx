@@ -1,25 +1,29 @@
 /**
  * Service Detail Page — Bengkel Wiguna
- * Using template layout: single-blog-2
+ * Modern Airbnb-style layout with Bento grid and original sidebar
  */
 
 import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import ServiceSidebar from '@/components/ui/ServiceSidebar'
-import BookingTrigger from '@/components/heroui/BookingTrigger'
+import Link from 'next/link'
+import { Icon } from '@iconify/react'
 import Breadcrumb from '@/components/ui/Breadcrumb'
+import ServiceSidebar from '@/components/ui/ServiceSidebar'
 
-import { getServiceBySlug, getAllServices, stripHtml } from '@/lib/wordpress'
+import { getServiceBySlug, getAllServices, getAllCategories, stripHtml, parseFaqField } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
 import JsonLd from '@/components/layout/JsonLd'
 import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/seo'
+
+// New Components
+import ServiceGallery from '@/components/services/ServiceGallery'
+import ServiceTabs from '@/components/services/ServiceTabs'
 
 export const revalidate = 3600
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const service = await getServiceBySlug(slug)
-  
+
   if (!service) {
     return {
       title: 'Service | Bengkel Wiguna',
@@ -39,10 +43,61 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     notFound()
   }
 
-  // Get related services for the sidebar
-  const allServices = await getAllServices()
+  // Get related services and categories
+  const [allServices, categories] = await Promise.all([
+    getAllServices(),
+    getAllCategories()
+  ])
+
   const title = typeof service.title === 'string' ? service.title : service.title?.rendered || ''
-  const excerpt = stripHtml(service.excerpt?.rendered || service.excerpt || '').slice(0, 120) + '...'
+  const excerpt = stripHtml(service.excerpt?.rendered || service.excerpt || '').slice(0, 200)
+  const content = service.content?.rendered || service.content || ''
+
+  // Get service categories
+  const serviceCategories = service._embedded?.['wp:term']?.[0] || []
+  const primaryCategory = serviceCategories[0]
+
+  // Gallery Images setup (using BW Plugin native gallery field)
+  const mainImage = service.featured_img || '/images/service-hero-default.png'
+  let galleryImages = [
+    { id: 1, url: mainImage, alt: title },
+  ]
+  
+  // BW Plugin returns gallery as array of URLs
+  if (service.gallery && Array.isArray(service.gallery) && service.gallery.length > 0) {
+    const customGallery = service.gallery.map((url: string, index: number) => ({
+      id: index + 2,
+      url: url,
+      alt: `${title} gallery image ${index + 1}`
+    }))
+    galleryImages = [...galleryImages, ...customGallery]
+  } else {
+    // Mock for display if gallery is empty
+    galleryImages = [
+      ...galleryImages,
+      { id: 2, url: '/images/service-1.jpg', alt: 'Gallery Image 1' },
+      { id: 3, url: '/images/service-2.jpg', alt: 'Gallery Image 2' },
+      { id: 4, url: '/images/service-3.jpg', alt: 'Gallery Image 3' },
+      { id: 5, url: '/images/service-4.jpg', alt: 'Gallery Image 4' },
+    ]
+  }
+
+  // BW Plugin FAQ Parser
+  const rawFaq = service.bw_service_faq || service.faq || service.bw_spesialis_faq;
+  const parsedFaqs = parseFaqField(rawFaq);
+  
+  let faqHtml = '';
+  if (parsedFaqs && parsedFaqs.length > 0) {
+    faqHtml = parsedFaqs.map((faq: any) => `
+      <div style="margin-bottom: 24px;">
+        <h3 style="font-weight: 700; color: #111827; margin-bottom: 8px;">${faq.q || faq.pertanyaan}</h3>
+        <p style="color: #4B5563;">${faq.a || faq.jawaban}</p>
+      </div>
+    `).join('');
+  }
+
+  // Policies (Mocked unless BW plugin has a field for it)
+  const policies = service.syarat_ketentuan || service.policies || '';
 
   return (
     <>
@@ -53,154 +108,169 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         { name: title, url: `https://bengkelwiguna.com/services/${slug}` }
       ])} />
 
-      {/* ═══ Hero Header — Featured Image as Background ═══ */}
-      <section className="relative w-full lg:min-h-[420px] min-h-[340px] overflow-hidden flex items-end">
-        {/* Background Image */}
-        {service.featured_img ? (
-          <Image
-            src={service.featured_img}
-            alt={title}
-            fill
-            className="object-cover"
-            priority
-          />
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-[#224297] to-[#0f1d45]" />
-        )}
-
-        {/* Gradient Overlay — bottom-heavy for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/10" />
-
-        {/* Content */}
-        <div className="relative z-10 w-full max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 pb-10 lg:pb-14">
-          {/* SEO-Optimized Breadcrumb */}
-          <Breadcrumb
-            variant="location"
-            showHome={true}
-            homeLabel="Home"
-            items={[
-              { label: "Layanan", href: "/services" },
-              { label: title }
-            ]}
-            className="mb-6"
-          />
-
-          {/* Badge */}
-          <span className="inline-block bg-[#ffd900] text-[#224297] px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-4 shadow-lg shadow-yellow-900/20">
-            Detail Layanan
-          </span>
-
-          {/* Title */}
-          <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-4 leading-[1.1] tracking-tight max-w-3xl">
-            {title}
-          </h1>
-
-          {/* Excerpt */}
-          <p className="text-white/80 font-medium text-base md:text-lg max-w-2xl leading-relaxed mb-0">
-            {excerpt}
-          </p>
-        </div>
-      </section>
-
-      {/* Page Background Image */}
-      <div className="fixed inset-0 z-0">
-        <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
-        <div className="absolute inset-0 bg-white/88 dark:bg-neutral-950/90" />
-      </div>
-
-      <div className='relative z-10 blog-wrap font-sans'>
-        <div className='max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 lg:pb-24 pb-20 justify-center pt-12'>
-
-          {/* Content Grid & Sidebar matching single-blog-2 2:1 ratio */}
-          <div className='lg:w-11/12 mx-auto'>
-            <div className='grid lg:grid-cols-3 grid-cols-1 gap-12 relative'>
-              
-              {/* Left Column (Content) */}
-              <div className='lg:col-span-2 prose prose-lg max-w-none dark:prose-invert service-content-area
-                prose-h2:text-2xl md:prose-h2:text-3xl prose-h2:font-bold prose-h2:text-gray-900 prose-h2:mb-4 prose-h2:mt-8
-                prose-p:text-gray-800 prose-p:font-medium prose-p:text-[17px] prose-p:leading-7 prose-p:mb-4
-                prose-ul:list-disc prose-ul:pl-5 prose-ul:mb-3 prose-ul:py-5
-                prose-li:text-gray-800 prose-li:font-medium prose-li:text-[17px] prose-li:leading-7 prose-li:mb-2'
-              >
-                <div dangerouslySetInnerHTML={{ __html: service.content?.rendered || service.content || '' }} />
-
-                {/* Booking CTA gracefully integrated into content stream */}
-                <div className="mt-16 p-8 lg:p-10 bg-[#f8f9fa] border border-gray-200 rounded-2xl flex flex-col md:flex-row items-center text-center md:text-left gap-6 shadow-sm not-prose" data-aos="fade-up">
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      Siap Memperbaiki Kendaraan Anda?
-                    </h3>
-                    <p className="text-gray-600 font-medium text-[17px]">
-                      Jangan tunda perawatan! Booking layanan <span className="text-[#224297] font-bold">{title}</span> sekarang tanpa antre.
-                    </p>
-                  </div>
-                  <BookingTrigger 
-                    serviceName={title} 
-                    buttonText="Booking Sekarang"
-                    className="py-4 px-8 shrink-0 bg-[#224297] hover:bg-blue-800 text-white font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-md"
-                  />
-                </div>
-                
-                {/* FAQ Section */}
-                <div className="mt-12 pt-8 border-t border-gray-100 not-prose" data-aos="fade-up">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-6">FAQ Layanan</h3>
-                  <div className="space-y-4">
-                      <div className="p-6 bg-white border border-gray-100 rounded-xl shadow-sm">
-                          <h4 className="font-bold text-lg text-gray-900 mb-2">Berapa lama pengerjaan layanan ini?</h4>
-                          <p className="text-gray-600 font-medium text-[17px]">Pengerjaan bervariasi tergantung kondisi kendaraan, biasanya memakan waktu 1-3 jam.</p>
-                      </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Column (Sidebar components) */}
-              <div className='w-full space-y-8'>
-                <div className="sticky top-32 flex flex-col gap-8">
-                  {/* Service Navigation Widget */}
-                  <ServiceSidebar services={allServices} currentSlug={slug} />
-                  
-                  {/* WhatsApp Support Widget */}
-                  <div className="p-8 bg-[#224297] text-white rounded-2xl shadow-xl relative overflow-hidden" data-aos="zoom-in">
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
-                      <div className="relative z-10 flex flex-col items-center text-center">
-                          <div className="mb-6 relative">
-                              <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center p-1 border-4 border-[#1a3567]">
-                                  <Image
-                                      src="/images/cs-support.avif"
-                                      alt="Customer Support"
-                                      width={80}
-                                      height={80}
-                                      className="w-full h-full rounded-full object-cover"
-                                  />
-                              </div>
-                              <div className="absolute bottom-0 right-0 w-5 h-5 bg-[#ffd900] border-4 border-[#1a3567] rounded-full"></div>
-                          </div>
-
-                          <h3 className="text-2xl font-bold mb-2">
-                              Butuh Bantuan?
-                          </h3>
-                          <p className="text-white/80 font-medium mb-6 text-sm leading-relaxed">
-                              Ingin bertanya lebih lanjut seputar <span className="text-[#ffd900] font-bold">{title}</span>?
-                          </p>
-
-                          <a
-                              href={`https://wa.me/6287817773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan "${title}" di Bengkel Wiguna.`)}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="w-full py-4 bg-[#ffd900] hover:bg-white text-[#224297] font-bold uppercase tracking-widest rounded-xl transition-all duration-300 shadow-md flex items-center justify-center gap-2 group"
-                          >
-                              <span className="text-xl">💬</span>
-                              Chat Minna
-                          </a>
-                      </div>
-                  </div>
-                </div>
-              </div>
-
+      <main 
+        className="min-h-screen pb-24 bg-cover bg-no-repeat bg-top"
+        style={{ backgroundImage: "url('/images/home-9-footer.webp')" }}
+      >
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-32">
+          
+          {/* Header Section (Title & Breadcrumb) */}
+          <div className="mb-8">
+            <Breadcrumb
+              variant="minimal"
+              showHome={true}
+              homeLabel="Home"
+              items={[
+                { label: "Layanan", href: "/services" },
+                { label: title }
+              ]}
+              className="mb-4"
+            />
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black text-gray-900 mb-4 tracking-tight">
+              {title}
+            </h1>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-gray-600 font-medium">
+              <span className="flex items-center gap-1">
+                <Icon icon="solar:star-bold" className="text-yellow-400 text-lg" />
+                <span className="text-gray-900 font-bold">4.8</span> (120 ulasan)
+              </span>
+              <span>•</span>
+              <span className="flex items-center gap-1">
+                <Icon icon="solar:map-point-bold" className="text-gray-400 text-lg" />
+                <a href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA" target="_blank" rel="noreferrer" className="underline hover:text-gray-900">
+                  Depok, Jawa Barat
+                </a>
+              </span>
+              {primaryCategory && (
+                <>
+                  <span>•</span>
+                  <Link href={`/services?category=${primaryCategory.slug}`} className="underline hover:text-[#224297]">
+                    {primaryCategory.name}
+                  </Link>
+                </>
+              )}
             </div>
           </div>
+
+          {/* Bento Grid Gallery */}
+          <ServiceGallery images={galleryImages} />
+
+          {/* Main Layout Grid */}
+          <div className="mt-12 grid lg:grid-cols-[1fr_340px] gap-12 lg:gap-16">
+            
+            {/* Left Column (Content) */}
+            <div className="w-full">
+              
+              {/* Short Excerpt */}
+              <div className="pb-8 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900 mb-4">Tentang Layanan Ini</h2>
+                <p className="text-gray-700 leading-relaxed text-lg">
+                  {excerpt}
+                </p>
+              </div>
+
+              {/* What this place offers (Fasilitas/Layanan) */}
+              <div className="py-8 border-b border-gray-200">
+                <h2 className="text-xl font-bold text-gray-900 mb-6">Yang Anda Dapatkan</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
+                  <div className="flex items-center gap-4">
+                    <Icon icon="solar:check-circle-linear" className="text-gray-700 text-2xl" />
+                    <span className="text-gray-600">Pengecekan Menyeluruh</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Icon icon="solar:shield-check-linear" className="text-gray-700 text-2xl" />
+                    <span className="text-gray-600">{service.garansi ? `Garansi ${service.garansi}` : 'Garansi Servis'}</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Icon icon="solar:clock-circle-linear" className="text-gray-700 text-2xl" />
+                    <span className="text-gray-600">{service.durasi || 'Pengerjaan Cepat'}</span>
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <Icon icon="solar:tea-cup-linear" className="text-gray-700 text-2xl" />
+                    <span className="text-gray-600">Ruang Tunggu Nyaman</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tabs for Details, Policies, FAQ */}
+              <ServiceTabs 
+                contentHtml={content} 
+                policies={policies || "<p>Harap melakukan reservasi minimal 1 hari sebelumnya. Pembatalan dapat dilakukan maksimal 12 jam sebelum jadwal.</p>"}
+                faqHtml={faqHtml || "<p><strong>Berapa lama pengerjaan?</strong><br/>Tergantung kondisi kendaraan, estimasi 1-3 jam.</p>"}
+              />
+
+              {/* Share */}
+              <div className="mt-12 pt-8 border-t border-gray-200 flex items-center gap-4">
+                <span className="text-sm font-bold text-gray-900">Bagikan:</span>
+                <div className="flex gap-3">
+                  <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <Icon icon="fa6-brands:whatsapp" className="text-gray-700" />
+                  </button>
+                  <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <Icon icon="fa6-brands:facebook-f" className="text-gray-700" />
+                  </button>
+                  <button className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 transition-colors">
+                    <Icon icon="solar:link-bold" className="text-gray-700" />
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* ═══ Right Column — Sidebar (Restored) ═══ */}
+            <aside className="w-full lg:sticky lg:top-24 space-y-8">
+              {/* Service Navigation */}
+              <ServiceSidebar services={allServices} currentSlug={slug} />
+
+              {/* WhatsApp Support Card */}
+              <div className="bg-gradient-to-br from-[#25D366] to-[#128C7E] rounded-3xl p-8 text-white shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+                <div className="relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-white/20 flex items-center justify-center mb-6">
+                    <Icon icon="fa6-brands:whatsapp" width={32} />
+                  </div>
+                  <h3 className="text-xl font-black mb-3">
+                    Butuh Bantuan?
+                  </h3>
+                  <p className="text-white/80 text-sm font-medium mb-6 leading-relaxed">
+                    Ingin bertanya lebih lanjut seputar <span className="text-white font-bold">{title}</span>?
+                  </p>
+                  <a
+                    href={`https://wa.me/6287817773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan "${title}" di Bengkel Wiguna.`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-source={`services-sidebar-${slug}`}
+                    className="flex items-center justify-center gap-3 w-full py-4 bg-white hover:bg-gray-100 text-[#128C7E] font-black uppercase tracking-wider rounded-xl transition-all shadow-lg"
+                  >
+                    <Icon icon="fa6-brands:whatsapp" width={24} />
+                    Chat Minna
+                  </a>
+                </div>
+              </div>
+
+              {/* Location Card */}
+              <div className="bg-gray-50 rounded-3xl p-6 border border-gray-100">
+                <h3 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <Icon icon="solar:map-point-bold" width={22} className="text-[#224297]" />
+                  Lokasi Bengkel
+                </h3>
+                <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                  Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, kota Depok 16423
+                </p>
+                <a
+                  href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-[#224297] font-bold hover:underline"
+                >
+                  <Icon icon="solar:arrow-right-linear" width={18} />
+                  Lihat di Google Maps
+                </a>
+              </div>
+            </aside>
+
+          </div>
         </div>
-      </div>
+      </main>
     </>
   )
 }

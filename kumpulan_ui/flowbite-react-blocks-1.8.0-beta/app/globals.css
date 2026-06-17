@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  svg {
+    display: unset;
+  }
+
+  :focus-visible {
+    outline: none;
+  }
+}

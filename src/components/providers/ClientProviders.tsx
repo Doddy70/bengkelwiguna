@@ -22,6 +22,12 @@ const WebVitalsMonitor = dynamic(
   { ssr: false, loading: () => null }
 );
 
+// ✅ Global Analytics Tracker
+const GlobalAnalyticsTracker = dynamic(
+  () => import("@/components/providers/GlobalAnalyticsTracker"),
+  { ssr: false, loading: () => null }
+);
+
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
   return (
     <Providers>
@@ -29,6 +35,8 @@ export default function ClientProviders({ children }: { children: React.ReactNod
       {children}
       {/* ✅ Web Vitals Monitor - Only in production */}
       {process.env.NODE_ENV === 'production' && <WebVitalsMonitor />}
+      {/* ✅ Global Analytics Tracker */}
+      <GlobalAnalyticsTracker />
     </Providers>
   );
 }

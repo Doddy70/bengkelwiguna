@@ -243,6 +243,7 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
                                 href={`https://wa.me/6287817773888?text=${encodeURIComponent(`Halo Minna, saya ingin tanya seputar layanan spesialis "${title}" di Bengkel Wiguna.`)}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
+                                data-source={`layanan-spesialis-${slug}`}
                                 className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
                             >
                                 <span className="text-xl">💬</span>

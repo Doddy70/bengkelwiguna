@@ -22,7 +22,10 @@ export default function BlogSidebar({ categories = [], relatedPosts = [] }: Blog
           Bagikan Artikel Ini
         </h3>
         <div className="flex gap-4">
-          <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#224297] hover:border-[#224297] hover:bg-[#224297]/5 transition-all">
+          <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#25D366] hover:border-[#25D366] hover:bg-[#25D366]/5 transition-all">
+            <Icon icon="fa6-brands:whatsapp" width={18} />
+          </a>
+          <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-[#E1306C] hover:border-[#E1306C] hover:bg-[#E1306C]/5 transition-all">
             <Icon icon="fa6-brands:instagram" width={18} />
           </a>
           <a href="#" className="w-10 h-10 rounded-full border border-gray-200 dark:border-neutral-700 flex items-center justify-center text-gray-600 dark:text-gray-400 hover:text-black hover:border-black hover:bg-black/5 dark:hover:text-white dark:hover:border-white transition-all">
@@ -111,7 +114,7 @@ export default function BlogSidebar({ categories = [], relatedPosts = [] }: Blog
           Dapatkan wawasan ahli tentang perawatan mobil, tips edukasi otomotif, dan info diskon spesial Bengkel Wiguna ke email Anda.
         </p>
         
-        <form className="w-full space-y-3" onSubmit={(e) => e.preventDefault()}>
+        <form className="w-full space-y-3" data-track="newsletter-blog" onSubmit={(e) => e.preventDefault()}>
           <div className="relative w-full">
             <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
               <Icon icon="solar:letter-linear" width={20} className="text-gray-400" />

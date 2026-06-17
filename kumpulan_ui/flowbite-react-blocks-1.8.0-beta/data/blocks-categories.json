@@ -1,0 +1,569 @@
+[
+  {
+    "title": "404 Pages",
+    "categoryTitle": "Marketing UI",
+    "slug": "404-pages",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/404-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/404.svg",
+    "numComponents": 3
+  },
+  {
+    "title": "500 Pages",
+    "categoryTitle": "Marketing UI",
+    "slug": "500-pages",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/500-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/500.svg",
+    "numComponents": 3
+  },
+  {
+    "title": "Advanced Tables",
+    "categoryTitle": "Application UI",
+    "slug": "advanced-tables",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/tables-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/tables.svg",
+    "numComponents": 7
+  },
+  {
+    "title": "Account Recovery",
+    "categoryTitle": "Marketing UI",
+    "slug": "account-recovery",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/forgot-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/forgot.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Application Shells",
+    "categoryTitle": "Application UI",
+    "slug": "application-shells",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/application-shells-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/application-shells.svg",
+    "numComponents": 8
+  },
+  {
+    "title": "Banners",
+    "categoryTitle": "Marketing UI",
+    "slug": "banners",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/banner-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/banner.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Blog Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "blog-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/blog-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/blog.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Blog Templates",
+    "categoryTitle": "Publisher UI",
+    "slug": "blog-templates",
+    "categorySlug": "publisher-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/publisher/article-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/publisher/article.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "CRUD Layouts",
+    "categoryTitle": "Application UI",
+    "slug": "crud-layouts",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/crud-layouts-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/crud-layouts.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Comments Sections",
+    "categoryTitle": "Publisher UI",
+    "slug": "comments-sections",
+    "categorySlug": "publisher-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/publisher/comments-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/publisher/comments.svg",
+    "numComponents": 4
+  },
+  {
+    "title": "Contact Forms",
+    "categoryTitle": "Marketing UI",
+    "slug": "contact-forms",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/contact-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/contact.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Content Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "content-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/content-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/content.svg",
+    "numComponents": 9
+  },
+  {
+    "title": "Cookie Consent",
+    "categoryTitle": "Marketing UI",
+    "slug": "cookie-consent",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/cookies-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/cookies.svg",
+    "numComponents": 4
+  },
+  {
+    "title": "Create Drawers (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "create-drawers",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/create-drawer-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/create-drawer.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Create Forms (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "create-forms",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/create-page-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/create-page.svg",
+    "numComponents": 4
+  },
+  {
+    "title": "Create Modals (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "create-modals",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/create-modal-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/create-modal.svg",
+    "numComponents": 7
+  },
+  {
+    "title": "CTA Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "cta-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/cta-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/cta.svg",
+    "numComponents": 10
+  },
+  {
+    "title": "Customer Logos",
+    "categoryTitle": "Marketing UI",
+    "slug": "customer-logos",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/clients-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/clients.svg",
+    "numComponents": 4
+  },
+  {
+    "title": "Customer Service",
+    "categoryTitle": "E-commerce UI",
+    "slug": "customer-service",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/customer-service-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/customer-service.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Dashboard Footers",
+    "categoryTitle": "Application UI",
+    "slug": "dashboard-footers",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/footers-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/footers.svg",
+    "numComponents": 7
+  },
+  {
+    "title": "Dashboard Navbars",
+    "categoryTitle": "Application UI",
+    "slug": "dashboard-navbars",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/navbars-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/navbars.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Delete Confirm (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "delete-confirm",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/delete-modal-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/delete-modal.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Discount Popups",
+    "categoryTitle": "E-commerce UI",
+    "slug": "discount-popups",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/discount-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/discount.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Dropdown Filters",
+    "categoryTitle": "Application UI",
+    "slug": "dropdown-filters",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/filter-dropdown-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/filter-dropdown.svg",
+    "numComponents": 8
+  },
+  {
+    "title": "E-commerce Navbars",
+    "categoryTitle": "E-commerce UI",
+    "slug": "ecommerce-navbars",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/ecommerce-navbars-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/ecommerce-navbars.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Event Schedule",
+    "categoryTitle": "Marketing UI",
+    "slug": "event-schedule",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/event-schedule-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/event-schedule.svg",
+    "numComponents": 4
+  },
+  {
+    "title": "FAQ Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "faq-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/faq-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/faq.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Faceted Search Drawers",
+    "categoryTitle": "Application UI",
+    "slug": "faceted-search-drawers",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/filter-drawer-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/filter-drawer.svg",
+    "numComponents": 4
+  },
+  {
+    "title": "Faceted Search Modals",
+    "categoryTitle": "Application UI",
+    "slug": "faceted-search-modals",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/filter-modal-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/filter-modal.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Feature Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "feature-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/features-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/features.svg",
+    "numComponents": 10
+  },
+  {
+    "title": "Footer Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "footer-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/footer-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/footer.svg",
+    "numComponents": 7
+  },
+  {
+    "title": "Headers",
+    "categoryTitle": "Marketing UI",
+    "slug": "headers",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/navbar-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/navbar.svg",
+    "numComponents": 8
+  },
+  {
+    "title": "Hero Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "hero-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/hero-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/hero.svg",
+    "numComponents": 18
+  },
+  {
+    "title": "Login Forms",
+    "categoryTitle": "Marketing UI",
+    "slug": "login-forms",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/login-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/login.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Maintenance Pages",
+    "categoryTitle": "Marketing UI",
+    "slug": "maintenance-pages",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/maintenance-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/maintenance.svg",
+    "numComponents": 3
+  },
+  {
+    "title": "Newsletter Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "newsletter-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/newsletter-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/newsletter.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Order Summary",
+    "categoryTitle": "E-commerce UI",
+    "slug": "order-summary",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/order-summary-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/order-summary.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Orders Overview",
+    "categoryTitle": "E-commerce UI",
+    "slug": "orders-overview",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/orders-list-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/orders-list.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Payment Forms",
+    "categoryTitle": "E-commerce UI",
+    "slug": "payment-forms",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/payment-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/payment.svg",
+    "numComponents": 8
+  },
+  {
+    "title": "Popups",
+    "categoryTitle": "Marketing UI",
+    "slug": "popups",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/popups-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/popups.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Pricing Tables",
+    "categoryTitle": "Marketing UI",
+    "slug": "pricing-tables",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/pricing-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/pricing.svg",
+    "numComponents": 8
+  },
+  {
+    "title": "Product Categories",
+    "categoryTitle": "E-commerce UI",
+    "slug": "product-categories",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/product-categories-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/product-categories.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Project Portfolio",
+    "categoryTitle": "Marketing UI",
+    "slug": "project-portfolio",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/portfolio-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/portfolio.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Read Drawers (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "read-drawers",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/read-drawer-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/read-drawer.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Read Modals (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "read-modals",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/read-modal-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/read-modal.svg",
+    "numComponents": 7
+  },
+  {
+    "title": "Read Sections (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "read-sections",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/read-page-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/read-page.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Refund Forms",
+    "categoryTitle": "E-commerce UI",
+    "slug": "refund-forms",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/return-forms-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/return-forms.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Register Forms",
+    "categoryTitle": "Marketing UI",
+    "slug": "register-forms",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/register-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/register.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Related Articles",
+    "categoryTitle": "Publisher UI",
+    "slug": "related-articles",
+    "categorySlug": "publisher-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/publisher/related-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/publisher/related.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Reset Password Forms",
+    "categoryTitle": "Marketing UI",
+    "slug": "reset-password-forms",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/reset-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/reset.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Shopping Cart",
+    "categoryTitle": "E-commerce UI",
+    "slug": "shopping-cart",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/shopping-cart-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/shopping-cart.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Side Navigation",
+    "categoryTitle": "Application UI",
+    "slug": "side-navigation",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/sidebars-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/sidebars.svg",
+    "numComponents": 12
+  },
+  {
+    "title": "Social Proof",
+    "categoryTitle": "Marketing UI",
+    "slug": "social-proof",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/social-proof-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/social-proof.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Storefront Hero Sections",
+    "categoryTitle": "E-commerce UI",
+    "slug": "storefront-hero-sections",
+    "categorySlug": "ecommerce-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/storefront-hero-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/e-commerce/storefront-hero.svg",
+    "numComponents": 7
+  },
+  {
+    "title": "Success Message (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "success-message",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/success-modal-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/success-modal.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Table Footers",
+    "categoryTitle": "Application UI",
+    "slug": "table-footers",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/table-footers-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/table-footers.svg",
+    "numComponents": 6
+  },
+  {
+    "title": "Table Headers",
+    "categoryTitle": "Application UI",
+    "slug": "table-headers",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/table-headers-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/table-headers.svg",
+    "numComponents": 13
+  },
+  {
+    "title": "Team Sections",
+    "categoryTitle": "Marketing UI",
+    "slug": "team-sections",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/team-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/team.svg",
+    "numComponents": 8
+  },
+  {
+    "title": "Testimonials",
+    "categoryTitle": "Marketing UI",
+    "slug": "testimonials",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/testimonial-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/testimonial.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Update Drawers (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "update-drawers",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/update-drawer-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/update-drawer.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Update Forms (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "update-forms",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/update-page-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/update-page.svg",
+    "numComponents": 5
+  },
+  {
+    "title": "Update Modals (CRUD)",
+    "categoryTitle": "Application UI",
+    "slug": "update-modals",
+    "categorySlug": "application-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/update-modal-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/application/update-modal.svg",
+    "numComponents": 7
+  },
+  {
+    "title": "User Onboarding",
+    "categoryTitle": "Marketing UI",
+    "slug": "user-onboarding",
+    "categorySlug": "marketing-ui",
+    "iconDark": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/user-onboarding-dark.svg",
+    "iconLight": "https://flowbite.s3.amazonaws.com/block-thumbnails/marketing/user-onboarding.svg",
+    "numComponents": 4
+  }
+]

@@ -1,0 +1,63 @@
+<div class="relative z-10" role="dialog" aria-modal="true">
+  <!--
+    Background backdrop, show/hide based on modal state.
+
+    Entering: "ease-out duration-300"
+      From: "opacity-0"
+      To: "opacity-100"
+    Leaving: "ease-in duration-200"
+      From: "opacity-100"
+      To: "opacity-0"
+  -->
+  <div class="fixed inset-0 bg-gray-500/25 transition-opacity" aria-hidden="true"></div>
+
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto p-4 sm:p-6 md:p-20">
+    <!--
+      Command palette, show/hide based on modal state.
+
+      Entering: "ease-out duration-300"
+        From: "opacity-0 scale-95"
+        To: "opacity-100 scale-100"
+      Leaving: "ease-in duration-200"
+        From: "opacity-100 scale-100"
+        To: "opacity-0 scale-95"
+    -->
+    <div class="mx-auto max-w-xl transform divide-y divide-gray-100 overflow-hidden rounded-xl bg-white ring-1 shadow-2xl ring-black/5 transition-all">
+      <div class="grid grid-cols-1">
+        <input type="text" class="col-start-1 row-start-1 h-12 w-full pr-4 pl-11 text-base text-gray-900 outline-hidden placeholder:text-gray-400 sm:text-sm" placeholder="Search..." role="combobox" aria-expanded="false" aria-controls="options">
+        <svg class="pointer-events-none col-start-1 row-start-1 ml-4 size-5 self-center text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+          <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11ZM2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9Z" clip-rule="evenodd" />
+        </svg>
+      </div>
+
+      <!-- Results, show/hide based on command palette state -->
+      <ul class="max-h-96 transform-gpu scroll-py-3 overflow-y-auto p-3" id="options" role="listbox">
+        <!-- Active: "bg-gray-100 outline-hidden" -->
+        <li class="group flex cursor-default rounded-xl p-3 select-none" id="option-1" role="option" tabindex="-1">
+          <div class="flex size-10 flex-none items-center justify-center rounded-lg bg-indigo-500">
+            <svg class="size-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+            </svg>
+          </div>
+          <div class="ml-4 flex-auto">
+            <!-- Active: "text-gray-900", Not Active: "text-gray-700" -->
+            <p class="text-sm font-medium text-gray-700">Text</p>
+            <!-- Active: "text-gray-700", Not Active: "text-gray-500" -->
+            <p class="text-sm text-gray-500">Add freeform text with basic formatting options.</p>
+          </div>
+        </li>
+
+        <!-- More items... -->
+      </ul>
+
+      <!-- Empty state, show/hide based on command palette state -->
+      <div class="px-6 py-14 text-center text-sm sm:px-14">
+        <svg class="mx-auto size-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+        </svg>
+        <p class="mt-4 font-semibold text-gray-900">No results found</p>
+        <p class="mt-2 text-gray-500">No components found for this search term. Please try again.</p>
+      </div>
+    </div>
+  </div>
+</div>

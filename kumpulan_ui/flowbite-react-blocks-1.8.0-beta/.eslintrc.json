@@ -1,0 +1,18 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
+  "settings": {
+    "tailwindcss": {
+      "callees": ["twMerge", "createTheme"],
+      "classRegex": "^(class(Name)|theme)?$"
+    }
+  },
+  "rules": {
+    "@next/next/no-img-element": "off",
+    "react/no-unescaped-entities": "off",
+    "tailwindcss/enforces-shorthand": "off"
+  }
+}

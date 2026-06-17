@@ -67,21 +67,27 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
   };
   const getPromoImg = (p: Promosi) => p.featured_img || p._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/hero-desktop.webp';
 
-  // Unified Bento Card Pattern matching the new reference
+  // Unified Bento Card Pattern matching Tailwind UI Bento Grid
   const StandardBentoCard = (promo: Promosi, idx: number) => {
     const title = getPromoTitle(promo);
     const excerpt = getPromoExcerpt(promo);
     const img = getPromoImg(promo);
     
-    // Bento layout: every 5th card spans 2 columns in large screens to create the asymmetrical grid
-    // Row 1: 3 cards (idx 0,1,2). Row 2: 2 cards (idx 3 is 1-col, idx 4 is 2-col).
-    const isWide = idx % 5 === 4;
+    // Bento Grid Layout Strategy (Pattern of 5 cards)
+    // Row 1: 2 cards (spans 3 cols each) -> 50% 50%
+    // Row 2: 3 cards (spans 2 cols each) -> 33% 33% 33%
+    let gridClass = 'col-span-1';
+    const posInRow = idx % 5;
+    if (posInRow === 0 || posInRow === 1) {
+      gridClass = 'col-span-1 md:col-span-1 lg:col-span-3';
+    } else if (posInRow === 2 || posInRow === 3) {
+      gridClass = 'col-span-1 md:col-span-1 lg:col-span-2';
+    } else {
+      // 5th card takes full width on tablet, 2 cols on desktop
+      gridClass = 'col-span-1 md:col-span-2 lg:col-span-2';
+    }
 
     const discountText = promo.diskon_persen ? `${promo.diskon_persen}% OFF` : undefined;
-
-    const metaItems = [
-      { icon: 'solar:ticket-linear', text: promo.jenis_promosi || 'Promo Spesial' }
-    ];
 
     const handleClaimPromo = (e: React.MouseEvent) => {
       e.preventDefault();
@@ -91,30 +97,48 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
       window.open(`https://api.whatsapp.com/send/?phone=6281717773888&text=${text}`, '_blank');
     };
 
+    const isFeatureCard = posInRow === 0 || posInRow === 1;
+
     return (
       <div
         key={promo.id || idx}
-        className={`${isWide ? 'col-span-1 md:col-span-2 lg:col-span-2' : 'col-span-1'} flex flex-col`}
+        onClick={handleClaimPromo}
+        className={`${gridClass} group relative overflow-hidden rounded-3xl bg-white ring-1 ring-gray-900/5 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer flex flex-col`}
       >
-        <WigunaCard
-          href={`/promosi/${promo.slug}`}
-          image={img}
-          title={title}
-          excerpt={excerpt}
-          variant="split"
-          badgeText={discountText}
-          tag={promo.kategori_promosi || 'PROMO'}
-          metaItems={metaItems}
-          buttonText="Klaim Promo"
-          secondaryIcon="solar:heart-linear"
-          onSecondaryClick={(e: React.MouseEvent) => {
-            e.preventDefault();
-            // Optional favorite state or WA redirect
-            handleClaimPromo(e);
-          }}
-          onButtonClick={handleClaimPromo}
-          isWide={isWide}
-        />
+        {/* Background Image Container */}
+        <div className={`relative w-full ${isFeatureCard ? 'h-64 sm:h-[420px]' : 'h-56 sm:h-64'} overflow-hidden bg-gray-100`}>
+          <Image
+            src={img}
+            alt={title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          {/* Subtle gradient overlay on hover */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        </div>
+
+        {/* Content Area */}
+        <div className="relative flex flex-col flex-grow p-6 bg-white">
+          {discountText && (
+            <div className="mb-3">
+              <span className="inline-flex items-center rounded-full bg-[#ffd900] px-3 py-1 text-[11px] font-bold text-[#1a356d] uppercase tracking-wider shadow-sm">
+                🔥 {discountText}
+              </span>
+            </div>
+          )}
+          <h3 className="font-bold leading-tight text-gray-900 text-xl mb-2">
+            {title}
+          </h3>
+          <p className="line-clamp-2 text-sm text-gray-500 mb-6">
+            {excerpt}
+          </p>
+          
+          <div className="mt-auto flex items-center justify-between">
+            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#224297]">
+              Klaim Promo <Icon icon="solar:arrow-right-linear" className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </div>
+        </div>
       </div>
     );
   };
@@ -163,7 +187,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
       {/* BENTO GRID - 6 Pattern System */}
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {regularPromos.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6 grid-flow-dense items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-6 grid-flow-dense items-stretch">
             {regularPromos.slice(0, visibleCount).map((promo, idx) => (
               StandardBentoCard(promo, idx)
             ))}

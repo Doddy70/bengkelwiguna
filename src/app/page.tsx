@@ -291,6 +291,7 @@ export default async function HomePage() {
                   href="https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20konsultasi%20servis%20mobil.%20(web)"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-source="homepage-cta"
                   className="px-8 py-4 rounded-full bg-[#ffd900] hover:bg-yellow-400 text-black font-black text-sm md:text-base shadow-lg hover:shadow-yellow-500/30 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 group"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

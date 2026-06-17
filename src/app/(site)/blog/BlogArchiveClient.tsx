@@ -24,6 +24,8 @@ interface BlogArchiveClientProps {
 
 export default function BlogArchiveClient({ posts, categories }: BlogArchiveClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [visibleCount, setVisibleCount] = useState<number>(9);
+  const ITEMS_PER_LOAD = 6;
 
   const getRenderedTitle = (post: WPPost) => {
     if (typeof post.title === 'string') return post.title;
@@ -60,7 +62,8 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   const post2 = filteredPosts[1];
   const post3 = filteredPosts[2];
   const post4 = filteredPosts[3];
-  const bentoPosts = filteredPosts.slice(4);
+  const bentoPosts = filteredPosts.slice(4, visibleCount);
+  const hasMore = visibleCount < filteredPosts.length;
 
   return (
     <>
@@ -256,12 +259,6 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 {filteredPosts.length} artikel tersedia
               </p>
             </div>
-            <Link 
-              href="/blog" 
-              className="hidden md:inline-flex items-center justify-center bg-blue-50 dark:bg-[#224297]/10 text-[#224297] dark:text-[#ffd900] font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#224297] hover:text-white dark:hover:bg-[#ffd900] dark:hover:text-black transition-colors"
-            >
-              Lihat Semua
-            </Link>
           </div>
 
           {/* === 3-COLUMN UNIFORM GRID === */}
@@ -307,10 +304,16 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
           )}
 
           {/* Load More Button */}
-          {bentoPosts.length >= 10 && (
-            <div className="flex justify-center mt-16 pt-8 border-t border-gray-100 dark:border-neutral-800">
-              <button className="inline-flex items-center justify-center gap-3 px-8 py-4 text-gray-900 dark:text-white text-sm font-bold border-2 border-gray-200 dark:border-neutral-700 hover:border-[#224297] dark:hover:border-[#ffd900] rounded-[1rem] transition-all hover:bg-gray-50 dark:hover:bg-neutral-900">
-                Muat Lebih Banyak Artikel
+          {hasMore && (
+            <div className="flex flex-col items-center gap-4 mt-16 pt-8 border-t border-gray-100 dark:border-neutral-800">
+              <p className="text-sm text-gray-500">
+                Menampilkan {filteredPosts.length > visibleCount ? visibleCount : filteredPosts.length} dari {filteredPosts.length} artikel
+              </p>
+              <button
+                onClick={() => setVisibleCount(prev => prev + ITEMS_PER_LOAD)}
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#224297] hover:bg-[#1a3567] text-white text-sm font-bold rounded-xl transition-all shadow-lg hover:shadow-xl"
+              >
+                Muat Lebih Banyak
                 <Icon icon="solar:arrow-down-linear" className="w-5 h-5" />
               </button>
             </div>

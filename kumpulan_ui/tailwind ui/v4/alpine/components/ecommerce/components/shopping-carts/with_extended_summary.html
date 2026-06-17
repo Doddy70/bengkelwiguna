@@ -1,0 +1,211 @@
+<!--
+  This example requires Tailwind CSS v2.0+
+
+  The alpine.js code is *NOT* production ready and is included to preview
+  possible interactivity
+-->
+<div class="bg-white">
+    <div class="mx-auto max-w-4xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <h1 class="text-3xl font-bold tracking-tight text-gray-900">Shopping Cart</h1>
+
+      <form class="mt-12">
+        <div>
+          <h2 class="sr-only">Items in your shopping cart</h2>
+
+          <ul role="list" class="divide-y divide-gray-200 border-t border-b border-gray-200">
+            <li class="flex py-6 sm:py-10">
+                <div class="shrink-0">
+                  <img src="https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-01-product-03.jpg" alt="Insulated bottle with white base and black snap lid." class="size-24 rounded-lg object-cover sm:size-32">
+                </div>
+
+                <div class="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                  <div>
+                    <div class="flex justify-between sm:grid sm:grid-cols-2">
+                      <div class="pr-6">
+                        <h3 class="text-sm">
+                          <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Nomad Tumbler</a>
+                        </h3>
+                        <p class="mt-1 text-sm text-gray-500">White</p>
+                        </div>
+
+                      <p class="text-right text-sm font-medium text-gray-900">$35.00</p>
+                    </div>
+
+                    <div class="mt-4 flex items-center sm:absolute sm:top-0 sm:left-1/2 sm:mt-0 sm:block">
+                      <div class="inline-grid w-full max-w-16 grid-cols-1">
+                        <select name="quantity-0" aria-label="Quantity, Nomad Tumbler" class="col-start-1 row-start-1 appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                        </select>
+                        <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path>
+</svg>
+                      </div>
+
+                      <button type="button" class="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:mt-3 sm:ml-0">
+                        <span>Remove</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <p class="mt-4 flex space-x-2 text-sm text-gray-700">
+                    <svg class="size-5 shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"></path>
+</svg>
+                    <span>In stock</span>
+                  </p>
+                </div>
+              </li>
+            <li class="flex py-6 sm:py-10">
+                <div class="shrink-0">
+                  <img src="https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-01-product-01.jpg" alt="Front of men's Basic Tee in sienna." class="size-24 rounded-lg object-cover sm:size-32">
+                </div>
+
+                <div class="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                  <div>
+                    <div class="flex justify-between sm:grid sm:grid-cols-2">
+                      <div class="pr-6">
+                        <h3 class="text-sm">
+                          <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Basic Tee</a>
+                        </h3>
+                        <p class="mt-1 text-sm text-gray-500">Sienna</p>
+                        <p class="mt-1 text-sm text-gray-500">Large</p>
+                        </div>
+
+                      <p class="text-right text-sm font-medium text-gray-900">$32.00</p>
+                    </div>
+
+                    <div class="mt-4 flex items-center sm:absolute sm:top-0 sm:left-1/2 sm:mt-0 sm:block">
+                      <div class="inline-grid w-full max-w-16 grid-cols-1">
+                        <select name="quantity-1" aria-label="Quantity, Basic Tee" class="col-start-1 row-start-1 appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                        </select>
+                        <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path>
+</svg>
+                      </div>
+
+                      <button type="button" class="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:mt-3 sm:ml-0">
+                        <span>Remove</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <p class="mt-4 flex space-x-2 text-sm text-gray-700">
+                    <svg class="size-5 shrink-0 text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd"></path>
+</svg>
+                    <span>In stock</span>
+                  </p>
+                </div>
+              </li>
+            <li class="flex py-6 sm:py-10">
+                <div class="shrink-0">
+                  <img src="https://tailwindui.com/plus-assets/img/ecommerce-images/shopping-cart-page-01-product-02.jpg" alt="Front of men's Basic Tee in black." class="size-24 rounded-lg object-cover sm:size-32">
+                </div>
+
+                <div class="relative ml-4 flex flex-1 flex-col justify-between sm:ml-6">
+                  <div>
+                    <div class="flex justify-between sm:grid sm:grid-cols-2">
+                      <div class="pr-6">
+                        <h3 class="text-sm">
+                          <a href="#" class="font-medium text-gray-700 hover:text-gray-800">Basic Tee</a>
+                        </h3>
+                        <p class="mt-1 text-sm text-gray-500">Black</p>
+                        <p class="mt-1 text-sm text-gray-500">Large</p>
+                        </div>
+
+                      <p class="text-right text-sm font-medium text-gray-900">$32.00</p>
+                    </div>
+
+                    <div class="mt-4 flex items-center sm:absolute sm:top-0 sm:left-1/2 sm:mt-0 sm:block">
+                      <div class="inline-grid w-full max-w-16 grid-cols-1">
+                        <select name="quantity-2" aria-label="Quantity, Basic Tee" class="col-start-1 row-start-1 appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                        </select>
+                        <svg class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd"></path>
+</svg>
+                      </div>
+
+                      <button type="button" class="ml-4 text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:mt-3 sm:ml-0">
+                        <span>Remove</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <p class="mt-4 flex space-x-2 text-sm text-gray-700">
+                    <svg class="size-5 shrink-0 text-gray-300" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+  <path fill-rule="evenodd" d="M10 18a8 8 0 1 0 0-16 8 8 0 0 0 0 16Zm.75-13a.75.75 0 0 0-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 0 0 0-1.5h-3.25V5Z" clip-rule="evenodd"></path>
+</svg>
+                    <span>Ships in 3–4 weeks</span>
+                  </p>
+                </div>
+              </li>
+            
+          </ul>
+        </div>
+
+        <!-- Order summary -->
+        <div class="mt-10 sm:ml-32 sm:pl-6">
+          <div class="rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:p-8">
+            <h2 class="sr-only">Order summary</h2>
+
+            <div class="flow-root">
+              <dl class="-my-4 divide-y divide-gray-200 text-sm">
+                <div class="flex items-center justify-between py-4">
+                  <dt class="text-gray-600">Subtotal</dt>
+                  <dd class="font-medium text-gray-900">$99.00</dd>
+                </div>
+                <div class="flex items-center justify-between py-4">
+                  <dt class="text-gray-600">Shipping</dt>
+                  <dd class="font-medium text-gray-900">$5.00</dd>
+                </div>
+                <div class="flex items-center justify-between py-4">
+                  <dt class="text-gray-600">Tax</dt>
+                  <dd class="font-medium text-gray-900">$8.32</dd>
+                </div>
+                <div class="flex items-center justify-between py-4">
+                  <dt class="text-base font-medium text-gray-900">Order total</dt>
+                  <dd class="text-base font-medium text-gray-900">$112.32</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+          <div class="mt-10">
+            <button type="submit" class="w-full rounded-md border border-transparent bg-indigo-600 px-4 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50 focus:outline-hidden">Checkout</button>
+          </div>
+
+          <div class="mt-6 text-center text-sm text-gray-500">
+            <p>
+              or<!-- space -->
+              <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
+                Continue Shopping
+                <span aria-hidden="true"> →</span>
+              </a>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

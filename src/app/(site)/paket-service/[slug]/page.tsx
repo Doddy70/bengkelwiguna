@@ -12,7 +12,7 @@ import Button from '@/components/ui/Button'
 import { getPaketServiceBySlug, getAllPaketService, stripHtml, formatDate } from '@/lib/wordpress'
 import { extractRankMathSEO, generateMetadataFromSEO } from '@/lib/rank-math'
 import JsonLd from '@/components/layout/JsonLd'
-import { generateServiceSchema } from '@/lib/seo'
+import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/seo'
 
 export const revalidate = 3600
 
@@ -66,6 +66,11 @@ export default async function SinglePaketServicePage({ params }: { params: Promi
   return (
     <>
       <JsonLd data={generateServiceSchema(paket)} />
+      <JsonLd data={generateBreadcrumbSchema([
+        { name: 'Home', url: 'https://bengkelwiguna.com' },
+        { name: 'Paket Service', url: 'https://bengkelwiguna.com/paket-service' },
+        { name: title, url: `https://bengkelwiguna.com/paket-service/${slug}` }
+      ])} />
 
       {/* Branded Page Title Section */}
       <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">
@@ -218,6 +223,7 @@ export default async function SinglePaketServicePage({ params }: { params: Promi
                             href={whatsappUrl}
                             target="_blank"
                             rel="noopener noreferrer"
+                            data-source={`paket-service-${slug}`}
                             className="w-full py-4 bg-brand-gold hover:bg-yellow-400 text-brand-blue font-black uppercase tracking-widest rounded-xl transition-all duration-300 shadow-lg shadow-yellow-900/20 flex items-center justify-center gap-2 group"
                         >
                             <span className="text-xl">💬</span>
@@ -312,6 +318,7 @@ export default async function SinglePaketServicePage({ params }: { params: Promi
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
+        data-source={`paket-service-float-${slug}`}
         className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 hover:scale-110"
         aria-label="Chat WhatsApp"
       >
