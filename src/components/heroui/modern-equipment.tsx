@@ -231,7 +231,7 @@ export default function ModernEquipmentShowcase() {
             {/* 3. Impact Score Cards (3 Kartu horizontal) */}
             {(activeItem.impactScores || []).length > 0 && (
               <div className="flex gap-2">
-                {activeItem.impactScores.map((score: any, idx: number) => {
+                {activeItem.impactScores?.map((score: any, idx: number) => {
                   const Icon = (FeatherIcons as any)[score.icon] || FeatherIcons.CheckCircle;
                   return (
                     <div key={idx} className="flex-1 bg-white/60 p-2.5 rounded-xl border border-gray-100 shadow-sm text-center">
@@ -292,7 +292,7 @@ export default function ModernEquipmentShowcase() {
                 <div className="flex text-yellow-400 mb-2">
                   {[...Array(5)].map((_, i) => <FeatherIcons.Star key={i} size={10} className="fill-current" />)}
                 </div>
-                <p className="text-[12px] italic text-gray-600 leading-relaxed mb-3">"{activeHotspot.testimonial.quote}"</p>
+                <p className="text-[12px] italic text-gray-600 leading-relaxed mb-3">&quot;{activeHotspot.testimonial.quote}&quot;</p>
                 <div className="text-[11px] font-bold text-gray-800">
                   - {activeHotspot.testimonial.author.split(',')[0]}
                   <span className="block text-gray-400 font-normal mt-0.5">{activeHotspot.testimonial.author.split(',').slice(1).join(',')}</span>

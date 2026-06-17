@@ -61,13 +61,15 @@ export default function HeroSlideshow() {
 
   const currentSlide = slides[currentIndex];
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   // Menu items for the glassmorphism floating menu
   const menuItems = [
-    { label: "Semua Layanan", href: "/services" },
-    { label: "Promo Bulanan", href: "/promosi" },
-    { label: "Paket Service", href: "/paket-service" },
-    { label: "Layanan Spesialis", href: "/layanan-spesialis" },
-    { label: "Tentang Kami", href: "/tentang-wiguna" },
+    { label: "Semua Layanan", href: "/services", icon: "solar:wrench-linear", desc: "Lihat seluruh layanan perbaikan mobil" },
+    { label: "Promo Bulanan", href: "/promosi", icon: "solar:tag-linear", desc: "Penawaran dan diskon spesial bulan ini" },
+    { label: "Paket Service", href: "/paket-service", icon: "solar:box-linear", desc: "Paket perawatan hemat untuk mobil Anda" },
+    { label: "Layanan Spesialis", href: "/layanan-spesialis", icon: "solar:star-linear", desc: "Layanan spesialis dan profesional" },
+    { label: "Tentang Kami", href: "/tentang-wiguna", icon: "solar:info-circle-linear", desc: "Pelajari lebih lanjut tentang Bengkel Wiguna" },
   ];
 
   return (
@@ -100,51 +102,89 @@ export default function HeroSlideshow() {
         </AnimatePresence>
 
         {/* Top Bar Navigation (Inside Hero) */}
-        <div className="absolute top-0 left-0 right-0 z-20 px-6 sm:px-10 py-5 sm:py-6 flex justify-between items-center">
+        <div className="absolute top-0 left-0 right-0 z-40 px-6 sm:px-10 py-5 sm:py-6 flex justify-between items-center">
           {/* Logo - Smaller Size */}
-          <Link href="/">
-            <Image
-              src="/images/logo/logo-panjang-bengkelwiguna-cropped.png"
-              alt="Bengkel Wiguna"
-              width={100}
-              height={32}
-              className="h-6 sm:h-7 w-auto object-contain drop-shadow-md"
-              onError={(e) => {
-                e.currentTarget.style.display = 'none';
-                e.currentTarget.parentElement?.insertAdjacentHTML('beforeend', '<span class="text-xl font-black text-white italic tracking-tighter">WIGUNA</span>');
-              }}
-            />
-          </Link>
+          <div className="flex-1">
+            <Link href="/">
+              <Image
+                src="/images/logo/logo-panjang-bengkelwiguna-cropped.png"
+                alt="Bengkel Wiguna"
+                width={100}
+                height={32}
+                className="h-6 sm:h-7 w-auto object-contain drop-shadow-md"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.parentElement?.insertAdjacentHTML('beforeend', '<span class="text-xl font-black text-white italic tracking-tighter">WIGUNA</span>');
+                }}
+              />
+            </Link>
+          </div>
+
+          {/* Center Flyout Menu (Tailwind UI style) */}
+          <div className="hidden lg:flex flex-1 justify-center relative z-50">
+            <div 
+              className="relative"
+              onMouseEnter={() => setIsMenuOpen(true)}
+              onMouseLeave={() => setIsMenuOpen(false)}
+            >
+              <button className="flex items-center gap-x-1 px-4 py-2 text-sm/6 font-semibold text-white hover:text-white/80 transition-colors focus:outline-none">
+                <span>Menu Utama</span>
+                <Icon icon="solar:alt-arrow-down-linear" className={`w-5 h-5 transition-transform duration-200 ${isMenuOpen ? 'rotate-180' : ''}`} />
+              </button>
+              
+              <AnimatePresence>
+                {isMenuOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute left-1/2 mt-2 flex w-screen max-w-md -translate-x-1/2 px-4"
+                  >
+                    <div className="w-full flex-auto overflow-hidden rounded-3xl bg-white/10 backdrop-blur-3xl border border-white/20 text-sm/6 shadow-2xl">
+                      <div className="p-4">
+                        {menuItems.map((item, idx) => (
+                          <div key={idx} className="group relative flex gap-x-6 rounded-2xl p-4 hover:bg-white/10 transition-colors">
+                            <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-xl bg-white/10 group-hover:bg-[#ffd900] transition-colors">
+                              <Icon icon={item.icon} className="h-6 w-6 text-white group-hover:text-[#224297] transition-colors" />
+                            </div>
+                            <div>
+                              <Link href={item.href} className="font-semibold text-white">
+                                {item.label}
+                                <span className="absolute inset-0" />
+                              </Link>
+                              <p className="mt-1 text-white/70 group-hover:text-white/90">{item.desc}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="grid grid-cols-2 divide-x divide-white/10 bg-white/5 border-t border-white/10">
+                        <Link href="/services" className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-white hover:bg-white/10 transition-colors">
+                          <Icon icon="solar:square-alt-arrow-right-linear" className="h-5 w-5 flex-none text-white/70" />
+                          Lihat Semua
+                        </Link>
+                        <a href="https://wa.me/6287817773888" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-x-2.5 p-3 font-semibold text-white hover:bg-white/10 transition-colors">
+                          <Icon icon="fa6-brands:whatsapp" className="h-5 w-5 flex-none text-white/70" />
+                          Hubungi Kami
+                        </a>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
 
           {/* Chat Minna Button - Inline Single Line */}
-          <Link
-            href="https://wa.me/6281717773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya.%20(web)"
-            target="_blank"
-            className="inline-flex items-center gap-2 bg-[#ffd900] hover:bg-[#e6c300] text-black px-4 py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg hover:scale-105 transition-all whitespace-nowrap"
-          >
-            <Icon icon="fa6-brands:whatsapp" className="w-4 h-4" />
-            <span>Chat Minna</span>
-          </Link>
-        </div>
-
-        {/* Floating Glass Navigation (Right side) */}
-        <div className="hidden lg:block absolute right-10 top-1/2 -translate-y-1/2 z-30 w-64">
-          <div className="backdrop-blur-2xl bg-white/5 border border-white/10 rounded-3xl p-6 shadow-2xl flex flex-col gap-4">
-            <div className="flex justify-between items-center pb-2 border-b border-white/10">
-              <span className="text-white font-bold text-lg">Menu Utama</span>
-              <Icon icon="solar:arrow-right-up-linear" className="text-white/50 text-xl" />
-            </div>
-            <nav className="flex flex-col gap-3 mt-2">
-              {menuItems.map((item, idx) => (
-                <Link
-                  key={idx}
-                  href={item.href}
-                  className="text-white/70 hover:text-white hover:translate-x-1 font-medium text-lg transition-all duration-300"
-                >
-                  {item.label}
-                </Link>
-              ))}
-            </nav>
+          <div className="flex-1 flex justify-end">
+            <Link
+              href="https://wa.me/6281717773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20tanya%20seputar%20servis%20mobil%20saya.%20(web)"
+              target="_blank"
+              className="inline-flex items-center gap-2 bg-[#ffd900] hover:bg-[#e6c300] text-black px-4 py-2 rounded-full font-bold text-xs sm:text-sm shadow-lg hover:scale-105 transition-all whitespace-nowrap"
+            >
+              <Icon icon="fa6-brands:whatsapp" className="w-4 h-4" />
+              <span>Chat Minna</span>
+            </Link>
           </div>
         </div>
 

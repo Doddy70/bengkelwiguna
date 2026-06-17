@@ -99,46 +99,97 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
 
     const isFeatureCard = posInRow === 0 || posInRow === 1;
 
+    const isTopLeft = posInRow === 0;
+    const isTopRight = posInRow === 1;
+    const isBottomLeft = posInRow === 2;
+    const isBottomRight = posInRow === 4;
+
+    let outerRounded = 'rounded-2xl';
+    let innerRounded = 'rounded-2xl';
+    
+    if (isTopLeft) {
+      outerRounded = 'rounded-2xl max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] lg:rounded-tr-2xl lg:rounded-b-2xl';
+      innerRounded = 'rounded-2xl max-lg:rounded-t-[calc(2rem-1px)] lg:rounded-tl-[calc(2rem-1px)] lg:rounded-tr-2xl lg:rounded-b-2xl';
+    } else if (isTopRight) {
+      outerRounded = 'rounded-2xl lg:rounded-tr-[2rem] lg:rounded-tl-2xl lg:rounded-b-2xl';
+      innerRounded = 'rounded-2xl lg:rounded-tr-[calc(2rem-1px)] lg:rounded-tl-2xl lg:rounded-b-2xl';
+    } else if (isBottomLeft) {
+      outerRounded = 'rounded-2xl lg:rounded-bl-[2rem] lg:rounded-tl-2xl lg:rounded-r-2xl';
+      innerRounded = 'rounded-2xl lg:rounded-bl-[calc(2rem-1px)] lg:rounded-tl-2xl lg:rounded-r-2xl';
+    } else if (isBottomRight) {
+      outerRounded = 'rounded-2xl max-lg:rounded-b-[2rem] lg:rounded-br-[2rem] lg:rounded-bl-2xl lg:rounded-t-2xl';
+      innerRounded = 'rounded-2xl max-lg:rounded-b-[calc(2rem-1px)] lg:rounded-br-[calc(2rem-1px)] lg:rounded-bl-2xl lg:rounded-t-2xl';
+    }
+
+    // Clean up classes
+    outerRounded = outerRounded.replace('lg:rounded-tr-2xl lg:rounded-b-2xl', ''); // Let tailwind precedence handle it, or just rely on the base 'rounded-2xl'
+    // Actually base 'rounded-2xl' will apply to all corners unless overridden.
+    
+    if (isTopLeft) {
+      outerRounded = 'rounded-2xl max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem]';
+      innerRounded = 'rounded-[calc(1rem-1px)] max-lg:rounded-t-[calc(2rem-1px)] lg:rounded-tl-[calc(2rem-1px)]';
+    } else if (isTopRight) {
+      outerRounded = 'rounded-2xl lg:rounded-tr-[2rem]';
+      innerRounded = 'rounded-[calc(1rem-1px)] lg:rounded-tr-[calc(2rem-1px)]';
+    } else if (isBottomLeft) {
+      outerRounded = 'rounded-2xl lg:rounded-bl-[2rem]';
+      innerRounded = 'rounded-[calc(1rem-1px)] lg:rounded-bl-[calc(2rem-1px)]';
+    } else if (isBottomRight) {
+      outerRounded = 'rounded-2xl max-lg:rounded-b-[2rem] lg:rounded-br-[2rem]';
+      innerRounded = 'rounded-[calc(1rem-1px)] max-lg:rounded-b-[calc(2rem-1px)] lg:rounded-br-[calc(2rem-1px)]';
+    } else {
+      innerRounded = 'rounded-[calc(1rem-1px)]';
+    }
+
     return (
       <div
         key={promo.id || idx}
         onClick={handleClaimPromo}
-        className={`${gridClass} group relative overflow-hidden rounded-3xl bg-white ring-1 ring-gray-900/5 shadow-sm hover:shadow-xl transition-all duration-500 cursor-pointer flex flex-col`}
+        className={`${gridClass} relative group cursor-pointer`}
       >
-        {/* Background Image Container */}
-        <div className={`relative w-full ${isFeatureCard ? 'h-64 sm:h-[420px]' : 'h-56 sm:h-64'} overflow-hidden bg-gray-100`}>
-          <Image
-            src={img}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          {/* Subtle gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        </div>
+        {/* Base Background layer with shadow */}
+        <div className={`absolute inset-px bg-white shadow-sm group-hover:shadow-xl transition-shadow duration-500 ${outerRounded}`} />
+        
+        {/* Main Content layer */}
+        <div className={`relative flex h-full flex-col overflow-hidden ${innerRounded}`}>
+          {/* Background Image Container */}
+          <div className={`relative w-full ${isFeatureCard ? 'h-64 sm:h-[420px]' : 'h-56 sm:h-64'} overflow-hidden bg-gray-100`}>
+            <Image
+              src={img}
+              alt={title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            {/* Subtle gradient overlay on hover */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </div>
 
-        {/* Content Area */}
-        <div className="relative flex flex-col flex-grow p-6 bg-white">
-          {discountText && (
-            <div className="mb-3">
-              <span className="inline-flex items-center rounded-full bg-[#ffd900] px-3 py-1 text-[11px] font-bold text-[#1a356d] uppercase tracking-wider shadow-sm">
-                🔥 {discountText}
+          {/* Content Area */}
+          <div className="relative flex flex-col flex-grow p-6 sm:p-8 bg-white">
+            {discountText && (
+              <div className="mb-3">
+                <span className="inline-flex items-center rounded-full bg-[#ffd900] px-3 py-1 text-[11px] font-bold text-[#1a356d] uppercase tracking-wider shadow-sm">
+                  🔥 {discountText}
+                </span>
+              </div>
+            )}
+            <h3 className="font-bold leading-tight text-gray-900 text-xl mb-2">
+              {title}
+            </h3>
+            <p className="line-clamp-2 text-sm text-gray-500 mb-6">
+              {excerpt}
+            </p>
+            
+            <div className="mt-auto flex items-center justify-between">
+              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#224297]">
+                Klaim Promo <Icon icon="solar:arrow-right-linear" className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
-          )}
-          <h3 className="font-bold leading-tight text-gray-900 text-xl mb-2">
-            {title}
-          </h3>
-          <p className="line-clamp-2 text-sm text-gray-500 mb-6">
-            {excerpt}
-          </p>
-          
-          <div className="mt-auto flex items-center justify-between">
-            <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#224297]">
-              Klaim Promo <Icon icon="solar:arrow-right-linear" className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
           </div>
         </div>
+
+        {/* Top Ring Overlay layer */}
+        <div className={`pointer-events-none absolute inset-px ring-1 ring-black/5 group-hover:ring-black/10 transition-colors duration-500 ${outerRounded}`} />
       </div>
     );
   };
