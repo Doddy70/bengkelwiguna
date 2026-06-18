@@ -16,9 +16,10 @@ export default function ServiceTabs({ contentHtml, policies, faqHtml }: ServiceT
         color="primary" 
         variant="underlined"
         classNames={{
-          tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
+          base: "max-w-full overflow-x-auto scrollbar-hide",
+          tabList: "gap-4 md:gap-6 w-max min-w-full relative rounded-none p-0 border-b border-divider flex-nowrap",
           cursor: "w-full bg-[#224297]",
-          tab: "max-w-fit px-0 h-12",
+          tab: "max-w-fit px-2 md:px-0 h-12 whitespace-nowrap",
           tabContent: "group-data-[selected=true]:text-[#224297] font-semibold",
         }}
       >

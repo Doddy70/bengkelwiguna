@@ -109,7 +109,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
       ])} />
 
       <main 
-        className="min-h-screen pb-24 bg-cover bg-no-repeat bg-top"
+        className="min-h-screen pb-24 bg-cover bg-no-repeat bg-top overflow-x-hidden"
         style={{ backgroundImage: "url('/images/home-9-footer.webp')" }}
       >
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-8 lg:pt-12">

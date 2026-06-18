@@ -34,7 +34,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                 spesialisData={spesialisList}
             />
             
-            <main className="flex-grow pt-[80px] lg:pt-[100px]">
+            <main className="flex-grow pt-[80px] lg:pt-[100px] overflow-x-hidden">
                 {children}
             </main>
 
