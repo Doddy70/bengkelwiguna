@@ -278,8 +278,9 @@ export default async function HomePage() {
 
               {/* Headline */}
               <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.1] tracking-tight uppercase mb-6">
-                KEJUJURAN & <br/>
-                <span className="text-[#ffd900]">PELAYANAN MAKSIMAL</span>
+                BENGKEL ONE STOP <br className="hidden sm:block" />
+                <span className="text-[#ffd900]">SERVICE TERPERCAYA</span> <br className="hidden sm:block" />
+                DI DEPOK
               </h2>
 
               {/* Subtitle */}
