@@ -67,26 +67,12 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
   };
   const getPromoImg = (p: Promosi) => p.featured_img || p._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/images/hero-desktop.webp';
 
-  // Unified Bento Card Pattern matching Tailwind UI Bento Grid
-  const StandardBentoCard = (promo: Promosi, idx: number) => {
+  // Standard Grid Card Pattern (Replaces Bento Layout)
+  const StandardGridCard = (promo: Promosi, idx: number) => {
     const title = getPromoTitle(promo);
     const excerpt = getPromoExcerpt(promo);
     const img = getPromoImg(promo);
     
-    // Bento Grid Layout Strategy (Pattern of 5 cards)
-    // Row 1: 2 cards (spans 3 cols each) -> 50% 50%
-    // Row 2: 3 cards (spans 2 cols each) -> 33% 33% 33%
-    let gridClass = 'col-span-1';
-    const posInRow = idx % 5;
-    if (posInRow === 0 || posInRow === 1) {
-      gridClass = 'col-span-1 md:col-span-1 lg:col-span-3';
-    } else if (posInRow === 2 || posInRow === 3) {
-      gridClass = 'col-span-1 md:col-span-1 lg:col-span-2';
-    } else {
-      // 5th card takes full width on tablet, 2 cols on desktop
-      gridClass = 'col-span-1 md:col-span-2 lg:col-span-2';
-    }
-
     const discountText = promo.diskon_persen ? `${promo.diskon_persen}% OFF` : undefined;
 
     const handleClaimPromo = (e: React.MouseEvent) => {
@@ -97,63 +83,16 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
       window.open(`https://api.whatsapp.com/send/?phone=6281717773888&text=${text}`, '_blank');
     };
 
-    const isFeatureCard = posInRow === 0 || posInRow === 1;
-
-    const isTopLeft = posInRow === 0;
-    const isTopRight = posInRow === 1;
-    const isBottomLeft = posInRow === 2;
-    const isBottomRight = posInRow === 4;
-
-    let outerRounded = 'rounded-2xl';
-    let innerRounded = 'rounded-2xl';
-    
-    if (isTopLeft) {
-      outerRounded = 'rounded-2xl max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem] lg:rounded-tr-2xl lg:rounded-b-2xl';
-      innerRounded = 'rounded-2xl max-lg:rounded-t-[calc(2rem-1px)] lg:rounded-tl-[calc(2rem-1px)] lg:rounded-tr-2xl lg:rounded-b-2xl';
-    } else if (isTopRight) {
-      outerRounded = 'rounded-2xl lg:rounded-tr-[2rem] lg:rounded-tl-2xl lg:rounded-b-2xl';
-      innerRounded = 'rounded-2xl lg:rounded-tr-[calc(2rem-1px)] lg:rounded-tl-2xl lg:rounded-b-2xl';
-    } else if (isBottomLeft) {
-      outerRounded = 'rounded-2xl lg:rounded-bl-[2rem] lg:rounded-tl-2xl lg:rounded-r-2xl';
-      innerRounded = 'rounded-2xl lg:rounded-bl-[calc(2rem-1px)] lg:rounded-tl-2xl lg:rounded-r-2xl';
-    } else if (isBottomRight) {
-      outerRounded = 'rounded-2xl max-lg:rounded-b-[2rem] lg:rounded-br-[2rem] lg:rounded-bl-2xl lg:rounded-t-2xl';
-      innerRounded = 'rounded-2xl max-lg:rounded-b-[calc(2rem-1px)] lg:rounded-br-[calc(2rem-1px)] lg:rounded-bl-2xl lg:rounded-t-2xl';
-    }
-
-    // Clean up classes
-    outerRounded = outerRounded.replace('lg:rounded-tr-2xl lg:rounded-b-2xl', ''); // Let tailwind precedence handle it, or just rely on the base 'rounded-2xl'
-    // Actually base 'rounded-2xl' will apply to all corners unless overridden.
-    
-    if (isTopLeft) {
-      outerRounded = 'rounded-2xl max-lg:rounded-t-[2rem] lg:rounded-tl-[2rem]';
-      innerRounded = 'rounded-[calc(1rem-1px)] max-lg:rounded-t-[calc(2rem-1px)] lg:rounded-tl-[calc(2rem-1px)]';
-    } else if (isTopRight) {
-      outerRounded = 'rounded-2xl lg:rounded-tr-[2rem]';
-      innerRounded = 'rounded-[calc(1rem-1px)] lg:rounded-tr-[calc(2rem-1px)]';
-    } else if (isBottomLeft) {
-      outerRounded = 'rounded-2xl lg:rounded-bl-[2rem]';
-      innerRounded = 'rounded-[calc(1rem-1px)] lg:rounded-bl-[calc(2rem-1px)]';
-    } else if (isBottomRight) {
-      outerRounded = 'rounded-2xl max-lg:rounded-b-[2rem] lg:rounded-br-[2rem]';
-      innerRounded = 'rounded-[calc(1rem-1px)] max-lg:rounded-b-[calc(2rem-1px)] lg:rounded-br-[calc(2rem-1px)]';
-    } else {
-      innerRounded = 'rounded-[calc(1rem-1px)]';
-    }
-
     return (
       <div
         key={promo.id || idx}
         onClick={handleClaimPromo}
-        className={`${gridClass} relative group cursor-pointer`}
+        className="col-span-1 relative group cursor-pointer flex flex-col rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100"
       >
-        {/* Base Background layer with shadow */}
-        <div className={`absolute inset-px bg-white shadow-sm group-hover:shadow-xl transition-shadow duration-500 ${outerRounded}`} />
-        
         {/* Main Content layer */}
-        <div className={`relative flex h-full flex-col overflow-hidden ${innerRounded}`}>
-          {/* Background Image Container */}
-          <div className={`relative w-full ${isFeatureCard ? 'h-64 sm:h-[420px]' : 'h-56 sm:h-64'} overflow-hidden bg-gray-100`}>
+        <div className="relative flex flex-col h-full overflow-hidden">
+          {/* Background Image Container - Standardized Aspect Ratio */}
+          <div className="relative w-full aspect-[4/3] sm:aspect-video overflow-hidden bg-gray-100">
             <Image
               src={img}
               alt={title}
@@ -161,7 +100,7 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
               className="object-cover transition-transform duration-700 group-hover:scale-105"
             />
             {/* Subtle gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
 
           {/* Content Area */}
@@ -187,9 +126,6 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
             </div>
           </div>
         </div>
-
-        {/* Top Ring Overlay layer */}
-        <div className={`pointer-events-none absolute inset-px ring-1 ring-black/5 group-hover:ring-black/10 transition-colors duration-500 ${outerRounded}`} />
       </div>
     );
   };
@@ -235,12 +171,12 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
         </div>
       )}
 
-      {/* BENTO GRID - 6 Pattern System */}
+      {/* STANDARD GRID CARD SYSTEM */}
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {regularPromos.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 lg:gap-6 grid-flow-dense items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
             {regularPromos.slice(0, visibleCount).map((promo, idx) => (
-              StandardBentoCard(promo, idx)
+              StandardGridCard(promo, idx)
             ))}
           </div>
         )}
