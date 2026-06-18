@@ -280,9 +280,9 @@ export default function ModernEquipmentShowcase() {
             )}
 
             {/* 6 & 7. Testimoni & Action Button (Unified Liquid Glass Card) */}
-            <div className="mt-4 bg-white/40 backdrop-blur-2xl backdrop-saturate-200 rounded-2xl border border-white/70 overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
+            <div className="mt-4 relative overflow-hidden rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-[20px] backdrop-saturate-150">
               {activeHotspot && activeHotspot.testimonial && (
-                <div className="p-4 sm:p-5">
+                <div className="p-4 sm:p-5 relative z-10">
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center gap-2.5 mb-1">
@@ -306,14 +306,14 @@ export default function ModernEquipmentShowcase() {
               )}
 
               {!activeHotspot && (
-                <div className="p-5 text-center opacity-70">
-                  <FeatherIcons.MousePointer size={28} className="mx-auto mb-2 text-gray-500" />
-                  <p className="text-[13px] text-gray-600 font-medium">Klik titik (hotspot) untuk melihat detail.</p>
+                <div className="p-5 text-center opacity-80 relative z-10">
+                  <FeatherIcons.MousePointer size={28} className="mx-auto mb-2 text-[#224297]/70" />
+                  <p className="text-[13px] text-gray-700 font-medium">Klik titik (hotspot) untuk melihat detail.</p>
                 </div>
               )}
 
-              <div className="flex border-t border-white/60">
-                <button className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-white/50 hover:bg-white/80 backdrop-blur-md transition-colors text-[#224297] font-bold text-[14px]">
+              <div className="flex border-t border-white/60 relative z-10">
+                <button className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-white/40 hover:bg-white/70 backdrop-blur-md transition-all text-[#224297] font-bold text-[14px]">
                   <FeatherIcons.Calendar size={16} className="text-[#224297]" />
                   Booking Sekarang
                 </button>
