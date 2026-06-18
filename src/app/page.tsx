@@ -254,12 +254,12 @@ export default async function HomePage() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/uber-hero.jpg"
-            alt="Bengkel Wiguna Profesional"
+            alt="Bengkel Wiguna One Stop Service"
             fill
             className="object-cover"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-800/95 to-gray-600/90" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#224297]/95 via-gray-900/95 to-gray-900/90" />
         </div>
 
         {/* Content Layer */}
@@ -269,20 +269,22 @@ export default async function HomePage() {
             {/* Left: Text Content */}
             <div className="flex-1 max-w-2xl">
               {/* Badge */}
-              <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#ffd900] text-[#224297] rounded-full text-xs font-black uppercase tracking-wider mb-6 shadow-lg">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
-                24 JAM NON-STOP
+              <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-xs font-black uppercase tracking-wider mb-6 shadow-lg">
+                <svg className="w-4 h-4 text-[#ffd900]" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+                ONE STOP SERVICE DEPOK SEJAK 1990
               </span>
 
               {/* Headline */}
               <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.1] tracking-tight uppercase mb-6">
-                AUTO-TECH <br/>
-                <span className="text-[#ffd900]">DIAGNOSTICS</span>
+                KEJUJURAN & <br/>
+                <span className="text-[#ffd900]">PELAYANAN MAKSIMAL</span>
               </h2>
 
               {/* Subtitle */}
               <p className="text-white/90 text-base md:text-lg leading-relaxed font-medium mb-10 max-w-lg">
-                Bengkel Wiguna menghadirkan layanan diagnostik kendaraan modern dengan teknisi berpengalaman. Diagnosa gratis + penawaran harga transparan.
+                Lebih dari 3 dekade melayani warga Depok sebagai bengkel pilihan yang terpercaya. Kami mengedepankan transparansi harga, analisa jujur, dan solusi tuntas tanpa drama untuk setiap masalah mobil Anda.
               </p>
 
               {/* CTA Buttons */}
@@ -292,7 +294,7 @@ export default async function HomePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-source="homepage-cta"
-                  className="px-8 py-4 rounded-full bg-[#ffd900] hover:bg-yellow-400 text-black font-black text-sm md:text-base shadow-lg hover:shadow-yellow-500/30 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 group"
+                  className="px-8 py-4 rounded-full bg-[#ffd900] hover:bg-yellow-400 text-[#224297] font-black text-sm md:text-base shadow-lg hover:shadow-yellow-500/30 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 group"
                 >
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
@@ -306,39 +308,43 @@ export default async function HomePage() {
                   href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-full bg-transparent hover:bg-white/10 text-white border border-white/30 font-bold text-sm md:text-base transition-all inline-flex items-center gap-2"
+                  className="px-8 py-4 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/30 font-bold text-sm md:text-base transition-all inline-flex items-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span>Cek Google Maps</span>
+                  <span>Cek Lokasi Kami</span>
                 </a>
               </div>
             </div>
 
-            {/* Right: Floating Video Thumbnail Card */}
+            {/* Right: Floating Video Thumbnail Card with Liquid Glass */}
             <div className="w-full sm:w-[320px] lg:w-[400px] shrink-0">
               <a
                 href="https://www.youtube.com/watch?v=vYTMOXTkpFk"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block relative aspect-[16/10] rounded-[1.5rem] overflow-hidden shadow-2xl group border border-white/20"
+                className="block relative p-2 md:p-3 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] group overflow-hidden"
               >
-                <Image
-                  src="/images/cta-video-thumbnail.png"
-                  alt="Auto-Tech Diagnostics Bengkel Wiguna"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 400px"
-                />
+                <div className="relative aspect-[16/10] rounded-[1.5rem] overflow-hidden">
+                  <Image
+                    src="/images/cta-video-thumbnail.png"
+                    alt="Bengkel Wiguna One Stop Service Depok"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 400px"
+                  />
+                  {/* Glass Overlay on Image */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#224297]/60 to-transparent mix-blend-overlay"></div>
 
-                {/* Play Button */}
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-500 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-2xl transition-all duration-300 transform group-hover:scale-110">
-                    <svg className="w-6 h-6 text-[#224297] translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
+                  {/* Play Button */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">
+                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/50 flex items-center justify-center shadow-2xl transition-all duration-300 transform group-hover:scale-110">
+                      <svg className="w-6 h-6 text-white translate-x-0.5 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
                   </div>
                 </div>
               </a>
