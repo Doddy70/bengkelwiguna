@@ -142,7 +142,7 @@ export default function Header({
                             </Link>
 
                             {/* Desktop Navigation - Hidden on mobile */}
-                            <div className="hidden lg:flex items-center gap-1">
+                            <div className="hidden xl:flex items-center gap-1">
                                 {(() => {
                                     const itemsToRender = menuItems && menuItems.length > 0
                                         ? menuItems.map(item => ({
@@ -284,7 +284,7 @@ export default function Header({
                             {/* Right Side Actions */}
                             <div className="flex items-center gap-3">
                                 {/* Search - Desktop Only */}
-                                <div className="hidden lg:block">
+                                <div className="hidden xl:block">
                                     <SearchBox />
                                 </div>
 
@@ -302,7 +302,7 @@ export default function Header({
                                 {/* Mobile Menu Toggle - Mobile Only */}
                                 <button
                                     onClick={toggleMobileMenu}
-                                    className="lg:hidden flex items-center justify-center w-11 h-11 rounded-lg bg-white shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors"
+                                    className="xl:hidden flex items-center justify-center w-11 h-11 rounded-lg bg-white shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors"
                                     aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
                                     aria-expanded={mobileOpen}
                                 >

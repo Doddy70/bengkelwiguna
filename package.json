@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "minify": "node scripts/minify.js"
+    "minify": "node scripts/minify.js",
+    "deploy:aapanel": "npm run build && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/ && cp ecosystem.config.js .next/standalone/ && cd .next/standalone && zip -r ../../bengkelwiguna-deploy.zip ."
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.71",

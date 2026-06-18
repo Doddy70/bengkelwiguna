@@ -279,42 +279,42 @@ export default function ModernEquipmentShowcase() {
               </div>
             )}
 
-            {/* 6 & 7. Testimoni & Action Button (Unified Dark Card) */}
-            <div className="mt-4 bg-[#181d27] rounded-2xl border border-gray-700/50 overflow-hidden shadow-2xl">
+            {/* 6 & 7. Testimoni & Action Button (Unified Liquid Glass Card) */}
+            <div className="mt-4 bg-white/40 backdrop-blur-2xl backdrop-saturate-200 rounded-2xl border border-white/70 overflow-hidden shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
               {activeHotspot && activeHotspot.testimonial && (
                 <div className="p-4 sm:p-5">
                   <div className="flex items-start justify-between">
                     <div>
                       <div className="flex items-center gap-2.5 mb-1">
-                        <h4 className="text-white font-bold text-[15px]">{activeHotspot.testimonial.author.split(',')[0]}</h4>
-                        <span className="px-2 py-0.5 bg-green-500/10 text-green-400 border border-green-500/20 text-[10px] font-bold tracking-wide rounded-full">
+                        <h4 className="text-gray-900 font-bold text-[15px]">{activeHotspot.testimonial.author.split(',')[0]}</h4>
+                        <span className="px-2 py-0.5 bg-green-500/10 text-green-700 border border-green-500/20 text-[10px] font-bold tracking-wide rounded-full backdrop-blur-md">
                           Pelanggan
                         </span>
                       </div>
-                      <p className="text-gray-400 text-[13px]">{activeHotspot.testimonial.author.split(',').slice(1).join(',')}</p>
+                      <p className="text-gray-600 font-medium text-[13px]">{activeHotspot.testimonial.author.split(',').slice(1).join(',')}</p>
                     </div>
                     <div className="shrink-0 ml-4">
-                      <div className="w-11 h-11 rounded-full bg-gray-700 flex items-center justify-center border-2 border-gray-600 overflow-hidden">
-                        <FeatherIcons.User size={20} className="text-gray-400" />
+                      <div className="w-11 h-11 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center border-2 border-white shadow-sm overflow-hidden">
+                        <FeatherIcons.User size={20} className="text-[#224297]" />
                       </div>
                     </div>
                   </div>
-                  <p className="text-gray-300 text-[13.5px] italic mt-4 leading-relaxed">
+                  <p className="text-gray-700 text-[13.5px] italic mt-4 leading-relaxed font-medium">
                     &quot;{activeHotspot.testimonial.quote}&quot;
                   </p>
                 </div>
               )}
 
               {!activeHotspot && (
-                <div className="p-5 text-center opacity-60">
-                  <FeatherIcons.MousePointer size={28} className="mx-auto mb-2 text-gray-400" />
-                  <p className="text-[13px] text-gray-300">Klik titik (hotspot) untuk melihat detail.</p>
+                <div className="p-5 text-center opacity-70">
+                  <FeatherIcons.MousePointer size={28} className="mx-auto mb-2 text-gray-500" />
+                  <p className="text-[13px] text-gray-600 font-medium">Klik titik (hotspot) untuk melihat detail.</p>
                 </div>
               )}
 
-              <div className="flex border-t border-gray-700/50">
-                <button className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-[#181d27] hover:bg-[#202634] transition-colors text-white font-semibold text-[14px]">
-                  <FeatherIcons.Calendar size={16} className="text-gray-400" />
+              <div className="flex border-t border-white/60">
+                <button className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-white/50 hover:bg-white/80 backdrop-blur-md transition-colors text-[#224297] font-bold text-[14px]">
+                  <FeatherIcons.Calendar size={16} className="text-[#224297]" />
                   Booking Sekarang
                 </button>
               </div>
