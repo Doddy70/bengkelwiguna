@@ -352,6 +352,8 @@ body.dark {
     /* Set the default font globally */
     html {
         font-family: var(--font-dm-sans);
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px;
     }
     body {
         background: var(--background);

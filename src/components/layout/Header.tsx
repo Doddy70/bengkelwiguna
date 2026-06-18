@@ -123,7 +123,7 @@ export default function Header({
     return (
         <>
             <header
-                className={`header-wrapper w-full ${position} top-0 left-0 z-40 transition-all duration-500 ${visibilityClass} ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${scrolled ? "glass-header bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-200/50" : `${bgColor}`}`}
+                className={`header-wrapper w-full ${position} top-0 left-0 z-[100] transition-all duration-500 ${visibilityClass} ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${scrolled ? "glass-header bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-200/50" : `${bgColor}`}`}
             >
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className={`${headerClass === "bg-color-none" ? "bg-gray-100 rounded-lg px-3" : ""}`}>

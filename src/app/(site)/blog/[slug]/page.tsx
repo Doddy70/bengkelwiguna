@@ -234,7 +234,7 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                 </div>
 
                 {/* ═══ Right Column — Sidebar ═══ */}
-                <aside className="w-full lg:sticky lg:top-24 space-y-8">
+                <aside className="w-full lg:sticky lg:top-32 space-y-8">
 
                     {/* Popular Articles */}
                     <div className="bg-white rounded-3xl p-6 lg:p-8 border border-gray-100 shadow-sm">

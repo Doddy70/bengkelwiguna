@@ -217,7 +217,7 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             {/* ═══ Right Column — Sidebar (Restored) ═══ */}
-            <aside className="w-full lg:sticky lg:top-24 space-y-8">
+            <aside className="w-full lg:sticky lg:top-32 space-y-8">
               {/* Service Navigation */}
               <ServiceSidebar services={allServices} currentSlug={slug} />
 
