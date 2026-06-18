@@ -47,7 +47,7 @@ export default function TentangWigunaClient() {
     >
 
       {/* 1. Header Section */}
-      <section className="pt-32 pb-16 lg:pt-40 lg:pb-20 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section className="pt-8 lg:pt-12 pb-16 lg:pt-40 lg:pb-20 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="flex justify-center items-center gap-2 mb-6">
           <div className="w-1.5 h-1.5 rounded-full bg-gray-900"></div>
           <span className="text-sm font-bold tracking-widest uppercase text-gray-900">Tentang Kami</span>

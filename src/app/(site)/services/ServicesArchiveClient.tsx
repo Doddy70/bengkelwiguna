@@ -92,7 +92,7 @@ export default function ServicesArchiveClient({ services }: { services: Service[
             </div>
             
             {/* HERO SECTION */}
-            <section className="relative z-10 pt-32 lg:pt-40 pb-16 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <section className="relative z-10 pt-8 lg:pt-12 lg:pt-40 pb-16 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
                 
                 {/* Hero Header */}
                 <div className="grid lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-16">

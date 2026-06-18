@@ -38,7 +38,7 @@ export default function ContactPage() {
     return (
         <div className="relative font-sans min-h-screen">
             {/* ═══ Hero Section ═══ */}
-            <section className="relative pt-32 pb-24 overflow-hidden min-h-[500px] flex items-center">
+            <section className="relative pt-8 lg:pt-12 pb-24 overflow-hidden min-h-[500px] flex items-center">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <Image

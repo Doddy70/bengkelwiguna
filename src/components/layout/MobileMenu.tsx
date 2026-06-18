@@ -129,14 +129,14 @@ export default function MobileMenu({
         <>
             {/* Backdrop */}
             <div
-                className="fixed inset-0 bg-black/50 z-40"
+                className="fixed inset-0 bg-black/50 z-[105]"
                 onClick={toggleMobileMenu}
                 aria-hidden="true"
             />
 
             {/* Menu Panel */}
             <div
-                className="fixed top-0 left-0 h-full w-[300px] max-w-[85vw] bg-white z-50 flex flex-col shadow-2xl"
+                className="fixed top-0 left-0 h-full w-[300px] max-w-[85vw] bg-white z-[110] flex flex-col shadow-2xl"
                 style={{
                     transform: mobileOpen ? 'translateX(0)' : 'translateX(-100%)',
                     transition: 'transform 0.3s ease-in-out'

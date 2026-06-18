@@ -7,7 +7,7 @@ import { ArrowUpRight, ArrowDown, Star, Target, Award, ShieldCheck } from "lucid
 
 export default function TentangWigunaPage() {
   return (
-    <div className="bg-[#fcfcfc] dark:bg-neutral-950 font-dm min-h-screen pt-32 pb-20">
+    <div className="bg-[#fcfcfc] dark:bg-neutral-950 font-dm min-h-screen pt-8 lg:pt-12 pb-20">
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* === 1. HEADER TITLE & SUBTITLE === */}

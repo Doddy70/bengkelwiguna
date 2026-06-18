@@ -73,7 +73,7 @@ export default async function SinglePaketServicePage({ params }: { params: Promi
       ])} />
 
       {/* Branded Page Title Section */}
-      <section className="bg-light-blue-banner lg:pt-48 pt-32 pb-20 relative overflow-hidden">
+      <section className="bg-light-blue-banner lg:pt-48 pt-8 lg:pt-12 pb-20 relative overflow-hidden">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3 relative z-10">
           <div className="max-w-3xl">
             <span className="inline-block bg-brand-gold text-brand-blue px-5 py-1.5 rounded-full text-xs font-black uppercase tracking-[0.2em] mb-6 shadow-xl shadow-yellow-900/10">

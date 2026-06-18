@@ -68,7 +68,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   return (
     <>
       {/* === NEW ASYMMETRIC BENTO HERO HEADER === */}
-      <div className="relative bg-[#fcfcfc] dark:bg-neutral-950 pt-32 pb-12 lg:pb-16 font-dm">
+      <div className="relative bg-[#fcfcfc] dark:bg-neutral-950 pt-8 lg:pt-12 pb-12 lg:pb-16 font-dm">
         {/* Fixed Page Background Image */}
         <div className="fixed inset-0 z-0">
           <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
