@@ -23,9 +23,9 @@ interface TrustSignalsProps {
 const defaultSignals: TrustSignal[] = [
   {
     icon: "solar:calendar-bold-duotone",
-    value: "15+",
+    value: "30+",
     label: "Tahun Pengalaman",
-    description: "Melayani ribuan kendaraan sejak2010",
+    description: "Melayani ribuan kendaraan sejak 1990",
   },
   {
     icon: "solar:car-bold-duotone",

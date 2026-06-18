@@ -83,7 +83,7 @@ export default function TentangWigunaPage() {
                 Tentang Bengkel Wiguna
               </span>
               <h2 className="text-3xl font-black tracking-tight uppercase leading-tight mb-6">
-                Penyedia Layanan Perawatan Mobil Terbaik Sejak 2010
+                Penyedia Layanan Perawatan Mobil Terbaik Sejak 1990
               </h2>
               <div className="space-y-4 text-white/80 text-sm sm:text-base leading-relaxed font-medium">
                 <p>
@@ -108,7 +108,7 @@ export default function TentangWigunaPage() {
           </div>
           <div className="w-[1px] h-12 bg-gray-200 dark:bg-neutral-800 hidden md:block" />
           <div className="text-center">
-            <span className="block text-4xl lg:text-5xl font-black text-[#224297] dark:text-[#ffd900] tracking-tight mb-2">15+</span>
+            <span className="block text-4xl lg:text-5xl font-black text-[#224297] dark:text-[#ffd900] tracking-tight mb-2">30+</span>
             <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Tahun Pengalaman</span>
           </div>
           <div className="w-[1px] h-12 bg-gray-200 dark:bg-neutral-800 hidden md:block" />

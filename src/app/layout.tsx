@@ -56,13 +56,15 @@ export const metadata = {
   },
 
   // ✅ Description: Keyword + CTA + Value proposition
-  description: 'Bengkel mobil terpercaya di Depok sejak 2010. Service profesional: tune up, ganti oli, AC, kaki-kaki. Diagnosa gratis, harga transparan!',
+  description: 'Bengkel one stop service terpercaya di Depok sejak 1990. Mengedepankan kejujuran dan pelayanan maksimal. Service profesional: tune up, ganti oli, AC.',
 
   // ✅ Keywords: Local + Service-based
   keywords: [
     'bengkel depok',
     'service mobil depok',
     'bengkel mobil terpercaya',
+    'bengkel jujur depok',
+    'bengkel mobil sejak 1990',
     'tune up depok',
     'ganti oli depok',
     'service ac mobil',
@@ -95,7 +97,7 @@ export const metadata = {
   // ✅ Open Graph (Enhanced for social sharing)
   openGraph: {
     title: 'Service Mobil Depok - Bengkel Wiguna | Profesional',
-    description: 'Bengkel mobil terpercaya di Depok sejak 2010. Service profesional: tune up, ganti oli, AC, kaki-kaki. Diagnosa gratis!',
+    description: 'Bengkel one stop service terpercaya di Depok sejak 1990. Berkomitmen pada kejujuran dan pelayanan maksimal.',
     url: 'https://bengkelwiguna.com',
     siteName: 'Bengkel Wiguna',
     locale: 'id_ID',
@@ -124,7 +126,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Service Mobil Depok - Bengkel Wiguna | Profesional',
-    description: 'Bengkel mobil terpercaya di Depok sejak 2010. Service profesional: tune up, ganti oli, AC, kaki-kaki. Diagnosa gratis!',
+    description: 'Bengkel one stop service terpercaya di Depok sejak 1990. Berkomitmen pada kejujuran dan pelayanan maksimal.',
     site: '@bengkelwiguna',
     creator: '@bengkelwiguna',
     images: {

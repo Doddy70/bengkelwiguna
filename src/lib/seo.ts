@@ -17,7 +17,7 @@ const BRAND = {
   BLUE: "#224297",
   GOLD: "#ffd900",
   NAME: "Bengkel Wiguna",
-  TAGLINE: "No Drama, No Bongkar-Bongkar, No Tebak-Tebak, No Tipu-Tipu"
+  TAGLINE: "Berkomitmen pada kejujuran dan pelayanan maksimal. No Drama, No Tipu-Tipu"
 };
 
 export function generateLocalBusinessSchema() {
@@ -27,13 +27,13 @@ export function generateLocalBusinessSchema() {
     "@id": "https://bengkelwiguna.com/#localbusiness",
     "name": BRAND.NAME,
     "alternateName": ["Wiguna Workshop", "Bengkel Wiguna Depok"],
-    "description": `${BRAND.TAGLINE}. Bengkel One Stop Service terpercaya di Depok sejak 2010. Perawatan mobil profesional dengan teknisi berpengalaman.`,
+    "description": `Bengkel Wiguna adalah bengkel one stop service terpercaya untuk kota Depok yang telah berdiri sejak tahun 1990. ${BRAND.TAGLINE}. Kami memberikan solusi perawatan mobil profesional dengan teknisi berpengalaman.`,
     "image": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
     "url": "https://bengkelwiguna.com",
     "telephone": PHONE_CS,
     "priceRange": "$$",
     "slogan": BRAND.TAGLINE,
-    "foundingDate": "2010",
+    "foundingDate": "1990",
     "foundingLocation": "Depok, Jawa Barat, Indonesia",
     "address": {
       "@type": "PostalAddress",
@@ -170,13 +170,13 @@ export function generateOrganizationSchema() {
     "@id": "https://bengkelwiguna.com/#organization",
     "name": BRAND.NAME,
     "alternateName": ["Wiguna Workshop", "Bengkel Wiguna Depok"],
-    "description": `${BRAND.TAGLINE}. Bengkel One Stop Service terpercaya di Depok sejak 2010.`,
+    "description": `Bengkel Wiguna adalah bengkel one stop service terpercaya di Kota Depok yang berdiri sejak 1990. Kami mengedepankan kejujuran dan pelayanan maksimal kepada customer.`,
     "url": "https://bengkelwiguna.com",
     "logo": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
     "image": "https://bengkelwiguna.com/images/about/bbbb.jpg",
     "telephone": PHONE_CS,
     "email": "info@bengkelwiguna.com",
-    "foundingDate": "2010",
+    "foundingDate": "1990",
     "foundingLocation": "Depok, Jawa Barat, Indonesia",
     "slogan": BRAND.TAGLINE,
     "address": {
@@ -231,8 +231,8 @@ export function generateWebsiteSchema() {
     "@type": "WebSite",
     "@id": "https://bengkelwiguna.com/#website",
     "url": "https://bengkelwiguna.com",
-    "name": `${BRAND.NAME} - Bengkel Mobil Terpercaya di Depok`,
-    "description": `${BRAND.TAGLINE}. Layanan servis mobil profesional di Depok. Booking sekarang!`,
+    "name": `${BRAND.NAME} - Bengkel Mobil One Stop Service Terpercaya di Depok`,
+    "description": `Berdiri sejak 1990, Bengkel Wiguna melayani dengan kejujuran dan pelayanan maksimal. Solusi perawatan mobil terpercaya di kota Depok.`,
     "publisher": {
       "@id": "https://bengkelwiguna.com/#organization"
     },
@@ -407,12 +407,12 @@ export function generateAboutPageSchema() {
     "mainEntity": {
       "@id": "https://bengkelwiguna.com/#organization"
     },
-    "description": `${BRAND.TAGLINE}. Bengkel One Stop Service terpercaya yang telah menjadi bagian dari perjalanan masyarakat Depok dan sekitarnya dalam merawat kendaraan mereka sejak lebih dari dua dekade lalu.`,
+    "description": `Berdiri sejak 1990, Bengkel Wiguna adalah bengkel one stop service terpercaya yang telah menjadi bagian dari perjalanan masyarakat kota Depok. Kami menjunjung tinggi kejujuran dan pelayanan maksimal.`,
     "about": {
       "@type": "Organization",
       "name": BRAND.NAME,
       "description": "Bengkel One Stop Service terpercaya di Depok",
-      "foundingDate": "2010",
+      "foundingDate": "1990",
       "foundingLocation": "Depok, Jawa Barat",
       "telephone": PHONE_CS,
       "areaServed": {

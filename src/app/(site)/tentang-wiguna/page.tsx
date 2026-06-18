@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Tentang Wiguna - Bengkel Wiguna',
-  description: 'Bengkel One Stop Service terpercaya di Depok. No Drama, No Bongkar-Bongkar, No Tebak-Tebak, No Tipu-Tipu. Servis berkualitas sejak 2010.',
+  description: 'Bengkel One Stop Service terpercaya di Depok. No Drama, No Bongkar-Bongkar, No Tebak-Tebak, No Tipu-Tipu. Servis berkualitas sejak 1990.',
 };
 
 export default function TentangWigunaPage() {

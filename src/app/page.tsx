@@ -52,7 +52,7 @@ export async function generateMetadata() {
     if (!pageData) {
       return {
         title: 'Bengkel Mobil Depok Terpercaya - Bengkel Wiguna',
-        description: 'Bengkel One Stop Service terpercaya di Depok sejak 2010. Perawatan mobil profesional dengan teknisi berpengalaman. Booking sekarang & hemat hingga 20%!',
+        description: 'Bengkel One Stop Service terpercaya di Depok sejak 1990. Mengedepankan kejujuran dan pelayanan maksimal. Perawatan mobil profesional dengan teknisi berpengalaman.',
       }
     }
 
@@ -71,14 +71,14 @@ export async function generateMetadata() {
     }
     
     if (metadata.description && (metadata.description.includes('<p>') || metadata.description.length < 20)) {
-        metadata.description = 'Bengkel One Stop Service terpercaya di Depok sejak 2010. Perawatan mobil profesional dengan teknisi berpengalaman. Booking sekarang & hemat hingga 20%!'
+        metadata.description = 'Bengkel One Stop Service terpercaya di Depok sejak 1990. Mengedepankan kejujuran dan pelayanan maksimal. Perawatan mobil profesional dengan teknisi berpengalaman.'
     }
 
     return metadata
   } catch (error) {
     return {
       title: 'Bengkel Mobil Depok Terpercaya - Bengkel Wiguna',
-      description: 'Bengkel One Stop Service terpercaya di Depok sejak 2010. Perawatan mobil profesional dengan teknisi berpengalaman.',
+      description: 'Bengkel One Stop Service terpercaya di Depok sejak 1990. Mengedepankan kejujuran dan pelayanan maksimal. Perawatan mobil profesional dengan teknisi berpengalaman.',
     }
   }
 }
