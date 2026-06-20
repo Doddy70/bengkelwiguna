@@ -31,158 +31,88 @@
     ],
     "hotspots": [
       {
-        "top": "40%",
-        "left": "25%",
-        "title": "Ruang Bakar",
-        "subtitle": "Stinger Engine Flush melarutkan lumpur oli dan kerak karbon di area atas mesin.",
+        "top": "28%",
+        "left": "35%",
+        "title": "COVER KLEP (VALVE COVER)",
+        "subtitle": "Penutup kepala silinder yang melindungi komponen klep di atas mesin.",
         "labelOffsetX": -180,
         "labelOffsetY": -160,
         "nodeIcon": "Cpu",
-        "treatment": "Pembersihan kerak karbon pada ruang bakar dan piston.",
-        "impacts": [
-          "Tarikan lebih responsif",
-          "Idle lebih stabil",
-          "Mesin lebih halus"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Mesin terasa berat",
-            "Getaran meningkat",
-            "Konsumsi BBM boros"
-          ],
-          "after": [
-            "Akselerasi lebih ringan",
-            "Getaran berkurang",
-            "Pembakaran lebih optimal"
-          ]
-        },
-        "testimonial": {
-          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
-          "author": "Budi, Toyota Avanza 2018"
-        }
+        "thumb": "/images/equipment/Cover_Clep_Thumb.png",
+        "fungsi": "Melindungi komponen klep (valve) dan nosel hidrolik dari kotoran serta kerusakan mekanis.",
+        "gejala": ["Oli rembes dari atas mesin", "Mesin terasa berat saat start dingin", "Suara ketukan tidak normal"],
+        "manfaat": ["Mesin lebih stabil saat idle", "Perlindungan klep optimal", "Mencegah kebocoran oli"],
+        "hasilDeteksi": "Klepan klep normal, oil galleries bersih, nosel hidrolik berfungsi"
       },
       {
-        "top": "45%",
-        "left": "28%",
-        "title": "Sistem Pelumasan",
-        "subtitle": "Membersihkan jalur pelumasan sehingga oli baru dapat bersirkulasi maksimal.",
-        "labelOffsetX": 150,
-        "labelOffsetY": 20,
-        "nodeIcon": "Droplet",
-        "treatment": "Pembersihan jalur oli menggunakan Engine Lubrication Flush.",
-        "impacts": [
-          "Sirkulasi oli lebih lancar",
-          "Mengurangi gesekan internal",
-          "Melindungi komponen mesin"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Mesin terasa berat",
-            "Getaran meningkat",
-            "Konsumsi BBM boros"
-          ],
-          "after": [
-            "Akselerasi lebih ringan",
-            "Getaran berkurang",
-            "Pembakaran lebih optimal"
-          ]
-        },
-        "testimonial": {
-          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
-          "author": "Budi, Toyota Avanza 2018"
-        }
-      },
-      {
-        "top": "35%",
-        "left": "32%",
-        "title": "Fuel System",
-        "subtitle": "Mengurangi gesekan antar komponen seperti ring piston dan camshaft.",
-        "labelOffsetX": 180,
-        "labelOffsetY": -120,
-        "nodeIcon": "Shield",
-        "treatment": "Pembersihan deposit pada sistem bahan bakar.",
-        "impacts": [
-          "Pembakaran lebih optimal",
-          "Konsumsi BBM lebih efisien",
-          "Respons akselerasi meningkat"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Mesin terasa berat",
-            "Getaran meningkat",
-            "Konsumsi BBM boros"
-          ],
-          "after": [
-            "Akselerasi lebih ringan",
-            "Getaran berkurang",
-            "Pembakaran lebih optimal"
-          ]
-        },
-        "testimonial": {
-          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
-          "author": "Budi, Toyota Avanza 2018"
-        }
-      },
-      {
-        "top": "45%",
-        "left": "15%",
-        "title": "Cooling System",
-        "subtitle": "Mesin lebih responsif, idle halus, dan BBM efisien berkat pembakaran optimal.",
+        "top": "38%",
+        "left": "30%",
+        "title": "AREA KLEP & CAMSHAFT",
+        "subtitle": "Komponen camshaft yang mengatur waktu buka-tutup katup klep mesin.",
         "labelOffsetX": -180,
         "labelOffsetY": 20,
-        "nodeIcon": "Zap",
-        "treatment": "Optimalisasi sistem pendingin mesin.",
-        "impacts": [
-          "Temperatur lebih stabil",
-          "Mencegah overheat",
-          "Performa lebih konsisten"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Mesin terasa berat",
-            "Getaran meningkat",
-            "Konsumsi BBM boros"
-          ],
-          "after": [
-            "Akselerasi lebih ringan",
-            "Getaran berkurang",
-            "Pembakaran lebih optimal"
-          ]
-        },
-        "testimonial": {
-          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
-          "author": "Budi, Toyota Avanza 2018"
-        }
+        "nodeIcon": "Disc",
+        "thumb": "/images/equipment/Cramshaft_Thumb.png",
+        "fungsi": "Mengatur timing klep berdasarkan posisi camshaft lobe untuk optimalisasi suplai udara dan bahan bakar.",
+        "gejala": ["Mesin kehilangan tenaga", "Konsumsi BBM meningkat", "Idle tidak stabil"],
+        "manfaat": ["Timing klep akurat", "Efisiensi pembakaran meningkat", "Performa mesin pulih"],
+        "hasilDeteksi": "Camshaft profile normal, clearance klep sesuai spec, lobe camshaft tidak aus"
       },
       {
-        "top": "75%",
-        "left": "28%",
-        "title": "Bak Oli (Karter)",
-        "subtitle": "Endapan kotoran di bak oli terbuang tuntas, menekan risiko kerusakan.",
+        "top": "32%",
+        "left": "18%",
+        "title": "TIMING COVER & TIMING AREA",
+        "subtitle": "Area cover timing yang melindungi rantai/ban tembaga dan gear timing mesin.",
+        "labelOffsetX": -180,
+        "labelOffsetY": 80,
+        "nodeIcon": "Clock",
+        "thumb": "/images/equipment/Timing_cover_thumb.png",
+        "fungsi": "Melindungi komponen timing chain/belt dan menjaga sinkronisasi putar crankshaft dengan camshaft.",
+        "gejala": ["Suara dengung dari depan mesin", "Mesin sulit start", "Tanda timing lompatan"],
+        "manfaat": ["Timing synchronization terjaga", "Mencegah kerusakan katup", "Engine life lebih panjang"],
+        "hasilDeteksi": "Timing chain tensioner normal, gear timing sejajar, tensioner tidak aus"
+      },
+      {
+        "top": "50%",
+        "left": "25%",
+        "title": "JALUR OLI UTAMA (OIL GALLERY)",
+        "subtitle": "Saluran oli utama yang mendistribusikan pelumas ke seluruh komponen mesin.",
+        "labelOffsetX": 150,
+        "labelOffsetY": -50,
+        "nodeIcon": "Droplet",
+        "thumb": "/images/equipment/JAlur_oli_thumb.png",
+        "fungsi": "Channel utama distribusi oli dari pompa oli ke seluruh journal bearing dan komponen bergerak.",
+        "gejala": ["Tekanan oli rendah", "Lampu indikator oli menyala", "Suara gemeretak"],
+        "manfaat": ["Pelumasan menyeluruh", "Tekanan oli stabil", "Mengurangi gesekan metal"],
+        "hasilDeteksi": "Oil gallery bebas sumbatan, pressure regulator berfungsi, oil passages bersih"
+      },
+      {
+        "top": "45%",
+        "left": "35%",
+        "title": "JALUR OLI PRESISI (MICRO OIL PASSAGE)",
+        "subtitle": "Saluran oli mikro yang mensuplai pelumasan ke bagian presisi mesin.",
+        "labelOffsetX": 150,
+        "labelOffsetY": 80,
+        "nodeIcon": "Target",
+        "thumb": "/images/equipment/Micro_oil_thumb.png",
+        "fungsi": "Mensuplai oli tekanan tinggi ke komponen presisi seperti turbo, VVT, dan nosel hidrolik.",
+        "gejala": ["Turbo lag terasa", "VVT tidak responsif", "Suara sedikit tidak normal"],
+        "manfaat": ["Komponen presisi terlumasi", "Respons turbo lebih cepat", "VVT berfungsi optimal"],
+        "hasilDeteksi": "Micro passages patent, oil pressure di spec, no restriction detected"
+      },
+      {
+        "top": "72%",
+        "left": "30%",
+        "title": "CARTER / OIL PAN (OIL SUMP)",
+        "subtitle": "Bak oli bagian bawah mesin yang menyimpan cadangan oli pelumas.",
         "labelOffsetX": 150,
         "labelOffsetY": 120,
         "nodeIcon": "Crosshair",
-        "treatment": "Penyedotan sisa endapan di dasar karter oli.",
-        "impacts": [
-          "Oli baru tidak tercemar",
-          "Pompa oli bekerja ringan"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Mesin terasa berat",
-            "Getaran meningkat",
-            "Konsumsi BBM boros"
-          ],
-          "after": [
-            "Akselerasi lebih ringan",
-            "Getaran berkurang",
-            "Pembakaran lebih optimal"
-          ]
-        },
-        "testimonial": {
-          "quote": "Tarikan mobil jauh lebih ringan setelah Semi Overhaul. Mesin terasa lebih halus dibanding sebelumnya.",
-          "author": "Budi, Toyota Avanza 2018"
-        }
+        "thumb": "/images/equipment/Oil_Sump_thumb.png",
+        "fungsi": "Menampung oli pelumas cadangan yang disirkulasikan pompa oli ke seluruh mesin.",
+        "gejala": ["Oli cepat kotor", "Level oli turun tidak wajar", "Bunyi dari bawah mesin"],
+        "manfaat": ["Oli tidak tercampur endapan", "Pompa oli bekerja ringan", "Heat dissipation optimal"],
+        "hasilDeteksi": "Oil sump bebas sludge, strainer bersih, oil level stabil setelah flushing"
       }
     ],
     "specs": {

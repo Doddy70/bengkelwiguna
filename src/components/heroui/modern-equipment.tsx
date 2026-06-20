@@ -215,10 +215,23 @@ export default function ModernEquipmentShowcase() {
           </CardHeader>
 
           <CardBody className="gap-4 px-5 pb-5 pt-2 max-h-[70vh] overflow-y-auto scrollbar-hide">
-            
-            {/* 2. Deskripsi Singkat */}
+
+            {/* 2. Thumbnail Image (for Semi Overhaul hotspots) */}
+            {activeHotspot && activeHotspot.thumb && (
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-gray-100">
+                <Image
+                  src={activeHotspot.thumb}
+                  alt={activeHotspot.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 460px"
+                />
+              </div>
+            )}
+
+            {/* 3. Deskripsi Singkat (fungsi/treatment) */}
             <p className="text-[14px] text-gray-600 leading-relaxed m-0 border-b border-gray-100 pb-4">
-              {activeHotspot ? activeHotspot.treatment : activeItem.description}
+              {activeHotspot ? (activeHotspot.fungsi || activeHotspot.treatment) : activeItem.description}
             </p>
 
             {/* 3. Impact Score Cards (3 Kartu horizontal) */}
@@ -237,17 +250,53 @@ export default function ModernEquipmentShowcase() {
               </div>
             )}
 
-            {/* 4. Benefit Checklist */}
-            {activeHotspot && activeHotspot.impacts && (
+            {/* 4. Gejala & Benefit Checklist */}
+            {activeHotspot && (activeHotspot.gejala || activeHotspot.impacts) && (
               <div className="pt-1">
-                <ul className="space-y-2">
-                  {activeHotspot.impacts.map((impact: string, idx: number) => (
-                    <li key={idx} className="text-[14px] text-gray-700 flex items-start gap-3">
-                      <FeatherIcons.Check size={18} className="text-green-500 shrink-0 mt-0.5" />
-                      <span className="leading-relaxed">{impact}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Gejala Section */}
+                {activeHotspot.gejala && activeHotspot.gejala.length > 0 && (
+                  <div className="mb-4">
+                    <p className="text-[11px] font-bold text-red-600 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+                      <FeatherIcons.AlertCircle size={12} />
+                      Gejala Kerusakan
+                    </p>
+                    <ul className="space-y-1.5">
+                      {activeHotspot.gejala.map((gejala: string, idx: number) => (
+                        <li key={`g-${idx}`} className="text-[13px] text-gray-600 flex items-start gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 shrink-0" />
+                          <span>{gejala}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {/* Manfaat Section */}
+                {(activeHotspot.manfaat || activeHotspot.impacts) && (
+                  <div>
+                    <p className="text-[11px] font-bold text-green-600 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+                      <FeatherIcons.CheckCircle size={12} />
+                      Manfaat Treatment
+                    </p>
+                    <ul className="space-y-1.5">
+                      {(activeHotspot.manfaat || activeHotspot.impacts).map((manfaat: string, idx: number) => (
+                        <li key={`m-${idx}`} className="text-[13px] text-gray-700 flex items-start gap-2">
+                          <FeatherIcons.Check size={16} className="text-green-500 shrink-0 mt-0.5" />
+                          <span>{manfaat}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {/* Hasil Deteksi */}
+                {activeHotspot.hasilDeteksi && (
+                  <div className="mt-4 p-3 bg-blue-50/50 rounded-xl border border-blue-100">
+                    <p className="text-[11px] font-bold text-blue-700 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
+                      <FeatherIcons.Crosshair size={12} />
+                      Hasil Deteksi
+                    </p>
+                    <p className="text-[13px] text-blue-800 leading-relaxed">{activeHotspot.hasilDeteksi}</p>
+                  </div>
+                )}
               </div>
             )}
 
