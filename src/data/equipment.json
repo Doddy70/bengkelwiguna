@@ -4,6 +4,7 @@
     "name": "Semi Overhaul",
     "category": "Engine Recovery",
     "image": "/images/hotspot/Mobil_stinger.png",
+    "defaultThumb": "/images/equipment/Semi_Overhaul_Default.jpg",
     "imagePosition": "left",
     "description": "Perawatan mesin level semi overhaul menggunakan sistem Stinger Flushing untuk membuang kerak membandel tanpa bongkar blok.",
     "suggestedQuestions": [

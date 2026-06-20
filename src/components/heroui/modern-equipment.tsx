@@ -209,12 +209,12 @@ export default function ModernEquipmentShowcase() {
 
           <CardBody className="gap-4 px-5 pb-5 pt-2 max-h-[70vh] overflow-y-auto scrollbar-hide">
 
-            {/* 2. Thumbnail Image (for Semi Overhaul hotspots) */}
-            {activeHotspot && activeHotspot.thumb && (
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-gray-100">
+            {/* 2. Thumbnail Image (for active hotspot or default item) */}
+            {(activeHotspot?.thumb || (!activeHotspot && activeItem.defaultThumb)) && (
+              <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-gray-100 mb-2">
                 <Image
-                  src={activeHotspot.thumb}
-                  alt={activeHotspot.title}
+                  src={activeHotspot ? activeHotspot.thumb : activeItem.defaultThumb}
+                  alt={activeHotspot ? activeHotspot.title : activeItem.name}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 460px"
