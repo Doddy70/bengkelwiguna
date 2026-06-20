@@ -46,12 +46,12 @@
         "hasilDeteksi": "Klepan klep normal, oil galleries bersih, nosel hidrolik berfungsi"
       },
       {
-        "top": "27.0%",
-        "left": "34.0%",
+        "top": "34.0%",
+        "left": "12.0%",
         "title": "AREA KLEP & CAMSHAFT",
         "subtitle": "Komponen camshaft yang mengatur waktu buka-tutup katup klep mesin.",
-        "labelOffsetX": -180,
-        "labelOffsetY": 20,
+        "labelOffsetX": 120,
+        "labelOffsetY": -80,
         "nodeIcon": "Disc",
         "thumb": "/images/equipment/info_2.jpg",
         "fungsi": "Mengatur timing klep berdasarkan posisi camshaft lobe untuk optimalisasi suplai udara dan bahan bakar.",
