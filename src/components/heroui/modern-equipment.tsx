@@ -190,7 +190,7 @@ export default function ModernEquipmentShowcase() {
       </div>
 
       {/* 4. RIGHT FLOATING AREA (Info Detail Card) */}
-      <div className={`relative lg:absolute lg:top-[120px] lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto w-full px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none flex justify-center max-w-[540px] lg:w-[460px]`}>
+      <div className={`relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto w-full px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none flex justify-center ${(!activeHotspot && activeItem.defaultThumb) ? 'max-w-[800px] lg:w-[640px] xl:w-[760px]' : 'max-w-[540px] lg:w-[460px]'}`}>
         <Card className={`bg-gradient-to-br from-white/50 to-white/20 backdrop-blur-[40px] backdrop-saturate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/70 rounded-[2rem] p-2 w-full transition-all duration-500`} radius="none">
           {(!activeHotspot && activeItem.defaultThumb) ? (
             <div className="flex flex-col w-full h-full">
