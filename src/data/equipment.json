@@ -172,6 +172,7 @@
     "id": "cek-kaki-kaki",
     "name": "Kyoto Shaking Machine",
     "category": "Suspension & Understeer",
+    "defaultThumb": "/images/equipment/Kyoto_Default.jpg",
     "image": "/images/hotspot/mobil_kyoto.png",
     "imagePosition": "left",
     "description": "Teknologi tercanggih Kyoto Shaking Machine yang mampu mensimulasikan guncangan jalan rusak secara statis untuk deteksi bunyi kaki-kaki akurat.",
