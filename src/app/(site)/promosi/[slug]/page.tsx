@@ -159,12 +159,12 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
             </div>
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-            {/* Main Content */}
-            <div className="lg:col-span-2">
-              <div className="bg-white dark:bg-gray-900 rounded-[2.5rem] p-8 lg:p-12 shadow-xl">
+          <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 lg:gap-12">
+            {/* Main Content - Mobile: full width */}
+            <div className="xl:col-span-2 order-2 xl:order-1">
+              <div className="bg-white dark:bg-gray-900 rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 lg:p-12 shadow-xl">
                 {/* Featured Image */}
-                <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden mb-8 bg-gray-100">
+                <div className="relative aspect-[16/9] w-full rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-8 bg-gray-100">
                   {featuredImage && (
                     <Image
                       src={featuredImage}
@@ -172,12 +172,13 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
                       fill
                       className="object-cover"
                       priority
+                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 66vw, 800px"
                     />
                   )}
                 </div>
 
                 {/* Promo Additional Stats Grid (Harga/Diskon) */}
-                <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                   {promo.harga_promo && (
                     <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-2xl flex flex-col items-center justify-center text-center">
                       <Icon icon="solar:tag-price-bold-duotone" className="w-8 h-8 text-[#224297] mb-2" />
@@ -250,8 +251,8 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
               </div>
             </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-8">
+            {/* Sidebar - Mobile: shown below content */}
+            <div className="xl:col-span-1 space-y-6 sm:space-y-8 order-1 xl:order-2 mb-8 xl:mb-0">
               {/* Related Promos */}
               {relatedPromos.length > 0 && (
                 <div className="bg-white dark:bg-gray-900 rounded-[2rem] p-6 shadow-xl">
