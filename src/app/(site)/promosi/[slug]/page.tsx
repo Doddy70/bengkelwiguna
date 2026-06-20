@@ -200,10 +200,11 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
                 </div>
 
                 {/* Content Tabs */}
-                <PromosiTabs 
-                  contentHtml={content} 
+                <PromosiTabs
+                  contentHtml={content}
                   syaratHtml={syaratHtml}
                   faq={faqData}
+                  promoName={title}
                 />
 
                 {/* Next / Previous Promo */}

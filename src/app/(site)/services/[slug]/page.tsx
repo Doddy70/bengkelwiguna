@@ -192,11 +192,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               </div>
 
-              {/* Tabs for Details, Policies, FAQ */}
-              <ServiceTabs 
-                contentHtml={content} 
-                policies={policies || "<p>Harap melakukan reservasi minimal 1 hari sebelumnya. Pembatalan dapat dilakukan maksimal 12 jam sebelum jadwal.</p>"}
+              {/* Tabs for Details, Booking, FAQ */}
+              <ServiceTabs
+                contentHtml={content}
                 faqHtml={faqHtml || "<p><strong>Berapa lama pengerjaan?</strong><br/>Tergantung kondisi kendaraan, estimasi 1-3 jam.</p>"}
+                serviceName={title}
               />
 
               {/* Share */}
