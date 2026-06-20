@@ -32,8 +32,8 @@
     ],
     "hotspots": [
       {
-        "top": "32.3%",
-        "left": "40.9%",
+        "top": "34.0%",
+        "left": "30.8%",
         "title": "COVER KLEP (VALVE COVER)",
         "subtitle": "Penutup kepala silinder yang melindungi komponen klep di atas mesin.",
         "labelOffsetX": -180,
@@ -46,8 +46,8 @@
         "hasilDeteksi": "Klepan klep normal, oil galleries bersih, nosel hidrolik berfungsi"
       },
       {
-        "top": "35.3%",
-        "left": "44.8%",
+        "top": "30.6%",
+        "left": "35.0%",
         "title": "AREA KLEP & CAMSHAFT",
         "subtitle": "Komponen camshaft yang mengatur waktu buka-tutup katup klep mesin.",
         "labelOffsetX": -180,
@@ -60,8 +60,8 @@
         "hasilDeteksi": "Camshaft profile normal, clearance klep sesuai spec, lobe camshaft tidak aus"
       },
       {
-        "top": "44.1%",
-        "left": "33.1%",
+        "top": "36.8%",
+        "left": "24.0%",
         "title": "TIMING COVER & TIMING AREA",
         "subtitle": "Area cover timing yang melindungi rantai/ban tembaga dan gear timing mesin.",
         "labelOffsetX": -180,
@@ -74,8 +74,8 @@
         "hasilDeteksi": "Timing chain tensioner normal, gear timing sejajar, tensioner tidak aus"
       },
       {
-        "top": "42.6%",
-        "left": "39.6%",
+        "top": "38.1%",
+        "left": "40.2%",
         "title": "JALUR OLI UTAMA (OIL GALLERY)",
         "subtitle": "Saluran oli utama yang mendistribusikan pelumas ke seluruh komponen mesin.",
         "labelOffsetX": 150,
@@ -88,8 +88,8 @@
         "hasilDeteksi": "Oil gallery bebas sumbatan, pressure regulator berfungsi, oil passages bersih"
       },
       {
-        "top": "39.7%",
-        "left": "47.4%",
+        "top": "51.0%",
+        "left": "60.4%",
         "title": "JALUR OLI PRESISI (MICRO OIL PASSAGE)",
         "subtitle": "Saluran oli mikro yang mensuplai pelumasan ke bagian presisi mesin.",
         "labelOffsetX": 150,
@@ -102,8 +102,8 @@
         "hasilDeteksi": "Micro passages patent, oil pressure di spec, no restriction detected"
       },
       {
-        "top": "72.1%",
-        "left": "40.9%",
+        "top": "87.9%",
+        "left": "71.3%",
         "title": "CARTER / OIL PAN (OIL SUMP)",
         "subtitle": "Bak oli bagian bawah mesin yang menyimpan cadangan oli pelumas.",
         "labelOffsetX": 150,
