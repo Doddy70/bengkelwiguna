@@ -102,12 +102,12 @@
         "hasilDeteksi": "Micro passages patent, oil pressure di spec, no restriction detected"
       },
       {
-        "top": "65.0%",
-        "left": "48.0%",
+        "top": "31.0%",
+        "left": "19.4%",
         "title": "CARTER / OIL PAN (OIL SUMP)",
         "subtitle": "Bak oli bagian bawah mesin yang menyimpan cadangan oli pelumas.",
-        "labelOffsetX": 150,
-        "labelOffsetY": -80,
+        "labelOffsetX": 100,
+        "labelOffsetY": -120,
         "nodeIcon": "Crosshair",
         "thumb": "/images/equipment/info_6.jpg",
         "fungsi": "Menampung oli pelumas cadangan yang disirkulasikan pompa oli ke seluruh mesin.",
