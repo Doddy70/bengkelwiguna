@@ -158,13 +158,13 @@ export default function ModernEquipmentShowcase() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.6 }}
-            className="relative w-full max-w-[1100px] aspect-[16/9] lg:mt-20 lg:ml-20"
+            className="relative w-full max-w-[1100px] aspect-[77/34] lg:mt-20 lg:ml-20 lg:scale-110 origin-center lg:origin-left"
           >
             <Image
               src={activeItem.image}
               alt={activeItem.name}
               fill
-              className="object-contain drop-shadow-2xl z-10 lg:scale-110"
+              className="object-contain drop-shadow-2xl z-10"
               priority
             />
             {/* Hotspots */}
