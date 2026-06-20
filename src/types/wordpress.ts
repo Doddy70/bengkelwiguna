@@ -76,6 +76,8 @@ export interface Promosi extends WPPost {
   cf7_form_id?: string;
   /** Template pesan WhatsApp */
   wa_template?: string;
+  /** Treatment utama (HTML content) */
+  treatment_utama?: string;
 }
 
 export interface PaketService extends WPPost {
