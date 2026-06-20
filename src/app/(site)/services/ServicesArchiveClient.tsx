@@ -27,7 +27,7 @@ const ServiceCard = ({ service, index }: { service: any, index: number }) => {
             tag={service.kategori_layanan || "Layanan"}
             title={title}
             excerpt={excerpt}
-            variant="split"
+                        variant="glass"
             buttonText="Selengkapnya"
             secondaryIcon="solar:chat-round-line-linear"
             metaItems={[

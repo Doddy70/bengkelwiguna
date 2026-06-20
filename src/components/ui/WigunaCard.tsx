@@ -22,7 +22,7 @@ export interface WigunaCardProps {
   tag?: string;
   title: string;
   excerpt?: string;
-  variant?: 'split' | 'overlay';
+  variant?: 'split' | 'overlay' | 'glass';
   metaItems?: Array<{ icon: string; text: string }>;
   buttonText?: string;
   price?: string;
@@ -325,6 +325,149 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
 };
 
 // ============================================
+// GLASS CARD (Glassmorphism Style)
+// Premium frosted glass effect with backdrop blur
+// Modern and elegant for luxury feel
+// ============================================
+
+interface GlassCardProps {
+  image: string;
+  tag?: string;
+  title: string;
+  excerpt?: string;
+  badgeText?: string;
+  price?: string;
+  oldPrice?: string;
+  metaItems?: Array<{ icon: string; text: string }>;
+  buttonText?: string;
+  onButtonClick?: (e: React.MouseEvent) => void;
+  onWhatsAppClick?: (e: React.MouseEvent) => void;
+  isWide?: boolean;
+}
+
+export const GlassCard: React.FC<GlassCardProps> = ({
+  image,
+  tag,
+  title,
+  excerpt,
+  badgeText,
+  price,
+  oldPrice,
+  metaItems = [],
+  buttonText = 'Lihat Detail',
+  onButtonClick,
+  onWhatsAppClick,
+  isWide = false,
+}) => {
+  return (
+    <div className={`group relative h-full rounded-3xl overflow-hidden ${isWide ? 'flex flex-col md:flex-row' : ''}`}>
+      {/* Image Container with Glass Effect */}
+      <div className={`relative overflow-hidden rounded-3xl shrink-0 ${isWide ? 'w-full md:w-[45%] h-48 md:h-auto md:self-stretch' : 'aspect-[16/10] w-full'}`}>
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+
+        {/* Glass Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+
+        {/* Top Badges - Glass Effect */}
+        <div className="absolute top-4 left-4 flex items-center gap-2">
+          {tag && (
+            <span className="inline-flex items-center gap-1.5 backdrop-blur-xl bg-white/30 border border-white/20 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg">
+              <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
+              {tag}
+            </span>
+          )}
+          {badgeText && (
+            <span className="inline-flex items-center backdrop-blur-xl bg-[#ffd900]/90 border border-[#ffd900]/30 text-[#224297] text-[10px] font-black px-3 py-1.5 rounded-full shadow-lg uppercase tracking-wider">
+              {badgeText}
+            </span>
+          )}
+        </div>
+
+        {/* Action Icons - Glass Pills */}
+        <div className="absolute top-4 right-4 flex items-center gap-2">
+          <button className="w-9 h-9 rounded-full backdrop-blur-xl bg-white/20 border border-white/20 flex items-center justify-center text-white hover:bg-white/40 transition-all duration-300 shadow-lg hover:scale-110">
+            <Icon icon="solar:share-linear" className="w-4 h-4" />
+          </button>
+          <button className="w-9 h-9 rounded-full backdrop-blur-xl bg-white/20 border border-white/20 flex items-center justify-center text-white hover:bg-white/40 transition-all duration-300 shadow-lg hover:scale-110">
+            <Icon icon="solar:heart-linear" className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+
+      {/* Glass Content Panel */}
+      <div className={`relative flex flex-col justify-between p-5 backdrop-blur-xl bg-white/80 border border-white/50 rounded-b-3xl ${isWide ? 'rounded-none rounded-r-3xl md:rounded-l-none md:rounded-l-3xl' : ''} shadow-xl -mt-2`}>
+        {/* Glass top edge effect */}
+        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+
+        <div className="flex flex-col flex-1 justify-between">
+          <div>
+            {/* Title */}
+            <h3 className="text-lg font-bold text-gray-900 tracking-tight leading-snug mb-2 group-hover:text-[#224297] transition-colors line-clamp-2">
+              {title}
+            </h3>
+
+            {/* Excerpt */}
+            {excerpt && (
+              <p className="text-gray-600 text-sm leading-relaxed line-clamp-2 mb-4">
+                {excerpt}
+              </p>
+            )}
+          </div>
+
+          <div>
+            {/* Price */}
+            {(price || oldPrice) && (
+              <div className="flex items-center gap-2 mb-4">
+                {price && <span className="text-xl font-black text-[#224297]">{price}</span>}
+                {oldPrice && <span className="text-sm text-gray-400 line-through">{oldPrice}</span>}
+              </div>
+            )}
+
+            {/* Meta Items - Glass Pills */}
+            {metaItems.length > 0 && (
+              <div className="flex flex-wrap items-center gap-2 mb-4">
+                {metaItems.map((item, idx) => (
+                  <div key={idx} className="inline-flex items-center gap-1.5 backdrop-blur-md bg-[#224297]/10 border border-[#224297]/20 text-[#224297] px-3 py-1.5 rounded-full text-xs font-medium">
+                    <Icon icon={item.icon} className="w-3.5 h-3.5" />
+                    <span>{item.text}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {/* Action Buttons - Glass Style */}
+            <div className="flex items-center gap-3 pt-3 border-t border-gray-200/50">
+              <button
+                onClick={onButtonClick}
+                className="flex-1 py-2.5 px-4 rounded-xl backdrop-blur-xl bg-[#224297] hover:bg-[#1a3580] text-white font-bold text-sm text-center transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 border border-[#224297]/50"
+              >
+                {buttonText}
+              </button>
+              <button
+                onClick={onWhatsAppClick}
+                className="w-11 h-11 rounded-xl backdrop-blur-xl bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 border border-[#25D366]/50"
+                aria-label="Chat WhatsApp"
+              >
+                <Icon icon="fa6-brands:whatsapp" className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Glow Effect on Hover */}
+      <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#224297] via-[#224297]/50 to-[#ffd900] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </div>
+  );
+};
+
+// ============================================
 // LEGACY COMPONENT (Kept for backward compatibility)
 // ============================================
 
@@ -372,6 +515,30 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
   };
 
   // Use the new components based on variant
+  if (variant === 'glass') {
+    const GlassContent = (
+      <GlassCard
+        image={image}
+        tag={tag}
+        title={title}
+        excerpt={excerpt}
+        badgeText={badgeText}
+        price={price}
+        oldPrice={oldPrice}
+        metaItems={metaItems}
+        buttonText={buttonText}
+        onButtonClick={() => onButtonClick?.({} as React.MouseEvent)}
+        onWhatsAppClick={onSecondaryClick}
+        isWide={isWide}
+      />
+    );
+
+    if (href && !onClick) {
+      return <Link href={href} className={`block h-full ${linkClassName || ''}`}>{GlassContent}</Link>;
+    }
+    return <div onClick={handleCardClick} className={`block h-full ${linkClassName || ''}`}>{GlassContent}</div>;
+  }
+
   if (variant === 'overlay') {
     const OverlayContent = (
       <OverlayCard
@@ -396,7 +563,7 @@ const WigunaCard: React.FC<WigunaCardProps> = ({
     return <div onClick={handleCardClick} className={`block h-full ${linkClassName || ''}`}>{OverlayContent}</div>;
   }
 
-  // Split variant uses FramedCard
+  // Default: FramedCard (split variant)
   const FramedContent = (
     <FramedCard
       image={image}
