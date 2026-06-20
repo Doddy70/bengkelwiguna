@@ -189,9 +189,9 @@ export default function ModernEquipmentShowcase() {
       </div>
 
       {/* 4. RIGHT FLOATING AREA (Info Detail Card) */}
-      <div className={`relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none flex justify-center ${(activeItem.id === 'semi-overhaul' && activeHotspot) ? 'w-fit max-w-[95vw] xl:max-w-[90vw]' : 'w-full max-w-[540px] lg:w-[460px]'}`}>
+      <div className={`relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none flex justify-center ${(activeHotspot && activeHotspot.thumb) ? 'w-fit max-w-[95vw] xl:max-w-[90vw]' : 'w-full max-w-[540px] lg:w-[460px]'}`}>
         <Card className={`bg-gradient-to-br from-white/50 to-white/20 backdrop-blur-[40px] backdrop-saturate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/70 rounded-[2rem] p-2 w-full transition-all duration-500`} radius="none">
-          {((!activeHotspot && activeItem.defaultThumb) || (activeItem.id === 'semi-overhaul' && activeHotspot)) ? (
+          {((!activeHotspot && activeItem.defaultThumb) || (activeHotspot && activeHotspot.thumb)) ? (
             <div className="flex flex-col w-full h-full relative">
               {activeHotspot && (
                 <button 

@@ -201,151 +201,88 @@
     ],
     "hotspots": [
       {
-        "top": "65%",
-        "left": "22%",
-        "title": "Shockbreaker",
-        "treatment": "Pengecekan redaman dan kebocoran menggunakan Kyoto Shaking Machine.",
-        "impacts": [
-          "Redaman kembali optimal",
-          "Kendaraan lebih nyaman"
-        ],
-        "lineAngle": -60,
-        "lineLength": 370,
+        "top": "48.5%",
+        "left": "23.4%",
+        "title": "SHOCKBREAKER & SUPPORT SYSTEM",
+        "subtitle": "Pengecekan redaman dan kebocoran menggunakan Kyoto Shaking Machine.",
+        "labelOffsetX": -180,
+        "labelOffsetY": -80,
+        "nodeIcon": "Activity",
+        "thumb": "/images/equipment/Kyoto_Info_1.jpg",
+        "fungsi": "Menyerap guncangan jalan dan menjaga stabilitas kendaraan.",
+        "gejala": ["Bunyi gluduk-gluduk", "Mobil terasa limbung", "Tampak rembesan oli"],
+        "manfaat": ["Redaman kembali optimal", "Kendaraan lebih nyaman", "Handling stabil"],
+        "hasilDeteksi": "Bocoran terdeteksi, support karet getas, redaman lemah"
+      },
+      {
+        "top": "39.7%",
+        "left": "42.9%",
+        "title": "TIE ROD & RACK END",
+        "subtitle": "Pengecekan kelonggaran pada end tie rod dan long tie rod.",
+        "labelOffsetX": 150,
+        "labelOffsetY": -100,
+        "nodeIcon": "Link",
+        "thumb": "/images/equipment/Kyoto_Default.jpg",
+        "fungsi": "Menghubungkan rack steer dengan roda untuk mengontrol arah kemudi.",
+        "gejala": ["Setir oblak", "Bunyi tek-tek saat belok", "Ban makan dalam/luar"],
+        "manfaat": ["Kemudi lebih presisi", "Mengurangi gejala limbung", "Keamanan kemudi terjaga"],
+        "hasilDeteksi": "Joint longgar, pelumas kering, karet pelindung robek"
+      },
+      {
+        "top": "36.8%",
+        "left": "79.2%",
+        "title": "LINK STABILIZER & BUSHING STABILIZER",
+        "subtitle": "Inspeksi keretakan karet bushing pada area stabilizer.",
+        "labelOffsetX": -160,
+        "labelOffsetY": -80,
+        "nodeIcon": "Repeat",
+        "thumb": "/images/equipment/Kyoto_Default.jpg",
+        "fungsi": "Menjaga keseimbangan mobil saat berbelok dan mengurangi body roll.",
+        "gejala": ["Bunyi besi beradu saat polisi tidur", "Limbung saat belok tajam", "Stir terasa tidak stabil"],
+        "manfaat": ["Stabilitas menikung", "Guncangan berkurang", "Pergerakan roda selaras"],
+        "hasilDeteksi": "Karet bushing pecah, link bengkok, joint oblak"
+      },
+      {
+        "top": "67.6%",
+        "left": "35.1%",
+        "title": "RACK STEER & STEERING COLUMN",
+        "subtitle": "Pengecekan rack steer dan sistem kemudi utama.",
+        "labelOffsetX": -150,
+        "labelOffsetY": 100,
+        "nodeIcon": "Settings",
+        "thumb": "/images/equipment/Kyoto_Default.jpg",
+        "fungsi": "Menerjemahkan putaran setir menjadi pergerakan roda kiri-kanan.",
+        "gejala": ["Setir berat", "Bunyi krek-krek saat belok", "Oli power steering bocor"],
+        "manfaat": ["Putaran setir ringan", "Respons kemudi akurat", "Aman dari kebocoran hidrolik"],
+        "hasilDeteksi": "Seal bocor, as rack baret, gigi pinion aus"
+      },
+      {
+        "top": "73.5%",
+        "left": "67.5%",
+        "title": "LOWER ARM, BUSHING ARM & BALL JOINT",
+        "subtitle": "Inspeksi lower arm, keretakan karet bushing, dan kelonggaran ball joint.",
+        "labelOffsetX": -150,
+        "labelOffsetY": 100,
+        "nodeIcon": "Target",
+        "thumb": "/images/equipment/Kyoto_Default.jpg",
+        "fungsi": "Menghubungkan sasis dengan roda dan memungkinkan roda bergerak naik turun.",
+        "gejala": ["Bunyi derit saat jalan rusak", "Ban tidak lurus", "Handling melayang"],
+        "manfaat": ["Posisi roda simetris", "Bantingan empuk", "Menghilangkan bunyi berdecit"],
+        "hasilDeteksi": "Bushing robek, ball joint longgar, arm bengkok"
+      },
+      {
+        "top": "73.5%",
+        "left": "90.9%",
+        "title": "WHEEL BEARING & HUB",
+        "subtitle": "Pengecekan putaran roda dari hambatan dan suara dengung.",
         "labelOffsetX": -100,
         "labelOffsetY": -100,
-        "beforeAfter": {
-          "before": [
-            "Bunyi gluduk-gluduk",
-            "Mobil terasa limbung",
-            "Setir tidak stabil"
-          ],
-          "after": [
-            "Suspensi senyap",
-            "Handling stabil",
-            "Presisi berkendara pulih"
-          ]
-        },
-        "testimonial": {
-          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
-          "author": "Andi, Honda HRV 2019"
-        },
-        "nodeIcon": "Activity"
-      },
-      {
-        "top": "75%",
-        "left": "18%",
-        "title": "Tie Rod",
-        "treatment": "Pengecekan kelonggaran pada end tie rod dan long tie rod.",
-        "impacts": [
-          "Kemudi lebih presisi",
-          "Mengurangi gejala limbung"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Bunyi gluduk-gluduk",
-            "Mobil terasa limbung",
-            "Setir tidak stabil"
-          ],
-          "after": [
-            "Suspensi senyap",
-            "Handling stabil",
-            "Presisi berkendara pulih"
-          ]
-        },
-        "testimonial": {
-          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
-          "author": "Andi, Honda HRV 2019"
-        },
-        "nodeIcon": "Activity",
-        "labelOffsetX": 150,
-        "labelOffsetY": -50
-      },
-      {
-        "top": "80%",
-        "left": "22%",
-        "title": "Ball Joint",
-        "treatment": "Deteksi bunyi abnormal dan oblak pada sendi suspensi.",
-        "impacts": [
-          "Mengurangi bunyi saat jalan rusak",
-          "Stabilitas meningkat"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Bunyi gluduk-gluduk",
-            "Mobil terasa limbung",
-            "Setir tidak stabil"
-          ],
-          "after": [
-            "Suspensi senyap",
-            "Handling stabil",
-            "Presisi berkendara pulih"
-          ]
-        },
-        "testimonial": {
-          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
-          "author": "Andi, Honda HRV 2019"
-        },
-        "nodeIcon": "Activity",
-        "labelOffsetX": -120,
-        "labelOffsetY": 50
-      },
-      {
-        "top": "85%",
-        "left": "25%",
-        "title": "Bushing Arm",
-        "treatment": "Inspeksi keretakan karet bushing pada lower arm.",
-        "impacts": [
-          "Getaran berkurang",
-          "Suspensi lebih senyap"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Bunyi gluduk-gluduk",
-            "Mobil terasa limbung",
-            "Setir tidak stabil"
-          ],
-          "after": [
-            "Suspensi senyap",
-            "Handling stabil",
-            "Presisi berkendara pulih"
-          ]
-        },
-        "testimonial": {
-          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
-          "author": "Andi, Honda HRV 2019"
-        },
-        "nodeIcon": "Activity",
-        "labelOffsetX": 200,
-        "labelOffsetY": 80
-      },
-      {
-        "top": "75%",
-        "left": "22%",
-        "title": "Wheel Bearing",
-        "treatment": "Pengecekan putaran roda dari hambatan dan suara dengung.",
-        "impacts": [
-          "Putaran roda lebih halus",
-          "Mengurangi bunyi dengung"
-        ],
-        "beforeAfter": {
-          "before": [
-            "Bunyi gluduk-gluduk",
-            "Mobil terasa limbung",
-            "Setir tidak stabil"
-          ],
-          "after": [
-            "Suspensi senyap",
-            "Handling stabil",
-            "Presisi berkendara pulih"
-          ]
-        },
-        "testimonial": {
-          "quote": "Akhirnya sumber bunyi gluduk-gluduk ketemu tanpa harus bongkar sana-sini. Akurat banget pakai Kyoto Shaking Machine!",
-          "author": "Andi, Honda HRV 2019"
-        },
-        "nodeIcon": "Activity",
-        "labelOffsetX": 150,
-        "labelOffsetY": 150
+        "nodeIcon": "Disc",
+        "thumb": "/images/equipment/Kyoto_Default.jpg",
+        "fungsi": "Bantalan putar agar roda berputar dengan lancar tanpa hambatan.",
+        "gejala": ["Bunyi dengung/mengaung", "Roda goyang", "Tarik mobil terasa berat"],
+        "manfaat": ["Putaran roda halus", "Mengurangi bunyi bising", "Efisiensi BBM membaik"],
+        "hasilDeteksi": "Pelumas kering, bola bearing pecah, putaran kasar"
       }
     ],
     "specs": {
