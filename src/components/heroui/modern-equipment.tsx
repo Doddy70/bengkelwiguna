@@ -190,8 +190,28 @@ export default function ModernEquipmentShowcase() {
       </div>
 
       {/* 4. RIGHT FLOATING AREA (Info Detail Card) */}
-      <div className="relative lg:absolute lg:top-[120px] lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto w-full max-w-[540px] lg:w-[460px] px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none">
-        <Card className="bg-gradient-to-br from-white/50 to-white/20 backdrop-blur-[40px] backdrop-saturate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/70 rounded-[2rem] p-2" radius="none">
+      <div className={`relative lg:absolute lg:top-[120px] lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto w-full px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none flex justify-center max-w-[540px] lg:w-[460px]`}>
+        <Card className={`bg-gradient-to-br from-white/50 to-white/20 backdrop-blur-[40px] backdrop-saturate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/70 rounded-[2rem] p-2 w-full transition-all duration-500`} radius="none">
+          {(!activeHotspot && activeItem.defaultThumb) ? (
+            <div className="flex flex-col w-full h-full">
+              <div className="w-full overflow-hidden rounded-[1.5rem] mb-2">
+                <img 
+                  src={activeItem.defaultThumb} 
+                  alt={activeItem.name} 
+                  className="w-full h-auto block"
+                />
+              </div>
+              <div className="relative overflow-hidden rounded-[1.5rem] border border-white/60 bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-[20px] backdrop-saturate-150 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
+                <div className="flex relative z-10">
+                  <button className="flex-1 flex items-center justify-center gap-2.5 py-4 hover:bg-white/50 transition-all text-[#224297] font-bold text-[14px]">
+                    <FeatherIcons.Calendar size={16} className="text-[#224297]" />
+                    Booking Sekarang
+                  </button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <>
           <CardHeader className="flex justify-between items-center px-5 pt-5 pb-2">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
@@ -211,12 +231,12 @@ export default function ModernEquipmentShowcase() {
 
           <CardBody className="gap-4 px-5 pb-5 pt-2 max-h-[70vh] overflow-y-auto scrollbar-hide">
 
-            {/* 2. Thumbnail Image (for active hotspot or default item) */}
-            {(activeHotspot?.thumb || (!activeHotspot && activeItem.defaultThumb)) && (
+            {/* 2. Thumbnail Image (for active hotspot) */}
+            {activeHotspot?.thumb && (
               <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-gray-100 mb-2">
                 <Image
-                  src={activeHotspot ? activeHotspot.thumb : activeItem.defaultThumb}
-                  alt={activeHotspot ? activeHotspot.title : activeItem.name}
+                  src={activeHotspot.thumb}
+                  alt={activeHotspot.title}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 460px"
@@ -364,6 +384,8 @@ export default function ModernEquipmentShowcase() {
               </div>
             </div>
           </CardBody>
+            </>
+          )}
         </Card>
       </div>
 
