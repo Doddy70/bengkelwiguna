@@ -22,6 +22,7 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
       <AnimatePresence>
         {isActive && (
           <motion.svg
+            key="line"
             initial={{ opacity: 0, pathLength: 0 }}
             animate={{ opacity: 1, pathLength: 1 }}
             exit={{ opacity: 0, pathLength: 0 }}
@@ -58,6 +59,7 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
       <AnimatePresence>
         {isActive && (
           <motion.div
+            key="tooltip"
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
