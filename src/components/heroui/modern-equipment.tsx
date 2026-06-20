@@ -401,7 +401,7 @@ export default function ModernEquipmentShowcase() {
       {/* AI CHAT REMOVED PER IMPLEMENTATION PLAN */}
 
       {/* 6. BOTTOM PILLS - Hidden on mobile to reduce clutter, visible on Desktop */}
-      <div className="hidden lg:flex absolute bottom-[5%] right-[5%] xl:right-[8%] z-30 pointer-events-auto">
+      <div className="hidden lg:flex absolute bottom-[5%] left-[5%] xl:left-[8%] z-30 pointer-events-auto">
         <div className="bg-white/80 backdrop-blur-xl rounded-[2rem] p-3 pr-6 flex items-center gap-4 shadow-lg border border-white cursor-pointer hover:bg-white transition-colors">
           <div className="flex -space-x-2 overflow-hidden pl-1">
             <img className="inline-block h-8 w-8 rounded-full ring-2 ring-white" src="https://images.unsplash.com/photo-1491528323818-fdd1faba62cc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
