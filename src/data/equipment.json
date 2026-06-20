@@ -88,12 +88,12 @@
         "hasilDeteksi": "Oil gallery bebas sumbatan, pressure regulator berfungsi, oil passages bersih"
       },
       {
-        "top": "30.5%",
-        "left": "53.5%",
+        "top": "40.0%",
+        "left": "25.8%",
         "title": "JALUR OLI PRESISI (MICRO OIL PASSAGE)",
         "subtitle": "Saluran oli mikro yang mensuplai pelumasan ke bagian presisi mesin.",
-        "labelOffsetX": 150,
-        "labelOffsetY": -50,
+        "labelOffsetX": 120,
+        "labelOffsetY": 80,
         "nodeIcon": "Target",
         "thumb": "/images/equipment/info_5.jpg",
         "fungsi": "Mensuplai oli tekanan tinggi ke komponen presisi seperti turbo, VVT, dan nosel hidrolik.",
