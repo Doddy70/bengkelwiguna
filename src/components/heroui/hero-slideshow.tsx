@@ -9,30 +9,30 @@ import { Icon } from "@iconify/react";
 export default function HeroSlideshow() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Slides data - Multiple images with same title/description
+  // Slides data - Multiple images with same title/description (WebP optimized)
   const slides = [
     {
-      image: "/images/hero/slider-1.jpg",
+      image: "/images/hero/slider-1.webp",
       title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
       subtitle: "One Stop Service Profesional, jujur, terpercaya",
     },
     {
-      image: "/images/hero/slider-2.jpg",
+      image: "/images/hero/slider-2.webp",
       title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
       subtitle: "One Stop Service Profesional, jujur, terpercaya",
     },
     {
-      image: "/images/hero/slider-4.jpg",
+      image: "/images/hero/slider-4.webp",
       title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
       subtitle: "One Stop Service Profesional, jujur, terpercaya",
     },
     {
-      image: "/images/hero/slider-5.jpg",
+      image: "/images/hero/slider-5.webp",
       title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
       subtitle: "One Stop Service Profesional, jujur, terpercaya",
     },
     {
-      image: "/images/hero/slider-6.jpg",
+      image: "/images/hero/slider-6.webp",
       title: "No Drama, No Bongkar-Bongkar, No Tipu-Tipu, No Tebak-Tebak",
       subtitle: "One Stop Service Profesional, jujur, terpercaya",
     },
