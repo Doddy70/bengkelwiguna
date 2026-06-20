@@ -74,12 +74,12 @@
         "hasilDeteksi": "Timing chain tensioner normal, gear timing sejajar, tensioner tidak aus"
       },
       {
-        "top": "35.1%",
-        "left": "39.5%",
+        "top": "38.0%",
+        "left": "16.5%",
         "title": "JALUR OLI UTAMA (OIL GALLERY)",
         "subtitle": "Saluran oli utama yang mendistribusikan pelumas ke seluruh komponen mesin.",
-        "labelOffsetX": 150,
-        "labelOffsetY": -50,
+        "labelOffsetX": -160,
+        "labelOffsetY": -80,
         "nodeIcon": "Droplet",
         "thumb": "/images/equipment/info_4.jpg",
         "fungsi": "Channel utama distribusi oli dari pompa oli ke seluruh journal bearing dan komponen bergerak.",
