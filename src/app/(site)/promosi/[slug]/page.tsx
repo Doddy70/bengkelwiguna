@@ -11,6 +11,7 @@ import { getPromosiBySlug, getAllPromosi, parseFaqField } from '@/lib/wordpress'
 import JsonLd from '@/components/layout/JsonLd'
 import { generateBreadcrumbSchema, generateSpecialOfferSchema } from '@/lib/seo'
 import PromosiTabs from '@/components/promosi/PromosiTabs'
+import BookingModalButton from '@/components/promosi/BookingModalButton'
 
 export const revalidate = 3600
 
@@ -148,14 +149,10 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
             </div>
 
             <div className="px-4 py-2 md:py-0 w-full md:w-auto shrink-0 flex justify-center md:justify-end">
-              <a 
-                href={`https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20booking%20untuk%20promo%20${encodeURIComponent(title)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#224297] hover:bg-blue-800 text-white w-full md:w-auto px-8 py-3.5 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-md"
-              >
-                Booking Now
-              </a>
+              <BookingModalButton 
+                promoName={title} 
+                cf7FormId={promo.cf7_form_id} 
+              />
             </div>
           </div>
 
@@ -164,18 +161,21 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
             <div className="xl:col-span-2 order-1">
               <div className="bg-white dark:bg-gray-900 rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 lg:p-12 shadow-xl">
                 {/* Featured Image */}
-                <div className="relative aspect-[16/9] w-full rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-8 bg-gray-100">
+                <a 
+                  href={featuredImage} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  title="Klik untuk memperbesar gambar"
+                  className="block relative w-full rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-8 bg-gray-100 cursor-zoom-in group"
+                >
                   {featuredImage && (
-                    <Image
+                    <img
                       src={featuredImage}
                       alt={title}
-                      fill
-                      className="object-cover"
-                      priority
-                      sizes="(max-width: 640px) 100vw, (max-width: 1280px) 66vw, 800px"
+                      className="w-full h-auto block transition-transform duration-500 group-hover:scale-[1.02]"
                     />
                   )}
-                </div>
+                </a>
 
                 {/* Promo Additional Stats Grid (Harga/Diskon) */}
                 <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
@@ -205,7 +205,7 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
                   syaratHtml={syaratHtml}
                   faq={faqData}
                   promoName={title}
-                  cf7FormId={promo.cf7_form_id}
+                  cf7FormId={promo.cf7_form_id || "1cc9aa1"}
                 />
 
                 {/* Next / Previous Promo */}
@@ -255,6 +255,69 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
 
             {/* Sidebar - Mobile: below content */}
             <div className="xl:col-span-1 space-y-6 sm:space-y-8 order-2 xl:order-2 mb-8 xl:mb-0">
+              {/* Ringkasan Paket (Tailwind UI: narrow_with_hidden_labels) */}
+              <div className="bg-white dark:bg-gray-900 rounded-[2rem] shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+                <h2 className="sr-only">Ringkasan Paket</h2>
+                <div className="bg-gray-50 dark:bg-gray-800/50">
+                  <dl className="flex flex-wrap">
+                    <div className="flex-auto pt-6 pl-6">
+                      <dt className="text-sm font-semibold text-gray-500 dark:text-gray-400">Harga Paket</dt>
+                      <dd className="mt-1 text-xl lg:text-2xl font-black text-[#224297] dark:text-[#ffd900]">
+                        {promo.harga_promo || 'Hubungi Kami'}
+                        {promo.harga_asli && (
+                          <span className="block text-sm font-medium text-gray-400 line-through mt-0.5">{promo.harga_asli}</span>
+                        )}
+                      </dd>
+                    </div>
+                    {promo.diskon_persen && (
+                      <div className="flex-none self-start px-6 pt-6">
+                        <dt className="sr-only">Diskon</dt>
+                        <dd className="inline-flex items-center rounded-lg bg-green-50 dark:bg-green-500/10 px-3 py-1.5 text-sm font-bold text-green-700 dark:text-green-400 border border-green-200 dark:border-green-500/20">
+                          {promo.diskon_persen}% OFF
+                        </dd>
+                      </div>
+                    )}
+                    
+                    <div className="mt-6 flex w-full flex-none gap-x-4 border-t border-gray-200 dark:border-gray-700 px-6 pt-6">
+                      <dt className="flex-none">
+                        <span className="sr-only">Tanggal Berlaku</span>
+                        <Icon icon="solar:calendar-bold-duotone" className="h-6 w-6 text-gray-400" />
+                      </dt>
+                      <dd className="text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <span className="block text-xs text-gray-500 dark:text-gray-400 mb-0.5">Berlaku Hingga</span>
+                        {promo.tanggal_selesai || 'Selama Kuota Tersedia'}
+                      </dd>
+                    </div>
+                    
+                    <div className="mt-4 flex w-full flex-none gap-x-4 px-6">
+                      <dt className="flex-none">
+                        <span className="sr-only">Treatment Utama</span>
+                        <Icon icon="solar:star-fall-bold-duotone" className="h-6 w-6 text-[#ffd900]" />
+                      </dt>
+                      <dd className="text-sm font-medium text-gray-900 dark:text-gray-300">
+                        <span className="block text-xs text-gray-500 dark:text-gray-400 mb-1">Treatment Utama</span>
+                        {promo.treatment_utama ? (
+                          <div dangerouslySetInnerHTML={{ __html: promo.treatment_utama }} className="prose prose-sm dark:prose-invert prose-p:m-0 prose-ul:m-0 prose-li:m-0" />
+                        ) : (
+                          <ul className="list-disc pl-4 space-y-1 text-gray-600 dark:text-gray-400">
+                            <li>Cek Kendaraan Menyeluruh</li>
+                            <li>Layanan sesuai spesifikasi paket</li>
+                            <li>Gratis Konsultasi Mekanik</li>
+                          </ul>
+                        )}
+                      </dd>
+                    </div>
+                  </dl>
+                  <div className="border-t border-gray-200 dark:border-gray-700 px-6 py-6">
+                    <BookingModalButton 
+                      promoName={title} 
+                      cf7FormId={promo.cf7_form_id || "1cc9aa1"} 
+                      className="w-full bg-[#224297] hover:bg-blue-800 text-white px-4 py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all shadow-md text-sm"
+                    />
+                  </div>
+                </div>
+              </div>
+
               {/* Related Promos */}
               {relatedPromos.length > 0 && (
                 <div className="bg-white dark:bg-gray-900 rounded-[2rem] p-6 shadow-xl">

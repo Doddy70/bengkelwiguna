@@ -90,40 +90,7 @@ export default function MobileMenu({
     // Don't render anything if menu is closed
     if (!mobileOpen) return null;
 
-    // Service categories for mega menu
-    const serviceCategories = [
-        {
-            title: 'Perawatan Rutin',
-            items: [
-                { name: 'Tune Up', href: '/services/tune-up' },
-                { name: 'Ganti Ban', href: '/services/ganti-ban' },
-                { name: 'Spooring', href: '/services/spooring' },
-            ]
-        },
-        {
-            title: 'Servis AC',
-            items: [
-                { name: 'Service AC Mobil', href: '/services/servis-ac-mobil' },
-                { name: 'Flush AC', href: '/services/flushing-ac' },
-                { name: 'Tambah Freon', href: '/services/isi-freon-ac' },
-            ]
-        },
-        {
-            title: 'Kaki-Kaki',
-            items: [
-                { name: 'Servis Rem', href: '/services/servis-rem' },
-                { name: 'Kaki-Kaki / Suspensi', href: '/services/servis-kaki-kaki' },
-                { name: 'Balancing', href: '/services/balancing' },
-            ]
-        },
-        {
-            title: 'Layanan Spesialis',
-            items: spesialisData.slice(0, 3).map(s => ({
-                name: s.title || 'Layanan',
-                href: `/layanan-spesialis/${s.slug}`
-            }))
-        }
-    ];
+
 
     return (
         <>
@@ -168,58 +135,9 @@ export default function MobileMenu({
                         {menuItems.map((item, index) => {
                             const key = `menu-${index}`;
                             const isOpen = !!openSubMenu[key];
-                            const isLayanan = item.title.toLowerCase() === 'layanan' || item.isMegaMenu;
-
                             return (
                                 <li key={index}>
-                                    {isLayanan ? (
-                                        <>
-                                            {/* Layanan - with expandable submenu */}
-                                            <button
-                                                onClick={() => toggleSubMenu(key)}
-                                                className="flex items-center justify-between w-full px-4 py-3 text-gray-800 font-semibold hover:bg-gray-50 transition-colors"
-                                            >
-                                                <span>{item.title}</span>
-                                                <ChevronDown
-                                                    size={18}
-                                                    className={`text-brand-blue transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                                                />
-                                            </button>
-
-                                            {isOpen && (
-                                                <div className="bg-gray-50 border-y border-gray-100">
-                                                    {/* Service Categories */}
-                                                    {serviceCategories.map((category, catIndex) => (
-                                                        <div key={catIndex} className="border-b border-gray-100 last:border-b-0">
-                                                            <div className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-gray-400 bg-gray-100">
-                                                                {category.title}
-                                                            </div>
-                                                            {category.items.map((subItem, subIndex) => (
-                                                                <Link
-                                                                    key={subIndex}
-                                                                    href={subItem.href}
-                                                                    onClick={handleLinkClick}
-                                                                    className="block px-6 py-2.5 text-gray-600 text-sm hover:text-brand-blue hover:bg-gray-100 transition-colors"
-                                                                >
-                                                                    {String(subItem.name)}
-                                                                </Link>
-                                                            ))}
-                                                        </div>
-                                                    ))}
-
-                                                    {/* View All Services Link */}
-                                                    <Link
-                                                        href="/services"
-                                                        onClick={handleLinkClick}
-                                                        className="flex items-center justify-between px-4 py-3 text-brand-blue font-semibold bg-brand-blue/5 hover:bg-brand-blue/10 transition-colors"
-                                                    >
-                                                        <span>Lihat Semua Layanan</span>
-                                                        <ChevronDown size={16} className="rotate-[-90deg]" />
-                                                    </Link>
-                                                </div>
-                                            )}
-                                        </>
-                                    ) : item.subMenu && item.subMenu.length > 0 ? (
+                                    {item.subMenu && item.subMenu.length > 0 ? (
                                         <>
                                             <button
                                                 onClick={() => toggleSubMenu(key)}

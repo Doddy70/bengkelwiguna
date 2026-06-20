@@ -75,7 +75,7 @@ export default function HeroSlideshow() {
   return (
     <section className="w-full bg-white dark:bg-black p-2 sm:p-3 lg:p-4">
       {/* Boxed, rounded container matching the reference design */}
-      <div className="relative w-full h-[680px] md:h-[70svh] lg:h-[75vh] min-h-[680px] md:min-h-[500px] lg:min-h-[650px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
+      <div className="relative w-full h-[680px] lg:h-[740px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
 
         {/* Background Slideshow */}
         <AnimatePresence mode="popLayout">
@@ -206,13 +206,32 @@ export default function HeroSlideshow() {
                 <p className="text-base sm:text-lg md:text-xl text-white/90 font-medium">
                   {currentSlide.subtitle}
                 </p>
+
+                {/* CTA Buttons - Mobile Only (Inline side-by-side) */}
+                <div className="flex flex-row items-center gap-2 mt-6 lg:hidden pointer-events-auto w-full">
+                  <Link
+                    href="/services"
+                    className="flex-1 flex items-center justify-center gap-1.5 px-3 py-3 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
+                  >
+                    <span className="text-[11px] sm:text-xs font-bold whitespace-nowrap">Semua Layanan</span>
+                  </Link>
+                  <a
+                    href="https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20konsultasi%20seputar%20kendaraan%20saya"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-1.5 px-3 py-3 rounded-2xl bg-white text-gray-900 hover:bg-gray-100 transition-all shadow-lg"
+                  >
+                    <Icon icon="fa6-brands:whatsapp" className="w-4 h-4 text-green-500" />
+                    <span className="text-[11px] sm:text-xs font-bold whitespace-nowrap">Konsultasi Gratis</span>
+                  </a>
+                </div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
 
-        {/* CTA Buttons (Bottom Right) */}
-        <div className="absolute bottom-0 left-0 right-0 z-20 px-6 sm:px-10 lg:px-20 pb-8 sm:pb-12 lg:pb-16 flex justify-start lg:justify-end pointer-events-none">
+        {/* CTA Buttons (Bottom Right) - Desktop Only */}
+        <div className="hidden lg:flex absolute bottom-0 left-0 right-0 z-20 px-6 sm:px-10 lg:px-20 pb-8 sm:pb-12 lg:pb-16 justify-end pointer-events-none">
           <div className="flex flex-row flex-wrap gap-3 sm:gap-4 lg:mr-4 pointer-events-auto">
             <Link
               href="/services"
@@ -253,17 +272,17 @@ export default function HeroSlideshow() {
           ))}
         </div>
 
-        {/* Arrow Navigation - Left/Right */}
+        {/* Arrow Navigation - Left/Right (Hidden on Mobile to prevent text overlap) */}
         <button
           onClick={goToPrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110"
+          className="hidden sm:flex absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white items-center justify-center transition-all duration-300 hover:scale-110"
           aria-label="Previous slide"
         >
           <Icon icon="solar:arrow-left-linear" className="w-5 h-5" />
         </button>
         <button
           onClick={goToNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white flex items-center justify-center transition-all duration-300 hover:scale-110"
+          className="hidden sm:flex absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white items-center justify-center transition-all duration-300 hover:scale-110"
           aria-label="Next slide"
         >
           <Icon icon="solar:arrow-right-linear" className="w-5 h-5" />

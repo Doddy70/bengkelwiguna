@@ -1,0 +1,119 @@
+[
+    {
+        "key": "group_promosi_faq_cf7",
+        "title": "Promosi - FAQ & Form Booking",
+        "fields": [
+            {
+                "key": "field_promosi_faq_tab",
+                "label": "FAQ Promo",
+                "name": "faq_tab",
+                "type": "tab",
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_promosi_faq_repeater",
+                "label": "Daftar FAQ Promo",
+                "name": "faq_promo",
+                "type": "repeater",
+                "layout": "block",
+                "min": 0,
+                "max": 10,
+                "collapsed": "field_faq_pertanyaan",
+                "button_label": "+ Tambah FAQ",
+                "sub_fields": [
+                    {
+                        "key": "field_faq_pertanyaan",
+                        "label": "Pertanyaan",
+                        "name": "pertanyaan",
+                        "type": "text",
+                        "placeholder": "Contoh: Bagaimana cara redeem promo ini?",
+                        "required": 1,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        }
+                    },
+                    {
+                        "key": "field_faq_jawaban",
+                        "label": "Jawaban",
+                        "name": "jawaban",
+                        "type": "wysiwyg",
+                        "tabs": "all",
+                        "toolbar": "basic",
+                        "media_upload": 0,
+                        "placeholder": "Tulis jawaban di sini...",
+                        "required": 1,
+                        "wrapper": {
+                            "width": "",
+                            "class": "",
+                            "id": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "key": "field_promosi_booking_tab",
+                "label": "Form Booking",
+                "name": "booking_tab",
+                "type": "tab",
+                "placement": "left",
+                "endpoint": 0
+            },
+            {
+                "key": "field_promosi_cf7_form",
+                "label": "Pilih Contact Form 7",
+                "name": "cf7_form_id",
+                "type": "select",
+                "instructions": "Pilih form Contact Form 7 yang akan ditampilkan di tab Booking pada halaman detail promo.",
+                "choices": {
+                    "": "-- Gunakan form default --"
+                },
+                "default_value": "",
+                "allow_null": 1,
+                "multiple": 0,
+                "ui": 1,
+                "ajax": 0,
+                "return_format": "value",
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                }
+            },
+            {
+                "key": "field_promosi_wa_template",
+                "label": "Template WhatsApp",
+                "name": "wa_template",
+                "type": "text",
+                "instructions": "Template pesan WhatsApp saat tombol WA diklik. Gunakan {title} untuk judul promo.",
+                "placeholder": "Halo Minna, saya tertarik dengan promo: {title}",
+                "default_value": "Halo Minna, saya tertarik dengan promo: {title}",
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                }
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "promosi"
+                }
+            ]
+        ],
+        "menu_order": 20,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "left",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Field tambahan untuk FAQ dan Form Booking promo. Dibuat via BW Headless CMS v1.8.5.",
+        "show_in_rest": 1
+    }
+]

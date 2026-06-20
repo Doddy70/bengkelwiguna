@@ -98,25 +98,7 @@ export default function ModernEquipmentShowcase() {
          <p className="text-gray-500 text-sm mt-2 max-w-lg mx-auto">Inspeksi presisi tinggi untuk performa kendaraan maksimal.</p>
       </div>
 
-      {/* 1. TOP NAVIGATION */}
-      <header className="relative lg:absolute top-0 w-full h-[80px] px-6 lg:px-10 flex items-center justify-between z-50 bg-white/30 lg:bg-transparent backdrop-blur-md lg:backdrop-blur-none border-b border-white/20 lg:border-none">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white shrink-0">
-            <FeatherIcons.Activity size={18} strokeWidth={2.5} />
-          </div>
-          <h1 className="text-xl font-bold text-gray-800 tracking-tight hidden sm:block">Wiguna Diagnostics</h1>
-        </div>
 
-        <div className="flex items-center gap-2 bg-white/60 lg:bg-white/40 backdrop-blur-xl rounded-full p-1.5 shadow-sm lg:shadow-[0_8px_32px_0_rgba(31,38,135,0.05)] border border-white/60 hidden">
-          {/* Tabs moved to left side vertical menu */}
-        </div>
-
-        <div className="flex items-center gap-4">
-          <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden shadow-sm shrink-0">
-            <Image src="/images/services/fortuner_tools.png" alt="Profile" width={40} height={40} className="object-cover" />
-          </div>
-        </div>
-      </header>
 
       {/* 3. LEFT FLOATING AREA (Title & Tools) - Moved up for Mobile Stacking Order */}
       <div className="relative lg:absolute lg:top-[160px] lg:left-[5%] xl:left-[8%] z-30 pointer-events-auto flex flex-col items-center lg:items-start max-w-full lg:max-w-[350px] mt-8 lg:mt-0 px-6 lg:px-0 text-center lg:text-left order-1 lg:order-none">

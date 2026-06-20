@@ -209,10 +209,6 @@ class BW_ISR_Revalidation {
         if ($new_status === 'publish' || $old_status === 'publish') {
             // 1. CLEAR WORDPRESS TRANSIENTS (Backend Cache)
             $this->clear_wp_transients($post);
-
-            // 2. TRIGGER NEXT.JS REVALIDATION (Frontend Cache)
-            
-            // Normalize post type to dashed tag (Next.js uses dashes)
             $tag_base = str_replace('_', '-', $post->post_type);
             if ($tag_base === 'post') $tag_base = 'posts';
             if ($tag_base === 'page') $tag_base = 'pages';
@@ -249,30 +245,45 @@ class BW_ISR_Revalidation {
 
     private function clear_wp_transients($post) {
         global $wpdb;
-        
+
         $post_type = $post->post_type;
         $slug_hash = md5($post->post_name);
 
-        // 1. Clear Collection Transients
+        // 1. Clear ALL Collection Transients (all versions)
         delete_transient('bw_' . $post_type . '_full');
-        if ($post_type === 'services') delete_transient('bw_services_full_v3');
-        if ($post_type === 'promosi') delete_transient('bw_promosi_active_v3');
+        if ($post_type === 'services') {
+            delete_transient('bw_services_full_v3');
+        }
+        if ($post_type === 'promosi') {
+            // Clear ALL promo transient versions
+            delete_transient('bw_promosi_active_v3');
+            delete_transient('bw_promosi_active_v4');
+            delete_transient('bw_promosi_active_v5');
+        }
         if ($post_type === 'paket_service') delete_transient('bw_paket_service_full_v1');
-        if ($post_type === 'layanan_spesialis') delete_transient('bw_layanan_spesialis_full');
-        
-        // 2. Clear Single Item Transients (Handling plural/singular mismatches)
+        if ($post_type === 'layanan_spesialis') {
+            delete_transient('bw_layanan_spesialis_full_v2');
+        }
+
+        // 2. Clear ALL Single Item Transients (all versions)
         $single_prefix = 'bw_' . $post_type . '_';
         if ($post_type === 'services') $single_prefix = 'bw_service_';
         if ($post_type === 'promosi') $single_prefix = 'bw_promosi_';
         if ($post_type === 'paket_service') $single_prefix = 'bw_paket_service_';
         if ($post_type === 'layanan_spesialis') $single_prefix = 'bw_layanan_spesialis_';
 
+        // Delete all versions (v3, v4, v5, etc.)
         delete_transient($single_prefix . $slug_hash);
-        
+        delete_transient($single_prefix . 'v4_' . $slug_hash);
+        delete_transient($single_prefix . 'v5_' . $slug_hash);
+
         // 3. Bulk cleanup for transients starting with our prefix
         $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_bw_" . esc_sql($post_type) . "_%'");
         if ($post_type === 'services') {
             $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_bw_service_%'");
+        }
+        if ($post_type === 'promosi') {
+            $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_bw_promosi_%'");
         }
     }
 

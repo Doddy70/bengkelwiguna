@@ -14,12 +14,16 @@ class BW_Meta_Boxes {
         add_action('add_meta_boxes', [$this, 'add_spesialis_info_meta_box']);
         add_action('add_meta_boxes', [$this, 'add_spesialis_faq_meta_box']);
         add_action('add_meta_boxes', [$this, 'add_services_faq_meta_box']);
+        add_action('add_meta_boxes', [$this, 'add_promosi_faq_meta_box']);
+        add_action('add_meta_boxes', [$this, 'add_promosi_cf7_meta_box']);
         add_action('save_post', [$this, 'save_gallery_meta_box']);
         add_action('save_post', [$this, 'save_shop_meta_box']);
         add_action('save_post', [$this, 'save_paket_info_meta_box']);
         add_action('save_post', [$this, 'save_spesialis_info_meta_box']);
         add_action('save_post', [$this, 'save_spesialis_faq_meta_box']);
         add_action('save_post', [$this, 'save_services_faq_meta_box']);
+        add_action('save_post', [$this, 'save_promosi_faq_meta_box']);
+        add_action('save_post', [$this, 'save_promosi_cf7_meta_box']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_media_scripts']);
     }
 
@@ -719,5 +723,215 @@ class BW_Meta_Boxes {
         delete_transient('bw_services_full_v3');
         $slug = get_post_field('post_name', $post_id);
         delete_transient('bw_service_' . md5($slug));
+    }
+
+    // =============================================
+    // PROMOSI FAQ META BOX
+    // =============================================
+    public function add_promosi_faq_meta_box() {
+        add_meta_box(
+            'bw_promosi_faq_meta_box',
+            'FAQ Promo',
+            [$this, 'render_promosi_faq_meta_box'],
+            'promosi',
+            'normal',
+            'high'
+        );
+    }
+
+    public function render_promosi_faq_meta_box($post) {
+        wp_nonce_field('bw_save_promosi_faq_meta', 'bw_promosi_faq_meta_nonce');
+
+        $faqs_json = get_post_meta($post->ID, 'bw_promosi_faq', true);
+        $faqs = !empty($faqs_json) ? json_decode($faqs_json, true) : [];
+        if (!is_array($faqs)) $faqs = [];
+
+        ?>
+        <style>
+            .bw-promosi-faq-wrapper { margin-bottom: 20px; }
+            .bw-promosi-faq-item { border: 1px solid #e2e8f0; padding: 15px; margin-bottom: 15px; background: #f8fafc; position: relative; border-radius: 8px; }
+            .bw-promosi-faq-item label { display: block; font-weight: 600; margin-bottom: 8px; color: #1e293b; font-size: 13px; }
+            .bw-promosi-faq-item input[type="text"] { width: 100%; margin-bottom: 10px; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px; }
+            .bw-promosi-faq-item textarea { width: 100%; margin-bottom: 10px; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px; min-height: 80px; }
+            .bw-promosi-faq-remove { position: absolute; top: 10px; right: 10px; color: #ef4444; text-decoration: none; font-weight: bold; font-size: 20px; width: 24px; height: 24px; text-align: center; line-height: 20px; border-radius: 50%; background: #fee2e2; }
+            .bw-promosi-faq-remove:hover { color: #fff; background: #ef4444; }
+            .bw-promosi-faq-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #224297; }
+            .bw-promosi-faq-header h4 { margin: 0; color: #224297; font-size: 15px; }
+            .bw-promosi-faq-header p { margin: 5px 0 0 0; font-size: 12px; color: #64748b; }
+        </style>
+
+        <div class="bw-promosi-faq-wrapper">
+            <div class="bw-promosi-faq-header">
+                <div>
+                    <h4>FAQ Promo</h4>
+                    <p>Tambahkan pertanyaan dan jawaban seputar promo ini.</p>
+                </div>
+            </div>
+            <div id="bw-promosi-faq-list">
+                <?php if (empty($faqs)): ?>
+                <div class="bw-promosi-faq-item">
+                    <a href="#" class="bw-promosi-faq-remove" title="Hapus">&times;</a>
+                    <label>Pertanyaan</label>
+                    <input type="text" name="bw_promosi_faqs[0][q]" value="" placeholder="Contoh: Bagaimana cara redeem promo ini?" />
+                    <label>Jawaban</label>
+                    <textarea name="bw_promosi_faqs[0][a]" rows="3" placeholder="Contoh: Cukup tunjukkan promo ini ke bengkel dan redeem sebelum masa berlaku habis."></textarea>
+                </div>
+                <?php else: ?>
+                <?php foreach ($faqs as $index => $faq): ?>
+                <div class="bw-promosi-faq-item">
+                    <a href="#" class="bw-promosi-faq-remove" title="Hapus">&times;</a>
+                    <label>Pertanyaan</label>
+                    <input type="text" name="bw_promosi_faqs[<?php echo $index; ?>][q]" value="<?php echo esc_attr($faq['q']); ?>" placeholder="Masukkan pertanyaan..." />
+                    <label>Jawaban</label>
+                    <textarea name="bw_promosi_faqs[<?php echo $index; ?>][a]" rows="3" placeholder="Masukkan jawaban..."><?php echo esc_textarea($faq['a']); ?></textarea>
+                </div>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+            <button type="button" class="button button-primary" id="bw_promosi_add_faq_btn" style="background: #224297; border-color: #224297; color: #fff;">+ Tambah FAQ</button>
+        </div>
+
+        <script>
+        jQuery(document).ready(function($) {
+            var faqIndex = <?php echo max(1, count($faqs)); ?>;
+
+            $('#bw_promosi_add_faq_btn').on('click', function(e) {
+                e.preventDefault();
+                var html = '<div class="bw-promosi-faq-item">' +
+                    '<a href="#" class="bw-promosi-faq-remove" title="Hapus">&times;</a>' +
+                    '<label>Pertanyaan</label>' +
+                    '<input type="text" name="bw_promosi_faqs[' + faqIndex + '][q]" value="" placeholder="Contoh: Apakah promo ini bisa digabung?" />' +
+                    '<label>Jawaban</label>' +
+                    '<textarea name="bw_promosi_faqs[' + faqIndex + '][a]" rows="3" placeholder="Contoh: Promo tidak dapat digabung dengan promo lain."></textarea>' +
+                    '</div>';
+                $('#bw-promosi-faq-list').append(html);
+                faqIndex++;
+            });
+
+            $('#bw-promosi-faq-list').on('click', '.bw-promosi-faq-remove', function(e) {
+                e.preventDefault();
+                $(this).closest('.bw-promosi-faq-item').remove();
+            });
+        });
+        </script>
+        <?php
+    }
+
+    public function save_promosi_faq_meta_box($post_id) {
+        if (!isset($_POST['bw_promosi_faq_meta_nonce']) || !wp_verify_nonce($_POST['bw_promosi_faq_meta_nonce'], 'bw_save_promosi_faq_meta')) {
+            return;
+        }
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return;
+        }
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
+        if (isset($_POST['bw_promosi_faqs']) && is_array($_POST['bw_promosi_faqs'])) {
+            $sanitized_faqs = [];
+            foreach ($_POST['bw_promosi_faqs'] as $faq) {
+                if (!empty(trim($faq['q'])) || !empty(trim($faq['a']))) {
+                    $sanitized_faqs[] = [
+                        'q' => sanitize_text_field(trim($faq['q'])),
+                        'a' => wp_kses_post(wp_unslash(trim($faq['a'])))
+                    ];
+                }
+            }
+            if (!empty($sanitized_faqs)) {
+                update_post_meta($post_id, 'bw_promosi_faq', json_encode($sanitized_faqs));
+            } else {
+                delete_post_meta($post_id, 'bw_promosi_faq');
+            }
+        } else {
+            delete_post_meta($post_id, 'bw_promosi_faq');
+        }
+
+        // Clear transient cache for promosi
+        delete_transient('bw_promosi_active_v3');
+        $slug = get_post_field('post_name', $post_id);
+        delete_transient('bw_promosi_' . md5($slug));
+    }
+
+    // =============================================
+    // PROMOSI CF7 FORM SELECTOR META BOX
+    // =============================================
+    public function add_promosi_cf7_meta_box() {
+        add_meta_box(
+            'bw_promosi_cf7_meta_box',
+            'Form Booking (CF7)',
+            [$this, 'render_promosi_cf7_meta_box'],
+            'promosi',
+            'side',
+            'default'
+        );
+    }
+
+    public function render_promosi_cf7_meta_box($post) {
+        wp_nonce_field('bw_save_promosi_cf7_meta', 'bw_promosi_cf7_meta_nonce');
+
+        $selected_form_id = get_post_meta($post->ID, 'bw_promosi_cf7_id', true);
+
+        // Ambil daftar CF7 forms jika plugin aktif
+        $cf7_forms = [];
+        if (function_exists('wpcf7_get_forms')) {
+            $forms = WPCF7_ContactForm::find();
+            foreach ($forms as $form) {
+                $cf7_forms[$form->id()] = $form->title();
+            }
+        }
+
+        ?>
+        <style>
+            .bw-cf7-field { margin-bottom: 15px; }
+            .bw-cf7-field label { display: block; font-weight: 600; margin-bottom: 8px; color: #1e293b; font-size: 13px; }
+            .bw-cf7-field select { width: 100%; padding: 8px 12px; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 14px; background: #fff; }
+            .bw-cf7-desc { font-size: 12px; color: #64748b; margin-top: 5px; line-height: 1.5; }
+            .bw-cf7-none { color: #94a3b8; font-style: italic; }
+        </style>
+
+        <div class="bw-cf7-field">
+            <label for="bw_promosi_cf7_id">Pilih Form Contact Form 7</label>
+            <?php if (!empty($cf7_forms)): ?>
+                <select name="bw_promosi_cf7_id" id="bw_promosi_cf7_id">
+                    <option value="">-- Tidak menggunakan form --</option>
+                    <?php foreach ($cf7_forms as $id => $title): ?>
+                        <option value="<?php echo esc_attr($id); ?>" <?php selected($selected_form_id, $id); ?>>
+                            <?php echo esc_html($title); ?> (ID: <?php echo $id; ?>)
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+                <p class="bw-cf7-desc">Form yang dipilih akan tampil di tab "Booking" pada halaman detail promosi.</p>
+            <?php else: ?>
+                <p class="bw-cf7-none">
+                    Plugin Contact Form 7 belum aktif atau belum ada form dibuat.<br/>
+                    <a href="<?php echo esc_url(admin_url('plugin-install.php?s=contact+form+7&tab=search&type=term')); ?>" target="_blank">Install Contact Form 7</a>
+                </p>
+            <?php endif; ?>
+        </div>
+        <?php
+    }
+
+    public function save_promosi_cf7_meta_box($post_id) {
+        if (!isset($_POST['bw_promosi_cf7_meta_nonce']) || !wp_verify_nonce($_POST['bw_promosi_cf7_meta_nonce'], 'bw_save_promosi_cf7_meta')) {
+            return;
+        }
+        if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+            return;
+        }
+        if (!current_user_can('edit_post', $post_id)) {
+            return;
+        }
+
+        if (isset($_POST['bw_promosi_cf7_id'])) {
+            $form_id = sanitize_text_field($_POST['bw_promosi_cf7_id']);
+            if (!empty($form_id)) {
+                update_post_meta($post_id, 'bw_promosi_cf7_id', $form_id);
+            } else {
+                delete_post_meta($post_id, 'bw_promosi_cf7_id');
+            }
+        } else {
+            delete_post_meta($post_id, 'bw_promosi_cf7_id');
+        }
     }
 }

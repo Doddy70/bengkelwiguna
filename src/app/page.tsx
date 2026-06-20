@@ -174,13 +174,7 @@ export default async function HomePage() {
           <ModernEquipmentShowcase />
       </section>
 
-      {/* SECTION 3: GOOGLE REVIEWS */}
-      <GoogleReviews />
-
-      {/* SECTION 4: YOUTUBE VIDEO GALLERY */}
-      <YoutubeEducation />
-
-      {/* SECTION 5: LAYANAN (SpesialisSlider Carousel) */}
+      {/* SECTION 3: LAYANAN (SpesialisSlider Carousel) */}
       <section id="layanan" className="lg:py-24 py-12 bg-white overflow-hidden border-t border-gray-100">
         <div className="max-w-screen-xl mx-auto boxed-layout-gap">
           <div className="flex flex-wrap justify-between pb-8 gap-y-4">
@@ -199,6 +193,12 @@ export default async function HomePage() {
           <SpesialisSlider items={servicesList} />
         </div>
       </section>
+
+      {/* SECTION 4: GOOGLE REVIEWS */}
+      <GoogleReviews />
+
+      {/* SECTION 5: YOUTUBE VIDEO GALLERY */}
+      <YoutubeEducation />
 
       {/* SECTION 6: ARTIKEL (Blog Posts) */}
       <section id="artikel" className="lg:py-24 py-12 bg-gray-50 border-t border-gray-100">

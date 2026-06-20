@@ -35,7 +35,7 @@ const BRAND_BLUE_LIGHT = '#3b5db3';
 const BRAND_BLUE_DARK = '#1a356d';
 
 const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], promoBulanan = [], showPromoBulanan = true }) => {
-  const [visibleCount, setVisibleCount] = useState(5);
+  // const [visibleCount, setVisibleCount] = useState(3);
 
   // Filter out seasonal/bulanan promos for regular grid
   const regularPromos = useMemo(() => {
@@ -75,32 +75,23 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
     
     const discountText = promo.diskon_persen ? `${promo.diskon_persen}% OFF` : undefined;
 
-    const handleClaimPromo = (e: React.MouseEvent) => {
-      e.preventDefault();
-      const promoName = title.trim();
-      const prefix = promoName.toLowerCase().startsWith('promo') ? '' : 'Promo ';
-      const text = encodeURIComponent(`${prefix}${promoName}`);
-      window.open(`https://api.whatsapp.com/send/?phone=6281717773888&text=${text}`, '_blank');
-    };
-
     return (
-      <div
+      <Link
         key={promo.id || idx}
-        onClick={handleClaimPromo}
-        className="col-span-1 relative group cursor-pointer flex flex-col rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-xl transition-all duration-500 border border-gray-100"
+        href={`/promosi/${promo.slug}`}
+        className="w-[85vw] sm:w-[380px] lg:w-[420px] shrink-0 snap-center relative group cursor-pointer flex flex-col rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-all duration-500 border border-gray-100"
       >
         {/* Main Content layer */}
         <div className="relative flex flex-col h-full overflow-hidden">
           {/* Background Image Container - Standardized Aspect Ratio */}
-          <div className="relative w-full aspect-[4/3] sm:aspect-video overflow-hidden bg-gray-100">
-            <Image
+          <div className="relative w-full overflow-hidden bg-gray-100">
+            <img
               src={img}
               alt={title}
-              fill
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-auto block transition-transform duration-700 group-hover:scale-105"
             />
             {/* Subtle gradient overlay on hover */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
           </div>
 
           {/* Content Area */}
@@ -121,12 +112,12 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
             
             <div className="mt-auto flex items-center justify-between">
               <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#224297]">
-                Klaim Promo <Icon icon="solar:arrow-right-linear" className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                Lihat Detail <Icon icon="solar:arrow-right-linear" className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </span>
             </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   };
 
@@ -171,36 +162,13 @@ const BentoPromoSection: React.FC<BentoPromoSectionProps> = ({ promos = [], prom
         </div>
       )}
 
-      {/* STANDARD GRID CARD SYSTEM */}
+      {/* STANDARD CAROUSEL SYSTEM */}
       <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {regularPromos.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-            {regularPromos.slice(0, visibleCount).map((promo, idx) => (
+          <div className="flex gap-6 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-8 pt-4 px-4 -mx-4 sm:px-0 sm:mx-0">
+            {regularPromos.map((promo, idx) => (
               StandardGridCard(promo, idx)
             ))}
-          </div>
-        )}
-
-        {/* Load More / View All CTA */}
-        {regularPromos.length > visibleCount ? (
-          <div className="mt-8 flex justify-center items-center gap-4">
-            <button
-              onClick={() => setVisibleCount(prev => prev + 5)}
-              className="inline-flex items-center gap-3 bg-white dark:bg-neutral-800 hover:bg-gray-50 dark:hover:bg-neutral-700 text-gray-900 dark:text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold group cursor-pointer border border-transparent dark:border-white/10"
-            >
-              Load More ({regularPromos.length - visibleCount})
-              <Icon icon="solar:round-alt-arrow-down-linear" className="w-5 h-5 group-hover:translate-y-1 transition-transform text-[#224297] dark:text-[#ffd900]" />
-            </button>
-          </div>
-        ) : regularPromos.length > 0 && (
-          <div className="mt-8 text-center">
-            <Link
-              href="/promosi"
-              className="inline-flex items-center gap-3 bg-[#224297] hover:bg-[#1a356d] text-white px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-all font-semibold group"
-            >
-              Jelajahi Semua Promo
-              <Icon icon="solar:arrow-right-linear" className="w-5 h-5 group-hover:translate-x-1 transition-transform text-[#ffd900]" />
-            </Link>
           </div>
         )}
       </div>

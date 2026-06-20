@@ -3,7 +3,7 @@
  * Plugin Name: Bengkel Wiguna Headless CMS API
  * Plugin URI: https://bengkelwiguna.com
  * Description: Custom REST API endpoints for headless WordPress CMS integration with Next.js frontend (Core Ability Reference Implementation)
- * Version: 1.8.3
+ * Version: 1.8.6
  * Author: Bengkel Wiguna
  * Author URI: https://bengkelwiguna.com
  * License: GPL v2 or later
@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define Constants
-define('BW_HEADLESS_VERSION', '1.8.3');
+define('BW_HEADLESS_VERSION', '1.8.6');
 define('BW_HEADLESS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('BW_HEADLESS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -27,6 +27,22 @@ require_once BW_HEADLESS_PLUGIN_DIR . 'includes/class-bw-isr.php';
 require_once BW_HEADLESS_PLUGIN_DIR . 'includes/class-bw-abilities.php';
 require_once BW_HEADLESS_PLUGIN_DIR . 'includes/class-bw-editor-assistant.php';
 require_once BW_HEADLESS_PLUGIN_DIR . 'includes/class-bw-meta-boxes.php';
+
+// ACF JSON Auto-Load: Register our JSON field groups
+add_filter('acf/settings/load_json', function($paths) {
+    $paths[] = BW_HEADLESS_PLUGIN_DIR . 'acf-json';
+    return $paths;
+});
+
+// Save ACF JSON to plugin directory (optional: untuk sync ulang)
+add_filter('acf/settings/save_json', function($path) {
+    // Hanya save field group baru ke plugin directory
+    $save_path = BW_HEADLESS_PLUGIN_DIR . 'acf-json';
+    if (!file_exists($save_path)) {
+        wp_mkdir_p($save_path);
+    }
+    return $save_path;
+});
 
 // Initialize Classes
 function bw_headless_cms_init() {
@@ -228,10 +244,17 @@ add_action('save_post_services', 'bw_clear_services_transients');
 
 function bw_clear_promosi_transients($post_id) {
     if (get_post_type($post_id) !== 'promosi') return;
+    // Clear ALL versi transient untuk确保 cache ter-reset
     delete_transient('bw_promosi_active_v3');
+    delete_transient('bw_promosi_active_v4');
+    delete_transient('bw_promosi_active_v5');
     $post = get_post($post_id);
     if ($post) {
         delete_transient('bw_promosi_' . md5($post->post_name));
+        delete_transient('bw_promosi_v4_' . md5($post->post_name));
+        delete_transient('bw_promosi_v5_' . md5($post->post_name));
     }
 }
 add_action('save_post_promosi', 'bw_clear_promosi_transients');
+// Clear cache juga saat HAPUS post (before_delete_post, bukan after!)
+add_action('before_delete_post', 'bw_clear_promosi_transients');

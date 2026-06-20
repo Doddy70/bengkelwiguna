@@ -468,7 +468,7 @@ class BW_REST_API_Controller extends WP_REST_Controller {
     }
 
     public function get_promosis($request) {
-        $transient_key = 'bw_promosi_active_v4';
+        $transient_key = 'bw_promosi_active_v5';
         $promosis = get_transient($transient_key);
 
         if (false === $promosis) {
@@ -510,6 +510,10 @@ class BW_REST_API_Controller extends WP_REST_Controller {
                         'gallery'         => $this->resolve_gallery_urls($post->ID),
                         'kategori_promosi' => $kategori_promosi,
                         'jenis_promosi'    => $jenis_promosi,
+                        'faq'             => $this->get_promosi_faq($post->ID),
+                        'syarat_ketentuan' => get_post_meta($post->ID, 'syarat_ketentuan', true),
+                        'cf7_form_id'     => get_post_meta($post->ID, 'cf7_form_id', true) ?: get_post_meta($post->ID, 'bw_promosi_cf7_id', true),
+                        'wa_template'     => get_post_meta($post->ID, 'wa_template', true),
                     ];
                 }
             }
@@ -518,9 +522,39 @@ class BW_REST_API_Controller extends WP_REST_Controller {
         return rest_ensure_response($promosis);
     }
 
+    /**
+     * Helper: Parse FAQ dari meta field
+     * Support ACF Repeater field (faq_promo) dan custom meta (bw_promosi_faq)
+     */
+    private function get_promosi_faq($post_id) {
+        // ACF Repeater field: faq_promo
+        $acf_faqs = get_post_meta($post_id, 'faq_promo', true);
+        if (!empty($acf_faqs) && is_array($acf_faqs)) {
+            $result = [];
+            foreach ($acf_faqs as $faq) {
+                if (!empty($faq['pertanyaan']) || !empty($faq['jawaban'])) {
+                    $result[] = [
+                        'q' => sanitize_text_field($faq['pertanyaan']),
+                        'a' => wp_kses_post($faq['jawaban'])
+                    ];
+                }
+            }
+            return $result;
+        }
+
+        // Fallback: custom meta box JSON (bw_promosi_faq)
+        $faqs_json = get_post_meta($post_id, 'bw_promosi_faq', true);
+        if (!empty($faqs_json)) {
+            $faqs = json_decode($faqs_json, true);
+            return is_array($faqs) ? $faqs : [];
+        }
+
+        return [];
+    }
+
     public function get_promosi_item($request) {
         $slug = sanitize_text_field($request->get_param('slug'));
-        $transient_key = 'bw_promosi_v4_' . md5($slug);
+        $transient_key = 'bw_promosi_v5_' . md5($slug);
         $promo = get_transient($transient_key);
 
         if (false === $promo) {
@@ -563,6 +597,10 @@ class BW_REST_API_Controller extends WP_REST_Controller {
                 'gallery'         => $this->resolve_gallery_urls($post->ID),
                 'kategori_promosi' => $kategori_promosi,
                 'jenis_promosi'    => $jenis_promosi,
+                'faq'             => $this->get_promosi_faq($post->ID),
+                'syarat_ketentuan' => get_post_meta($post->ID, 'syarat_ketentuan', true),
+                'cf7_form_id'     => get_post_meta($post->ID, 'cf7_form_id', true) ?: get_post_meta($post->ID, 'bw_promosi_cf7_id', true),
+                'wa_template'     => get_post_meta($post->ID, 'wa_template', true),
             ];
             set_transient($transient_key, $promo, 12 * HOUR_IN_SECONDS);
         }
