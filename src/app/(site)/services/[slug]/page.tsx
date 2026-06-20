@@ -155,16 +155,16 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           {/* Bento Grid Gallery */}
           <ServiceGallery images={galleryImages} />
 
-          {/* Main Layout Grid */}
-          <div className="mt-12 grid lg:grid-cols-[1fr_340px] gap-12 lg:gap-16">
-            
+          {/* Main Layout Grid - Mobile: stacked, Desktop: sidebar */}
+          <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 lg:gap-16">
+
             {/* Left Column (Content) */}
-            <div className="w-full">
-              
+            <div className="w-full order-2 lg:order-1">
+
               {/* Short Excerpt */}
               <div className="pb-8 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900 mb-4">Tentang Layanan Ini</h2>
-                <p className="text-gray-700 leading-relaxed text-lg">
+                <p className="text-gray-700 leading-relaxed text-base sm:text-lg">
                   {excerpt}
                 </p>
               </div>
@@ -172,22 +172,22 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               {/* What this place offers (Fasilitas/Layanan) */}
               <div className="py-8 border-b border-gray-200">
                 <h2 className="text-xl font-bold text-gray-900 mb-6">Yang Anda Dapatkan</h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
-                  <div className="flex items-center gap-4">
-                    <Icon icon="solar:check-circle-linear" className="text-gray-700 text-2xl" />
-                    <span className="text-gray-600">Pengecekan Menyeluruh</span>
+                <div className="grid grid-cols-1 xs:grid-cols-2 gap-y-4 gap-x-4 sm:gap-x-8">
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <Icon icon="solar:check-circle-linear" className="text-gray-700 text-xl sm:text-2xl" />
+                    <span className="text-gray-600 text-sm sm:text-base">Pengecekan Menyeluruh</span>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <Icon icon="solar:shield-check-linear" className="text-gray-700 text-2xl" />
-                    <span className="text-gray-600">{service.garansi ? `Garansi ${service.garansi}` : 'Garansi Servis'}</span>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <Icon icon="solar:shield-check-linear" className="text-gray-700 text-xl sm:text-2xl" />
+                    <span className="text-gray-600 text-sm sm:text-base">{service.garansi ? `Garansi ${service.garansi}` : 'Garansi Servis'}</span>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <Icon icon="solar:clock-circle-linear" className="text-gray-700 text-2xl" />
-                    <span className="text-gray-600">{service.durasi || 'Pengerjaan Cepat'}</span>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <Icon icon="solar:clock-circle-linear" className="text-gray-700 text-xl sm:text-2xl" />
+                    <span className="text-gray-600 text-sm sm:text-base">{service.durasi || 'Pengerjaan Cepat'}</span>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <Icon icon="solar:tea-cup-linear" className="text-gray-700 text-2xl" />
-                    <span className="text-gray-600">Ruang Tunggu Nyaman</span>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <Icon icon="solar:tea-cup-linear" className="text-gray-700 text-xl sm:text-2xl" />
+                    <span className="text-gray-600 text-sm sm:text-base">Ruang Tunggu Nyaman</span>
                   </div>
                 </div>
               </div>
@@ -216,8 +216,24 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
               </div>
             </div>
 
-            {/* ═══ Right Column — Sidebar (Restored) ═══ */}
-            <aside className="w-full lg:sticky lg:top-32 space-y-8">
+            {/* ═══ Right Column — Sidebar ═══ */}
+            {/* Mobile: Below content */}
+            <aside className="w-full lg:sticky lg:top-32 space-y-6 lg:space-y-8 order-1 lg:order-2 mb-8 lg:mb-0">
+              {/* Mobile Quick CTA Card - Hidden on desktop */}
+              <div className="lg:hidden bg-gradient-to-br from-[#224297] to-[#1a3580] rounded-2xl p-5 text-white shadow-lg">
+                <h3 className="text-lg font-bold mb-2">Booking Service</h3>
+                <p className="text-white/80 text-sm mb-4">Reservasi {title} sekarang</p>
+                <a
+                  href={`https://wa.me/6287817773888?text=${encodeURIComponent(`Halo Minna, saya ingin booking "${title}"`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 w-full py-3 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-xl transition-all"
+                >
+                  <Icon icon="fa6-brands:whatsapp" width={20} />
+                  Chat WhatsApp
+                </a>
+              </div>
+
               {/* Service Navigation */}
               <ServiceSidebar services={allServices} currentSlug={slug} />
 

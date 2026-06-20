@@ -58,19 +58,42 @@ export default function ServiceGallery({ images }: ServiceGalleryProps) {
         )}
       </div>
 
-      {/* Mobile Single Image / Carousel (simplified) */}
-      <div className="md:hidden relative h-[300px] w-full" onClick={() => setShowAllPhotos(true)}>
-        <Image
-          src={mainImage.url}
-          alt={mainImage.alt || "Main service photo"}
-          fill
-          className="object-cover"
-          priority
-        />
+      {/* Mobile Single Image Carousel */}
+      <div className="md:hidden relative w-full">
+        {/* Swipeable carousel container */}
+        <div className="overflow-x-auto snap-x snap-mandatory scrollbar-hide flex -mx-4 px-4 gap-2">
+          {images.slice(0, 5).map((img, idx) => (
+            <div
+              key={img.id}
+              className="relative flex-shrink-0 w-[85vw] aspect-[4/3] rounded-xl overflow-hidden snap-center cursor-pointer"
+              onClick={() => setShowAllPhotos(true)}
+            >
+              <Image
+                src={img.url}
+                alt={img.alt || `Service photo ${idx + 1}`}
+                fill
+                className="object-cover"
+                sizes="85vw"
+                priority={idx === 0}
+              />
+            </div>
+          ))}
+        </div>
+        {/* Photo count indicator */}
         {images.length > 1 && (
-          <div className="absolute bottom-4 right-4 bg-black/60 text-white px-3 py-1 rounded-md text-sm backdrop-blur-sm">
-            1 / {images.length}
+          <div className="absolute bottom-3 right-8 bg-black/60 text-white px-2.5 py-1 rounded-md text-xs backdrop-blur-sm">
+            1-{Math.min(5, images.length)} dari {images.length}
           </div>
+        )}
+        {/* View all button */}
+        {images.length > 1 && (
+          <button
+            onClick={() => setShowAllPhotos(true)}
+            className="absolute bottom-3 right-4 flex items-center gap-1 bg-white/90 hover:bg-white text-gray-900 px-2.5 py-1 rounded-md text-xs font-medium shadow-sm backdrop-blur-sm transition-colors"
+          >
+            <Icon icon="solar:gallery-bold" width={14} />
+            Semua
+          </button>
         )}
       </div>
 
