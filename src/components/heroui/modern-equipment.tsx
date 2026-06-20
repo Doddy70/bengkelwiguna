@@ -7,7 +7,7 @@ import { Card, CardBody, CardHeader, Button, Divider } from "@nextui-org/react";
 import equipmentData from "@/data/equipment.json";
 
 // Hotspot Node (Floating style with dynamic positioning)
-const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, description, offsetX = 100, offsetY = -100 }: any) => {
+const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, description, offsetX = 100, offsetY = -100, index }: any) => {
   // SVG line from the dot (0,0) to the center of the tooltip (offsetX + 110, offsetY + 40)
   // We use a simple path with a slight curve for aesthetics
   const endX = offsetX + 110;
@@ -18,22 +18,27 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
 
   return (
     <div className="absolute z-20" style={{ top, left }}>
-      {/* Tooltip Line (Always visible) */}
-      <motion.svg
-        initial={{ opacity: 0, pathLength: 0 }}
-        animate={{ opacity: 1, pathLength: 1 }}
-        transition={{ duration: 0.5, delay }}
-        className="absolute z-[-1] pointer-events-none hidden md:block"
-        style={{ width: '1px', height: '1px', overflow: 'visible' }}
-      >
-        <path
-          d={svgPath}
-          fill="none"
-          stroke={isActive ? "#2563eb" : "#93c5fd"}
-          strokeWidth={isActive ? "2" : "1.5"}
-          className="transition-all duration-300"
-        />
-      </motion.svg>
+      {/* Tooltip Line (Visible only when active) */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.svg
+            initial={{ opacity: 0, pathLength: 0 }}
+            animate={{ opacity: 1, pathLength: 1 }}
+            exit={{ opacity: 0, pathLength: 0 }}
+            transition={{ duration: 0.3 }}
+            className="absolute z-[-1] pointer-events-none hidden md:block"
+            style={{ width: '1px', height: '1px', overflow: 'visible' }}
+          >
+            <path
+              d={svgPath}
+              fill="none"
+              stroke="#2563eb"
+              strokeWidth="2"
+              className="transition-all duration-300"
+            />
+          </motion.svg>
+        )}
+      </AnimatePresence>
 
       {/* The Hotspot Dot (Blue and Animated) */}
       <motion.div
@@ -44,25 +49,31 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
         onClick={onClick}
       >
         <div className={`absolute inset-[-6px] rounded-full opacity-60 ${isActive ? 'bg-blue-600 animate-pulse' : 'bg-blue-400 animate-pulse'}`}></div>
-        <div className={`relative w-4 h-4 rounded-full shadow-lg z-10 flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-blue-600 scale-125 ring-4 ring-white' : 'bg-white ring-2 ring-blue-500 hover:scale-110'}`}>
+        <div className={`relative w-6 h-6 rounded-full shadow-lg z-10 flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-blue-600 text-white scale-110 ring-4 ring-white' : 'bg-white text-blue-600 ring-2 ring-blue-500 hover:scale-110'} text-[11px] font-black`}>
+          {index !== undefined ? index + 1 : ''}
         </div>
       </motion.div>
 
-      {/* Floating Tooltip Label (Always visible) */}
-      <motion.div
-        initial={{ opacity: 0, y: 10, scale: 0.9 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{ duration: 0.5, delay }}
-        className={`absolute w-[220px] backdrop-blur-md rounded-2xl p-4 shadow-xl border z-50 md:z-auto transition-colors duration-300 cursor-pointer pointer-events-auto ${isActive ? 'bg-blue-600/95 border-blue-500' : 'bg-white/95 border-white hover:border-blue-200'}`}
-        style={{ left: `${offsetX}px`, top: `${offsetY}px` }}
-        onClick={onClick}
-      >
-        <div className="flex items-center gap-2 mb-1.5">
-          <div className={`w-2 h-2 rounded-full ${isActive ? 'bg-white' : 'bg-blue-500'}`}></div>
-          <h4 className={`font-bold text-[13px] leading-tight transition-colors duration-300 ${isActive ? 'text-white' : 'text-gray-800'}`}>{title}</h4>
-        </div>
-        <p className={`text-[11px] leading-relaxed line-clamp-3 transition-colors duration-300 ${isActive ? 'text-blue-100' : 'text-gray-500'}`}>{description}</p>
-      </motion.div>
+      {/* Floating Tooltip Label (Visible only when active) */}
+      <AnimatePresence>
+        {isActive && (
+          <motion.div
+            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 10, scale: 0.9 }}
+            transition={{ duration: 0.3 }}
+            className="absolute w-[220px] backdrop-blur-md rounded-2xl p-4 shadow-xl border z-50 md:z-auto transition-colors duration-300 cursor-pointer pointer-events-auto bg-blue-600/95 border-blue-500"
+            style={{ left: `${offsetX}px`, top: `${offsetY}px` }}
+            onClick={onClick}
+          >
+            <div className="flex items-center gap-2 mb-1.5">
+              <div className="w-2 h-2 rounded-full bg-white"></div>
+              <h4 className="font-bold text-[13px] leading-tight transition-colors duration-300 text-white">{title}</h4>
+            </div>
+            <p className="text-[11px] leading-relaxed line-clamp-3 transition-colors duration-300 text-blue-100">{description}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
