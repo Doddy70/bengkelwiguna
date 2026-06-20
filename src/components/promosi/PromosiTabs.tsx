@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { Accordion, AccordionItem } from "@nextui-org/react";
-import Link from "next/link";
+import BookingForm from "@/components/services/BookingForm";
 
 interface FaqItem {
   q?: string;
@@ -23,7 +23,7 @@ function classNames(...classes: (string | boolean | undefined | null)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function PromosiTabs({ contentHtml, syaratHtml, faq, promoName = "Promo Ini" }: PromosiTabsProps) {
+export default function PromosiTabs({ contentHtml, syaratHtml, faq, promoName }: PromosiTabsProps) {
   const [selectedTab, setSelectedTab] = useState("details");
 
   const tabs = [
@@ -63,58 +63,7 @@ export default function PromosiTabs({ contentHtml, syaratHtml, faq, promoName = 
       key: "booking",
       name: "Booking Form",
       icon: "solar:calendar-linear",
-      content: (
-        <div className="py-6">
-          <div className="rounded-2xl border border-gray-200 bg-gradient-to-br from-[#224297]/5 to-[#224297]/10 p-6 sm:p-8 dark:border-gray-700 dark:from-[#224297]/20 dark:to-[#224297]/30">
-            <div className="text-center mb-6">
-              <div className="mx-auto w-14 h-14 rounded-full bg-[#224297]/10 flex items-center justify-center mb-4">
-                <Icon icon="solar:calendar-mark" className="w-7 h-7 text-[#224297]" />
-              </div>
-              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2">Booking {promoName}</h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Klaim promo ini via WhatsApp</p>
-            </div>
-
-            <div className="space-y-4">
-              <a
-                href={`https://wa.me/6287817773888?text=${encodeURIComponent(`Halo Minna, saya ingin klaim promo "${promoName}" di Bengkel Wiguna.\n\nMohon info dan jadwal, terima kasih.`)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-3 w-full py-4 bg-[#25D366] hover:bg-[#20bd5a] text-white font-bold rounded-xl transition-all shadow-lg"
-              >
-                <Icon icon="fa6-brands:whatsapp" width={24} />
-                Klaim via WhatsApp
-              </a>
-
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-200 dark:border-gray-700"></div>
-                </div>
-                <div className="relative flex justify-center text-sm">
-                  <span className="px-4 bg-[#224297]/5 dark:bg-[#224297]/20 text-gray-500 dark:text-gray-400">atau</span>
-                </div>
-              </div>
-
-              <Link
-                href="/contact"
-                className="flex items-center justify-center gap-2 w-full py-3.5 bg-white hover:bg-gray-50 text-[#224297] font-bold rounded-xl border-2 border-[#224297]/20 transition-all dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white"
-              >
-                <Icon icon="solar:phone-linear" width={20} />
-                Hubungi Kami
-              </Link>
-            </div>
-
-            <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-              <div className="flex items-start gap-3">
-                <Icon icon="solar:map-point-linear" className="w-5 h-5 text-gray-400 mt-0.5" />
-                <div className="text-sm text-gray-600 dark:text-gray-400">
-                  <p className="font-medium text-gray-900 dark:text-white">Lokasi Bengkel</p>
-                  <p>Jl. Margonda No.268, Kemiri Muka, Depok 16423</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      ),
+      content: <BookingForm serviceName={promoName} compact />,
     },
     {
       key: "faq",
