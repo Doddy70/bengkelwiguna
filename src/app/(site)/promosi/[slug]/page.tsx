@@ -86,7 +86,7 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
         className="min-h-screen pb-24 bg-cover bg-no-repeat bg-top"
         style={{ backgroundImage: "url('/images/home-9-footer.webp')" }}
       >
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 lg:pt-8 lg:pt-12">
+        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 lg:pt-8 lg:pt-12">
           
           {/* Header Section (Title & Breadcrumb) */}
           <div className="mb-8">
