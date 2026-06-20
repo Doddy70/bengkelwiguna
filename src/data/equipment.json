@@ -88,12 +88,12 @@
         "hasilDeteksi": "Oil gallery bebas sumbatan, pressure regulator berfungsi, oil passages bersih"
       },
       {
-        "top": "49.0%",
-        "left": "61.2%",
+        "top": "30.5%",
+        "left": "53.5%",
         "title": "JALUR OLI PRESISI (MICRO OIL PASSAGE)",
         "subtitle": "Saluran oli mikro yang mensuplai pelumasan ke bagian presisi mesin.",
         "labelOffsetX": 150,
-        "labelOffsetY": 80,
+        "labelOffsetY": -50,
         "nodeIcon": "Target",
         "thumb": "/images/equipment/info_5.jpg",
         "fungsi": "Mensuplai oli tekanan tinggi ke komponen presisi seperti turbo, VVT, dan nosel hidrolik.",
@@ -102,12 +102,12 @@
         "hasilDeteksi": "Micro passages patent, oil pressure di spec, no restriction detected"
       },
       {
-        "top": "83.8%",
-        "left": "35.0%",
+        "top": "65.0%",
+        "left": "48.0%",
         "title": "CARTER / OIL PAN (OIL SUMP)",
         "subtitle": "Bak oli bagian bawah mesin yang menyimpan cadangan oli pelumas.",
-        "labelOffsetX": -160,
-        "labelOffsetY": -100,
+        "labelOffsetX": 150,
+        "labelOffsetY": -80,
         "nodeIcon": "Crosshair",
         "thumb": "/images/equipment/info_6.jpg",
         "fungsi": "Menampung oli pelumas cadangan yang disirkulasikan pompa oli ke seluruh mesin.",
