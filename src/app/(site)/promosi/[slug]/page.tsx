@@ -160,8 +160,8 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 lg:gap-12">
-            {/* Main Content - Mobile: full width */}
-            <div className="xl:col-span-2 order-2 xl:order-1">
+            {/* Main Content - Mobile: first */}
+            <div className="xl:col-span-2 order-1">
               <div className="bg-white dark:bg-gray-900 rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 lg:p-12 shadow-xl">
                 {/* Featured Image */}
                 <div className="relative aspect-[16/9] w-full rounded-xl sm:rounded-2xl overflow-hidden mb-6 sm:mb-8 bg-gray-100">
@@ -251,8 +251,8 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
               </div>
             </div>
 
-            {/* Sidebar - Mobile: shown below content */}
-            <div className="xl:col-span-1 space-y-6 sm:space-y-8 order-1 xl:order-2 mb-8 xl:mb-0">
+            {/* Sidebar - Mobile: below content */}
+            <div className="xl:col-span-1 space-y-6 sm:space-y-8 order-2 xl:order-2 mb-8 xl:mb-0">
               {/* Related Promos */}
               {relatedPromos.length > 0 && (
                 <div className="bg-white dark:bg-gray-900 rounded-[2rem] p-6 shadow-xl">

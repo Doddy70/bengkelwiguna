@@ -155,11 +155,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           {/* Bento Grid Gallery */}
           <ServiceGallery images={galleryImages} />
 
-          {/* Main Layout Grid - Mobile: stacked, Desktop: sidebar */}
+          {/* Main Layout Grid - Mobile: stacked (content first), Desktop: sidebar */}
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8 lg:gap-16">
 
-            {/* Left Column (Content) */}
-            <div className="w-full order-2 lg:order-1">
+            {/* Left Column (Content) - Mobile: First */}
+            <div className="w-full order-1">
 
               {/* Short Excerpt */}
               <div className="pb-8 border-b border-gray-200">
@@ -217,8 +217,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
             </div>
 
             {/* ═══ Right Column — Sidebar ═══ */}
-            {/* Mobile: Below content */}
-            <aside className="w-full lg:sticky lg:top-32 space-y-6 lg:space-y-8 order-1 lg:order-2 mb-8 lg:mb-0">
+            {/* Mobile: Below content (order-2), Desktop: side-by-side */}
+            <aside className="w-full lg:sticky lg:top-32 space-y-6 lg:space-y-8 order-2">
               {/* Mobile Quick CTA Card - Hidden on desktop */}
               <div className="lg:hidden bg-gradient-to-br from-[#224297] to-[#1a3580] rounded-2xl p-5 text-white shadow-lg">
                 <h3 className="text-lg font-bold mb-2">Booking Service</h3>
