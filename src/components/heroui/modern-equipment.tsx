@@ -85,7 +85,7 @@ export default function ModernEquipmentShowcase() {
   const [activeHotspot, setActiveHotspot] = useState<any | null>(null);
   // To avoid hydration mismatch if we want a real clock, or just use a static status
   const [currentTime, setCurrentTime] = useState("Live Monitoring");
-  
+
   useEffect(() => {
     // Optional: Make it an actual clock on the client side
     const interval = setInterval(() => {
@@ -100,15 +100,15 @@ export default function ModernEquipmentShowcase() {
 
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-[#f0f4f8] via-[#f8fafc] to-[#eef2ff] font-sans text-gray-800 overflow-x-hidden lg:overflow-hidden relative flex flex-col lg:block pb-24 lg:pb-0">
-      
+
       {/* 0. SECTION TITLE */}
       <div className="relative lg:absolute top-6 lg:top-[100px] left-0 right-0 w-full text-center z-20 px-4 mb-8 lg:mb-0">
-         <div className="inline-flex items-center justify-center gap-2 px-3 py-1 bg-blue-100/80 backdrop-blur-sm border border-blue-200 rounded-full text-blue-700 font-bold text-[11px] uppercase tracking-widest mb-3 shadow-sm">
-           <FeatherIcons.Crosshair size={12} />
-           Teknologi Mutakhir
-         </div>
-         <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Fasilitas & Peralatan Modern</h2>
-         <p className="text-gray-500 text-sm mt-2 max-w-lg mx-auto">Inspeksi presisi tinggi untuk performa kendaraan maksimal.</p>
+        <div className="inline-flex items-center justify-center gap-2 px-3 py-1 bg-blue-100/80 backdrop-blur-sm border border-blue-200 rounded-full text-blue-700 font-bold text-[11px] uppercase tracking-widest mb-3 shadow-sm">
+          <FeatherIcons.Crosshair size={12} />
+          Teknologi Mutakhir
+        </div>
+        <h2 className="text-3xl md:text-4xl font-black text-gray-900 tracking-tight">Fasilitas & Peralatan Modern</h2>
+        <p className="text-gray-500 text-sm mt-2 max-w-lg mx-auto">Inspeksi presisi tinggi untuk performa kendaraan maksimal.</p>
       </div>
 
 
@@ -136,11 +136,10 @@ export default function ModernEquipmentShowcase() {
                 setActiveItemIndex(idx);
                 setActiveHotspot(null);
               }}
-              className={`px-5 lg:px-6 py-3 lg:py-3.5 rounded-full lg:rounded-2xl text-[13px] lg:text-[14px] font-bold transition-all duration-300 flex items-center justify-center lg:justify-start gap-3 shrink-0 whitespace-nowrap border ${
-                activeItemIndex === idx
+              className={`px-5 lg:px-6 py-3 lg:py-3.5 rounded-full lg:rounded-2xl text-[13px] lg:text-[14px] font-bold transition-all duration-300 flex items-center justify-center lg:justify-start gap-3 shrink-0 whitespace-nowrap border ${activeItemIndex === idx
                   ? "bg-blue-600 text-white shadow-lg shadow-blue-600/30 border-blue-500"
                   : "bg-white/60 backdrop-blur-md hover:bg-white text-gray-600 border-white/50"
-              }`}
+                }`}
             >
               <div className={`w-2 h-2 rounded-full ${activeItemIndex === idx ? "bg-white" : "bg-gray-400"}`}></div>
               {item.name}
@@ -158,13 +157,13 @@ export default function ModernEquipmentShowcase() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.6 }}
-            className="relative w-full max-w-[1100px] aspect-[77/34] lg:mt-20 lg:ml-20 lg:scale-110 origin-center lg:origin-left"
+            className="relative w-full max-w-[1100px] aspect-[16/9] lg:mt-20 lg:ml-20"
           >
             <Image
               src={activeItem.image}
               alt={activeItem.name}
               fill
-              className="object-contain drop-shadow-2xl z-10"
+              className="object-contain drop-shadow-2xl z-10 lg:scale-110"
               priority
             />
             {/* Hotspots */}
@@ -190,200 +189,210 @@ export default function ModernEquipmentShowcase() {
       </div>
 
       {/* 4. RIGHT FLOATING AREA (Info Detail Card) */}
-      <div className={`relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto w-full px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none flex justify-center ${(!activeHotspot && activeItem.defaultThumb) ? 'max-w-[800px] lg:w-[640px] xl:w-[760px]' : 'max-w-[540px] lg:w-[460px]'}`}>
+      <div className={`relative lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:right-[5%] xl:right-[8%] z-30 pointer-events-auto w-full px-6 lg:px-0 mt-12 lg:mt-0 mx-auto lg:mx-0 order-3 lg:order-none flex justify-center ${((!activeHotspot && activeItem.defaultThumb) || (activeItem.id === 'semi-overhaul' && activeHotspot)) ? 'max-w-[800px] lg:w-[640px] xl:w-[760px]' : 'max-w-[540px] lg:w-[460px]'}`}>
         <Card className={`bg-gradient-to-br from-white/50 to-white/20 backdrop-blur-[40px] backdrop-saturate-200 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/70 rounded-[2rem] p-2 w-full transition-all duration-500`} radius="none">
-          {(!activeHotspot && activeItem.defaultThumb) ? (
-            <div className="flex flex-col w-full h-full">
-              <div className="w-full overflow-hidden rounded-[1.5rem] mb-2">
-                <img 
-                  src={activeItem.defaultThumb} 
-                  alt={activeItem.name} 
+          {((!activeHotspot && activeItem.defaultThumb) || (activeItem.id === 'semi-overhaul' && activeHotspot)) ? (
+            <div className="flex flex-col w-full h-full relative">
+              {activeHotspot && (
+                <button 
+                  className="absolute top-4 right-4 z-20 w-8 h-8 rounded-full border border-black/10 flex items-center justify-center text-gray-600 bg-white/60 backdrop-blur-md hover:bg-white/90 transition-all shadow-sm" 
+                  onClick={() => setActiveHotspot(null)}
+                >
+                  <FeatherIcons.X size={14} />
+                </button>
+              )}
+              <div className={`w-full overflow-hidden rounded-[1.5rem] ${!activeHotspot ? 'mb-2' : ''}`}>
+                <img
+                  src={activeHotspot ? activeHotspot.thumb : activeItem.defaultThumb}
+                  alt={activeHotspot ? activeHotspot.title : activeItem.name}
                   className="w-full h-auto block"
                 />
               </div>
-              <div className="relative overflow-hidden rounded-[1.5rem] border border-white/60 bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-[20px] backdrop-saturate-150 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
-                <div className="flex relative z-10">
-                  <button className="flex-1 flex items-center justify-center gap-2.5 py-4 hover:bg-white/50 transition-all text-[#224297] font-bold text-[14px]">
-                    <FeatherIcons.Calendar size={16} className="text-[#224297]" />
-                    Booking Sekarang
-                  </button>
+              {!activeHotspot && (
+                <div className="relative overflow-hidden rounded-[1.5rem] border border-white/60 bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-[20px] backdrop-saturate-150 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)]">
+                  <div className="flex relative z-10">
+                    <button className="flex-1 flex items-center justify-center gap-2.5 py-4 hover:bg-white/50 transition-all text-[#224297] font-bold text-[14px]">
+                      <FeatherIcons.Calendar size={16} className="text-[#224297]" />
+                      Booking Sekarang
+                    </button>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ) : (
             <>
-          <CardHeader className="flex justify-between items-center px-5 pt-5 pb-2">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
-                <FeatherIcons.Crosshair size={20} />
-              </div>
-              <div>
-                <p className="text-[11px] text-gray-400 uppercase tracking-widest font-bold">Area Terpilih</p>
-                <h3 className="text-[18px] font-bold text-gray-800 leading-tight mt-0.5">
-                  {activeHotspot ? activeHotspot.title : activeItem.name}
-                </h3>
-              </div>
-            </div>
-            <button className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 bg-white" onClick={() => setActiveHotspot(null)}>
-              <FeatherIcons.X size={14} />
-            </button>
-          </CardHeader>
-
-          <CardBody className="gap-4 px-5 pb-5 pt-2 max-h-[70vh] overflow-y-auto scrollbar-hide">
-
-            {/* 2. Thumbnail Image (for active hotspot) */}
-            {activeHotspot?.thumb && (
-              <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-gray-100 mb-2">
-                <Image
-                  src={activeHotspot.thumb}
-                  alt={activeHotspot.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 460px"
-                />
-              </div>
-            )}
-
-            {/* 3. Deskripsi Singkat (fungsi/treatment) */}
-            <p className="text-[14px] text-gray-600 leading-relaxed m-0 border-b border-gray-100 pb-4">
-              {activeHotspot ? (activeHotspot.fungsi || activeHotspot.treatment) : activeItem.description}
-            </p>
-
-            {/* 3. Impact Score Cards (3 Kartu horizontal) */}
-            {(activeItem.impactScores || []).length > 0 && (
-              <div className="flex gap-2">
-                {activeItem.impactScores?.map((score: any, idx: number) => {
-                  const Icon = (FeatherIcons as any)[score.icon] || FeatherIcons.CheckCircle;
-                  return (
-                    <div key={idx} className="flex-1 bg-white/60 p-3 rounded-xl border border-gray-100 shadow-sm text-center">
-                      <Icon size={16} className="text-blue-500 mx-auto mb-2" />
-                      <p className="text-[11px] text-gray-500 leading-tight mb-1">{score.title}</p>
-                      <p className="text-[13px] font-bold text-gray-800">{score.value}</p>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* 4. Gejala & Benefit Checklist */}
-            {activeHotspot && (activeHotspot.gejala || activeHotspot.impacts) && (
-              <div className="pt-1">
-                {/* Gejala Section */}
-                {activeHotspot.gejala && activeHotspot.gejala.length > 0 && (
-                  <div className="mb-4">
-                    <p className="text-[11px] font-bold text-red-600 uppercase tracking-wide mb-2 flex items-center gap-1.5">
-                      <FeatherIcons.AlertCircle size={12} />
-                      Gejala Kerusakan
-                    </p>
-                    <ul className="space-y-1.5">
-                      {activeHotspot.gejala.map((gejala: string, idx: number) => (
-                        <li key={`g-${idx}`} className="text-[13px] text-gray-600 flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 shrink-0" />
-                          <span>{gejala}</span>
-                        </li>
-                      ))}
-                    </ul>
+              <CardHeader className="flex justify-between items-center px-5 pt-5 pb-2">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600">
+                    <FeatherIcons.Crosshair size={20} />
                   </div>
-                )}
-                {/* Manfaat Section */}
-                {(activeHotspot.manfaat || activeHotspot.impacts) && (
                   <div>
-                    <p className="text-[11px] font-bold text-green-600 uppercase tracking-wide mb-2 flex items-center gap-1.5">
-                      <FeatherIcons.CheckCircle size={12} />
-                      Manfaat Treatment
-                    </p>
-                    <ul className="space-y-1.5">
-                      {(activeHotspot.manfaat || activeHotspot.impacts).map((manfaat: string, idx: number) => (
-                        <li key={`m-${idx}`} className="text-[13px] text-gray-700 flex items-start gap-2">
-                          <FeatherIcons.Check size={16} className="text-green-500 shrink-0 mt-0.5" />
-                          <span>{manfaat}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <p className="text-[11px] text-gray-400 uppercase tracking-widest font-bold">Area Terpilih</p>
+                    <h3 className="text-[18px] font-bold text-gray-800 leading-tight mt-0.5">
+                      {activeHotspot ? activeHotspot.title : activeItem.name}
+                    </h3>
                   </div>
-                )}
-                {/* Hasil Deteksi */}
-                {activeHotspot.hasilDeteksi && (
-                  <div className="mt-4 p-3 bg-blue-50/50 rounded-xl border border-blue-100">
-                    <p className="text-[11px] font-bold text-blue-700 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
-                      <FeatherIcons.Crosshair size={12} />
-                      Hasil Deteksi
-                    </p>
-                    <p className="text-[13px] text-blue-800 leading-relaxed">{activeHotspot.hasilDeteksi}</p>
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* 5. Before vs After */}
-            {activeHotspot && activeHotspot.beforeAfter && (
-              <div className="flex flex-col sm:flex-row gap-3 mt-1">
-                <div className="flex-1 bg-red-50/40 p-4 rounded-xl border border-red-100/50">
-                  <p className="text-[12px] font-bold text-red-600 mb-2.5 uppercase tracking-wide">Sebelum</p>
-                  <ul className="space-y-2">
-                    {activeHotspot.beforeAfter.before.map((b: string, i: number) => (
-                      <li key={i} className="text-[12px] text-gray-600 flex items-start gap-2 leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 shrink-0" />
-                        <span>{b}</span>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
-                <div className="flex-1 bg-green-50/40 p-4 rounded-xl border border-green-100/50">
-                  <p className="text-[12px] font-bold text-green-600 mb-2.5 uppercase tracking-wide">Sesudah</p>
-                  <ul className="space-y-2">
-                    {activeHotspot.beforeAfter.after.map((a: string, i: number) => (
-                      <li key={i} className="text-[12px] text-gray-600 flex items-start gap-2 leading-relaxed">
-                        <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 shrink-0" />
-                        <span>{a}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            )}
-
-            {/* 6 & 7. Testimoni & Action Button (Unified Liquid Glass Card) */}
-            <div className="mt-4 relative overflow-hidden rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-[20px] backdrop-saturate-150">
-              {activeHotspot && activeHotspot.testimonial && (
-                <div className="p-4 sm:p-5 relative z-10">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <div className="flex items-center gap-2.5 mb-1">
-                        <h4 className="text-gray-900 font-bold text-[15px]">{activeHotspot.testimonial.author.split(',')[0]}</h4>
-                        <span className="px-2 py-0.5 bg-green-500/10 text-green-700 border border-green-500/20 text-[10px] font-bold tracking-wide rounded-full backdrop-blur-md">
-                          Pelanggan
-                        </span>
-                      </div>
-                      <p className="text-gray-600 font-medium text-[13px]">{activeHotspot.testimonial.author.split(',').slice(1).join(',')}</p>
-                    </div>
-                    <div className="shrink-0 ml-4">
-                      <div className="w-11 h-11 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center border-2 border-white shadow-sm overflow-hidden">
-                        <FeatherIcons.User size={20} className="text-[#224297]" />
-                      </div>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 text-[13.5px] italic mt-4 leading-relaxed font-medium">
-                    &quot;{activeHotspot.testimonial.quote}&quot;
-                  </p>
-                </div>
-              )}
-
-              {!activeHotspot && (
-                <div className="p-5 text-center opacity-80 relative z-10">
-                  <FeatherIcons.MousePointer size={28} className="mx-auto mb-2 text-[#224297]/70" />
-                  <p className="text-[13px] text-gray-700 font-medium">Klik titik (hotspot) untuk melihat detail.</p>
-                </div>
-              )}
-
-              <div className="flex border-t border-white/60 relative z-10">
-                <button className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-white/40 hover:bg-white/70 backdrop-blur-md transition-all text-[#224297] font-bold text-[14px]">
-                  <FeatherIcons.Calendar size={16} className="text-[#224297]" />
-                  Booking Sekarang
+                <button className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:bg-gray-50 bg-white" onClick={() => setActiveHotspot(null)}>
+                  <FeatherIcons.X size={14} />
                 </button>
-              </div>
-            </div>
-          </CardBody>
+              </CardHeader>
+
+              <CardBody className="gap-4 px-5 pb-5 pt-2 max-h-[70vh] overflow-y-auto scrollbar-hide">
+
+                {/* 2. Thumbnail Image (for active hotspot) */}
+                {activeHotspot?.thumb && (
+                  <div className="relative w-full aspect-video rounded-xl overflow-hidden shadow-md border border-gray-100 mb-2">
+                    <Image
+                      src={activeHotspot.thumb}
+                      alt={activeHotspot.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 460px"
+                    />
+                  </div>
+                )}
+
+                {/* 3. Deskripsi Singkat (fungsi/treatment) */}
+                <p className="text-[14px] text-gray-600 leading-relaxed m-0 border-b border-gray-100 pb-4">
+                  {activeHotspot ? (activeHotspot.fungsi || activeHotspot.treatment) : activeItem.description}
+                </p>
+
+                {/* 3. Impact Score Cards (3 Kartu horizontal) */}
+                {(activeItem.impactScores || []).length > 0 && (
+                  <div className="flex gap-2">
+                    {activeItem.impactScores?.map((score: any, idx: number) => {
+                      const Icon = (FeatherIcons as any)[score.icon] || FeatherIcons.CheckCircle;
+                      return (
+                        <div key={idx} className="flex-1 bg-white/60 p-3 rounded-xl border border-gray-100 shadow-sm text-center">
+                          <Icon size={16} className="text-blue-500 mx-auto mb-2" />
+                          <p className="text-[11px] text-gray-500 leading-tight mb-1">{score.title}</p>
+                          <p className="text-[13px] font-bold text-gray-800">{score.value}</p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+
+                {/* 4. Gejala & Benefit Checklist */}
+                {activeHotspot && (activeHotspot.gejala || activeHotspot.impacts) && (
+                  <div className="pt-1">
+                    {/* Gejala Section */}
+                    {activeHotspot.gejala && activeHotspot.gejala.length > 0 && (
+                      <div className="mb-4">
+                        <p className="text-[11px] font-bold text-red-600 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+                          <FeatherIcons.AlertCircle size={12} />
+                          Gejala Kerusakan
+                        </p>
+                        <ul className="space-y-1.5">
+                          {activeHotspot.gejala.map((gejala: string, idx: number) => (
+                            <li key={`g-${idx}`} className="text-[13px] text-gray-600 flex items-start gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 shrink-0" />
+                              <span>{gejala}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {/* Manfaat Section */}
+                    {(activeHotspot.manfaat || activeHotspot.impacts) && (
+                      <div>
+                        <p className="text-[11px] font-bold text-green-600 uppercase tracking-wide mb-2 flex items-center gap-1.5">
+                          <FeatherIcons.CheckCircle size={12} />
+                          Manfaat Treatment
+                        </p>
+                        <ul className="space-y-1.5">
+                          {(activeHotspot.manfaat || activeHotspot.impacts).map((manfaat: string, idx: number) => (
+                            <li key={`m-${idx}`} className="text-[13px] text-gray-700 flex items-start gap-2">
+                              <FeatherIcons.Check size={16} className="text-green-500 shrink-0 mt-0.5" />
+                              <span>{manfaat}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                    {/* Hasil Deteksi */}
+                    {activeHotspot.hasilDeteksi && (
+                      <div className="mt-4 p-3 bg-blue-50/50 rounded-xl border border-blue-100">
+                        <p className="text-[11px] font-bold text-blue-700 uppercase tracking-wide mb-1.5 flex items-center gap-1.5">
+                          <FeatherIcons.Crosshair size={12} />
+                          Hasil Deteksi
+                        </p>
+                        <p className="text-[13px] text-blue-800 leading-relaxed">{activeHotspot.hasilDeteksi}</p>
+                      </div>
+                    )}
+                  </div>
+                )}
+
+                {/* 5. Before vs After */}
+                {activeHotspot && activeHotspot.beforeAfter && (
+                  <div className="flex flex-col sm:flex-row gap-3 mt-1">
+                    <div className="flex-1 bg-red-50/40 p-4 rounded-xl border border-red-100/50">
+                      <p className="text-[12px] font-bold text-red-600 mb-2.5 uppercase tracking-wide">Sebelum</p>
+                      <ul className="space-y-2">
+                        {activeHotspot.beforeAfter.before.map((b: string, i: number) => (
+                          <li key={i} className="text-[12px] text-gray-600 flex items-start gap-2 leading-relaxed">
+                            <span className="w-1.5 h-1.5 rounded-full bg-red-400 mt-1.5 shrink-0" />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="flex-1 bg-green-50/40 p-4 rounded-xl border border-green-100/50">
+                      <p className="text-[12px] font-bold text-green-600 mb-2.5 uppercase tracking-wide">Sesudah</p>
+                      <ul className="space-y-2">
+                        {activeHotspot.beforeAfter.after.map((a: string, i: number) => (
+                          <li key={i} className="text-[12px] text-gray-600 flex items-start gap-2 leading-relaxed">
+                            <span className="w-1.5 h-1.5 rounded-full bg-green-500 mt-1.5 shrink-0" />
+                            <span>{a}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+
+                {/* 6 & 7. Testimoni & Action Button (Unified Liquid Glass Card) */}
+                <div className="mt-4 relative overflow-hidden rounded-2xl shadow-[0_8px_32px_0_rgba(31,38,135,0.07)] border border-white/60 bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-[20px] backdrop-saturate-150">
+                  {activeHotspot && activeHotspot.testimonial && (
+                    <div className="p-4 sm:p-5 relative z-10">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <div className="flex items-center gap-2.5 mb-1">
+                            <h4 className="text-gray-900 font-bold text-[15px]">{activeHotspot.testimonial.author.split(',')[0]}</h4>
+                            <span className="px-2 py-0.5 bg-green-500/10 text-green-700 border border-green-500/20 text-[10px] font-bold tracking-wide rounded-full backdrop-blur-md">
+                              Pelanggan
+                            </span>
+                          </div>
+                          <p className="text-gray-600 font-medium text-[13px]">{activeHotspot.testimonial.author.split(',').slice(1).join(',')}</p>
+                        </div>
+                        <div className="shrink-0 ml-4">
+                          <div className="w-11 h-11 rounded-full bg-white/60 backdrop-blur-md flex items-center justify-center border-2 border-white shadow-sm overflow-hidden">
+                            <FeatherIcons.User size={20} className="text-[#224297]" />
+                          </div>
+                        </div>
+                      </div>
+                      <p className="text-gray-700 text-[13.5px] italic mt-4 leading-relaxed font-medium">
+                        &quot;{activeHotspot.testimonial.quote}&quot;
+                      </p>
+                    </div>
+                  )}
+
+                  {!activeHotspot && (
+                    <div className="p-5 text-center opacity-80 relative z-10">
+                      <FeatherIcons.MousePointer size={28} className="mx-auto mb-2 text-[#224297]/70" />
+                      <p className="text-[13px] text-gray-700 font-medium">Klik titik (hotspot) untuk melihat detail.</p>
+                    </div>
+                  )}
+
+                  <div className="flex border-t border-white/60 relative z-10">
+                    <button className="flex-1 flex items-center justify-center gap-2.5 py-4 bg-white/40 hover:bg-white/70 backdrop-blur-md transition-all text-[#224297] font-bold text-[14px]">
+                      <FeatherIcons.Calendar size={16} className="text-[#224297]" />
+                      Booking Sekarang
+                    </button>
+                  </div>
+                </div>
+              </CardBody>
             </>
           )}
         </Card>
