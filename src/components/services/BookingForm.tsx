@@ -7,6 +7,7 @@ import { submitContactForm, CF7_FORMS } from "@/lib/contact";
 interface BookingFormProps {
   serviceName?: string;
   compact?: boolean;
+  cf7FormId?: string;
 }
 
 interface FormField {
@@ -91,7 +92,8 @@ const bookingFields: FormField[] = [
   },
 ];
 
-export default function BookingForm({ serviceName, compact = false }: BookingFormProps) {
+export default function BookingForm({ serviceName, compact = false, cf7FormId }: BookingFormProps) {
+  const formId = cf7FormId || CF7_FORMS.BOOKING_SERVICE;
   const [isPending, startTransition] = useTransition();
   const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -102,7 +104,7 @@ export default function BookingForm({ serviceName, compact = false }: BookingFor
     const formData = new FormData(e.currentTarget);
 
     // Add hidden fields required by CF7 addons
-    formData.append("_wpcf7_unit_tag", `wpcf7-f${CF7_FORMS.BOOKING_SERVICE}-o1`);
+    formData.append("_wpcf7_unit_tag", `wpcf7-f${formId}-o1`);
     formData.append("_wpcf7_container_post", "0");
 
     // Add service name if provided
@@ -111,7 +113,7 @@ export default function BookingForm({ serviceName, compact = false }: BookingFor
     }
 
     startTransition(async () => {
-      const result = await submitContactForm(CF7_FORMS.BOOKING_SERVICE, formData);
+      const result = await submitContactForm(formId, formData);
 
       if (result.status === "mail_sent") {
         setStatus("success");
@@ -226,7 +228,7 @@ export default function BookingForm({ serviceName, compact = false }: BookingFor
         </div>
 
         {/* Hidden fields for CF7 */}
-        <input type="hidden" name="_wpcf7" value={CF7_FORMS.BOOKING_SERVICE} />
+        <input type="hidden" name="_wpcf7" value={formId} />
         <input type="hidden" name="_wpcf7_version" value="5.8.7" />
         <input type="hidden" name="_wpcf7_locale" value="id_ID" />
         <input type="hidden" name="_wpcf7_container_post" value="0" />

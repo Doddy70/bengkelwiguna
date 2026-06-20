@@ -1,120 +1,95 @@
 "use client";
 
-import React, { useState } from "react";
-import Image from "next/image";
+import React from "react";
 import Link from "next/link";
-import { Promosi } from "@/types/wordpress";
 import { Icon } from "@iconify/react";
-import { useDisclosure } from "@nextui-org/react";
-import PromoModal from "@/components/heroui/PromoModal";
+import type { Promosi } from "@/types/wordpress";
+import WigunaCard from "@/components/ui/WigunaCard";
+
+type WPRendered = string | { rendered: string };
+const getTitle = (t: WPRendered): string =>
+  typeof t === "string" ? t : t.rendered;
+const getExcerpt = (e: WPRendered): string =>
+  typeof e === "string" ? e : e.rendered;
 
 interface PromosiArchiveProps {
   promos: Promosi[];
   showPromoBulanan?: boolean;
 }
 
-// Promosi Card - Tall image with text overlay pattern
-const PromoCard = ({
-  promo,
-  onClick,
-  priority = false
-}: {
-  promo: any;
-  onClick: () => void;
-  priority?: boolean;
-}) => {
-  const title = typeof promo.title === 'string' ? promo.title : promo.title?.rendered || '';
-  const excerptRaw = typeof promo.excerpt === 'string' ? promo.excerpt : promo.excerpt?.rendered || promo.excerpt || '';
-  const excerpt = excerptRaw.replace(/<[^>]*>/g, '').trim().slice(0, 80) + '...';
-  const harga = promo.harga_promo || promo.harga || null;
-  const hargaAsli = promo.harga_asli || null;
-
-  return (
-    <div className="group relative">
-      {/* Tall Image */}
-      <div className="overflow-hidden rounded-lg">
-        <Image
-          src={promo.featured_img || "/images/promo-default.jpg"}
-          alt={title}
-          width={400}
-          height={600}
-          className="h-auto w-full object-cover rounded-lg group-hover:opacity-90 transition-opacity"
-          priority={priority}
-        />
-      </div>
-
-      {/* Content */}
-      <div className="mt-4">
-        <h3 className="text-base font-semibold text-gray-900 line-clamp-2 group-hover:text-[#224297] transition-colors">
-          <button onClick={onClick} className="text-left">
-            <span className="absolute inset-0" />
-            {title}
-          </button>
-        </h3>
-        {harga && (
-          <p className="mt-1 text-sm font-medium text-[#224297]">{harga}</p>
-        )}
-        {hargaAsli && (
-          <p className="text-sm text-gray-400 line-through">{hargaAsli}</p>
-        )}
-      </div>
-    </div>
-  );
-};
-
 export default function PromosiArchiveClient({ promos, showPromoBulanan = true }: PromosiArchiveProps) {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const [selectedPromo, setSelectedPromo] = useState<any>(null);
-
-  const handleOpenPromo = (promo: any) => {
-    setSelectedPromo(promo);
-    onOpen();
-  };
-
   const promosList = promos || [];
 
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
 
-        {/* Header - Template Style */}
+        {/* Header */}
         <div className="sm:flex sm:items-baseline sm:justify-between mb-8">
           <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             Promo Spesial Bengkel Wiguna
           </h2>
-          <a
+          <Link
             href="/promosi"
-            className="hidden text-sm font-semibold text-[#224297] hover:text-[#224297]/80 sm:block"
+            className="hidden text-sm font-semibold text-[#224297] hover:text-[#224297]/80 sm:flex sm:items-center gap-1"
           >
-            Lihat semua promo
-            <span aria-hidden="true"> →</span>
-          </a>
+            Lihat semua
+            <span aria-hidden="true"> -&gt;</span>
+          </Link>
         </div>
 
-        {/* Grid - Template Pattern */}
-        <div className="mt-6 grid grid-cols-1 gap-y-10 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 lg:gap-x-8">
-          {promosList.slice(0, 8).map((promo, idx) => (
-            <PromoCard
-              key={promo.slug || idx}
-              promo={promo}
-              onClick={() => handleOpenPromo(promo)}
-              priority={idx < 4}
-            />
-          ))}
+        {/* Grid - 3 Columns using WigunaCard */}
+        <div className="mt-6 grid grid-cols-1 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 gap-x-6">
+          {promosList.slice(0, 6).map((promo, idx) => {
+            const title = getTitle(promo.title);
+            const excerpt = getExcerpt(promo.excerpt);
+            const slug = promo.slug || String(promo.id);
+            const discount = promo.diskon_persen;
+            const badgeText = discount ? `${discount} OFF` : undefined;
+            const price = promo.harga_promo || undefined;
+            const oldPrice = promo.harga_asli || undefined;
+
+            return (
+              <WigunaCard
+                key={slug}
+                variant="overlay"
+                href={`/promosi/${slug}`}
+                image={promo.featured_img || "/images/promo-default.jpg"}
+                imageAspectRatio="4/5"
+                title={title}
+                excerpt={excerpt}
+                badgeText={badgeText}
+                price={price}
+                oldPrice={oldPrice}
+                buttonText="Lihat Promo"
+                onSecondaryClick={(e) => {
+                  e.stopPropagation();
+                  window.open(
+                    `https://wa.me/6281717773888?text=Halo%20Minna,%20saya%20tertarik%20dengan%20promo%3A%20${encodeURIComponent(title)}`,
+                    "_blank",
+                    "noopener,noreferrer"
+                  );
+                }}
+                secondaryIcon="fa6-brands:whatsapp"
+                linkClassName="h-full"
+              />
+            );
+          })}
         </div>
 
         {/* Mobile Only - Browse All Link */}
         <div className="mt-8 sm:hidden">
-          <a
+          <Link
             href="/promosi"
             className="text-sm font-semibold text-[#224297] hover:text-[#224297]/80"
           >
             Lihat semua promo →
-          </a>
+          </Link>
         </div>
 
-        {/* CTA Section */}
-        <div className="mt-16 grid sm:grid-cols-2 gap-6">
+        {/* CTA Section - 2 Columns */}
+        <div className="mt-16 grid gap-6 sm:grid-cols-2">
+
           {/* WhatsApp CTA */}
           <div className="relative overflow-hidden rounded-2xl bg-[#25D366] p-8">
             <div className="relative z-10">
@@ -122,7 +97,7 @@ export default function PromosiArchiveClient({ promos, showPromoBulanan = true }
                 <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/20">
                   <Icon icon="fa6-brands:whatsapp" className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-sm font-medium text-white/80">Booking & Konsultasi</span>
+                <span className="text-sm font-medium text-white/80">Booking &amp; Konsultasi</span>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">
                 Hubungi Kami via WhatsApp
@@ -134,7 +109,7 @@ export default function PromosiArchiveClient({ promos, showPromoBulanan = true }
                 href="https://wa.me/6281717773888?text=Halo%20Minna,%20info%20promo%20terbaru"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#128C7E] hover:bg-gray-100 transition-colors"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-bold text-[#128C7E] hover:bg-gray-100"
               >
                 <Icon icon="solar:chat-round-linear" className="w-4 h-4" />
                 Mulai Chat
@@ -160,8 +135,8 @@ export default function PromosiArchiveClient({ promos, showPromoBulanan = true }
               <p className="text-white/80 text-sm mb-6">
                 Temukan layanan terbaik untuk kendaraan Anda
               </p>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-2.5 text-sm font-bold text-white hover:bg-white/30 transition-colors">
-                Eksplorasi Layanan
+              <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-2.5 text-sm font-bold text-white">
+                Eksplorasi
                 <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
               </span>
             </div>

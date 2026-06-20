@@ -214,7 +214,7 @@ export const OverlayCard: React.FC<OverlayCardProps> = ({
     : 'bg-white hover:bg-gray-100 text-gray-900';
 
   return (
-    <div className="group relative h-[460px] rounded-[2.5rem] overflow-hidden flex flex-col justify-end">
+    <div className="group relative w-full h-[530px] rounded-[2.5rem] overflow-hidden flex flex-col justify-end">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image

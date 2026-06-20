@@ -666,17 +666,21 @@ export function formatDate(dateString: string): string {
 }
 
 /**
- * Decodes the JSON-encoded FAQ field from the BW plugin
- * @param faqJson JSON string from API
+ * Decodes the FAQ field from the BW plugin REST API
+ * Handles both JSON string (legacy) and direct array (v4 API)
+ * @param faqData JSON string or array from API
  * @returns Array of FAQ items or empty array
  */
-export function parseFaqField(faqJson: string | null): FaqItem[] {
-  if (!faqJson) return []
+export function parseFaqField(faqData: string | FaqItem[] | null | undefined): FaqItem[] {
+  if (!faqData) return []
+  // Already an array (from v4 REST API)
+  if (Array.isArray(faqData)) return faqData
+  // Legacy: JSON string from older API
   try {
-    return JSON.parse(faqJson)
-  } catch (error) {
+    return JSON.parse(faqData)
+  } catch {
     if (process.env.NODE_ENV === 'development') {
-      console.warn('Failed to parse FAQ JSON:', faqJson, error)
+      console.warn('Failed to parse FAQ JSON:', faqData)
     }
     return []
   }

@@ -17,13 +17,14 @@ interface PromosiTabsProps {
   syaratHtml?: string;
   faq?: FaqItem[];
   promoName?: string;
+  cf7FormId?: string;
 }
 
 function classNames(...classes: (string | boolean | undefined | null)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function PromosiTabs({ contentHtml, syaratHtml, faq, promoName }: PromosiTabsProps) {
+export default function PromosiTabs({ contentHtml, syaratHtml, faq, promoName, cf7FormId }: PromosiTabsProps) {
   const [selectedTab, setSelectedTab] = useState("details");
 
   const tabs = [
@@ -63,7 +64,7 @@ export default function PromosiTabs({ contentHtml, syaratHtml, faq, promoName }:
       key: "booking",
       name: "Booking Form",
       icon: "solar:calendar-linear",
-      content: <BookingForm serviceName={promoName} compact />,
+      content: <BookingForm serviceName={promoName} compact cf7FormId={cf7FormId} />,
     },
     {
       key: "faq",

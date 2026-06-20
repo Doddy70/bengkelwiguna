@@ -68,6 +68,14 @@ export interface Promosi extends WPPost {
   /** Jenis promosi: 'bulanan' untuk promo bulanan (hero slider), 'regular' untuk promo regular (carousel) */
   jenis_promosi?: 'bulanan' | 'regular';
   is_active?: boolean;
+  /** FAQ promo — array dari { q: string, a: string } */
+  faq?: FaqItem[];
+  /** Syarat dan ketentuan promo */
+  syarat_ketentuan?: string;
+  /** ID Contact Form 7 yang dipilih untuk tab Booking */
+  cf7_form_id?: string;
+  /** Template pesan WhatsApp */
+  wa_template?: string;
 }
 
 export interface PaketService extends WPPost {

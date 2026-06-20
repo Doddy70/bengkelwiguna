@@ -205,6 +205,7 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
                   syaratHtml={syaratHtml}
                   faq={faqData}
                   promoName={title}
+                  cf7FormId={promo.cf7_form_id}
                 />
 
                 {/* Next / Previous Promo */}
