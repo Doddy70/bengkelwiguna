@@ -75,7 +75,7 @@ export default function HeroSlideshow() {
   return (
     <section className="w-full bg-white dark:bg-black p-2 sm:p-3 lg:p-4">
       {/* Boxed, rounded container matching the reference design */}
-      <div className="relative w-full h-[680px] lg:h-[740px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
+      <div className="relative w-full h-[560px] lg:h-[740px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
 
         {/* Background Slideshow */}
         <AnimatePresence mode="popLayout">
