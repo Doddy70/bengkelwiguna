@@ -339,9 +339,10 @@
   },
   {
     "id": "reset-ac",
-    "name": "Flushing AC",
+    "name": "Reset AC",
     "category": "Climate Control",
-    "image": "/images/hotspot/fortuner_ac.png",
+    "image": "/images/equipment/Moobil_reset_ac.png",
+    "defaultThumb": "/images/equipment/card_default.jpg",
     "imagePosition": "left",
     "description": "Perawatan total sistem pendingin kabin menggunakan mesin Kyoto Flushing Machine, mengganti oli kompresor secara 100% vakum.",
     "suggestedQuestions": [
@@ -369,18 +370,17 @@
     ],
     "hotspots": [
       {
-        "top": "45%",
-        "left": "45%",
-        "title": "Evaporator",
-        "treatment": "Pembersihan jalur sirkulasi evaporator dengan vakum digital.",
+        "top": "28%",
+        "left": "50%",
+        "title": "Kompresor",
+        "thumb": "/images/equipment/Info-3.jpg",
+        "treatment": "Flushing total jalur AC dan pengisian freon murni secara akurat.",
         "impacts": [
-          "Udara lebih dingin",
-          "Mengurangi bau tidak sedap"
+          "Sistem AC lebih bersih",
+          "Pendinginan lebih konsisten"
         ],
-        "lineAngle": -30,
-        "lineLength": 380,
-        "labelOffsetX": -80,
-        "labelOffsetY": -120,
+        "labelOffsetX": 140,
+        "labelOffsetY": -60,
         "beforeAfter": {
           "before": [
             "AC kurang dingin",
@@ -400,43 +400,17 @@
         "nodeIcon": "Wind"
       },
       {
-        "top": "48%",
-        "left": "42%",
-        "title": "Blower",
-        "treatment": "Pengecekan dan pembersihan kotoran pada bilah blower.",
-        "impacts": [
-          "Hembusan udara lebih kuat",
-          "Distribusi udara lebih merata"
-        ],
-        "beforeAfter": {
-          "before": [
-            "AC kurang dingin",
-            "Hembusan pelan",
-            "Bau apek di kabin"
-          ],
-          "after": [
-            "Suhu kabin cepat dingin",
-            "Angin kencang",
-            "Udara lebih segar"
-          ]
-        },
-        "testimonial": {
-          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
-          "author": "Rina, Mitsubishi Xpander 2021"
-        },
-        "nodeIcon": "Wind",
-        "labelOffsetX": 200,
-        "labelOffsetY": -100
-      },
-      {
-        "top": "45%",
-        "left": "35%",
+        "top": "15%",
+        "left": "38%",
         "title": "Jalur Freon",
+        "thumb": "/images/equipment/Info-3.jpg",
         "treatment": "Flushing total jalur AC dan pengisian freon murni secara akurat.",
         "impacts": [
           "Sistem AC lebih bersih",
           "Pendinginan lebih konsisten"
         ],
+        "labelOffsetX": -100,
+        "labelOffsetY": -40,
         "beforeAfter": {
           "before": [
             "AC kurang dingin",
@@ -453,19 +427,20 @@
           "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
           "author": "Rina, Mitsubishi Xpander 2021"
         },
-        "nodeIcon": "Wind",
-        "labelOffsetX": -100,
-        "labelOffsetY": -50
+        "nodeIcon": "Wind"
       },
       {
-        "top": "40%",
-        "left": "55%",
-        "title": "Area Kabin",
-        "treatment": "Penyaringan sirkulasi udara interior kendaraan.",
+        "top": "12%",
+        "left": "22%",
+        "title": "Kondensor",
+        "thumb": "/images/equipment/Info-5.jpg",
+        "treatment": "Pengecekan dan pembersihan kondensor AC untuk performa pendinginan optimal.",
         "impacts": [
-          "Kualitas udara lebih baik",
-          "Kabin lebih nyaman"
+          "Pendinginan lebih cepat",
+          "AC tidak mudah panas"
         ],
+        "labelOffsetX": 100,
+        "labelOffsetY": -50,
         "beforeAfter": {
           "before": [
             "AC kurang dingin",
@@ -482,9 +457,127 @@
           "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
           "author": "Rina, Mitsubishi Xpander 2021"
         },
-        "nodeIcon": "Wind",
-        "labelOffsetX": 250,
-        "labelOffsetY": -150
+        "nodeIcon": "Wind"
+      },
+      {
+        "top": "65%",
+        "left": "14%",
+        "title": "Motor Fan",
+        "thumb": "/images/equipment/info-2.jpg",
+        "treatment": "Pengecekan dan pembersihan kotoran pada bilah motor fan.",
+        "impacts": [
+          "Hembusan udara lebih kuat",
+          "Distribusi udara lebih merata"
+        ],
+        "labelOffsetX": 100,
+        "labelOffsetY": -80,
+        "beforeAfter": {
+          "before": [
+            "AC kurang dingin",
+            "Hembusan pelan",
+            "Bau apek di kabin"
+          ],
+          "after": [
+            "Suhu kabin cepat dingin",
+            "Angin kencang",
+            "Udara lebih segar"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
+          "author": "Rina, Mitsubishi Xpander 2021"
+        },
+        "nodeIcon": "Wind"
+      },
+      {
+        "top": "45%",
+        "left": "50%",
+        "title": "Blower AC",
+        "thumb": "/images/equipment/info-2.jpg",
+        "treatment": "Pengecekan dan pembersihan blower AC untuk distribusi udara yang merata.",
+        "impacts": [
+          "Hembusan udara lebih kuat",
+          "Distribusi udara lebih merata"
+        ],
+        "labelOffsetX": 140,
+        "labelOffsetY": -60,
+        "beforeAfter": {
+          "before": [
+            "AC kurang dingin",
+            "Hembusan pelan",
+            "Bau apek di kabin"
+          ],
+          "after": [
+            "Suhu kabin cepat dingin",
+            "Angin kencang",
+            "Udara lebih segar"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
+          "author": "Rina, Mitsubishi Xpander 2021"
+        },
+        "nodeIcon": "Wind"
+      },
+      {
+        "top": "30%",
+        "left": "42%",
+        "title": "Evaporator",
+        "thumb": "/images/equipment/Info-1.jpg",
+        "treatment": "Pembersihan jalur sirkulasi evaporator dengan vakum digital.",
+        "impacts": [
+          "Udara lebih dingin",
+          "Mengurangi bau tidak sedap"
+        ],
+        "labelOffsetX": -120,
+        "labelOffsetY": -100,
+        "beforeAfter": {
+          "before": [
+            "AC kurang dingin",
+            "Hembusan pelan",
+            "Bau apek di kabin"
+          ],
+          "after": [
+            "Suhu kabin cepat dingin",
+            "Angin kencang",
+            "Udara lebih segar"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
+          "author": "Rina, Mitsubishi Xpander 2021"
+        },
+        "nodeIcon": "Wind"
+      },
+      {
+        "top": "35%",
+        "left": "48%",
+        "title": "Refrigant & Vacum",
+        "thumb": "/images/equipment/info-6.jpg",
+        "treatment": "Inspeksi dan pembersihan kisaran (radiator AC) untuk aliran udara lancar.",
+        "impacts": [
+          "Aliran udara lancar",
+          "Mencegah overheating"
+        ],
+        "labelOffsetX": 120,
+        "labelOffsetY": -50,
+        "beforeAfter": {
+          "before": [
+            "AC kurang dingin",
+            "Hembusan pelan",
+            "Bau apek di kabin"
+          ],
+          "after": [
+            "Suhu kabin cepat dingin",
+            "Angin kencang",
+            "Udara lebih segar"
+          ]
+        },
+        "testimonial": {
+          "quote": "Tadinya siang hari AC kurang dingin, sekarang pakai nomor 1 saja sudah menggigil. Prosesnya juga sangat transparan.",
+          "author": "Rina, Mitsubishi Xpander 2021"
+        },
+        "nodeIcon": "Wind"
       }
     ],
     "specs": {
@@ -541,9 +634,10 @@
   },
   {
     "id": "coolant-changer",
-    "name": "Kuras Radiator",
+    "name": "Coolant Changer",
     "category": "Cooling System Care",
-    "image": "/images/hotspot/fortuner_coolant.png",
+    "image": "/images/equipment/Mobil_coolant.png",
+    "defaultThumb": "/images/equipment/Kuras-radiator.png",
     "imagePosition": "left",
     "description": "Sistem kuras radiator vakum otomatis yang menjamin penggantian cairan pendingin 100% bersih tanpa ada udara terjebak (angin palsu).",
     "suggestedQuestions": [
@@ -714,9 +808,10 @@
   },
   {
     "id": "service-berkala",
-    "name": "Service Berkala",
+    "name": "Perawatan Berkala",
     "category": "Perawatan Rutin",
     "image": "/images/hotspot/fortuner_tools.png",
+    "defaultThumb": "/images/equipment/fortuner_tools.png",
     "imagePosition": "center",
     "description": "Perawatan preventif komprehensif menggunakan SOP ketat untuk mengembalikan performa mobil.",
     "suggestedQuestions": [

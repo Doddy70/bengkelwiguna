@@ -38,7 +38,7 @@ const FooterModern = dynamic(() => import('@/components/heroui/footer-modern'))
 const PageTitle3 = dynamic(() => import('@/components/ui/PageTitle3'))
 const Button = dynamic(() => import('@/components/ui/Button'))
 const BlogCardOne = dynamic(() => import('@/components/ui/BlogCardOne'))
-const ModernEquipmentShowcase = dynamic(() => import('@/components/heroui/modern-equipment'))
+const EquipmentShowcase = dynamic(() => import('@/components/heroui/equipment-showcase'))
 
 // 3. SEO OPTIMIZATION: Trust Signals & FAQ
 import PartnerLogos from '@/components/sections/PartnerLogos'
@@ -169,9 +169,9 @@ export default async function HomePage() {
         />
       ) : null}
 
-      {/* SECTION: TABS (No Drama Service Process) - Full Width with Boxed Inner */}
-      <section id="why-wiguna" className="bg-white w-full hidden lg:block">
-          <ModernEquipmentShowcase />
+      {/* SECTION: Equipment Showcase — Responsive (Mobile + Desktop) */}
+      <section id="why-wiguna" className="bg-white w-full">
+          <EquipmentShowcase />
       </section>
 
       {/* SECTION 3: LAYANAN (SpesialisSlider Carousel) */}
