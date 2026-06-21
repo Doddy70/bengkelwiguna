@@ -30,7 +30,7 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
             <path
               d={svgPath}
               fill="none"
-              stroke="#2563eb"
+              stroke="#5b8bfa"
               strokeWidth="2"
               className="transition-all duration-300"
             />
@@ -45,8 +45,12 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
         className="relative group cursor-pointer flex items-center justify-center pointer-events-auto"
         onClick={onClick}
       >
-        <div className={`absolute inset-[-6px] rounded-full opacity-60 ${isActive ? 'bg-blue-600 animate-pulse' : 'bg-blue-400 animate-pulse'}`}></div>
-        <div className={`relative w-6 h-6 rounded-full shadow-lg z-10 flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-blue-600 text-white scale-110 ring-4 ring-white' : 'bg-white text-blue-600 ring-2 ring-blue-500 hover:scale-110'} text-[11px] font-black`}>
+        {/* Grammarly-style pulse ring */}
+        <div className={`absolute rounded-full pointer-events-none ${isActive ? 'hotspot-pulse-active bg-blue-400' : 'hotspot-pulse bg-blue-300'}`}
+          style={{ width: '28px', height: '28px' }}
+        />
+        {/* Core dot */}
+        <div className={`relative w-6 h-6 rounded-full shadow-lg z-10 flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-blue-500 text-white scale-110 ring-4 ring-white' : 'bg-white text-blue-600 ring-2 ring-blue-400 hover:scale-110'} text-[11px] font-black`}>
           {index !== undefined ? index + 1 : ''}
         </div>
       </motion.div>
