@@ -12,6 +12,7 @@ import { Viewport } from "next";
 import fs from 'fs';
 import path from 'path';
 import { cn } from "@/lib/utils";
+import AutoRepairSchema from "@/components/seo/AutoRepairSchema";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
@@ -232,6 +233,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
 
         {/* ✅ GTM moved to next/script afterInteractive — no longer render-blocking */}
+        
+        {/* ✅ AutoRepair Schema JSON-LD for Local SEO */}
+        <AutoRepairSchema />
       </head>
       <body>
         {/* ✅ GTM noscript fallback */}
