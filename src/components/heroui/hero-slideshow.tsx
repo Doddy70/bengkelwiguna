@@ -77,11 +77,30 @@ export default function HeroSlideshow() {
       {/* Boxed, rounded container matching the reference design */}
       <div className="relative w-full h-[560px] lg:h-[740px] bg-neutral-900 overflow-hidden font-sans rounded-3xl lg:rounded-[2.5rem] shadow-2xl">
 
-        {/* Background Slideshow */}
+        {/* ✅ CRITICAL: Static first slide — rendered in SSR/HTML before JS hydration
+            Eliminates 2,170ms "element render delay" because LCP image is visible immediately.
+            Per Vercel React best practices: rendering-hydration-no-flicker pattern. */}
+        {currentIndex === 0 && (
+          <div className="absolute inset-0 z-0" aria-hidden="true">
+            <Image
+              src="/images/hero/slider-1.webp"
+              alt={slides[0].title}
+              fill
+              className="object-cover"
+              priority
+              fetchPriority="high"
+              sizes="100vw"
+              quality={85}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
+          </div>
+        )}
+
+        {/* Background Slideshow — animates after hydration */}
         <AnimatePresence mode="popLayout">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, scale: 1.05 }}
+            initial={{ opacity: currentIndex === 0 ? 1 : 0, scale: currentIndex === 0 ? 1 : 1.05 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 1.2, ease: "easeInOut" }}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap');
+/* ✅ Chakra Petch moved to next/font/google in layout.tsx — zero render-blocking */
 @import "tailwindcss";
 @import "aos/dist/aos.css";
 @import "tw-animate-css";
@@ -7,7 +7,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Chakra Petch", sans-serif;
+    font-family: var(--font-chakra), sans-serif;
 }
 
 @font-face {
@@ -22,7 +22,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Chakra Petch", sans-serif;
+    font-family: var(--font-chakra), sans-serif;
 }
 
 .bg-light-blue-banner {

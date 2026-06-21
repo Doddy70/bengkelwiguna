@@ -3,7 +3,8 @@ import './globals.css';
 import './perspective-slider.scss';
 import './hero-styles.scss';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-import { Sora, DM_Sans, Geist } from 'next/font/google';
+import { Sora, DM_Sans, Geist, Chakra_Petch } from 'next/font/google';
+import { preload } from 'react-dom';
 import Script from 'next/script';
 import ClientProviders from "@/components/providers/ClientProviders";
 import CookieConsent from "@/components/heroui/cookie-consent";
@@ -13,6 +14,16 @@ import path from 'path';
 import { cn } from "@/lib/utils";
 
 const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
+
+// ✅ Chakra Petch: migrated from CDN @import → next/font (self-hosted, zero render-blocking)
+// Eliminates 780ms Google Fonts CDN round-trip blocking FCP/LCP
+const chakraPetch = Chakra_Petch({
+  subsets: ['latin'],
+  variable: '--font-chakra',
+  display: 'swap',
+  preload: true,
+  weight: ['300', '400', '500', '600', '700'],
+});
 
 
 // ✅ ISR: Pages use their own revalidate — removed force-dynamic to allow caching
@@ -190,16 +201,22 @@ const speculationRules = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="id" className={cn(sora.variable, dmSans.variable, "font-sans", geist.variable)}>
-      <head>
-        {/* ✅ Preload ACTUAL LCP hero image (slider-1.webp used by HeroSlideshow) */}
-        <link rel="preload" as="image" href="/images/hero/slider-1.webp" fetchPriority="high" />
+  // ✅ ReactDOM.preload() — only API that correctly emits fetchpriority=high on <link rel=preload>
+  // Fixes PSI: "fetchpriority=high should be applied to the image preload request"
+  preload('/images/hero/slider-1.webp', {
+    as: 'image',
+    fetchPriority: 'high',
+    type: 'image/webp',
+    imageSrcSet: '/_next/image?url=%2Fimages%2Fhero%2Fslider-1.webp&w=640&q=90 640w, /_next/image?url=%2Fimages%2Fhero%2Fslider-1.webp&w=1080&q=90 1080w',
+    imageSizes: '100vw',
+  });
 
-        {/* ✅ CRITICAL: Preconnect to external origins */}
+  return (
+    <html lang="id" className={cn(sora.variable, dmSans.variable, chakraPetch.variable, "font-sans", geist.variable)}>
+      <head>
+
+        {/* ✅ Preconnect: fonts.googleapis.com removed — all fonts self-hosted via next/font */}
         <link rel="preconnect" href="https://backend.bengkelwiguna.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
         {/* ✅ FontAwesome CDN removed — all icons via @iconify/react (zero render-blocking) */}
 
