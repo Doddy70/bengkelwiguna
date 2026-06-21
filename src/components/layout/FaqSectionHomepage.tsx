@@ -164,10 +164,11 @@ export default function FaqSectionHomepage({
             {/* Main Image Container */}
             <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl">
               <Image
-                src="/images/faq-bg.jpg"
+                src="/images/faq-bg.webp"
                 alt="Tim Mekanik Bengkel Wiguna"
                 fill
                 className="object-cover"
+                loading="lazy"
               />
 
               {/* Glassmorphism Overlay */}

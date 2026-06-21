@@ -93,8 +93,11 @@ export default function HeroSlideshow() {
               fill
               className="object-cover"
               priority={currentIndex === 0}
+              // ✅ PERF: fetchPriority signals browser to start LCP image download ASAP
+              fetchPriority={currentIndex === 0 ? "high" : "auto"}
               sizes="100vw"
-              quality={90}
+              // ✅ PERF: LCP slide gets quality 85 (imperceptible diff vs 90); others get 75
+              quality={currentIndex === 0 ? 85 : 75}
             />
             {/* Gradient overlay for text readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />

@@ -33,6 +33,7 @@ const FadeInImage = (props: ImageProps) => {
         transition={{duration: 0.5, ease: "easeOut"}}
         variants={animationVariants}
       >
+        {/* eslint-disable-next-line jsx-a11y/alt-text -- alt is always provided via ImageProps spread */}
         <Image {...props} onLoad={(e) => {
             setIsLoaded(true);
             if (props.onLoad) {

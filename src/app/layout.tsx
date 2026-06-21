@@ -2,9 +2,9 @@
 import './globals.css';
 import './perspective-slider.scss';
 import './hero-styles.scss';
-import '@splidejs/splide/dist/css/splide.min.css';
 import '@splidejs/splide/dist/css/themes/splide-default.min.css';
-import { Sora, DM_Sans, Mona_Sans, Geist } from 'next/font/google';
+import { Sora, DM_Sans, Geist } from 'next/font/google';
+import Script from 'next/script';
 import ClientProviders from "@/components/providers/ClientProviders";
 import CookieConsent from "@/components/heroui/cookie-consent";
 import { Viewport } from "next";
@@ -12,12 +12,10 @@ import fs from 'fs';
 import path from 'path';
 import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+const geist = Geist({ subsets: ['latin'], variable: '--font-sans' });
 
 
-// ✅ FORCE DYNAMIC RENDERING - Required for WordPress API integration
-export const dynamic = 'force-dynamic'
-export const revalidate = 0
+// ✅ ISR: Pages use their own revalidate — removed force-dynamic to allow caching
 
 // ✅ OPTIMIZED FONTS: Reduced subsets, optimized display
 const sora = Sora({
@@ -36,13 +34,7 @@ const dmSans = DM_Sans({
   weight: ['400', '500', '600', '700'],
 });
 
-const monaSans = Mona_Sans({
-  subsets: ['latin'],
-  variable: '--font-mona-sans',
-  display: 'swap',
-  preload: true,
-  weight: ['400', '500', '600', '700'],
-});
+// Mona_Sans removed — not used in any component class
 
 // ✅ OPTIMIZED METADATA with SEO optimization (Meta Tags Optimizer Skill)
 // Target: "bengkel depok" + "service mobil depok" keywords
@@ -199,52 +191,33 @@ const speculationRules = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id" className={cn(sora.variable, dmSans.variable, monaSans.variable, "font-sans", geist.variable)}>
+    <html lang="id" className={cn(sora.variable, dmSans.variable, "font-sans", geist.variable)}>
       <head>
-        {/* ✅ Preload LCP Hero Images based on viewport */}
-        <link rel="preload" as="image" href="/images/hero-mobile.webp" media="(max-width: 767px)" fetchPriority="high" />
-        <link rel="preload" as="image" href="/images/hero-tablet.webp" media="(min-width: 768px) and (max-width: 1023px)" fetchPriority="high" />
-        <link rel="preload" as="image" href="/images/hero-desktop.webp" media="(min-width: 1024px)" fetchPriority="high" />
+        {/* ✅ Preload ACTUAL LCP hero image (slider-1.webp used by HeroSlideshow) */}
+        <link rel="preload" as="image" href="/images/hero/slider-1.webp" fetchPriority="high" />
 
         {/* ✅ CRITICAL: Preconnect to external origins */}
         <link rel="preconnect" href="https://backend.bengkelwiguna.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossOrigin="anonymous" />
         
-        {/* ✅ FontAwesome CDN for legacy icon support */}
-        <link 
-          rel="stylesheet" 
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" 
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" 
-          crossOrigin="anonymous" 
-          referrerPolicy="no-referrer"
-        />
+        {/* ✅ FontAwesome CDN removed — all icons via @iconify/react (zero render-blocking) */}
 
         {/* ✅ INLINE CRITICAL CSS for above-the-fold */}
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
 
         {/* ✅ Speculation Rules for instant navigation */}
         <script
-          type="application/json"
+          type="speculationrules"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(speculationRules)
           }}
         />
 
-        {/* ✅ Google Tag Manager - Head */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-WKKBRC8X');`
-          }}
-        />
+        {/* ✅ GTM moved to next/script afterInteractive — no longer render-blocking */}
       </head>
       <body>
-        {/* ✅ Google Tag Manager - Noscript (fallback untuk non-JS browsers) */}
+        {/* ✅ GTM noscript fallback */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-WKKBRC8X"
@@ -259,14 +232,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CookieConsent />
         </ClientProviders>
 
-        {/* ✅ Meta Pixel (Facebook) */}
-        <script
+        {/* ✅ GTM — afterInteractive: loads after page is interactive, not render-blocking */}
+        <Script
+          id="gtm-script"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-WKKBRC8X');`
+          }}
+        />
+
+        {/* ✅ Facebook Pixel — lazyOnload: loads after all resources, minimal TBT impact */}
+        <Script
+          id="fb-pixel"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1214658270215713');fbq('track','PageView');`
           }}
         />
         <noscript>
-          <img height="1" width="1" style={{display:'none'}} src="https://www.facebook.com/tr?id=1214658270215713&ev=PageView&noscript=1"/>
+          <img height="1" width="1" style={{display:'none'}} alt="" src="https://www.facebook.com/tr?id=1214658270215713&ev=PageView&noscript=1"/>
         </noscript>
       </body>
     </html>

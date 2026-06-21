@@ -60,5 +60,11 @@
     "tailwindcss": "^4",
     "terser": "^5.48.0",
     "typescript": "^5"
-  }
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions"
+  ]
 }

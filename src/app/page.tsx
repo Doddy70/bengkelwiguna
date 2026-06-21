@@ -330,7 +330,7 @@ export default async function HomePage() {
               >
                 <div className="relative aspect-[16/10] rounded-[1.5rem] overflow-hidden">
                   <Image
-                    src="/images/cta-video-thumbnail.png"
+                    src="/images/cta-video-thumbnail.webp"
                     alt="Bengkel Wiguna One Stop Service Depok"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
