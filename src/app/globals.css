@@ -2,11 +2,11 @@
 @import "tailwindcss";
 
 /* ============================================
-   HOTSPOT BEAM ANIMATION — Light scan line
+   HOTSPOT BEAM — SVG animated gradient line
    ============================================ */
 @keyframes beam-scan {
   0% {
-    stroke-dashoffset: 300;
+    stroke-dashoffset: 400;
     opacity: 0;
   }
   15% {
@@ -22,7 +22,7 @@
 }
 
 .hotspot-beam-line {
-  stroke-dasharray: 300;
+  stroke-dasharray: 400;
   animation: beam-scan 1.5s ease-out forwards;
 }
 
@@ -37,19 +37,6 @@
 
 .hotspot-dot-glow {
   animation: dot-glow 2s ease-in-out infinite;
-}
-
-@keyframes tooltip-float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-4px);
-  }
-}
-
-.hotspot-tooltip-float {
-  animation: tooltip-float 3s ease-in-out infinite;
 }
 
 @import "aos/dist/aos.css";

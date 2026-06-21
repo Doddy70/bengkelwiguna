@@ -1,85 +1,115 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import * as FeatherIcons from "react-feather";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import equipmentData from "@/data/equipment.json";
 
-// Hotspot Node — Beam line + floating tooltip
-const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, description, offsetX = 100, offsetY = -100, index }: any) => {
-  const endX = offsetX + 110;
-  const endY = offsetY + 30;
-  const controlX = endX * 0.5;
-  const controlY = endY;
-  const svgPath = `M 0 0 Q ${controlX} ${controlY} ${endX} ${endY}`;
+// ── AnimatedBeam — gradient light sweeping from dot to panel ──
+// Adapted from Fuselagem UI AnimatedBeam component
+const AnimatedBeam = ({
+  containerRef,
+  dotPosition,
+  panelPosition,
+  curvature = 50,
+}: {
+  containerRef: React.RefObject<HTMLDivElement | null>;
+  dotPosition: { x: number; y: number }; // % from image top-left
+  panelPosition: { x: number; y: number }; // target in panel
+  curvature?: number;
+}) => {
+  const [pathD, setPathD] = useState("");
+  const [svgDims, setSvgDims] = useState({ w: 0, h: 0 });
+
+  useEffect(() => {
+    const updatePath = () => {
+      if (!containerRef.current) return;
+      const containerRect = containerRef.current.getBoundingClientRect();
+      setSvgDims({ w: containerRect.width, h: containerRect.height });
+
+      // Start: dot position (% of image container)
+      const startX = (dotPosition.x / 100) * containerRect.width;
+      const startY = (dotPosition.y / 100) * containerRect.height;
+
+      // End: panel position (right of image)
+      const endX = containerRect.width + panelPosition.x;
+      const endY = panelPosition.y;
+
+      // Curved bezier path
+      const controlY = Math.min(startY, endY) - curvature;
+      const d = `M ${startX},${startY} Q ${(startX + endX) / 2},${controlY} ${endX},${endY}`;
+      setPathD(d);
+    };
+
+    if (!containerRef.current) return;
+    const observer = new ResizeObserver(() => updatePath());
+    observer.observe(containerRef.current);
+    updatePath();
+
+    return () => observer.disconnect();
+  }, [containerRef, dotPosition, panelPosition, curvature]);
+
+  if (!pathD) return null;
 
   return (
+    <svg
+      fill="none"
+      width={svgDims.w}
+      height={svgDims.h}
+      className="absolute left-0 top-0 pointer-events-none z-30"
+      style={{ overflow: 'visible' }}
+    >
+      <defs>
+        <linearGradient id="beam-gradient" gradientUnits="userSpaceOnUse"
+          x1="0%" y1="0%" x2="100%" y2="0%"
+        >
+          <stop stopColor="#5b8bfa" stopOpacity="0" />
+          <stop offset="0%" stopColor="#5b8bfa" />
+          <stop offset="40%" stopColor="#3b82f6" />
+          <stop offset="100%" stopColor="#93c5fd" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+
+      {/* Base line */}
+      <path
+        d={pathD}
+        stroke="rgba(91, 139, 250, 0.12)"
+        strokeWidth={1.5}
+        strokeLinecap="round"
+      />
+      {/* Animated gradient beam sweep */}
+      <motion.path
+        d={pathD}
+        stroke="url(#beam-gradient)"
+        strokeWidth={2}
+        strokeLinecap="round"
+        initial={{ pathLength: 0 }}
+        animate={{ pathLength: 1 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      />
+      {/* End dot at panel area */}
+      <circle
+        cx={svgDims.w + panelPosition.x}
+        cy={panelPosition.y}
+        r="5"
+        fill="#5b8bfa"
+        className="hotspot-dot-glow"
+      />
+    </svg>
+  );
+};
+
+// ── Hotspot dot — tooltip indicator ──
+const FloatingHotspot = ({ top, left, isActive, onClick, index }: any) => {
+  return (
     <div className="absolute z-20" style={{ top, left }}>
-
-      {/* ── Beam line — scanning light animation ── */}
-      <AnimatePresence>
-        {isActive && (
-          <motion.svg
-            key="line"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute z-[-1] pointer-events-none hidden md:block"
-            style={{ width: '1px', height: '1px', overflow: 'visible' }}
-          >
-            {/* Base line */}
-            <path
-              d={svgPath}
-              fill="none"
-              stroke="rgba(91, 139, 250, 0.3)"
-              strokeWidth="2"
-            />
-            {/* Beam scan line */}
-            <path
-              d={svgPath}
-              fill="none"
-              stroke="#5b8bfa"
-              strokeWidth="3"
-              strokeLinecap="round"
-              className="hotspot-beam-line"
-            />
-          </motion.svg>
-        )}
-      </AnimatePresence>
-
-      {/* ── Core dot — clean indicator with glow ── */}
       <div
         className={`relative w-6 h-6 rounded-full shadow-lg z-20 flex items-center justify-center transition-all duration-300 cursor-pointer ${isActive ? 'bg-blue-500 text-white scale-110 ring-4 ring-white' : 'bg-white text-blue-600 ring-2 ring-blue-400 hover:scale-110 hover:ring-blue-300'} ${!isActive ? 'hotspot-dot-glow' : ''}`}
         onClick={onClick}
       >
         {index !== undefined ? index + 1 : ''}
       </div>
-
-      {/* ── Floating tooltip panel ── */}
-      <AnimatePresence>
-        {isActive && (
-          <motion.div
-            key="tooltip"
-            initial={{ opacity: 0, y: 8, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.9 }}
-            transition={{ duration: 0.35 }}
-            className="absolute w-[220px] backdrop-blur-md rounded-2xl p-4 shadow-xl border z-50 md:z-auto cursor-pointer pointer-events-auto bg-blue-600/95 border-blue-400 hotspot-tooltip-float"
-            style={{ left: `${offsetX}px`, top: `${offsetY}px` }}
-            onClick={onClick}
-          >
-            {/* Beam indicator dot on the tooltip */}
-            <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-blue-600 rotate-45 border-l border-b border-blue-400" />
-            <div className="flex items-center gap-2 mb-1.5">
-              <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
-              <h4 className="font-bold text-[13px] leading-tight text-white">{title}</h4>
-            </div>
-            <p className="text-[11px] leading-relaxed line-clamp-3 text-blue-100">{description}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
@@ -87,6 +117,7 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
 export default function ModernEquipmentShowcase() {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
   const [activeHotspot, setActiveHotspot] = useState<any | null>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
 
   const activeItem = equipmentData[activeItemIndex];
 
@@ -147,6 +178,7 @@ export default function ModernEquipmentShowcase() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeItem.id}
+              ref={imageRef}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -160,6 +192,17 @@ export default function ModernEquipmentShowcase() {
                 className="object-contain drop-shadow-2xl"
                 priority
               />
+
+              {/* AnimatedBeam — gradient light from dot to panel */}
+              {activeHotspot && (
+                <AnimatedBeam
+                  containerRef={imageRef}
+                  dotPosition={{ x: parseFloat(activeHotspot.left), y: parseFloat(activeHotspot.top) }}
+                  panelPosition={{ x: 40, y: 120 }}
+                  curvature={60}
+                />
+              )}
+
               {/* Hotspots */}
               <div className="absolute inset-0 z-20">
                 {activeItem.hotspots?.map((hotspot: any, index: number) => (
@@ -169,12 +212,7 @@ export default function ModernEquipmentShowcase() {
                     left={hotspot.left}
                     index={index}
                     isActive={activeHotspot === hotspot}
-                    title={hotspot.widgetTitle || hotspot.title}
-                    description={hotspot.diagnosa || hotspot.description}
-                    offsetX={hotspot.labelOffsetX}
-                    offsetY={hotspot.labelOffsetY}
                     onClick={() => setActiveHotspot(hotspot)}
-                    delay={index * 0.1}
                   />
                 ))}
               </div>
