@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardBody, CardHeader } from "@nextui-org/react";
 import equipmentData from "@/data/equipment.json";
 
-// Hotspot Node (Floating style with dynamic positioning)
+// Hotspot Node — Beam line + floating tooltip
 const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, description, offsetX = 100, offsetY = -100, index }: any) => {
   const endX = offsetX + 110;
   const endY = offsetY + 30;
@@ -16,72 +16,67 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
 
   return (
     <div className="absolute z-20" style={{ top, left }}>
+
+      {/* ── Beam line — scanning light animation ── */}
       <AnimatePresence>
         {isActive && (
           <motion.svg
             key="line"
-            initial={{ opacity: 0, pathLength: 0 }}
-            animate={{ opacity: 1, pathLength: 1 }}
-            exit={{ opacity: 0, pathLength: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
             className="absolute z-[-1] pointer-events-none hidden md:block"
             style={{ width: '1px', height: '1px', overflow: 'visible' }}
           >
+            {/* Base line */}
+            <path
+              d={svgPath}
+              fill="none"
+              stroke="rgba(91, 139, 250, 0.3)"
+              strokeWidth="2"
+            />
+            {/* Beam scan line */}
             <path
               d={svgPath}
               fill="none"
               stroke="#5b8bfa"
-              strokeWidth="2"
-              className="transition-all duration-300"
+              strokeWidth="3"
+              strokeLinecap="round"
+              className="hotspot-beam-line"
             />
           </motion.svg>
         )}
       </AnimatePresence>
 
-      {/* Grammarly-style pulse ring — inline animation, no Tailwind dependency */}
+      {/* ── Core dot — clean indicator with glow ── */}
       <div
-        className="absolute rounded-full pointer-events-none z-10"
-        style={{
-          width: '28px',
-          height: '28px',
-          top: '50%',
-          left: '50%',
-          marginTop: '-14px',
-          marginLeft: '-14px',
-          backgroundColor: isActive ? 'rgba(96, 165, 250, 0.65)' : 'rgba(95, 139, 250, 0.65)',
-          boxShadow: isActive ? '0 0 0 0 rgba(96, 165, 250, 0.65)' : '0 0 0 0 rgba(95, 139, 250, 0.65)',
-          animation: isActive
-            ? 'hotspot-pulse-active 1.8s infinite'
-            : 'hotspot-pulse 2s infinite',
-        }}
-      />
-
-      {/* Core dot — pure button, no scale animation on the container */}
-      <div
-        className={`relative w-6 h-6 rounded-full shadow-lg z-20 flex items-center justify-center transition-all duration-300 cursor-pointer ${isActive ? 'bg-blue-500 text-white scale-110 ring-4 ring-white' : 'bg-white text-blue-600 ring-2 ring-blue-400 hover:scale-110'}`}
-        style={{ animationDelay: `${delay}s` }}
+        className={`relative w-6 h-6 rounded-full shadow-lg z-20 flex items-center justify-center transition-all duration-300 cursor-pointer ${isActive ? 'bg-blue-500 text-white scale-110 ring-4 ring-white' : 'bg-white text-blue-600 ring-2 ring-blue-400 hover:scale-110 hover:ring-blue-300'} ${!isActive ? 'hotspot-dot-glow' : ''}`}
         onClick={onClick}
       >
         {index !== undefined ? index + 1 : ''}
       </div>
 
+      {/* ── Floating tooltip panel ── */}
       <AnimatePresence>
         {isActive && (
           <motion.div
             key="tooltip"
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
+            initial={{ opacity: 0, y: 8, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            transition={{ duration: 0.3 }}
-            className="absolute w-[220px] backdrop-blur-md rounded-2xl p-4 shadow-xl border z-50 md:z-auto transition-colors duration-300 cursor-pointer pointer-events-auto bg-blue-600/95 border-blue-500"
+            exit={{ opacity: 0, y: 8, scale: 0.9 }}
+            transition={{ duration: 0.35 }}
+            className="absolute w-[220px] backdrop-blur-md rounded-2xl p-4 shadow-xl border z-50 md:z-auto cursor-pointer pointer-events-auto bg-blue-600/95 border-blue-400 hotspot-tooltip-float"
             style={{ left: `${offsetX}px`, top: `${offsetY}px` }}
             onClick={onClick}
           >
+            {/* Beam indicator dot on the tooltip */}
+            <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-3 h-3 bg-blue-600 rotate-45 border-l border-b border-blue-400" />
             <div className="flex items-center gap-2 mb-1.5">
-              <div className="w-2 h-2 rounded-full bg-white"></div>
-              <h4 className="font-bold text-[13px] leading-tight transition-colors duration-300 text-white">{title}</h4>
+              <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+              <h4 className="font-bold text-[13px] leading-tight text-white">{title}</h4>
             </div>
-            <p className="text-[11px] leading-relaxed line-clamp-3 transition-colors duration-300 text-blue-100">{description}</p>
+            <p className="text-[11px] leading-relaxed line-clamp-3 text-blue-100">{description}</p>
           </motion.div>
         )}
       </AnimatePresence>
