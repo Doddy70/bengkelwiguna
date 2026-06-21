@@ -38,22 +38,27 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
         )}
       </AnimatePresence>
 
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5, delay }}
-        className="relative group cursor-pointer flex items-center justify-center pointer-events-auto"
+      {/* Grammarly-style pulse ring — sibling of motion div, no scale conflict */}
+      <div
+        className={`absolute rounded-full pointer-events-none z-10 ${isActive ? 'hotspot-pulse-active bg-blue-400' : 'hotspot-pulse bg-blue-300'}`}
+        style={{
+          width: '28px',
+          height: '28px',
+          top: '50%',
+          left: '50%',
+          marginTop: '-14px',
+          marginLeft: '-14px',
+        }}
+      />
+
+      {/* Core dot — pure button, no scale animation on the container */}
+      <div
+        className={`relative w-6 h-6 rounded-full shadow-lg z-20 flex items-center justify-center transition-all duration-300 cursor-pointer ${isActive ? 'bg-blue-500 text-white scale-110 ring-4 ring-white' : 'bg-white text-blue-600 ring-2 ring-blue-400 hover:scale-110'}`}
+        style={{ animationDelay: `${delay}s` }}
         onClick={onClick}
       >
-        {/* Grammarly-style pulse ring */}
-        <div className={`absolute rounded-full pointer-events-none ${isActive ? 'hotspot-pulse-active bg-blue-400' : 'hotspot-pulse bg-blue-300'}`}
-          style={{ width: '28px', height: '28px' }}
-        />
-        {/* Core dot */}
-        <div className={`relative w-6 h-6 rounded-full shadow-lg z-10 flex items-center justify-center transition-all duration-300 ${isActive ? 'bg-blue-500 text-white scale-110 ring-4 ring-white' : 'bg-white text-blue-600 ring-2 ring-blue-400 hover:scale-110'} text-[11px] font-black`}>
-          {index !== undefined ? index + 1 : ''}
-        </div>
-      </motion.div>
+        {index !== undefined ? index + 1 : ''}
+      </div>
 
       <AnimatePresence>
         {isActive && (
