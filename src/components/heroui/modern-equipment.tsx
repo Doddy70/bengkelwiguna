@@ -38,9 +38,9 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
         )}
       </AnimatePresence>
 
-      {/* Grammarly-style pulse ring — sibling of motion div, no scale conflict */}
+      {/* Grammarly-style pulse ring — inline animation, no Tailwind dependency */}
       <div
-        className={`absolute rounded-full pointer-events-none z-10 ${isActive ? 'hotspot-pulse-active bg-blue-400' : 'hotspot-pulse bg-blue-300'}`}
+        className="absolute rounded-full pointer-events-none z-10"
         style={{
           width: '28px',
           height: '28px',
@@ -48,6 +48,11 @@ const FloatingHotspot = ({ top, left, isActive, onClick, delay = 0, title, descr
           left: '50%',
           marginTop: '-14px',
           marginLeft: '-14px',
+          backgroundColor: isActive ? 'rgba(96, 165, 250, 0.65)' : 'rgba(95, 139, 250, 0.65)',
+          boxShadow: isActive ? '0 0 0 0 rgba(96, 165, 250, 0.65)' : '0 0 0 0 rgba(95, 139, 250, 0.65)',
+          animation: isActive
+            ? 'hotspot-pulse-active 1.8s infinite'
+            : 'hotspot-pulse 2s infinite',
         }}
       />
 

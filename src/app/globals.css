@@ -1,5 +1,32 @@
 /* ✅ Chakra Petch moved to next/font/google in layout.tsx — zero render-blocking */
 @import "tailwindcss";
+
+/* ============================================
+   HOTSPOT PULSE — Grammarly-style
+   ============================================ */
+@keyframes hotspot-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(95, 139, 250, 0.65);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(95, 139, 250, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(95, 139, 250, 0);
+  }
+}
+
+@keyframes hotspot-pulse-active {
+  0% {
+    box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(96, 165, 250, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(96, 165, 250, 0);
+  }
+}
 @import "aos/dist/aos.css";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -34,41 +61,6 @@ h1, h2, h3, h4, h5, h6 {
 
 :where(.dark) .bg-light-blue-banner {
     background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.8)), url('/images/bg-header-archive.avif');
-}
-
-/* ============================================
-   HOTSPOT PULSE — Grammarly-style
-   ============================================ */
-@keyframes hotspot-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(95, 139, 250, 0.65);
-  }
-  70% {
-    box-shadow: 0 0 0 14px rgba(95, 139, 250, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(95, 139, 250, 0);
-  }
-}
-
-@keyframes hotspot-pulse-active {
-  0% {
-    box-shadow: 0 0 0 0 rgba(96, 165, 250, 0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 18px rgba(96, 165, 250, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(96, 165, 250, 0);
-  }
-}
-
-.hotspot-pulse {
-  animation: hotspot-pulse 2s infinite;
-}
-
-.hotspot-pulse-active {
-  animation: hotspot-pulse-active 1.8s infinite;
 }
 
 /* ============================================
