@@ -161,7 +161,7 @@ export const metadata = {
     'ICBM': '-6.402460, 106.840610',
 
     // DNS Prefetch for external resources
-    'dns-prefetch': 'https://backend.bengkelwiguna.com https://fonts.googleapis.com https://fonts.gstatic.com',
+    'dns-prefetch': 'https://backend.bengkelwiguna.com',
 
     // Mobile optimization
     'mobile-web-app-capable': 'yes',
