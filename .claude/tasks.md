@@ -33,7 +33,23 @@
 
 ## 🔄 ACTIVE / IN PROGRESS
 
-*(Tidak ada task aktif saat ini)*
+### Task 5: ModernEquipment Hotspot V2 (Pulse Beam)
+- **Track ID:** TRACK-003
+- **Branch:** `feat/hotspot-v2-pulse-beam`
+- **Status:** 🔄 IN PROGRESS
+- **Priority:** 🔴 HIGH
+- **Created:** 2026-06-22
+- **Concept:** Pulse dot + animated beam line + right panel info
+- **Visual Reference:** User-provided design image
+- **Scope:**
+  - Pulse dot animation (radar-style concentric rings)
+  - Animated beam line connector (dot → panel)
+  - Right-side info panel
+  - Dark/Light mode adaptive
+- **Backup:** ✅ Committed at `de0ff15d`
+- **Specification:** `conductor/tracks/TRACK-003-hotspot-v2/spec.md`
+- **Plan:** `conductor/tracks/TRACK-003-hotspot-v2/plan.md`
+- **⚠️ ZERO INITIATIVE:** Do NOT suggest/implement other features
 
 ---
 
