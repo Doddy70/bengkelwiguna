@@ -248,109 +248,38 @@ export default async function HomePage() {
       {/* SECTION 7: FAQ (GEO Optimization) */}
       <FaqSectionHomepage items={faqItems} />
 
-      {/* CTA FINAL */}
-      <section className="relative py-20 md:py-28 w-full overflow-hidden flex items-center">
-        {/* Background Image & Gradient */}
-        <div className="absolute inset-0 z-0">
+      {/* CTA FINAL - Full Width Dark */}
+      <section className="relative w-full overflow-hidden">
+        <div className="relative min-h-[500px] lg:min-h-[600px] bg-gray-900">
           <Image
-            src="/images/uber-hero.jpg"
-            alt="Bengkel Wiguna One Stop Service"
+            src="/images/about/Bengkel Bergaransi.jpg"
+            alt="Bengkel Wiguna CTA"
             fill
-            className="object-cover"
+            className="object-cover object-center opacity-30"
             sizes="100vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#224297]/95 via-gray-900/95 to-gray-900/90" />
-        </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-gray-900/60" />
 
-        {/* Content Layer */}
-        <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
-            
-            {/* Left: Text Content */}
-            <div className="flex-1 max-w-2xl">
-              {/* Badge */}
-              <span className="inline-flex items-center gap-1.5 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 text-white rounded-full text-xs font-black uppercase tracking-wider mb-6 shadow-lg">
-                <svg className="w-4 h-4 text-[#ffd900]" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-                </svg>
-                ONE STOP SERVICE DEPOK SEJAK 1990
-              </span>
-
-              {/* Headline */}
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.1] tracking-tight uppercase mb-6">
-                BENGKEL ONE STOP <br className="hidden sm:block" />
-                <span className="text-[#ffd900]">SERVICE TERPERCAYA</span> <br className="hidden sm:block" />
-                DI DEPOK
+          <div className="relative z-10 h-full flex items-center justify-center py-20 lg:py-24 px-6">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                Perawatan Mobil Anda Selanjutnya Lebih Dekat Dari Yang Anda Kira
               </h2>
-
-              {/* Subtitle */}
-              <p className="text-white/90 text-base md:text-lg leading-relaxed font-medium mb-10 max-w-lg">
-                Lebih dari 3 dekade melayani warga Depok sebagai bengkel pilihan yang terpercaya. Kami mengedepankan transparansi harga, analisa jujur, dan solusi tuntas tanpa drama untuk setiap masalah mobil Anda.
+              <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
+                Jangan tunda kenyamanan dan keamanan berkendara Anda. Tim ahli Bengkel Wiguna siap memberikan solusi terbaik.
               </p>
-
-              {/* CTA Buttons */}
-              <div className="flex flex-wrap gap-4">
-                <a
-                  href="https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20konsultasi%20servis%20mobil.%20(web)"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-source="homepage-cta"
-                  className="px-8 py-4 rounded-full bg-[#ffd900] hover:bg-yellow-400 text-[#224297] font-black text-sm md:text-base shadow-lg hover:shadow-yellow-500/30 hover:-translate-y-0.5 transition-all inline-flex items-center gap-2 group"
-                >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                  </svg>
-                  <span>KONSULTASI via WhatsApp</span>
-                  <svg className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                </a>
-                <a
-                  href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-8 py-4 rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/30 font-bold text-sm md:text-base transition-all inline-flex items-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                  <span>Cek Lokasi Kami</span>
-                </a>
-              </div>
-            </div>
-
-            {/* Right: Floating Video Thumbnail Card with Liquid Glass */}
-            <div className="w-full sm:w-[320px] lg:w-[400px] shrink-0">
               <a
-                href="https://www.youtube.com/watch?v=vYTMOXTkpFk"
+                href="https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20konsultasi%20servis%20mobil.%20(web)"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block relative p-2 md:p-3 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.3)] group overflow-hidden"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#224297] hover:bg-[#1a356e] text-white rounded-full font-bold transition-all shadow-xl shadow-blue-900/30"
               >
-                <div className="relative aspect-[16/10] rounded-[1.5rem] overflow-hidden">
-                  <Image
-                    src="/images/cta-video-thumbnail.webp"
-                    alt="Bengkel Wiguna One Stop Service Depok"
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 400px"
-                  />
-                  {/* Glass Overlay on Image */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#224297]/60 to-transparent mix-blend-overlay"></div>
-
-                  {/* Play Button */}
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-500 flex items-center justify-center">
-                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-md border border-white/50 flex items-center justify-center shadow-2xl transition-all duration-300 transform group-hover:scale-110">
-                      <svg className="w-6 h-6 text-white translate-x-0.5 drop-shadow-md" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M8 5v14l11-7z" />
-                      </svg>
-                    </div>
-                  </div>
-                </div>
+                <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                </svg>
+                Hubungi Tim Kami via WhatsApp
               </a>
             </div>
-
           </div>
         </div>
       </section>

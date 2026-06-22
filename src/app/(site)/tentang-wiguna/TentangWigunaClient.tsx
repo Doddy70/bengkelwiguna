@@ -41,10 +41,8 @@ export default function TentangWigunaClient() {
   ];
 
   return (
-    <div 
-      className="relative font-sans min-h-screen bg-cover bg-no-repeat bg-top"
-      style={{ backgroundImage: "url('/images/home-12-hero-bg.webp')" }}
-    >
+    <div className="relative font-sans min-h-screen bg-white">
+
 
       {/* 1. Header Section */}
       <section className="pt-8 lg:pt-12 pb-16 lg:pt-40 lg:pb-20 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -249,30 +247,36 @@ export default function TentangWigunaClient() {
         </div>
       </section>
 
-      {/* 8. CTA Section */}
-      <section className="py-12 lg:py-20 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="relative rounded-[2rem] lg:rounded-[3rem] overflow-hidden bg-gray-900">
-          <Image src="/images/about/Bengkel Bergaransi.jpg" alt="CTA Background" fill className="object-cover opacity-40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent" />
-          
-          <div className="relative z-10 py-20 lg:py-32 px-6 text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-white leading-tight mb-6 max-w-2xl mx-auto">
-              Perawatan Mobil Anda Selanjutnya Lebih Dekat Dari Yang Anda Kira
-            </h2>
-            <p className="text-white/80 font-medium mb-10 max-w-xl mx-auto">
-              Jangan tunda kenyamanan dan keamanan berkendara Anda. Tim ahli Bengkel Wiguna siap memberikan solusi terbaik.
-            </p>
-            <a 
-              href="https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20konsultasi%20mengenai%20servis%20mobil."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 bg-white hover:bg-gray-100 text-gray-900 rounded-full font-bold transition-all shadow-xl"
-            >
-              Hubungi Tim Kami
-              <div className="w-8 h-8 rounded-full bg-gray-900 flex items-center justify-center">
-                <Icon icon="solar:arrow-right-line-duotone" className="w-4 h-4 text-white" />
-              </div>
-            </a>
+      {/* 8. CTA Section - Full Width */}
+      <section className="relative w-full overflow-hidden">
+        <div className="relative min-h-[500px] lg:min-h-[600px] bg-gray-900">
+          <Image
+            src="/images/about/Bengkel Bergaransi.jpg"
+            alt="CTA Background"
+            fill
+            className="object-cover object-center opacity-30"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-gray-900/60" />
+
+          <div className="relative z-10 h-full flex items-center justify-center py-20 lg:py-24 px-6">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
+                Perawatan Mobil Anda Selanjutnya Lebih Dekat Dari Yang Anda Kira
+              </h2>
+              <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
+                Jangan tunda kenyamanan dan keamanan berkendara Anda. Tim ahli Bengkel Wiguna siap memberikan solusi terbaik.
+              </p>
+              <a
+                href="https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20konsultasi%20mengenai%20servis%20mobil."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#224297] hover:bg-[#1a356e] text-white rounded-full font-bold transition-all shadow-xl shadow-blue-900/30"
+              >
+                <Icon icon="simple-icons:whatsapp" className="w-6 h-6" />
+                Hubungi Tim Kami via WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </section>

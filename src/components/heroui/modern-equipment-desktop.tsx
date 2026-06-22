@@ -113,21 +113,6 @@ function DesktopOverlay({ activeItem, activeHotspot, onHotspotClick, onTabClick,
           <InfoPanel activeItem={activeItem} activeHotspot={activeHotspot} onClose={() => activeHotspot && onHotspotClick(activeHotspot)} />
         </div>
       </div>
-
-      {/* Social Proof Pill */}
-      <div style={{ padding: '0 24px 48px', maxWidth: '1600px', margin: '0 auto' }}>
-        <div style={{ background: 'rgba(255,255,255,0.8)', backdropFilter: 'blur(16px)', WebkitBackdropFilter: 'blur(16px)', borderRadius: '2rem', padding: '12px 24px 12px 16px', display: 'inline-flex', alignItems: 'center', gap: '16px', boxShadow: '0 8px 24px rgba(0,0,0,0.08)', border: '1px solid rgba(255,255,255,0.8)' }}>
-          <div style={{ display: 'flex', marginLeft: '-4px' }}>
-            {[1,2,3,4].map((n, i) => (
-              <div key={i} style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid #fff', marginLeft: '-8px', background: `hsl(${200 + i * 30}, 60%, ${60 + i * 5}%)`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', fontWeight: 700, color: '#fff' }}>{n}</div>
-            ))}
-          </div>
-          <div>
-            <p style={{ fontSize: '14px', fontWeight: 700, color: '#111827', lineHeight: 1 }}>672 orang</p>
-            <p style={{ fontSize: '11.5px', color: '#6b7280', marginTop: '4px' }}>Puas dengan Treatment Kami</p>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
