@@ -1,22 +1,24 @@
 # Task List — Bengkel Wiguna V3 (UI/UX Redesign)
 
-> **VERSION:** 2.2.0  
-> **LAST UPDATED:** 2026-06-20
+> **VERSION:** 2.3.0  
+> **LAST UPDATED:** 2026-06-22
 
 ---
 
 ## ✅ COMPLETED TASKS
 
 ### Task 1: Navigation Menu Sync
-- **Status:** ✅ COMPLETED
+- **Status:** ✅ COMPLETED & FROZEN
 - **Priority:** 🔴 HIGH
-- **Branch:** `feat/nav-menu-sync`
-- **Files:** `src/components/layout/Header.tsx`, `src/components/layout/MobileMenu.tsx`
+- **Decision:** 2026-06-22 — Mega menu implementation DECLINED
+- **Reason:** Mega menu sync was identified as contributing factor in previous crash incidents
 - **Action Taken:**
   1. ✅ Fixed MobileMenu 'Lokasi' link: `/contact` → `/lokasi`
-  2. ✅ Added 'Layanan Spesialis' menu item to MobileMenu (was missing)
+  2. ✅ Added 'Layanan Spesialis' menu item to MobileMenu
   3. ✅ Added 'Tentang Wiguna' to match both components
-  4. ✅ Standardized menu item naming across both components
+  4. ✅ Standardized menu item naming
+  5. ✅ DELETED `feat/nav-menu-sync` branch
+  6. ✅ Navigation stays as simple dropdown (no mega menu)
 
 ### Task 2: Agent Knowledge Base (2026-06-20)
 - **Status:** ✅ COMPLETED
