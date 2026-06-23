@@ -141,10 +141,10 @@ export function InfoPanel({
       }}
       className="fixed inset-x-0 bottom-0 w-full max-h-[90vh] rounded-t-[24px] lg:rounded-2xl
         lg:relative lg:bottom-auto lg:top-0 lg:inset-x-auto lg:w-full lg:max-h-none lg:rounded-2xl lg:z-0
-        flex flex-col bg-white/95 dark:bg-[#0a0f1d]/95 backdrop-blur-xl
+        flex flex-col bg-white dark:bg-[#0a0f1d] backdrop-blur-xl
         border-t lg:border border-slate-200 dark:border-white/10
-        shadow-[0_-8px_30px_rgba(0,0,0,0.12)] lg:shadow-[0_4px_25px_rgba(0,0,0,0.15)]
-        dark:shadow-[0_-8px_30px_rgba(0,0,0,0.25)] lg:dark:shadow-[0_4px_25px_rgba(0,0,0,0.4)]
+        shadow-[0_-8px_30px_rgba(0,0,0,0.15)] lg:shadow-[0_4px_25px_rgba(0,0,0,0.1)]
+        dark:shadow-[0_-8px_30px_rgba(0,0,0,0.4)] lg:dark:shadow-[0_4px_25px_rgba(0,0,0,0.3)]
         text-slate-900 dark:text-white overflow-hidden"
     >
       {/* Backdrop for mobile (shown when sheet is open) */}
@@ -165,11 +165,11 @@ export function InfoPanel({
 
       {/* Drag Handle */}
       <div className="flex justify-center pt-3 pb-1 lg:hidden flex-none">
-        <div className="w-10 h-1.5 rounded-full bg-slate-200 dark:bg-white/30" />
+        <div className="w-10 h-1.5 rounded-full bg-slate-300 dark:bg-white/20" />
       </div>
 
       {/* Header - Service Badge & Close Button (Mobile) */}
-      <div className="lg:hidden px-4 py-2 flex items-center justify-between">
+      <div className="lg:hidden px-4 py-2 border-b border-slate-100 dark:border-white/5 bg-white dark:bg-[#0a0f1d] flex items-center justify-between">
         <div className="flex items-center gap-2">
           <span className="text-[10px] font-medium text-slate-500 dark:text-gray-400">
             Area {currentIndex + 1} dari {totalHotspots}
@@ -253,7 +253,7 @@ export function InfoPanel({
             </div>
 
             {/* Mini Visual/GIF */}
-            <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-white/5 border border-slate-200/60 dark:border-white/10">
+            <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10">
               {serviceSlug === 'semi-overhaul' ? (
                 <img
                   src="/gifs/hotspot/semi-overhaul-demo.gif"
@@ -446,7 +446,7 @@ export function InfoPanel({
 
       {/* Sticky Bottom CTA */}
       <div className={cn(
-        "flex-none p-4 border-t border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0a0f1d]/95 backdrop-blur-xl z-20",
+        "flex-none p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0a0f1d] backdrop-blur-xl z-20",
         isPeek ? "hidden lg:block" : "block"
       )}>
         <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.4)] cursor-pointer">
