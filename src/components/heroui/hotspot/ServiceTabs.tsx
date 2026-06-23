@@ -4,6 +4,7 @@ import React, { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { Cog, Shuffle, Wind, Droplets, Wrench } from "lucide-react";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -15,6 +16,24 @@ interface ServiceTabsProps {
   onSelectService: (index: number) => void;
   className?: string;
 }
+
+// Map service slug to icon component
+const getServiceIcon = (slug: string) => {
+  switch (slug) {
+    case 'semi-overhaul':
+      return <Cog size={14} />;
+    case 'kyoto-shaking-machine':
+      return <Shuffle size={14} />;
+    case 'reset-ac':
+      return <Wind size={14} />;
+    case 'coolant-changer':
+      return <Droplets size={14} />;
+    case 'perawatan-berkala':
+      return <Wrench size={14} />;
+    default:
+      return <Cog size={14} />;
+  }
+};
 
 export function ServiceTabs({
   services,
@@ -55,13 +74,14 @@ export function ServiceTabs({
               data-active={isActive}
               onClick={() => onSelectService(idx)}
               className={cn(
-                "snap-center shrink-0 px-4 py-2.5 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer",
+                "snap-center shrink-0 flex items-center gap-1.5 px-3 py-2 rounded-full text-xs font-bold transition-all duration-300 cursor-pointer",
                 isActive
                   ? "bg-blue-600 text-white shadow-[0_4px_14px_rgba(37,99,235,0.35)]"
                   : "bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700"
               )}
             >
-              {item.name}
+              <span className="shrink-0">{getServiceIcon(item.slug)}</span>
+              <span className="hidden sm:inline">{item.name}</span>
             </button>
           );
         })}

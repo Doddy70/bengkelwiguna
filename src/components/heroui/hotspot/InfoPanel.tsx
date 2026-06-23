@@ -200,41 +200,19 @@ export function InfoPanel({
           {/* Scrollable Content */}
           <div className="flex-1 overflow-y-auto p-4 space-y-4">
 
-            {/* Title & Mini Visual Row */}
-            <div className="flex gap-3 items-start">
-              <div className="flex-1 space-y-1">
-                <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">
-                  {hotspot.title}
-                </h3>
-                <p className="text-[10px] font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider">
-                  {hotspot.subtitle}
+            {/* Title Row - No mini visual on mobile sheet */}
+            <div className="space-y-1">
+              <h3 className="text-base font-bold text-slate-900 dark:text-white leading-tight">
+                {hotspot.title}
+              </h3>
+              <p className="text-[10px] font-semibold text-slate-500 dark:text-gray-400 uppercase tracking-wider">
+                {hotspot.subtitle}
+              </p>
+              {hotspot.description && (
+                <p className="text-[11px] text-slate-600 dark:text-gray-300 leading-relaxed line-clamp-2 mt-1">
+                  {hotspot.description}
                 </p>
-                {hotspot.description && (
-                  <p className="text-[11px] text-slate-600 dark:text-gray-300 leading-relaxed line-clamp-2">
-                    {hotspot.description}
-                  </p>
-                )}
-              </div>
-
-              {/* Mini Visual/GIF */}
-              <div className="w-20 h-20 shrink-0 rounded-xl overflow-hidden bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10">
-                {serviceSlug === 'semi-overhaul' ? (
-                  <img
-                    src="/gifs/hotspot/semi-overhaul-demo.gif"
-                    alt="Demo"
-                    className="w-full h-full object-cover"
-                    loading="lazy"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center">
-                    {mainImage ? (
-                      <Image src={mainImage} alt={hotspot.title} fill className="object-cover" />
-                    ) : (
-                      <span className="text-slate-400 text-[10px]">Preview</span>
-                    )}
-                  </div>
-                )}
-              </div>
+              )}
             </div>
 
             {/* Mobile Navigation */}
