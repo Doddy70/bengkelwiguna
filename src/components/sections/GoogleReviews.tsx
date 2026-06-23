@@ -1,11 +1,6 @@
 /**
  * GoogleReviews — High Fidelity Restoration
- * Optimized version with lazy loading for Splide
- *
- * ✅ PERFORMANCE OPTIMIZATION:
- * - Dynamic import of Splide CSS
- * - Reduced motion support
- * - Optimized breakpoints
+ * Optimized with react-google-reviews package
  */
 
 "use client";
@@ -13,57 +8,69 @@
 import React, { useEffect, useState } from "react";
 import { Link, Button } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
+import { ReactGoogleReviews } from "react-google-reviews";
+import "react-google-reviews/dist/index.css";
 
 const fallbackReviews = [
   {
-    name: "Rio Pratama",
-    initial: "R",
-    bgColor: "bg-blue-50",
-    textColor: "text-blue-600",
-    role: "Local Guide",
-    date: "2 bulan yang lalu",
-    rating: 5,
-    text: "Tim mekanik bisa kasih masukan & opsi prioritas penggantian spare part. Sangat membantu untuk menyesuaikan dengan budget.",
+    reviewId: "fallback-1",
+    reviewer: {
+      profilePhotoUrl: "",
+      displayName: "Rio Pratama",
+      isAnonymous: false,
+    },
+    starRating: 5,
+    comment: "Tim mekanik bisa kasih masukan & opsi prioritas penggantian spare part. Sangat membantu untuk menyesuaikan dengan budget.",
+    createTime: null,
+    updateTime: null,
   },
   {
-    name: "Ahmad Rizky",
-    initial: "A",
-    bgColor: "bg-stone-100",
-    textColor: "text-stone-700",
-    role: "Pelanggan Setia",
-    date: "4 bulan yang lalu",
-    rating: 5,
-    text: "Pelayanan sangat memuaskan. Teknisi mas-mas Jawa dan bapak-bapak Boyolalinya bagus sekali cara melayaninya. Ramah dan solutif.",
+    reviewId: "fallback-2",
+    reviewer: {
+      profilePhotoUrl: "",
+      displayName: "Ahmad Rizky",
+      isAnonymous: false,
+    },
+    starRating: 5,
+    comment: "Pelayanan sangat memuaskan. Teknisi mas-mas Jawa dan bapak-bapak Boyolalinya bagus sekali cara melayaninya. Ramah dan solutif.",
+    createTime: null,
+    updateTime: null,
   },
   {
-    name: "Lucky Ruslan",
-    initial: "L",
-    bgColor: "bg-pink-50",
-    textColor: "text-pink-600",
-    role: "Local Guide",
-    date: "Setahun lalu",
-    rating: 5,
-    text: "Pengerjaannya sangat transparan. Montirnya ramah dan menjelaskan masalah kendaraan dengan detail tanpa asal tembak ganti part.",
+    reviewId: "fallback-3",
+    reviewer: {
+      profilePhotoUrl: "",
+      displayName: "Lucky Ruslan",
+      isAnonymous: false,
+    },
+    starRating: 5,
+    comment: "Pengerjaannya sangat transparan. Montirnya ramah dan menjelaskan masalah kendaraan dengan detail tanpa asal tembak ganti part.",
+    createTime: null,
+    updateTime: null,
   },
   {
-    name: "Siti Rahma",
-    initial: "S",
-    bgColor: "bg-green-50",
-    textColor: "text-green-600",
-    role: "Pemilik Honda Civic",
-    date: "3 minggu yang lalu",
-    rating: 5,
-    text: "Layanan ganti oli rutin dan engine flushing di sini cepat sekali. Harganya sangat transparan, ada rincian sebelum dikerjakan.",
+    reviewId: "fallback-4",
+    reviewer: {
+      profilePhotoUrl: "",
+      displayName: "Siti Rahma",
+      isAnonymous: false,
+    },
+    starRating: 5,
+    comment: "Layanan ganti oli rutin dan engine flushing di sini cepat sekali. Harganya sangat transparan, ada rincian sebelum dikerjakan.",
+    createTime: null,
+    updateTime: null,
   },
   {
-    name: "Dewi Lestari",
-    initial: "D",
-    bgColor: "bg-orange-50",
-    textColor: "text-orange-600",
-    role: "Local Guide • 89 Ulasan",
-    date: "1 bulan yang lalu",
-    rating: 5,
-    text: "Suka banget sama kejujuran Bengkel Wiguna. Gak ada pemaksaan ganti suku cadang jika masih layak pakai. Semua dicek menyeluruh dan pengerjaannya rapi sekali.",
+    reviewId: "fallback-5",
+    reviewer: {
+      profilePhotoUrl: "",
+      displayName: "Dewi Lestari",
+      isAnonymous: false,
+    },
+    starRating: 5,
+    comment: "Suka banget sama kejujuran Bengkel Wiguna. Gak ada pemaksaan ganti suku cadang jika masih layak pakai. Semua dicek menyeluruh dan pengerjaannya rapi sekali.",
+    createTime: null,
+    updateTime: null,
   },
 ];
 
@@ -77,16 +84,14 @@ const GoogleLogo = () => (
 );
 
 export default function GoogleReviews() {
-  const [SplideComponent, setSplideComponent] = useState<React.ComponentType<any> | null>(null);
-  const [SplideSlideComponent, setSplideSlideComponent] = useState<React.ComponentType<any> | null>(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  
-  // States for Live API Data
-  const [reviewsList, setReviewsList] = useState<any[]>(fallbackReviews);
+  const [mounted, setMounted] = useState(false);
+  const [reviewsList, setReviewsList] = useState<any[]>([]);
   const [totalRatings, setTotalRatings] = useState<number>(896);
   const [avgRating, setAvgRating] = useState<number>(4.7);
 
   useEffect(() => {
+    setMounted(true);
+
     // Fetch live reviews from internal API
     const fetchLiveReviews = async () => {
       try {
@@ -94,24 +99,19 @@ export default function GoogleReviews() {
         if (res.ok) {
           const data = await res.json();
           if (data && data.reviews) {
-            // Map the API structure to our component structure
-            const mappedReviews = data.reviews.map((r: any, idx: number) => {
-              const bgColors = ["bg-blue-50", "bg-stone-100", "bg-pink-50", "bg-green-50", "bg-orange-50"];
-              const textColors = ["text-blue-600", "text-stone-700", "text-pink-600", "text-green-600", "text-orange-600"];
-              const colorIdx = idx % bgColors.length;
-              
-              return {
-                name: r.author_name,
-                initial: r.author_name ? r.author_name.charAt(0) : "A",
-                bgColor: bgColors[colorIdx],
-                textColor: textColors[colorIdx],
-                role: "Local Guide",
-                date: r.relative_time_description,
-                rating: r.rating,
-                text: r.text,
-                photoUrl: r.profile_photo_url,
-              };
-            });
+            // Map the API structure to the GoogleReview structure expected by the package
+            const mappedReviews = data.reviews.map((r: any, idx: number) => ({
+              reviewId: r.time ? String(r.time) : `live-${idx}`,
+              reviewer: {
+                profilePhotoUrl: r.profile_photo_url || "",
+                displayName: r.author_name || "Pelanggan",
+                isAnonymous: !r.author_name,
+              },
+              starRating: r.rating || 5,
+              comment: r.text || "",
+              createTime: r.time ? new Date(r.time * 1000).toISOString() : null,
+              updateTime: null,
+            }));
             setReviewsList(mappedReviews);
             if (data.rating) setAvgRating(data.rating);
             if (data.user_ratings_total) setTotalRatings(data.user_ratings_total);
@@ -125,59 +125,7 @@ export default function GoogleReviews() {
     fetchLiveReviews();
   }, []);
 
-  useEffect(() => {
-    // Lazy load Splide
-    const loadSplide = async () => {
-      try {
-        await import("@splidejs/splide/dist/css/splide.min.css");
-        const { Splide, SplideSlide } = await import("@splidejs/react-splide");
-        setSplideComponent(() => Splide);
-        setSplideSlideComponent(() => SplideSlide);
-        setIsLoaded(true);
-      } catch (error) {
-        console.warn('Splide loading failed:', error);
-      }
-    };
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          loadSplide();
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '100px' }
-    );
-
-    const element = document.getElementById('google-reviews-section');
-    if (element) {
-      observer.observe(element);
-    } else {
-      loadSplide();
-    }
-
-    return () => observer.disconnect();
-  }, []);
-
-  const splideOptions = {
-    type: "loop" as const,
-    perPage: 3,
-    gap: "24px",
-    arrows: false,
-    pagination: true,
-    autoplay: true,
-    interval: 5000,
-    breakpoints: {
-      1024: { perPage: 2 },
-      640: { perPage: 1 },
-    },
-    rewind: false,
-    updateOnMove: true,
-    autoWidth: false,
-    autoHeight: false,
-  };
-
-  if (!isLoaded || !SplideComponent || !SplideSlideComponent) {
+  if (!mounted) {
     return (
       <section className="py-24 bg-[#f9fbfd] overflow-hidden">
         <div className="max-w-screen-xl mx-auto boxed-layout-gap">
@@ -194,9 +142,6 @@ export default function GoogleReviews() {
       </section>
     );
   }
-
-  const Splide = SplideComponent;
-  const Slide = SplideSlideComponent;
 
   return (
     <section id="google-reviews-section" className="py-24 bg-[#f9fbfd] overflow-hidden">
@@ -243,69 +188,51 @@ export default function GoogleReviews() {
         </div>
 
         {/* Reviews Slider */}
-        <div className="w-full">
-          <Splide
-            options={splideOptions}
-            className="reviews-splide"
-          >
-            {reviewsList.map((review, idx) => (
-              <Slide key={idx}>
-                <div className="bg-white brand-rounded p-8 shadow-sm border border-gray-50 h-[320px] flex flex-col hover:shadow-xl transition-all duration-500">
-
-                  {/* Reviewer Info */}
-                  <div className="flex items-center gap-4 mb-6">
-                    {review.photoUrl ? (
-                      <img src={review.photoUrl} alt={review.name} className="w-12 h-12 rounded-full object-cover" />
-                    ) : (
-                      <div className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-black ${review.bgColor} ${review.textColor}`}>
-                        {review.initial}
-                      </div>
-                    )}
-                    <div className="flex flex-col">
-                      <h4 className="font-bold text-[#1a3567] text-base leading-none mb-1">{review.name}</h4>
-                      <span className="text-[11px] text-gray-400 font-bold uppercase tracking-tight">{review.role}</span>
-                    </div>
-                    <div className="w-5 h-5 ml-auto opacity-30">
-                      <GoogleLogo />
-                    </div>
-                  </div>
-
-                  {/* Rating & Date */}
-                  <div className="flex items-center gap-2 mb-4">
-                    <div className="flex text-brand-gold gap-0.5">
-                      {[...Array(review.rating || 5)].map((_, i) => (
-                        <Icon key={i} icon="solar:star-bold" width={14} />
-                      ))}
-                    </div>
-                    <span className="text-gray-300 text-xs">•</span>
-                    <span className="text-[11px] text-gray-500 font-bold">{review.date}</span>
-                  </div>
-
-                  {/* Review Body */}
-                  <p className="text-gray-600 text-sm leading-relaxed font-medium italic line-clamp-4">
-                    &quot;{review.text}&quot;
-                  </p>
-                </div>
-              </Slide>
-            ))}
-          </Splide>
+        <div className="w-full react-google-reviews-wrapper">
+          <ReactGoogleReviews
+            layout="carousel"
+            reviews={reviewsList.length > 0 ? reviewsList : fallbackReviews}
+            averageRating={avgRating}
+            totalReviewCount={totalRatings}
+            theme="light"
+            maxCharacters={200}
+            nameDisplay="fullNames"
+          />
         </div>
 
       </div>
 
       <style jsx global>{`
-        .reviews-splide .splide__pagination {
-          bottom: -40px;
+        /* Overrides to blend react-google-reviews styling seamlessly into our premium theme */
+        .react-google-reviews-wrapper .rgr-carousel {
+          padding: 10px 0;
         }
-        .reviews-splide .splide__pagination__page {
-          background: #cbd5e1;
-          width: 8px;
-          height: 8px;
-          transition: all 0.3s ease;
+        .react-google-reviews-wrapper .rgr-review-card {
+          background-color: white !important;
+          border: 1px solid #f3f4f6 !important;
+          border-radius: 1rem !important;
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+          transition: all 0.3s ease !important;
+          padding: 2rem !important;
+          min-height: 280px;
         }
-        .reviews-splide .splide__pagination__page.is-active {
-          background: #224297;
-          transform: scale(1.5);
+        .react-google-reviews-wrapper .rgr-review-card:hover {
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+        }
+        .react-google-reviews-wrapper .rgr-reviewer-name {
+          color: #1a3567 !important;
+          font-weight: 700 !important;
+        }
+        .react-google-reviews-wrapper .rgr-star-icon {
+          color: #ffd900 !important;
+        }
+        .react-google-reviews-wrapper .rgr-slick-dots li button:before {
+          color: #cbd5e1 !important;
+          font-size: 8px !important;
+        }
+        .react-google-reviews-wrapper .rgr-slick-dots li.slick-active button:before {
+          color: #224297 !important;
+          opacity: 1 !important;
         }
       `}</style>
     </section>
