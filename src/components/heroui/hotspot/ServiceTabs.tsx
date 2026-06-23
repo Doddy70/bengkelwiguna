@@ -81,7 +81,7 @@ export function ServiceTabs({
               )}
             >
               <span className="shrink-0">{getServiceIcon(item.slug)}</span>
-              <span className="hidden sm:inline">{item.name}</span>
+              <span className="inline">{item.name}</span>
             </button>
           );
         })}

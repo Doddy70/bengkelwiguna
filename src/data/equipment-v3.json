@@ -30,88 +30,88 @@
         "top": "30.7%",
         "left": "29.5%",
         "labelPosition": "left",
-        "mainImage": "/images/equipment/info_1.jpg",
+        "mainImage": "/images/equipment/klep_cover.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Membersihkan area cover klep dari sludge, varnish, dan kerak oli yang menghambat aliran oli di bagian atas mesin.",
+        "description": "Melindungi mekanisme katup dan area atas mesin.",
         "problems": ["Sludge menumpuk", "Kerak oli mengeras", "Sirkulasi oli terganggu"],
-        "treatments": ["Area atas mesin bersih", "Aliran oli kembali lancar", "Mencegah kebocoran oli"],
-        "benefits": ["Tenaga lebih responsif", "Mesin lebih halus", "Efisiensi bahan bakar"]
+        "treatments": ["Area atas mesin lebih bersih", "Aliran oli kembali lancar", "Risiko penyumbatan berkurang"],
+        "benefits": ["Kebersihan Maksimal", "Sirkulasi Oli Lancar", "Perlindungan Mesin Optimal"]
       },
       {
         "id": "2",
-        "title": "Timing Area",
-        "subtitle": "(Timing Chain/Belt)",
-        "top": "42.0%",
-        "left": "25.0%",
+        "title": "Area Klep & Camshaft",
+        "subtitle": "(Valve & Camshaft)",
+        "top": "34.0%",
+        "left": "12.0%",
         "labelPosition": "left",
-        "mainImage": "/images/equipment/info_3.jpg",
+        "mainImage": "/images/equipment/area_klep.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Pembersihan menyeluruh pada area timing untuk mencegah keausan dini dan suara kasar dari ruang mesin.",
-        "problems": ["Suara mesin kasar", "Keausan timing chain", "Tanda timing lompat"],
-        "treatments": ["Area timing bersih", "Pelumasan rantai maksimal", "Sinkronisasi terjaga"],
-        "benefits": ["Suara mesin halus", "Aman dikendarai", "Engine life lebih panjang"]
+        "description": "Mengatur buka tutup klep dan timing mesin.",
+        "problems": ["Endapan varnish", "Pelumasan camshaft tidak optimal", "Mesin kasar"],
+        "treatments": ["Gerakan mekanisme klep lebih halus", "Pelumasan lebih optimal", "Suara mesin lebih senyap"],
+        "benefits": ["Mesin Lebih Halus", "Pelumasan Maksimal", "Performa Pulih"]
       },
       {
         "id": "3",
-        "title": "Jalur Oli Utama",
-        "subtitle": "(Main Oil Gallery)",
-        "top": "53.0%",
-        "left": "32.5%",
+        "title": "Timing Cover & Timing Area",
+        "subtitle": "(Timing Area)",
+        "top": "33.7%",
+        "left": "22.2%",
         "labelPosition": "left",
-        "mainImage": "/images/equipment/info_4.jpg",
+        "mainImage": "/images/equipment/timing_cover.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Membuka jalur oli utama yang tersumbat agar sirkulasi pelumasan ke seluruh komponen mesin kembali normal.",
-        "problems": ["Tekanan oli rendah", "Lampu oli berkedip", "Gesekan metal berlebih"],
-        "treatments": ["Jalur bebas hambatan", "Tekanan oli kembali stabil", "Pelumasan menyeluruh"],
-        "benefits": ["Mencegah turun mesin", "Komponen bergerak awet", "Suhu mesin terjaga"]
+        "description": "Rumah rantai timing atau timing belt dan jalur pelumasan timing.",
+        "problems": ["Kerak oli", "Endapan sludge", "Jalur oli tersumbat sebagian"],
+        "treatments": ["Area timing lebih bersih", "Pelumasan rantai timing optimal", "Umur komponen lebih panjang"],
+        "benefits": ["Timing Lebih Awet", "Mesin Lebih Senyap", "Pelumasan Optimal"]
       },
       {
         "id": "4",
-        "title": "Jalur Oli Presisi",
-        "subtitle": "(VVT / Micro Passage)",
-        "top": "24.5%",
-        "left": "47.5%",
+        "title": "Jalur Oli Utama",
+        "subtitle": "(Oil Gallery)",
+        "top": "38.0%",
+        "left": "16.5%",
         "labelPosition": "right",
-        "mainImage": "/images/equipment/info_5.jpg",
+        "mainImage": "/images/equipment/oil_gallery.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Mensuplai oli tekanan tinggi ke komponen presisi seperti VVT-i dan nosel hidrolik agar respon mesin instan.",
-        "problems": ["VVT tidak responsif", "Turbo lag terasa", "Mesin pincang/misfire"],
-        "treatments": ["Micro passages bersih", "Oil pressure di spec", "Respon klep normal"],
-        "benefits": ["Akselerasi instan", "VVT berfungsi optimal", "Konsumsi BBM irit"]
+        "description": "Mendistribusikan oli ke seluruh komponen mesin.",
+        "problems": ["Penyumbatan mikro", "Endapan lumpur oli", "Tekanan oli menurun"],
+        "treatments": ["Distribusi oli lebih merata", "Tekanan oli lebih stabil", "Proteksi mesin meningkat"],
+        "benefits": ["Tekanan Oli Stabil", "Proteksi Maksimal", "Sirkulasi Lancar"]
       },
       {
         "id": "5",
-        "title": "Carter / Oil Pan",
-        "subtitle": "(Oil Sump)",
-        "top": "54.0%",
-        "left": "50.5%",
+        "title": "Jalur Oli Presisi",
+        "subtitle": "(Micro Oil Passage)",
+        "top": "40.0%",
+        "left": "25.8%",
         "labelPosition": "right",
-        "mainImage": "/images/equipment/info_6.jpg",
+        "mainImage": "/images/equipment/oli_presisi.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Bak penampung oli yang dibersihkan dari endapan lumpur hitam agar oli baru tidak langsung tercemar.",
-        "problems": ["Sludge oli mengendap", "Oil sump cepat kotor", "Oli baru cepat hitam"],
-        "treatments": ["Bak penampung bersih", "Sludge terbuang total", "Oli baru tetap murni"],
-        "benefits": ["Kerja pompa oli ringan", "Daya tahan oli lama", "Mesin dingin & senyap"]
+        "description": "Menyalurkan oli ke komponen presisi seperti VVT-i, lifter, dan camshaft.",
+        "problems": ["Lubang oli kecil tersumbat", "VVT kurang responsif", "Mesin kasar"],
+        "treatments": ["Respon mesin membaik", "VVT bekerja optimal", "Pelumasan komponen presisi pulih"],
+        "benefits": ["Respon Mesin Meningkat", "VVT Optimal", "Pelumasan Presisi"]
       },
       {
         "id": "6",
-        "title": "Oil Pump & Saringan",
-        "subtitle": "(Oil Sump Strainer)",
-        "top": "67.0%",
-        "left": "46.5%",
+        "title": "Carter / Oil Pan",
+        "subtitle": "(Oil Sump)",
+        "top": "31.0%",
+        "left": "19.4%",
         "labelPosition": "right",
-        "mainImage": "/images/equipment/info_6.jpg",
+        "mainImage": "/images/equipment/oil_sump.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Membersihkan strainer penyaring pompa oli agar pasokan oli ke bagian atas mesin tidak terhambat.",
-        "problems": ["Strainer tersumbat", "Pompa oli macet", "Mesin macet (jammed)"],
-        "treatments": ["Strainer bebas sumbatan", "Pompa oli bekerja normal", "Aliran oli lancar"],
-        "benefits": ["Keamanan mesin terjamin", "Tekanan oli merata", "Mesin terlindungi penuh"]
+        "description": "Tempat penampungan oli mesin.",
+        "problems": ["Sludge mengendap", "Kotoran menumpuk", "Oli cepat terkontaminasi"],
+        "treatments": ["Carter lebih bersih", "Oli baru bekerja maksimal", "Risiko penyumbatan berkurang"],
+        "benefits": ["Bebas Sludge", "Oli Lebih Bersih", "Umur Mesin Lebih Panjang"]
       }
     ]
   },
@@ -142,92 +142,164 @@
       {
         "id": "1",
         "title": "Shockbreaker & Support",
-        "subtitle": "(Suspension)",
+        "subtitle": "(Suspension System)",
         "top": "48.5%",
         "left": "23.4%",
         "labelPosition": "top",
-        "mainImage": "/images/equipment/Kyoto_Info_1.jpg",
+        "mainImage": "/images/equipment/shock_n_support.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Pengecekan redaman suspensi dan keretakan mangkok karet support agar bantingan tetap empuk.",
-        "problems": ["Bunyi gluduk-gluduk", "Kendaraan limbung", "Tampak rembesan oli"],
-        "treatments": ["Cek kebocoran shock", "Cek keretakan karet", "Kalibrasi redaman"],
-        "benefits": ["Bantingan kembali empuk", "Handling stabil di tol", "Perjalanan jauh nyaman"]
+        "description": "Meredam getaran dan menjaga stabilitas kendaraan agar tetap nyaman.",
+        "problems": [
+          "Mobil limbung & ban aus tidak rata",
+          "Suspensi keras atau terlalu empuk",
+          "Pantulan berlebihan di jalan bergelombang"
+        ],
+        "treatments": [
+          "Berkendara kembali lebih nyaman",
+          "Stabilitas kendaraan meningkat",
+          "Ban lebih awet & aman berkendara"
+        ],
+        "benefits": [
+          "Mendeteksi kebocoran shock absorber",
+          "Mendeteksi penurunan daya redam",
+          "Cek ketidakseimbangan suspensi depan-belakang"
+        ]
       },
       {
         "id": "2",
         "title": "Tie Rod & Rack End",
-        "subtitle": "(Steering Joints)",
+        "subtitle": "(Steering Connection)",
         "top": "49.5%",
         "left": "14.5%",
         "labelPosition": "left",
-        "mainImage": "/images/equipment/Kyoto_Info_2.jpg",
+        "mainImage": "/images/equipment/tierod_rackend.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Pemeriksaan kelonggaran sendi kemudi yang menghubungkan kemudi ke ban mobil Anda.",
-        "problems": ["Setir terasa oblak", "Bunyi tek-tek saat belok", "Ban makan sebelah"],
-        "treatments": ["Cek clearance joint", "Pemberian grease baru", "Kalibrasi sudut roda"],
-        "benefits": ["Kemudi presisi & enteng", "Arah laju mobil lurus", "Ban awet merata"]
+        "description": "Menghubungkan sistem kemudi dengan roda agar arah kendaraan tepat dan responsif.",
+        "problems": [
+          "Setir terasa oblak & mobil lari kiri/kanan",
+          "Bunyi kletek saat setir belok",
+          "Arah kendaraan kurang presisi"
+        ],
+        "treatments": [
+          "Setir kembali presisi & arah stabil",
+          "Ban lebih awet & tidak makan sebelah",
+          "Lebih aman dikendarai di semua medan"
+        ],
+        "benefits": [
+          "Mendeteksi kelonggaran tie rod end",
+          "Mendeteksi keausan rack end secara akurat",
+          "Akurasi diagnosa tinggi tanpa bongkar"
+        ]
       },
       {
         "id": "3",
         "title": "Link & Bushing Stabilizer",
-        "subtitle": "(Anti-Roll Bar)",
+        "subtitle": "(Anti-Roll Bar System)",
         "top": "36.8%",
         "left": "79.2%",
         "labelPosition": "left",
-        "mainImage": "/images/equipment/Kyoto_Info_3.jpg",
+        "mainImage": "/images/equipment/link_bush_stabilizer.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Inspeksi keretakan karet bushing pada area stabilizer untuk menjaga keseimbangan mobil saat menikung.",
-        "problems": ["Bunyi besi beradu", "Mobil terasa goyang", "Limbung di tikungan"],
-        "treatments": ["Ganti karet stabilizer", "Cek kekencangan link", "Pembersihan karat"],
-        "benefits": ["Stabilitas menikung", "Guncangan sasis minim", "Body roll berkurang"]
+        "description": "Menjaga kestabilan bodi mobil saat menikung atau melewati jalan bergelombang.",
+        "problems": [
+          "Bunyi gluduk saat jalan bergelombang",
+          "Bunyi saat melewati polisi tidur",
+          "Gejala body roll berlebihan saat menikung"
+        ],
+        "treatments": [
+          "Mobil kembali stabil saat menikung",
+          "Handling kemudi lebih nyaman & aman",
+          "Bunyi-bunyian kaki-kaki hilang"
+        ],
+        "benefits": [
+          "Mendeteksi kelonggaran link stabilizer",
+          "Mendeteksi keausan karet bushing stabilizer",
+          "Menjaga kestabilan bodi mobil secara presisi"
+        ]
       },
       {
         "id": "4",
         "title": "Rack Steer & Column",
-        "subtitle": "(Steering Gear)",
+        "subtitle": "(Steering Gear System)",
         "top": "67.6%",
         "left": "27.0%",
         "labelPosition": "bottom",
-        "mainImage": "/images/equipment/Kyoto_Info_4.jpg",
+        "mainImage": "/images/equipment/racksteer_steering_column_thumb.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Pengecekan as gigi kemudi dan kebocoran minyak power steering.",
-        "problems": ["Setir terasa berat", "Suara derit kemudi", "Kebocoran oli setir"],
-        "treatments": ["Ganti seal bocor", "Ganti as rack jika aus", "Flushing minyak setir"],
-        "benefits": ["Setir super ringan", "Kemudi aman dari macet", "Bebas dari tetesan oli"]
+        "description": "Menggerakkan roda sesuai arah putaran setir dan meneruskan tenaga ke sistem kemudi.",
+        "problems": [
+          "Setir terasa berat & bergetar",
+          "Setir terasa oblak & bunyi saat diputar",
+          "Risiko kemudi sulit dikendalikan"
+        ],
+        "treatments": [
+          "Setir kembali ringan, senyap & presisi",
+          "Getaran pada kemudi berkurang drastis",
+          "Berkendara menjadi lebih nyaman & aman"
+        ],
+        "benefits": [
+          "Mendeteksi kelonggaran rack steer & column",
+          "Akurasi tinggi mendeteksi keausan as steering",
+          "Pengecekan cepat dan aman tanpa bongkar"
+        ]
       },
       {
         "id": "5",
-        "title": "Lower Arm & Ball Joint",
-        "subtitle": "(Control Arm)",
+        "title": "Lower Arm, Bushing Arm & Ball Joint",
+        "subtitle": "(Control Arm & Joint)",
         "top": "65.0%",
         "left": "22.0%",
         "labelPosition": "right",
-        "mainImage": "/images/equipment/Kyoto_Info_5.jpg",
+        "mainImage": "/images/equipment/lowerRrm_BushingARm_BallJoint_Thumb.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Inspeksi keretakan bushing sayap bawah dan kelonggaran poros ball joint.",
-        "problems": ["Bunyi derit di polisi tidur", "Posisi roda miring", "Setir terasa lari-lari"],
-        "treatments": ["Ganti bushing lower arm", "Ganti ball joint aus", "Press lengan ayun"],
-        "benefits": ["Posisi ban tegak lurus", "Bunyi derit hilang", "Handling mobil mantap"]
+        "description": "Menghubungkan roda dengan sasis dan menjaga posisi roda agar tetap stabil.",
+        "problems": [
+          "Bunyi gluduk saat jalan rusak & mobil limbung",
+          "Setir tidak stabil & ban aus sebelah",
+          "Karet bushing retak / aus"
+        ],
+        "treatments": [
+          "Kendaraan lebih stabil & bunyi hilang",
+          "Ban lebih awet & merata",
+          "Handling kemudi menjadi jauh lebih baik"
+        ],
+        "benefits": [
+          "Mendeteksi kelonggaran lower arm & bushing",
+          "Mendeteksi keausan poros ball joint sasis",
+          "Deteksi dini keretakan karet arm tanpa bongkar"
+        ]
       },
       {
         "id": "6",
         "title": "Wheel Bearing & Hub",
-        "subtitle": "(Wheel Hub)",
+        "subtitle": "(Wheel Hub System)",
         "top": "67.0%",
         "left": "10.0%",
         "labelPosition": "bottom",
-        "mainImage": "/images/equipment/Kyoto_Info_6.jpg",
+        "mainImage": "/images/equipment/Wheel_bearing_Thumb.png",
         "beforeImage": "/images/hotspot/Stinger-Before.jpg",
         "afterImage": "/images/hotspot/Stinger-After.jpg",
-        "description": "Pengecekan putaran roda dari keausan bola bantalan bearing roda.",
-        "problems": ["Bunyi dengung di kecepatan tinggi", "Roda terasa goyang", "Mobil terasa berat"],
-        "treatments": ["Ganti unit bearing hub", "Cek kekencangan mur", "Pemberian grease"],
-        "benefits": ["Kabin hening & sunyap", "Putaran roda lancar", "Efisiensi BBM membaik"]
+        "description": "Memungkinkan roda berputar dengan halus dan menopang beban kendaraan.",
+        "problems": [
+          "Bunyi dengung keras di kecepatan tinggi",
+          "Getaran merambat ke bodi & roda oblak",
+          "Risiko roda macet saat berjalan"
+        ],
+        "treatments": [
+          "Roda berputar stabil & kabin hening",
+          "Putaran roda kembali lancar tanpa getaran",
+          "Mencegah risiko fatal roda terkunci di jalan"
+        ],
+        "benefits": [
+          "Mendeteksi tingkat keausan bearing roda",
+          "Mendeteksi kelonggaran unit hub roda",
+          "Analisa putaran bearing roda secara akurat"
+        ]
       }
     ]
   },

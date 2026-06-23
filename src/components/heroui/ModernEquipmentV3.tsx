@@ -76,7 +76,7 @@ export default function ModernEquipmentV3() {
 
   return (
     <div
-      className="min-h-screen relative overflow-hidden bg-slate-50 dark:bg-[#060b13] text-slate-900 dark:text-white transition-colors duration-300"
+      className="w-full relative overflow-hidden bg-slate-50 dark:bg-[#060b13] text-slate-900 dark:text-white transition-colors duration-300 py-8 lg:py-12"
       ref={containerRef}
     >
       {/* Background Pattern */}
@@ -93,8 +93,17 @@ export default function ModernEquipmentV3() {
       <div className="lg:hidden flex flex-col min-h-screen">
         {/* Mobile Header with Horizontal Tabs */}
         <div className="shrink-0 bg-slate-50 dark:bg-[#060b13]">
+          {/* Mobile Section Title */}
+          <div className="px-4 pt-5 pb-1 text-center">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-500/20 rounded-full text-[8px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1">
+              🎯 DIAGNOSA DIGITAL
+            </span>
+            <h2 className="text-base font-extrabold text-slate-900 dark:text-white leading-tight uppercase tracking-wide">
+              Interactive Diagnostic Experience
+            </h2>
+          </div>
           {/* Service Tabs - Horizontal Scroll with Icons */}
-          <div className="pt-3 pb-2">
+          <div className="pt-3 pb-5">
             <ServiceTabs
               services={equipmentDataV3}
               activeServiceIndex={activeItemIndex}
@@ -115,6 +124,14 @@ export default function ModernEquipmentV3() {
             <p className="text-[10px] leading-relaxed text-slate-600 dark:text-gray-400">
               {activeItem?.description}
             </p>
+          </div>
+
+          {/* Mobile Instruction Badge */}
+          <div className="px-4 pb-4 flex justify-center">
+            <div className="flex bg-blue-50/80 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-500/30 px-3.5 py-2 rounded-xl items-center gap-2 text-[10px] font-semibold text-blue-600 dark:text-blue-400 shadow-[0_0_15px_rgba(59,130,246,0.05)] dark:shadow-[0_0_15px_rgba(59,130,246,0.1)]">
+              <span className="text-xs">🎯</span>
+              <span>Klik titik hotspot untuk melihat detail area</span>
+            </div>
           </div>
         </div>
 
@@ -180,9 +197,22 @@ export default function ModernEquipmentV3() {
       </div>
 
       {/* ===== DESKTOP LAYOUT ===== */}
-      <div className="hidden lg:block">
+      <div className="hidden lg:block max-w-[1600px] mx-auto pt-16 px-6 xl:px-8 relative z-10">
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-500/20 rounded-full text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-3 shadow-[0_0_15px_rgba(59,130,246,0.05)]">
+            🎯 DIAGNOSA DIGITAL
+          </span>
+          <h2 className="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight sm:text-4xl">
+            Interactive Vehicle Diagnostic Experience
+          </h2>
+          <p className="mt-3 max-w-2xl mx-auto text-sm text-slate-500 dark:text-gray-400">
+            Pelajari bagaimana tim ahli kami mendeteksi dan merawat komponen penting kendaraan Anda secara presisi menggunakan peralatan diagnostik modern.
+          </p>
+        </div>
+
         {/* Main Grid Layout */}
-        <div className="grid grid-cols-12 gap-6 xl:gap-8 px-6 xl:px-8 pt-24 pb-20 max-w-[1600px] mx-auto relative z-10 items-start">
+        <div className="grid grid-cols-12 gap-6 xl:gap-8 pb-4 items-start">
 
           {/* Left + Center Area */}
           <div className="col-span-8 flex flex-col gap-6">
@@ -254,7 +284,7 @@ export default function ModernEquipmentV3() {
           <div ref={panelRef} className="col-span-4 min-h-[400px]">
             <AnimatePresence mode="wait">
               {/* Default State */}
-              {!activeHotspot && activeItem.slug === 'semi-overhaul' && (
+              {!activeHotspot && (activeItem.slug === 'semi-overhaul' || activeItem.slug === 'kyoto-shaking-machine') && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -262,16 +292,14 @@ export default function ModernEquipmentV3() {
                   className="bg-white/95 dark:bg-[#0a0f1d]/95 backdrop-blur-xl border border-slate-200 dark:border-white/10 rounded-2xl p-5"
                 >
                   <div className="text-center mb-3">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 dark:bg-blue-950/40 rounded-full text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
-                      <span>🎬</span>
-                      <span>How It Works</span>
-                    </span>
-                    <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-2">Semi Overhaul Process</h3>
+                    <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-1">
+                      {activeItem.slug === 'kyoto-shaking-machine' ? "Kyoto Shaking Machine" : "Semi Overhaul Process"}
+                    </h3>
                   </div>
                   <div className="w-full aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/10 mb-4">
                     <img
                       src="/gifs/hotspot/semi-overhaul-demo.gif"
-                      alt="Semi Overhaul Demo"
+                      alt={activeItem.slug === 'kyoto-shaking-machine' ? "Kyoto Shaking Machine Demo" : "Semi Overhaul Demo"}
                       className="w-full h-full object-cover"
                       loading="lazy"
                       decoding="async"

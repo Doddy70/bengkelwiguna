@@ -28,7 +28,7 @@ interface InfoPanelProps {
 // Snap points for sheet variant
 const SNAP_CLOSED = 0;
 const SNAP_PEEK = 50;
-const SNAP_OPEN = 90;
+const SNAP_OPEN = 100;
 
 export function InfoPanel({
   hotspot,
@@ -249,6 +249,18 @@ export function InfoPanel({
             {/* Full Content (when open) */}
             {!isPeek && (
               <div className="space-y-4">
+                {/* Dynamic Image Visual (Semi Overhaul only) */}
+                {serviceSlug === 'semi-overhaul' && (
+                  <div className="w-full flex items-center justify-center rounded-xl overflow-hidden border border-slate-200/50 dark:border-white/10 py-3 bg-transparent">
+                    <img
+                      src={hotspot.mainImage || "/gifs/hotspot/semi-overhaul-demo.gif"}
+                      alt={hotspot.title}
+                      className="max-h-[120px] w-auto object-contain"
+                      loading="lazy"
+                    />
+                  </div>
+                )}
+
                 {/* 3 Columns: Problems, Treatments, Benefits */}
                 <div className="grid grid-cols-3 gap-3">
                   <div className="space-y-2">
@@ -340,10 +352,15 @@ export function InfoPanel({
 
           {/* Sticky Bottom CTA - Always show when sheet is visible */}
           <div className="flex-none p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0a0f1d] z-20 shrink-0">
-            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] cursor-pointer">
+            <a
+              href="https://promo.bengkelwiguna.com/booking-service/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] cursor-pointer"
+            >
               <span>📅</span>
               <span>Booking Inspeksi Sekarang</span>
-            </button>
+            </a>
             <div className="flex justify-center items-center gap-6 mt-3">
               <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
                 <Check size={14} className="text-blue-500" />
@@ -408,17 +425,11 @@ export function InfoPanel({
         {/* GIF Preview - Semi Overhaul */}
         {serviceSlug === 'semi-overhaul' && (
           <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-gray-400 flex items-center gap-1.5">
-                <span>🎬</span>
-                <span>How It Works</span>
-              </h4>
-            </div>
-            <div className="w-full aspect-video relative rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/10">
+            <div className="w-full flex items-center justify-center rounded-xl overflow-hidden border border-slate-200/50 dark:border-white/10 py-3 bg-transparent">
               <img
-                src="/gifs/hotspot/semi-overhaul-demo.gif"
-                alt="Semi Overhaul Demo"
-                className="w-full h-full object-cover"
+                src={hotspot.mainImage || "/gifs/hotspot/semi-overhaul-demo.gif"}
+                alt={hotspot.title}
+                className="max-h-[140px] w-auto object-contain"
                 loading="lazy"
               />
             </div>
@@ -427,12 +438,19 @@ export function InfoPanel({
 
         {/* Static Image - Non Semi Overhaul */}
         {serviceSlug !== 'semi-overhaul' && (
-          <div className="w-full aspect-video relative rounded-xl overflow-hidden bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 flex items-center justify-center">
-            {mainImage ? (
-              <Image src={mainImage} alt={hotspot.title} fill className="object-cover opacity-90" />
-            ) : (
-              <div className="text-slate-500 dark:text-gray-400 text-sm">3D Render Component</div>
-            )}
+          <div className="space-y-3">
+            <div className="w-full flex items-center justify-center rounded-xl overflow-hidden border border-slate-200/50 dark:border-white/10 py-3 bg-transparent">
+              {mainImage ? (
+                <img
+                  src={mainImage}
+                  alt={hotspot.title}
+                  className="max-h-[140px] w-auto object-contain"
+                  loading="lazy"
+                />
+              ) : (
+                <div className="text-slate-500 dark:text-gray-400 text-sm">3D Render Component</div>
+              )}
+            </div>
           </div>
         )}
 
@@ -536,10 +554,15 @@ export function InfoPanel({
 
       {/* Sticky Bottom CTA */}
       <div className="flex-none p-4 border-t border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0a0f1d]/95 backdrop-blur-xl">
-        <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.4)] cursor-pointer">
+        <a
+          href="https://promo.bengkelwiguna.com/booking-service/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.4)] cursor-pointer"
+        >
           <span>📅</span>
           <span>Booking Inspeksi Sekarang</span>
-        </button>
+        </a>
         <div className="flex justify-center items-center gap-8 mt-3">
           <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
             <Check size={14} className="text-blue-500" />
