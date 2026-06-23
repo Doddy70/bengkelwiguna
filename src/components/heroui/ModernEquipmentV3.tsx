@@ -136,12 +136,13 @@ export default function ModernEquipmentV3() {
 
         {/* Mobile Vehicle Canvas */}
         <div className="flex-1 relative">
-          {/* Vehicle Canvas */}
+          {/* Vehicle Canvas - No beam on mobile (bottom sheet doesn't need connector) */}
           <VehicleCanvas
             ref={canvasRef}
             activeItem={activeItem}
             activeHotspot={activeHotspot}
             onSelectHotspot={handleSelectHotspot}
+            showBeam={false}
           />
 
           {/* FAB: "Lihat Area Servis" Button */}
@@ -247,11 +248,13 @@ export default function ModernEquipmentV3() {
                   <span>Klik titik hotspot untuk melihat area yang dibersihkan</span>
                 </div>
 
+                {/* Desktop Vehicle Canvas - Beam connects to side panel */}
                 <VehicleCanvas
                   ref={canvasRef}
                   activeItem={activeItem}
                   activeHotspot={activeHotspot}
                   onSelectHotspot={handleSelectHotspot}
+                  showBeam={true}
                 />
               </div>
             </div>

@@ -7,6 +7,7 @@ interface VehicleCanvasProps {
   activeItem: any;
   activeHotspot: any;
   onSelectHotspot: (hotspot: any) => void;
+  showBeam?: boolean; // Desktop only - beam connects to side panel
 }
 
 export interface VehicleCanvasRef {
@@ -16,7 +17,8 @@ export interface VehicleCanvasRef {
 export const VehicleCanvas = forwardRef<VehicleCanvasRef, VehicleCanvasProps>(({
   activeItem,
   activeHotspot,
-  onSelectHotspot
+  onSelectHotspot,
+  showBeam = true
 }, ref) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const [hoveredHotspot, setHoveredHotspot] = useState<any>(null);
@@ -76,8 +78,8 @@ export const VehicleCanvas = forwardRef<VehicleCanvasRef, VehicleCanvasProps>(({
           style={{ display: 'block' }}
         />
 
-        {/* Animated Beam Connector - Clean red line */}
-        {activeHotspot && beamPath && (
+        {/* Animated Beam Connector - Desktop only (connects to side panel) */}
+        {showBeam && activeHotspot && beamPath && (
           <svg
             className="absolute inset-0 w-full h-full pointer-events-none z-10"
             style={{ overflow: 'visible', background: 'transparent' }}
