@@ -88,7 +88,7 @@ export default function ModernEquipmentV3() {
   };
 
   // Determine if FAB should be visible (mobile only, sheet closed)
-  const showFAB = isMobile && sheetState === 'closed' && !activeHotspot;
+  // const showFAB = isMobile && sheetState === 'closed' && !activeHotspot;
 
   return (
     <div
@@ -145,27 +145,45 @@ export default function ModernEquipmentV3() {
             showBeam={false}
           />
 
-          {/* FAB: "Lihat Area Servis" Button */}
+          {/* Instruction Card - Only show when no hotspot selected */}
           <AnimatePresence>
-            {showFAB && (
+            {!activeHotspot && (
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 20 }}
+                exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute bottom-6 inset-x-4 mx-auto max-w-[280px]"
+                className="absolute bottom-4 inset-x-4 mx-auto"
               >
-                <button
-                  onClick={() => {
-                    // Scroll to canvas hotspots hint
-                    const canvas = document.querySelector('[data-hotspot-hint]');
-                    canvas?.scrollIntoView({ behavior: 'smooth' });
-                  }}
-                  className="w-full py-3 bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-xl text-slate-900 dark:text-white font-semibold text-sm shadow-lg flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-                  Lihat Area Servis
-                </button>
+                <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-2xl p-4 shadow-lg">
+                  <div className="flex items-center gap-3">
+                    {/* Animated Pulse Indicator */}
+                    <div className="relative w-12 h-12 shrink-0">
+                      <span className="absolute inset-0 rounded-full bg-blue-500/20 animate-ping" style={{ animationDuration: '2s' }} />
+                      <span className="absolute inset-1 rounded-full bg-blue-500/30 animate-ping" style={{ animationDuration: '2.5s', animationDelay: '0.3s' }} />
+                      <div className="absolute inset-2.5 rounded-full bg-blue-500 flex items-center justify-center">
+                        <span className="text-white text-sm">👆</span>
+                      </div>
+                    </div>
+
+                    {/* Instruction Text */}
+                    <div className="flex-1 min-w-0">
+                      <p className="text-slate-900 dark:text-white font-semibold text-sm leading-tight">
+                        Ketuk titik hotspot untuk lihat detail
+                      </p>
+                      <p className="text-slate-500 dark:text-gray-400 text-xs mt-0.5">
+                        {activeItem.hotspots?.length || 0} area tersedia
+                      </p>
+                    </div>
+
+                    {/* Hotspot Count Badge */}
+                    <div className="w-8 h-8 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center shrink-0">
+                      <span className="text-blue-600 dark:text-blue-400 text-xs font-bold">
+                        {activeItem.hotspots?.length || 0}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
