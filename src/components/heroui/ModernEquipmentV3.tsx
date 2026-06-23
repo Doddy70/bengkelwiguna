@@ -68,8 +68,8 @@ export default function ModernEquipmentV3() {
       setSheetState('closed');
     } else {
       setActiveHotspot(hotspot);
-      // For mobile, we trigger peek state. On desktop, the layout will ignore it.
-      setSheetState('peek');
+      // Open bottom sheet to 90% immediately on hotspot tap
+      setSheetState('open');
     }
   };
 

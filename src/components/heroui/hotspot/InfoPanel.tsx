@@ -24,11 +24,11 @@ interface InfoPanelProps {
   serviceSlug?: string;
 }
 
-// Snap points (percentage of viewport height)
+// Snap points (percentage from top - lower = more visible)
 const SNAP_POINTS = {
-  closed: 100, // Hidden below screen
-  peek: 55,    // ~45% visible
-  open: 15     // ~85% visible
+  closed: 100, // Hidden below screen (0% visible)
+  peek: 50,    // 50% visible (intermediate)
+  open: 10     // 90% visible (full detail)
 };
 
 export function InfoPanel({
