@@ -1,5 +1,8 @@
 /* ✅ Chakra Petch moved to next/font/google in layout.tsx — zero render-blocking */
 @import "tailwindcss";
+@source "../components/**/*.tsx";
+@source "../app/**/*.tsx";
+
 
 /* ============================================
    HOTSPOT BEAM — SVG animated gradient line
@@ -1105,4 +1108,39 @@ body.dark {
   html {
     @apply font-sans;
     }
+}
+
+/* Custom styles for V3 Diagnostic Experience layout to bypass any Tailwind V4 arbitrary brackets issue */
+.diag-sidebar {
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .diag-sidebar {
+    width: 280px !important;
+    min-width: 280px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+.diag-center {
+  width: 100%;
+  max-width: 850px;
+  flex: 1 1 0%;
+}
+
+.diag-right-panel {
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .diag-right-panel {
+    width: 480px !important;
+    min-width: 480px !important;
+    flex-shrink: 0 !important;
+  }
+}
+@media (min-width: 1280px) {
+  .diag-right-panel {
+    width: 520px !important;
+    min-width: 520px !important;
+  }
 }

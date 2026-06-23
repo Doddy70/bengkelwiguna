@@ -176,7 +176,7 @@ const InfoPanel = ({
       animate={{ opacity: 1, x: 0, scale: 1 }}
       exit={{ opacity: 0, x: 30, scale: 0.95 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className="fixed right-4 w-[380px] max-h-[85vh] overflow-y-auto z-50 rounded-2xl
+      className="fixed right-4 top-24 w-[380px] max-h-[85vh] overflow-y-auto z-50 rounded-2xl
         bg-[#0f0f0f]/95 backdrop-blur-xl
         border border-red-500/20
         shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8),0_0_40px_rgba(239,68,68,0.1)]"
@@ -332,16 +332,21 @@ export default function ModernEquipmentShowcase() {
     const updatePanelPos = () => {
       if (imageRef.current) {
         const rect = imageRef.current.getBoundingClientRect();
-        const scrollY = window.scrollY;
+        const panelLeftX = window.innerWidth - 16 - 380;
+        const panelCenterY = 96 + 100;
         setPanelPos({
-          x: 50,
-          y: rect.top + scrollY + 100
+          x: panelLeftX - rect.right,
+          y: panelCenterY - rect.top
         });
       }
     };
     updatePanelPos();
     window.addEventListener('resize', updatePanelPos);
-    return () => window.removeEventListener('resize', updatePanelPos);
+    window.addEventListener('scroll', updatePanelPos);
+    return () => {
+      window.removeEventListener('resize', updatePanelPos);
+      window.removeEventListener('scroll', updatePanelPos);
+    };
   }, [activeItemIndex, activeHotspot]);
 
   return (
@@ -393,7 +398,7 @@ export default function ModernEquipmentShowcase() {
                   setActiveItemIndex(idx);
                   setActiveHotspot(null);
                 }}
-                className={`px-5 py-3.5 rounded-xl text-[13px] font-semibold transition-all duration-300 text-left flex items-center gap-3 border ${
+                className={`w-full px-4 py-3 rounded-xl text-[13px] font-semibold transition-all duration-300 text-left flex items-center gap-3 border ${
                   activeItemIndex === idx
                     ? 'bg-red-500 text-white border-red-600 shadow-lg shadow-red-500/30'
                     : 'bg-transparent hover:bg-white/5 text-gray-300 border-white/10'
@@ -407,7 +412,7 @@ export default function ModernEquipmentShowcase() {
         </div>
 
         {/* CENTER — Image & Hotspots */}
-        <div className="flex-1 w-full relative min-h-[350px] lg:min-h-[450px] flex items-center justify-center">
+        <div className="flex-1 w-full relative flex items-center justify-center">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeItem.id}
@@ -419,16 +424,12 @@ export default function ModernEquipmentShowcase() {
               className="relative w-full max-w-[750px] aspect-[16/10] mx-auto"
             >
               {/* Background container */}
-              <div
-                className="absolute inset-0 rounded-2xl overflow-hidden
-                  bg-[rgba(20,20,20,0.8)] backdrop-blur-[20px]
-                  border border-white/5"
-              >
+              <div className="absolute inset-0 rounded-2xl overflow-hidden bg-transparent border border-white/10">
                 <Image
                   src={activeItem.image}
                   alt={activeItem.name}
                   fill
-                  className="object-contain p-6"
+                  className="object-contain p-4"
                   priority
                 />
               </div>
