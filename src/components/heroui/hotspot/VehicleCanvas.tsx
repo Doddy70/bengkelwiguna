@@ -64,11 +64,11 @@ export const VehicleCanvas = forwardRef<VehicleCanvasRef, VehicleCanvasProps>(({
   }, [activeHotspot]);
 
   return (
-    <div className="flex-1 w-full relative flex items-center justify-center min-h-[240px] sm:min-h-[350px] md:min-h-[450px] lg:min-h-[500px]">
+    <div className="relative flex items-center justify-center min-h-[50vh] sm:min-h-[60vh]">
       <div
         key={activeItem.id}
         ref={containerRef}
-        className="relative w-full max-w-[850px] mx-auto"
+        className="relative w-full max-w-[850px] mx-auto z-10"
       >
         {/* Background image */}
         <img
@@ -143,7 +143,7 @@ export const VehicleCanvas = forwardRef<VehicleCanvasRef, VehicleCanvasProps>(({
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 5, scale: 0.95 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-slate-900/95 dark:bg-slate-800/95 backdrop-blur border border-white/10 text-white px-3 py-2 rounded-xl flex flex-col items-center pointer-events-none z-50"
+                      className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 whitespace-nowrap bg-slate-900/95 dark:bg-slate-800/95 backdrop-blur border border-white/10 text-white px-3 py-2 rounded-xl flex flex-col items-center pointer-events-none z-[100]"
                     >
                       <span className="text-xs font-bold">{hotspot.title}</span>
                       <span className="text-[10px] text-slate-300 mt-0.5">Klik untuk detail</span>
