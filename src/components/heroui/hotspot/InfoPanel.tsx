@@ -198,7 +198,7 @@ export function InfoPanel({
           </div>
 
           {/* Scrollable Content */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4 pb-24">
 
             {/* Title Row - No mini visual on mobile sheet */}
             <div className="space-y-1">
@@ -338,25 +338,23 @@ export function InfoPanel({
             )}
           </div>
 
-          {/* Sticky Bottom CTA */}
-          {!isClosed && (
-            <div className="flex-none p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0a0f1d] z-20">
-              <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] cursor-pointer">
-                <span>📅</span>
-                <span>Booking Inspeksi Sekarang</span>
-              </button>
-              <div className="flex justify-center items-center gap-6 mt-3">
-                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
-                  <Check size={14} className="text-blue-500" />
-                  <span>Gratis Konsultasi</span>
-                </div>
-                <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
-                  <Check size={14} className="text-blue-500" />
-                  <span>Bergaransi</span>
-                </div>
+          {/* Sticky Bottom CTA - Always show when sheet is visible */}
+          <div className="flex-none p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0a0f1d] z-20 shrink-0">
+            <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] cursor-pointer">
+              <span>📅</span>
+              <span>Booking Inspeksi Sekarang</span>
+            </button>
+            <div className="flex justify-center items-center gap-6 mt-3">
+              <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
+                <Check size={14} className="text-blue-500" />
+                <span>Gratis Konsultasi</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-xs text-slate-500 dark:text-gray-400">
+                <Check size={14} className="text-blue-500" />
+                <span>Bergaransi</span>
               </div>
             </div>
-          )}
+          </div>
         </motion.div>
       </>
     );
