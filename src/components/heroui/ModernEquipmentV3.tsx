@@ -108,7 +108,7 @@ export default function ModernEquipmentV3() {
       {/* ===== MOBILE LAYOUT ===== */}
       <div className="lg:hidden flex flex-col min-h-screen">
         {/* Mobile Header - Service Tabs + Badge */}
-        <div className="sticky top-0 z-30 bg-slate-50/95 dark:bg-[#060b13]/95 backdrop-blur-md">
+        <div className="shrink-0 z-30 bg-slate-50 dark:bg-[#060b13]">
           {/* Service Tabs */}
           <div className="pt-3 pb-2">
             <ServiceTabs
@@ -134,8 +134,8 @@ export default function ModernEquipmentV3() {
           </div>
         </div>
 
-        {/* Mobile Vehicle Canvas - Centered vertically with padding */}
-        <div className="relative px-4 py-6 min-h-[50vh] flex items-center justify-center">
+        {/* Mobile Vehicle Canvas - Full remaining height, centered */}
+        <div className="flex-1 flex flex-col justify-center px-4 py-6 bg-slate-50 dark:bg-[#060b13]">
           {/* Vehicle Canvas - No beam on mobile (bottom sheet doesn't need connector) */}
           <VehicleCanvas
             ref={canvasRef}
@@ -153,9 +153,9 @@ export default function ModernEquipmentV3() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ duration: 0.2 }}
-                className="absolute bottom-2 inset-x-4 mx-auto"
+                className="mt-6"
               >
-                <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-2xl p-4 shadow-lg">
+                <div className="bg-white dark:bg-[#0a0f1d] backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-2xl p-4 shadow-lg">
                   <div className="flex items-center gap-3">
                     {/* Animated Pulse Indicator */}
                     <div className="relative w-12 h-12 shrink-0">
@@ -191,7 +191,7 @@ export default function ModernEquipmentV3() {
 
         {/* Mobile Impact Scores */}
         {activeItem.impactScores && (
-          <div className="lg:hidden px-4 pb-4">
+          <div className="lg:hidden px-4 pb-4 shrink-0">
             <div className="grid grid-cols-3 gap-3">
               {activeItem.impactScores.map((score: any, idx: number) => {
                 let IconComponent = Snowflake;
@@ -205,7 +205,7 @@ export default function ModernEquipmentV3() {
                 }
 
                 return (
-                  <div key={idx} className="flex flex-col items-center text-center gap-1.5 p-2.5 bg-white/80 dark:bg-slate-900/40 backdrop-blur-md border border-slate-200/50 dark:border-white/5 rounded-xl">
+                  <div key={idx} className="flex flex-col items-center text-center gap-1.5 p-2.5 bg-white dark:bg-[#0a0f1d] backdrop-blur-md border border-slate-200 dark:border-white/10 rounded-xl">
                     <IconComponent className={`${colorClass} w-5 h-5`} />
                     <p className="text-[9px] font-bold text-slate-600 dark:text-gray-300 leading-tight">
                       {score.title}

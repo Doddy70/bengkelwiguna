@@ -447,7 +447,7 @@ export function InfoPanel({
       {/* Sticky Bottom CTA */}
       <div className={cn(
         "flex-none p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0a0f1d] backdrop-blur-xl z-20",
-        isPeek ? "hidden lg:block" : "block"
+        isClosed ? "hidden" : "block"
       )}>
         <button className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.4)] cursor-pointer">
           <span>📅</span>

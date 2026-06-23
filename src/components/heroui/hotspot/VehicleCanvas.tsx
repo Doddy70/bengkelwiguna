@@ -64,7 +64,7 @@ export const VehicleCanvas = forwardRef<VehicleCanvasRef, VehicleCanvasProps>(({
   }, [activeHotspot]);
 
   return (
-    <div className="relative flex items-center justify-center min-h-[50vh] sm:min-h-[60vh]">
+    <div className="relative flex-1 flex items-center justify-center w-full">
       <div
         key={activeItem.id}
         ref={containerRef}
