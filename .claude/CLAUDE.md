@@ -26,13 +26,14 @@ Proyek ini berada di iterasi ketiga (V3). UI/UX telah dirombak besar-besaran (Gl
 2. Redesign FAQ, Footer, About, Contact dengan Glassmorphism & clean layouts.
 3. Refine WigunaCard styling (Overlay/Split variants) untuk Blog, Promo, Youtube.
 4. Perbaikan brand colors (Wiguna Blue/Gold) ke seluruh komponen.
+5. Sinkronisasi Navigation Menu hardcoded fallback.
+6. Penyelarasan Layout & Desain V3 Hotspot (Semi Overhaul & Kyoto Shaking Machine) di `test-equipment-v3` menggunakan grid 12-kolom, mode gelap premium, dan marker glow transparan tanpa overlap label.
 
 ### 📋 TUGAS SELANJUTNYA (Priority Order)
 
 | # | Task | Priority | Status | Branch |
 |---|------|----------|--------|--------|
-| 1 | Sync Navigation Menu | 🔴 HIGH | Pending | `feat/nav-menu-sync` |
-| 2 | Domain Authority Audit | 🟢 LOW | Paused | `chore/seo-audit` |
+| 1 | Domain Authority Audit | 🟢 LOW | Paused | `chore/seo-audit` |
 
 ---
 

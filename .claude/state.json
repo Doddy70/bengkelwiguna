@@ -1,10 +1,10 @@
 {
   "project": "bengkel-wiguna-v3",
   "version": "2.2.0",
-  "lastUpdated": "2026-06-20T14:22:00+07:00",
+  "lastUpdated": "2026-06-22T18:43:00+07:00",
   "lastAgent": {
-    "name": "Gemini 3.1 Pro (Antigravity IDE)",
-    "action": "Adapted workflow to Antigravity IDE environment. Synchronized with previous Claude session and prepared task list for semi-overhaul-hotspot-panel-info."
+    "name": "Gemini 3.5 Flash (Antigravity IDE)",
+    "action": "Completed V3 Hotspot layout alignment and styling. Configured 12-column grid (Sidebar: 2, Canvas: 6, InfoPanel: 4), removed duplicate text overlays by making hotspot markers transparent/glowing pulses exactly positioned over pre-printed background labels, deleted B-Block duplicate hotspot from Semi Overhaul to lock 6 hotspots (1-6), and refined premium dark mode dashboard aesthetics."
   },
   "lastCommit": {
     "hash": "460f94e8",
@@ -31,13 +31,15 @@
       "about-contact-redesign",
       "footer-redesign",
       "nav-menu-sync",
-      "agent-knowledge-docs-2026-06-20"
+      "agent-knowledge-docs-2026-06-20",
+      "semi-overhaul-hotspot-panel-info",
+      "modern-equipment-v3-hotspot"
     ],
     "pendingTasks": [
-      "domain-authority-audit",
-      "semi-overhaul-hotspot-panel-info"
+      "domain-authority-audit"
     ]
   },
+
   "constraints": {
     "dontModify": [
       "package.json"
@@ -59,8 +61,9 @@
       "description": "Pending manual data input from user (DA/DR, referring domains)."
     },
     "semi-overhaul-hotspot-panel-info": {
-      "status": "PENDING",
+      "status": "COMPLETED",
       "priority": "MEDIUM",
+
       "description": "Implement Panel Info cards for Semi Overhaul product (6 hotspots). Previous attempt failed and was reverted. Assets (thumbnail images) sudah tersedia di public/images/equipment/. WAJIB baca .agents/skills/hotspot-ui-implementation/SKILL.md sebelum memulai.",
       "assets": {
         "images": [
