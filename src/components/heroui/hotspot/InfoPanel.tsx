@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
-import { motion, AnimatePresence, useMotionValue, useTransform, PanInfo } from "framer-motion";
+import React, { useRef } from "react";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { X, CheckCircle, ChevronLeft, ChevronRight, Check, Sparkles } from "lucide-react";
 import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 import Image from "next/image";
@@ -24,12 +24,10 @@ interface InfoPanelProps {
   serviceSlug?: string;
 }
 
-// Snap points (percentage from top - lower = more visible)
-const SNAP_POINTS = {
-  closed: 100, // Hidden below screen (0% visible)
-  peek: 50,    // 50% visible (intermediate)
-  open: 10     // 90% visible (full detail)
-};
+// Snap points (percentage from bottom - higher = more visible)
+const SNAP_CLOSED = 0;   // 0% visible (hidden)
+const SNAP_PEEK = 50;    // 50% visible (intermediate)
+const SNAP_OPEN = 90;    // 90% visible (full detail)
 
 export function InfoPanel({
   hotspot,
@@ -42,63 +40,24 @@ export function InfoPanel({
   onStateChange,
   serviceSlug
 }: InfoPanelProps) {
-  const [localSheetState, setLocalSheetState] = useState<'closed' | 'peek' | 'open'>(sheetState);
   const sheetRef = useRef<HTMLDivElement>(null);
   const dragStartY = useRef(0);
   const isDragging = useRef(false);
 
-  // Sync external state changes
-  useEffect(() => {
-    setLocalSheetState(sheetState);
-  }, [sheetState]);
-
-  // Calculate translateY based on state
-  const getTranslateY = () => {
-    switch (localSheetState) {
-      case 'closed': return '100%';
-      case 'peek': return `${100 - SNAP_POINTS.peek}%`;
-      case 'open': return `${100 - SNAP_POINTS.open}%`;
-      default: return '100%';
+  // Determine visibility percentage based on state
+  const getVisibility = () => {
+    switch (sheetState) {
+      case 'closed': return SNAP_CLOSED;
+      case 'peek': return SNAP_PEEK;
+      case 'open': return SNAP_OPEN;
+      default: return SNAP_CLOSED;
     }
   };
 
-  // Handle snap to nearest point
-  const snapToNearest = (velocity: number, offset: number) => {
-    const currentY = offset;
-    const windowHeight = window.innerHeight;
-
-    const peekThreshold = windowHeight * (1 - SNAP_POINTS.peek / 100);
-    const openThreshold = windowHeight * (1 - SNAP_POINTS.open / 100);
-
-    // Determine nearest snap point based on position and velocity
-    if (velocity > 500 || currentY < openThreshold) {
-      setLocalSheetState('open');
-      onStateChange?.('open');
-    } else if (velocity < -500 || currentY > peekThreshold) {
-      if (localSheetState === 'open') {
-        setLocalSheetState('peek');
-        onStateChange?.('peek');
-      } else {
-        setLocalSheetState('closed');
-        onStateChange?.('closed');
-        onClose();
-      }
-    }
-  };
-
-  const handleDragEnd = (_: any, info: PanInfo) => {
-    isDragging.current = false;
-    snapToNearest(info.velocity.y, info.offset.y);
-  };
-
-  const handleDragStart = (_: any, info: PanInfo) => {
-    isDragging.current = true;
-    dragStartY.current = info.point.y;
-  };
-
-  const isPeek = localSheetState === 'peek';
-  const isOpen = localSheetState === 'open';
-  const isClosed = localSheetState === 'closed';
+  const visibility = getVisibility();
+  const isPeek = sheetState === 'peek';
+  const isOpen = sheetState === 'open';
+  const isClosed = sheetState === 'closed';
 
   // Use provided before/after images
   const beforeImage = hotspot.beforeImage || "/images/hotspot/Stinger-Before.jpg";
@@ -143,16 +102,34 @@ export function InfoPanel({
 
   const recommendation = getRecommendation();
 
+  // Handle drag snap logic
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    isDragging.current = false;
+    const velocity = info.velocity.y;
+    const offset = info.offset.y;
+
+    // Snap based on drag direction and velocity
+    if (velocity > 500 || (offset > 50 && velocity > 0)) {
+      // Dragging down - close
+      onStateChange?.('closed');
+      onClose();
+    } else if (velocity < -500 || offset < -50) {
+      // Dragging up - expand (only if in peek state)
+      if (isPeek) {
+        onStateChange?.('open');
+      }
+    }
+  };
+
   return (
     <motion.div
       ref={sheetRef}
       initial={false}
-      animate={{ y: isClosed ? '100%' : isPeek ? `${100 - SNAP_POINTS.peek}%` : `${100 - SNAP_POINTS.open}%` }}
+      animate={{ y: `${100 - visibility}%` }}
       transition={{ type: "spring", damping: 30, stiffness: 300 }}
       drag="y"
       dragConstraints={{ top: 0, bottom: 0 }}
       dragElastic={0.1}
-      onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       style={{
         position: 'fixed',
@@ -178,7 +155,6 @@ export function InfoPanel({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => {
-              setLocalSheetState('closed');
               onStateChange?.('closed');
               onClose();
             }}
@@ -213,7 +189,6 @@ export function InfoPanel({
         </div>
         <button
           onClick={() => {
-            setLocalSheetState('closed');
             onStateChange?.('closed');
             onClose();
           }}
@@ -322,10 +297,7 @@ export function InfoPanel({
           {/* "Lihat Detail" CTA (Peek only) */}
           {isPeek && (
             <button
-              onClick={() => {
-                setLocalSheetState('open');
-                onStateChange?.('open');
-              }}
+              onClick={() => onStateChange?.('open')}
               className="w-full py-3 bg-blue-600 hover:bg-blue-500 text-white font-semibold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] flex justify-center items-center gap-2 cursor-pointer"
             >
               Lihat Detail <ChevronRight size={16} />
