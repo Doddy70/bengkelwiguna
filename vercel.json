@@ -1,19 +1,14 @@
 {
   "redirects": [
-    // Subdomain redirects
     { "source": "/:path*", "has": [{ "type": "header", "value": "backend.bengkelwiguna.com" }], "destination": "https://bengkelwiguna.com/:path*", "permanent": true },
     { "source": "/:path*", "has": [{ "type": "header", "value": "promo.bengkelwiguna.com" }], "destination": "https://bengkelwiguna.com/promosi/:path*", "permanent": true },
     { "source": "/:path*", "has": [{ "type": "header", "value": "kyoto.bengkelwiguna.com" }], "destination": "https://bengkelwiguna.com/layanan-spesialis/:path*", "permanent": true },
     { "source": "/", "has": [{ "type": "header", "value": "www.bengkelwiguna.com" }], "destination": "https://bengkelwiguna.com/", "permanent": true },
-
-    // Pattern redirects
     { "source": "/layanan/:slug*", "destination": "/services/:slug*", "permanent": true },
     { "source": "/blog/page/:page(\\d+)/", "has": [{ "type": "query", "key": "nocache" }], "destination": "/blog/page/:page/", "permanent": true },
     { "source": "/blog/page/:page(\\d+)/", "has": [{ "type": "query", "key": "jet_blog_ajax" }], "destination": "/blog/page/:page/", "permanent": true },
     { "source": "/shop/page/:page(\\d+)", "destination": "/services/", "permanent": true },
     { "source": "/shop/", "destination": "/services/", "permanent": true },
-
-    // Service slugs
     { "source": "/layanan/service-ac/", "destination": "/services/flushing-ac/", "permanent": true },
     { "source": "/layanan/ac-mobil/", "destination": "/services/isi-freon-ac/", "permanent": true },
     { "source": "/layanan/servis-rem/", "destination": "/services/servis-rem/", "permanent": true },
@@ -28,14 +23,10 @@
     { "source": "/services/kaki-kaki-mobil/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
     { "source": "/services/pemeriksaan-kendaraan/", "destination": "/services/diagnosa-scanner/", "permanent": true },
     { "source": "/services/perawatan-berkala-2/", "destination": "/services/servis-berkala/", "permanent": true },
-
-    // WooCommerce deprecated
     { "source": "/coupons/", "destination": "/promosi/", "permanent": true },
     { "source": "/booking-service/", "destination": "/services/", "permanent": true },
     { "source": "/form-survey/", "destination": "/", "permanent": true },
     { "source": "/product-category/wheels/", "destination": "/services/ganti-ban/", "permanent": true },
-
-    // Landing pages
     { "source": "/lokal-depok/", "destination": "/lokasi/", "permanent": true },
     { "source": "/spesialisasi-layanan/", "destination": "/layanan-spesialis/", "permanent": true },
     { "source": "/layanan-unggulan/", "destination": "/services/", "permanent": true },
@@ -51,8 +42,6 @@
     { "source": "/bengkel-mobil-terdekat-di-depok-pilih-bengkel-wiguna-yang-terpercaya/", "destination": "/lokasi/", "permanent": true },
     { "source": "/bengkel-mobil-depok-panduan-memilih-bengkel-terpercaya-untuk-servis-rutin/", "destination": "/services/servis-berkala/", "permanent": true },
     { "source": "/bengkel-mobil-depok-jujur/", "destination": "/", "permanent": true },
-
-    // Kaki-Kaki
     { "source": "/bengkel-kaki-kaki-depok/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
     { "source": "/bengkel-kaki-kaki-depok-2/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
     { "source": "/bengkel-kaki-kaki-depok-3/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
@@ -83,8 +72,6 @@
     { "source": "/detoks-mesin-mobil-terdekat-teknologi-stinger-engine-flush/", "destination": "/services/carbon-cleaning/", "permanent": true },
     { "source": "/coolant-changer-depok/", "destination": "/services/flushing-radiator/", "permanent": true },
     { "source": "/reset-radiator-depok/", "destination": "/services/flushing-radiator/", "permanent": true },
-
-    // AC
     { "source": "/atasi-5-kesalahan-umum-agar-ac-mobil-awet-dan-berfungsi-baik/", "destination": "/blog/", "permanent": true },
     { "source": "/ciri-ciri-ac-mobil-perlu-flushing-agar-kinerja-tetap-optimal/", "destination": "/blog/", "permanent": true },
     { "source": "/kenapa-ac-mobil-panas-saat-macet-temukan-jawabannya-di-bengkel-wiguna/", "destination": "/blog/", "permanent": true },
@@ -100,8 +87,6 @@
     { "source": "/flushing-ac-mobil-di-bengkel-wiguna-penting-untuk-dingin-maksimal/", "destination": "/services/flushing-ac/", "permanent": true },
     { "source": "/servis-ac-mobil-depok-atasi-ac-panas-dengan-teknisi-ahli-bengkel-wiguna/", "destination": "/services/flushing-ac/", "permanent": true },
     { "source": "/servis-ac-mobil-depok/", "destination": "/services/flushing-ac/", "permanent": true },
-
-    // Ban
     { "source": "/ganti-ban-mobil-depok-ban-berkualitas-dengan-servis-presisi-wiguna/", "destination": "/services/ganti-ban/", "permanent": true },
     { "source": "/ban-mobil-kamu-botak-ini-solusi-ganti-ban-murah-di-depok/", "destination": "/services/ganti-ban/", "permanent": true },
     { "source": "/ban-mobil-cepat-habis-sebelah-ini-biang-utamanya/", "destination": "/blog/", "permanent": true },
@@ -112,13 +97,9 @@
     { "source": "/spooring-balancing-mobil-depok/", "destination": "/services/spooring/", "permanent": true },
     { "source": "/daftar-ban-mobil-terbaik-untuk-jalanan-depok/", "destination": "/blog/", "permanent": true },
     { "source": "/cek-tekanan-angin-isi-nitrogen-ban-mobil-di-depok/", "destination": "/services/balancing/", "permanent": true },
-
-    // Rem
     { "source": "/rem-mobil-bunyi-ini-penyebab-solusinya/", "destination": "/blog/", "permanent": true },
     { "source": "/mobil-bergetar-saat-ngerem-bisa-jadi-cakram-aus/", "destination": "/blog/", "permanent": true },
     { "source": "/mobil-bergetar-saat-ngerem/", "destination": "/services/servis-rem/", "permanent": true },
-
-    // Mesin
     { "source": "/servis-semi-overhaul-vs-overhaul-mobil/", "destination": "/services/semi-overhaul/", "permanent": true },
     { "source": "/kenali-ciri-mesin-mobil-sludge-dan-solusi-semi-overhaul-untuk-performa-optimal/", "destination": "/services/semi-overhaul/", "permanent": true },
     { "source": "/bengkel-semi-overhaul-terpercaya-di-depok/", "destination": "/services/semi-overhaul/", "permanent": true },
@@ -147,8 +128,6 @@
     { "source": "/etanol-di-bbm-solusi-atau-ancaman/", "destination": "/blog/", "permanent": true },
     { "source": "/spesialis-mesin-terdekat-tanpa-bongkar-berlebihan/", "destination": "/services/semi-overhaul/", "permanent": true },
     { "source": "/5-tanda-kelistrikan-mobil-bermasalah-yang-harus-diwaspadai/", "destination": "/blog/", "permanent": true },
-
-    // Bengkel Umum
     { "source": "/kenapa-harus-memilih-bengkel-bergaransi/", "destination": "/", "permanent": true },
     { "source": "/perbandingan-bengkel-resmi-vs-bengkel-umum-di-depok/", "destination": "/blog/", "permanent": true },
     { "source": "/bengkel-terdekat-di-depok/", "destination": "/lokasi/", "permanent": true },
@@ -168,16 +147,11 @@
     { "source": "/harga-flushing-ac-mobil-di-depok/", "destination": "/services/flushing-ac/", "permanent": true },
     { "source": "/bengkel-persiapan-mudik-depok/", "destination": "/blog/", "permanent": true },
     { "source": "/atasi-bau-tidak-sedap-di-ac-mobil-dengan-solusi-flushing-efektif/", "destination": "/blog/", "permanent": true },
-    { "source": "/5-tanda-ac-mobil-butuh-servis-segera-sebelum-rusak-total/", "destination": "/blog/", "permanent": true },
     { "source": "/cek-sendiri-kaki-kaki-mobil-bunyi/", "destination": "/blog/", "permanent": true },
     { "source": "/mobil-miring-sebelah-bisa-jadi-ini-penyebabnya/", "destination": "/blog/", "permanent": true },
     { "source": "/wb-carbon-detox/", "destination": "/services/carbon-cleaning/", "permanent": true },
-
-    // Aki
     { "source": "/lampu-mobil-redup-saat-rpm-rendah-kenali-masalah-aki/", "destination": "/blog/", "permanent": true },
     { "source": "/caramudah-atasi-mobil-sulit-starter-aki-atau-kelistrikan/", "destination": "/blog/", "permanent": true },
-
-    // Uncategorized
     { "source": "/uncategorized/", "destination": "/blog/", "permanent": true },
     { "source": "/michelin-pilot-sport-a-s-4/", "destination": "/blog/", "permanent": true },
     { "source": "/nexen-npriz-rh7-all-season-radial/", "destination": "/blog/", "permanent": true },
@@ -191,8 +165,6 @@
     { "source": "/young-startups-with-saasup-in-full-throttle/", "destination": "/blog/", "permanent": true },
     { "source": "/right-to-left-behind-development-in-mobile-web-design/", "destination": "/blog/", "permanent": true },
     { "source": "/radiacerevive-your-skins-rejuvenation-secret/", "destination": "/blog/", "permanent": true },
-
-    // Backend service pages
     { "source": "/servis-radiator/", "destination": "/services/flushing-radiator/", "permanent": true },
     { "source": "/servis-injektor/", "destination": "/services/servis-injektor/", "permanent": true },
     { "source": "/servis-aki/", "destination": "/services/servis-aki/", "permanent": true },
