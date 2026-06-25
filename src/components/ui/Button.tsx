@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, ReactNode, MouseEventHandler } from "react";
-import { ArrowUpRight } from "react-feather";
+import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { cva, type VariantProps } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
@@ -64,7 +64,7 @@ const Button: FC<ButtonProps> = ({
     href,
     onClick,
     label,
-    icon = <ArrowUpRight size={20} className="group-hover:translate-x-1 transition duration-300" />,
+    icon = <ArrowUpRight size={20} className="group-hover:translate-x-1 transition duration-300 text-current" />,
     padding,
     bgColor,
     hoverBgColor,

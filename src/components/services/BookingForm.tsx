@@ -274,8 +274,16 @@ export default function BookingForm({ serviceName, compact = false, cf7FormId }:
         </div>
 
         <a
-          href={`https://wa.me/6287817773888?text=${encodeURIComponent(
-            `Halo Minna, saya ingin booking ${serviceName || "service"} di Bengkel Wiguna.\n\nNama: \nWhatsApp: \nTanggal: \nCatatan: `
+          href={`https://wa.me/6281927773888?text=${encodeURIComponent(
+            `Halo Min, saya ingin booking service di Bengkel Wiguna.
+
+Nama: [Nama Anda]
+No. WhatsApp: [Nomor WhatsApp]
+Jenis Layanan: ${serviceName || "[Pilih Layanan]"}
+Tanggal Kedatangan: [Tanggal]
+Catatan: [Ceritakan keluhan Anda]
+
+Mohon segera diproses, Terima kasih`
           )}`}
           target="_blank"
           rel="noopener noreferrer"

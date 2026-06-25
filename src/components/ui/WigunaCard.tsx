@@ -115,7 +115,7 @@ export const FramedCard: React.FC<FramedCardProps> = ({
       <div className="flex flex-col flex-1 p-5 justify-between min-w-0">
         <div>
           {/* Title */}
-          <h3 className="text-xl font-black text-gray-900 tracking-tight uppercase leading-tight mb-2 group-hover:text-[#224297] transition-colors line-clamp-2">
+          <h3 className="text-lg font-bold text-gray-900 tracking-tight leading-tight mb-2 group-hover:text-[#224297] transition-colors line-clamp-2">
             {title}
           </h3>
 

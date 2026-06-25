@@ -1,6 +1,6 @@
 'use client';
 
-import { useActionState, useEffect } from 'react';
+import { useActionState, useEffect, useRef } from 'react';
 import {
   Modal,
   ModalContent,
@@ -15,37 +15,62 @@ import {
 } from '@nextui-org/react';
 import { submitGenericForm } from '@/app/actions/contact';
 
+const WA_NUMBER = '6281927773888';
+const FORM_ID = process.env.NEXT_PUBLIC_CF7_BOOKING_ID || 'b5abf32';
+
 interface BookingModalProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
   serviceName: string;
 }
 
-export default function BookingModal({ isOpen, onOpenChange, serviceName }: BookingModalProps) {
-  // Hubungkan UI ke Server Action CF7
-  const [state, formAction, isPending] = useActionState(submitGenericForm, null);
+function buildWaUrl(form: HTMLFormElement): string {
+  const d = (n: string) => (form.querySelector(`[name="${n}"]`) as HTMLInputElement)?.value || '';
+  const msg =
+`Halo Min, saya sudah melakukan booking dengan data sbb:
+-----------------------------------------------
 
-  // Jika form sukses terkirim, kita bisa otomatis tutup modal setelah beberapa detik
+*Nama* : ${d('nama-depan')}
+*Nomor Telepon* : ${d('telepon')}
+*Jenis Kendaraan* : ${d('merek-mobil')} ${d('tahun-mobil')} ${d('nomer-polisi')}
+*Treatment Servis* : ${d('pilihan-servis')}
+*Keluhan Kendaraan* : ${d('keluhan-kendaraan')}
+*Jadwal Kedatangan* : ${d('tanggal')} ${d('jam-datang')}
+
+-----------------------------
+Mohon segera diproses, Terima kasih`;
+  return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+export default function BookingModal({ isOpen, onOpenChange, serviceName }: BookingModalProps) {
+  const [state, formAction, isPending] = useActionState(submitGenericForm, null);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Redirect ke WhatsApp saat FormyChat sukses
   useEffect(() => {
-    if (state?.status === 'mail_sent') {
+    if (state?.success && formRef.current) {
       const timer = setTimeout(() => {
-        onOpenChange(false);
-      }, 3000); // Tutup setelah 3 detik
+        if (formRef.current) {
+          window.open(buildWaUrl(formRef.current), '_blank');
+        }
+      }, 300);
       return () => clearTimeout(timer);
     }
-  }, [state, onOpenChange]);
+  }, [state]);
 
-  const hasError = (fieldName: string) => state?.invalid_fields?.some(f => f.field === fieldName);
-  const getError = (fieldName: string) => state?.invalid_fields?.find(f => f.field === fieldName)?.message;
+  // Sinkronkan serviceName ke hidden field setiap render
+  useEffect(() => {
+    if (serviceName && formRef.current) {
+      const el = formRef.current.querySelector('[name="pilihan-servis"]') as HTMLInputElement;
+      if (el && !el.value) el.value = serviceName;
+    }
+  }, [serviceName]);
 
-  // Siapkan daftar layanan default dari CF7
   const defaultServices = [
     'Cek Kaki Kaki', 'Detoks Mesin', 'Semi Overhaul', 'Coolant Changer / Flush',
     'Penggantian Oli', 'Penggantian Ban', 'Spooring', 'Balancing', 'Rem & Rotasi Roda',
     'Servis Berkala', 'Cars Detailing / Wash', 'Servis Lain nya'
   ];
-
-  // Pastikan serviceName (jika ada) ditambahkan ke dalam dropdown jika tidak ada di default
   const hasCustomService = serviceName && !defaultServices.includes(serviceName);
   const allServices = hasCustomService ? [...defaultServices, serviceName] : defaultServices;
 
@@ -73,15 +98,15 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
             </ModalHeader>
             
             <ModalBody>
-              {/* Pesan Sukses / Error Global */}
-              {state?.status === 'mail_sent' && (
+              {/* Pesan Sukses / Error */}
+              {state?.success && (
                 <div className="p-3 bg-green-50 text-green-700 rounded-xl text-sm font-bold text-center border border-green-200">
-                  ✅ Berhasil! Reservasi Anda sudah kami terima. Tim kami akan segera menghubungi Anda.
+                  ✅ Berhasil! Reservasi Anda sudah terkirim. Tim kami akan menghubungi Anda.
                 </div>
               )}
-              {state?.status === 'mail_failed' && (
+              {state?.success === false && (
                 <div className="p-3 bg-red-50 text-red-700 rounded-xl text-sm font-bold text-center border border-red-200">
-                  ❌ {state.message}
+                  ❌ {state.error || 'Gagal mengirim reservasi. Silakan coba lagi.'}
                 </div>
               )}
 
@@ -93,20 +118,17 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   placeholder="Masukkan nama Anda"
                   labelPlacement="outside"
                   variant="bordered"
-                  isInvalid={hasError('nama-depan')}
-                  errorMessage={getError('nama-depan')}
+                  isRequired
                 />
 
                 <Input
                   name="telepon"
-                  label="Nomer Tlp. / Whatsapp"
+                  label="Nomer Tlp. / WhatsApp"
                   type="tel"
                   placeholder="0812xxxxxx"
                   labelPlacement="outside"
                   variant="bordered"
                   isRequired
-                  isInvalid={hasError('telepon')}
-                  errorMessage={getError('telepon')}
                 />
 
                 <Input
@@ -116,8 +138,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   labelPlacement="outside"
                   variant="bordered"
                   isRequired
-                  isInvalid={hasError('merek-mobil')}
-                  errorMessage={getError('merek-mobil')}
                 />
 
                 <Input
@@ -127,8 +147,6 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   labelPlacement="outside"
                   variant="bordered"
                   isRequired
-                  isInvalid={hasError('tahun-mobil')}
-                  errorMessage={getError('tahun-mobil')}
                 />
 
                 <Input
@@ -138,13 +156,11 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   labelPlacement="outside"
                   variant="bordered"
                   isRequired
-                  isInvalid={hasError('nomer-polisi')}
-                  errorMessage={getError('nomer-polisi')}
                 />
 
-                <Select 
+                <Select
                   name="pilihan-servis"
-                  label="Pilihan Treatment / Servis" 
+                  label="Pilihan Treatment / Servis"
                   placeholder="Pilih jenis servis"
                   labelPlacement="outside"
                   variant="bordered"
@@ -175,13 +191,11 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   labelPlacement="outside"
                   variant="bordered"
                   isRequired
-                  isInvalid={hasError('tanggal')}
-                  errorMessage={getError('tanggal')}
                 />
 
-                <Select 
+                <Select
                   name="jam-datang"
-                  label="Jam Kedatangan" 
+                  label="Jam Kedatangan"
                   placeholder="Pilih jam"
                   labelPlacement="outside"
                   variant="bordered"
@@ -217,16 +231,8 @@ export default function BookingModal({ isOpen, onOpenChange, serviceName }: Book
                   placeholder="Ceritakan masalah mobil Anda di sini..."
                   labelPlacement="outside"
                   variant="bordered"
-                  isInvalid={hasError('keluhan-kendaraan')}
-                  errorMessage={getError('keluhan-kendaraan')}
                 />
               </div>
-
-              {/* CF7 Hidden Metadata (Ambil dari setting lingkungan/fallback ke form spesifik) */}
-              <input type="hidden" name="_wpcf7" value={process.env.NEXT_PUBLIC_CF7_BOOKING_ID || "5ca70cf"} />
-              <input type="hidden" name="_wpcf7_version" value="6.1.6" />
-              <input type="hidden" name="_wpcf7_locale" value="en_US" />
-              <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f5ca70cf-p1-o1" />
             </ModalBody>
             
             <ModalFooter>

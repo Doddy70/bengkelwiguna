@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Search, X } from "react-feather";
+import { Search, X } from "lucide-react";
 
 export default function SearchBox() {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +33,7 @@ export default function SearchBox() {
                 className="search-btn flex items-center justify-center w-10 h-10 rounded-full bg-white/90 hover:bg-white shadow-sm border border-gray-200 text-gray-900 dark:text-gray-100 transition-colors cursor-pointer"
                 onClick={() => setIsOpen(true)}
             >
-                <Search size={20} aria-hidden="true" />
+                <Search size={20} className="text-gray-900 dark:text-white" aria-hidden="true" />
             </button>
 
             {/* Search Wrap - Increased Z-index to 100 to be above header */}

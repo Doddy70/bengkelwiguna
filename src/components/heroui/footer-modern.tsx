@@ -98,7 +98,7 @@ export default function FooterModern() {
               >
                 <div className="relative w-full max-w-[320px] aspect-[320/130] overflow-hidden">
                   <Image
-                    src="/images/cs-support.png"
+                    src="/images/cs-support.png.avif"
                     alt="Konsultasi Gratis Asisten Wiguna"
                     fill
                     className="object-contain"

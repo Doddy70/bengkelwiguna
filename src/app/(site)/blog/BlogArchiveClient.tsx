@@ -118,7 +118,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                     <span className="w-1 h-1 rounded-full bg-gray-300" />
                     <span>{formatDate(post1.date)}</span>
                   </div>
-                  <h2 className="text-3xl lg:text-4xl xl:text-[2.5rem] font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3">
+                  <h2 className="text-2xl lg:text-3xl xl:text-4xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3">
                     {getRenderedTitle(post1)}
                   </h2>
                 </div>

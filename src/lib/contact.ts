@@ -1,6 +1,6 @@
 /**
  * Utilities for interacting with Contact Form 7 (CF7) REST API
- * Enriched with Type Definitions and Form Schemas for Bengkel Wiguna.
+ * and FormyChat API for WhatsApp-integrated form submissions.
  */
 
 export interface CF7Response {
@@ -15,44 +15,97 @@ export interface CF7Response {
   }>;
 }
 
+export interface FormyChatResponse {
+  success: boolean;
+  data?: {
+    lead_id?: number;
+    message?: string;
+  };
+  error?: string;
+}
+
 /**
- * Known Contact Form 7 IDs based on environment/WordPress setup.
- * Update these IDs to match your production CF7 shortcodes.
+ * Known Contact Form 7 / FormyChat IDs based on environment/WordPress setup.
+ * FormyChat maps to the same CF7 form ID.
  */
 export const CF7_FORMS = {
   NEWSLETTER: process.env.NEXT_PUBLIC_CF7_NEWSLETTER_ID || '123',
   MAIN_CONTACT: process.env.NEXT_PUBLIC_CF7_MAIN_CONTACT_ID || '124',
-  BOOKING_SERVICE: process.env.NEXT_PUBLIC_CF7_BOOKING_ID || '5ca70cf',
+  BOOKING_SERVICE: process.env.NEXT_PUBLIC_CF7_BOOKING_ID || 'b5abf32',
 };
 
 /**
+ * Mengirimkan data form ke FormyChat REST API.
+ * FormyChat handles CF7 submission + WhatsApp notification internally.
+ *
+ * @param formId  CF7/FormyChat form ID (slug or numeric)
+ * @param formData Key-value pairs of form fields
+ */
+export async function submitFormyChat(
+  formId: string,
+  formData: Record<string, string>
+): Promise<FormyChatResponse> {
+  const WORDPRESS_URL =
+    process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com';
+  const url = `${WORDPRESS_URL}/wp-json/formychat/v1/submit-form`;
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ form_id: formId, fields: formData }),
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      console.error(`[FormyChat] HTTP ${response.status} for form ${formId}`);
+      return { success: false, error: 'Gagal mengirim data. Silakan coba lagi.' };
+    }
+
+    const data = await response.json();
+    return data as FormyChatResponse;
+  } catch (error) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      return { success: false, error: 'Koneksi terputus. Waktu pengiriman habis.' };
+    }
+    console.error(`[FormyChat] Network error for form ${formId}`);
+    return { success: false, error: 'Terjadi kesalahan pada jaringan.' };
+  }
+}
+
+/**
  * Mengirimkan data form ke Contact Form 7 REST API.
- * 
+ *
  * @param formId ID form dari Contact Form 7 di WordPress
  * @param formData Instance FormData yang berisi input user
  */
-export async function submitContactForm(formId: string | number, formData: FormData): Promise<CF7Response> {
-  const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com';
+export async function submitContactForm(
+  formId: string | number,
+  formData: FormData
+): Promise<CF7Response> {
+  const WORDPRESS_URL =
+    process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com';
   const url = `${WORDPRESS_URL}/wp-json/contact-form-7/v1/contact-forms/${formId}/feedback`;
 
   try {
-    // Timeout controller (15s limit for SMTP sending compensation)
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 15000);
 
     const response = await fetch(url, {
       method: 'POST',
       body: formData,
-      cache: 'no-store', // Crucial: Form submissions must never be cached
+      cache: 'no-store',
       signal: controller.signal,
-      // Note: We do NOT set 'Content-Type': 'multipart/form-data'. 
-      // The browser/fetch API will automatically set the correct boundary when passing FormData.
     });
 
     clearTimeout(timeoutId);
 
-    // CF7 responds with HTTP 400 for validation errors (e.g., invalid email format)
-    // We parse this successfully as a valid workflow state, rather than throwing an Error.
     if (response.status === 400 || response.ok) {
       const data = await response.json();
       return data as CF7Response;
@@ -62,23 +115,22 @@ export async function submitContactForm(formId: string | number, formData: FormD
     return {
       contact_form_id: Number(formId),
       status: 'mail_failed',
-      message: 'Server sedang sibuk, gagal mengirim pesan.'
+      message: 'Server sedang sibuk, gagal mengirim pesan.',
     };
-    
   } catch (error) {
     if (error instanceof Error && error.name === 'AbortError') {
-       return {
+      return {
         contact_form_id: Number(formId),
         status: 'mail_failed',
-        message: 'Koneksi terputus. Waktu pengiriman habis.'
+        message: 'Koneksi terputus. Waktu pengiriman habis.',
       };
     }
-    
+
     console.error(`[CF7] Network/Fetch Error pada form submission ${formId}`);
     return {
       contact_form_id: Number(formId),
       status: 'mail_failed',
-      message: 'Terjadi kesalahan pada jaringan. Periksa koneksi internet Anda.'
+      message: 'Terjadi kesalahan pada jaringan. Periksa koneksi internet Anda.',
     };
   }
 }

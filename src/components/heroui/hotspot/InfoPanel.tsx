@@ -134,7 +134,7 @@ export function InfoPanel({
                 onStateChange?.('closed');
                 onClose();
               }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[150]"
             />
           )}
         </AnimatePresence>
@@ -154,7 +154,7 @@ export function InfoPanel({
             bottom: 0,
             left: 0,
             right: 0,
-            zIndex: 50,
+            zIndex: 200,
             touchAction: 'none'
           }}
           className="fixed inset-x-0 bottom-0 w-full max-h-[90vh] rounded-t-3xl
@@ -353,7 +353,7 @@ export function InfoPanel({
           {/* Sticky Bottom CTA - Always show when sheet is visible */}
           <div className="flex-none p-4 border-t border-slate-100 dark:border-white/10 bg-white dark:bg-[#0a0f1d] z-20 shrink-0">
             <a
-              href="https://promo.bengkelwiguna.com/booking-service/"
+              href="https://promo.bengkelwiguna.com/booking-service/?utm_source=equipment-hotspot&utm_medium=button&utm_campaign=diagnostic-inspection"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] cursor-pointer"
@@ -555,7 +555,7 @@ export function InfoPanel({
       {/* Sticky Bottom CTA */}
       <div className="flex-none p-4 border-t border-slate-200 dark:border-white/10 bg-white/95 dark:bg-[#0a0f1d]/95 backdrop-blur-xl">
         <a
-          href="https://promo.bengkelwiguna.com/booking-service/"
+          href="https://promo.bengkelwiguna.com/booking-service/?utm_source=equipment-hotspot&utm_medium=button&utm_campaign=diagnostic-inspection"
           target="_blank"
           rel="noopener noreferrer"
           className="w-full flex items-center justify-center gap-2 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm rounded-xl transition-all shadow-[0_4px_14px_0_rgba(37,99,235,0.3)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.4)] cursor-pointer"

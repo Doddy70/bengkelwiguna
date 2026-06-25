@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import {Button, Link} from "@nextui-org/react";
+import { Link } from "@nextui-org/react";
 
 interface CookieConsentProps {
   description?: React.ReactNode;
@@ -21,7 +21,7 @@ export default function CookieConsent({
     label: "Kebijakan Privasi",
     href: "/privacy-policy"
   },
-  acceptLabel = "Setuju Semua",
+  acceptLabel = "Terima Semua",
   settingsLabel = "Pengaturan",
   onAccept,
   onSettings
@@ -44,32 +44,33 @@ export default function CookieConsent({
   if (!isVisible) return null;
 
   return (
-    <div className="pointer-events-none fixed inset-x-0 bottom-0 px-6 pb-6 z-50">
-      <div className="pointer-events-auto ml-auto max-w-xl brand-rounded border border-divider bg-background/80 px-6 py-5 shadow-lg backdrop-blur-md">
-        <p className="text-small font-normal text-default-700 leading-relaxed">
-          {description} Klik{" "}
-          <span className="font-bold">&quot;{acceptLabel}&quot;</span> untuk menyetujui penggunaan cookie kami. 
-          Anda juga dapat mengunjungi <span className="font-bold">&quot;{settingsLabel}&quot;</span> untuk pengaturan lebih lanjut. 
-          Baca selengkapnya di{" "}
-          <Link href={policyLink.href} size="sm" className="text-brand-blue font-medium underline-offset-4" underline="hover">
-            {policyLink.label}.
-          </Link>
-        </p>
-        <div className="mt-4 flex items-center gap-x-3">
-          <Button
-            onClick={handleAccept}
-            className="px-6 bg-brand-blue text-white font-bold brand-rounded"
-          >
-            {acceptLabel}
-          </Button>
-          <Button 
-            onClick={onSettings}
-            className="font-medium brand-rounded" 
-            variant="flat"
-          >
-            {settingsLabel}
-          </Button>
-        </div>
+    <div className="fixed inset-x-0 bottom-0 z-50 flex flex-col justify-between gap-x-8 gap-y-4 bg-white p-6 ring-1 ring-gray-900/10 md:flex-row md:items-center lg:px-8">
+      <p className="max-w-4xl text-sm text-gray-900">
+        {description}{" "}
+        Baca selengkapnya di{" "}
+        <Link
+          href={policyLink.href}
+          className="font-semibold text-[#224297] hover:text-[#1a356d] transition-colors"
+        >
+          {policyLink.label}
+        </Link>
+        .
+      </p>
+      <div className="flex shrink-0 items-center gap-x-5">
+        <button
+          type="button"
+          onClick={handleAccept}
+          className="rounded-md bg-[#224297] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-[#1a356d] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#224297]"
+        >
+          {acceptLabel}
+        </button>
+        <button
+          type="button"
+          onClick={onSettings}
+          className="text-sm font-semibold text-gray-900 hover:text-[#224297] transition-colors"
+        >
+          {settingsLabel}
+        </button>
       </div>
     </div>
   );
