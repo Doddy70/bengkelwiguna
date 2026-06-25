@@ -4,15 +4,72 @@
  */
 
 import JsonLd from '@/components/layout/JsonLd'
-import { generateLocalBusinessSchema, generateBreadcrumbSchema } from '@/lib/seo'
+import { generateLocalBusinessSchema, generateBreadcrumbSchema, generateContactPageSchema } from '@/lib/seo'
 import PageTitle3 from '@/components/ui/PageTitle3'
 
 export const revalidate = 86400
+
+// ✅ ENHANCED SEO METADATA for Lokasi Page
+export async function generateMetadata() {
+  return {
+    title: 'Lokasi & Alamat Bengkel Wiguna | Jl. Margonda No.268 Depok',
+    description: 'Kunjungi Bengkel Wiguna di Jl. Margonda No.268, Kemiri Muka, Beji, Kota Depok 16423. One Stop Service mobil terpercaya dengan diagnosa gratis. Jam operasional Senin-Minggu.',
+    keywords: [
+      'lokasi bengkel wiguna',
+      'alamat bengkel wiguna depok',
+      'bengkel margonda depok',
+      'bengkel mobil depok',
+      'rute ke bengkel wiguna',
+      'peta bengkel depok',
+      'google maps bengkel wiguna',
+      'bengkel dekat margonda',
+      'jam operasional bengkel wiguna',
+      'bengkel one stop service depok'
+    ],
+    openGraph: {
+      title: 'Lokasi & Alamat Bengkel Wiguna | Jl. Margonda No.268',
+      description: 'Kunjungi Bengkel Wiguna. Alamat: Jl. Margonda No.268, Depok. Diagnosa gratis, teknisi berpengalaman.',
+      url: 'https://bengkelwiguna.com/lokasi',
+      siteName: 'Bengkel Wiguna',
+      locale: 'id_ID',
+      type: 'website',
+      images: [
+        {
+          url: 'https://bengkelwiguna.com/api/og?title=Lokasi+Bengkel+Wiguna&page=lokasi',
+          width: 1200,
+          height: 630,
+          alt: 'Lokasi Bengkel Wiguna Depok',
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Lokasi & Alamat Bengkel Wiguna',
+      description: 'Kunjungi Bengkel Wiguna di Jl. Margonda No.268, Depok.',
+      images: ['https://bengkelwiguna.com/api/og?title=Lokasi+Bengkel+Wiguna&page=lokasi'],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    alternates: {
+      canonical: 'https://bengkelwiguna.com/lokasi',
+    },
+  }
+}
 
 export default function LokasiPage() {
   return (
     <>
       <JsonLd data={generateLocalBusinessSchema()} />
+      <JsonLd data={generateContactPageSchema()} />
       <JsonLd data={generateBreadcrumbSchema([
         { name: 'Home', url: 'https://bengkelwiguna.com' },
         { name: 'Lokasi', url: 'https://bengkelwiguna.com/lokasi' }
@@ -111,11 +168,4 @@ export default function LokasiPage() {
       </section>
     </>
   )
-}
-
-export function generateMetadata() {
-  return {
-    title: 'Lokasi & Kontak | Bengkel Wiguna Depok',
-    description: 'Kunjungi Bengkel Wiguna Depok. One Stop Service mobil profesional dengan diagnosa gratis. Hubungi 0878-1777-3888.',
-  }
 }

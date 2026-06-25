@@ -1,4 +1,6 @@
 // app/layout.tsx
+// NOTE: Metadata should be defined in each page's generateMetadata() export
+// NOT in the layout - this prevents metadata conflicts
 
 import Header from '@/components/layout/Header';
 import FooterModern from '@/components/heroui/footer-modern';
@@ -7,11 +9,6 @@ import { getNavigationMenu, getAllLayananSpesialis } from '@/lib/wordpress';
 // ✅ FORCE DYNAMIC RENDERING - Required because menu fetch cannot be cached
 export const dynamic = 'force-dynamic'
 export const revalidate = 0
-
-export const metadata = {
-    title: 'Bengkel Wiguna | Layanan Perawatan Mobil Profesional',
-    description: 'Solusi perbaikan dan perawatan mobil terpercaya di Depok. Booking sekarang untuk layanan profesional.',
-};
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
     // Fetch data in parallel on the server to prevent client-side lag

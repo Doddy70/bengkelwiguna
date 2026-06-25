@@ -1,11 +1,12 @@
 /**
- * OG Image Generator API Route
+ * OG Image Generator API Route - Enhanced
  * Generates dynamic Open Graph images for Bengkel Wiguna
  *
  * Usage:
  * - /api/og?title=Service%20Mobil%20Depok
- * - /api/og?title=Service%20Mobil%20Depok&type=service
- * - /api/og?title=Tune%20Up%20Promo&type=promo
+ * - /api/og?title=Tune%20Up%20Promo&page=promosi
+ * - /api/og?page=services - Auto-generate based on page type
+ * - /api/og?page=blog - Auto-generate based on page type
  */
 
 import { ImageResponse } from 'next/og'
@@ -16,34 +17,74 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
 
   const title = searchParams.get('title') || 'Bengkel Wiguna'
-  const type = searchParams.get('type') || 'default'
+  const page = searchParams.get('page') || 'default'
 
   // Brand colors
   const brandBlue = '#224297'
   const brandGold = '#ffd900'
   const darkBlue = '#1a3567'
 
-  // Type-specific configurations
-  const configs = {
+  // Page-specific configurations with auto-generated content
+  const pageConfigs: Record<string, { badge: string; badgeColor: string; title: string; subtitle: string }> = {
     default: {
       badge: 'ONE STOP SERVICE',
       badgeColor: brandGold,
+      title: 'Bengkel Wiguna',
+      subtitle: 'Service Mobil Terpercaya di Depok Sejak 1990',
     },
-    service: {
-      badge: 'LAYANAN PROFESIONAL',
+    services: {
+      badge: '🔧 LAYANAN SERVICE',
       badgeColor: brandGold,
-    },
-    promo: {
-      badge: 'PROMO SPESIAL',
-      badgeColor: '#ff4444',
+      title: 'Layanan Service Mobil Lengkap',
+      subtitle: 'Tune Up • Ganti Oli • Service AC • Spooring',
     },
     blog: {
-      badge: 'TIPS OTOMOTIF',
+      badge: '📚 TIPS OTOMOTIF',
       badgeColor: '#4CAF50',
+      title: 'Blog & Artikel',
+      subtitle: 'Tips Perawatan Kendaraan dari Teknisi Berpengalaman',
+    },
+    promosi: {
+      badge: '🔥 PROMO SPESIAL',
+      badgeColor: '#ff4444',
+      title: 'Promo & Diskon Service',
+      subtitle: 'Hemat hingga 20% untuk Perawatan Kendaraan Anda',
+    },
+    spesialis: {
+      badge: '⚡ TEKNOLOGI MODERN',
+      badgeColor: '#00D4AA',
+      title: 'Layanan Spesialis',
+      subtitle: 'Reset AC Kyoto • Kaki-Kaki • Semi Overhaul',
+    },
+    paket: {
+      badge: '📦 PAKET HEMAT',
+      badgeColor: brandGold,
+      title: 'Paket Service Mobil',
+      subtitle: 'Solusi Lengkap untuk Kebutuhan Kendaraan Anda',
+    },
+    about: {
+      badge: '🏢 TENTANG KAMI',
+      badgeColor: brandGold,
+      title: 'Tentang Bengkel Wiguna',
+      subtitle: 'Cerita, Visi, dan Nilai Kami Sejak 1990',
+    },
+    contact: {
+      badge: '📞 HUBUNGI KAMI',
+      badgeColor: '#25D366',
+      title: 'Hubungi Bengkel Wiguna',
+      subtitle: 'Booking Service • Konsultasi Gratis • WhatsApp 0878-1777-3888',
+    },
+    lokasi: {
+      badge: '📍 LOKASI BENGKEL',
+      badgeColor: brandGold,
+      title: 'Kunjungi Bengkel Kami',
+      subtitle: 'Jl. Margonda No.268, Kemiri Muka, Beji, Depok',
     },
   }
 
-  const config = configs[type as keyof typeof configs] || configs.default
+  const config = pageConfigs[page] || pageConfigs.default
+  const displayTitle = title !== 'Bengkel Wiguna' ? title : config.title
+  const subtitle = title !== 'Bengkel Wiguna' ? config.subtitle : config.subtitle
 
   return new ImageResponse(
     (
@@ -59,9 +100,10 @@ export async function GET(request: Request) {
           backgroundImage: `linear-gradient(135deg, ${brandBlue} 0%, ${darkBlue} 100%)`,
           fontSize: '48px',
           fontWeight: 'bold',
+          position: 'relative',
         }}
       >
-        {/* Background Pattern */}
+        {/* Background Pattern - Geometric shapes */}
         <div
           style={{
             position: 'absolute',
@@ -72,7 +114,7 @@ export async function GET(request: Request) {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            opacity: 0.1,
+            opacity: 0.05,
           }}
         >
           <div
@@ -80,11 +122,54 @@ export async function GET(request: Request) {
               fontSize: '400px',
               fontWeight: '900',
               color: 'white',
-              opacity: 0.1,
             }}
           >
             WG
           </div>
+        </div>
+
+        {/* Decorative circles */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '10%',
+            right: '5%',
+            width: '200px',
+            height: '200px',
+            borderRadius: '50%',
+            backgroundColor: brandGold,
+            opacity: 0.1,
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '15%',
+            left: '5%',
+            width: '150px',
+            height: '150px',
+            borderRadius: '50%',
+            backgroundColor: brandGold,
+            opacity: 0.08,
+          }}
+        />
+
+        {/* Location Badge - Top Left */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '40px',
+            left: '40px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '8px',
+            color: 'white',
+            fontSize: '18px',
+            fontWeight: '500',
+            opacity: 0.9,
+          }}
+        >
+          📍 Depok, Jawa Barat
         </div>
 
         {/* Badge */}
@@ -94,13 +179,13 @@ export async function GET(request: Request) {
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: config.badgeColor,
-            color: type === 'promo' ? 'white' : darkBlue,
-            padding: '12px 32px',
+            color: page === 'promosi' ? 'white' : darkBlue,
+            padding: '14px 36px',
             borderRadius: '50px',
-            fontSize: '20px',
+            fontSize: '18px',
             fontWeight: 'bold',
             letterSpacing: '0.1em',
-            marginBottom: '40px',
+            marginBottom: '32px',
             boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
           }}
         >
@@ -122,18 +207,30 @@ export async function GET(request: Request) {
           <div
             style={{
               color: 'white',
-              fontSize: title.length > 30 ? '52px' : '64px',
+              fontSize: displayTitle.length > 25 ? '52px' : '64px',
               fontWeight: '900',
               lineHeight: 1.1,
               textShadow: '0 4px 20px rgba(0,0,0,0.3)',
               letterSpacing: '-0.02em',
+              marginBottom: '16px',
             }}
           >
-            {title}
+            {displayTitle}
+          </div>
+          <div
+            style={{
+              color: 'white',
+              opacity: 0.85,
+              fontSize: '24px',
+              fontWeight: '500',
+              textShadow: '0 2px 10px rgba(0,0,0,0.2)',
+            }}
+          >
+            {subtitle}
           </div>
         </div>
 
-        {/* Brand Logo Text */}
+        {/* Brand Logo - Bottom */}
         <div
           style={{
             position: 'absolute',
@@ -162,31 +259,13 @@ export async function GET(request: Request) {
           <div
             style={{
               color: 'white',
-              fontSize: '28px',
+              fontSize: '26px',
               fontWeight: '700',
               letterSpacing: '0.05em',
             }}
           >
             BENGKEL WIGUNA
           </div>
-        </div>
-
-        {/* Location Badge */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '40px',
-            right: '40px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px',
-            color: 'white',
-            fontSize: '18px',
-            fontWeight: '500',
-            opacity: 0.9,
-          }}
-        >
-          📍 Depok, Jawa Barat
         </div>
       </div>
     ),

@@ -52,16 +52,28 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             priority: 0.8,
         },
         {
-            url: `${baseUrl}/lokasi`,
+            url: `${baseUrl}/paket-service`,
+            lastModified: new Date(),
+            changeFrequency: 'weekly',
+            priority: 0.8,
+        },
+        {
+            url: `${baseUrl}/tentang-wiguna`,
             lastModified: new Date(),
             changeFrequency: 'monthly',
             priority: 0.7,
         },
         {
-            url: `${baseUrl}/paket-service`,
+            url: `${baseUrl}/contact`,
             lastModified: new Date(),
-            changeFrequency: 'weekly',
-            priority: 0.8,
+            changeFrequency: 'monthly',
+            priority: 0.7,
+        },
+        {
+            url: `${baseUrl}/lokasi`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly',
+            priority: 0.7,
         },
     ];
 

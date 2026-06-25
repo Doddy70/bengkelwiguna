@@ -447,3 +447,90 @@ export function generateContactPageSchema() {
     }
   };
 }
+
+/**
+ * VideoObject Schema
+ * For YouTube education videos on homepage
+ */
+export function generateVideoSchema(videoId: string, title: string, description: string, thumbnailUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": title,
+    "description": description,
+    "thumbnailUrl": thumbnailUrl,
+    "uploadDate": "2024-01-01",
+    "duration": "PT5M",
+    "contentUrl": `https://www.youtube.com/watch?v=${videoId}`,
+    "embedUrl": `https://www.youtube.com/embed/${videoId}`,
+    "publisher": {
+      "@id": "https://bengkelwiguna.com/#organization"
+    },
+    "author": {
+      "@type": "Organization",
+      "name": BRAND.NAME,
+      "url": "https://bengkelwiguna.com"
+    },
+    "isPartOf": {
+      "@id": "https://bengkelwiguna.com/#website"
+    }
+  };
+}
+
+/**
+ * Individual Review Schema
+ * For Google Reviews section
+ */
+export function generateReviewSchema(reviewerName: string, rating: number, reviewBody: string, datePublished: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": rating,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": reviewerName
+    },
+    "reviewBody": reviewBody,
+    "datePublished": datePublished,
+    "itemReviewed": {
+      "@type": "LocalBusiness",
+      "name": BRAND.NAME,
+      "image": "https://bengkelwiguna.com/logo-panjang-bengkelwiguna.png",
+      "telephone": PHONE_CS,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Jl. Margonda No.268",
+        "addressLocality": "Depok",
+        "addressRegion": "Jawa Barat",
+        "postalCode": "16423",
+        "addressCountry": "ID"
+      }
+    }
+  };
+}
+
+/**
+ * Collection of Video Schemas for YouTube section
+ */
+export function generateVideoCollectionSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Video Edukasi Perawatan Mobil - Bengkel Wiguna",
+    "description": "Koleksi video edukasi tentang perawatan kendaraan dari tim teknisi Bengkel Wiguna",
+    "numberOfItems": 4,
+    "itemListElement": [
+      {
+        "@type": "VideoObject",
+        "position": 1,
+        "name": "Tips Perawatan Mobil - Bengkel Wiguna",
+        "url": "https://www.youtube.com/@bengkelwiguna"
+      }
+    ]
+  };
+}

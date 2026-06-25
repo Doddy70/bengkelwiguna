@@ -26,7 +26,7 @@ import { Promosi } from '@/types/wordpress'
 import HeroSlideshow from '@/components/heroui/hero-slideshow'
 import Header from '@/components/layout/Header'
 import JsonLd from '@/components/layout/JsonLd'
-import { generateLocalBusinessSchema, generateWebsiteSchema, generateFAQSchema, generateAggregateRatingSchema, generateOrganizationSchema } from '@/lib/seo'
+import { generateLocalBusinessSchema, generateWebsiteSchema, generateFAQSchema, generateAggregateRatingSchema, generateOrganizationSchema, generateVideoCollectionSchema } from '@/lib/seo'
 import { defaultFaqs } from '@/const/faqData'
 
 // 2. OPTIMIZED: Lazy Loading components below-the-fold
@@ -140,6 +140,7 @@ export default async function HomePage() {
       <JsonLd data={generateOrganizationSchema()} />
       <JsonLd data={generateFAQSchema(faqItems.map(f => ({ q: f.question, a: f.answer })))} />
       <JsonLd data={generateAggregateRatingSchema()} />
+      <JsonLd data={generateVideoCollectionSchema()} />
       
       {/* HOMEPAGE HEADER (Hidden on Top, Appears on Scroll) */}
       <Header

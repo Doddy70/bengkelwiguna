@@ -1,286 +1,209 @@
 "use client";
 
+/**
+ * Tentang Wiguna Client Component — Bengkel Wiguna
+ * Modern About Page with Brand Colors
+ */
+
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Icon } from "@iconify/react";
-import { Accordion, AccordionItem } from "@nextui-org/react";
+import { ArrowUpRight, ArrowDown, Star, Target, Award, ShieldCheck } from "lucide-react";
 
 export default function TentangWigunaClient() {
-  const stats = [
-    { value: "15+", label: "Tahun Pengalaman" },
-    { value: "100%", label: "Kepuasan Pelanggan" },
-    { value: "15.000+", label: "Mobil Diperbaiki" },
-    { value: "50+", label: "Tim Ahli & Mekanik" }
-  ];
-
-  const team = [
-    { name: "Bpk. Minna", role: "Founder & Master Mechanic", img: "/images/bg-default-page.webp" },
-    { name: "Rudi Hartono", role: "Service Advisor", img: "/images/bg-default-page.webp" },
-    { name: "Bima", role: "Spesialis Kaki-Kaki", img: "/images/bg-default-page.webp" },
-    { name: "Arif", role: "Spesialis Mesin", img: "/images/bg-default-page.webp" }
-  ];
-
-  const faqs = [
-    {
-      q: "Berapa lama proses servis mobil di Bengkel Wiguna?",
-      a: "Waktu pengerjaan sangat bergantung pada jenis layanan yang Anda butuhkan. Untuk servis ringan seperti ganti oli atau pengecekan rutin, biasanya selesai dalam 1-2 jam. Untuk servis berat, kami akan memberikan estimasi waktu sebelum pekerjaan dimulai."
-    },
-    {
-      q: "Apakah Bengkel Wiguna menyediakan layanan derek?",
-      a: "Ya, kami menyediakan layanan towing (derek) untuk wilayah Depok dan sekitarnya jika mobil Anda mogok atau tidak bisa berjalan. Silakan hubungi admin kami untuk informasi lebih lanjut."
-    },
-    {
-      q: "Bagaimana cara mengetahui estimasi harga servis?",
-      a: "Sesuai prinsip 'No Tebak-Tebak', kami akan melakukan inspeksi terlebih dahulu. Setelah itu, kami akan memberikan estimasi biaya yang jelas dan transparan sebelum pekerjaan apapun dimulai."
-    },
-    {
-      q: "Apakah ada garansi untuk setiap perbaikan?",
-      a: "Tentu. Setiap layanan perbaikan dan penggantian suku cadang di Bengkel Wiguna dilengkapi dengan garansi. Durasi garansi bervariasi tergantung jenis perbaikan dan suku cadang yang digunakan."
-    }
-  ];
-
   return (
-    <div className="relative font-sans min-h-screen bg-white">
+    <div className="bg-[#fcfcfc] dark:bg-neutral-950 font-dm min-h-screen pt-8 lg:pt-12 pb-20">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 
-
-      {/* 1. Header Section */}
-      <section className="pt-8 lg:pt-12 pb-16 lg:pt-40 lg:pb-20 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="flex justify-center items-center gap-2 mb-6">
-          <div className="w-1.5 h-1.5 rounded-full bg-gray-900"></div>
-          <span className="text-sm font-bold tracking-widest uppercase text-gray-900">Tentang Kami</span>
-        </div>
-        
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium text-gray-900 leading-[1.1] tracking-tight max-w-4xl mx-auto mb-16">
-          Temukan Layanan Service Mobil Terbaik — Dan Tim yang Bisa Anda Percaya
-        </h1>
-
-        {/* Masonry Image Row */}
-        <div className="flex flex-row justify-center items-center gap-2 sm:gap-4 lg:gap-6 w-full max-w-7xl mx-auto overflow-hidden">
-          {/* Img 1 (Smallest) */}
-          <div className="relative w-[15%] aspect-[3/4] rounded-2xl overflow-hidden shrink-0 hidden md:block">
-            <Image src="/images/about/Bengkel Mobil Terdekat di Depok.jpg" alt="Workshop 1" fill className="object-cover" />
+        {/* === 1. HEADER TITLE & SUBTITLE === */}
+        <div className="grid lg:grid-cols-12 grid-cols-1 gap-6 mb-12 items-end">
+          <div className="lg:col-span-8">
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase">
+              Cerita, Visi, <br />dan Nilai Kami
+            </h1>
           </div>
-          {/* Img 2 (Medium) */}
-          <div className="relative w-[25%] md:w-[20%] aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-            <Image src="/images/about/Bengkel Bergaransi di Depok.jpg" alt="Workshop 2" fill className="object-cover" />
-          </div>
-          {/* Img 3 (Largest/Center) */}
-          <div className="relative w-[40%] md:w-[30%] aspect-square rounded-2xl md:rounded-[2rem] overflow-hidden shrink-0 z-10 shadow-xl">
-            <Image src="/images/about/Bengkel Wiguna Bergaransi.jpg" alt="Workshop Center" fill className="object-cover" />
-          </div>
-          {/* Img 4 (Medium) */}
-          <div className="relative w-[25%] md:w-[20%] aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden shrink-0">
-            <Image src="/images/about/Servis AC Mobil Depok.jpg" alt="Workshop 4" fill className="object-cover" />
-          </div>
-          {/* Img 5 (Smallest) */}
-          <div className="relative w-[15%] aspect-[3/4] rounded-2xl overflow-hidden shrink-0 hidden md:block">
-            <Image src="/images/about/Engine Flushing Depok.jpg" alt="Workshop 5" fill className="object-cover" />
+          <div className="lg:col-span-4">
+            <p className="text-gray-500 dark:text-gray-400 text-base font-medium leading-relaxed lg:pb-2">
+              Pelajari komitmen kami terhadap kualitas pelayanan, transparansi diagnosa, dan dedikasi menjaga performa kendaraan Anda.
+            </p>
           </div>
         </div>
-      </section>
 
-      {/* 2. Intro Section */}
-      <section className="py-16 lg:py-24 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
-          <div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 leading-tight">
-              Dari perawatan rutin hingga perbaikan berat, <span className="text-gray-500">Kami menyediakan solusi untuk membantu merawat mobil Anda secara cepat, transparan, dan bebas stres.</span>
-            </h2>
-          </div>
-          <div className="relative aspect-[16/9] lg:aspect-[4/3] rounded-3xl overflow-hidden shadow-lg">
-             <Image src="/images/about/Servis Berkala Mobil Depok.jpg" alt="Mechanic talking to customer" fill className="object-cover" />
+        {/* === 2. HERO BANNER IMAGE (WITH ORGANIC CURVES) === */}
+        <div className="relative w-full h-[260px] sm:h-[380px] md:h-[440px] rounded-[2.5rem] overflow-hidden mb-16 shadow-md group">
+          <Image
+            src="/images/hero-desktop.webp"
+            alt="Mekanik Bengkel Wiguna sedang bekerja"
+            fill
+            className="object-cover transition-transform duration-1000 group-hover:scale-102"
+            priority
+            sizes="100vw"
+          />
+          {/* Dark Overlay */}
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-black/5 transition-colors duration-500" />
+
+          {/* Floating Action Button (Arrow Down) */}
+          <div className="absolute bottom-6 right-6 z-10">
+            <a
+              href="#about-details"
+              className="w-16 h-16 rounded-full bg-[#00d7c4] hover:bg-[#00bdae] text-white flex items-center justify-center shadow-lg hover:scale-105 transition-all duration-300"
+              aria-label="Scroll down to details"
+            >
+              <ArrowDown className="w-6 h-6 animate-bounce" />
+            </a>
           </div>
         </div>
-      </section>
 
-      {/* 3. Stats Section */}
-      <section className="py-12 border-t border-b border-gray-200">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x divide-gray-200 text-center md:text-left">
-            {stats.map((stat, idx) => (
-              <div key={idx} className="md:px-8 first:pl-0 last:pr-0">
-                <p className="text-4xl lg:text-5xl font-medium text-gray-900 mb-2">{stat.value}</p>
-                <p className="text-sm text-gray-500 font-medium">{stat.label}</p>
+        {/* === 3. ABOUT CONTENT ROW === */}
+        <div id="about-details" className="grid lg:grid-cols-12 grid-cols-1 gap-12 lg:gap-16 items-start mb-16 scroll-mt-28">
+          {/* Left Side: Blockquote & Decorative Pattern */}
+          <div className="lg:col-span-6 flex flex-col justify-between h-full">
+            <div>
+              <span className="text-[120px] leading-[0.3] text-gray-200 dark:text-neutral-800 font-serif select-none block mb-6">
+                "
+              </span>
+              <p className="text-gray-700 dark:text-gray-300 text-2xl font-bold leading-relaxed mb-8 italic tracking-tight pr-4">
+                Tim mekanik dan support kami bekerja keras setiap hari untuk memberikan rasa aman kepada pemilik mobil melalui diagnosa yang akurat, transparan, tanpa tebak-tebakan, dan tanpa biaya tersembunyi.
+              </p>
+            </div>
+
+            {/* Small Horizontal Accent Graphic */}
+            <div className="relative w-full h-24 rounded-[1.5rem] overflow-hidden bg-gray-100 dark:bg-neutral-900 border border-gray-200/40 dark:border-neutral-800/40">
+              <div className="absolute inset-0 opacity-20 bg-[radial-gradient(#224297_1.5px,transparent_1.5px)] [background-size:16px_16px]" />
+              <div className="absolute top-1/2 left-8 -translate-y-1/2 flex items-center gap-2">
+                <span className="w-3 h-3 rounded-full bg-[#224297] dark:bg-[#ffd900]" />
+                <span className="text-xs font-black uppercase tracking-widest text-[#224297] dark:text-[#ffd900]">
+                  Bengkel Wiguna Depok
+                </span>
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Right Side: The Blue Card (Philippines Style Contrast) */}
+          <div className="lg:col-span-6 bg-[#224297] dark:bg-neutral-900 text-white rounded-[2.2rem] p-8 sm:p-10 shadow-xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+
+            <div className="relative z-10">
+              <span className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-widest text-[#ffd900] mb-4">
+                Tentang Bengkel Wiguna
+              </span>
+              <h2 className="text-3xl font-black tracking-tight uppercase leading-tight mb-6">
+                Penyedia Layanan Perawatan Mobil Terbaik Sejak 1990
+              </h2>
+              <div className="space-y-4 text-white/80 text-sm sm:text-base leading-relaxed font-medium">
+                <p>
+                  Bengkel Wiguna adalah penyedia layanan servis mobil terpercaya yang telah membantu ribuan pemilik kendaraan di Depok dan sekitarnya merawat mobil mereka agar tetap andal dan aman di jalan.
+                </p>
+                <p>
+                  Kami meyakini bahwa kejujuran adalah landasan utama dari servis yang berkualitas. Itulah mengapa kami selalu memberikan laporan diagnosa yang akurat, transparan, dan tidak pernah melakukan pembongkaran tanpa persetujuan Anda sebelumnya.
+                </p>
+                <p>
+                  Didukung peralatan diagnosis modern digital dan mekanik berpengalaman, kami berkomitmen untuk memberikan solusi pemeliharaan menyeluruh dengan standar pengerjaan yang tinggi.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
 
-      {/* 4. Vision Bento Layout */}
-      <section className="py-24 lg:py-32 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Left Images */}
-          <div className="grid grid-cols-2 gap-4">
-             <div className="space-y-4">
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-md">
-                   <Image src="/images/about/Garansi Servis Mobil.jpg" alt="Vision 1" fill className="object-cover" />
-                </div>
-             </div>
-             <div className="space-y-4 pt-12">
-                <div className="relative aspect-square rounded-3xl overflow-hidden shadow-md">
-                   <Image src="/images/about/Bengkel Bergaransi Depok.jpg" alt="Vision 2" fill className="object-cover" />
-                </div>
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-md">
-                   <Image src="/images/about/Memilih Bengkel Bergaransi.jpg" alt="Vision 3" fill className="object-cover" />
-                </div>
-             </div>
+        {/* === 4. STATS COUNTER PANEL === */}
+        <div className="border border-gray-200 dark:border-neutral-800 bg-white dark:bg-neutral-900/50 rounded-3xl p-8 md:p-10 flex flex-col md:flex-row justify-around items-center gap-8 shadow-sm mb-20">
+          <div className="text-center">
+            <span className="block text-4xl lg:text-5xl font-black text-[#224297] dark:text-[#ffd900] tracking-tight mb-2">10.000+</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Mobil Dilayani</span>
           </div>
-          
-          {/* Right Content */}
-          <div>
-            <div className="flex items-center gap-2 mb-6">
-              <div className="w-1.5 h-1.5 rounded-full bg-gray-900"></div>
-              <span className="text-sm font-bold tracking-widest uppercase text-gray-900">Visi Kami</span>
-            </div>
-            
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium text-gray-900 leading-tight mb-8">
-              Membimbing Setiap Keputusan Perawatan Mobil Dengan Percaya Diri
-            </h2>
-            
-            <div className="space-y-6 text-gray-600 mb-10">
-              <p>
-                Visi kami adalah menghubungkan pemilik kendaraan dengan layanan perawatan mobil yang tepat melalui bimbingan ahli, proses yang transparan, dan pemahaman mendalam mengenai mesin otomotif.
-              </p>
-              <p>
-                Kami fokus pada kejelasan, integritas, dan hasil yang optimal — sehingga setiap keputusan perawatan terasa percaya diri, aman, dan memuaskan dari diagnosa pertama hingga perbaikan selesai.
-              </p>
+          <div className="w-[1px] h-12 bg-gray-200 dark:bg-neutral-800 hidden md:block" />
+          <div className="text-center">
+            <span className="block text-4xl lg:text-5xl font-black text-[#224297] dark:text-[#ffd900] tracking-tight mb-2">30+</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Tahun Pengalaman</span>
+          </div>
+          <div className="w-[1px] h-12 bg-gray-200 dark:bg-neutral-800 hidden md:block" />
+          <div className="text-center">
+            <span className="block text-4xl lg:text-5xl font-black text-[#224297] dark:text-[#ffd900] tracking-tight mb-2">100%</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Kepuasan Pelanggan</span>
+          </div>
+        </div>
+
+        {/* === 5. VISION & MISSION CARDS === */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          {/* Card 1: VISION */}
+          <div className="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-900 rounded-[2.2rem] p-8 sm:p-10 shadow-sm relative hover:-translate-y-1.5 transition-all duration-500">
+            <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#00d7c4]/15 flex items-center justify-center text-[#00d7c4]">
+              <Target className="w-5 h-5" />
             </div>
 
-            <Link href="/services" className="inline-flex items-center gap-3 px-8 py-4 bg-gray-900 hover:bg-gray-800 text-white rounded-full font-bold transition-all">
-              Lihat Layanan Kami
-              <Icon icon="solar:arrow-right-line-duotone" className="w-5 h-5" />
+            <span className="inline-block text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">
+              Arah & Tujuan
+            </span>
+            <h3 className="text-3xl font-black text-gray-950 dark:text-white uppercase mb-6 tracking-tight">
+              Visi Kami
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg leading-relaxed font-medium">
+              Menjadi bengkel mobil terpercaya di Indonesia dengan layanan transparan, profesional, dan mengutamakan kepuasan pelanggan.
+            </p>
+          </div>
+
+          {/* Card 2: MISSION */}
+          <div className="bg-white dark:bg-neutral-900 border border-gray-200 dark:border-neutral-900 rounded-[2.2rem] p-8 sm:p-10 shadow-sm relative hover:-translate-y-1.5 transition-all duration-500">
+            <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-[#00d7c4]/15 flex items-center justify-center text-[#00d7c4]">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+
+            <span className="inline-block text-xs font-black uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">
+              Prinsip Kerja
+            </span>
+            <h3 className="text-3xl font-black text-gray-950 dark:text-white uppercase mb-6 tracking-tight">
+              Misi Kami
+            </h3>
+
+            <ul className="space-y-3.5 text-gray-600 dark:text-gray-400 text-sm sm:text-base font-medium">
+              <li className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#224297] dark:bg-[#ffd900] mt-2 shrink-0" />
+                <span>Menyajikan solusi perawatan yang jujur, akurat, dan dapat dipertanggungjawabkan.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#224297] dark:bg-[#ffd900] mt-2 shrink-0" />
+                <span>Memanfaatkan teknologi diagnostik terkini demi kepresisian servis kendaran.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#224297] dark:bg-[#ffd900] mt-2 shrink-0" />
+                <span>Meningkatkan terus kompetensi teknisi melalui pelatihan berkala standar industri.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#224297] dark:bg-[#ffd900] mt-2 shrink-0" />
+                <span>Menghadirkan kenyamanan dan ketenangan pikiran bagi setiap pemilik mobil.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* === 6. CALL TO ACTION === */}
+        <div className="bg-[#ffd900] rounded-[2.2rem] p-8 sm:p-12 text-center relative overflow-hidden shadow-sm">
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(#000_1px,transparent_0)] [background-size:24px_24px] pointer-events-none" />
+          <h2 className="text-3xl sm:text-4xl font-black text-[#1a3567] uppercase mb-4 tracking-tight leading-none">
+            Siap Menjaga Performa Mobil Anda?
+          </h2>
+          <p className="text-[#1a3567]/80 text-sm sm:text-base font-bold max-w-2xl mx-auto mb-8 leading-relaxed">
+            Konsultasikan keluhan kendaraan Anda dengan mekanik profesional kami secara gratis. Dapatkan penawaran jujur tanpa drama.
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a
+              href="https://wa.me/6287817773888"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 bg-[#224297] hover:bg-[#1a3567] text-white font-bold rounded-xl transition-all duration-300 shadow-md flex items-center gap-2"
+            >
+              Hubungi via WhatsApp <ArrowUpRight className="w-5 h-5" />
+            </a>
+            <Link
+              href="/contact"
+              className="px-8 py-4 bg-white hover:bg-gray-50 text-[#224297] font-bold rounded-xl transition-all duration-300 shadow-sm"
+            >
+              Kirim Pesan Online
             </Link>
           </div>
         </div>
-      </section>
 
-      {/* 5. Highlighted Testimonial */}
-      <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 text-center">
-        <div className="flex justify-center gap-1 mb-4">
-          {[...Array(5)].map((_, i) => (
-            <Icon key={i} icon="solar:star-bold" className="w-6 h-6 text-yellow-400" />
-          ))}
-        </div>
-        <p className="text-sm font-bold tracking-widest uppercase text-gray-500 mb-10">Rated 5/5 di Google</p>
-        
-        <h3 className="text-2xl md:text-3xl lg:text-4xl font-medium text-gray-900 leading-snug mb-12">
-          Service di Bengkel Wiguna benar-benar <span className="font-bold">mengubah pengalaman saya</span>. Mereka membantu mendiagnosa kerusakan mobil lebih cepat dari yang saya bayangkan, <span className="text-gray-500">dengan transparan tanpa biaya tersembunyi.</span>
-        </h3>
-
-        <div className="flex items-center justify-center gap-4">
-          <div className="relative w-12 h-12 rounded-full overflow-hidden bg-gray-200">
-            <Image src="/images/bg-default-page.webp" alt="Avatar" fill className="object-cover" />
-          </div>
-          <div className="text-left">
-            <p className="font-bold text-gray-900">Budi Santoso</p>
-            <p className="text-sm text-gray-500">Pelanggan Setia</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Our Team */}
-      <section className="py-24 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div className="flex justify-center items-center gap-2 mb-6">
-          <div className="w-1.5 h-1.5 rounded-full bg-gray-900"></div>
-          <span className="text-sm font-bold tracking-widest uppercase text-gray-900">Tim Kami</span>
-        </div>
-        <h2 className="text-3xl md:text-4xl font-medium text-gray-900 leading-tight mb-16 max-w-2xl mx-auto">
-          Profesional yang Bisa Anda Percaya Untuk Kendaraan Anda
-        </h2>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {team.map((member, idx) => (
-            <div key={idx} className="relative aspect-[3/4] rounded-3xl overflow-hidden group">
-              <Image src={member.img} alt={member.name} fill className="object-cover transition-transform duration-700 group-hover:scale-105" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6 text-left">
-                <p className="text-white font-bold text-lg">{member.name}</p>
-                <p className="text-white/80 text-sm font-medium">{member.role}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex justify-center gap-4 mt-10">
-           <button className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 transition">
-             <Icon icon="solar:arrow-left-line-duotone" className="w-6 h-6" />
-           </button>
-           <button className="w-12 h-12 rounded-full bg-gray-900 text-white flex items-center justify-center hover:bg-gray-800 transition">
-             <Icon icon="solar:arrow-right-line-duotone" className="w-6 h-6" />
-           </button>
-        </div>
-      </section>
-
-      {/* 7. FAQ */}
-      <section className="py-24 border-t border-gray-200">
-        <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-5 gap-12 lg:gap-24">
-            <div className="lg:col-span-2">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-1.5 h-1.5 rounded-full bg-gray-900"></div>
-                <span className="text-sm font-bold tracking-widest uppercase text-gray-900">FAQ</span>
-              </div>
-              <h2 className="text-3xl md:text-4xl font-medium text-gray-900 leading-tight mb-6">
-                Jawaban Jelas.<br />Tanpa Kebingungan.
-              </h2>
-            </div>
-            
-            <div className="lg:col-span-3">
-              <Accordion variant="splitted" className="px-0 gap-4">
-                {faqs.map((faq, idx) => (
-                  <AccordionItem
-                    key={idx}
-                    aria-label={faq.q}
-                    title={<span className="font-medium text-lg text-gray-900">{faq.q}</span>}
-                    className="bg-[#f0f0f0] border-none shadow-none rounded-2xl px-2"
-                  >
-                    <p className="text-gray-600 pb-4 leading-relaxed">
-                      {faq.a}
-                    </p>
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. CTA Section - Full Width */}
-      <section className="relative w-full overflow-hidden">
-        <div className="relative min-h-[500px] lg:min-h-[600px] bg-gray-900">
-          <Image
-            src="/images/about/Bengkel Bergaransi.jpg"
-            alt="CTA Background"
-            fill
-            className="object-cover object-center opacity-30"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-gray-900/60" />
-
-          <div className="relative z-10 h-full flex items-center justify-center py-20 lg:py-24 px-6">
-            <div className="text-center max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-                Perawatan Mobil Anda Selanjutnya Lebih Dekat Dari Yang Anda Kira
-              </h2>
-              <p className="text-white/80 text-lg mb-10 max-w-xl mx-auto">
-                Jangan tunda kenyamanan dan keamanan berkendara Anda. Tim ahli Bengkel Wiguna siap memberikan solusi terbaik.
-              </p>
-              <a
-                href="https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20konsultasi%20mengenai%20servis%20mobil."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#224297] hover:bg-[#1a356e] text-white rounded-full font-bold transition-all shadow-xl shadow-blue-900/30"
-              >
-                <Icon icon="simple-icons:whatsapp" className="w-6 h-6" />
-                Hubungi Tim Kami via WhatsApp
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      </div>
     </div>
   );
 }
