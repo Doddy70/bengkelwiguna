@@ -1,11 +1,6 @@
 {
   "redirects": [
     {
-      "source": "/layanan/:slug*",
-      "destination": "/services/:slug*",
-      "permanent": true
-    },
-    {
       "source": "/blog/page/:page(\\d+)",
       "has": [
         {
