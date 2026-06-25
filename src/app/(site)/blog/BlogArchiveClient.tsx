@@ -142,7 +142,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 </div>
 
                 <div className="relative z-10">
-                  <h3 className="text-2xl lg:text-3xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3 mb-4">
+                  <h3 className="text-xl lg:text-2xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3 mb-4">
                     {getRenderedTitle(post2)}
                   </h3>
                   <div className="space-y-3">
@@ -224,7 +224,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                   <span className="w-1 h-1 rounded-full bg-gray-400" />
                   <span>{formatDate(post4.date)}</span>
                 </div>
-                <h3 className="text-xl lg:text-2xl font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3 mb-4 z-10">
+                <h3 className="text-base lg:text-lg font-black text-gray-900 dark:text-white leading-[1.1] tracking-tight uppercase line-clamp-3 mb-4 z-10">
                   {getRenderedTitle(post4)}
                 </h3>
                 
