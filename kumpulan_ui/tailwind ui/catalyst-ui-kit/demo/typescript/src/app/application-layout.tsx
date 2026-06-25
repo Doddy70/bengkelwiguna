@@ -75,7 +75,7 @@ export function ApplicationLayout({
   events: Awaited<ReturnType<typeof getEvents>>
   children: React.ReactNode
 }) {
-  let pathname = usePathname()
+  const pathname = usePathname()
 
   return (
     <SidebarLayout

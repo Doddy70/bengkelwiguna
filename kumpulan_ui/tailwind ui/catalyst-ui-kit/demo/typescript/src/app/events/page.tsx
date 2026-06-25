@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Events() {
-  let events = await getEvents()
+  const events = await getEvents()
 
   return (
     <>

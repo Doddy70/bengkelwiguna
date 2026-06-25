@@ -12,7 +12,7 @@ import { notFound } from 'next/navigation'
 import { RefundOrder } from './refund'
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  let order = await getOrder(params.id)
+  const order = await getOrder(params.id)
 
   return {
     title: order && `Order #${order.id}`,
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function Order({ params }: { params: { id: string } }) {
-  let order = await getOrder(params.id)
+  const order = await getOrder(params.id)
 
   if (!order) {
     notFound()

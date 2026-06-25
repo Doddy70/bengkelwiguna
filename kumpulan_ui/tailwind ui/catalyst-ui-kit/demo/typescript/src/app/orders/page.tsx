@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 }
 
 export default async function Orders() {
-  let orders = await getOrders()
+  const orders = await getOrders()
 
   return (
     <>

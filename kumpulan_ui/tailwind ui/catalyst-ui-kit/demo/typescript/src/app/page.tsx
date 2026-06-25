@@ -6,7 +6,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { getRecentOrders } from '@/data'
 
 export default async function Home() {
-  let orders = await getRecentOrders()
+  const orders = await getRecentOrders()
 
   return (
     <>

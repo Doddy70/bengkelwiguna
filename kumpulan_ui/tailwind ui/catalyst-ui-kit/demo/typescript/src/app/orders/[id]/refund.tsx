@@ -9,7 +9,7 @@ import { Select } from '@/components/select'
 import { useState } from 'react'
 
 export function RefundOrder({ amount, ...props }: { amount: string } & React.ComponentPropsWithoutRef<typeof Button>) {
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>

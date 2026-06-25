@@ -10,7 +10,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 export async function generateMetadata({ params }: { params: { id: string } }): Promise<Metadata> {
-  let event = await getEvent(params.id)
+  const event = await getEvent(params.id)
 
   return {
     title: event?.name,
@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: { params: { id: string } }): 
 }
 
 export default async function Event({ params }: { params: { id: string } }) {
-  let event = await getEvent(params.id)
-  let orders = await getEventOrders(params.id)
+  const event = await getEvent(params.id)
+  const orders = await getEventOrders(params.id)
 
   if (!event) {
     notFound()

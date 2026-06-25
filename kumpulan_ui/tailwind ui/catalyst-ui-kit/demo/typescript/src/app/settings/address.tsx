@@ -6,8 +6,8 @@ import { getCountries } from '@/data'
 import { useState } from 'react'
 
 export function Address() {
-  let countries = getCountries()
-  let [country, setCountry] = useState(countries[0])
+  const countries = getCountries()
+  const [country, setCountry] = useState(countries[0])
 
   return (
     <div className="grid grid-cols-2 gap-6">
