@@ -1,44 +1,231 @@
 {
+  "redirects": [
+    // Subdomain redirects
+    { "source": "/:path*", "has": [{ "type": "header", "value": "backend.bengkelwiguna.com" }], "destination": "https://bengkelwiguna.com/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "header", "value": "promo.bengkelwiguna.com" }], "destination": "https://bengkelwiguna.com/promosi/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "header", "value": "kyoto.bengkelwiguna.com" }], "destination": "https://bengkelwiguna.com/layanan-spesialis/:path*", "permanent": true },
+    { "source": "/", "has": [{ "type": "header", "value": "www.bengkelwiguna.com" }], "destination": "https://bengkelwiguna.com/", "permanent": true },
+
+    // Pattern redirects
+    { "source": "/layanan/:slug*", "destination": "/services/:slug*", "permanent": true },
+    { "source": "/blog/page/:page(\\d+)/", "has": [{ "type": "query", "key": "nocache" }], "destination": "/blog/page/:page/", "permanent": true },
+    { "source": "/blog/page/:page(\\d+)/", "has": [{ "type": "query", "key": "jet_blog_ajax" }], "destination": "/blog/page/:page/", "permanent": true },
+    { "source": "/shop/page/:page(\\d+)", "destination": "/services/", "permanent": true },
+    { "source": "/shop/", "destination": "/services/", "permanent": true },
+
+    // Service slugs
+    { "source": "/layanan/service-ac/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/layanan/ac-mobil/", "destination": "/services/isi-freon-ac/", "permanent": true },
+    { "source": "/layanan/servis-rem/", "destination": "/services/servis-rem/", "permanent": true },
+    { "source": "/layanan/service-ganti-ban-mobil/", "destination": "/services/ganti-ban/", "permanent": true },
+    { "source": "/layanan/cek-kaki-kaki/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/services/aki-dan-kelistrikan/", "destination": "/services/servis-aki/", "permanent": true },
+    { "source": "/services/penggantian-ban/", "destination": "/services/ganti-ban/", "permanent": true },
+    { "source": "/services/penggantian-oli/", "destination": "/services/ganti-oli-mesin/", "permanent": true },
+    { "source": "/services/engine-flushing/", "destination": "/services/carbon-cleaning/", "permanent": true },
+    { "source": "/services/spooring-balancing/", "destination": "/services/spooring/", "permanent": true },
+    { "source": "/services/servis-rem-dan-roda/", "destination": "/services/servis-rem/", "permanent": true },
+    { "source": "/services/kaki-kaki-mobil/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/services/pemeriksaan-kendaraan/", "destination": "/services/diagnosa-scanner/", "permanent": true },
+    { "source": "/services/perawatan-berkala-2/", "destination": "/services/servis-berkala/", "permanent": true },
+
+    // WooCommerce deprecated
+    { "source": "/coupons/", "destination": "/promosi/", "permanent": true },
+    { "source": "/booking-service/", "destination": "/services/", "permanent": true },
+    { "source": "/form-survey/", "destination": "/", "permanent": true },
+    { "source": "/product-category/wheels/", "destination": "/services/ganti-ban/", "permanent": true },
+
+    // Landing pages
+    { "source": "/lokal-depok/", "destination": "/lokasi/", "permanent": true },
+    { "source": "/spesialisasi-layanan/", "destination": "/layanan-spesialis/", "permanent": true },
+    { "source": "/layanan-unggulan/", "destination": "/services/", "permanent": true },
+    { "source": "/integration/", "destination": "/", "permanent": true },
+    { "source": "/vehicles-layout-3/", "destination": "/services/", "permanent": true },
+    { "source": "/business/", "destination": "/services/", "permanent": true },
+    { "source": "/results/", "destination": "/", "permanent": true },
+    { "source": "/bengkel-wiguna-depok/", "destination": "/", "permanent": true },
+    { "source": "/bengkel-mobil-margonda-depok/", "destination": "/lokasi/", "permanent": true },
+    { "source": "/bengkel-mobil-termurah-depok/", "destination": "/services/", "permanent": true },
+    { "source": "/bengkel-mobil-terdekat-jangan-salah-pilih/", "destination": "/lokasi/", "permanent": true },
+    { "source": "/bengkel-mobil-terdekat-di-depok-servis-lengkap-terpercaya-di-bengkel-wiguna/", "destination": "/services/", "permanent": true },
+    { "source": "/bengkel-mobil-terdekat-di-depok-pilih-bengkel-wiguna-yang-terpercaya/", "destination": "/lokasi/", "permanent": true },
+    { "source": "/bengkel-mobil-depok-panduan-memilih-bengkel-terpercaya-untuk-servis-rutin/", "destination": "/services/servis-berkala/", "permanent": true },
+    { "source": "/bengkel-mobil-depok-jujur/", "destination": "/", "permanent": true },
+
+    // Kaki-Kaki
+    { "source": "/bengkel-kaki-kaki-depok/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/bengkel-kaki-kaki-depok-2/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/bengkel-kaki-kaki-depok-3/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/bengkel-kaki-kaki-depok-4/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/bengkel-kaki-kaki-depok-5/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/bengkel-kaki-kaki-depok-6/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/rekomendasi-bengkel-kaki-kaki-terdekat-di-depok/", "destination": "/services/servis-kaki-kaki/", "permanent": true },
+    { "source": "/penyebab-kaki-kaki-mobil-bunyi-gluduk/", "destination": "/blog/", "permanent": true },
+    { "source": "/kaki-kaki-mobil-bunyi-deteksi-dengan-alat-ini/", "destination": "/blog/", "permanent": true },
+    { "source": "/cek-manual-vs-digital-kaki-kaki-mobil/", "destination": "/blog/", "permanent": true },
+    { "source": "/cek-kaki-kaki-mobil-tanpa-bongkar-begini-cara-bengkel-wiguna/", "destination": "/blog/", "permanent": true },
+    { "source": "/periksa-kaki-kaki-mobil-anda-dengan-kyoto-shaking-machine/", "destination": "/layanan-spesialis/", "permanent": true },
+    { "source": "/kyoto-shaking-machine-bengkel-wiguna-depok/", "destination": "/layanan-spesialis/", "permanent": true },
+    { "source": "/mengenal-kyoto-shaking-machine-alat-canggih-untuk-deteksi-bunyi-mobil/", "destination": "/layanan-spesialis/", "permanent": true },
+    { "source": "/cek-kaki-kaki-kyoto-shaking-machine/", "destination": "/layanan-spesialis/", "permanent": true },
+    { "source": "/bengkel-wiguna-shaking-machine/", "destination": "/layanan-spesialis/", "permanent": true },
+    { "source": "/bengkel-radiator-terdekat-di-depok/", "destination": "/services/flushing-radiator/", "permanent": true },
+    { "source": "/7-tanda-kaki-kaki-mobil-rusak-yang-harus-diketahui-pengemudi/", "destination": "/blog/", "permanent": true },
+    { "source": "/penyebab-setir-mobil-goyang-dan-solusi-akurat-menggunakan-kyoto-shaking-machine/", "destination": "/blog/", "permanent": true },
+    { "source": "/mobil-goyang-saat-kecepatan-tinggi-balancing-wajib/", "destination": "/services/balancing/", "permanent": true },
+    { "source": "/mobil-limbung-saat-belok/", "destination": "/blog/", "permanent": true },
+    { "source": "/penyebab-mobil-limbung-saat-belok/", "destination": "/blog/", "permanent": true },
+    { "source": "/suspensi-mobil-terasa-keras-bukan-cuma-shock-lho/", "destination": "/blog/", "permanent": true },
+    { "source": "/ban-kaki-kaki/", "destination": "/services/ganti-ban/", "permanent": true },
+    { "source": "/engine-flushing-depok-bersihkan-mesin-dengan-teknologi-modern/", "destination": "/services/carbon-cleaning/", "permanent": true },
+    { "source": "/engine-flush/", "destination": "/services/carbon-cleaning/", "permanent": true },
+    { "source": "/detoks-mesin-cegah-mesin-jantungan/", "destination": "/services/carbon-cleaning/", "permanent": true },
+    { "source": "/detoks-mesin-mobil-terdekat-teknologi-stinger-engine-flush/", "destination": "/services/carbon-cleaning/", "permanent": true },
+    { "source": "/coolant-changer-depok/", "destination": "/services/flushing-radiator/", "permanent": true },
+    { "source": "/reset-radiator-depok/", "destination": "/services/flushing-radiator/", "permanent": true },
+
+    // AC
+    { "source": "/atasi-5-kesalahan-umum-agar-ac-mobil-awet-dan-berfungsi-baik/", "destination": "/blog/", "permanent": true },
+    { "source": "/ciri-ciri-ac-mobil-perlu-flushing-agar-kinerja-tetap-optimal/", "destination": "/blog/", "permanent": true },
+    { "source": "/kenapa-ac-mobil-panas-saat-macet-temukan-jawabannya-di-bengkel-wiguna/", "destination": "/blog/", "permanent": true },
+    { "source": "/atasi-ac-mobil-tidak-dingin-dengan-flushing-yang-tepat/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/kenapa-ac-flushing-harus-di-bengkel-profesional/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/atasi-masalah-ac-mobil/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/ac-mobil-tidak-dingin-ini-penyebab-paling-umum/", "destination": "/blog/", "permanent": true },
+    { "source": "/flushing-ac-vs-isi-freon-mana-yang-dibutuhkan-mobil-anda/", "destination": "/blog/", "permanent": true },
+    { "source": "/kotoran-di-sistem-ac-mobil/", "destination": "/blog/", "permanent": true },
+    { "source": "/penyebab-ac-mobil-cepat-panas-lagi/", "destination": "/blog/", "permanent": true },
+    { "source": "/5-tanda-ac-mobil-butuh-servis-segera-sebelum-rusak-total/", "destination": "/blog/", "permanent": true },
+    { "source": "/flushing-ac-mobil-bekas/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/flushing-ac-mobil-di-bengkel-wiguna-penting-untuk-dingin-maksimal/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/servis-ac-mobil-depok-atasi-ac-panas-dengan-teknisi-ahli-bengkel-wiguna/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/servis-ac-mobil-depok/", "destination": "/services/flushing-ac/", "permanent": true },
+
+    // Ban
+    { "source": "/ganti-ban-mobil-depok-ban-berkualitas-dengan-servis-presisi-wiguna/", "destination": "/services/ganti-ban/", "permanent": true },
+    { "source": "/ban-mobil-kamu-botak-ini-solusi-ganti-ban-murah-di-depok/", "destination": "/services/ganti-ban/", "permanent": true },
+    { "source": "/ban-mobil-cepat-habis-sebelah-ini-biang-utamanya/", "destination": "/blog/", "permanent": true },
+    { "source": "/penyebab-ban-mobil-habis-sebelah/", "destination": "/blog/", "permanent": true },
+    { "source": "/ban-mobil-getar-saat-ngebut-saatnya-balancing-ulang/", "destination": "/services/balancing/", "permanent": true },
+    { "source": "/ganti-ban-mobil-terdekat/", "destination": "/services/ganti-ban/", "permanent": true },
+    { "source": "/servis-ban-mobil-anti-drama/", "destination": "/services/ganti-ban/", "permanent": true },
+    { "source": "/spooring-balancing-mobil-depok/", "destination": "/services/spooring/", "permanent": true },
+    { "source": "/daftar-ban-mobil-terbaik-untuk-jalanan-depok/", "destination": "/blog/", "permanent": true },
+    { "source": "/cek-tekanan-angin-isi-nitrogen-ban-mobil-di-depok/", "destination": "/services/balancing/", "permanent": true },
+
+    // Rem
+    { "source": "/rem-mobil-bunyi-ini-penyebab-solusinya/", "destination": "/blog/", "permanent": true },
+    { "source": "/mobil-bergetar-saat-ngerem-bisa-jadi-cakram-aus/", "destination": "/blog/", "permanent": true },
+    { "source": "/mobil-bergetar-saat-ngerem/", "destination": "/services/servis-rem/", "permanent": true },
+
+    // Mesin
+    { "source": "/servis-semi-overhaul-vs-overhaul-mobil/", "destination": "/services/semi-overhaul/", "permanent": true },
+    { "source": "/kenali-ciri-mesin-mobil-sludge-dan-solusi-semi-overhaul-untuk-performa-optimal/", "destination": "/services/semi-overhaul/", "permanent": true },
+    { "source": "/bengkel-semi-overhaul-terpercaya-di-depok/", "destination": "/services/semi-overhaul/", "permanent": true },
+    { "source": "/mesin-mobil-lemot/", "destination": "/blog/", "permanent": true },
+    { "source": "/dampak-etanol-pertamax-ke-mesin/", "destination": "/blog/", "permanent": true },
+    { "source": "/efek-etanol-bbm-pada-mesin/", "destination": "/blog/", "permanent": true },
+    { "source": "/pembakaran-mesin-bensin-tidak-sempurna/", "destination": "/blog/", "permanent": true },
+    { "source": "/pembakaran-mesin-tidak-sempurna/", "destination": "/blog/", "permanent": true },
+    { "source": "/bam-etanol-pertalite-rusak-mesin/", "destination": "/blog/", "permanent": true },
+    { "source": "/caramel-bbm-campur-etanol/", "destination": "/blog/", "permanent": true },
+    { "source": "/mesin-bensin-injeksi-boros/", "destination": "/blog/", "permanent": true },
+    { "source": "/mobil-matic-boros-bbm-solusi-terpercaya-untuk-anda/", "destination": "/blog/", "permanent": true },
+    { "source": "/intake-dan-throttle-mobil-kotor/", "destination": "/services/servis-injektor/", "permanent": true },
+    { "source": "/mobil-modern-butuh-super-tune-up/", "destination": "/services/super-tune-up/", "permanent": true },
+    { "source": "/super-tune-up-mobil/", "destination": "/services/super-tune-up/", "permanent": true },
+    { "source": "/tune-up-mobil-depok/", "destination": "/services/tune-up/", "permanent": true },
+    { "source": "/servis-mobil-matic-depok/", "destination": "/services/servis-transmisi/", "permanent": true },
+    { "source": "/idle-mesin-tidak-stabil/", "destination": "/blog/", "permanent": true },
+    { "source": "/tanda-mobil-kamu-butuh-servis-tapi-sering-diabaikan/", "destination": "/blog/", "permanent": true },
+    { "source": "/kenali-tanda-oli-harus-diganti-sebelum-masalah-mobil-muncul/", "destination": "/blog/", "permanent": true },
+    { "source": "/pilih-mana-servis-rutin-atau-tunggu-rusak-ini-jawaban-bijaknya/", "destination": "/blog/", "permanent": true },
+    { "source": "/kenapa-service-10-000-km-di-bengkel-wiguna-depok-wajib/", "destination": "/services/servis-berkala/", "permanent": true },
+    { "source": "/tips-merawat-mobil-depok/", "destination": "/blog/", "permanent": true },
+    { "source": "/tips-hemat-mengetahui-harga-servis-mobil-depok-2026-dengan-bijak/", "destination": "/blog/", "permanent": true },
+    { "source": "/pertalite-mogok-massal-analisa-bengkel-wiguna/", "destination": "/blog/", "permanent": true },
+    { "source": "/etanol-di-bbm-solusi-atau-ancaman/", "destination": "/blog/", "permanent": true },
+    { "source": "/spesialis-mesin-terdekat-tanpa-bongkar-berlebihan/", "destination": "/services/semi-overhaul/", "permanent": true },
+    { "source": "/5-tanda-kelistrikan-mobil-bermasalah-yang-harus-diwaspadai/", "destination": "/blog/", "permanent": true },
+
+    // Bengkel Umum
+    { "source": "/kenapa-harus-memilih-bengkel-bergaransi/", "destination": "/", "permanent": true },
+    { "source": "/perbandingan-bengkel-resmi-vs-bengkel-umum-di-depok/", "destination": "/blog/", "permanent": true },
+    { "source": "/bengkel-terdekat-di-depok/", "destination": "/lokasi/", "permanent": true },
+    { "source": "/bengkel-terpercaya-depok/", "destination": "/", "permanent": true },
+    { "source": "/bengkel-bergaransi-di-depok/", "destination": "/", "permanent": true },
+    { "source": "/bengkel-servis-berkala-terdekat/", "destination": "/services/servis-berkala/", "permanent": true },
+    { "source": "/cara-mencari-bengkel-terdekat/", "destination": "/lokasi/", "permanent": true },
+    { "source": "/perbedaan-bengkel-bergaransi-vs-non-garansi/", "destination": "/blog/", "permanent": true },
+    { "source": "/caramengetahui-bengkel-yang-benar-benar-bergaransi/", "destination": "/blog/", "permanent": true },
+    { "source": "/servis-mobil-dekat-margo-city-depok/", "destination": "/lokasi/", "permanent": true },
+    { "source": "/solusi-servis-mobil-terdekat-di-depok/", "destination": "/services/", "permanent": true },
+    { "source": "/ganti-oli-mobil-depok/", "destination": "/services/ganti-oli-mesin/", "permanent": true },
+    { "source": "/ganti-oli-mobil-ini-bengkel-oli-terdekat-dengan-harga-transparan/", "destination": "/services/ganti-oli-mesin/", "permanent": true },
+    { "source": "/servis-berkala-mobil-depok/", "destination": "/services/servis-berkala/", "permanent": true },
+    { "source": "/servis-berkala-mobil-depok-cegah-kerusakan-besar-mobil-anda/", "destination": "/services/servis-berkala/", "permanent": true },
+    { "source": "/harga-spooring-balancing-depok-terbaru-dan-tips-perawatannya/", "destination": "/blog/", "permanent": true },
+    { "source": "/harga-flushing-ac-mobil-di-depok/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/bengkel-persiapan-mudik-depok/", "destination": "/blog/", "permanent": true },
+    { "source": "/atasi-bau-tidak-sedap-di-ac-mobil-dengan-solusi-flushing-efektif/", "destination": "/blog/", "permanent": true },
+    { "source": "/5-tanda-ac-mobil-butuh-servis-segera-sebelum-rusak-total/", "destination": "/blog/", "permanent": true },
+    { "source": "/cek-sendiri-kaki-kaki-mobil-bunyi/", "destination": "/blog/", "permanent": true },
+    { "source": "/mobil-miring-sebelah-bisa-jadi-ini-penyebabnya/", "destination": "/blog/", "permanent": true },
+    { "source": "/wb-carbon-detox/", "destination": "/services/carbon-cleaning/", "permanent": true },
+
+    // Aki
+    { "source": "/lampu-mobil-redup-saat-rpm-rendah-kenali-masalah-aki/", "destination": "/blog/", "permanent": true },
+    { "source": "/caramudah-atasi-mobil-sulit-starter-aki-atau-kelistrikan/", "destination": "/blog/", "permanent": true },
+
+    // Uncategorized
+    { "source": "/uncategorized/", "destination": "/blog/", "permanent": true },
+    { "source": "/michelin-pilot-sport-a-s-4/", "destination": "/blog/", "permanent": true },
+    { "source": "/nexen-npriz-rh7-all-season-radial/", "destination": "/blog/", "permanent": true },
+    { "source": "/c-2987-coil-spring-conversion-kit/", "destination": "/blog/", "permanent": true },
+    { "source": "/90003-shock-conversion-kit-kit/", "destination": "/blog/", "permanent": true },
+    { "source": "/gear-off-road-740b-manifold/", "destination": "/blog/", "permanent": true },
+    { "source": "/gear-off-road-726m-1-big-block/", "destination": "/blog/", "permanent": true },
+    { "source": "/grow-and-go-all-in-one-convertible-car-seat/", "destination": "/blog/", "permanent": true },
+    { "source": "/more-powerful-polished-saasup-for-android/", "destination": "/blog/", "permanent": true },
+    { "source": "/meet-touch-design-mobile-interfaces-new-smas/", "destination": "/blog/", "permanent": true },
+    { "source": "/young-startups-with-saasup-in-full-throttle/", "destination": "/blog/", "permanent": true },
+    { "source": "/right-to-left-behind-development-in-mobile-web-design/", "destination": "/blog/", "permanent": true },
+    { "source": "/radiacerevive-your-skins-rejuvenation-secret/", "destination": "/blog/", "permanent": true },
+
+    // Backend service pages
+    { "source": "/servis-radiator/", "destination": "/services/flushing-radiator/", "permanent": true },
+    { "source": "/servis-injektor/", "destination": "/services/servis-injektor/", "permanent": true },
+    { "source": "/servis-aki/", "destination": "/services/servis-aki/", "permanent": true },
+    { "source": "/servis-transmisi/", "destination": "/services/servis-transmisi/", "permanent": true },
+    { "source": "/servis-ac-mobil/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/servis-berkala/", "destination": "/services/servis-berkala/", "permanent": true },
+    { "source": "/diagnosa-scanner/", "destination": "/services/diagnosa-scanner/", "permanent": true },
+    { "source": "/spooring/", "destination": "/services/spooring/", "permanent": true },
+    { "source": "/flushing-radiator/", "destination": "/services/flushing-radiator/", "permanent": true },
+    { "source": "/flushing-ac/", "destination": "/services/flushing-ac/", "permanent": true },
+    { "source": "/balancing/", "destination": "/services/balancing/", "permanent": true },
+    { "source": "/ganti-ban/", "destination": "/services/ganti-ban/", "permanent": true },
+    { "source": "/tune-up/", "destination": "/services/tune-up/", "permanent": true }
+  ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-DNS-Prefetch-Control",
-          "value": "on"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        }
+        { "key": "X-DNS-Prefetch-Control", "value": "on" },
+        { "key": "X-Content-Type-Options", "value": "nosniff" }
       ]
     },
     {
       "source": "/_next/static/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     },
     {
       "source": "/images/:path*",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=2592000, stale-while-revalidate=86400"
-        }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
     },
     {
       "source": "/fonts/:path*",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
     }
   ]
 }
