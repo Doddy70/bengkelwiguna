@@ -193,6 +193,17 @@ class BW_REST_API_Controller extends WP_REST_Controller {
             ]
         ]);
 
+        // Flush Rewrite Rules — Headless SEO Sync
+        register_rest_route($this->namespace, '/flush-rewrites', [
+            [
+                'methods'             => WP_REST_Server::CREATABLE,
+                'callback'            => [$this, 'handle_flush_rewrites'],
+                'permission_callback' => function() {
+                    return current_user_can('manage_options');
+                },
+            ]
+        ]);
+
         // Health Check REST Route
         register_rest_route($this->namespace, '/health-check', [
             [
@@ -1117,6 +1128,36 @@ public function handle_ai_chat($request) {
             'healthy' => $all_healthy,
             'timestamp' => current_time('mysql'),
             'checks' => $checks,
+        ]);
+    }
+
+    /**
+     * Flush WordPress rewrite rules
+     * Call this after updating CPT rewrite slugs or adding custom rewrite rules.
+     * Required for headless SEO sync: /blog/{slug} → WordPress posts.
+     */
+    public function handle_flush_rewrites($request) {
+        // Clear any BW transient caches that depend on URLs
+        global $wpdb;
+        $cleared = $wpdb->query("DELETE FROM {$wpdb->options} WHERE option_name LIKE '_transient_bw_%'");
+
+        // Flush rewrite rules
+        flush_rewrite_rules();
+
+        // Verify the new rules are loaded
+        global $wp_rewrite;
+        $rules = $wp_rewrite->get_rules();
+
+        // Check if our blog rule is present
+        $has_blog_rule = isset($rules['blog/([^/]+)/?$']);
+
+        return rest_ensure_response([
+            'success' => true,
+            'message' => 'Rewrite rules flushed successfully.',
+            'has_blog_rewrite' => $has_blog_rule,
+            'transients_cleared' => (int) $cleared,
+            'total_rewrite_rules' => count($rules),
+            'timestamp' => current_time('mysql'),
         ]);
     }
 

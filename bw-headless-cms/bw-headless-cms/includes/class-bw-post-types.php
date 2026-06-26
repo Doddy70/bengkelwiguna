@@ -10,6 +10,52 @@ class BW_Post_Types {
     public function init() {
         add_action('init', [$this, 'register_post_types']);
         add_action('init', [$this, 'register_meta_fields']);
+        add_action('init', [$this, 'register_blog_rewrite_rules'], 20);
+        add_filter('post_type_link', [$this, 'filter_post_permalink'], 10, 2);
+        add_filter('request', [$this, 'filter_blog_request']);
+    }
+
+    /**
+     * Register rewrite rules so WP posts are accessible at /blog/{slug}
+     * Frontend uses /blog/{slug} — this bridges the gap.
+     */
+    public function register_blog_rewrite_rules() {
+        // Add /blog/{slug} rewrite rule for native WordPress posts
+        add_rewrite_rule(
+            'blog/([^/]+)/?$',
+            'index.php?name=$matches[1]',
+            'top'
+        );
+        // Also allow /blog/ as a pagination stub (future use)
+        add_rewrite_rule(
+            'blog/page/([0-9]+)/?$',
+            'index.php?pagename=blog&paged=$matches[1]',
+            'top'
+        );
+    }
+
+    /**
+     * Filter post permalink to return /blog/{slug} for WordPress posts
+     * This ensures REST API _links and the_content links use /blog/ prefix.
+     */
+    public function filter_post_permalink($post_link, $post = 0) {
+        if ($post && $post->post_type === 'post') {
+            return home_url('/blog/' . $post->post_name . '/');
+        }
+        return $post_link;
+    }
+
+    /**
+     * Filter incoming requests so /blog/{slug} is recognized as a post query.
+     * The rewrite rule above handles this, but this filter ensures fallback.
+     */
+    public function filter_blog_request($query_vars) {
+        // If 'blog' is in the path but not a real pagename, treat first segment as slug
+        if (isset($query_vars['pagename']) && $query_vars['pagename'] === 'blog') {
+            // /blog only — let it fall through to page_for_posts
+            // The rewrite rule 'blog/([^/]+)/?$' handles /blog/{slug}
+        }
+        return $query_vars;
     }
 
     // =============================================

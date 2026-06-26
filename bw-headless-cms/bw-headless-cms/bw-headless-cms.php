@@ -15,7 +15,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Define Constants
-define('BW_HEADLESS_VERSION', '1.8.6');
+define('BW_HEADLESS_VERSION', '1.8.7');
 define('BW_HEADLESS_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('BW_HEADLESS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
