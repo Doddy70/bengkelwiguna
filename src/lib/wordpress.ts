@@ -474,9 +474,13 @@ export async function getPromosiForSitemap(): Promise<Promosi[]> {
 // PAKET SERVICE (Custom Post Type)
 // ============================================
 
-export async function getAllPaketService(): Promise<PaketService[]> {
+/**
+ * Cached version for per-request deduplication
+ * Vercel Best Practice Rule 3.9: Per-Request Deduplication with React.cache()
+ */
+export const getAllPaketService = cache(async (): Promise<PaketService[]> => {
   return (await apiFetch<PaketService[]>('/paket-service-full?per_page=99', 'bw', REVALIDATE_LIST, ['paket-service', 'all-paket'])) ?? []
-}
+})
 
 export async function getPaketServiceBySlug(slug: string): Promise<PaketService | null> {
   if (!isValidSlug(slug)) return null
@@ -488,25 +492,25 @@ export async function getPaketServiceBySlug(slug: string): Promise<PaketService 
 // ============================================
 
 /**
- * Fetches homepage settings from BW Headless CMS
- * Used for dynamic sections like Hero, FAQ, etc.
+ * Cached version for per-request deduplication
+ * Revalidate: 3600s (1 hour) — homepage settings rarely change
  */
-export async function getHomepageSettings(): Promise<any> {
+export const getHomepageSettings = cache(async (): Promise<any> => {
   return bwFetch('/homepage-settings', {
-    next: { revalidate: 0, tags: ['settings', 'homepage'] }
+    next: { revalidate: 3600, tags: ['settings', 'homepage'] }
   })
-}
+})
 
 /**
  * Helper to fetch and parse homepage FAQs
+ * No longer makes a separate call — reuses getHomepageSettings result
  */
-export async function getHomepageFaqs(): Promise<FaqItem[]> {
+export const getHomepageFaqs = cache(async (): Promise<FaqItem[]> => {
   try {
     const settings = await getHomepageSettings();
     if (settings && settings.faq && Array.isArray(settings.faq)) {
       return settings.faq;
     }
-    // Fallback if structured as a JSON string
     if (settings && settings.faq && typeof settings.faq === 'string') {
       return parseFaqField(settings.faq);
     }
@@ -514,7 +518,7 @@ export async function getHomepageFaqs(): Promise<FaqItem[]> {
     console.error('[WP] Error fetching homepage FAQs:', error);
   }
   return [];
-}
+})
 
 /**
  * Fetch khusus untuk BW custom endpoints (/bw/v1/)
@@ -601,26 +605,32 @@ export async function getAllPostsFlat(): Promise<Partial<WPPost>[]> {
   return posts
 }
 
-export async function getAllCategories(): Promise<any[]> {
+/**
+ * Cached version for per-request deduplication
+ */
+export const getAllCategories = cache(async (): Promise<any[]> => {
   return (await apiFetch<any[]>('/categories?per_page=100&hide_empty=true', 'wp', REVALIDATE_LIST, ['categories'])) ?? []
-}
+})
 
-export async function getPostsByCategory(categoryId: number, excludeId?: number, perPage = 4): Promise<WPPost[]> {
+export const getPostsByCategory = cache(async (categoryId: number, excludeId?: number, perPage = 4): Promise<WPPost[]> => {
   let endpoint = `/posts?categories=${categoryId}&per_page=${perPage}&_embed=1`
   if (excludeId) {
     endpoint += `&exclude=${excludeId}`
   }
   return (await apiFetch<WPPost[]>(endpoint, 'wp', REVALIDATE_LIST, ['posts', `category-${categoryId}`])) ?? []
-}
+})
 
 // ============================================
 // PAGES
 // ============================================
 
-export async function getPageBySlug(slug: string): Promise<WPPost | null> {
+/**
+ * Cached version for per-request deduplication
+ */
+export const getPageBySlug = cache(async (slug: string): Promise<WPPost | null> => {
   if (!isValidSlug(slug)) return null
   return apiFetch<WPPost[]>(`/pages?slug=${slug}&_embed`, 'wp', REVALIDATE_SINGLE, ['pages', `page-${slug}`]).then(data => data?.[0] ?? null)
-}
+})
 
 /**
  * Extracts the featured image URL from a WordPress post
@@ -686,7 +696,11 @@ export function parseFaqField(faqData: string | FaqItem[] | null | undefined): F
   }
 }
 
-export async function getNavigationMenu(menuLocation: string = 'main-menu'): Promise<NavMenu | null> {
+/**
+ * Cached version for per-request deduplication
+ * Vercel Best Practice Rule 3.9: Per-Request Deduplication with React.cache()
+ */
+export const getNavigationMenu = cache(async (menuLocation: string = 'main-menu'): Promise<NavMenu | null> => {
   const WORDPRESS_URL = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com'
 
   // Use WP menus API for proper child_items structure
@@ -736,4 +750,4 @@ export async function getNavigationMenu(menuLocation: string = 'main-menu'): Pro
     console.error('[WP Menu] Network error:', error)
     return null
   }
-}
+})
