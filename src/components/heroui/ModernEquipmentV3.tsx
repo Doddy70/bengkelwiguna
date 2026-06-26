@@ -79,16 +79,6 @@ export default function ModernEquipmentV3() {
       className="w-full relative overflow-hidden bg-slate-50 dark:bg-[#060b13] text-slate-900 dark:text-white transition-colors duration-300 py-8 lg:py-12"
       ref={containerRef}
     >
-      {/* Background Pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none text-slate-900/5 dark:text-white/5"
-        style={{
-          backgroundImage: `linear-gradient(currentColor 1px, transparent 1px), linear-gradient(90deg, currentColor 1px, transparent 1px)`,
-          backgroundSize: '40px 40px'
-        }}
-      />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.08)_0%,transparent_70%)] dark:bg-[radial-gradient(ellipse_at_center,rgba(59,130,246,0.15)_0%,transparent_70%)] pointer-events-none" />
-
       {/* ===== MOBILE LAYOUT ===== */}
       <div className="lg:hidden flex flex-col min-h-screen">
         {/* Mobile Header with Horizontal Tabs */}
