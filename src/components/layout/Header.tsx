@@ -8,6 +8,7 @@ import SearchBox from '../ui/Search';
 import Image from 'next/image';
 import Button from '../ui/Button';
 import { NavMenuItem, LayananSpesialis, Service } from '@/types/wordpress';
+import { getRelativeUrl } from '@/lib/utils';
 
 interface HeaderProps {
     btnColor?: string;
@@ -88,10 +89,10 @@ export default function Header({
                                     const itemsToRender = menuItems && menuItems.length > 0
                                         ? menuItems.map(item => ({
                                             title: item.name || item.label || "",
-                                            href: item.path || "/",
+                                            href: getRelativeUrl(item.path),
                                             subMenu: item.children?.map((child: any) => ({
                                                 title: child.name || child.label || child.title || "",
-                                                href: child.path || "/"
+                                                href: getRelativeUrl(child.path)
                                             }))
                                         }))
                                         : [

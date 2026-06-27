@@ -457,7 +457,7 @@ export async function getServicesForSitemap(): Promise<Service[]> {
  * Vercel Best Practice Rule 3.9: Per-Request Deduplication with React.cache()
  */
 export const getAllPromosi = cache(async (): Promise<Promosi[]> => {
-  return (await apiFetch<Promosi[]>('/promosi-active', 'bw', REVALIDATE_LIST, ['promosi', 'all-promosi'])) ?? []
+  return (await apiFetch<Promosi[]>('/promosi-active?per_page=99', 'bw', REVALIDATE_LIST, ['promosi', 'all-promosi'])) ?? []
 })
 
 export async function getPromosiBySlug(slug: string): Promise<Promosi | null> {

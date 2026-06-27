@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { NavMenuItem, LayananSpesialis } from '@/types/wordpress';
+import { getRelativeUrl } from '@/lib/utils';
 
 interface SubMenuItem {
     title: string;
@@ -45,10 +46,10 @@ export default function MenuBlock({
         if (dynamicItems && dynamicItems.length > 0) {
             const transformed = dynamicItems.map((item: NavMenuItem) => ({
                 title: item.name || item.label || "",
-                href: item.path || "/",
+                href: getRelativeUrl(item.path),
                 subMenu: item.children?.map((child: any) => ({
                     title: child.title || "",
-                    href: child.path || "/"
+                    href: getRelativeUrl(child.path)
                 }))
             }));
             setMenuItems(transformed);

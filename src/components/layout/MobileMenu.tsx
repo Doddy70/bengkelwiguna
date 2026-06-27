@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import { NavMenuItem, LayananSpesialis, Service } from '@/types/wordpress';
+import { getRelativeUrl } from '@/lib/utils';
 
 interface MobileMenuProps {
     mobileOpen: boolean;
@@ -54,10 +55,10 @@ export default function MobileMenu({
         if (dynamicItems && dynamicItems.length > 0) {
             const transformed = dynamicItems.map((item: NavMenuItem) => ({
                 title: item.name || item.label || "",
-                href: item.path || "/",
+                href: getRelativeUrl(item.path),
                 subMenu: item.children?.map((child: any) => ({
                     title: child.title || "",
-                    href: child.path || "/"
+                    href: getRelativeUrl(child.path)
                 }))
             }));
             setMenuItems(transformed);

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import type { Promosi } from "@/types/wordpress";
@@ -23,10 +23,32 @@ interface PromosiArchiveProps {
 export default function PromosiArchiveClient({ promos, showPromoBulanan = true }: PromosiArchiveProps) {
   const promosList = promos || [];
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 6;
-  const totalPages = Math.ceil(promosList.length / ITEMS_PER_PAGE);
-  const currentPromos = promosList.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE);
+  const customOrder = [
+    "paket oli mesin komplit",
+    "paket ijig",
+    "paket ajag",
+    "reset ac mobil",
+    "promo kyoto",
+    "promo detoks mesin",
+    "paket siaga 1",
+    "paket siaga 2",
+    "paket siaga 3"
+  ];
+
+  const sortedPromosList = [...promosList].sort((a, b) => {
+    const titleA = getTitle(a.title).toLowerCase().trim();
+    const titleB = getTitle(b.title).toLowerCase().trim();
+    
+    let indexA = customOrder.findIndex(item => titleA.includes(item));
+    let indexB = customOrder.findIndex(item => titleB.includes(item));
+
+    if (indexA === -1) indexA = 999;
+    if (indexB === -1) indexB = 999;
+
+    return indexA - indexB;
+  });
+
+  const currentPromos = sortedPromosList;
 
   return (
     <div className="bg-white">
@@ -138,51 +160,7 @@ export default function PromosiArchiveClient({ promos, showPromoBulanan = true }
           })}
         </div>
 
-        {/* Pagination Controls */}
-        {totalPages > 1 && (
-          <div className="mt-12 flex justify-center items-center gap-2">
-            <button
-              onClick={() => {
-                setCurrentPage(p => Math.max(1, p - 1));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              disabled={currentPage === 1}
-              className="px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
-            >
-              Sebelumnya
-            </button>
-            
-            <div className="items-center gap-1 mx-2 sm:mx-4 hidden sm:flex">
-              {Array.from({ length: totalPages }).map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => {
-                    setCurrentPage(i + 1);
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className={`w-10 h-10 rounded-xl flex items-center justify-center text-sm font-bold transition-colors ${
-                    currentPage === i + 1 
-                      ? "bg-[#224297] text-white" 
-                      : "text-gray-600 hover:bg-gray-100"
-                  }`}
-                >
-                  {i + 1}
-                </button>
-              ))}
-            </div>
 
-            <button
-              onClick={() => {
-                setCurrentPage(p => Math.min(totalPages, p + 1));
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              disabled={currentPage === totalPages}
-              className="px-4 py-2 rounded-xl text-sm font-medium border border-gray-200 text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 transition-colors"
-            >
-              Selanjutnya
-            </button>
-          </div>
-        )}
 
         {/* Mobile Only - Browse All Link */}
         <div className="mt-8 sm:hidden">
@@ -224,30 +202,32 @@ export default function PromosiArchiveClient({ promos, showPromoBulanan = true }
             </div>
           </div>
 
-          {/* Services CTA */}
-          <Link
-            href="/services"
-            className="relative overflow-hidden rounded-2xl bg-[#224297] p-8 hover:bg-[#1a3580] transition-colors"
+          {/* Urgency CTA */}
+          <a
+            href="https://wa.me/6287817773888?text=Halo%20Bengkel%20Wiguna,%20saya%20ingin%20mengamankan%20kuota%20promo%20sekarang"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative overflow-hidden rounded-2xl bg-[#224297] p-8 hover:bg-[#1a3580] transition-colors group"
           >
             <div className="relative z-10">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/20">
-                  <Icon icon="solar:car-linear" className="w-6 h-6 text-white" />
+                <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-white/20 group-hover:scale-110 transition-transform">
+                  <Icon icon="solar:stopwatch-linear" className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-sm font-medium text-white/80">Layanan Lengkap</span>
+                <span className="text-sm font-medium text-white/80">Penawaran Terbatas</span>
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">
-                Lihat Semua Layanan
+                Amankan Promo Anda!
               </h3>
               <p className="text-white/80 text-sm mb-6">
-                Temukan layanan terbaik untuk kendaraan Anda
+                Jangan sampai kehabisan. Amankan kuota promo ini sebelum masa berlaku habis!
               </p>
-              <span className="inline-flex items-center gap-2 rounded-full bg-white/20 px-5 py-2.5 text-sm font-bold text-white">
-                Eksplorasi
-                <Icon icon="solar:arrow-right-linear" className="w-4 h-4" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#ffd900] px-6 py-3 text-sm font-bold text-[#1a356d] hover:bg-white transition-colors">
+                <Icon icon="fa6-brands:whatsapp" className="w-4 h-4" />
+                Amankan Sekarang
               </span>
             </div>
-          </Link>
+          </a>
         </div>
       </div>
     </div>
