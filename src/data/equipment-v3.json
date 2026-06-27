@@ -34,9 +34,21 @@
         "beforeImage": "/images/hotspot/before.webp",
         "afterImage": "/images/hotspot/After.webp",
         "description": "Melindungi mekanisme katup dan area atas mesin.",
-        "problems": ["Sludge menumpuk", "Kerak oli mengeras", "Sirkulasi oli terganggu"],
-        "treatments": ["Area atas mesin lebih bersih", "Aliran oli kembali lancar", "Risiko penyumbatan berkurang"],
-        "benefits": ["Kebersihan Maksimal", "Sirkulasi Oli Lancar", "Perlindungan Mesin Optimal"]
+        "problems": [
+          "Sludge menumpuk",
+          "Kerak oli mengeras",
+          "Sirkulasi oli terganggu"
+        ],
+        "treatments": [
+          "Area atas mesin lebih bersih",
+          "Aliran oli kembali lancar",
+          "Risiko penyumbatan berkurang"
+        ],
+        "benefits": [
+          "Kebersihan Maksimal",
+          "Sirkulasi Oli Lancar",
+          "Perlindungan Mesin Optimal"
+        ]
       },
       {
         "id": "2",
@@ -49,9 +61,21 @@
         "beforeImage": "/images/hotspot/before.webp",
         "afterImage": "/images/hotspot/After.webp",
         "description": "Mengatur buka tutup klep dan timing mesin.",
-        "problems": ["Endapan varnish", "Pelumasan camshaft tidak optimal", "Mesin kasar"],
-        "treatments": ["Gerakan mekanisme klep lebih halus", "Pelumasan lebih optimal", "Suara mesin lebih senyap"],
-        "benefits": ["Mesin Lebih Halus", "Pelumasan Maksimal", "Performa Pulih"]
+        "problems": [
+          "Endapan varnish",
+          "Pelumasan camshaft tidak optimal",
+          "Mesin kasar"
+        ],
+        "treatments": [
+          "Gerakan mekanisme klep lebih halus",
+          "Pelumasan lebih optimal",
+          "Suara mesin lebih senyap"
+        ],
+        "benefits": [
+          "Mesin Lebih Halus",
+          "Pelumasan Maksimal",
+          "Performa Pulih"
+        ]
       },
       {
         "id": "3",
@@ -64,9 +88,21 @@
         "beforeImage": "/images/hotspot/before.webp",
         "afterImage": "/images/hotspot/After.webp",
         "description": "Rumah rantai timing atau timing belt dan jalur pelumasan timing.",
-        "problems": ["Kerak oli", "Endapan sludge", "Jalur oli tersumbat sebagian"],
-        "treatments": ["Area timing lebih bersih", "Pelumasan rantai timing optimal", "Umur komponen lebih panjang"],
-        "benefits": ["Timing Lebih Awet", "Mesin Lebih Senyap", "Pelumasan Optimal"]
+        "problems": [
+          "Kerak oli",
+          "Endapan sludge",
+          "Jalur oli tersumbat sebagian"
+        ],
+        "treatments": [
+          "Area timing lebih bersih",
+          "Pelumasan rantai timing optimal",
+          "Umur komponen lebih panjang"
+        ],
+        "benefits": [
+          "Timing Lebih Awet",
+          "Mesin Lebih Senyap",
+          "Pelumasan Optimal"
+        ]
       },
       {
         "id": "4",
@@ -79,11 +115,22 @@
         "beforeImage": "/images/hotspot/before.webp",
         "afterImage": "/images/hotspot/After.webp",
         "description": "Mendistribusikan oli ke seluruh komponen mesin.",
-        "problems": ["Penyumbatan mikro", "Endapan lumpur oli", "Tekanan oli menurun"],
-        "treatments": ["Distribusi oli lebih merata", "Tekanan oli lebih stabil", "Proteksi mesin meningkat"],
-        "benefits": ["Tekanan Oli Stabil", "Proteksi Maksimal", "Sirkulasi Lancar"]
+        "problems": [
+          "Penyumbatan mikro",
+          "Endapan lumpur oli",
+          "Tekanan oli menurun"
+        ],
+        "treatments": [
+          "Distribusi oli lebih merata",
+          "Tekanan oli lebih stabil",
+          "Proteksi mesin meningkat"
+        ],
+        "benefits": [
+          "Tekanan Oli Stabil",
+          "Proteksi Maksimal",
+          "Sirkulasi Lancar"
+        ]
       },
-
       {
         "id": "6",
         "title": "Carter / Oil Pan",
@@ -95,9 +142,21 @@
         "beforeImage": "/images/hotspot/before.webp",
         "afterImage": "/images/hotspot/After.webp",
         "description": "Tempat penampungan oli mesin.",
-        "problems": ["Sludge mengendap", "Kotoran menumpuk", "Oli cepat terkontaminasi"],
-        "treatments": ["Carter lebih bersih", "Oli baru bekerja maksimal", "Risiko penyumbatan berkurang"],
-        "benefits": ["Bebas Sludge", "Oli Lebih Bersih", "Umur Mesin Lebih Panjang"]
+        "problems": [
+          "Sludge mengendap",
+          "Kotoran menumpuk",
+          "Oli cepat terkontaminasi"
+        ],
+        "treatments": [
+          "Carter lebih bersih",
+          "Oli baru bekerja maksimal",
+          "Risiko penyumbatan berkurang"
+        ],
+        "benefits": [
+          "Bebas Sludge",
+          "Oli Lebih Bersih",
+          "Umur Mesin Lebih Panjang"
+        ]
       }
     ]
   },
@@ -317,102 +376,378 @@
         "id": "1",
         "title": "Kompresor AC",
         "subtitle": "(Compressor)",
-        "top": "28.0%",
-        "left": "50.0%",
-        "labelPosition": "right",
-        "mainImage": "/images/equipment/Info-3.webp",
+        "top": "45.0%",
+        "left": "25.0%",
+        "labelPosition": "bottom",
+        "mainImage": "/images/equipment/kompressor_ac.png",
         "beforeImage": "/images/hotspot/Stinger-Before.webp",
         "afterImage": "/images/hotspot/Stinger-After.webp",
-        "description": "Pembersihan total ruang piston kompresor dan penggantian oli kompresor secara vakum digital.",
-        "problems": ["AC kurang dingin siang hari", "Bunyi ngorok dari kompresor", "Beban mesin berat saat AC ON"],
-        "treatments": ["Flushing oli kompresor", "Ganti oli kompresor baru", "Vakum digital sistem"],
-        "benefits": ["Kompresor awet tahan lama", "Suara kompresor halus", "Beban mesin ringan"]
+        "description": "Jantung sistem AC yang memompa freon ke seluruh sistem.",
+        "problems": [
+          "Kompresor berat",
+          "Suara berisik",
+          "AC kurang dingin"
+        ],
+        "treatments": [
+          "Kompresor lebih ringan",
+          "Sirkulasi freon optimal",
+          "Umur kompresor lebih panjang"
+        ],
+        "benefits": [
+          "Dingin maksimal",
+          "Kompresor Awet",
+          "Beban Mesin Ringan"
+        ]
       },
       {
         "id": "2",
         "title": "Jalur Freon",
         "subtitle": "(Refrigerant Lines)",
-        "top": "15.0%",
-        "left": "38.0%",
-        "labelPosition": "left",
-        "mainImage": "/images/equipment/Info-3.webp",
+        "top": "35.0%",
+        "left": "27.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/Jalur Freon.png",
         "beforeImage": "/images/hotspot/Stinger-Before.webp",
         "afterImage": "/images/hotspot/Stinger-After.webp",
-        "description": "Pembersihan sisa kotoran besi dan oli lama yang mengendap di sepanjang selang freon.",
-        "problems": ["Aliran freon tersumbat", "Suhu AC tidak stabil", "Tekanan AC terlalu tinggi"],
-        "treatments": ["Flushing sirkulasi AC", "Vakum udara & lembab", "Isi freon murni standard"],
-        "benefits": ["Suhu AC stabil konsisten", "Sirkulasi freon lancar", "Konsumsi BBM irit"]
+        "description": "Pipa dan selang penyalur freon ke seluruh komponen AC.",
+        "problems": [
+          "Sirkulasi terganggu",
+          "Ada oli lama",
+          "Kotoran & residu"
+        ],
+        "treatments": [
+          "Sirkulasi freon lancar",
+          "Bersih dari oli & kotoran",
+          "Pendinginan lebih cepat"
+        ],
+        "benefits": [
+          "Sirkulasi Lancar",
+          "Pendinginan Cepat",
+          "Sistem Lebih Bersih"
+        ]
       },
       {
         "id": "3",
         "title": "Kondensor AC",
         "subtitle": "(Condenser)",
-        "top": "12.0%",
-        "left": "22.0%",
-        "labelPosition": "top",
-        "mainImage": "/images/equipment/Info-5.webp",
+        "top": "55.0%",
+        "left": "6.0%",
+        "labelPosition": "left",
+        "mainImage": "/images/equipment/Kondensor.png",
         "beforeImage": "/images/hotspot/Stinger-Before.webp",
         "afterImage": "/images/hotspot/Stinger-After.webp",
-        "description": "Membersihkan kisi-kisi kondensor agar pembuangan panas freon berlangsung optimal.",
-        "problems": ["Kondensor kotor berdebu", "AC dingin hanya saat jalan", "Mesin rawan overheat"],
-        "treatments": ["Bersihkan kisi kondensor", "Cek kebocoran sirip", "Flushing internal"],
-        "benefits": ["AC tetap dingin saat macet", "Pembuangan panas optimal", "Beban radiator ringan"]
+        "description": "Membuang panas freon ke udara luar.",
+        "problems": [
+          "Sirip kotor/tersumbat",
+          "Panas tidak terbuang",
+          "AC kurang dingin"
+        ],
+        "treatments": [
+          "Kondensor bersih",
+          "Pembuangan panas optimal",
+          "Dingin stabil saat macet"
+        ],
+        "benefits": [
+          "Suhu Stabil",
+          "Dingin Konsisten",
+          "Efisiensi Maksimal"
+        ]
+      },
+      {
+        "id": "4",
+        "title": "Blower AC",
+        "subtitle": "(Blower Motor)",
+        "top": "38.0%",
+        "left": "33.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/Blower AC.png",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Meniupkan udara dingin ke dalam kabin.",
+        "problems": [
+          "Angin lemah",
+          "Debu berterbangan",
+          "Bunyi berisik"
+        ],
+        "treatments": [
+          "Blower bersih",
+          "Hembusan lebih kuat",
+          "Sirkulasi udara lancar"
+        ],
+        "benefits": [
+          "Angin Kencang",
+          "Lebih Senyap",
+          "Kabin Nyaman"
+        ]
+      },
+      {
+        "id": "5",
+        "title": "Refrigerant & Vacuum",
+        "subtitle": "(Refrigerant System)",
+        "top": "46.0%",
+        "left": "21.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/refrigant.png",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Menjaga tekanan sistem sesuai standar & bebas kebocoran.",
+        "problems": [
+          "Freon kurang",
+          "Ada udara dalam sistem",
+          "Risiko kebocoran"
+        ],
+        "treatments": [
+          "Vacuum sempurna",
+          "Freon terisi sesuai standar",
+          "Sistem rapat & optimal"
+        ],
+        "benefits": [
+          "Tekanan Presisi",
+          "Pendinginan Optimal",
+          "Bebas Kebocoran"
+        ]
+      },
+      {
+        "id": "6",
+        "title": "Motor Fan",
+        "subtitle": "(Radiator/Condenser)",
+        "top": "48.0%",
+        "left": "17.0%",
+        "labelPosition": "bottom",
+        "mainImage": "/images/equipment/Motor Fan.png",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Menyalurkan udara agar pendinginan maksimal saat mobil diam/macet.",
+        "problems": [
+          "Putaran lemah",
+          "Hanya satu speed",
+          "AC panas saat macet"
+        ],
+        "treatments": [
+          "Fan bekerja optimal",
+          "Low & high speed normal",
+          "Pendinginan maksimal"
+        ],
+        "benefits": [
+          "Tetap Dingin Saat Macet",
+          "Suhu Stabil",
+          "AC Lebih Optimal"
+        ]
       }
     ]
   },
   {
     "id": 4,
-    "name": "Coolant Changer",
-    "slug": "coolant-changer",
-    "description": "Kuras total air radiator lama menggunakan mesin kuras radiator khusus untuk mencegah karat dan sumbatan.",
+    "name": "Reset Radiator",
+    "slug": "reset-radiator",
+    "description": "Pembersihan menyeluruh seluruh sistem pendingin menggunakan mesin Prestone Coolant Changer dengan teknologi vacuum & penggantian coolant baru 100% tanpa menyisakan kotoran dan udara palsu.",
     "image": "/images/coolant_bghtspt.webp",
     "impactScores": [
       {
+        "icon": "Snowflake",
+        "title": "Suhu Mesin Stabil",
+        "description": "Sistem pendingin bekerja secara optimal"
+      },
+      {
         "icon": "Settings",
-        "title": "TEMPERATUR STABIL",
-        "description": "Mesin bebas overheat saat perjalanan jauh"
+        "title": "Sirkulasi Coolant Lancar",
+        "description": "Distribusi coolant optimal di seluruh mesin"
       },
       {
         "icon": "Shield",
-        "title": "BEBAS KARAT",
-        "description": "Jalur radiator bersih dari korosi & lumpur"
-      },
-      {
-        "icon": "Leaf",
-        "title": "SISTEM AWET",
-        "description": "Water pump & selang tahan lama"
+        "title": "Proteksi Sistem Maksimal",
+        "description": "Mesin dan komponen pendingin lebih awet"
       }
     ],
     "hotspots": [
       {
         "id": "1",
-        "title": "Radiator & Sirip",
-        "subtitle": "(Radiator Core)",
-        "top": "20.0%",
-        "left": "25.0%",
+        "title": "RADIATOR",
+        "subtitle": "",
+        "top": "50.0%",
+        "left": "20.0%",
         "labelPosition": "top",
-        "mainImage": "/images/equipment/Info-1.webp",
+        "mainImage": "/images/equipment/RAdiator.webp",
         "beforeImage": "/images/hotspot/Stinger-Before.webp",
         "afterImage": "/images/hotspot/Stinger-After.webp",
-        "description": "Kuras habis air radiator lama yang mengandung karat dan kerak lumpur menggunakan alat khusus.",
-        "problems": ["Air radiator keruh coklat", "Temperatur mesin naik", "Radiator tersumbat"],
-        "treatments": ["Flushing radiator total", "Pembersihan karat internal", "Isi coolant berkualitas"],
-        "benefits": ["Temperatur mesin dingin", "Sirkulasi air lancar", "Bebas dari sumbatan"]
+        "description": "Komponen utama yang membuang panas coolant sebelum kembali ke mesin.",
+        "problems": [
+          "Radiator tersumbat",
+          "Pendinginan kurang maksimal",
+          "Coolant kotor & berkarat"
+        ],
+        "treatments": [
+          "Pembuangan panas optimal",
+          "Radiator lebih bersih",
+          "Coolant mengalir lancar"
+        ],
+        "benefits": [
+          "Suhu mesin stabil",
+          "Risiko overheat berkurang",
+          "Sistem lebih awet"
+        ]
       },
       {
         "id": "2",
-        "title": "Water Pump",
-        "subtitle": "(Pompa Air)",
-        "top": "35.0%",
-        "left": "35.0%",
-        "labelPosition": "right",
-        "mainImage": "/images/equipment/Info-1.webp",
+        "title": "MOTOR FAN",
+        "subtitle": "",
+        "top": "50.0%",
+        "left": "24.0%",
+        "labelPosition": "bottom",
+        "mainImage": "/images/equipment/Motor_Fan.webp",
         "beforeImage": "/images/hotspot/Stinger-Before.webp",
         "afterImage": "/images/hotspot/Stinger-After.webp",
-        "description": "Memastikan kipas pompa air radiator bebas dari korosi agar dapat memompa air secara maksimal.",
-        "problems": ["Kipas pompa karat/kikis", "Air radiator tidak mutar", "Suara berdecit di mesin"],
-        "treatments": ["Cek fungsi pompa air", "Flushing sirkulasi mesin", "Ganti pompa jika keropos"],
-        "benefits": ["Sirkulasi air kuat", "Mencegah overheating tiba-tiba", "Putaran mesin senyap"]
+        "description": "Mengalirkan udara ke radiator dan kondensor saat mobil berhenti atau macet.",
+        "problems": [
+          "AC panas saat macet",
+          "Mesin cepat panas",
+          "Putaran fan melemah"
+        ],
+        "treatments": [
+          "Fan bekerja optimal",
+          "Pendinginan lebih efektif",
+          "Beban sistem berkurang"
+        ],
+        "benefits": [
+          "AC tetap dingin",
+          "Suhu mesin stabil",
+          "Performa optimal"
+        ]
+      },
+      {
+        "id": "3",
+        "title": "WATER PUMP",
+        "subtitle": "",
+        "top": "55.0%",
+        "left": "28.0%",
+        "labelPosition": "bottom",
+        "mainImage": "/images/equipment/Water_Pump.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Memompa coolant ke seluruh sistem pendingin mesin.",
+        "problems": [
+          "Aliran coolant lemah",
+          "Kebocoran",
+          "Suara berisik"
+        ],
+        "treatments": [
+          "Sirkulasi lebih lancar",
+          "Distribusi coolant optimal",
+          "Bebas kebocoran"
+        ],
+        "benefits": [
+          "Suhu mesin stabil",
+          "Risiko overheat turun",
+          "Komponen lebih awet"
+        ]
+      },
+      {
+        "id": "4",
+        "title": "ENGINE BLOCK (WATER JACKET)",
+        "subtitle": "",
+        "top": "50.0%",
+        "left": "33.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/Engine_blok.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Jalur pendinginan di dalam blok mesin yang menyerap panas dari ruang bakar.",
+        "problems": [
+          "Endapan karat & lumpur",
+          "Jalur pendingin menyempit",
+          "Panas terjebak di mesin"
+        ],
+        "treatments": [
+          "Jalur lebih bersih",
+          "Transfer panas optimal",
+          "Pendinginan merata"
+        ],
+        "benefits": [
+          "Mesin lebih dingin",
+          "Performa mesin terjaga",
+          "Usia mesin lebih panjang"
+        ]
+      },
+      {
+        "id": "5",
+        "title": "HEATER SYSTEM (HEATER CORE)",
+        "subtitle": "",
+        "top": "50.0%",
+        "left": "12.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/Heater.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Jalur kecil yang sering menjadi tempat endapan dan karat.",
+        "problems": [
+          "Endapan di heater core",
+          "Jalur heater tersumbat",
+          "Sirkulasi tidak sempurna"
+        ],
+        "treatments": [
+          "Jalur heater lebih bersih",
+          "Sirkulasi kembali normal",
+          "Tidak ada sumbatan"
+        ],
+        "benefits": [
+          "Heater lebih optimal",
+          "Sistem lebih sehat",
+          "Risiko kerusakan turun"
+        ]
+      },
+      {
+        "id": "6",
+        "title": "THERMOSTAT",
+        "subtitle": "",
+        "top": "45.0%",
+        "left": "30.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/Thermostat.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Mengatur suhu kerja mesin agar tetap pada temperatur ideal.",
+        "problems": [
+          "Mesin terlalu panas",
+          "Mesin terlalu dingin",
+          "Respon thermostat lambat"
+        ],
+        "treatments": [
+          "Respon lebih baik",
+          "Suhu kerja ideal",
+          "Efisiensi mesin meningkat"
+        ],
+        "benefits": [
+          "Suhu stabil",
+          "BBM lebih efisien",
+          "Mesin lebih awet"
+        ]
+      },
+      {
+        "id": "7",
+        "title": "COOLANT RESERVOIR",
+        "subtitle": "",
+        "top": "40.0%",
+        "left": "22.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/tanki.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Menampung cadangan dan ekspansi coolant dalam sistem.",
+        "problems": [
+          "Coolant kotor & keruh",
+          "Ada udara terjebak",
+          "Tutup reservoir rusak"
+        ],
+        "treatments": [
+          "Coolant baru 100%",
+          "Vacuum refill sempurna",
+          "Bebas udara palsu"
+        ],
+        "benefits": [
+          "Sistem terisi sempurna",
+          "Pendinginan maksimal",
+          "Proteksi korosi optimal"
+        ]
       }
     ]
   },
@@ -442,33 +777,165 @@
     "hotspots": [
       {
         "id": "1",
-        "title": "Busi & Ignition",
-        "subtitle": "(Spark Plugs)",
-        "top": "35.0%",
-        "left": "32.0%",
-        "labelPosition": "left",
-        "mainImage": "/images/equipment/Info-2.webp",
+        "title": "SPOORING (WHEEL ALIGNMENT)",
+        "subtitle": "(Penyelarasan Sudut Roda)",
+        "top": "72.0%",
+        "left": "83.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/default_berkala.webp",
         "beforeImage": "/images/hotspot/Stinger-Before.webp",
         "afterImage": "/images/hotspot/Stinger-After.webp",
-        "description": "Pembersihan kerak karbon pada busi dan kalibrasi celah busi untuk pengapian maksimal.",
-        "problems": ["Mesin pincang/misfire", "Tarikan mobil brebet", "Konsumsi bensin boros"],
-        "treatments": ["Bersihkan elektroda busi", "Cek tegangan koil pengapian", "Kalibrasi gap busi"],
-        "benefits": ["Mesin stabil tanpa pincang", "Pembakaran sempurna", "Akselerasi enteng"]
+        "description": "Meluruskan kembali kedudukan roda sesuai standar pabrik untuk menjamin kestabilan dan kemudi yang presisi.",
+        "problems": [
+          "Stir lari ke satu sisi",
+          "Ban makan sebelah/botak",
+          "Handling terasa melayang"
+        ],
+        "treatments": [
+          "Kalibrasi sudut camber, caster, toe",
+          "Penyelarasan dengan komputer 3D",
+          "Pengecekan komponen kaki-kaki"
+        ],
+        "benefits": [
+          "Stir stabil & lurus",
+          "Ban lebih awet & rata",
+          "Berkendara lebih aman"
+        ]
       },
       {
         "id": "2",
-        "title": "Throttle Body",
-        "subtitle": "(Air Intake)",
-        "top": "28.0%",
-        "left": "45.0%",
-        "labelPosition": "right",
-        "mainImage": "/images/equipment/Info-2.webp",
+        "title": "BALANCING",
+        "subtitle": "(Keseimbangan Putaran Roda)",
+        "top": "75.0%",
+        "left": "20.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/default_berkala.webp",
         "beforeImage": "/images/hotspot/Stinger-Before.webp",
         "afterImage": "/images/hotspot/Stinger-After.webp",
-        "description": "Pembersihan katup throttle body dari jelaga hitam sisa udara kotor agar pasokan udara lancar.",
-        "problems": ["Putaran RPM naik turun", "Setelan gas berat", "Mesin mati saat lepas gas"],
-        "treatments": ["Carbon clean throttle", "Ganti filter udara jika kotor", "Reset parameter sensor idle"],
-        "benefits": ["RPM stabil & senyap", "Gas terasa enteng", "Mesin anti mati mendadak"]
+        "description": "Menyeimbangkan putaran velg dan ban agar roda berputar sempurna tanpa getaran pada kecepatan tinggi.",
+        "problems": [
+          "Stir bergetar di kecepatan tinggi",
+          "Getaran terasa hingga ke bodi mobil",
+          "Keausan ban tidak merata"
+        ],
+        "treatments": [
+          "Pengecekan keolengan velg",
+          "Penempelan timah balancing",
+          "Rotasi ban (opsional)"
+        ],
+        "benefits": [
+          "Bebas getaran saat ngebut",
+          "Kenyamanan berkendara meningkat",
+          "Suspensi lebih awet"
+        ]
+      },
+      {
+        "id": "3",
+        "title": "SERVICE REM",
+        "subtitle": "(Brake System Cleaning)",
+        "top": "70.0%",
+        "left": "25.0%",
+        "labelPosition": "right",
+        "mainImage": "/images/equipment/default_berkala.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Membersihkan debu, kotoran, dan karat pada sistem pengereman serta melumasi pin kaliper agar rem bekerja pakem.",
+        "problems": [
+          "Rem berbunyi berdecit",
+          "Pijakan rem terasa dalam",
+          "Rem kurang pakem/blong"
+        ],
+        "treatments": [
+          "Pembersihan kampas rem",
+          "Pemberian grease khusus rem",
+          "Pengecekan level minyak rem"
+        ],
+        "benefits": [
+          "Pengereman lebih pakem",
+          "Bebas bunyi decit",
+          "Keamanan ekstra di jalan"
+        ]
+      },
+      {
+        "id": "4",
+        "title": "TUNE UP CARBON CLEAN",
+        "subtitle": "(Pembersihan Ruang Bakar)",
+        "top": "45.0%",
+        "left": "22.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/default_berkala.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Membersihkan tumpukan kerak karbon di dalam ruang bakar mesin menggunakan cairan chemical khusus untuk mengembalikan performa.",
+        "problems": [
+          "Mesin ngelitik (knocking)",
+          "Tarikan mobil berat",
+          "BBM menjadi lebih boros"
+        ],
+        "treatments": [
+          "Gurah mesin (Carbon Clean)",
+          "Pembersihan throttle body & busi",
+          "Pengecekan filter udara"
+        ],
+        "benefits": [
+          "Tarikan enteng dan responsif",
+          "BBM lebih irit",
+          "Suara mesin lebih halus"
+        ]
+      },
+      {
+        "id": "5",
+        "title": "AC CLEANER",
+        "subtitle": "(Perawatan Ringan AC)",
+        "top": "40.0%",
+        "left": "45.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/default_berkala.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Membersihkan evaporator dan filter AC dari bakteri, jamur, serta debu untuk sirkulasi udara kabin yang segar.",
+        "problems": [
+          "AC bau apek dan tidak sedap",
+          "Hembusan angin AC pelan",
+          "Kabin mobil kurang dingin"
+        ],
+        "treatments": [
+          "Semprot cairan AC Cleaner",
+          "Pembersihan motor blower",
+          "Penggantian filter kabin (opsional)"
+        ],
+        "benefits": [
+          "Udara kabin segar & sehat",
+          "Hembusan AC lebih kencang",
+          "Kabin cepat dingin kembali"
+        ]
+      },
+      {
+        "id": "6",
+        "title": "RESET ENGINE (SCANNER)",
+        "subtitle": "(Diagnosa Komputer ECU)",
+        "top": "45.0%",
+        "left": "30.0%",
+        "labelPosition": "top",
+        "mainImage": "/images/equipment/default_berkala.webp",
+        "beforeImage": "/images/hotspot/Stinger-Before.webp",
+        "afterImage": "/images/hotspot/Stinger-After.webp",
+        "description": "Melakukan pemindaian (scanning) komputer pada ECU mobil untuk mereset memori error dan membaca kode kerusakan.",
+        "problems": [
+          "Lampu indikator Check Engine menyala",
+          "Mesin tiba-tiba brebet/mati",
+          "Fungsi sensor elektronik tidak stabil"
+        ],
+        "treatments": [
+          "Scanning total dengan OBD2",
+          "Reset DTC (Diagnostic Trouble Code)",
+          "Kalibrasi ulang sistem elektronik"
+        ],
+        "benefits": [
+          "Sistem kelistrikan kembali normal",
+          "Mencegah resiko mogok mendadak",
+          "Performa terkalibrasi optimal"
+        ]
       }
     ]
   }

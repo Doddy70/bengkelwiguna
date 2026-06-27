@@ -99,9 +99,9 @@ export function InfoPanel({
           title: "Kyoto AC Flushing + Ganti Oli Kompresor",
           description: "Mengganti oli kompresor 100% steril dan vakum untuk memaksimalkan pendinginan kabin."
         };
-      case 'coolant-changer':
+      case 'reset-radiator':
         return {
-          title: "Radiator Coolant Changer & System Flush",
+          title: "Reset Radiator & System Flush",
           description: "Menguras sisa air radiator lama berkarat secara vakum agar sirkulasi air baru maksimal."
         };
       case 'perawatan-berkala':

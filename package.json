@@ -43,7 +43,6 @@
     "react-google-reviews": "^1.9.0",
     "sass": "^1.91.0",
     "shadcn": "^4.11.0",
-    "sharp": "^0.35.1",
     "swiper": "^12.2.0",
     "tailwind-merge": "^3.6.0",
     "three": "^0.184.0",
@@ -64,6 +63,7 @@
     "eslint-config-next": "^15.5.4",
     "playwright": "^1.61.0",
     "postcss": "^8.5.15",
+    "sharp": "^0.35.2",
     "tailwindcss": "^4",
     "terser": "^5.48.0",
     "typescript": "^5"

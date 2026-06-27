@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { ServiceSidebar } from "./hotspot/ServiceSidebar";
 import { ServiceTabs } from "./hotspot/ServiceTabs";
 import { VehicleCanvas, VehicleCanvasRef } from "./hotspot/VehicleCanvas";
 import { InfoPanel } from "./hotspot/InfoPanel";
-import { Snowflake, Shield, Leaf } from "lucide-react";
+import { Snowflake, Shield, Leaf, X } from "lucide-react";
 import equipmentDataV3 from "@/data/equipment-v3.json";
 
 export default function ModernEquipmentV3() {
@@ -14,7 +15,13 @@ export default function ModernEquipmentV3() {
   const activeItem = equipmentDataV3[activeItemIndex];
 
   const [activeHotspot, setActiveHotspot] = useState<any | null>(null);
+  const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
   const [sheetState, setSheetState] = useState<'closed' | 'peek' | 'open'>('closed');
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const containerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<VehicleCanvasRef>(null);
@@ -274,7 +281,7 @@ export default function ModernEquipmentV3() {
           <div ref={panelRef} className="col-span-4 min-h-[400px]">
             <AnimatePresence mode="wait">
               {/* Default State */}
-              {!activeHotspot && (activeItem.slug === 'semi-overhaul' || activeItem.slug === 'kyoto-shaking-machine') && (
+              {!activeHotspot && (activeItem.slug === 'semi-overhaul' || activeItem.slug === 'kyoto-shaking-machine' || activeItem.slug === 'reset-ac' || activeItem.slug === 'reset-radiator' || activeItem.slug === 'perawatan-berkala') && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -283,17 +290,23 @@ export default function ModernEquipmentV3() {
                 >
                   <div className="text-center mb-3">
                     <h3 className="text-sm font-bold text-slate-900 dark:text-white mt-1">
-                      {activeItem.slug === 'kyoto-shaking-machine' ? "Kyoto Shaking Machine" : "Semi Overhaul Process"}
+                      {activeItem.slug === 'kyoto-shaking-machine' ? "Kyoto Shaking Machine" : activeItem.slug === 'reset-ac' ? "Kyoto AC Flushing" : activeItem.slug === 'reset-radiator' ? "Reset Radiator" : activeItem.slug === 'perawatan-berkala' ? "Perawatan Berkala" : "Semi Overhaul Process"}
                     </h3>
                   </div>
-                  <div className="w-full aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/10 mb-4">
+                  <div 
+                    className="w-full aspect-video rounded-xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/10 mb-4 cursor-pointer group relative"
+                    onClick={() => setEnlargedImage(activeItem.slug === 'reset-ac' ? "/images/equipment/default_resetAC.webp" : activeItem.slug === 'semi-overhaul' ? "/images/equipment/default_semi_overhaul.webp" : activeItem.slug === 'kyoto-shaking-machine' ? "/images/equipment/default_kyoto_shaking.webp" : activeItem.slug === 'reset-radiator' ? "/images/equipment/default_coolant_changer.webp" : activeItem.slug === 'perawatan-berkala' ? "/images/equipment/default_berkala.webp" : "/gifs/hotspot/semi-overhaul-demo.gif")}
+                  >
                     <img
-                      src="/gifs/hotspot/semi-overhaul-demo.gif"
-                      alt={activeItem.slug === 'kyoto-shaking-machine' ? "Kyoto Shaking Machine Demo" : "Semi Overhaul Demo"}
-                      className="w-full h-full object-cover"
+                      src={activeItem.slug === 'reset-ac' ? "/images/equipment/default_resetAC.webp" : activeItem.slug === 'semi-overhaul' ? "/images/equipment/default_semi_overhaul.webp" : activeItem.slug === 'kyoto-shaking-machine' ? "/images/equipment/default_kyoto_shaking.webp" : activeItem.slug === 'reset-radiator' ? "/images/equipment/default_coolant_changer.webp" : activeItem.slug === 'perawatan-berkala' ? "/images/equipment/default_berkala.webp" : "/gifs/hotspot/semi-overhaul-demo.gif"}
+                      alt={activeItem.slug === 'kyoto-shaking-machine' ? "Kyoto Shaking Machine Demo" : activeItem.slug === 'reset-ac' ? "Kyoto AC Flushing Demo" : activeItem.slug === 'reset-radiator' ? "Reset Radiator Demo" : activeItem.slug === 'perawatan-berkala' ? "Perawatan Berkala Demo" : "Semi Overhaul Demo"}
+                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                       decoding="async"
                     />
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="text-white text-sm font-medium">Click to Enlarge</span>
+                    </div>
                   </div>
                   <div className="text-center">
                     <p className="text-xs text-slate-500 dark:text-gray-400">
@@ -325,6 +338,39 @@ export default function ModernEquipmentV3() {
           </div>
         </div>
       </div>
+
+      {/* Lightbox Overlay */}
+      {isMounted && createPortal(
+        <AnimatePresence>
+          {enlargedImage && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              style={{ zIndex: 99999 }}
+              className="fixed inset-0 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+              onClick={() => setEnlargedImage(null)}
+            >
+              <motion.img
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                src={enlargedImage}
+                className="max-w-full max-h-[90vh] object-contain rounded-xl shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+              />
+              <button 
+                className="absolute top-4 right-4 md:top-8 md:right-8 text-white bg-black/50 hover:bg-black/70 transition-colors p-2 rounded-full"
+                onClick={() => setEnlargedImage(null)}
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 }

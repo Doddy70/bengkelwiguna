@@ -26,7 +26,7 @@ const getServiceIcon = (slug: string) => {
       return <Shuffle size={14} />;
     case 'reset-ac':
       return <Wind size={14} />;
-    case 'coolant-changer':
+    case 'reset-radiator':
       return <Droplets size={14} />;
     case 'perawatan-berkala':
       return <Wrench size={14} />;
