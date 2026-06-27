@@ -102,14 +102,41 @@ export default async function HomePage() {
   let promosiBulananList: Promosi[] = [];
   let promosiRegularList: Promosi[] = [];
 
+  const customOrder = [
+    "paket oli mesin komplit",
+    "paket ijig",
+    "paket ajag",
+    "reset ac mobil",
+    "promo kyoto",
+    "promo detoks mesin",
+    "paket siaga 1",
+    "paket siaga 2",
+    "paket siaga 3"
+  ];
+
+  const sortedAllPromosi = Array.isArray(allPromosi) ? [...allPromosi] : [];
+  sortedAllPromosi.sort((a, b) => {
+    const getTitle = (t: any) => typeof t === "string" ? t : t?.rendered || "";
+    const titleA = getTitle(a.title).toLowerCase().trim();
+    const titleB = getTitle(b.title).toLowerCase().trim();
+    
+    let indexA = customOrder.findIndex(item => titleA.includes(item));
+    let indexB = customOrder.findIndex(item => titleB.includes(item));
+
+    if (indexA === -1) indexA = 999;
+    if (indexB === -1) indexB = 999;
+
+    return indexA - indexB;
+  });
+
   // Always separate lists based on selected promo bulanan slugs to keep regular grid clean
-  promosiBulananList = Array.isArray(allPromosi) ? allPromosi.filter(p => promoBulananSlugs.includes(p.slug)) : [];
-  promosiRegularList = Array.isArray(allPromosi) ? allPromosi.filter(p => !promoBulananSlugs.includes(p.slug)) : [];
+  promosiBulananList = sortedAllPromosi.filter(p => promoBulananSlugs.includes(p.slug));
+  promosiRegularList = sortedAllPromosi.filter(p => !promoBulananSlugs.includes(p.slug));
   
   // Apply fallback only if showPromoBulanan is enabled and no specific items are checked
-  if (showPromoBulanan && promosiBulananList.length === 0 && Array.isArray(allPromosi) && allPromosi.length > 0) {
-    promosiBulananList = allPromosi.slice(0, 6);
-    promosiRegularList = allPromosi.slice(6);
+  if (showPromoBulanan && promosiBulananList.length === 0 && sortedAllPromosi.length > 0) {
+    promosiBulananList = sortedAllPromosi.slice(0, 6);
+    promosiRegularList = sortedAllPromosi.slice(6);
   }
 
   const postsList = blogResult?.posts || []
