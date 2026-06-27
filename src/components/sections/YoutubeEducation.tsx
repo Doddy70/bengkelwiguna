@@ -53,15 +53,25 @@ export default function YoutubeEducation() {
   const [SplideComponent, setSplideComponent] = useState<React.ComponentType<any> | null>(null);
   const [SplideSlideComponent, setSplideSlideComponent] = useState<React.ComponentType<any> | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [videos, setVideos] = useState(videoPlaylist);
   const sectionRef = useRef<HTMLElement>(null);
   const splideRef = useRef<any>(null);
 
   useEffect(() => {
     const loadLibraries = async () => {
       try {
-        const [splideModule, glightboxModule] = await Promise.all([
+        const fetchVideosPromise = fetch('/api/youtube', { cache: 'no-store' })
+          .then(res => res.ok ? res.json() : null)
+          .then(data => data?.videos && data.videos.length > 0 ? data.videos : videoPlaylist)
+          .catch(e => {
+            console.error('Fallback to local videos', e);
+            return videoPlaylist;
+          });
+
+        const [splideModule, glightboxModule, fetchedVideos] = await Promise.all([
           import("@splidejs/react-splide"),
-          import("glightbox")
+          import("glightbox"),
+          fetchVideosPromise
         ]);
 
         await import("@splidejs/splide/dist/css/splide.min.css");
@@ -70,6 +80,7 @@ export default function YoutubeEducation() {
         const { Splide, SplideSlide } = splideModule;
         const { default: GLightbox } = glightboxModule;
 
+        setVideos(fetchedVideos);
         setSplideComponent(() => Splide);
         setSplideSlideComponent(() => SplideSlide);
         setIsLoaded(true);
@@ -143,7 +154,7 @@ export default function YoutubeEducation() {
         {/* Header Section */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 lg:mb-16 gap-6 border-b border-gray-300 dark:border-gray-800 pb-8">
             <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[5.5rem] font-bold text-gray-900 dark:text-white tracking-tight leading-none uppercase">
-                Youtube Playlist
+                TIPS RAWAT MOBIL
             </h2>
             <a href="https://www.youtube.com/@bengkelwiguna" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-sm font-bold tracking-widest uppercase hover:text-brand-blue dark:hover:text-[#ffd900] dark:text-gray-300 transition-colors pb-2">
                 Show More <Icon icon="solar:alt-arrow-right-linear" width={18} />
@@ -158,7 +169,7 @@ export default function YoutubeEducation() {
                 className="!pb-0" 
             >
                 {/* All Videos Mapped as WigunaCard Overlay */}
-                {videoPlaylist.map((video) => {
+                {videos.map((video) => {
                     const handleWatch = (e: React.MouseEvent) => {
                         e.preventDefault();
                         const parent = e.currentTarget.closest('.video-glightbox') as HTMLElement;
@@ -194,7 +205,7 @@ export default function YoutubeEducation() {
         {/* Footer Section: Description & Arrows */}
         <div className="mt-12 lg:mt-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
             <p className="text-gray-600 dark:text-gray-400 max-w-md text-lg leading-relaxed">
-                Temukan berbagai sensasi baru, tonton tips perawatan mobil eksklusif, edukasi mesin, dan nikmati videonya secara gratis.
+                Cegah kerusakan fatal sebelum terjadi. Dapatkan ilmu gratis seputar masalah mesin, kaki-kaki, hingga AC mobil langsung dari ahlinya di Bengkel Wiguna.
             </p>
 
             {/* Custom Carousel Navigation */}

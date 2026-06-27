@@ -92,7 +92,7 @@ export function InfoPanel({
       case 'kyoto-shaking-machine':
         return {
           title: "Kyoto Shaking Machine Kaki-kaki Check",
-          description: "Mendeteksi secara akurat sumber bunyi dan kerusakan kaki-kaki mobil dalam 15 menit."
+          description: "Mendeteksi secara akurat sumber bunyi dan kerusakan kaki-kaki mobil dalam 45 menit."
         };
       case 'reset-ac':
         return {
@@ -258,6 +258,24 @@ export function InfoPanel({
                       className="max-h-[120px] w-auto object-contain"
                       loading="lazy"
                     />
+                  </div>
+                )}
+
+                {/* Static Image - Non Semi Overhaul */}
+                {serviceSlug !== 'semi-overhaul' && (
+                  <div className="w-full flex items-center justify-center rounded-xl overflow-hidden border border-slate-200/50 dark:border-white/10 py-3 bg-transparent">
+                    {mainImage ? (
+                      <img
+                        src={mainImage}
+                        alt={hotspot.title}
+                        className="max-h-[120px] w-auto object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="w-full h-[120px] flex flex-col items-center justify-center bg-slate-50 dark:bg-slate-800/50 text-slate-400">
+                        <span className="text-xs">Visualisasi tidak tersedia</span>
+                      </div>
+                    )}
                   </div>
                 )}
 

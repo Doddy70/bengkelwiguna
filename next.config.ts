@@ -20,6 +20,16 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'i.ytimg.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'yt3.ggpht.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'backend.bengkelwiguna.com',
         pathname: '/**',
       },
