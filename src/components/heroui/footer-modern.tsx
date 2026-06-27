@@ -18,7 +18,7 @@ const footerNavigation = {
     { name: "Service Berkala", href: "/services" },
     { name: "Tune Up", href: "/services" },
     { name: "Servis AC", href: "/services" },
-    { name: "Kaki-Kaki & Rem", href: "/services" },
+    { name: "Kyoto Shaking Machine", href: "https://kyoto.bengkelwiguna.com" },
   ],
   blog: [
     { name: "Tips Otomotif", href: "/blog" },

@@ -76,13 +76,13 @@ export default function ModernEquipmentV3() {
 
   return (
     <div
-      className="w-full relative overflow-hidden bg-slate-50 dark:bg-[#060b13] text-slate-900 dark:text-white transition-colors duration-300 py-8 lg:py-12"
+      className="w-full relative overflow-hidden bg-white dark:bg-[#060b13] text-slate-900 dark:text-white transition-colors duration-300 py-8 lg:py-12"
       ref={containerRef}
     >
       {/* ===== MOBILE LAYOUT ===== */}
       <div className="lg:hidden flex flex-col min-h-screen">
         {/* Mobile Header with Horizontal Tabs */}
-        <div className="shrink-0 bg-slate-50 dark:bg-[#060b13]">
+        <div className="shrink-0 bg-white dark:bg-[#060b13]">
           {/* Mobile Section Title */}
           <div className="px-4 pt-5 pb-1 text-center">
             <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-500/20 rounded-full text-[8px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 mb-1">
