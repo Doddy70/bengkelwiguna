@@ -755,6 +755,7 @@
     "id": 5,
     "name": "Perawatan Berkala",
     "slug": "perawatan-berkala",
+    "showHotspots": false,
     "description": "Paket perawatan berkala lengkap (Tune Up & Inspeksi) untuk menjaga keandalan kendaraan Anda setiap saat.",
     "image": "/images/sberkala_bghtspt.webp",
     "impactScores": [

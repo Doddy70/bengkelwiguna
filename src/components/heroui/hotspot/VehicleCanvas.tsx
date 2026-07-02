@@ -98,8 +98,8 @@ export const VehicleCanvas = forwardRef<VehicleCanvasRef, VehicleCanvasProps>(({
           </svg>
         )}
 
-        {/* Hotspot Targets */}
-        {activeItem.hotspots?.map((hotspot: any, index: number) => {
+        {/* Hotspot Targets - only render if showHotspots is not explicitly false */}
+        {activeItem.showHotspots !== false && activeItem.hotspots?.map((hotspot: any, index: number) => {
           const isActive = activeHotspot === hotspot;
           const isHovered = hoveredHotspot === hotspot;
 
