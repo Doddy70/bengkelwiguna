@@ -676,6 +676,26 @@ export function formatDate(dateString: string): string {
 }
 
 /**
+ * Decodes HTML entities from WordPress REST API response strings.
+ * WordPress encodes characters like & as &#038; in titles, excerpts, etc.
+ * @param str - String potentially containing HTML entities
+ * @returns Decoded string with plain text characters
+ */
+export function decodeHtml(str: string | undefined | null): string {
+  if (!str) return ''
+  return str
+    .replace(/&#0*38;/g, '&')
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#0*39;/g, "'")
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&#(\d+);/g, (_match, dec) => String.fromCharCode(Number(dec)))
+    .replace(/&#x([0-9a-fA-F]+);/g, (_match, hex) => String.fromCharCode(parseInt(hex, 16)))
+}
+
+/**
  * Decodes the FAQ field from the BW plugin REST API
  * Handles both JSON string (legacy) and direct array (v4 API)
  * @param faqData JSON string or array from API
