@@ -75,13 +75,20 @@ export default function Header({
     // Determine header visibility classes based on hideOnTop and scrolled state
     const visibilityClass = hideOnTop && !scrolled ? 'opacity-0 pointer-events-none -translate-y-4' : 'opacity-100 pointer-events-auto translate-y-0';
 
-    // Dark mode header background
-    const darkModeBg = isDark ? (scrolled ? 'dark-glass-header' : 'dark-bg-header') : '';
+    // Dark mode header background - separate handling for scrolled vs non-scrolled
+    const darkModeBg = isDark
+        ? (scrolled ? 'dark-glass-header' : 'dark-bg-header')
+        : '';
+
+    // Build header classes - ensure no conflict
+    const headerBaseClass = scrolled
+        ? "glass-header bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-200/50"
+        : `${bgColor}`;
 
     return (
         <>
             <header
-                className={`header-wrapper w-full ${position} top-0 left-0 z-[100] transition-all duration-500 ${visibilityClass} ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${scrolled ? "glass-header bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-200/50" : `${bgColor}`} ${darkModeBg}`}
+                className={`header-wrapper w-full ${position} top-0 left-0 z-[100] transition-all duration-500 ${visibilityClass} ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${headerBaseClass} ${darkModeBg}`}
             >
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className={`${headerClass === "bg-color-none" ? "bg-gray-100 rounded-lg px-3" : ""}`}>

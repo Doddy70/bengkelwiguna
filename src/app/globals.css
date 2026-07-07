@@ -522,9 +522,13 @@ body.dark {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.35));
     }
 
-    .dark .glass-header {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.65)) !important;
-        @apply border-white/10;
+    /* Dark glass header for scrolled state - MUST override glass-header */
+    .dark .glass-header,
+    .dark.glass-header,
+    .dark-glass-header {
+        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7)) !important;
+        backdrop-filter: blur(20px) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
     /* Dark mode for non-scrolled header (absolute/transparent) */
@@ -532,13 +536,6 @@ body.dark {
         background: rgba(15, 23, 42, 0.8) !important;
         backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* Dark glass header for scrolled state */
-    .dark-glass-header {
-        background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7)) !important;
-        backdrop-filter: blur(20px);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
     }
 
     /* Dark background header for non-scrolled state */
