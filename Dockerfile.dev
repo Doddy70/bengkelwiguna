@@ -1,0 +1,27 @@
+# ===========================================
+# Bengkel Wiguna — Development Dockerfile
+# ===========================================
+# For hot reload development - NOT for production
+
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install dependencies
+COPY package.json package-lock.json* ./
+RUN npm install --legacy-peer-deps
+
+# Copy source code
+COPY . .
+
+# Set environment variables
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=development
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
+
+# Expose port
+EXPOSE 3000
+
+# Start with hot reload
+CMD ["npm", "run", "dev"]

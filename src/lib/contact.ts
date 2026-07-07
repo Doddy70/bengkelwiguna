@@ -80,6 +80,51 @@ export async function submitFormyChat(
 }
 
 /**
+ * Submit booking form to custom WordPress API endpoint
+ * Bypasses nginx issues with CF7 REST API
+ *
+ * @param formId  Form ID
+ * @param fields Key-value pairs of form fields
+ */
+export async function submitBookingForm(
+  formId: string,
+  fields: Record<string, string>
+): Promise<{ success: boolean; message: string; entry_id?: number }> {
+  const WORDPRESS_URL =
+    process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://backend.bengkelwiguna.com';
+
+  try {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 20000);
+
+    const response = await fetch(`${WORDPRESS_URL}/booking-api.php`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ form_id: formId, fields }),
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({ message: 'Gagal mengirim data' }));
+      return { success: false, message: errorData.message || 'Gagal mengirim data. Silakan coba lagi.' };
+    }
+
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+    if (error instanceof Error && error.name === 'AbortError') {
+      return { success: false, message: 'Koneksi terputus. Waktu pengiriman habis.' };
+    }
+    console.error('[Booking API] Error:', error);
+    return { success: false, message: 'Terjadi kesalahan pada jaringan.' };
+  }
+}
+
+/**
  * Mengirimkan data form ke Contact Form 7 REST API.
  *
  * @param formId ID form dari Contact Form 7 di WordPress

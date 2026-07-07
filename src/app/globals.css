@@ -1,8 +1,61 @@
 /* ✅ Chakra Petch moved to next/font/google in layout.tsx — zero render-blocking */
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @source "../components/**/*.tsx";
 @source "../app/**/*.tsx";
 
+
+/* ============================================
+   PROSE TYPOGRAPHY — Service Content Styles
+   ============================================ */
+@theme {
+  --color-prose-heading: #224297;
+  --color-prose-link: #224297;
+}
+
+/* Service Content Typography */
+.prose {
+  --tw-prose-body: #4b5563;
+  --tw-prose-headings: #111827;
+  --tw-prose-links: #224297;
+  --tw-prose-bold: #111827;
+  --tw-prose-lists: #4b5563;
+}
+
+.prose h2 {
+  color: #224297 !important;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.prose h3 {
+  color: #111827;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose p {
+  margin-bottom: 1rem;
+  line-height: 1.8;
+}
+
+.prose ul, .prose ol {
+  margin-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+  line-height: 1.7;
+}
+
+.prose strong {
+  font-weight: 600;
+  color: #111827;
+}
 
 /* ============================================
    HOTSPOT BEAM — SVG animated gradient line

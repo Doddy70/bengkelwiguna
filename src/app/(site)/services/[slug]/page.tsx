@@ -18,7 +18,8 @@ import { generateServiceSchema, generateBreadcrumbSchema } from '@/lib/seo'
 import ServiceGallery from '@/components/services/ServiceGallery'
 import ServiceTabs from '@/components/services/ServiceTabs'
 
-export const revalidate = 3600
+export const revalidate = 0
+export const dynamic = 'force-dynamic'
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -82,8 +83,8 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
     ]
   }
 
-  // BW Plugin FAQ Parser
-  const rawFaq = service.bw_service_faq || service.faq || service.bw_spesialis_faq;
+  // BW Plugin FAQ Parser (note: plural 'bw_services_faq')
+  const rawFaq = service.bw_services_faq || service.bw_service_faq || service.faq || service.bw_spesialis_faq;
   const parsedFaqs = parseFaqField(rawFaq);
   
   let faqHtml = '';

@@ -5,34 +5,42 @@ import Image from "next/image";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 
+interface FormData {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    vehicle: string;
+    service: string;
+    message: string;
+}
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
+
 export default function ContactClient() {
-    const [submitted, setSubmitted] = useState(false);
-    const [formData, setFormData] = useState({
+    const [status, setStatus] = useState<FormStatus>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [formData, setFormData] = useState<FormData>({
         firstName: '',
         lastName: '',
         email: '',
         phone: '',
         vehicle: '',
+        service: '',
         message: ''
     });
-
-    const handleSubmit = (e: FormEvent) => {
-        e.preventDefault();
-        setSubmitted(true);
-        // Track form submission
-        if (typeof window !== 'undefined' && (window as any).gtag) {
-            (window as any).gtag('event', 'generate_lead', {
-                event_category: 'contact',
-                event_label: 'contact_form'
-            });
-        }
-    };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         setFormData(prev => ({
             ...prev,
             [e.target.name]: e.target.value
         }));
+    };
+
+    const handleSubmit = (e: FormEvent) => {
+        e.preventDefault();
+        // Redirect to WordPress CF7 booking page
+        window.location.href = 'https://bengkelwiguna.com/booking/';
     };
 
     return (
@@ -245,6 +253,28 @@ export default function ContactClient() {
                                     </p>
                                 </div>
 
+                                {/* Success Message */}
+                                {status === 'success' && (
+                                    <div className="mb-6 p-5 bg-green-50 border border-green-200 rounded-xl">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <Icon icon="solar:check-circle-bold" width={24} className="text-green-600" />
+                                            <span className="font-bold text-green-700">Pesan Terkirim!</span>
+                                        </div>
+                                        <p className="text-sm text-green-600">Tim kami akan segera menghubungi Anda dalam 1x24 jam.</p>
+                                    </div>
+                                )}
+
+                                {/* Error Message */}
+                                {status === 'error' && (
+                                    <div className="mb-6 p-5 bg-red-50 border border-red-200 rounded-xl">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <Icon icon="solar:danger-triangle-linear" width={24} className="text-red-600" />
+                                            <span className="font-bold text-red-700">Gagal Terkirim</span>
+                                        </div>
+                                        <p className="text-sm text-red-600">{errorMessage}</p>
+                                    </div>
+                                )}
+
                                 {/* Form */}
                                 <form onSubmit={handleSubmit} data-track="contact-form" className="space-y-5">
                                     {/* Name Row */}
@@ -261,7 +291,8 @@ export default function ContactClient() {
                                                 onChange={handleChange}
                                                 placeholder="Budi"
                                                 required
-                                                className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400"
+                                                disabled={status === 'submitting'}
+                                                className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
                                             />
                                         </div>
                                         <div className="space-y-2">
@@ -275,7 +306,8 @@ export default function ContactClient() {
                                                 value={formData.lastName}
                                                 onChange={handleChange}
                                                 placeholder="Santoso"
-                                                className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400"
+                                                disabled={status === 'submitting'}
+                                                className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
                                             />
                                         </div>
                                     </div>
@@ -293,7 +325,8 @@ export default function ContactClient() {
                                             onChange={handleChange}
                                             placeholder="budi.santoso@gmail.com"
                                             required
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400"
+                                            disabled={status === 'submitting'}
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
                                         />
                                     </div>
 
@@ -310,7 +343,8 @@ export default function ContactClient() {
                                             onChange={handleChange}
                                             placeholder="+62 878-1777-3888"
                                             required
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400"
+                                            disabled={status === 'submitting'}
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
                                         />
                                     </div>
 
@@ -326,7 +360,8 @@ export default function ContactClient() {
                                             value={formData.vehicle}
                                             onChange={handleChange}
                                             placeholder="Contoh: Honda HR-V 2021"
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400"
+                                            disabled={status === 'submitting'}
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
                                         />
                                     </div>
 
@@ -338,7 +373,10 @@ export default function ContactClient() {
                                         <select
                                             id="service"
                                             name="service"
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all bg-white text-gray-900"
+                                            value={formData.service}
+                                            onChange={handleChange}
+                                            disabled={status === 'submitting'}
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all bg-white text-gray-900 disabled:bg-gray-100"
                                         >
                                             <option value="">Pilih layanan...</option>
                                             <option value="tune-up">Tune Up</option>
@@ -366,29 +404,29 @@ export default function ContactClient() {
                                             rows={4}
                                             placeholder="Ceritakan keluhan kendaraan Anda, misalnya: AC tidak dingin sudah 2 minggu..."
                                             required
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400"
+                                            disabled={status === 'submitting'}
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
                                         />
                                     </div>
 
                                     {/* Submit Button */}
                                     <button
                                         type="submit"
-                                        className="w-full py-4 text-white text-base font-black bg-[#224297] hover:bg-[#1a3567] rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
+                                        disabled={status === 'submitting'}
+                                        className="w-full py-4 text-white text-base font-black bg-[#224297] hover:bg-[#1a3567] rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
                                     >
-                                        <Icon icon="solar:paper-plane-bold" width={22} />
-                                        Kirim Pesan
+                                        {status === 'submitting' ? (
+                                            <>
+                                                <Icon icon="solar:loader-linear" width={22} className="animate-spin" />
+                                                Mengirim...
+                                            </>
+                                        ) : (
+                                            <>
+                                                <Icon icon="solar:paper-plane-bold" width={22} />
+                                                Kirim Pesan
+                                            </>
+                                        )}
                                     </button>
-
-                                    {/* Success Message */}
-                                    {submitted && (
-                                        <div className="p-5 bg-green-50 border border-green-200 rounded-xl text-green-700 text-center">
-                                            <div className="flex items-center justify-center gap-2 mb-2">
-                                                <Icon icon="solar:check-circle-bold" width={24} />
-                                                <span className="font-bold">Pesan Terkirim!</span>
-                                            </div>
-                                            <p className="text-sm">Tim kami akan segera menghubungi Anda dalam 1x24 jam.</p>
-                                        </div>
-                                    )}
 
                                     {/* Alternative Contact */}
                                     <div className="relative py-6">

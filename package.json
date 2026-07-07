@@ -23,6 +23,7 @@
     "@splidejs/splide": "^4.1.4",
     "@splidejs/splide-extension-auto-scroll": "^0.5.3",
     "@tabler/icons-react": "^3.44.0",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/swiper": "^5.4.3",
     "@types/three": "^0.184.1",
     "ai": "^6.0.206",

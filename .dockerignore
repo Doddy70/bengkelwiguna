@@ -1,0 +1,79 @@
+# ===========================================
+# Docker Ignore — Optimize Build Context
+# ===========================================
+
+# Dependencies
+node_modules/
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# Build outputs
+.next/
+out/
+dist/
+build/
+
+# Environment (keep only .env.production)
+.env
+.env.local
+.env.*.local
+.env.production.local
+.env.development
+.env.test
+.env.example
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Version control
+.git/
+.gitignore
+
+# Testing
+.pytest_cache/
+__pycache__/
+
+# Archives and temporary
+*.zip
+*.tar.gz
+*.rar
+_archived_files/
+bengkel-wiguna-nextjs/
+aapanel-deployment/
+
+# Development directories
+.augment/
+.claude/
+.extract-design-system/
+.venv-img/
+memory/
+
+# Scratch/temporary files
+scratch_*.tsx
+test*.js
+test*.html
+*.json.bak
+debug_*.png
+screenshot_*.png
+
+# Documentation
+*.md
+PERFORMANCE.md
+handoff_implementation.md
+plan-bento.md
+New_Hotspot_Concept.md
+AGENT_SYNC.md
+
+# Data files
+step*.json
+Exist/
+kumpulan_ui/
+
+# Private/External
+bw-headless-cms/

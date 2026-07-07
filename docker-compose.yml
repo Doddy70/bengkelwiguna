@@ -1,0 +1,42 @@
+# ===========================================
+# Bengkel Wiguna — Docker Compose for aapanel
+# ===========================================
+# Backend WordPress: https://backend.bengkelwiguna.com (port 443)
+# Usage: docker-compose up -d
+
+version: '3.8'
+
+services:
+  # Next.js Application
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bengkelwiguna-web
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3000:3000"  # Local only, Nginx will proxy
+    environment:
+      - NODE_ENV=production
+      - NEXT_TELEMETRY_DISABLED=1
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+    env_file:
+      - .env.production
+    extra_hosts:
+      - "backend.bengkelwiguna.com:host-gateway"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+      - bengkelwiguna-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
+
+networks:
+  bengkelwiguna-network:
+    driver: bridge

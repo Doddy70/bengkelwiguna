@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "wordpress": {
+      "type": "http",
+      "url": "https://backend.bengkelwiguna.com/wp-json/mcp/mcp-adapter-default-server",
+      "headers": {
+        "Authorization": "Bearer IkbK3HEeYyqtr5H1382U353JHXObW3Syo6HAOBqieWC1AZ9S"
+      }
+    }
+  }
+}

@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { Icon } from "@iconify/react";
-import { submitContactForm, CF7_FORMS } from "@/lib/contact";
 
 interface BookingFormProps {
   serviceName?: string;
@@ -30,7 +29,7 @@ const bookingFields: FormField[] = [
     width: "half",
   },
   {
-    name: "your-phone",
+    name: "your-tel",
     label: "Nomor WhatsApp",
     type: "tel",
     placeholder: "08xxxxxxxxxx",
@@ -93,46 +92,15 @@ const bookingFields: FormField[] = [
 ];
 
 export default function BookingForm({ serviceName, compact = false, cf7FormId }: BookingFormProps) {
-  const formId = cf7FormId || CF7_FORMS.BOOKING_SERVICE;
-  const [isPending, startTransition] = useTransition();
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-  const [message, setMessage] = useState("");
   const [formKey, setFormKey] = useState(0);
+  const [showRedirectNotice, setShowRedirectNotice] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-
-    // Add hidden fields required by CF7 addons
-    formData.append("_wpcf7_unit_tag", `wpcf7-f${formId}-o1`);
-    formData.append("_wpcf7_container_post", "0");
-
-    // Add service name if provided
-    if (serviceName) {
-      formData.set("service-type", serviceName.toLowerCase().replace(/\s+/g, "-"));
-    }
-
-    startTransition(async () => {
-      const result = await submitContactForm(formId, formData);
-
-      if (result.status === "mail_sent") {
-        setStatus("success");
-        setMessage("Booking berhasil dikirim! Kami akan menghubungi Anda via WhatsApp.");
-        setFormKey((k) => k + 1);
-      } else if (result.status === "validation_failed") {
-        setStatus("error");
-        const errors = result.invalid_fields
-          ?.map((f) => `${f.message}`)
-          .join(", ");
-        setMessage(`Validasi gagal: ${errors || "Silakan periksa input Anda."}`);
-      } else {
-        setStatus("error");
-        setMessage(result.message || "Gagal mengirim booking. Silakan coba lagi.");
-      }
-    });
+    setShowRedirectNotice(true);
   };
 
-  if (status === "success") {
+  if (showRedirectNotice) {
     return (
       <div className={`rounded-2xl border border-green-200 bg-green-50 p-6 sm:p-8 ${compact ? "text-center" : ""}`}>
         <div className={`flex ${compact ? "flex-col items-center" : "items-start gap-4"}`}>
@@ -140,16 +108,15 @@ export default function BookingForm({ serviceName, compact = false, cf7FormId }:
             <Icon icon="solar:check-circle-bold" className="h-6 w-6 text-green-600" />
           </div>
           <div>
-            <h3 className="font-bold text-green-800">Booking Berhasil!</h3>
-            <p className="mt-1 text-sm text-green-700">{message}</p>
+            <h3 className="font-bold text-green-800">Redirecting...</h3>
+            <p className="mt-1 text-sm text-green-700">
+              Mengalihkan ke halaman booking...
+            </p>
             <button
-              onClick={() => {
-                setStatus("idle");
-                setMessage("");
-              }}
+              onClick={() => window.location.href = 'https://bengkelwiguna.com/booking/'}
               className="mt-4 text-sm font-medium text-green-700 underline hover:text-green-800"
             >
-              Kirim booking lain
+              Klik di sini jika tidak redirect
             </button>
           </div>
         </div>
@@ -227,40 +194,13 @@ export default function BookingForm({ serviceName, compact = false, cf7FormId }:
           })}
         </div>
 
-        {/* Hidden fields for CF7 */}
-        <input type="hidden" name="_wpcf7" value={formId} />
-        <input type="hidden" name="_wpcf7_version" value="5.8.7" />
-        <input type="hidden" name="_wpcf7_locale" value="id_ID" />
-        <input type="hidden" name="_wpcf7_container_post" value="0" />
-        <input type="hidden" name="_wpcf7_posted_data_hash" value="" />
-
-        {/* Error Message */}
-        {status === "error" && (
-          <div className="rounded-xl border border-red-200 bg-red-50 p-4">
-            <div className="flex items-start gap-3">
-              <Icon icon="solar:danger-triangle-linear" className="h-5 w-5 shrink-0 text-red-500" />
-              <p className="text-sm text-red-700">{message}</p>
-            </div>
-          </div>
-        )}
-
         {/* Submit Button */}
         <button
           type="submit"
-          disabled={isPending}
-          className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#224297] py-4 font-bold text-white transition-all hover:bg-[#1a3580] disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#224297] py-4 font-bold text-white transition-all hover:bg-[#1a3580]"
         >
-          {isPending ? (
-            <>
-              <Icon icon="solar:loader-linear" className="h-5 w-5 animate-spin" />
-              Mengirim...
-            </>
-          ) : (
-            <>
-              <Icon icon="solar:calendar-check-bold" className="h-5 w-5" />
-              Kirim Booking
-            </>
-          )}
+          <Icon icon="solar:calendar-check-bold" className="h-5 w-5" />
+          Kirim Booking
         </button>
 
         {/* WhatsApp Alternative */}
