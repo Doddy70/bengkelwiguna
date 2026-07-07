@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx lighthouse *)",
+      "Bash(nginx -V)",
+      "Bash(nginx -t)"
+    ]
+  }
+}

@@ -6,7 +6,7 @@
 
 import type { IconProps } from "@iconify/react";
 import React from "react";
-import { Button, Input, Link } from "@nextui-org/react";
+import { Button, Input, Link, useDisclosure, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@nextui-org/react";
 import { Icon } from "@iconify/react";
 import Image from "next/image";
 import DarkToggle from "../layout/DarkToggle";
@@ -15,10 +15,10 @@ type SocialIconProps = Omit<IconProps, "icon">;
 
 const footerNavigation = {
   services: [
-    { name: "Service Berkala", href: "/services" },
-    { name: "Tune Up", href: "/services" },
-    { name: "Servis AC", href: "/services" },
-    { name: "Kyoto Shaking Machine", href: "https://kyoto.bengkelwiguna.com" },
+    { name: "Service Berkala", href: "/services/servis-berkala" },
+    { name: "Tune Up", href: "/services/tune-up-carbon-clean" },
+    { name: "Servis AC", href: "/services/reset-ac-mobil" },
+    { name: "Kyoto Shaking Machine", href: "/services/kyoto-shaking-machine" },
   ],
   blog: [
     { name: "Tips Otomotif", href: "/blog" },
@@ -29,9 +29,8 @@ const footerNavigation = {
   company: [
     { name: "Tentang Kami", href: "/tentang-wiguna" },
     { name: "Lokasi Bengkel", href: "/lokasi" },
-    { name: "Hubungi Kami", href: "/lokasi" },
-    { name: "Promosi", href: "/promosi" },
-    { name: "Blog & Tips", href: "/blog" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
+    { name: "Syarat & Ketentuan", href: "/syarat-ketentuan" },
   ],
   social: [
     {
@@ -63,6 +62,57 @@ const footerNavigation = {
 };
 
 export default function FooterModern() {
+  const [newsletterEmail, setNewsletterEmail] = React.useState("");
+  const [newsletterStatus, setNewsletterStatus] = React.useState<"idle" | "loading" | "success" | "error">("idle");
+  const [newsletterMessage, setNewsletterMessage] = React.useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [modalMessage, setModalMessage] = React.useState("");
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!newsletterEmail.trim()) {
+      setNewsletterMessage("Mohon masukkan email Anda");
+      setNewsletterStatus("error");
+      return;
+    }
+
+    setNewsletterStatus("loading");
+
+    try {
+      const response = await fetch("/api/newsletter/subscribe", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setNewsletterStatus("success");
+        setNewsletterMessage(data.message);
+        setNewsletterEmail("");
+        // Show success modal
+        setModalMessage("🎉 Terima kasih! Anda berhasil berlangganan newsletter Bengkel Wiguna. Kami akan kirimkan info promo terbaru ke email Anda.");
+        onOpen();
+      } else {
+        setNewsletterStatus("error");
+        setNewsletterMessage(data.message || "Gagal berlangganan");
+      }
+    } catch (error) {
+      setNewsletterStatus("error");
+      setNewsletterMessage("Terjadi kesalahan. Silakan coba lagi.");
+    }
+
+    // Reset after 4 seconds
+    setTimeout(() => {
+      setNewsletterStatus("idle");
+      setNewsletterMessage("");
+    }, 4000);
+  };
+
   const renderList = React.useCallback(
     ({ title, items }: { title: string; items: { name: string; href: string }[] }) => (
       <div>
@@ -146,7 +196,7 @@ export default function FooterModern() {
                 Dapatkan tips & promo terbaru di email Anda.
               </p>
             </div>
-            <form className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
               <Input
                 isRequired
                 aria-label="Alamat Email"
@@ -158,12 +208,26 @@ export default function FooterModern() {
                 variant="bordered"
                 className="bg-white dark:bg-gray-900 rounded-xl w-full lg:w-80"
                 size="sm"
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                isDisabled={newsletterStatus === "loading"}
+                isInvalid={newsletterStatus === "error"}
+                errorMessage={newsletterStatus === "error" ? newsletterMessage : undefined}
               />
-              <Button className="bg-brand-blue text-white shadow-md font-medium rounded-xl w-full sm:w-auto hover:bg-blue-800 transition-colors" type="submit">
-                Berlangganan
+              <Button
+                type="submit"
+                isLoading={newsletterStatus === "loading"}
+                className="bg-brand-blue text-white shadow-md font-medium rounded-xl w-full sm:w-auto hover:bg-blue-800 transition-colors"
+              >
+                {newsletterStatus === "success" ? "✓" : "Berlangganan"}
               </Button>
             </form>
           </div>
+          {newsletterStatus === "success" && newsletterMessage && (
+            <p className="mt-3 text-sm text-green-600 dark:text-green-400 font-medium">
+              ✓ {newsletterMessage}
+            </p>
+          )}
         </div>
 
         {/* Bottom Bar */}
@@ -177,6 +241,45 @@ export default function FooterModern() {
           </div>
         </div>
       </div>
+
+      {/* Success Modal */}
+      <Modal isOpen={isOpen} onClose={onClose} classNames={{
+        base: "bg-white dark:bg-gray-900 rounded-2xl",
+        header: "border-b border-gray-100 dark:border-gray-800",
+        footer: "border-t border-gray-100 dark:border-gray-800",
+        closeButton: "hover:bg-gray-100 dark:hover:bg-gray-800"
+      }}>
+        <ModalContent>
+          <ModalHeader className="flex flex-col gap-1">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center">
+                <Icon className="w-6 h-6 text-green-600 dark:text-green-400" icon="solar:check-circle-bold" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white">Berhasil!</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 font-normal">Newsletter Subscription</p>
+              </div>
+            </div>
+          </ModalHeader>
+          <ModalBody>
+            <div className="py-4">
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                {modalMessage}
+              </p>
+              <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl border border-blue-100 dark:border-blue-800">
+                <p className="text-sm text-blue-700 dark:text-blue-300 font-medium">
+                  📧 Cek inbox atau folder spam Anda untuk email konfirmasi.
+                </p>
+              </div>
+            </div>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" className="bg-brand-blue font-medium rounded-xl" onPress={onClose}>
+              Baik, Terima Kasih!
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </footer>
   );
 }

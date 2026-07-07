@@ -201,6 +201,13 @@ const speculationRules = {
   ]
 };
 
+// ✅ Hero image preload config for LCP optimization
+const heroImageConfig = {
+  src: '/images/hero/slider-1.webp',
+  sizes: '100vw',
+  quality: 85,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   // ✅ ReactDOM.preload() — only API that correctly emits fetchpriority=high on <link rel=preload>
   // Fixes PSI: "fetchpriority=high should be applied to the image preload request"
@@ -216,9 +223,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="id" className={cn(sora.variable, dmSans.variable, chakraPetch.variable, "font-sans", geist.variable)}>
       <head>
 
-        {/* ✅ Preconnect: fonts.googleapis.com removed — all fonts self-hosted via next/font */}
+        {/* ✅ Preconnect to critical origins */}
         <link rel="preconnect" href="https://backend.bengkelwiguna.com" crossOrigin="anonymous" />
-        
+        <link rel="dns-prefetch" href="https://backend.bengkelwiguna.com" />
+
+        {/* ✅ CRITICAL: Hero image preload with fetchpriority=high for LCP */}
+        <link
+          rel="preload"
+          as="image"
+          href="/_next/image?url=%2Fimages%2Fhero%2Fslider-1.webp&w=1080&q=85"
+          fetchPriority="high"
+          imageSrcSet="/_next/image?url=%2Fimages%2Fhero%2Fslider-1.webp&w=640&q=85 640w, /_next/image?url=%2Fimages%2Fhero%2Fslider-1.webp&w=1080&q=85 1080w, /_next/image?url=%2Fimages%2Fhero%2Fslider-1.webp&w=1920&q=80 1920w"
+          imageSizes="100vw"
+        />
+
         {/* ✅ FontAwesome CDN removed — all icons via @iconify/react (zero render-blocking) */}
 
         {/* ✅ INLINE CRITICAL CSS for above-the-fold */}
@@ -232,8 +250,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
 
-        {/* ✅ GTM moved to next/script afterInteractive — no longer render-blocking */}
-        
         {/* ✅ AutoRepair Schema JSON-LD for Local SEO */}
         <AutoRepairSchema />
       </head>

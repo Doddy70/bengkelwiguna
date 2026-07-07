@@ -328,12 +328,12 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
 
             <div className="grid lg:grid-cols-3 grid-cols-1 gap-6">
               {relatedLayanan.map((item: any) => (
-                <div key={item.id} className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                <div key={item.id} className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mb-4">
                     <span className="text-xl">🔧</span>
                   </div>
-                  <h4 className="text-lg font-semibold mb-2">{item.title?.rendered || item.title}</h4>
-                  <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                  <h4 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">{item.title?.rendered || item.title}</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
                     {stripHtml(item.excerpt?.rendered || item.excerpt || '')}
                   </p>
                   <Button

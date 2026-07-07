@@ -95,47 +95,47 @@ export default function LokasiPage() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Contact Cards */}
             <div className="space-y-6">
-              <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-[#224297]">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border-l-4 border-[#224297]">
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                   <span className="text-2xl">📍</span> Alamat Bengkel
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                  Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok, Jawa Barat 16423
                 </p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-[#ffd900]">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border-l-4 border-[#ffd900]">
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                   <span className="text-2xl">📞</span> WhatsApp / Telepon
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   +62 817 1777 3888 (WhatsApp)<br />
-                  <span className="text-sm text-[#224297] font-medium">Respon cepat via WhatsApp chat</span>
+                  <span className="text-sm text-[#224297] dark:text-[#ffd900] font-medium">Respon cepat via WhatsApp chat</span>
                 </p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-[#224297]">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border-l-4 border-[#224297]">
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                   <span className="text-2xl">⏰</span> Jam Operasional
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   Senin - Minggu: 08.00 - 18.00
-                  <span className="text-sm text-[#224297] font-medium">Booking diutamakan untuk kenyamanan</span>
+                  <span className="text-sm text-[#224297] dark:text-[#ffd900] font-medium">Booking diutamakan untuk kenyamanan</span>
                 </p>
               </div>
 
-              <div className="bg-white rounded-xl p-6 shadow-sm border-l-4 border-[#ffd900]">
-                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+              <div className="bg-white dark:bg-gray-900 rounded-xl p-6 shadow-sm border-l-4 border-[#ffd900]">
+                <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 text-gray-900 dark:text-white">
                   <span className="text-2xl">✉️</span> Email
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 dark:text-gray-400">
                   info@bengkelwiguna.com
                 </p>
               </div>
             </div>
 
             {/* Google Map Embed */}
-            <div className="bg-gray-100 rounded-xl overflow-hidden h-[450px] shadow-sm border border-gray-200">
+            <div className="bg-gray-100 dark:bg-gray-800 rounded-xl overflow-hidden h-[450px] shadow-sm border border-gray-200 dark:border-gray-700">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126866.80824714409!2d106.71927928393397!3d-6.4469405756096725!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ebfbbd9e7741%3A0x7d8cd231c7238c0d!2sWiguna%20Ban%20PD!5e0!3m2!1sid!2sid!4v1781358568776!5m2!1sid!2sid"
                 width="100%"

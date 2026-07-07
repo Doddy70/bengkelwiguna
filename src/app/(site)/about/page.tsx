@@ -190,8 +190,8 @@ export default function TentangWigunaPage() {
               Hubungi via WhatsApp <ArrowUpRight className="w-5 h-5" />
             </a>
             <Link 
-              href="/contact" 
-              className="px-8 py-4 bg-white hover:bg-gray-50 text-[#224297] font-bold rounded-xl transition-all duration-300 shadow-sm"
+              href="/contact"
+              className="px-8 py-4 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-[#224297] dark:text-white font-bold rounded-xl transition-all duration-300 shadow-sm"
             >
               Kirim Pesan Online
             </Link>

@@ -265,7 +265,7 @@ export default async function SinglePaketServicePage({ params }: { params: Promi
                   <Link
                     key={item.id}
                     href={`/paket-service/${item.slug}`}
-                    className="group bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
+                    className="group bg-white dark:bg-gray-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300"
                   >
                     {item.featured_img && (
                       <div className="relative h-48 overflow-hidden">

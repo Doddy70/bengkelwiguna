@@ -112,7 +112,7 @@ export default function ContactClient() {
             </section>
 
             {/* ═══ Main Content Section ═══ */}
-            <section className="relative bg-white py-16 lg:py-24">
+            <section className="relative bg-white dark:bg-gray-950 py-16 lg:py-24">
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
 
@@ -140,7 +140,7 @@ export default function ContactClient() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         data-source="contact-whatsapp"
-                                        className="inline-flex items-center justify-center gap-3 w-full py-4 bg-white hover:bg-gray-100 text-[#128C7E] font-black uppercase tracking-wider rounded-xl transition-all shadow-lg"
+                                        className="inline-flex items-center justify-center gap-3 w-full py-4 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 text-[#128C7E] dark:text-white font-black uppercase tracking-wider rounded-xl transition-all shadow-lg"
                                     >
                                         <Icon icon="fa6-brands:whatsapp" width={24} />
                                         Chat Sekarang
@@ -151,36 +151,36 @@ export default function ContactClient() {
                             {/* Info Cards Grid */}
                             <div className="grid sm:grid-cols-2 gap-4">
                                 {/* Phone */}
-                                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#224297]/20 transition-colors">
+                                <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 hover:border-[#224297]/20 transition-colors">
                                     <div className="w-12 h-12 rounded-xl bg-[#224297]/10 flex items-center justify-center mb-4">
                                         <Icon icon="solar:phone-bold" width={24} className="text-[#224297]" />
                                     </div>
-                                    <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Telepon</p>
-                                    <a href="tel:+6287817773888" className="text-lg font-black text-gray-900 hover:text-[#224297] transition-colors">
+                                    <p className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">Telepon</p>
+                                    <a href="tel:+6287817773888" className="text-lg font-black text-gray-900 dark:text-white hover:text-[#224297] transition-colors">
                                         0878-1777-3888
                                     </a>
                                 </div>
 
                                 {/* Email */}
-                                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#224297]/20 transition-colors">
+                                <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 hover:border-[#224297]/20 transition-colors">
                                     <div className="w-12 h-12 rounded-xl bg-[#224297]/10 flex items-center justify-center mb-4">
                                         <Icon icon="solar:mail-bold" width={24} className="text-[#224297]" />
                                     </div>
-                                    <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Email</p>
-                                    <a href="mailto:info@bengkelwiguna.com" className="text-sm font-black text-gray-900 hover:text-[#224297] transition-colors break-all">
+                                    <p className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">Email</p>
+                                    <a href="mailto:info@bengkelwiguna.com" className="text-sm font-black text-gray-900 dark:text-white hover:text-[#224297] transition-colors break-all">
                                         info@bengkelwiguna.com
                                     </a>
                                 </div>
 
                                 {/* Location */}
-                                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#224297]/20 transition-colors sm:col-span-2">
+                                <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 hover:border-[#224297]/20 transition-colors sm:col-span-2">
                                     <div className="flex items-start gap-4">
                                         <div className="w-12 h-12 rounded-xl bg-[#224297]/10 flex items-center justify-center shrink-0">
                                             <Icon icon="solar:map-point-bold" width={24} className="text-[#224297]" />
                                         </div>
                                         <div className="flex-1">
-                                            <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-1">Alamat</p>
-                                            <p className="text-sm font-bold text-gray-900 leading-relaxed">
+                                            <p className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-1">Alamat</p>
+                                            <p className="text-sm font-bold text-gray-900 dark:text-white leading-relaxed">
                                                 Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok 16423
                                             </p>
                                             <a
@@ -197,21 +197,21 @@ export default function ContactClient() {
                                 </div>
 
                                 {/* Hours */}
-                                <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 hover:border-[#224297]/20 transition-colors sm:col-span-2">
+                                <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 hover:border-[#224297]/20 transition-colors sm:col-span-2">
                                     <div className="flex items-start gap-4">
                                         <div className="w-12 h-12 rounded-xl bg-[#ffd900]/20 flex items-center justify-center shrink-0">
                                             <Icon icon="solar:clock-circle-bold" width={24} className="text-[#224297]" />
                                         </div>
                                         <div className="flex-1">
-                                            <p className="text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Jam Operasional</p>
+                                            <p className="text-xs font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2">Jam Operasional</p>
                                             <div className="space-y-2">
                                                 <div className="flex justify-between items-center">
-                                                    <span className="text-sm font-medium text-gray-700">Senin - Sabtu</span>
-                                                    <span className="text-sm font-bold text-gray-900">08:00 - 17:00 WIB</span>
+                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Senin - Sabtu</span>
+                                                    <span className="text-sm font-bold text-gray-900 dark:text-white">08:00 - 17:00 WIB</span>
                                                 </div>
                                                 <div className="flex justify-between items-center">
-                                                    <span className="text-sm font-medium text-gray-700">Minggu</span>
-                                                    <span className="text-sm font-bold text-gray-900">09:00 - 15:00 WIB</span>
+                                                    <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Minggu</span>
+                                                    <span className="text-sm font-bold text-gray-900 dark:text-white">09:00 - 15:00 WIB</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -242,36 +242,36 @@ export default function ContactClient() {
 
                         {/* ═══ Right Column - Contact Form ═══ */}
                         <div className="lg:col-span-3">
-                            <div className="bg-white rounded-3xl p-8 lg:p-10 border border-gray-100 shadow-xl">
+                            <div className="bg-white dark:bg-gray-900 rounded-3xl p-8 lg:p-10 border border-gray-100 dark:border-gray-800 shadow-xl">
                                 {/* Header */}
                                 <div className="mb-8">
-                                    <h2 className="text-2xl lg:text-3xl font-black text-gray-900 mb-2">
+                                    <h2 className="text-2xl lg:text-3xl font-black text-gray-900 dark:text-white mb-2">
                                         Kirim Pesan
                                     </h2>
-                                    <p className="text-gray-600 font-medium">
+                                    <p className="text-gray-600 dark:text-gray-400 font-medium">
                                         Ceritakan keluhan kendaraan Anda, tim kami akan segera merespons.
                                     </p>
                                 </div>
 
                                 {/* Success Message */}
                                 {status === 'success' && (
-                                    <div className="mb-6 p-5 bg-green-50 border border-green-200 rounded-xl">
+                                    <div className="mb-6 p-5 bg-green-50 dark:bg-green-900/30 border border-green-200 dark:border-green-800 rounded-xl">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <Icon icon="solar:check-circle-bold" width={24} className="text-green-600" />
-                                            <span className="font-bold text-green-700">Pesan Terkirim!</span>
+                                            <Icon icon="solar:check-circle-bold" width={24} className="text-green-600 dark:text-green-400" />
+                                            <span className="font-bold text-green-700 dark:text-green-300">Pesan Terkirim!</span>
                                         </div>
-                                        <p className="text-sm text-green-600">Tim kami akan segera menghubungi Anda dalam 1x24 jam.</p>
+                                        <p className="text-sm text-green-600 dark:text-green-400">Tim kami akan segera menghubungi Anda dalam 1x24 jam.</p>
                                     </div>
                                 )}
 
                                 {/* Error Message */}
                                 {status === 'error' && (
-                                    <div className="mb-6 p-5 bg-red-50 border border-red-200 rounded-xl">
+                                    <div className="mb-6 p-5 bg-red-50 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-xl">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <Icon icon="solar:danger-triangle-linear" width={24} className="text-red-600" />
-                                            <span className="font-bold text-red-700">Gagal Terkirim</span>
+                                            <Icon icon="solar:danger-triangle-linear" width={24} className="text-red-600 dark:text-red-400" />
+                                            <span className="font-bold text-red-700 dark:text-red-300">Gagal Terkirim</span>
                                         </div>
-                                        <p className="text-sm text-red-600">{errorMessage}</p>
+                                        <p className="text-sm text-red-600 dark:text-red-400">{errorMessage}</p>
                                     </div>
                                 )}
 
@@ -280,7 +280,7 @@ export default function ContactClient() {
                                     {/* Name Row */}
                                     <div className="grid sm:grid-cols-2 gap-5">
                                         <div className="space-y-2">
-                                            <label htmlFor="firstName" className="text-sm font-bold text-gray-700">
+                                            <label htmlFor="firstName" className="text-sm font-bold text-gray-700 dark:text-gray-300">
                                                 Nama Depan <span className="text-red-500">*</span>
                                             </label>
                                             <input
@@ -292,11 +292,11 @@ export default function ContactClient() {
                                                 placeholder="Budi"
                                                 required
                                                 disabled={status === 'submitting'}
-                                                className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
+                                                className="w-full px-4 py-3.5 text-base border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100 dark:disabled:bg-gray-800 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label htmlFor="lastName" className="text-sm font-bold text-gray-700">
+                                            <label htmlFor="lastName" className="text-sm font-bold text-gray-700 dark:text-gray-300">
                                                 Nama Belakang
                                             </label>
                                             <input
@@ -307,14 +307,14 @@ export default function ContactClient() {
                                                 onChange={handleChange}
                                                 placeholder="Santoso"
                                                 disabled={status === 'submitting'}
-                                                className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
+                                                className="w-full px-4 py-3.5 text-base border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100 dark:disabled:bg-gray-800 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                                             />
                                         </div>
                                     </div>
 
                                     {/* Email */}
                                     <div className="space-y-2">
-                                        <label htmlFor="email" className="text-sm font-bold text-gray-700">
+                                        <label htmlFor="email" className="text-sm font-bold text-gray-700 dark:text-gray-300">
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <input
@@ -326,13 +326,13 @@ export default function ContactClient() {
                                             placeholder="budi.santoso@gmail.com"
                                             required
                                             disabled={status === 'submitting'}
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100 dark:disabled:bg-gray-800 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                                         />
                                     </div>
 
                                     {/* Phone */}
                                     <div className="space-y-2">
-                                        <label htmlFor="phone" className="text-sm font-bold text-gray-700">
+                                        <label htmlFor="phone" className="text-sm font-bold text-gray-700 dark:text-gray-300">
                                             Nomor WhatsApp <span className="text-red-500">*</span>
                                         </label>
                                         <input
@@ -344,13 +344,13 @@ export default function ContactClient() {
                                             placeholder="+62 878-1777-3888"
                                             required
                                             disabled={status === 'submitting'}
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100 dark:disabled:bg-gray-800 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                                         />
                                     </div>
 
                                     {/* Vehicle */}
                                     <div className="space-y-2">
-                                        <label htmlFor="vehicle" className="text-sm font-bold text-gray-700">
+                                        <label htmlFor="vehicle" className="text-sm font-bold text-gray-700 dark:text-gray-300">
                                             Tipe & Merk Kendaraan
                                         </label>
                                         <input
@@ -361,13 +361,13 @@ export default function ContactClient() {
                                             onChange={handleChange}
                                             placeholder="Contoh: Honda HR-V 2021"
                                             disabled={status === 'submitting'}
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100 dark:disabled:bg-gray-800 bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                                         />
                                     </div>
 
                                     {/* Service Type */}
                                     <div className="space-y-2">
-                                        <label htmlFor="service" className="text-sm font-bold text-gray-700">
+                                        <label htmlFor="service" className="text-sm font-bold text-gray-700 dark:text-gray-300">
                                             Jenis Layanan
                                         </label>
                                         <select
@@ -376,7 +376,7 @@ export default function ContactClient() {
                                             value={formData.service}
                                             onChange={handleChange}
                                             disabled={status === 'submitting'}
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all bg-white text-gray-900 disabled:bg-gray-100"
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 dark:border-gray-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all bg-white dark:bg-gray-900 text-gray-900 dark:text-white disabled:bg-gray-100 dark:disabled:bg-gray-800"
                                         >
                                             <option value="">Pilih layanan...</option>
                                             <option value="tune-up">Tune Up</option>
@@ -393,7 +393,7 @@ export default function ContactClient() {
 
                                     {/* Message */}
                                     <div className="space-y-2">
-                                        <label htmlFor="message" className="text-sm font-bold text-gray-700">
+                                        <label htmlFor="message" className="text-sm font-bold text-gray-700 dark:text-gray-300">
                                             Keluhan Kendaraan <span className="text-red-500">*</span>
                                         </label>
                                         <textarea
@@ -405,7 +405,7 @@ export default function ContactClient() {
                                             placeholder="Ceritakan keluhan kendaraan Anda, misalnya: AC tidak dingin sudah 2 minggu..."
                                             required
                                             disabled={status === 'submitting'}
-                                            className="w-full px-4 py-3.5 text-base border border-gray-200 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100"
+                                            className="w-full px-4 py-3.5 text-base border border-gray-200 dark:border-gray-700 rounded-xl resize-none focus:outline-none focus:ring-2 focus:ring-[#224297] focus:border-transparent transition-all placeholder:text-gray-400 disabled:bg-gray-100 dark:bg-gray-900 dark:text-white"
                                         />
                                     </div>
 
@@ -431,10 +431,10 @@ export default function ContactClient() {
                                     {/* Alternative Contact */}
                                     <div className="relative py-6">
                                         <div className="absolute inset-0 flex items-center">
-                                            <div className="w-full border-t border-gray-200" />
+                                            <div className="w-full border-t border-gray-200 dark:border-gray-700" />
                                         </div>
                                         <div className="relative flex justify-center text-sm">
-                                            <span className="px-4 bg-white text-gray-500">atau</span>
+                                            <span className="px-4 bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400">atau</span>
                                         </div>
                                     </div>
 
@@ -456,11 +456,11 @@ export default function ContactClient() {
             </section>
 
             {/* ═══ Services Tags Section ═══ */}
-            <section className="bg-gray-50 py-16 border-t border-gray-100">
+            <section className="bg-gray-50 dark:bg-gray-900 py-16 border-t border-gray-100 dark:border-gray-800">
                 <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-10">
-                        <h2 className="text-2xl font-black text-gray-900 mb-2">Layanan Bengkel Wiguna</h2>
-                        <p className="text-gray-600 font-medium">Pilihan layanan profesional untuk kendaraan Anda</p>
+                        <h2 className="text-2xl font-black text-gray-900 dark:text-white mb-2">Layanan Bengkel Wiguna</h2>
+                        <p className="text-gray-600 dark:text-gray-400 font-medium">Pilihan layanan profesional untuk kendaraan Anda</p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-3">
                         {[
@@ -480,9 +480,9 @@ export default function ContactClient() {
                             <Link
                                 key={service.name}
                                 href={`/services`}
-                                className="group inline-flex items-center gap-2 px-5 py-3 bg-white hover:bg-[#224297] border border-gray-200 hover:border-[#224297] rounded-full text-sm font-bold text-gray-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                                className="group inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 hover:bg-[#224297] border border-gray-200 dark:border-gray-700 hover:border-[#224297] rounded-full text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
                             >
-                                <Icon icon={service.icon} width={18} className="text-[#224297] group-hover:text-white transition-colors" />
+                                <Icon icon={service.icon} width={18} className="text-[#224297] dark:text-gray-400 group-hover:text-white transition-colors" />
                                 {service.name}
                             </Link>
                         ))}

@@ -101,12 +101,12 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
                 
                 {/* Fire icon at top left */}
-                <div className="absolute top-6 left-6 w-12 h-12 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-xl shadow-sm">
+                <div className="absolute top-6 left-6 w-12 h-12 rounded-full bg-white dark:bg-neutral-800/20 backdrop-blur-md flex items-center justify-center text-xl shadow-sm">
                   🔥
                 </div>
 
                 {/* Text Block Cutout (Bottom Left) */}
-                <div className="absolute bottom-0 left-0 bg-[#fcfcfc] dark:bg-neutral-950 pt-6 pr-6 lg:pt-8 lg:pr-8 rounded-tr-[2.5rem] w-full md:w-5/6 group-hover:bg-white dark:group-hover:bg-neutral-900 transition-colors">
+                <div className="absolute bottom-0 left-0 bg-[#fcfcfc] dark:bg-neutral-950 pt-6 pr-6 lg:pt-8 lg:pr-8 rounded-tr-[2.5rem] w-full md:w-5/6 group-hover:bg-white dark:bg-neutral-800 dark:group-hover:bg-neutral-900 transition-colors">
                   {/* CSS Hack for inverted corner */}
                   <div className="absolute -top-10 left-0 w-10 h-10 bg-transparent rounded-bl-[2.5rem] shadow-[-20px_20px_0_20px_#fcfcfc] dark:shadow-[-20px_20px_0_20px_#0a0a0a] group-hover:shadow-[-20px_20px_0_20px_white] dark:group-hover:shadow-[-20px_20px_0_20px_#171717] transition-shadow" />
                   <div className="absolute bottom-0 -right-10 w-10 h-10 bg-transparent rounded-bl-[2.5rem] shadow-[-20px_20px_0_20px_#fcfcfc] dark:shadow-[-20px_20px_0_20px_#0a0a0a] group-hover:shadow-[-20px_20px_0_20px_white] dark:group-hover:shadow-[-20px_20px_0_20px_#171717] transition-shadow" />
@@ -128,7 +128,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
             {/* Box 2: Highlight Card (Middle Top) */}
             {post2 && (
               <Link href={`/blog/${post2.slug}`} className="lg:col-span-4 lg:row-span-1 rounded-[2.5rem] bg-[#d4f99d] dark:bg-[#224297]/30 p-6 lg:p-8 flex flex-col justify-between group shadow-lg hover:shadow-xl transition-all relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-white/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white dark:bg-neutral-800/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4" />
                 
                 <div className="relative z-10 flex justify-between items-start mb-4">
                   <div className="flex items-center gap-2 text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide">
@@ -136,7 +136,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                     <span className="w-1 h-1 rounded-full bg-gray-400" />
                     <span>Bengkel Wiguna</span>
                   </div>
-                  <div className="w-10 h-10 rounded-full border border-gray-900/10 dark:border-white/10 flex items-center justify-center group-hover:bg-white dark:group-hover:bg-neutral-800 transition-colors">
+                  <div className="w-10 h-10 rounded-full border border-gray-900/10 dark:border-white/10 flex items-center justify-center group-hover:bg-white dark:bg-neutral-800 dark:group-hover:bg-neutral-800 transition-colors">
                     <Icon icon="solar:arrow-right-up-linear" width={20} className="text-gray-900 dark:text-white" />
                   </div>
                 </div>
@@ -159,14 +159,14 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
 
             {/* Box 5: Categories / Tags Grid (Right Top) */}
             <div className="lg:col-span-3 lg:row-span-1 rounded-[2.5rem] bg-[#e6d5f7] dark:bg-[#224297] p-6 lg:p-8 flex flex-col justify-between shadow-lg relative overflow-hidden group">
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/20 rounded-full blur-2xl" />
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-white dark:bg-neutral-800/20 rounded-full blur-2xl" />
               
               <div className="flex flex-wrap gap-2 relative z-10">
                 {categories.slice(0, 8).map((cat) => (
                   <button
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.slug)}
-                    className="bg-white/80 dark:bg-white/10 hover:bg-white dark:hover:bg-[#ffd900] text-gray-900 dark:text-white hover:text-[#224297] dark:hover:text-black text-xs font-bold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
+                    className="bg-white dark:bg-neutral-800/80 dark:bg-white dark:bg-neutral-800/10 hover:bg-white dark:bg-neutral-800 dark:hover:bg-[#ffd900] text-gray-900 dark:text-white hover:text-[#224297] dark:hover:text-black text-xs font-bold px-3 py-1.5 rounded-full transition-colors whitespace-nowrap"
                   >
                     {cat.name}
                   </button>
@@ -177,7 +177,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 <span className="font-bold text-gray-900 dark:text-white text-sm">View All Categories</span>
                 <button 
                   onClick={() => setSelectedCategory("")}
-                  className="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-900 hover:scale-110 hover:bg-[#ffd900] transition-all shadow-md"
+                  className="w-12 h-12 rounded-full bg-white dark:bg-neutral-800 flex items-center justify-center text-gray-900 hover:scale-110 hover:bg-[#ffd900] transition-all shadow-md"
                 >
                   <Icon icon="solar:arrow-right-linear" width={20} />
                 </button>
@@ -198,7 +198,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 
                 {/* Play Button Overlay */}
                 <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-                  <div className="w-14 h-14 rounded-full bg-white/30 backdrop-blur-md flex items-center justify-center text-white">
+                  <div className="w-14 h-14 rounded-full bg-white dark:bg-neutral-800/30 backdrop-blur-md flex items-center justify-center text-white">
                     <Icon icon="solar:play-bold" width={24} className="ml-1" />
                   </div>
                 </div>
@@ -206,7 +206,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 <div className="relative z-10 mt-auto">
                   <div className="flex items-center gap-2 text-xs font-bold text-white/80 mb-2">
                     <span>{formatDate(post3.date)}</span>
-                    <span className="w-1 h-1 rounded-full bg-white/50" />
+                    <span className="w-1 h-1 rounded-full bg-white dark:bg-neutral-800/50" />
                     <span>5 Min</span>
                   </div>
                   <h3 className="text-xl font-black text-white leading-[1.1] tracking-tight uppercase line-clamp-2">
@@ -246,7 +246,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
       </div>
 
       {/* === RECENT BLOG POSTS GRID === */}
-      <div id="semua-artikel" className="blog-wrap font-dm bg-white dark:bg-neutral-950">
+      <div id="semua-artikel" className="blog-wrap font-dm bg-white dark:bg-neutral-800 dark:bg-neutral-950">
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 lg:py-20 py-16">
 
           {/* Section Header */}

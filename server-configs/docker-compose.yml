@@ -1,0 +1,79 @@
+# ============================================
+# Docker Compose untuk WordPress Backend
+# Dengan Nginx + PHP-FPM + WordPress + Smush Pro
+# ============================================
+
+version: '3.8'
+
+services:
+  # Nginx Web Server
+  nginx:
+    image: nginx:alpine
+    container_name: bwiguna-nginx
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+      - "8443:443"
+    volumes:
+      # Mount WordPress files
+      - ./wordpress:/var/www/html:ro
+      # Mount custom nginx config
+      - ./nginx-conf/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx-conf/conf.d:/etc/nginx/conf.d:ro
+      # SSL certificates (optional)
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - wordpress
+      - mysql
+    networks:
+      - bwiguna-network
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # WordPress + PHP-FPM
+  wordpress:
+    image: wordpress:php8.2-fpm-alpine
+    container_name: bwiguna-wordpress
+    restart: unless-stopped
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_TABLE_PREFIX: wp_
+      WORDPRESS_DEBUG: 0
+    volumes:
+      - ./wordpress:/var/www/html
+      # Smush plugin config
+      - ./smush-webp:/var/www/html/wp-content/smush-webp
+    depends_on:
+      - mysql
+    networks:
+      - bwiguna-network
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: bwiguna-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - bwiguna-network
+    command: --default-authentication-plugin=mysql_native_password
+
+networks:
+  bwiguna-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local

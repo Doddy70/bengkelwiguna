@@ -83,9 +83,8 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
       <JsonLd data={generateSpecialOfferSchema(promo)} />
 
       {/* Main Layout like Services */}
-      <main 
-        className="min-h-screen pb-24 bg-cover bg-no-repeat bg-top"
-        style={{ backgroundImage: "url('/images/home-9-footer.webp')" }}
+      <main
+        className="min-h-screen pb-24"
       >
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-8 lg:pt-12">
           
@@ -119,47 +118,49 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
           </div>
 
           {/* Booking / Stats Bar (4 columns) */}
-          <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 p-4 mb-10 flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-100 dark:border-gray-800 px-4 py-2 md:py-0 w-full md:w-auto">
-              <p className="text-sm text-gray-500 font-medium mb-1">Lokasi</p>
-              <div className="flex items-center gap-2">
-                <Icon icon="solar:map-point-bold-duotone" className="text-[#224297] dark:text-[#ffd900] w-5 h-5"/>
-                <span className="font-bold text-gray-900 dark:text-white">Bengkel Wiguna</span>
+          <div className="bg-white dark:bg-gray-900 dark:bg-gray-900 rounded-2xl shadow-xl border border-gray-100 dark:border-gray-800 dark:border-gray-800 p-4 mb-10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-0 lg:divide-x divide-gray-100 dark:divide-gray-800">
+              <div className="flex items-center gap-3 sm:justify-center lg:justify-start lg:px-4 py-2 lg:py-0">
+                <Icon icon="solar:map-point-bold-duotone" className="text-[#224297] dark:text-[#ffd900] w-5 h-5 shrink-0"/>
+                <div className="min-w-0">
+                  <p className="text-xs text-gray-500 font-medium">Lokasi</p>
+                  <p className="text-sm font-bold text-gray-900 dark:text-white truncate">Bengkel Wiguna</p>
+                </div>
               </div>
-            </div>
-            
-            <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-100 dark:border-gray-800 px-4 py-2 md:py-0 w-full md:w-auto">
-              <p className="text-sm text-gray-500 font-medium mb-1">Tanggal Berlaku</p>
-              <div className="flex items-center gap-2">
-                <Icon icon="solar:calendar-bold-duotone" className="text-[#224297] dark:text-[#ffd900] w-5 h-5"/>
-                <span className="font-bold text-gray-900 dark:text-white line-clamp-1">
-                  {promo.tanggal_selesai || 'Selama Promo'}
-                </span>
-              </div>
-            </div>
 
-            <div className="flex-1 border-b md:border-b-0 md:border-r border-gray-100 dark:border-gray-800 px-4 py-2 md:py-0 w-full md:w-auto">
-              <p className="text-sm text-gray-500 font-medium mb-1">Jenis Promo</p>
-              <div className="flex items-center gap-2">
-                <Icon icon="solar:tag-price-bold-duotone" className="text-[#224297] dark:text-[#ffd900] w-5 h-5"/>
-                <span className="font-bold text-gray-900 dark:text-white line-clamp-1">
-                  {promo.jenis_promosi === 'bulanan' ? 'Promo Bulanan' : 'Promo Spesial'}
-                </span>
+              <div className="flex items-center gap-3 sm:justify-center lg:justify-start lg:px-4 py-2 lg:py-0">
+                <Icon icon="solar:calendar-bold-duotone" className="text-[#224297] dark:text-[#ffd900] w-5 h-5 shrink-0"/>
+                <div className="min-w-0">
+                  <p className="text-xs text-gray-500 font-medium">Tanggal Berlaku</p>
+                  <p className="text-sm font-bold text-gray-900 dark:text-white truncate">
+                    {promo.tanggal_selesai || 'Selama Promo'}
+                  </p>
+                </div>
               </div>
-            </div>
 
-            <div className="px-4 py-2 md:py-0 w-full md:w-auto shrink-0 flex justify-center md:justify-end">
-              <BookingModalButton 
-                promoName={title} 
-                cf7FormId={promo.cf7_form_id} 
-              />
+              <div className="flex items-center gap-3 sm:justify-center lg:justify-start lg:px-4 py-2 lg:py-0">
+                <Icon icon="solar:tag-price-bold-duotone" className="text-[#224297] dark:text-[#ffd900] w-5 h-5 shrink-0"/>
+                <div className="min-w-0">
+                  <p className="text-xs text-gray-500 font-medium">Jenis Promo</p>
+                  <p className="text-sm font-bold text-gray-900 dark:text-white truncate">
+                    {promo.jenis_promosi === 'bulanan' ? 'Promo Bulanan' : 'Promo Spesial'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-center lg:justify-end lg:px-4 py-2 lg:py-0">
+                <BookingModalButton
+                  promoName={title}
+                  cf7FormId={promo.cf7_form_id}
+                />
+              </div>
             </div>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 lg:gap-12">
             {/* Main Content - Mobile: first */}
             <div className="xl:col-span-2 order-1">
-              <div className="bg-white dark:bg-gray-900 rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 lg:p-12 shadow-xl">
+              <div className="bg-white dark:bg-gray-900 dark:bg-gray-900 rounded-2xl sm:rounded-[2rem] p-6 sm:p-8 lg:p-12 shadow-xl">
                 {/* Featured Image */}
                 <a 
                   href={featuredImage} 
@@ -210,11 +211,11 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
 
                 {/* Next / Previous Promo */}
                 {(prevPromo || nextPromo) && (
-                  <div className="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800 flex flex-col sm:flex-row justify-between gap-4">
+                  <div className="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800 dark:border-gray-800 flex flex-col sm:flex-row justify-between gap-4">
                     {prevPromo ? (
                       <Link
                         href={`/promosi/${prevPromo.slug}`}
-                        className="flex-1 flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors border border-gray-100 dark:border-gray-800"
+                        className="flex-1 flex items-center gap-4 p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors border border-gray-100 dark:border-gray-800 dark:border-gray-800"
                       >
                         <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-700 flex items-center justify-center shrink-0">
                           <Icon icon="solar:arrow-left-linear" className="w-5 h-5 text-gray-500" />
@@ -233,7 +234,7 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
                     {nextPromo ? (
                       <Link
                         href={`/promosi/${nextPromo.slug}`}
-                        className="flex-1 flex items-center justify-end gap-4 p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors border border-gray-100 dark:border-gray-800 text-right"
+                        className="flex-1 flex items-center justify-end gap-4 p-4 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors border border-gray-100 dark:border-gray-800 dark:border-gray-800 text-right"
                       >
                         <div className="text-right">
                           <span className="text-xs text-gray-500 uppercase tracking-wider font-bold">Promo Selanjutnya</span>
@@ -256,7 +257,7 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
             {/* Sidebar - Mobile: below content */}
             <div className="xl:col-span-1 space-y-6 sm:space-y-8 order-2 xl:order-2 mb-8 xl:mb-0">
               {/* Ringkasan Paket (Tailwind UI: narrow_with_hidden_labels) */}
-              <div className="bg-white dark:bg-gray-900 rounded-[2rem] shadow-xl border border-gray-100 dark:border-gray-800 overflow-hidden">
+              <div className="bg-white dark:bg-gray-900 dark:bg-gray-900 rounded-[2rem] shadow-xl border border-gray-100 dark:border-gray-800 dark:border-gray-800 overflow-hidden">
                 <h2 className="sr-only">Ringkasan Paket</h2>
                 <div className="bg-gray-50 dark:bg-gray-800/50">
                   <dl className="flex flex-wrap">
@@ -320,7 +321,7 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
 
               {/* Related Promos */}
               {relatedPromos.length > 0 && (
-                <div className="bg-white dark:bg-gray-900 rounded-[2rem] p-6 shadow-xl">
+                <div className="bg-white dark:bg-gray-900 dark:bg-gray-900 rounded-[2rem] p-6 shadow-xl">
                   <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4">Promo Lainnya</h3>
                   <div className="space-y-4">
                     {relatedPromos.map((p: any) => {

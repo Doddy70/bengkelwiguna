@@ -43,7 +43,7 @@ export default function Header({
 }: HeaderProps) {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
-
+    const [isDark, setIsDark] = useState(false);
 
     const toggleMobileMenu = () => setMobileOpen(prev => !prev);
 
@@ -57,15 +57,31 @@ export default function Header({
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    // Dark mode listener
+    useEffect(() => {
+        const checkDarkMode = () => {
+            setIsDark(document.body.classList.contains('dark'));
+        };
+
+        checkDarkMode();
+        const observer = new MutationObserver(checkDarkMode);
+        observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+        return () => observer.disconnect();
+    }, []);
+
 
 
     // Determine header visibility classes based on hideOnTop and scrolled state
     const visibilityClass = hideOnTop && !scrolled ? 'opacity-0 pointer-events-none -translate-y-4' : 'opacity-100 pointer-events-auto translate-y-0';
 
+    // Dark mode header background
+    const darkModeBg = isDark ? (scrolled ? 'dark-glass-header' : 'dark-bg-header') : '';
+
     return (
         <>
             <header
-                className={`header-wrapper w-full ${position} top-0 left-0 z-[100] transition-all duration-500 ${visibilityClass} ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${scrolled ? "glass-header bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-200/50" : `${bgColor}`}`}
+                className={`header-wrapper w-full ${position} top-0 left-0 z-[100] transition-all duration-500 ${visibilityClass} ${headerClass === "bg-color-none" ? "bg-color-none" : ""} ${theme} ${scrolled ? "glass-header bg-white/80 backdrop-blur-xl shadow-sm border-b border-gray-200/50" : `${bgColor}`} ${darkModeBg}`}
             >
                 <div className="max-w-screen-xl mx-auto px-4">
                     <div className={`${headerClass === "bg-color-none" ? "bg-gray-100 rounded-lg px-3" : ""}`}>
@@ -112,17 +128,17 @@ export default function Header({
                                         if ((item as any).subMenu && (item as any).subMenu.length > 0) {
                                             return (
                                                 <div key={index} className="relative group">
-                                                    <button className="flex items-center gap-1 px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors">
+                                                    <button className="flex items-center gap-1 px-4 py-7 text-gray-700 dark:text-gray-200 hover:text-brand-blue dark:hover:text-[#ffd900] font-medium text-sm transition-colors">
                                                         {item.title}
                                                         <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-200" />
                                                     </button>
                                                     <div className="absolute top-full left-0 pt-2 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                                                        <div className="bg-white rounded-xl shadow-lg border border-gray-100 py-2 w-48">
+                                                        <div className="bg-white dark:bg-gray-900 rounded-xl shadow-lg border border-gray-100 dark:border-gray-800 py-2 w-48">
                                                             {(item as any).subMenu.map((sub: any, subIndex: number) => (
                                                                 <Link
                                                                     key={subIndex}
                                                                     href={sub.href}
-                                                                    className="block px-4 py-2 text-sm text-gray-700 hover:text-brand-blue hover:bg-gray-50 transition-colors"
+                                                                    className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-brand-blue dark:hover:text-[#ffd900] hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                                                                 >
                                                                     {sub.title}
                                                                 </Link>
@@ -137,7 +153,7 @@ export default function Header({
                                             <Link
                                                 key={index}
                                                 href={item.href || '/'}
-                                                className="px-4 py-7 text-gray-700 hover:text-brand-blue font-medium text-sm transition-colors"
+                                                className="px-4 py-7 text-gray-700 dark:text-gray-200 hover:text-brand-blue dark:hover:text-[#ffd900] font-medium text-sm transition-colors"
                                             >
                                                 {item.title}
                                             </Link>
@@ -167,14 +183,14 @@ export default function Header({
                                 {/* Mobile Menu Toggle - Mobile Only */}
                                 <button
                                     onClick={toggleMobileMenu}
-                                    className="xl:hidden flex items-center justify-center w-11 h-11 rounded-lg bg-white shadow-sm border border-gray-200 hover:bg-gray-50 transition-colors"
+                                    className="xl:hidden flex items-center justify-center w-11 h-11 rounded-lg bg-white dark:bg-gray-800 shadow-sm border border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
                                     aria-label={mobileOpen ? "Tutup menu" : "Buka menu"}
                                     aria-expanded={mobileOpen}
                                 >
                                     {mobileOpen ? (
-                                        <X size={22} className="text-gray-700" />
+                                        <X size={22} className="text-gray-700 dark:text-gray-200" />
                                     ) : (
-                                        <Menu size={22} className="text-gray-700" />
+                                        <Menu size={22} className="text-gray-700 dark:text-gray-200" />
                                     )}
                                 </button>
                             </div>

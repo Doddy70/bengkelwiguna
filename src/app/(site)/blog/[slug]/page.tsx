@@ -52,7 +52,7 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
     const primaryCategory = allCategories?.find((c: any) => c.id === primaryCategoryId);
 
     return (
-        <div className="bg-white min-h-screen">
+        <div className="bg-white dark:bg-gray-950 min-h-screen">
         <JsonLd data={generateArticleSchema(post)} />
         <JsonLd data={generateBreadcrumbSchema([
           { name: 'Home', url: 'https://bengkelwiguna.com' },
@@ -150,14 +150,14 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
 
                     {/* Article Body */}
                     <article
-                        className="prose prose-lg max-w-none
-                        prose-headings:font-black prose-headings:tracking-tight prose-headings:text-gray-900 prose-headings:mb-6
-                        prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-[17px]
+                        className="prose prose-lg max-w-none dark:prose-invert
+                        prose-headings:font-black prose-headings:tracking-tight prose-headings:text-gray-900 dark:prose-headings:text-white prose-headings:mb-6
+                        prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-[17px]
                         prose-a:text-[#224297] prose-a:no-underline hover:prose-a:underline prose-a:font-semibold
-                        prose-strong:text-gray-900 prose-strong:font-black
+                        prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-black
                         prose-img:rounded-2xl prose-img:shadow-xl prose-img:mx-auto
-                        prose-blockquote:border-l-4 prose-blockquote:border-[#ffd900] prose-blockquote:bg-gray-50 prose-blockquote:p-6 prose-blockquote:rounded-r-xl prose-blockquote:font-bold prose-blockquote:italic prose-blockquote:text-gray-700
-                        prose-ul:list-disc prose-ul:pl-6 prose-li:text-gray-700 prose-li:text-[17px]
+                        prose-blockquote:border-l-4 prose-blockquote:border-[#ffd900] prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-gray-800 prose-blockquote:p-6 prose-blockquote:rounded-r-xl prose-blockquote:font-bold prose-blockquote:italic prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
+                        prose-ul:list-disc prose-ul:pl-6 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:text-[17px]
                         prose-ol:list-decimal prose-ol:pl-6 prose-li:mb-3
                         prose-h2:text-2xl prose-h2:mt-12 prose-h2:border-b prose-h2:pb-4
                         prose-h3:text-xl"
@@ -165,14 +165,14 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                     />
 
                     {/* Tags */}
-                    <div className="mt-12 pt-8 border-t border-gray-100">
+                    <div className="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
                         <div className="flex flex-wrap items-center gap-3">
-                            <span className="text-sm font-bold text-gray-500 uppercase tracking-wider">Tags:</span>
+                            <span className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Tags:</span>
                             {allCategories?.slice(0, 5).map((cat: any) => (
                                 <Link
                                     key={cat.id}
                                     href={`/blog?category=${cat.id}`}
-                                    className="px-4 py-2 bg-gray-100 hover:bg-[#224297] hover:text-white text-gray-600 text-sm font-medium rounded-full transition-colors"
+                                    className="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-[#224297] hover:text-white text-gray-600 dark:text-gray-300 text-sm font-medium rounded-full transition-colors"
                                 >
                                     #{cat.name}
                                 </Link>
@@ -182,7 +182,7 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
 
                     {/* Share Buttons */}
                     <div className="mt-8 flex items-center gap-4">
-                        <span className="text-sm font-bold text-gray-500 uppercase tracking-wider">Bagikan:</span>
+                        <span className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Bagikan:</span>
                         <div className="flex gap-3">
                             <a href="#" className="w-10 h-10 rounded-full bg-[#25D366] hover:bg-[#128C7E] text-white flex items-center justify-center transition-colors shadow-lg">
                                 <Icon icon="fa6-brands:whatsapp" width={18} />
@@ -237,8 +237,8 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                 <aside className="w-full lg:sticky lg:top-32 space-y-8">
 
                     {/* Popular Articles */}
-                    <div className="bg-white rounded-3xl p-6 lg:p-8 border border-gray-100 shadow-sm">
-                        <h3 className="text-lg font-black text-gray-900 mb-6 flex items-center gap-3">
+                    <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 lg:p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-3">
                             <span className="w-1 h-6 bg-[#224297] rounded-full"></span>
                             Artikel Terpopuler
                         </h3>
@@ -252,14 +252,14 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                                         href={`/blog/${p.slug}`}
                                         className="flex items-start gap-4 group"
                                     >
-                                        <span className="w-8 h-8 rounded-full bg-[#224297]/10 text-[#224297] font-black text-sm flex items-center justify-center shrink-0 group-hover:bg-[#224297] group-hover:text-white transition-colors">
+                                        <span className="w-8 h-8 rounded-full bg-[#224297]/10 dark:bg-[#224297]/20 text-[#224297] font-black text-sm flex items-center justify-center shrink-0 group-hover:bg-[#224297] group-hover:text-white transition-colors">
                                             {index + 1}
                                         </span>
                                         <div className="flex-1 min-w-0">
-                                            <h4 className="text-sm font-bold text-gray-900 line-clamp-2 group-hover:text-[#224297] transition-colors leading-snug">
+                                            <h4 className="text-sm font-bold text-gray-900 dark:text-white line-clamp-2 group-hover:text-[#224297] transition-colors leading-snug">
                                                 {pTitle}
                                             </h4>
-                                            <p className="text-xs text-gray-500 mt-1">
+                                            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                                                 {formatDate(p.date)}
                                             </p>
                                         </div>
@@ -270,8 +270,8 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                     </div>
 
                     {/* Categories */}
-                    <div className="bg-white rounded-3xl p-6 lg:p-8 border border-gray-100 shadow-sm">
-                        <h3 className="text-lg font-black text-gray-900 mb-6 flex items-center gap-3">
+                    <div className="bg-white dark:bg-gray-900 rounded-3xl p-6 lg:p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <h3 className="text-lg font-black text-gray-900 dark:text-white mb-6 flex items-center gap-3">
                             <span className="w-1 h-6 bg-[#ffd900] rounded-full"></span>
                             Kategori
                         </h3>
@@ -280,7 +280,7 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                                 <Link
                                     key={cat.id}
                                     href={`/blog?category=${cat.id}`}
-                                    className="px-4 py-2 bg-gray-50 hover:bg-[#224297] text-gray-700 hover:text-white text-sm font-medium rounded-full transition-colors border border-gray-100 hover:border-transparent"
+                                    className="px-4 py-2 bg-gray-50 dark:bg-gray-800 hover:bg-[#224297] text-gray-700 dark:text-gray-300 hover:text-white text-sm font-medium rounded-full transition-colors border border-gray-100 dark:border-gray-700 hover:border-transparent"
                                 >
                                     {cat.name}
                                 </Link>

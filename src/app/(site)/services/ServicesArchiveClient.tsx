@@ -46,37 +46,42 @@ const ServiceCard = ({ service, index }: { service: any, index: number }) => {
 export default function ServicesArchiveClient({ services }: { services: Service[] }) {
     const [selectedCategory, setSelectedCategory] = useState<string>("Semua Layanan");
 
-    const categories = [
-        { name: "Semua Layanan", keywords: [] },
-        { name: "Perawatan Mesin", keywords: ["mesin", "oli", "tune up", "carbon", "detox", "berkala"] },
-        { name: "Kaki-Kaki & Suspensi", keywords: ["ban", "balancing", "spooring", "kaki", "rem"] },
-        { name: "Servis AC", keywords: ["ac", "freon", "flushing"] },
-        { name: "Layanan Lainnya", keywords: ["other"] }
-    ];
+    // Extract unique categories from services dynamically
+    const categories = useMemo(() => {
+        const categoryMap = new Map<number, { id: number; name: string }>();
+
+        services.forEach((service: any) => {
+            const serviceCategories = service.services_category || service.spesialis_category || [];
+            serviceCategories.forEach((catId: number) => {
+                if (!categoryMap.has(catId)) {
+                    // Use category ID as name if name not available
+                    categoryMap.set(catId, { id: catId, name: `Kategori ${catId}` });
+                }
+            });
+        });
+
+        return [
+            { name: "Semua Layanan", id: 0 },
+            ...Array.from(categoryMap.values())
+        ];
+    }, [services]);
 
     const filteredServices = useMemo(() => {
         let result = services;
-        
+
         if (selectedCategory && selectedCategory !== "Semua Layanan") {
             const cat = categories.find(c => c.name === selectedCategory);
-            if (cat) {
-                if (cat.name === "Layanan Lainnya") {
-                    const otherKeywords = categories.flatMap(c => c.keywords).filter(k => k !== "other");
-                    result = result.filter(s => {
-                        const t = (typeof s.title === 'string' ? s.title : s.title?.rendered || '').toLowerCase();
-                        return !otherKeywords.some(k => t.includes(k));
-                    });
-                } else {
-                    result = result.filter(s => {
-                        const t = (typeof s.title === 'string' ? s.title : s.title?.rendered || '').toLowerCase();
-                        return cat.keywords.some(k => t.includes(k));
-                    });
-                }
+            if (cat && cat.id) {
+                result = result.filter(s => {
+                    // Check both services_category and spesialis_category fields
+                    const serviceCategories = (s as any).services_category || (s as any).spesialis_category || [];
+                    return serviceCategories.includes(cat.id);
+                });
             }
         }
 
         return result;
-    }, [services, selectedCategory]);
+    }, [services, selectedCategory, categories]);
     
     
     // For the hero bento cards, we'll try to use the first two service images if available

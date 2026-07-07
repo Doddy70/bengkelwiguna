@@ -159,6 +159,112 @@ function recordCircuitBreakerSuccess(endpoint: string): void {
   cb.state = 'CLOSED'
 }
 
+// ============================================
+// SMUSH CDN IMAGE OPTIMIZATION
+// ============================================
+
+/**
+ * Smush Pro CDN Configuration
+ * Smush CDN automatically:
+ * - Converts images to WebP/AVIF (30-50% smaller)
+ * - Serves from edge CDN (faster LCP)
+ * - Applies lazy loading
+ * - Optimizes dimensions
+ */
+const SMUSH_CDN_CONFIG = {
+  enabled: process.env.NEXT_PUBLIC_SMUSH_CDN_ENABLED === 'true',
+  cdnUrl: process.env.NEXT_PUBLIC_SMUSH_CDN_URL || '',
+}
+
+/**
+ * Transform WordPress image URL to Smush CDN URL
+ *
+ * When Smush CDN is enabled, this transforms:
+ * FROM: https://backend.bengkelwiguna.com/wp-content/uploads/2024/06/image.jpg
+ * TO:   https://cdn.bengkelwiguna.com/wp-content/uploads/2024/06/image.jpg?w=800&format=webp
+ *
+ * Benefits:
+ * - WebP/AVIF conversion (30-50% size reduction)
+ * - Edge CDN delivery (lower latency)
+ * - Automatic lazy loading
+ * - Resize to optimal dimensions
+ */
+export function getOptimizedImageUrl(
+  originalUrl: string | null | undefined,
+  options: {
+    width?: number
+    height?: number
+    format?: 'webp' | 'avif' | 'original'
+    quality?: number
+    lazy?: boolean
+  } = {}
+): string {
+  if (!originalUrl) return ''
+
+  const {
+    width,
+    height,
+    format = 'webp',
+    quality = 85,
+    lazy = false
+  } = options
+
+  // If Smush CDN is enabled, use it
+  if (SMUSH_CDN_CONFIG.enabled && SMUSH_CDN_CONFIG.cdnUrl) {
+    // Remove backend domain to get relative path
+    let path = originalUrl
+    if (path.includes(WORDPRESS_URL)) {
+      path = path.replace(WORDPRESS_URL, '')
+    }
+
+    // Build CDN URL with optimization parameters
+    const params = new URLSearchParams()
+    if (width) params.set('w', width.toString())
+    if (height) params.set('h', height.toString())
+    if (format !== 'original') params.set('format', format)
+    if (quality) params.set('q', quality.toString())
+
+    const queryString = params.toString()
+    return `${SMUSH_CDN_CONFIG.cdnUrl}${path}${queryString ? '?' + queryString : ''}`
+  }
+
+  // Fallback: Return original URL with Next.js image optimization
+  // Next.js will handle WebP conversion and caching
+  return originalUrl
+}
+
+/**
+ * Generate srcset for responsive images with Smush CDN
+ *
+ * Usage:
+ * const { src, srcset } = getResponsiveImageSrcSet(originalUrl, 1920)
+ * <img src={src} srcSet={srcset} />
+ */
+export function getResponsiveImageSrcSet(
+  originalUrl: string | null | undefined,
+  maxWidth: number = 1920
+): { src: string; srcset: string; sizes: string } {
+  if (!originalUrl) {
+    return { src: '', srcset: '', sizes: '100vw' }
+  }
+
+  // Generate srcset for common viewport widths
+  const widths = [320, 640, 750, 828, 1080, 1200, 1440, 1920, 2048]
+    .filter(w => w <= maxWidth)
+    .concat(maxWidth)
+
+  const srcsetParts = widths.map(w => {
+    const optimizedUrl = getOptimizedImageUrl(originalUrl, { width: w, format: 'webp' })
+    return `${optimizedUrl} ${w}w`
+  })
+
+  const src = getOptimizedImageUrl(originalUrl, { width: maxWidth, format: 'webp' })
+  const srcset = srcsetParts.join(', ')
+  const sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 1920px'
+
+  return { src, srcset, sizes }
+}
+
 /**
  * Determine if an error is retryable
  */
@@ -430,6 +536,41 @@ async function apiFetchPaginated<T>(
 // ============================================
 // SERVICES (Custom Post Type)
 // ============================================
+
+/**
+ * Get all services WITH taxonomy categories (for filtering)
+ * Uses WP REST API to get services_category field
+ */
+export const getAllServicesWithCategories = cache(async (): Promise<Service[]> => {
+  try {
+    const response = await fetch(
+      `${WP_API_BASE}/layanan_spesialis?per_page=99&_embed`,
+      {
+        next: { revalidate: REVALIDATE_LIST },
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT)
+      }
+    )
+
+    if (!response.ok) {
+      console.error(`[WP] Services API error: ${response.status}`)
+      return []
+    }
+
+    const posts = await response.json()
+
+    // Transform to include services_category and featured_img
+    return posts.map((post: any) => ({
+      ...post,
+      // Map spesialis_category from WP REST API to services_category for consistency
+      services_category: post.spesialis_category || [],
+      // Extract featured image URL from _embedded
+      featured_img: post._embedded?.['wp:featuredmedia']?.[0]?.source_url || null,
+    }))
+  } catch (error) {
+    console.error('[WP] Failed to fetch services with categories:', error)
+    return []
+  }
+})
 
 /**
  * Cached version for per-request deduplication

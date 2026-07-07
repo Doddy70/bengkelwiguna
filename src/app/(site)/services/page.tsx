@@ -4,7 +4,7 @@
  */
 
 import ServicesArchiveClient from './ServicesArchiveClient'
-import { getAllServices } from '@/lib/wordpress'
+import { getAllServicesWithCategories } from '@/lib/wordpress'
 
 export const revalidate = 43200
 
@@ -65,7 +65,7 @@ export async function generateMetadata() {
 }
 
 export default async function ServicesPage() {
-  const services = await getAllServices()
+  const services = await getAllServicesWithCategories()
   const servicesList = Array.isArray(services) ? services : []
 
   return (
