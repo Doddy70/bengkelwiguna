@@ -58,10 +58,14 @@ export default async function PromosiDetailPage({ params }: { params: Promise<{ 
   const excerptFallback = contentRaw.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0, 200)
   const excerpt = excerptRaw || excerptFallback
   const featuredImage = promo.featured_img || '/images/promo-default.jpg'
-  
-  // Extract custom fields if available from WP plugin
-  const faqData = parseFaqField((promo as any).faq || null)
-  const syaratHtml = (promo as any).syarat_ketentuan || (promo as any).syarat || ''
+
+  // Extract custom fields from WP plugin
+  // BW API returns FAQ in meta.bw_promosi_faq (JSON string), not top-level faq
+  const meta = (promo as any).meta || {};
+  const faqRaw = meta.bw_promosi_faq || (promo as any).faq || null;
+  const faqData = parseFaqField(faqRaw);
+  // BW API returns syarat_ketentuan in meta object
+  const syaratHtml = meta.syarat_ketentuan || (promo as any).syarat_ketentuan || '';
 
   // Get related promos
   const allPromos = await getAllPromosi()

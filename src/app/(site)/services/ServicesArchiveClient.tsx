@@ -15,13 +15,13 @@ const getCleanExcerpt = (service: any) => {
   return sourceText.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim().slice(0, 100) + '...';
 }
 
-const ServiceCard = ({ service, index }: { service: any, index: number }) => {
+const ServiceCard = ({ service, index, basePath }: { service: any, index: number, basePath: string }) => {
     const title = typeof service.title === 'string' ? service.title : service.title?.rendered || '';
     const excerpt = getCleanExcerpt(service);
-    
+
     return (
         <WigunaCard
-            href={`/services/${service.slug}`}
+            href={`${basePath}/${service.slug}`}
             image={service.featured_img || "/images/hero-desktop.webp"}
             imageAspectRatio="16/10"
             tag={service.kategori_layanan || "Layanan"}
@@ -43,22 +43,38 @@ const ServiceCard = ({ service, index }: { service: any, index: number }) => {
     );
 };
 
-export default function ServicesArchiveClient({ services }: { services: Service[] }) {
+interface ServicesArchiveClientProps {
+    services: Service[];
+    basePath?: string; // Default: '/services' for services CPT, '/layanan-spesialis' for specialists
+}
+
+export default function ServicesArchiveClient({ services, basePath = '/services' }: ServicesArchiveClientProps) {
     const [selectedCategory, setSelectedCategory] = useState<string>("Semua Layanan");
 
     // Extract unique categories from services dynamically
+    // BW API returns nested taxonomy objects: taxonomies.services_category: [{term_id, name, slug}]
     const categories = useMemo(() => {
         const categoryMap = new Map<number, { id: number; name: string }>();
 
         services.forEach((service: any) => {
-            const serviceCategories = service.services_category || service.spesialis_category || [];
-            serviceCategories.forEach((catId: number) => {
-                if (!categoryMap.has(catId)) {
-                    // Use category ID as name if name not available
-                    categoryMap.set(catId, { id: catId, name: `Kategori ${catId}` });
+            // BW API structure: service.taxonomies.services_category: [{term_id, name, slug}]
+            const taxonomies = service.taxonomies || {};
+            const serviceCategories = taxonomies.services_category || [];
+
+            serviceCategories.forEach((cat: { term_id: number; name: string; slug: string }) => {
+                if (!categoryMap.has(cat.term_id)) {
+                    categoryMap.set(cat.term_id, {
+                        id: cat.term_id,
+                        name: cat.name // Use actual category name, not placeholder!
+                    });
                 }
             });
         });
+
+        // If no categories found, return just "Semua Layanan"
+        if (categoryMap.size === 0) {
+            return [{ name: "Semua Layanan", id: 0 }];
+        }
 
         return [
             { name: "Semua Layanan", id: 0 },
@@ -67,20 +83,20 @@ export default function ServicesArchiveClient({ services }: { services: Service[
     }, [services]);
 
     const filteredServices = useMemo(() => {
-        let result = services;
-
-        if (selectedCategory && selectedCategory !== "Semua Layanan") {
-            const cat = categories.find(c => c.name === selectedCategory);
-            if (cat && cat.id) {
-                result = result.filter(s => {
-                    // Check both services_category and spesialis_category fields
-                    const serviceCategories = (s as any).services_category || (s as any).spesialis_category || [];
-                    return serviceCategories.includes(cat.id);
-                });
-            }
+        // If only "Semua Layanan" option or no categories, show all services
+        if (categories.length === 1 || selectedCategory === "Semua Layanan") {
+            return services;
         }
 
-        return result;
+        const cat = categories.find(c => c.name === selectedCategory);
+        if (!cat || !cat.id) return services;
+
+        return services.filter(s => {
+            const taxonomies = (s as any).taxonomies || {};
+            const serviceCategories = taxonomies.services_category || [];
+            // Match by term_id
+            return serviceCategories.some((c: any) => c.term_id === cat.id);
+        });
     }, [services, selectedCategory, categories]);
     
     
@@ -207,7 +223,7 @@ export default function ServicesArchiveClient({ services }: { services: Service[
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                     {filteredServices.length > 0 ? (
                         filteredServices.map((service, index) => (
-                            <ServiceCard key={service.id} service={service} index={index} />
+                            <ServiceCard key={service.id} service={service} index={index} basePath={basePath} />
                         ))
                     ) : (
                         <div className="col-span-full py-12 text-center text-gray-500">

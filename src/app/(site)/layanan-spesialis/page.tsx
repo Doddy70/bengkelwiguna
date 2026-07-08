@@ -69,6 +69,6 @@ export default async function LayananSpesialisPage() {
 
   // Reuse the clean grid layout from ServicesArchiveClient
   return (
-    <ServicesArchiveClient services={data} />
+    <ServicesArchiveClient services={data} basePath="/layanan-spesialis" />
   )
 }

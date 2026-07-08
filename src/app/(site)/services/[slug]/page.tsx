@@ -54,9 +54,12 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
   const excerpt = stripHtml(service.excerpt?.rendered || service.excerpt || '').slice(0, 200)
   const content = service.content?.rendered || service.content || ''
 
-  // Get service categories
-  const serviceCategories = service._embedded?.['wp:term']?.[0] || []
-  const primaryCategory = serviceCategories[0]
+  // Get service categories from BW API structure
+  // BW API returns: service.taxonomies.services_category: [{term_id, name, slug}]
+  // NOT: service._embedded['wp:term'] (doesn't exist in BW API)
+  const taxonomies = (service as any).taxonomies || {};
+  const serviceCategories = taxonomies.services_category || [];
+  const primaryCategory = serviceCategories[0];
 
   // Gallery Images setup (using BW Plugin native gallery field)
   const mainImage = service.featured_img || '/images/service-hero-default.png'
