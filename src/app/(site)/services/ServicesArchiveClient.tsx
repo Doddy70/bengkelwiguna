@@ -52,23 +52,44 @@ export default function ServicesArchiveClient({ services, basePath = '/services'
     const [selectedCategory, setSelectedCategory] = useState<string>("Semua Layanan");
 
     // Extract unique categories from services dynamically
-    // BW API returns nested taxonomy objects: taxonomies.services_category: [{term_id, name, slug}]
+    // Supports both flat IDs array and nested taxonomy objects
     const categories = useMemo(() => {
         const categoryMap = new Map<number, { id: number; name: string }>();
 
         services.forEach((service: any) => {
-            // BW API structure: service.taxonomies.services_category: [{term_id, name, slug}]
-            const taxonomies = service.taxonomies || {};
-            const serviceCategories = taxonomies.services_category || [];
+            // Handle both formats:
+            // 1. Flat array: services_category: [927, 928, ...] (WP REST API)
+            // 2. Nested object: taxonomies: { services_category: [{term_id, name, slug}] }
 
-            serviceCategories.forEach((cat: { term_id: number; name: string; slug: string }) => {
-                if (!categoryMap.has(cat.term_id)) {
-                    categoryMap.set(cat.term_id, {
-                        id: cat.term_id,
-                        name: cat.name // Use actual category name, not placeholder!
-                    });
-                }
-            });
+            // Try flat services_category first (WP REST API format)
+            const flatCategories = service.services_category || [];
+
+            if (Array.isArray(flatCategories) && flatCategories.length > 0) {
+                // Flat array of IDs or objects
+                flatCategories.forEach((cat: any) => {
+                    // cat could be number ID or object {term_id, name, slug}
+                    const id = typeof cat === 'number' ? cat : (cat.term_id || cat.id);
+                    const name = typeof cat === 'string' ? cat : (cat.name || `Kategori ${id}`);
+                    if (id && !categoryMap.has(id)) {
+                        categoryMap.set(id, { id, name });
+                    }
+                });
+            }
+
+            // Also check nested taxonomies format (BW API format)
+            const taxonomies = service.taxonomies || {};
+            const nestedCategories = taxonomies.services_category || [];
+            if (Array.isArray(nestedCategories) && nestedCategories.length > 0) {
+                nestedCategories.forEach((cat: any) => {
+                    const id = cat.term_id || cat.id;
+                    if (id && !categoryMap.has(id)) {
+                        categoryMap.set(id, {
+                            id,
+                            name: cat.name || `Kategori ${id}`
+                        });
+                    }
+                });
+            }
         });
 
         // If no categories found, return just "Semua Layanan"
@@ -92,10 +113,28 @@ export default function ServicesArchiveClient({ services, basePath = '/services'
         if (!cat || !cat.id) return services;
 
         return services.filter(s => {
-            const taxonomies = (s as any).taxonomies || {};
-            const serviceCategories = taxonomies.services_category || [];
-            // Match by term_id
-            return serviceCategories.some((c: any) => c.term_id === cat.id);
+            // Check both flat and nested formats
+            const flatCats = (s as any).services_category || [];
+            const nestedCats = (s as any).taxonomies?.services_category || [];
+
+            // For flat array, check if ID exists
+            if (Array.isArray(flatCats) && flatCats.length > 0) {
+                const hasFlatMatch = flatCats.some((c: any) => {
+                    const id = typeof c === 'number' ? c : (c.term_id || c.id);
+                    return id === cat.id;
+                });
+                if (hasFlatMatch) return true;
+            }
+
+            // For nested object, check term_id
+            if (Array.isArray(nestedCats) && nestedCats.length > 0) {
+                const hasNestedMatch = nestedCats.some((c: any) => {
+                    return c.term_id === cat.id;
+                });
+                if (hasNestedMatch) return true;
+            }
+
+            return false;
         });
     }, [services, selectedCategory, categories]);
     

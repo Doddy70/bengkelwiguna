@@ -575,9 +575,80 @@ export const getAllServicesWithCategories = cache(async (): Promise<Service[]> =
 /**
  * Cached version for per-request deduplication
  * Vercel Best Practice Rule 3.9: Per-Request Deduplication with React.cache()
+ *
+ * Uses WP REST API with _embed for taxonomy and featured image support
+ * ACF fields accessible via meta object
  */
 export const getAllServices = cache(async (): Promise<Service[]> => {
-  return (await apiFetch<Service[]>('/services-full?per_page=99', 'bw', REVALIDATE_LIST, ['services', 'all-services'])) ?? []
+  try {
+    // Use WP REST API with _embed for taxonomy and featured image support
+    const response = await fetch(
+      `${WP_API_BASE}/services?per_page=99&_embed`,
+      {
+        next: { revalidate: REVALIDATE_LIST },
+        signal: AbortSignal.timeout(REQUEST_TIMEOUT)
+      }
+    )
+
+    if (!response.ok) {
+      console.error(`[WP] Services API error: ${response.status}`)
+      return []
+    }
+
+    const posts = await response.json()
+
+    // Transform WP REST API response to match expected Service interface
+    return posts.map((post: any) => {
+      // Extract featured image from _embedded
+      const featuredMedia = post._embedded?.['wp:featuredmedia']?.[0]
+      const featuredImg = featuredMedia?.source_url || null
+
+      // Extract taxonomy terms from _embedded.wp:term
+      const embeddedTerms = post._embedded?.['wp:term'] || []
+      const categories = embeddedTerms[0] || [] // First taxonomy is usually category
+
+      // Build services_category as flat array of IDs for filter compatibility
+      const servicesCategoryIds: number[] = (post.services_category || []).map((cat: any) =>
+        typeof cat === 'number' ? cat : cat.id || cat.term_id
+      )
+
+      // Build taxonomies object for components that expect nested structure
+      const taxonomies = {
+        services_category: categories.map((cat: any) => ({
+          term_id: cat.id || cat.term_id,
+          name: cat.name,
+          slug: cat.slug
+        }))
+      }
+
+      // ACF fields accessible via meta
+      const meta = post.meta || {}
+
+      return {
+        id: post.id,
+        title: typeof post.title === 'string' ? post.title : post.title?.rendered || '',
+        slug: post.slug,
+        content: typeof post.content === 'string' ? post.content : post.content?.rendered || '',
+        excerpt: typeof post.excerpt === 'string' ? post.excerpt : post.excerpt?.rendered || '',
+        date: post.date,
+        link: post.link,
+        featured_img: featuredImg,
+        // Flat array for filter
+        services_category: servicesCategoryIds,
+        // Nested structure for components
+        taxonomies,
+        // ACF fields
+        harga: meta.harga || '',
+        durasi: meta.durasi || '',
+        garansi: meta.garansi || '',
+        gallery: meta.gallery || [],
+        bw_services_faq: meta.bw_services_faq || [],
+      }
+    })
+  } catch (error) {
+    console.error('[WP] Failed to fetch services:', error)
+    return []
+  }
 })
 
 export async function getServiceBySlug(slug: string): Promise<Service | null> {
