@@ -3,7 +3,21 @@
     "allow": [
       "Bash(npx lighthouse *)",
       "Bash(nginx -V)",
-      "Bash(nginx -t)"
+      "Bash(nginx -t)",
+      "Bash(rm -rf .next)",
+      "Bash(rm -rf static)",
+      "Bash(cat)",
+      "Bash(chmod +x /tmp/analyze_pages.sh)",
+      "Bash(bash /tmp/analyze_pages.sh)",
+      "mcp__wordpress__mcp-adapter-get-ability-info",
+      "Bash(npx jest *)",
+      "mcp__MCP_DOCKER__browser_navigate",
+      "mcp__MCP_DOCKER__browser_take_screenshot",
+      "Bash(ssh root@bengkelwiguna.com \"wp snippet activate 6 --allow-root 2>&1\")",
+      "Bash(ssh root@bengkelwiguna.com \"cd /var/www/bengkelwiguna.com/html && wp --allow-root snippet activate 6 2>&1\")",
+      "mcp__MCP_DOCKER__browser_fill_form",
+      "mcp__MCP_DOCKER__browser_click",
+      "mcp__MCP_DOCKER__browser_snapshot"
     ]
   }
 }
