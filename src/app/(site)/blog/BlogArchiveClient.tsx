@@ -1,7 +1,7 @@
 /**
  * Blog Archive Client Component — Bengkel Wiguna
- * Magazine-style Hero with WP REST API Integration
- * Design Reference: Pagedone newest article blog concept
+ * Vertical Feature Layout: Featured Post (left) + Recent List (right)
+ * Design Reference: Pagedone vertical feature blog list
  */
 
 "use client";
@@ -39,7 +39,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   const getRenderedExcerpt = (post: WPPost) => {
     const rawExcerpt = typeof post.excerpt === 'string' ? post.excerpt : post.excerpt?.rendered || '';
     const cleanExcerpt = rawExcerpt.replace(/<[^>]*>/g, '');
-    return cleanExcerpt.length > 120 ? cleanExcerpt.slice(0, 120) + "..." : cleanExcerpt;
+    return cleanExcerpt.length > 150 ? cleanExcerpt.slice(0, 150) + "..." : cleanExcerpt;
   };
 
   // Helper: Format date
@@ -62,6 +62,14 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
     return post._embedded?.['wp:term']?.[0]?.[0]?.name || 'Berita';
   };
 
+  // Helper: Estimate reading time
+  const getReadingTime = (post: WPPost) => {
+    const content = typeof post.content === 'string' ? post.content : post.content?.rendered || '';
+    const wordCount = content.replace(/<[^>]*>/g, '').split(/\s+/).length;
+    const minutes = Math.ceil(wordCount / 200);
+    return minutes < 1 ? '1' : String(minutes);
+  };
+
   // Filter posts by category
   const filteredPosts = useMemo(() => {
     let result = [...posts];
@@ -74,17 +82,17 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
     return result;
   }, [posts, selectedCategory]);
 
-  // Hero posts
+  // Featured post (first)
   const featuredPost = filteredPosts[0];
-  const sidePost1 = filteredPosts[1];
-  const sidePost2 = filteredPosts[2];
-  const sidePost3 = filteredPosts[3];
 
-  // Grid posts (remaining)
-  const gridPosts = filteredPosts.slice(4, visibleCount + 4);
-  const hasMore = visibleCount < filteredPosts.length - 4;
+  // Recent posts list (next 4-5 posts)
+  const recentPosts = filteredPosts.slice(1, 6);
 
-  // Prepare categories for filter (add "Semua Artikel")
+  // Grid posts (remaining for main grid)
+  const gridPosts = filteredPosts.slice(6, visibleCount + 6);
+  const hasMore = visibleCount < filteredPosts.length - 6;
+
+  // Prepare categories for filter
   const filterCategories = useMemo(() => [
     { id: 0, name: "Semua Artikel" },
     ...categories.map((c: any) => ({ id: c.id, name: c.name, slug: c.slug }))
@@ -93,8 +101,8 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   return (
     <>
       {/* ═══════════════════════════════════════════════════════════════════════
-          HERO SECTION — Magazine Style
-          Layout: Featured (2/3) + Side Column (1/3)
+          HERO SECTION — Vertical Feature Layout
+          Layout: Featured (1/2) + Recent List (1/2)
       ═══════════════════════════════════════════════════════════════════════ */}
       <section className="relative bg-[#fafafa] dark:bg-neutral-950 pt-6 lg:pt-10 pb-10 lg:pb-14 font-dm overflow-hidden">
 
@@ -131,61 +139,66 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
             </Link>
           </div>
 
-          {/* ═══ Magazine Grid: Featured (2/3) + Side Stack (1/3) ═══ */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 lg:gap-6">
+          {/* ═══ VERTICAL FEATURE GRID ═══ */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
 
-            {/* ═══ FEATURED POST — Large Card (lg:col-span-8) ═══ */}
+            {/* ═══ LEFT: FEATURED POST (Large Card) ═══ */}
             {featuredPost && (
-              <div className="lg:col-span-8 relative rounded-3xl lg:rounded-[2rem] overflow-hidden group cursor-pointer">
-                <Link href={`/blog/${featuredPost.slug}`} className="block">
-                  {/* Image Background */}
-                  <div className="relative aspect-[16/10] lg:aspect-[21/9]">
-                    <Image
-                      src={getFeaturedImage(featuredPost)}
-                      alt={getRenderedTitle(featuredPost)}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 1024px) 100vw, 66vw"
-                      priority
-                    />
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+              <div className="relative group">
+                <Link href={`/blog/${featuredPost.slug}`} className="block h-full">
+                  {/* Card Container */}
+                  <div className="relative h-full rounded-3xl lg:rounded-[1.75rem] overflow-hidden bg-white dark:bg-neutral-900 shadow-xl shadow-black/5 dark:shadow-black/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/10">
 
-                    {/* Content Overlay */}
-                    <div className="absolute inset-0 p-6 lg:p-10 flex flex-col justify-end">
-                      {/* Category Badge */}
-                      <span className="inline-flex items-center gap-1.5 w-fit mb-4 px-4 py-1.5 bg-[#ffd900] text-[#224297] text-xs lg:text-sm font-black uppercase tracking-wider rounded-full shadow-lg">
-                        <Icon icon="solar:tag-linear" className="w-3.5 h-3.5" />
-                        {getPrimaryCategory(featuredPost)}
-                      </span>
+                    {/* Image Section */}
+                    <div className="relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden">
+                      <Image
+                        src={getFeaturedImage(featuredPost)}
+                        alt={getRenderedTitle(featuredPost)}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        priority
+                      />
 
-                      {/* Title */}
-                      <h2 className="text-2xl lg:text-4xl xl:text-5xl font-black text-white leading-[1.15] tracking-tight mb-3 line-clamp-3 drop-shadow-lg">
-                        {getRenderedTitle(featuredPost)}
-                      </h2>
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
-                      {/* Excerpt */}
-                      <p className="hidden sm:block text-white/80 text-sm lg:text-base leading-relaxed mb-4 max-w-2xl line-clamp-2">
-                        {getRenderedExcerpt(featuredPost)}
-                      </p>
+                      {/* Category Badge (Top Left) */}
+                      <div className="absolute top-4 left-4">
+                        <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#ffd900] text-[#224297] text-xs font-black uppercase tracking-wider rounded-full shadow-lg">
+                          <Icon icon="solar:tag-linear" className="w-3 h-3" />
+                          {getPrimaryCategory(featuredPost)}
+                        </span>
+                      </div>
 
-                      {/* Meta */}
-                      <div className="flex items-center gap-4 text-white/70 text-sm">
-                        <div className="flex items-center gap-2">
-                          <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                            <Icon icon="solar:user-bold" className="w-4 h-4" />
+                      {/* Author & Date (Top Right) */}
+                      <div className="absolute top-4 right-4 flex items-center gap-2">
+                        <div className="flex items-center gap-2 px-3 py-1.5 bg-white/90 dark:bg-black/60 backdrop-blur-sm rounded-full">
+                          <div className="w-5 h-5 rounded-full bg-[#224297] flex items-center justify-center">
+                            <Icon icon="solar:user-bold" className="w-3 h-3 text-white" />
                           </div>
-                          <span>Admin Wiguna</span>
+                          <span className="text-xs font-semibold text-gray-900 dark:text-white">Admin</span>
                         </div>
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
-                        <div className="flex items-center gap-1.5">
-                          <Icon icon="solar:calendar-linear" className="w-4 h-4" />
-                          <span>{formatDate(featuredPost.date)}</span>
-                        </div>
-                        <span className="w-1.5 h-1.5 rounded-full bg-white/50" />
-                        <div className="flex items-center gap-1.5">
-                          <Icon icon="solar:clock-circle-linear" className="w-4 h-4" />
-                          <span>5 menit baca</span>
+                      </div>
+
+                      {/* Content Overlay (Bottom) */}
+                      <div className="absolute bottom-0 left-0 right-0 p-5 lg:p-6">
+                        <h2 className="text-xl lg:text-2xl xl:text-3xl font-black text-white leading-tight tracking-tight mb-2 line-clamp-3 drop-shadow-lg">
+                          {getRenderedTitle(featuredPost)}
+                        </h2>
+                        <p className="hidden sm:block text-white/80 text-sm leading-relaxed line-clamp-2 mb-3">
+                          {getRenderedExcerpt(featuredPost)}
+                        </p>
+                        <div className="flex items-center gap-3 text-white/70 text-xs">
+                          <div className="flex items-center gap-1">
+                            <Icon icon="solar:calendar-linear" className="w-4 h-4" />
+                            <span>{formatDate(featuredPost.date)}</span>
+                          </div>
+                          <span className="w-1 h-1 rounded-full bg-white/40" />
+                          <div className="flex items-center gap-1">
+                            <Icon icon="solar:clock-circle-linear" className="w-4 h-4" />
+                            <span>{getReadingTime(featuredPost)} menit baca</span>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -194,99 +207,86 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
               </div>
             )}
 
-            {/* ═══ SIDE COLUMN — 3 Stacked Cards (lg:col-span-4) ═══ */}
-            <div className="lg:col-span-4 flex flex-col gap-4">
+            {/* ═══ RIGHT: RECENT POSTS LIST ═══ */}
+            <div className="flex flex-col gap-4">
+              {/* Header */}
+              <div className="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-800">
+                <h3 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                  <Icon icon="solar:clock-circle-linear" className="w-4 h-4" />
+                  Artikel Terbaru
+                </h3>
+                <span className="text-xs text-gray-400 dark:text-gray-500">
+                  {filteredPosts.length} total
+                </span>
+              </div>
 
-              {/* Side Post 1 */}
-              {sidePost1 && (
-                <Link href={`/blog/${sidePost1.slug}`} className="group relative flex-1 min-h-[140px] lg:min-h-[160px] rounded-2xl lg:rounded-[1.25rem] overflow-hidden">
-                  <Image
-                    src={getFeaturedImage(sidePost1)}
-                    alt={getRenderedTitle(sidePost1)}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <div className="absolute inset-0 p-4 lg:p-5 flex flex-col justify-between">
-                    <span className="inline-flex items-center gap-1 w-fit px-2.5 py-1 bg-[#224297]/90 backdrop-blur-sm text-white text-[10px] lg:text-xs font-bold uppercase tracking-wider rounded-full">
-                      {getPrimaryCategory(sidePost1)}
-                    </span>
-                    <div>
-                      <h3 className="text-sm lg:text-base font-bold text-white leading-tight line-clamp-2 mb-1">
-                        {getRenderedTitle(sidePost1)}
-                      </h3>
-                      <span className="text-white/60 text-[10px] lg:text-xs">
-                        {formatDate(sidePost1.date)}
-                      </span>
+              {/* Recent Posts List */}
+              <div className="flex-1 flex flex-col gap-3">
+                {recentPosts.map((post, index) => (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.slug}`}
+                    className="group flex gap-4 p-3 lg:p-4 rounded-2xl bg-white dark:bg-neutral-900 hover:bg-gray-50 dark:hover:bg-neutral-800/80 transition-colors shadow-sm hover:shadow-md"
+                  >
+                    {/* Thumbnail */}
+                    <div className="relative w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0 rounded-xl overflow-hidden">
+                      <Image
+                        src={getFeaturedImage(post)}
+                        alt={getRenderedTitle(post)}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        sizes="96px"
+                      />
+                      {/* Number Badge */}
+                      <div className="absolute -top-1 -left-1 w-5 h-5 lg:w-6 lg:h-6 bg-[#224297] rounded-full flex items-center justify-center">
+                        <span className="text-[10px] lg:text-xs font-black text-white">{index + 2}</span>
+                      </div>
                     </div>
-                  </div>
-                </Link>
-              )}
 
-              {/* Side Post 2 */}
-              {sidePost2 && (
-                <Link href={`/blog/${sidePost2.slug}`} className="group relative flex-1 min-h-[140px] lg:min-h-[160px] rounded-2xl lg:rounded-[1.25rem] overflow-hidden">
-                  <Image
-                    src={getFeaturedImage(sidePost2)}
-                    alt={getRenderedTitle(sidePost2)}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <div className="absolute inset-0 p-4 lg:p-5 flex flex-col justify-between">
-                    <span className="inline-flex items-center gap-1 w-fit px-2.5 py-1 bg-[#ffd900] text-[#224297] text-[10px] lg:text-xs font-bold uppercase tracking-wider rounded-full">
-                      {getPrimaryCategory(sidePost2)}
-                    </span>
-                    <div>
-                      <h3 className="text-sm lg:text-base font-bold text-white leading-tight line-clamp-2 mb-1">
-                        {getRenderedTitle(sidePost2)}
-                      </h3>
-                      <span className="text-white/60 text-[10px] lg:text-xs">
-                        {formatDate(sidePost2.date)}
+                    {/* Content */}
+                    <div className="flex-1 min-w-0 flex flex-col justify-center">
+                      {/* Category */}
+                      <span className="text-[10px] lg:text-xs font-bold text-[#224297] dark:text-[#ffd900] uppercase tracking-wider mb-1">
+                        {getPrimaryCategory(post)}
                       </span>
-                    </div>
-                  </div>
-                </Link>
-              )}
 
-              {/* Side Post 3 */}
-              {sidePost3 && (
-                <Link href={`/blog/${sidePost3.slug}`} className="group relative flex-1 min-h-[140px] lg:min-h-[160px] rounded-2xl lg:rounded-[1.25rem] overflow-hidden">
-                  <Image
-                    src={getFeaturedImage(sidePost3)}
-                    alt={getRenderedTitle(sidePost3)}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                  <div className="absolute inset-0 p-4 lg:p-5 flex flex-col justify-between">
-                    <span className="inline-flex items-center gap-1 w-fit px-2.5 py-1 bg-[#224297]/90 backdrop-blur-sm text-white text-[10px] lg:text-xs font-bold uppercase tracking-wider rounded-full">
-                      {getPrimaryCategory(sidePost3)}
-                    </span>
-                    <div>
-                      <h3 className="text-sm lg:text-base font-bold text-white leading-tight line-clamp-2 mb-1">
-                        {getRenderedTitle(sidePost3)}
-                      </h3>
-                      <span className="text-white/60 text-[10px] lg:text-xs">
-                        {formatDate(sidePost3.date)}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              )}
+                      {/* Title */}
+                      <h4 className="text-sm lg:text-base font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
+                        {getRenderedTitle(post)}
+                      </h4>
 
-              {/* View More Button */}
-              {filteredPosts.length > 4 && (
+                      {/* Meta */}
+                      <div className="flex items-center gap-2 mt-2 text-[10px] lg:text-xs text-gray-500 dark:text-gray-400">
+                        <div className="flex items-center gap-1">
+                          <Icon icon="solar:calendar-linear" className="w-3 h-3" />
+                          <span>{formatDate(post.date)}</span>
+                        </div>
+                        <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                        <div className="flex items-center gap-1">
+                          <Icon icon="solar:clock-circle-linear" className="w-3 h-3" />
+                          <span>{getReadingTime(post)} min</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Arrow */}
+                    <div className="flex items-center">
+                      <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
+                        <Icon icon="solar:alt-arrow-right-linear" className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:text-white dark:group-hover:text-[#224297] transition-colors" />
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {/* View More Link */}
+              {filteredPosts.length > 6 && (
                 <Link
                   href="#semua-artikel"
-                  className="flex items-center justify-center gap-2 py-3 lg:py-4 bg-[#224297] hover:bg-[#1a356d] text-white text-sm font-bold rounded-xl lg:rounded-2xl transition-colors shadow-lg"
+                  className="flex items-center justify-center gap-2 py-3 mt-2 bg-[#224297] hover:bg-[#1a356d] text-white text-sm font-bold rounded-xl transition-colors shadow-lg"
                 >
                   <Icon icon="solar:document-text-linear" className="w-5 h-5" />
-                  Lihat Semua Artikel
-                  <Icon icon="solar:alt-arrow-right-linear" className="w-4 h-4" />
+                  Lihat Semua {filteredPosts.length} Artikel
                 </Link>
               )}
             </div>
@@ -304,7 +304,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-xl lg:text-2xl font-bold text-gray-900 dark:text-white">
-                Semua Artikel
+                Koleksi Artikel
               </h2>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
                 {filteredPosts.length} artikel tersedia
@@ -373,7 +373,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
           {hasMore && (
             <div className="flex flex-col items-center gap-4 mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
               <p className="text-sm text-gray-500">
-                Menampilkan {Math.min(visibleCount, gridPosts.length)} dari {filteredPosts.length - 4} artikel
+                Menampilkan {Math.min(visibleCount, gridPosts.length)} dari {filteredPosts.length - 6} artikel
               </p>
               <button
                 onClick={() => setVisibleCount(prev => prev + ITEMS_PER_LOAD)}
