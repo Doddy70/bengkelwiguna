@@ -4,7 +4,7 @@
  */
 
 import BlogArchiveClient from './BlogArchiveClient'
-import { getAllPosts, getAllCategories } from '@/lib/wordpress'
+import { getAllPostsFlat, getAllCategories } from '@/lib/wordpress'
 
 export const revalidate = 43200
 
@@ -65,15 +65,14 @@ export async function generateMetadata() {
 }
 
 export default async function BlogPage() {
-  // Parallel Fetching for better performance
-  const [blogResult, categories] = await Promise.all([
-    getAllPosts(1, 20),
+  // Parallel Fetching: ALL posts + categories
+  // Using getAllPostsFlat() to fetch all 234 posts with pagination
+  const [posts, categories] = await Promise.all([
+    getAllPostsFlat(),
     getAllCategories()
   ])
 
-  const posts = blogResult?.posts || []
-
   return (
-    <BlogArchiveClient posts={posts} categories={categories} />
+    <BlogArchiveClient posts={posts as any} categories={categories} />
   )
 }

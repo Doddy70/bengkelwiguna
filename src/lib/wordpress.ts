@@ -295,9 +295,12 @@ function delay(ms: number): Promise<void> {
 
 /**
  * Validates post slugs to prevent invalid API requests
+ * Relaxed validation to support WordPress slugs including accented chars
  */
 function isValidSlug(slug: string): boolean {
-  return typeof slug === 'string' && slug.length > 0 && /^[a-z0-9-]+$/.test(slug)
+  if (typeof slug !== 'string' || slug.length === 0) return false
+  // Support: lowercase, uppercase, numbers, hyphens, underscores, and unicode chars
+  return /^[a-zA-Z0-9-_]+$/.test(slug) && slug.length <= 200
 }
 
 /**
@@ -802,7 +805,7 @@ export async function getAllPostsFlat(): Promise<Partial<WPPost>[]> {
 
   while (true) {
     const result = await apiFetchPaginated<WPPost>(
-      `/posts?page=${page}&per_page=100`,
+      `/posts?page=${page}&per_page=100&_embed=1`,
       REVALIDATE_LIST,
       ['posts']
     )
