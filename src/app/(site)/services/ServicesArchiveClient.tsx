@@ -259,13 +259,13 @@ export default function ServicesArchiveClient({ services, basePath = '/services'
                         </div>
 
                         <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 dark:text-white tracking-tight leading-[1.1]">
-                            Solusi Perawatan <br/> Kendaraan Terbaik
+                            Service Mobil Terpercaya <br/> di Depok
                         </h1>
                     </div>
 
                     <div className="lg:col-span-5 flex flex-col justify-end">
                         <p className="text-gray-600 dark:text-gray-400 text-sm lg:text-base leading-relaxed mb-3">
-                            Bengkel Wiguna menyediakan layanan otomotif inovatif dan terpercaya untuk menyelesaikan masalah kendaraan Anda.
+                            Bengkel Wiguna menyediakan layanan service mobil terpercaya di Depok dengan teknisi berpengalaman sejak 1990. Solusi lengkap untuk semua kebutuhan perawatan kendaraan Anda.
                         </p>
                         <a href="https://wa.me/6281717773888" target="_blank" rel="noopener noreferrer" className="bg-[#ffd900] hover:bg-[#e6c300] text-[#224297] font-bold px-6 py-2.5 rounded-full w-fit transition-all hover:scale-105 shadow-sm">
                             Konsultasi Gratis

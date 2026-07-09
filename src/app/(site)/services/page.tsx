@@ -11,23 +11,25 @@ export const revalidate = 43200
 // ✅ ENHANCED SEO METADATA for Services Page
 export async function generateMetadata() {
   return {
-    title: 'Layanan Service Mobil Lengkap | Bengkel Wiguna Depok',
-    description: 'Layanan service mobil terpercaya di Depok: tune up, ganti oli, service AC, spooring & balancing, body repair, kaki-kaki. Teknisi berpengalaman, diagnosa gratis. Booking sekarang!',
+    title: 'Service Mobil Depok Terpercaya | Bengkel Wiguna - Tune Up, Ganti Oli, AC',
+    description: 'Service mobil terpercaya di Depok. Tune up, ganti oli, service AC, spooring & balancing, semi overhaul. Teknisi berpengalaman 30+ tahun. Diagnosa gratis. Booking sekarang!',
     keywords: [
       'service mobil depok',
-      'bengkel mobil terpercaya depok',
+      'bengkel mobil depok',
+      'bengkel depok',
+      'tune up mobil depok',
       'ganti oli depok',
       'service ac mobil depok',
-      'tune up depok',
+      'bengkel one stop service depok',
+      'service berkala mobil depok',
       'spooring balancing depok',
-      'body repair mobil depok',
-      'kaki-kaki mobil depok',
-      'service berkala depok',
-      'bengkel one stop service depok'
+      'bengkel mobil terpercaya depok',
+      'service mobil profesional depok',
+      'bengkel margonda depok'
     ],
     openGraph: {
-      title: 'Layanan Service Mobil Lengkap | Bengkel Wiguna',
-      description: 'Solusi lengkap perawatan kendaraan Anda di satu tempat. Tune up, ganti oli, service AC, dan lainnya.',
+      title: 'Service Mobil Depok Terpercaya | Bengkel Wiguna',
+      description: 'Layanan service mobil lengkap di Depok: tune up, ganti oli, service AC, spooring & balancing. Teknisi berpengalaman. Diagnosa gratis.',
       url: 'https://bengkelwiguna.com/services',
       siteName: 'Bengkel Wiguna',
       locale: 'id_ID',
