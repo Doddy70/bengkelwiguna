@@ -12,10 +12,9 @@ const DarkToggle = () => {
   useEffect(() => {
     setMounted(true);
     if (typeof window !== 'undefined') {
-      // Check saved theme or system preference
+      // Only use dark mode if explicitly saved in localStorage (light mode is default)
       const savedTheme = localStorage.getItem('theme');
-      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const isDark = savedTheme === 'dark' || (!savedTheme && systemPrefersDark);
+      const isDark = savedTheme === 'dark';
 
       setDarkMode(isDark);
 

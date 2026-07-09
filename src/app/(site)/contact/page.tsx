@@ -6,6 +6,7 @@
 import ContactClient from './ContactClient'
 import JsonLd from '@/components/layout/JsonLd'
 import { generateContactPageSchema } from '@/lib/seo'
+import { getAllServices } from '@/lib/wordpress'
 
 export const revalidate = 86400
 
@@ -66,10 +67,21 @@ export async function generateMetadata() {
 }
 
 export default async function ContactPage() {
+  // Fetch services for the tag labels
+  const services = await getAllServices()
+
+  // Extract unique service names for tags
+  const serviceTags = services
+    .slice(0, 12) // Limit to 12 tags
+    .map(service => ({
+      name: typeof service.title === 'string' ? service.title : service.title.rendered,
+      slug: service.slug
+    }))
+
   return (
     <>
       <JsonLd data={generateContactPageSchema()} />
-      <ContactClient />
+      <ContactClient serviceTags={serviceTags} />
     </>
   )
 }

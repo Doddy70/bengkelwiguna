@@ -15,9 +15,18 @@ interface FormData {
     message: string;
 }
 
+interface ServiceTag {
+    name: string;
+    slug: string;
+}
+
+interface ContactClientProps {
+    serviceTags?: ServiceTag[];
+}
+
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
-export default function ContactClient() {
+export default function ContactClient({ serviceTags = [] }: ContactClientProps) {
     const [status, setStatus] = useState<FormStatus>('idle');
     const [errorMessage, setErrorMessage] = useState('');
     const [formData, setFormData] = useState<FormData>({
@@ -45,55 +54,163 @@ export default function ContactClient() {
 
     return (
         <div className="relative font-sans min-h-screen">
-            {/* ═══ Hero Section ═══ */}
-            <section className="relative bg-[#224297] dark:bg-[#1a1a2e] pt-8 lg:pt-12 pb-24 overflow-hidden min-h-[500px] flex items-center">
-                {/* Standard gradient overlay - no custom image */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#224297] via-[#1e3a5f] to-[#224297] dark:from-[#1a1a2e] dark:via-[#16213e] dark:to-[#1a1a2e]" />
+            {/* ═══ Hero Section - Real Google Maps ═══ */}
+            <section className="relative overflow-hidden min-h-[400px] lg:min-h-[450px]">
+                {/* Google Maps Embed */}
+                <div className="absolute inset-0">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.2!2d106.8!3d-6.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMjMnMDQuOCJTIDEwNsKwNDknNTQuOCJF!5e0!3m2!1sen!2sid!4v1234567890!5m2!1sen!2sid"
+                        className="w-full h-full border-0"
+                        allowFullScreen
+                        loading="lazy"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        title="Lokasi Bengkel Wiguna - Jl. Margonda No.268, Depok"
+                    />
+                    {/* Dark Overlay - Red tint for marker visibility */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
+                </div>
 
-                <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-xs font-bold uppercase tracking-wider text-white mb-6">
-                        <Icon icon="solar:chat-circle-bold" width={16} />
-                        Hubungi Kami
+                {/* Animated Location Marker - Hidden on Mobile */}
+                <div className="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-full z-20 pointer-events-none">
+                    <div className="relative flex flex-col items-center">
+                        {/* SVG Map Pin - Red Standard with Glow */}
+                        <div className="relative">
+                            {/* Glow Effect */}
+                            <div className="absolute inset-0 bg-red-500/30 rounded-full blur-xl animate-pulse" style={{ animationDuration: '1.5s' }} />
+
+                            <svg
+                                className="w-12 h-16 animate-bounce relative z-10"
+                                style={{ animationDuration: '1.8s' }}
+                                viewBox="0 0 24 36"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                {/* Pin Shadow */}
+                                <ellipse cx="12" cy="34" rx="6" ry="2" fill="#1a1a1a" opacity="0.2" />
+
+                                {/* Pin Body - Red */}
+                                <path
+                                    d="M12 0C5.373 0 0 5.373 0 12c0 9 12 24 12 24s12-15 12-24c0-6.627-5.373-12-12-12z"
+                                    fill="#DC2626"
+                                />
+
+                                {/* Inner Circle - White */}
+                                <circle cx="12" cy="12" r="5" fill="white" />
+
+                                {/* Center Dot - Red */}
+                                <circle cx="12" cy="12" r="2.5" fill="#DC2626" />
+                            </svg>
+                        </div>
+
+                        {/* Label */}
+                        <div className="mt-1 px-3 py-1 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
+                            <p className="text-xs font-black text-red-600 dark:text-white whitespace-nowrap">Bengkel Wiguna</p>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Main Container */}
+                <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 lg:pt-6 h-full flex flex-col justify-between">
+                    {/* Top Bar - Breadcrumb */}
+                    <div className="flex items-center justify-between mb-4">
+                        {/* Breadcrumb */}
+                        <div className="flex items-center gap-2 text-sm font-medium text-white drop-shadow-lg">
+                            <Icon icon="solar:home-2-linear" width={18} />
+                            <span className="text-white/60">/</span>
+                            <span>Hubungi Kami</span>
+                        </div>
+
+                        {/* Quick Actions */}
+                        <a
+                            href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 px-4 py-2 bg-white dark:bg-gray-800 rounded-xl shadow-lg text-sm font-bold text-[#224297] dark:text-white hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                        >
+                            <Icon icon="solar:external-link-linear" width={18} />
+                            Buka di Maps
+                        </a>
                     </div>
 
-                    {/* Title */}
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight mb-6 max-w-3xl">
-                        Ada yang Bisa Kami Bantu?
-                    </h1>
+                    {/* Location Info Card - Floating on Map */}
+                    <div className="max-w-xl">
+                        <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl overflow-hidden">
+                            {/* Card Header */}
+                            <div className="bg-[#224297] dark:bg-[#1a1a2e] px-5 py-3.5">
+                                <div className="flex items-center justify-between">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-10 h-10 bg-[#ffd900] rounded-xl flex items-center justify-center shadow-lg">
+                                            <Icon icon="solar:car-bold" width={22} className="text-[#224297]" />
+                                        </div>
+                                        <div>
+                                            <p className="text-[10px] font-bold uppercase tracking-wider text-white/70">Lokasi Workshop</p>
+                                            <p className="text-lg font-black text-white">Bengkel Wiguna</p>
+                                        </div>
+                                    </div>
+                                    <span className="px-2.5 py-1 bg-green-500/20 text-green-300 text-[10px] font-bold rounded-full flex items-center gap-1">
+                                        <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse" />
+                                        Buka Sekarang
+                                    </span>
+                                </div>
+                            </div>
 
-                    {/* Subtitle */}
-                    <p className="text-lg sm:text-xl text-white/80 font-medium leading-relaxed max-w-2xl">
-                        Konsultasi gratis seputar keluhan kendaraan Anda dengan tim teknisi berpengalaman. Diagnosa transparan tanpa drama!
-                    </p>
+                            {/* Card Body */}
+                            <div className="p-5">
+                                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                                    {/* Address Info */}
+                                    <div className="flex-1 space-y-3">
+                                        <div className="flex items-start gap-2.5">
+                                            <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center shrink-0">
+                                                <Icon icon="solar:map-point-bold" width={16} className="text-[#224297]" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Alamat</p>
+                                                <p className="text-xs font-bold text-gray-900 dark:text-white leading-snug">
+                                                    Jl. Margonda No.268, Kemiri Muka, Kecamatan Beji, Kota Depok 16423
+                                                </p>
+                                            </div>
+                                        </div>
 
-                    {/* Quick Stats */}
-                    <div className="flex flex-wrap items-center gap-8 mt-10">
-                        <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-2xl bg-[#ffd900] flex items-center justify-center">
-                                <Icon icon="solar:clock-square-bold" width={24} className="text-[#224297]" />
-                            </div>
-                            <div>
-                                <p className="text-2xl font-black text-white">14+</p>
-                                <p className="text-sm text-white/60">Tahun Pengalaman</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-2xl bg-[#ffd900] flex items-center justify-center">
-                                <Icon icon="solar:users-group-two-rounded-bold" width={24} className="text-[#224297]" />
-                            </div>
-                            <div>
-                                <p className="text-2xl font-black text-white">15K+</p>
-                                <p className="text-sm text-white/60">Pelanggan Puas</p>
-                            </div>
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <div className="w-12 h-12 rounded-2xl bg-[#ffd900] flex items-center justify-center">
-                                <Icon icon="solar:star-bold" width={24} className="text-[#224297]" />
-                            </div>
-                            <div>
-                                <p className="text-2xl font-black text-white">4.9</p>
-                                <p className="text-sm text-white/60">Rating Google</p>
+                                        <div className="flex items-start gap-2.5">
+                                            <div className="w-8 h-8 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center shrink-0">
+                                                <Icon icon="solar:clock-circle-bold" width={16} className="text-[#224297]" />
+                                            </div>
+                                            <div>
+                                                <p className="text-[10px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-0.5">Jam Operasional</p>
+                                                <p className="text-xs font-bold text-gray-900 dark:text-white">Senin-Sabtu: 08:00 - 17:00</p>
+                                                <p className="text-xs font-bold text-gray-900 dark:text-white">Minggu: 09:00 - 15:00</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Action Buttons */}
+                                    <div className="flex sm:flex-col gap-2 sm:min-w-[140px]">
+                                        <a
+                                            href="https://maps.app.goo.gl/J3s5ZhpwFttGFeeUA"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#224297] hover:bg-[#1a3567] text-white text-xs font-bold uppercase tracking-wide rounded-lg transition-all shadow-md hover:shadow-lg"
+                                        >
+                                            <Icon icon="solar:navigation-bold" width={16} />
+                                            Petunjuk Arah
+                                        </a>
+                                        <a
+                                            href="https://wa.me/6287817773888"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-[#25D366] hover:bg-[#128C7E] text-white text-xs font-bold rounded-lg transition-all shadow-md"
+                                        >
+                                            <Icon icon="fa6-brands:whatsapp" width={16} />
+                                            Chat Minna
+                                        </a>
+                                        <a
+                                            href="tel:+6287817773888"
+                                            className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 py-2.5 px-4 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-white text-xs font-bold rounded-lg transition-all"
+                                        >
+                                            <Icon icon="solar:phone-bold" width={16} />
+                                            Telepon
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -452,29 +569,39 @@ export default function ContactClient() {
                         <p className="text-gray-600 dark:text-gray-400 font-medium">Pilihan layanan profesional untuk kendaraan Anda</p>
                     </div>
                     <div className="flex flex-wrap justify-center gap-3">
-                        {[
-                            { name: 'Tune Up', icon: 'solar:settings-bold' },
-                            { name: 'Spooring & Balancing', icon: 'solar:wheel-bold' },
-                            { name: 'AC Mobil', icon: 'solar:snowflake-bold' },
-                            { name: 'Ganti Oli', icon: 'solar:drop-bold' },
-                            { name: 'Sistem Rem', icon: 'solar:shield-check-bold' },
-                            { name: 'Kaki Kaki', icon: 'solar:car-bold' },
-                            { name: 'Overhaul Mesin', icon: 'solar:engine-bold' },
-                            { name: 'Engine Flush', icon: 'solar:lightning-bold' },
-                            { name: 'Radiator Coolant', icon: 'solar:radiator-bold' },
-                            { name: 'Diagnosa Scanner', icon: 'solar:diagnostics-bold' },
-                            { name: 'Servis Berkala', icon: 'solar:calendar-bold' },
-                            { name: 'Body Repair', icon: 'solar:car-crash-bold' }
-                        ].map((service) => (
-                            <Link
-                                key={service.name}
-                                href={`/services`}
-                                className="group inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 hover:bg-[#224297] border border-gray-200 dark:border-gray-700 hover:border-[#224297] rounded-full text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
-                            >
-                                <Icon icon={service.icon} width={18} className="text-[#224297] dark:text-gray-400 group-hover:text-white transition-colors" />
-                                {service.name}
-                            </Link>
-                        ))}
+                        {serviceTags.length > 0 ? (
+                            serviceTags.map((tag) => (
+                                <Link
+                                    key={tag.slug}
+                                    href={`/services/${tag.slug}`}
+                                    className="group inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 hover:bg-[#224297] border border-gray-200 dark:border-gray-700 hover:border-[#224297] rounded-full text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                                >
+                                    <Icon icon="solar:car-bold" width={18} className="text-[#224297] dark:text-gray-400 group-hover:text-white transition-colors" />
+                                    {tag.name}
+                                </Link>
+                            ))
+                        ) : (
+                            // Fallback static tags
+                            <>
+                                {[
+                                    { name: 'Tune Up', slug: 'tune-up' },
+                                    { name: 'Spooring & Balancing', slug: 'spooring-balancing' },
+                                    { name: 'AC Mobil', slug: 'ac-mobil' },
+                                    { name: 'Ganti Oli', slug: 'ganti-oli' },
+                                    { name: 'Sistem Rem', slug: 'sistem-rem' },
+                                    { name: 'Kaki Kaki', slug: 'kaki-kaki' }
+                                ].map((service) => (
+                                    <Link
+                                        key={service.slug}
+                                        href={`/services/${service.slug}`}
+                                        className="group inline-flex items-center gap-2 px-5 py-3 bg-white dark:bg-gray-800 hover:bg-[#224297] border border-gray-200 dark:border-gray-700 hover:border-[#224297] rounded-full text-sm font-bold text-gray-600 dark:text-gray-400 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md"
+                                    >
+                                        <Icon icon="solar:car-bold" width={18} className="text-[#224297] dark:text-gray-400 group-hover:text-white transition-colors" />
+                                        {service.name}
+                                    </Link>
+                                ))}
+                            </>
+                        )}
                     </div>
                 </div>
             </section>

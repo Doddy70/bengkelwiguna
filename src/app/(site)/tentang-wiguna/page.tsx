@@ -1,13 +1,18 @@
 /**
  * Tentang Wiguna Page — Bengkel Wiguna
  * Server component wrapper with SEO metadata
+ * Optimized for Core Web Vitals
  */
 
 import TentangWigunaClient from './TentangWigunaClient'
 import JsonLd from '@/components/layout/JsonLd'
 import { generateAboutPageSchema, generateOrganizationSchema } from '@/lib/seo'
 
+// ISR - Revalidate every 24 hours
 export const revalidate = 86400
+
+// Generate static params for faster loading (if needed for static generation)
+export const dynamicParams = true
 
 // ✅ ENHANCED SEO METADATA for About Page
 export async function generateMetadata() {
