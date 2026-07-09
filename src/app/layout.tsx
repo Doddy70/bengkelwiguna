@@ -242,6 +242,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* ✅ INLINE CRITICAL CSS for above-the-fold */}
         <style dangerouslySetInnerHTML={{ __html: criticalCSS }} />
 
+        {/* ✅ CRITICAL: Dark mode initialization BEFORE React hydrates to prevent FOUC */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  var systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  if (theme === 'dark' || (!theme && systemPrefersDark)) {
+                    document.body.classList.add('dark');
+                  }
+                } catch (e) {}
+              })();
+            `
+          }}
+        />
+
         {/* ✅ Speculation Rules for instant navigation */}
         <script
           type="speculationrules"
