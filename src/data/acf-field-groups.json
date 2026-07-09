@@ -1,0 +1,109 @@
+[
+    {
+        "key": "group_kategori_layanan_settings",
+        "title": "Kategori Layanan Settings",
+        "fields": [
+            {
+                "key": "field_kategori_layanan_enable",
+                "label": "Aktifkan Kategori",
+                "name": "kategori_layanan_enable",
+                "type": "true_false",
+                "instructions": "Aktifkan untuk menampilkan layanan ini di kategori tertentu",
+                "required": 0,
+                "default_value": 1,
+                "ui": 1,
+                "ui_on_text": "Ya",
+                "ui_off_text": "Tidak"
+            },
+            {
+                "key": "field_kategori_layanan_order",
+                "label": "Urutan Tampilan",
+                "name": "kategori_layanan_order",
+                "type": "number",
+                "instructions": "Nomor urut tampil di filter (1 = pertama)",
+                "required": 0,
+                "min": 1,
+                "max": 100,
+                "default_value": 50
+            },
+            {
+                "key": "field_kategori_layanan_icon",
+                "label": "Ikon Kategori",
+                "name": "kategori_layanan_icon",
+                "type": "text",
+                "instructions": "Emoji atau icon class (contoh: 🔧, ⚙️, atau 'fa-wrench')",
+                "required": 0,
+                "placeholder": "🔧"
+            },
+            {
+                "key": "field_kategori_layanan_color",
+                "label": "Warna Kategori",
+                "name": "kategori_layanan_color",
+                "type": "color_picker",
+                "instructions": "Warna untuk tampilan kategori",
+                "required": 0,
+                "default_value": "#224297"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "taxonomy",
+                    "operator": "==",
+                    "value": "kategori_layanan"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": ""
+    },
+    {
+        "key": "group_services_layout",
+        "title": "Layout Services",
+        "fields": [
+            {
+                "key": "field_services_featured",
+                "label": "Tampilkan di Featured",
+                "name": "services_featured",
+                "type": "true_false",
+                "instructions": "Tampilkan di section Featured Services",
+                "default_value": 0,
+                "ui": 1
+            },
+            {
+                "key": "field_services_card_style",
+                "label": "Card Style",
+                "name": "services_card_style",
+                "type": "select",
+                "choices": {
+                    "overlay": "Overlay (gambar background)",
+                    "split": "Split (gambar di samping)",
+                    "standard": "Standard Card"
+                },
+                "default_value": "standard",
+                "return_format": "value"
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "services"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "side",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "active": true
+    }
+]

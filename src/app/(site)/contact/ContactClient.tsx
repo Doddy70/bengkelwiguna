@@ -46,20 +46,9 @@ export default function ContactClient() {
     return (
         <div className="relative font-sans min-h-screen">
             {/* ═══ Hero Section ═══ */}
-            <section className="relative pt-8 lg:pt-12 pb-24 overflow-hidden min-h-[500px] flex items-center">
-                {/* Background Image */}
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/images/hero-contact.webp"
-                        alt="Bengkel Wiguna Service"
-                        fill
-                        className="object-cover object-center"
-                        priority
-                    />
-                    {/* Gradient Overlay for text readability */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#224297]/95 via-[#224297]/85 to-[#224297]/70" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20" />
-                </div>
+            <section className="relative bg-[#224297] dark:bg-[#1a1a2e] pt-8 lg:pt-12 pb-24 overflow-hidden min-h-[500px] flex items-center">
+                {/* Standard gradient overlay - no custom image */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#224297] via-[#1e3a5f] to-[#224297] dark:from-[#1a1a2e] dark:via-[#16213e] dark:to-[#1a1a2e]" />
 
                 <div className="relative z-10 max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                     {/* Badge */}

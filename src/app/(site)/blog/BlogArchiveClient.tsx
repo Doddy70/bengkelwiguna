@@ -144,13 +144,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
       {/* ═══════════════════════════════════════════════════════════════════════
           HERO SECTION — Small List (Left) + Featured Post (Right)
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="relative pt-6 lg:pt-10 pb-10 lg:pb-14 font-dm">
-
-        {/* Fixed Page Background */}
-        <div className="fixed inset-0 z-0">
-          <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
-          <div className="absolute inset-0 dark:bg-neutral-950/90 bg-white/85" />
-        </div>
+      <section className="relative pt-6 lg:pt-10 pb-10 lg:pb-14 font-dm bg-white dark:bg-gray-950">
 
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
 

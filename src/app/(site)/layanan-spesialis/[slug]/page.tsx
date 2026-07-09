@@ -115,13 +115,7 @@ export default async function LayananSpesialisPage({ params }: { params: Promise
         </div>
       </section>
 
-      {/* Page Background Image */}
-      <div className="fixed inset-0 z-0">
-        <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
-        <div className="absolute inset-0 bg-white/88 dark:bg-neutral-950/90" />
-      </div>
-
-      {/* Main Content Section */}
+      {/* Main Content Section - Standard clean background */}
       <section className="relative z-10 lg:py-24 py-12 bg-white dark:bg-gray-950">
         <div className="max-w-screen-xl mx-auto px-3 sm:px-6 md:px-14 lg:px-14 xl:px-18 2xl:px-3">
           <div className="grid lg:grid-cols-4 lg:gap-16 gap-10 relative">
