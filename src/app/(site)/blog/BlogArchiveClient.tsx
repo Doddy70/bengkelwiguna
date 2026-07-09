@@ -1,12 +1,12 @@
 /**
  * Blog Archive Client Component — Bengkel Wiguna
- * Vertical Feature Layout with Mobile Snap Scroll
- * Design: Featured (left) + Recent Posts with Mobile Carousel (right)
+ * Clean Magazine Layout with Theme Support
+ * No card backgrounds - follows dark/light theme switcher
  */
 
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useMemo, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from '@iconify/react';
@@ -103,15 +103,15 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   const handleScroll = () => {
     if (!scrollRef.current) return;
     const scrollTop = scrollRef.current.scrollTop;
-    const itemHeight = scrollRef.current.offsetHeight; // Each item takes full viewport-ish height
-    const newActiveSlide = Math.round(scrollTop / (itemHeight * 0.6)); // 60% per snap
+    const itemHeight = scrollRef.current.offsetHeight * 0.6;
+    const newActiveSlide = Math.round(scrollTop / itemHeight);
     setActiveSlide(Math.min(newActiveSlide, recentPosts.length - 1));
   };
 
   // Scroll to specific slide
   const scrollToSlide = (index: number) => {
     if (!scrollRef.current) return;
-    const itemHeight = scrollRef.current.offsetHeight * 0.6; // 60% per item
+    const itemHeight = scrollRef.current.offsetHeight * 0.6;
     scrollRef.current.scrollTo({
       top: index * itemHeight,
       behavior: 'smooth'
@@ -122,14 +122,14 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   return (
     <>
       {/* ═══════════════════════════════════════════════════════════════════════
-          HERO SECTION — Vertical Feature with Mobile Snap Scroll
+          HERO SECTION — Clean Layout (No Card Backgrounds)
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="relative bg-[#fafafa] dark:bg-neutral-950 pt-6 lg:pt-10 pb-10 lg:pb-14 font-dm overflow-hidden">
+      <section className="relative pt-6 lg:pt-10 pb-10 lg:pb-14 font-dm">
 
         {/* Fixed Page Background */}
         <div className="fixed inset-0 z-0">
           <Image src="/images/bg-default-page.webp" alt="" fill className="object-cover" aria-hidden="true" />
-          <div className="absolute inset-0 bg-[#fafafa]/85 dark:bg-neutral-950/90" />
+          <div className="absolute inset-0 dark:bg-neutral-950/90 bg-white/85" />
         </div>
 
         <div className="relative z-10 max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -159,17 +159,18 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
             </Link>
           </div>
 
-          {/* ═══ VERTICAL FEATURE GRID ═══ */}
+          {/* ═══ VERTICAL FEATURE GRID — Clean No Card Style ═══ */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
 
-            {/* ═══ LEFT: FEATURED POST (Large Card) ═══ */}
+            {/* ═══ LEFT: FEATURED POST (No Card - Just Image) ═══ */}
             {featuredPost && (
               <div className="relative group order-1">
                 <Link href={`/blog/${featuredPost.slug}`} className="block h-full">
-                  <div className="relative h-full rounded-3xl lg:rounded-[1.75rem] overflow-hidden bg-white dark:bg-neutral-900 shadow-xl shadow-black/5 dark:shadow-black/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/10">
+                  {/* Clean container - no card background, no shadow */}
+                  <div className="relative h-full rounded-2xl lg:rounded-3xl overflow-hidden transition-all duration-300 group-hover:opacity-90">
 
-                    {/* Image Section */}
-                    <div className="relative aspect-[4/3] lg:aspect-[16/10] overflow-hidden">
+                    {/* Image Section - Full Bleed */}
+                    <div className="relative aspect-[4/3] lg:aspect-[16/10]">
                       <Image
                         src={getFeaturedImage(featuredPost)}
                         alt={getRenderedTitle(featuredPost)}
@@ -179,8 +180,8 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                         priority
                       />
 
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                      {/* Gradient Overlay - Dark for readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
 
                       {/* Category Badge (Top Left) */}
                       <div className="absolute top-4 left-4">
@@ -190,8 +191,8 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                         </span>
                       </div>
 
-                      {/* Author & Date (Top Right) */}
-                      <div className="absolute top-4 right-4 flex items-center gap-2">
+                      {/* Author Badge (Top Right) */}
+                      <div className="absolute top-4 right-4">
                         <div className="flex items-center gap-2 px-3 py-1.5 bg-white/90 dark:bg-black/60 backdrop-blur-sm rounded-full">
                           <div className="w-5 h-5 rounded-full bg-[#224297] flex items-center justify-center">
                             <Icon icon="solar:user-bold" className="w-3 h-3 text-white" />
@@ -226,10 +227,11 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
               </div>
             )}
 
-            {/* ═══ RIGHT: RECENT POSTS with Mobile Snap Scroll ═══ */}
+            {/* ═══ RIGHT: RECENT POSTS — Clean List (No Card Backgrounds) ═══ */}
             <div className="relative order-2 flex flex-col">
+
               {/* Header */}
-              <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-gray-800 mb-4">
+              <div className="flex items-center justify-between pb-3 mb-4">
                 <h3 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center gap-2">
                   <Icon icon="solar:clock-circle-linear" className="w-4 h-4" />
                   Artikel Terbaru
@@ -245,87 +247,79 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 <div
                   ref={scrollRef}
                   onScroll={handleScroll}
-                  className="h-[420px] overflow-y-auto snap-y snap-mandatory scroll-smooth oversccontain-y"
+                  className="h-[380px] overflow-y-auto snap-y snap-mandatory scroll-smooth"
                   style={{
                     scrollbarWidth: 'none',
                     msOverflowStyle: 'none',
                     WebkitOverflowScrolling: 'touch',
                   }}
                 >
-                  <div className="h-[60%] snap-center">
-                    {/* Top fade indicator */}
-                    <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-[#fafafa] to-transparent z-10 pointer-events-none dark:from-neutral-950" />
-                  </div>
+                  {/* Top fade */}
+                  <div className="sticky top-0 h-6 bg-gradient-to-b from-white dark:from-neutral-950 to-transparent z-10" />
 
-                  {/* Posts Container */}
+                  {/* Posts */}
                   <div className="space-y-3 pb-3">
                     {recentPosts.map((post, index) => (
-                      <div
+                      <Link
                         key={post.id}
-                        className="snap-start"
+                        href={`/blog/${post.slug}`}
+                        className="group flex gap-3 p-3 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-neutral-800/50"
                       >
-                        <Link
-                          href={`/blog/${post.slug}`}
-                          className="group flex gap-3 p-3 rounded-2xl bg-white dark:bg-neutral-900 hover:bg-gray-50 dark:hover:bg-neutral-800/80 transition-colors shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800"
-                        >
-                          {/* Thumbnail with Number Badge */}
-                          <div className="relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden">
-                            <Image
-                              src={getFeaturedImage(post)}
-                              alt={getRenderedTitle(post)}
-                              fill
-                              className="object-cover transition-transform duration-500 group-hover:scale-110"
-                              sizes="96px"
+                        {/* Thumbnail */}
+                        <div className="relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden">
+                          <Image
+                            src={getFeaturedImage(post)}
+                            alt={getRenderedTitle(post)}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                            sizes="96px"
+                          />
+                          {/* Number Badge */}
+                          <div className="absolute -top-1 -left-1 w-6 h-6 bg-[#224297] rounded-full flex items-center justify-center shadow">
+                            <span className="text-[10px] font-black text-white">{index + 2}</span>
+                          </div>
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1 min-w-0 flex flex-col justify-center py-1">
+                          <span className="text-[10px] font-bold text-[#224297] dark:text-[#ffd900] uppercase tracking-wider mb-1">
+                            {getPrimaryCategory(post)}
+                          </span>
+                          <h4 className="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
+                            {getRenderedTitle(post)}
+                          </h4>
+                          <div className="flex items-center gap-2 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
+                            <span>{formatDate(post.date)}</span>
+                            <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                            <span>{getReadingTime(post)} min</span>
+                          </div>
+                        </div>
+
+                        {/* Arrow */}
+                        <div className="flex items-center">
+                          <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
+                            <Icon
+                              icon="solar:alt-arrow-right-linear"
+                              className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:text-white dark:group-hover:text-[#224297] transition-colors"
                             />
-                            {/* Number Badge */}
-                            <div className="absolute -top-1 -left-1 w-6 h-6 bg-[#224297] rounded-full flex items-center justify-center shadow-lg">
-                              <span className="text-[10px] font-black text-white">{index + 2}</span>
-                            </div>
-                            {/* Gradient overlay for readability */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                           </div>
-
-                          {/* Content */}
-                          <div className="flex-1 min-w-0 flex flex-col justify-center py-1">
-                            <span className="text-[10px] font-bold text-[#224297] dark:text-[#ffd900] uppercase tracking-wider mb-1">
-                              {getPrimaryCategory(post)}
-                            </span>
-                            <h4 className="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
-                              {getRenderedTitle(post)}
-                            </h4>
-                            <div className="flex items-center gap-2 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
-                              <span>{formatDate(post.date)}</span>
-                              <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
-                              <span>{getReadingTime(post)} min</span>
-                            </div>
-                          </div>
-
-                          {/* Arrow */}
-                          <div className="flex items-center">
-                            <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
-                              <Icon
-                                icon="solar:alt-arrow-right-linear"
-                                className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:text-white dark:group-hover:text-[#224297] transition-colors"
-                              />
-                            </div>
-                          </div>
-                        </Link>
-                      </div>
+                        </div>
+                      </Link>
                     ))}
                   </div>
 
-                  {/* Bottom fade indicator */}
-                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#fafafa] to-transparent z-10 pointer-events-none dark:from-neutral-950" />
+                  {/* Bottom fade */}
+                  <div className="h-8 bg-gradient-to-t from-white dark:from-neutral-950 to-transparent" />
                 </div>
 
                 {/* ═══ Pagination Dots ═══ */}
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 pb-2">
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 pb-1">
                   {recentPosts.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => scrollToSlide(index)}
                       aria-label={`Go to slide ${index + 1}`}
-                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                      className={`h-2 rounded-full transition-all duration-300 ${
                         activeSlide === index
                           ? 'w-6 bg-[#224297] dark:bg-[#ffd900]'
                           : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
@@ -335,50 +329,49 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 </div>
               </div>
 
-              {/* ═══ DESKTOP: Normal List View ═══ */}
-              <div className="hidden lg:flex flex-col gap-3 max-h-[420px] overflow-y-auto pr-2 scrollbar-thin">
+              {/* ═══ DESKTOP: Clean List (No Cards) ═══ */}
+              <div className="hidden lg:flex flex-col gap-2">
                 {recentPosts.map((post, index) => (
                   <Link
                     key={post.id}
                     href={`/blog/${post.slug}`}
-                    className="group flex gap-4 p-4 rounded-2xl bg-white dark:bg-neutral-900 hover:bg-gray-50 dark:hover:bg-neutral-800/80 transition-colors shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800"
+                    className="group flex items-center gap-4 p-3 rounded-xl transition-colors hover:bg-gray-50 dark:hover:bg-neutral-800/50"
                   >
                     {/* Thumbnail */}
-                    <div className="relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden">
+                    <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden">
                       <Image
                         src={getFeaturedImage(post)}
                         alt={getRenderedTitle(post)}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        sizes="80px"
+                        sizes="64px"
                       />
                       {/* Number Badge */}
-                      <div className="absolute -top-1 -left-1 w-5 h-5 bg-[#224297] rounded-full flex items-center justify-center shadow-lg">
-                        <span className="text-[10px] font-black text-white">{index + 2}</span>
+                      <div className="absolute -top-1 -left-1 w-5 h-5 bg-[#224297] rounded-full flex items-center justify-center shadow">
+                        <span className="text-[9px] font-black text-white">{index + 2}</span>
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1 min-w-0 flex flex-col justify-center">
-                      <span className="text-xs font-bold text-[#224297] dark:text-[#ffd900] uppercase tracking-wider mb-1">
+                    <div className="flex-1 min-w-0">
+                      <span className="text-xs font-bold text-[#224297] dark:text-[#ffd900] uppercase tracking-wider">
                         {getPrimaryCategory(post)}
                       </span>
-                      <h4 className="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
+                      <h4 className="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-1 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
                         {getRenderedTitle(post)}
                       </h4>
-                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500 dark:text-gray-400">
-                        <span>{formatDate(post.date)}</span>
-                        <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
-                        <span>{getReadingTime(post)} min</span>
-                      </div>
                     </div>
 
-                    {/* Arrow */}
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
+                    {/* Meta & Arrow */}
+                    <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-1.5 text-xs text-gray-400 dark:text-gray-500">
+                        <Icon icon="solar:calendar-linear" className="w-3.5 h-3.5" />
+                        <span>{formatDate(post.date)}</span>
+                      </div>
+                      <div className="w-7 h-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
                         <Icon
                           icon="solar:alt-arrow-right-linear"
-                          className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:text-white dark:group-hover:text-[#224297] transition-colors"
+                          className="w-3.5 h-3.5 text-gray-400 dark:text-gray-500 group-hover:text-white dark:group-hover:text-[#224297] transition-colors"
                         />
                       </div>
                     </div>
@@ -386,14 +379,17 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 ))}
               </div>
 
+              {/* Divider Line */}
+              <div className="hidden lg:block h-px bg-gray-200 dark:bg-gray-800 my-3" />
+
               {/* View More Link */}
               {filteredPosts.length > 6 && (
                 <Link
                   href="#semua-artikel"
-                  className="hidden lg:flex items-center justify-center gap-2 py-3 mt-4 bg-[#224297] hover:bg-[#1a356d] text-white text-sm font-bold rounded-xl transition-colors shadow-lg"
+                  className="hidden lg:flex items-center justify-center gap-2 py-3 text-sm font-semibold text-[#224297] dark:text-[#ffd900] hover:underline transition-colors"
                 >
-                  <Icon icon="solar:document-text-linear" className="w-5 h-5" />
                   Lihat Semua {filteredPosts.length} Artikel
+                  <Icon icon="solar:alt-arrow-right-linear" className="w-4 h-4" />
                 </Link>
               )}
             </div>
@@ -404,7 +400,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
       {/* ═══════════════════════════════════════════════════════════════════════
           FILTER SECTION — Slide Tab
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section id="semua-artikel" className="relative z-10 bg-white dark:bg-neutral-900 py-8 lg:py-10">
+      <section id="semua-artikel" className="relative z-10 py-8 lg:py-10">
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Section Title */}
@@ -431,7 +427,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
       {/* ═══════════════════════════════════════════════════════════════════════
           BLOG GRID SECTION
       ═══════════════════════════════════════════════════════════════════════ */}
-      <section className="relative z-10 bg-white dark:bg-neutral-900 pb-16 lg:pb-24">
+      <section className="relative z-10 pb-16 lg:pb-24">
         <div className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* 3-Column Grid */}
@@ -469,7 +465,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
               ))}
             </div>
           ) : (
-            <div className="text-center py-20 bg-gray-50 dark:bg-neutral-800/50 rounded-3xl border-2 border-dashed border-gray-200 dark:border-neutral-700">
+            <div className="text-center py-20 rounded-3xl">
               <Icon icon="solar:folder-open-linear" className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
               <h3 className="text-xl font-bold text-gray-500 dark:text-gray-400">Tidak ada artikel ditemukan.</h3>
               <p className="text-gray-400 dark:text-gray-500 mt-2">Coba pilih kategori lain.</p>
@@ -478,7 +474,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
 
           {/* Load More Button */}
           {hasMore && (
-            <div className="flex flex-col items-center gap-4 mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+            <div className="flex flex-col items-center gap-4 mt-12 pt-8">
               <p className="text-sm text-gray-500">
                 Menampilkan {Math.min(visibleCount, gridPosts.length)} dari {filteredPosts.length - 6} artikel
               </p>
