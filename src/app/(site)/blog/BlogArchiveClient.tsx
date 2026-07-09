@@ -1,12 +1,12 @@
 /**
  * Blog Archive Client Component — Bengkel Wiguna
- * Vertical Feature Layout: Featured Post (left) + Recent List (right)
- * Design Reference: Pagedone vertical feature blog list
+ * Vertical Feature Layout with Mobile Snap Scroll
+ * Design: Featured (left) + Recent Posts with Mobile Carousel (right)
  */
 
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from '@iconify/react';
@@ -17,7 +17,6 @@ import SlideTabFilter from "@/components/ui/SlideTabFilter";
 // Brand Colors
 const BRAND_BLUE = '#224297';
 const BRAND_GOLD = '#ffd900';
-const BRAND_BLUE_DARK = '#1a356d';
 
 interface BlogArchiveClientProps {
   posts: WPPost[];
@@ -27,6 +26,8 @@ interface BlogArchiveClientProps {
 export default function BlogArchiveClient({ posts, categories }: BlogArchiveClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("Semua Artikel");
   const [visibleCount, setVisibleCount] = useState<number>(6);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const ITEMS_PER_LOAD = 6;
 
   // Helper: Get rendered title
@@ -85,7 +86,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
   // Featured post (first)
   const featuredPost = filteredPosts[0];
 
-  // Recent posts list (next 4-5 posts)
+  // Recent posts list (next 5 posts)
   const recentPosts = filteredPosts.slice(1, 6);
 
   // Grid posts (remaining for main grid)
@@ -98,11 +99,30 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
     ...categories.map((c: any) => ({ id: c.id, name: c.name, slug: c.slug }))
   ], [categories]);
 
+  // Handle scroll snap for mobile carousel
+  const handleScroll = () => {
+    if (!scrollRef.current) return;
+    const scrollTop = scrollRef.current.scrollTop;
+    const itemHeight = scrollRef.current.offsetHeight; // Each item takes full viewport-ish height
+    const newActiveSlide = Math.round(scrollTop / (itemHeight * 0.6)); // 60% per snap
+    setActiveSlide(Math.min(newActiveSlide, recentPosts.length - 1));
+  };
+
+  // Scroll to specific slide
+  const scrollToSlide = (index: number) => {
+    if (!scrollRef.current) return;
+    const itemHeight = scrollRef.current.offsetHeight * 0.6; // 60% per item
+    scrollRef.current.scrollTo({
+      top: index * itemHeight,
+      behavior: 'smooth'
+    });
+    setActiveSlide(index);
+  };
+
   return (
     <>
       {/* ═══════════════════════════════════════════════════════════════════════
-          HERO SECTION — Vertical Feature Layout
-          Layout: Featured (1/2) + Recent List (1/2)
+          HERO SECTION — Vertical Feature with Mobile Snap Scroll
       ═══════════════════════════════════════════════════════════════════════ */}
       <section className="relative bg-[#fafafa] dark:bg-neutral-950 pt-6 lg:pt-10 pb-10 lg:pb-14 font-dm overflow-hidden">
 
@@ -144,9 +164,8 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
 
             {/* ═══ LEFT: FEATURED POST (Large Card) ═══ */}
             {featuredPost && (
-              <div className="relative group">
+              <div className="relative group order-1">
                 <Link href={`/blog/${featuredPost.slug}`} className="block h-full">
-                  {/* Card Container */}
                   <div className="relative h-full rounded-3xl lg:rounded-[1.75rem] overflow-hidden bg-white dark:bg-neutral-900 shadow-xl shadow-black/5 dark:shadow-black/20 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-black/10">
 
                     {/* Image Section */}
@@ -207,10 +226,10 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
               </div>
             )}
 
-            {/* ═══ RIGHT: RECENT POSTS LIST ═══ */}
-            <div className="flex flex-col gap-4">
+            {/* ═══ RIGHT: RECENT POSTS with Mobile Snap Scroll ═══ */}
+            <div className="relative order-2 flex flex-col">
               {/* Header */}
-              <div className="flex items-center justify-between pb-2 border-b border-gray-200 dark:border-gray-800">
+              <div className="flex items-center justify-between pb-3 border-b border-gray-200 dark:border-gray-800 mb-4">
                 <h3 className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-wider flex items-center gap-2">
                   <Icon icon="solar:clock-circle-linear" className="w-4 h-4" />
                   Artikel Terbaru
@@ -220,59 +239,147 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 </span>
               </div>
 
-              {/* Recent Posts List */}
-              <div className="flex-1 flex flex-col gap-3">
+              {/* ═══ MOBILE: Vertical Snap Scroll Carousel ═══ */}
+              <div className="lg:hidden relative">
+                {/* Scroll Container with Snap */}
+                <div
+                  ref={scrollRef}
+                  onScroll={handleScroll}
+                  className="h-[420px] overflow-y-auto snap-y snap-mandatory scroll-smooth oversccontain-y"
+                  style={{
+                    scrollbarWidth: 'none',
+                    msOverflowStyle: 'none',
+                    WebkitOverflowScrolling: 'touch',
+                  }}
+                >
+                  <div className="h-[60%] snap-center">
+                    {/* Top fade indicator */}
+                    <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-[#fafafa] to-transparent z-10 pointer-events-none dark:from-neutral-950" />
+                  </div>
+
+                  {/* Posts Container */}
+                  <div className="space-y-3 pb-3">
+                    {recentPosts.map((post, index) => (
+                      <div
+                        key={post.id}
+                        className="snap-start"
+                      >
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="group flex gap-3 p-3 rounded-2xl bg-white dark:bg-neutral-900 hover:bg-gray-50 dark:hover:bg-neutral-800/80 transition-colors shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800"
+                        >
+                          {/* Thumbnail with Number Badge */}
+                          <div className="relative w-24 h-24 flex-shrink-0 rounded-xl overflow-hidden">
+                            <Image
+                              src={getFeaturedImage(post)}
+                              alt={getRenderedTitle(post)}
+                              fill
+                              className="object-cover transition-transform duration-500 group-hover:scale-110"
+                              sizes="96px"
+                            />
+                            {/* Number Badge */}
+                            <div className="absolute -top-1 -left-1 w-6 h-6 bg-[#224297] rounded-full flex items-center justify-center shadow-lg">
+                              <span className="text-[10px] font-black text-white">{index + 2}</span>
+                            </div>
+                            {/* Gradient overlay for readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                          </div>
+
+                          {/* Content */}
+                          <div className="flex-1 min-w-0 flex flex-col justify-center py-1">
+                            <span className="text-[10px] font-bold text-[#224297] dark:text-[#ffd900] uppercase tracking-wider mb-1">
+                              {getPrimaryCategory(post)}
+                            </span>
+                            <h4 className="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
+                              {getRenderedTitle(post)}
+                            </h4>
+                            <div className="flex items-center gap-2 mt-2 text-[10px] text-gray-500 dark:text-gray-400">
+                              <span>{formatDate(post.date)}</span>
+                              <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                              <span>{getReadingTime(post)} min</span>
+                            </div>
+                          </div>
+
+                          {/* Arrow */}
+                          <div className="flex items-center">
+                            <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
+                              <Icon
+                                icon="solar:alt-arrow-right-linear"
+                                className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:text-white dark:group-hover:text-[#224297] transition-colors"
+                              />
+                            </div>
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Bottom fade indicator */}
+                  <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#fafafa] to-transparent z-10 pointer-events-none dark:from-neutral-950" />
+                </div>
+
+                {/* ═══ Pagination Dots ═══ */}
+                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20 pb-2">
+                  {recentPosts.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => scrollToSlide(index)}
+                      aria-label={`Go to slide ${index + 1}`}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        activeSlide === index
+                          ? 'w-6 bg-[#224297] dark:bg-[#ffd900]'
+                          : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+
+              {/* ═══ DESKTOP: Normal List View ═══ */}
+              <div className="hidden lg:flex flex-col gap-3 max-h-[420px] overflow-y-auto pr-2 scrollbar-thin">
                 {recentPosts.map((post, index) => (
                   <Link
                     key={post.id}
                     href={`/blog/${post.slug}`}
-                    className="group flex gap-4 p-3 lg:p-4 rounded-2xl bg-white dark:bg-neutral-900 hover:bg-gray-50 dark:hover:bg-neutral-800/80 transition-colors shadow-sm hover:shadow-md"
+                    className="group flex gap-4 p-4 rounded-2xl bg-white dark:bg-neutral-900 hover:bg-gray-50 dark:hover:bg-neutral-800/80 transition-colors shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-800"
                   >
                     {/* Thumbnail */}
-                    <div className="relative w-20 h-20 lg:w-24 lg:h-24 flex-shrink-0 rounded-xl overflow-hidden">
+                    <div className="relative w-20 h-20 flex-shrink-0 rounded-xl overflow-hidden">
                       <Image
                         src={getFeaturedImage(post)}
                         alt={getRenderedTitle(post)}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        sizes="96px"
+                        sizes="80px"
                       />
                       {/* Number Badge */}
-                      <div className="absolute -top-1 -left-1 w-5 h-5 lg:w-6 lg:h-6 bg-[#224297] rounded-full flex items-center justify-center">
-                        <span className="text-[10px] lg:text-xs font-black text-white">{index + 2}</span>
+                      <div className="absolute -top-1 -left-1 w-5 h-5 bg-[#224297] rounded-full flex items-center justify-center shadow-lg">
+                        <span className="text-[10px] font-black text-white">{index + 2}</span>
                       </div>
                     </div>
 
                     {/* Content */}
                     <div className="flex-1 min-w-0 flex flex-col justify-center">
-                      {/* Category */}
-                      <span className="text-[10px] lg:text-xs font-bold text-[#224297] dark:text-[#ffd900] uppercase tracking-wider mb-1">
+                      <span className="text-xs font-bold text-[#224297] dark:text-[#ffd900] uppercase tracking-wider mb-1">
                         {getPrimaryCategory(post)}
                       </span>
-
-                      {/* Title */}
-                      <h4 className="text-sm lg:text-base font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
+                      <h4 className="text-sm font-bold text-gray-900 dark:text-white leading-snug line-clamp-2 group-hover:text-[#224297] dark:group-hover:text-[#ffd900] transition-colors">
                         {getRenderedTitle(post)}
                       </h4>
-
-                      {/* Meta */}
-                      <div className="flex items-center gap-2 mt-2 text-[10px] lg:text-xs text-gray-500 dark:text-gray-400">
-                        <div className="flex items-center gap-1">
-                          <Icon icon="solar:calendar-linear" className="w-3 h-3" />
-                          <span>{formatDate(post.date)}</span>
-                        </div>
+                      <div className="flex items-center gap-2 mt-2 text-xs text-gray-500 dark:text-gray-400">
+                        <span>{formatDate(post.date)}</span>
                         <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
-                        <div className="flex items-center gap-1">
-                          <Icon icon="solar:clock-circle-linear" className="w-3 h-3" />
-                          <span>{getReadingTime(post)} min</span>
-                        </div>
+                        <span>{getReadingTime(post)} min</span>
                       </div>
                     </div>
 
                     {/* Arrow */}
                     <div className="flex items-center">
                       <div className="w-8 h-8 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group-hover:bg-[#224297] dark:group-hover:bg-[#ffd900] transition-colors">
-                        <Icon icon="solar:alt-arrow-right-linear" className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:text-white dark:group-hover:text-[#224297] transition-colors" />
+                        <Icon
+                          icon="solar:alt-arrow-right-linear"
+                          className="w-4 h-4 text-gray-400 dark:text-gray-500 group-hover:text-white dark:group-hover:text-[#224297] transition-colors"
+                        />
                       </div>
                     </div>
                   </Link>
@@ -283,7 +390,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
               {filteredPosts.length > 6 && (
                 <Link
                   href="#semua-artikel"
-                  className="flex items-center justify-center gap-2 py-3 mt-2 bg-[#224297] hover:bg-[#1a356d] text-white text-sm font-bold rounded-xl transition-colors shadow-lg"
+                  className="hidden lg:flex items-center justify-center gap-2 py-3 mt-4 bg-[#224297] hover:bg-[#1a356d] text-white text-sm font-bold rounded-xl transition-colors shadow-lg"
                 >
                   <Icon icon="solar:document-text-linear" className="w-5 h-5" />
                   Lihat Semua {filteredPosts.length} Artikel
