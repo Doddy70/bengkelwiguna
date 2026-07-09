@@ -118,7 +118,7 @@ export default function TermsPage() {
               ))}
             </main>
 
-            <footer className="mt-16 pt-8 border-t bg-gray-50 p-6 rounded-lg">
+            <section className="mt-16 pt-8 border-t bg-gray-50 p-6 rounded-lg">
                 <h3 className="text-lg font-bold mb-4">Hubungi Kami</h3>
                 <div className="grid md:grid-cols-3 gap-6 text-sm">
                 <div>
@@ -138,7 +138,7 @@ export default function TermsPage() {
                     </a>
                 </div>
                 </div>
-            </footer>
+            </section>
           </div>
         </div>
       </section>
