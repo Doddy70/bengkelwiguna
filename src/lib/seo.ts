@@ -156,8 +156,8 @@ export function generateLocalBusinessSchema() {
     ],
     "aggregateRating": {
       "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "reviewCount": "127",
+      "ratingValue": "4.7",
+      "reviewCount": "928",
       "bestRating": "5"
     }
   };
@@ -347,8 +347,8 @@ export function generateAggregateRatingSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "reviewCount": "127",
+    "ratingValue": "4.7",
+    "reviewCount": "928",
     "bestRating": "5",
     "worstRating": "1",
     "itemReviewed": {

@@ -35,9 +35,9 @@ const defaultSignals: TrustSignal[] = [
   },
   {
     icon: "solar:star-bold-duotone",
-    value: "4.5",
+    value: "4.7",
     label: "Rating Google",
-    description: "Dari2.300+ review pelanggan",
+    description: "928+ review pelanggan",
   },
   {
     icon: "solar:shield-check-bold-duotone",
