@@ -516,6 +516,15 @@ body.dark {
 
 /* ✅ FIXED: Dark mode CSS with proper specificity */
 @layer utilities {
+    /* Hide scrollbar utility for horizontal scroll containers */
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+
     /* Glassmorphism Mandate: 65%-35% gradient opacity, 35px backdrop-blur */
     .glass-header {
         @apply backdrop-blur-[35px] border border-white/20;

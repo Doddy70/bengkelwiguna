@@ -6,6 +6,160 @@ import Link from "next/link";
 import { Service } from "@/types/wordpress";
 import { Icon } from "@iconify/react";
 import WigunaCard from "@/components/ui/WigunaCard";
+import SlideTabFilter from "@/components/ui/SlideTabFilter";
+
+// ============ TDD Functions for kategori_layanan Taxonomy ============
+// Based on: __tests__/kategori-layanan.test.js
+// Supports: _embed.wp:term, services_category, taxonomies format
+
+interface TaxonomyTerm {
+    id: number;
+    name: string;
+    slug?: string;
+    taxonomy?: string;
+}
+
+interface ServiceWithTerms extends Service {
+    _embedded?: {
+        "wp:term"?: { id: number; name: string; slug: string; taxonomy: string; }[][];
+    };
+    services_category?: (number | TaxonomyTerm)[];
+    taxonomies?: {
+        services_category?: TaxonomyTerm[];
+        kategori_layanan?: TaxonomyTerm[];
+    };
+}
+
+/**
+ * Extract categories from WP REST API _embed format
+ * Supports: _embed.wp:term, services_category, taxonomies format
+ */
+function extractKategoriLayanan(services: ServiceWithTerms[]) {
+    const categoryMap = new Map<number, TaxonomyTerm>();
+
+    services.forEach((service) => {
+        // Format 1: _embed.wp:term (WP REST API with _embed parameter)
+        const embeddedTerms = service._embedded?.["wp:term"]?.[0] || [];
+        embeddedTerms.forEach((term) => {
+            // Accept kategori_layanan, services_category, or category taxonomy
+            if (term.taxonomy === 'kategori_layanan' ||
+                term.taxonomy === 'services_category' ||
+                term.taxonomy === 'category') {
+                if (!categoryMap.has(term.id)) {
+                    categoryMap.set(term.id, {
+                        id: term.id,
+                        name: term.name,
+                        slug: term.slug,
+                        taxonomy: term.taxonomy
+                    });
+                }
+            }
+        });
+
+        // Format 2: Flat services_category array
+        const flatCategories = service.services_category || [];
+        if (Array.isArray(flatCategories) && flatCategories.length > 0) {
+            flatCategories.forEach((cat: any) => {
+                // cat could be number ID or object {id, name, slug}
+                const id = typeof cat === 'number' ? cat : (cat.id || cat.term_id);
+                const name = typeof cat === 'string' ? cat : (cat.name || `Kategori ${id}`);
+                if (id && !categoryMap.has(id)) {
+                    categoryMap.set(id, { id, name });
+                }
+            });
+        }
+
+        // Format 3: Nested taxonomies object
+        const taxonomies = service.taxonomies || {};
+        const nestedCategories = taxonomies.kategori_layanan ||
+                                 taxonomies.services_category || [];
+        if (Array.isArray(nestedCategories) && nestedCategories.length > 0) {
+            nestedCategories.forEach((cat: any) => {
+                const id = cat.id || cat.term_id;
+                if (id && !categoryMap.has(id)) {
+                    categoryMap.set(id, {
+                        id,
+                        name: cat.name || `Kategori ${id}`
+                    });
+                }
+            });
+        }
+    });
+
+    if (categoryMap.size === 0) {
+        return [{ name: "Semua Layanan", id: 0 }];
+    }
+
+    return [
+        { name: "Semua Layanan", id: 0 },
+        ...Array.from(categoryMap.values())
+    ];
+}
+
+/**
+ * Filter services by selected category
+ */
+function filterByKategoriLayanan(
+    services: ServiceWithTerms[],
+    selectedCategory: string,
+    categories: { name: string; id: number }[]
+) {
+    // "Semua Layanan" means show all
+    if (selectedCategory === "Semua Layanan" || selectedCategory === "0") {
+        return services;
+    }
+
+    // Find category by name
+    const cat = categories.find(c => c.name === selectedCategory);
+    if (!cat || !cat.id) return services;
+
+    return services.filter((service) => {
+        // Check _embed format
+        const embeddedTerms = service._embedded?.["wp:term"]?.[0] || [];
+        const hasEmbedMatch = embeddedTerms.some(term =>
+            (term.taxonomy === 'kategori_layanan' ||
+             term.taxonomy === 'services_category' ||
+             term.taxonomy === 'category') &&
+            term.id === cat.id
+        );
+        if (hasEmbedMatch) return true;
+
+        // Check flat array
+        const flatCats = service.services_category || [];
+        if (Array.isArray(flatCats) && flatCats.length > 0) {
+            const hasFlatMatch = flatCats.some(c => {
+                const id = typeof c === 'number' ? c : (c as any).id || (c as any).term_id;
+                return id === cat.id;
+            });
+            if (hasFlatMatch) return true;
+        }
+
+        // Check nested taxonomies
+        const taxonomies = service.taxonomies || {};
+        const nestedCats = taxonomies.kategori_layanan ||
+                          taxonomies.services_category || [];
+        if (Array.isArray(nestedCats) && nestedCats.length > 0) {
+            const hasNestedMatch = nestedCats.some(c =>
+                (c.id || (c as any).term_id) === cat.id
+            );
+            if (hasNestedMatch) return true;
+        }
+
+        return false;
+    });
+}
+
+/**
+ * Build WP API URL with taxonomy filter
+ */
+function buildTaxonomyFilterUrl(baseUrl: string, taxonomySlug: string, termId: number) {
+    if (!termId || termId === 0) {
+        return `${baseUrl}?per_page=99&_embed`;
+    }
+    return `${baseUrl}?${taxonomySlug}=${termId}&per_page=99&_embed`;
+}
+
+// ============ END TDD Functions ============
 
 // Helper to clean excerpt
 const getCleanExcerpt = (service: any) => {
@@ -51,91 +205,19 @@ interface ServicesArchiveClientProps {
 export default function ServicesArchiveClient({ services, basePath = '/services' }: ServicesArchiveClientProps) {
     const [selectedCategory, setSelectedCategory] = useState<string>("Semua Layanan");
 
-    // Extract unique categories from services dynamically
-    // Supports both flat IDs array and nested taxonomy objects
+    // Extract categories using TDD function
+    // Supports: _embed.wp:term, services_category, taxonomies formats
     const categories = useMemo(() => {
-        const categoryMap = new Map<number, { id: number; name: string }>();
-
-        services.forEach((service: any) => {
-            // Handle both formats:
-            // 1. Flat array: services_category: [927, 928, ...] (WP REST API)
-            // 2. Nested object: taxonomies: { services_category: [{term_id, name, slug}] }
-
-            // Try flat services_category first (WP REST API format)
-            const flatCategories = service.services_category || [];
-
-            if (Array.isArray(flatCategories) && flatCategories.length > 0) {
-                // Flat array of IDs or objects
-                flatCategories.forEach((cat: any) => {
-                    // cat could be number ID or object {term_id, name, slug}
-                    const id = typeof cat === 'number' ? cat : (cat.term_id || cat.id);
-                    const name = typeof cat === 'string' ? cat : (cat.name || `Kategori ${id}`);
-                    if (id && !categoryMap.has(id)) {
-                        categoryMap.set(id, { id, name });
-                    }
-                });
-            }
-
-            // Also check nested taxonomies format (BW API format)
-            const taxonomies = service.taxonomies || {};
-            const nestedCategories = taxonomies.services_category || [];
-            if (Array.isArray(nestedCategories) && nestedCategories.length > 0) {
-                nestedCategories.forEach((cat: any) => {
-                    const id = cat.term_id || cat.id;
-                    if (id && !categoryMap.has(id)) {
-                        categoryMap.set(id, {
-                            id,
-                            name: cat.name || `Kategori ${id}`
-                        });
-                    }
-                });
-            }
-        });
-
-        // If no categories found, return just "Semua Layanan"
-        if (categoryMap.size === 0) {
-            return [{ name: "Semua Layanan", id: 0 }];
-        }
-
-        return [
-            { name: "Semua Layanan", id: 0 },
-            ...Array.from(categoryMap.values())
-        ];
+        return extractKategoriLayanan(services as ServiceWithTerms[]);
     }, [services]);
 
+    // Filter services using TDD function
     const filteredServices = useMemo(() => {
-        // If only "Semua Layanan" option or no categories, show all services
-        if (categories.length === 1 || selectedCategory === "Semua Layanan") {
-            return services;
-        }
-
-        const cat = categories.find(c => c.name === selectedCategory);
-        if (!cat || !cat.id) return services;
-
-        return services.filter(s => {
-            // Check both flat and nested formats
-            const flatCats = (s as any).services_category || [];
-            const nestedCats = (s as any).taxonomies?.services_category || [];
-
-            // For flat array, check if ID exists
-            if (Array.isArray(flatCats) && flatCats.length > 0) {
-                const hasFlatMatch = flatCats.some((c: any) => {
-                    const id = typeof c === 'number' ? c : (c.term_id || c.id);
-                    return id === cat.id;
-                });
-                if (hasFlatMatch) return true;
-            }
-
-            // For nested object, check term_id
-            if (Array.isArray(nestedCats) && nestedCats.length > 0) {
-                const hasNestedMatch = nestedCats.some((c: any) => {
-                    return c.term_id === cat.id;
-                });
-                if (hasNestedMatch) return true;
-            }
-
-            return false;
-        });
+        return filterByKategoriLayanan(
+            services as ServiceWithTerms[],
+            selectedCategory,
+            categories
+        );
     }, [services, selectedCategory, categories]);
     
     
@@ -241,21 +323,13 @@ export default function ServicesArchiveClient({ services, basePath = '/services'
                     </div>
                 </div>
 
-                {/* Filter Tabs */}
-                <div className="flex flex-wrap gap-3 mb-10">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat.name}
-                            onClick={() => setSelectedCategory(cat.name)}
-                            className={`px-6 py-2.5 rounded-full text-sm font-bold transition-all ${
-                                selectedCategory === cat.name
-                                    ? "bg-[#224297] text-white shadow-md"
-                                    : "bg-gray-100 dark:bg-neutral-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-neutral-700"
-                            }`}
-                        >
-                            {cat.name}
-                        </button>
-                    ))}
+                {/* Slide Tab Filter - Glassmorphism Style */}
+                <div className="mb-10 -mx-4 px-4 lg:mx-0 lg:px-0">
+                    <SlideTabFilter
+                        categories={categories}
+                        selectedCategory={selectedCategory}
+                        onSelect={setSelectedCategory}
+                    />
                 </div>
 
                 {/* Grid */}
