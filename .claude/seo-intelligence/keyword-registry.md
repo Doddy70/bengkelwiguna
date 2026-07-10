@@ -37,19 +37,31 @@
 | overhaul mesin mobil berapa hari | NOT_STARTED | Informational | - | FAQ |
 | tanda mesin perlu overhaul | NOT_STARTED | Informational | - | Problem |
 
+### Supporting Article Keywords (Created)
+| Keyword | URL (planned) | Status | Intent | Notes |
+|---------|--------------|--------|--------|-------|
+| valve seal bocor | /valve-seal-bocor | ARTICLE_COMPLETE | Informational | Supporting article ✅ |
+| ring piston aus | /ring-piston-aus | ARTICLE_COMPLETE | Informational | Supporting article ✅ |
+| head gasket bocor | /head-gasket-bocor | ARTICLE_COMPLETE | Informational | Supporting article ✅ |
+| compression test mobil | /compression-test | ARTICLE_COMPLETE | Informational | Supporting article ✅ |
+| leak down test | /leak-down-test | ARTICLE_COMPLETE | Informational | Supporting article ✅ |
+
 ### Vehicle-Specific Keywords (R3: Vehicle Entity Layer)
 | Keyword | Status | Intent | Brand | Model |
 |---------|--------|--------|-------|-------|
-| overhaul avanza | NOT_STARTED | Commercial | Toyota | Avanza |
-| overhaul innova | NOT_STARTED | Commercial | Toyota | Innova |
-| overhaul brio | NOT_STARTED | Commercial | Honda | Brio |
-| overhaul HR-V | NOT_STARTED | Commercial | Honda | HR-V |
-| overhaul xuv | NOT_STARTED | Commercial | Mitsubishi | Xpander |
-| overhaul pajero | NOT_STARTED | Commercial | Mitsubishi | Pajero |
-| overhaul alphard | NOT_STARTED | Commercial | Toyota | Alphard |
-| overhaul fortuner | NOT_STARTED | Commercial | Toyota | Fortuner |
-| overhaul civic | NOT_STARTED | Commercial | Honda | Civic |
-| overhaul cr-v | NOT_STARTED | Commercial | Honda | CR-V |
+| overhaul mesin toyota avanza | BRIEF_READY | Commercial + Local | Toyota | Avanza | Brief created ✅ |
+| overhaul mesin honda brio | BRIEF_READY | Commercial + Local | Honda | Brio | Brief created ✅ |
+| overhaul mesin innova | BRIEF_READY | Commercial + Local | Toyota | Innova | Brief created ✅ |
+| overhaul avanza | NOT_STARTED | Commercial | Toyota | Avanza | - |
+| overhaul innova | NOT_STARTED | Commercial | Toyota | Innova | - |
+| overhaul brio | NOT_STARTED | Commercial | Honda | Brio | - |
+| overhaul HR-V | NOT_STARTED | Commercial | Honda | HR-V | - |
+| overhaul xuv | NOT_STARTED | Commercial | Mitsubishi | Xpander | - |
+| overhaul pajero | NOT_STARTED | Commercial | Mitsubishi | Pajero | - |
+| overhaul alphard | NOT_STARTED | Commercial | Toyota | Alphard | - |
+| overhaul fortuner | NOT_STARTED | Commercial | Toyota | Fortuner | - |
+| overhaul civic | NOT_STARTED | Commercial | Honda | Civic | - |
+| overhaul cr-v | NOT_STARTED | Commercial | Honda | CR-V | - |
 
 ---
 
