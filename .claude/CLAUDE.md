@@ -36,7 +36,7 @@ Proyek ini berada di iterasi ketiga (V3). UI/UX telah dirombak besar-besaran (Gl
 | 1 | SEO Internal Linking Phase 1 | 🔴 HIGH | 🔄 IN PROGRESS | `fix/seo-internal-links-phase1` |
 | 2 | Content Cluster #2: Overhaul Engine & Turun Mesin | 🔴 HIGH | Pending | `feat/seo-cluster-overhaul` |
 | 3 | Core Web Vitals Audit & Fix | 🔴 HIGH | Pending | `fix/seo-core-web-vitals` |
-| 4 | Content Cluster #3: Sistem Rem | 🔴 HIGH | Pending | `feat/seo-cluster-rem` |
+| 4 | Content Cluster #3: Service AC & Reset AC Mobil | 🔴 HIGH | Pending | `feat/seo-cluster-ac` |
 | 5 | XML Sitemap + Robots.txt | 🟠 MED | Pending | `fix/seo-sitemap-robots` |
 | 6 | Content Depth Upgrade (2000+ words) | 🟠 MED | Pending | `feat/seo-content-upgrade` |
 | 7 | GBP Optimization + Local Citations | 🟠 MED | Pending | `feat/seo-gbp-optimization` |

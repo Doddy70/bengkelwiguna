@@ -42,7 +42,7 @@
     "pendingTasks": [
       "seo-internal-linking-phase1",
       "seo-cluster-overhaul",
-      "seo-cluster-rem",
+      "seo-cluster-ac",
       "seo-cluster-ac",
       "seo-content-upgrade",
       "seo-core-web-vitals",
@@ -75,19 +75,12 @@
         "1.2": "Add reciprocal links in cluster articles (Cluster \u2194 Cluster)"
       }
     },
-    "seo-cluster-rem": {
-      "status": "PENDING",
-      "priority": "HIGH",
-      "branch": "feat/seo-cluster-rem",
-      "description": "Content Cluster #3: Sistem Rem / Brake. Pillar page + 5 cluster articles.",
-      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.2"
-    },
     "seo-cluster-ac": {
       "status": "PENDING",
-      "priority": "LOW",
+      "priority": "HIGH",
       "branch": "feat/seo-cluster-ac",
-      "description": "Content Cluster #4: AC Mobil. Optional. Skip if time limited.",
-      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.3"
+      "description": "Content Cluster #3: Service AC & Reset AC Mobil. Pillar page + 5 cluster articles.",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.2"
     },
     "seo-content-upgrade": {
       "status": "PENDING",

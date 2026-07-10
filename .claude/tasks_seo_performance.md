@@ -39,20 +39,17 @@
 - [ ] Setup internal linking: Pillar ← Cluster
 - [ ] **Branch:** `feat/seo-cluster-overhaul`
 
-### 2.2 — Content Cluster #3: Sistem Rem (Brake)
-- [ ] Buat pillar page: `/service-rem-mobil-depok` (1200+ words)
+### 2.2 — Content Cluster #3: Service AC & Reset AC Mobil
+- [ ] Buat pillar page: `/service-ac-mobil-depok` (1200+ words, target "service AC mobil depok", "reset AC mobil", "isi freon mobil")
 - [ ] Buat 4-5 cluster articles:
-  - [ ] `/tanda-rem-mobil-bermasalah`
-  - [ ] `/kapan-harus-ganti-brake-pad`
-  - [ ] `/biaya-service-rem-mobil-2026`
-  - [ ] `/rem-berdedesing-ini-penyebabnya`
-  - [ ] `/perbedaan-brake-fluid-dot3-dot4-dot5`
-- [ ] **Branch:** `feat/seo-cluster-rem`
+  - [ ] `/tanda-ac-mobil-bermasalah` (ac tidak dingin, bocor, bau)
+  - [ ] `/berapa-biaya-service-ac-mobil-2026`
+  - [ ] `/cara-reset-ac-mobil-bodi`
+  - [ ] `/jenis-freon-ac-mobil-r134a-vs-r1234yf`
+  - [ ] `/isi-freon-ac-mobil-berapa-gram`
+- [ ] Setup internal linking: Pillar ← Cluster
+- [ ] **Branch:** `feat/seo-cluster-ac`
 
-### 2.3 — Content Cluster #4: AC Mobil (Optional if resources allow)
-- [ ] Buat pillar page: `/service-ac-mobil-depok`
-- [ ] Buat 3-4 cluster articles
-- [ ] **Branch:** `feat/seo-cluster-ac` (low priority, skip jika waktu terbatas)
 
 ---
 
@@ -154,7 +151,7 @@ SEQUENCE:
 1. [FIX]  Phase 1 — Internal Linking (Fast, High Impact)
 2. [FEAT] Phase 2.1 — Cluster Overhaul Engine (Content, High Impact)
 3. [FIX]  Phase 4.1 — Core Web Vitals (Technical, High Impact)
-4. [FEAT] Phase 2.2 — Cluster Rem (Content, Medium Impact)
+4. [FEAT] Phase 2.2 — Cluster Service AC (Content, Medium Impact)
 5. [FIX]  Phase 4.2 — Sitemap (Technical, Medium Impact)
 6. [FEAT] Phase 3 — Content Depth Upgrade (Content, Medium Impact)
 7. [FEAT] Phase 5 — Off-Page SEO (Authority, Long-term)
