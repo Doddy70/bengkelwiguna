@@ -41,7 +41,7 @@
     ],
     "pendingTasks": [
       "seo-internal-linking-phase1",
-      "seo-cluster-oli",
+      "seo-cluster-overhaul",
       "seo-cluster-rem",
       "seo-cluster-ac",
       "seo-content-upgrade",
@@ -69,88 +69,88 @@
       "priority": "HIGH",
       "branch": "fix/seo-internal-links-phase1",
       "description": "Fix pillar page + cluster reciprocal internal linking. 11 articles still have 0 internal links.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 1",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 1",
       "subtasks": {
         "1.1": "Add cluster navigation to pillar page (all 11 articles linked)",
-        "1.2": "Add reciprocal links in cluster articles (Cluster ↔ Cluster)"
+        "1.2": "Add reciprocal links in cluster articles (Cluster \u2194 Cluster)"
       }
-    },
-    "seo-cluster-oli": {
-      "status": "PENDING",
-      "priority": "HIGH",
-      "branch": "feat/seo-cluster-oli",
-      "description": "Content Cluster #2: Oli & Ganti Oli. Pillar page + 5 cluster articles.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 2.1"
     },
     "seo-cluster-rem": {
       "status": "PENDING",
       "priority": "HIGH",
       "branch": "feat/seo-cluster-rem",
       "description": "Content Cluster #3: Sistem Rem / Brake. Pillar page + 5 cluster articles.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 2.2"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.2"
     },
     "seo-cluster-ac": {
       "status": "PENDING",
       "priority": "LOW",
       "branch": "feat/seo-cluster-ac",
       "description": "Content Cluster #4: AC Mobil. Optional. Skip if time limited.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 2.3"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.3"
     },
     "seo-content-upgrade": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "feat/seo-content-upgrade",
       "description": "Upgrade 3 articles to 2000+ words for E-E-A-T. biaya (22095), kyoto (22109), pillar page.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 3"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 3"
     },
     "seo-core-web-vitals": {
       "status": "PENDING",
       "priority": "HIGH",
       "branch": "fix/seo-core-web-vitals",
       "description": "Lighthouse audit: LCP, CLS, INP. Fix top 3 issues.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 4.1"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 4.1"
     },
     "seo-sitemap-robots": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "fix/seo-sitemap-robots",
       "description": "Generate XML sitemap + verify robots.txt + submit to GSC.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 4.2"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 4.2"
     },
     "seo-mobile": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "fix/seo-mobile",
       "description": "Mobile responsiveness check across all article pages.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 4.3"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 4.3"
     },
     "seo-gbp-optimization": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "feat/seo-gbp-optimization",
       "description": "Complete GBP 100%, weekly posts, respond to all reviews.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 5.1"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 5.1"
     },
     "seo-local-citations": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "feat/seo-local-citations",
       "description": "Submit to 10+ directories: Bing, Apple Maps, Gojek, Tokopedia, OLX, Waze, etc.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 5.2"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 5.2"
     },
     "seo-backlinks": {
       "status": "PENDING",
       "priority": "LOW",
       "branch": "feat/seo-backlinks",
       "description": "Create Link to Us page + submit to Indonesian automotive directories.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 5.3"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 5.3"
     },
     "seo-schema": {
       "status": "PENDING",
       "priority": "LOW",
       "branch": "fix/seo-schema",
       "description": "Verify all schema markup + add FAQ schema per article page.",
-      "reference": ".claude/tasks_seo_performance.md § Phase 6"
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 6"
+    },
+    "seo-cluster-overhaul": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "feat/seo-cluster-overhaul",
+      "description": "Content Cluster #2: Overhaul Engine, Semi Overhaul, Turun Mesin. Pillar page + 5 cluster articles.",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.1"
     }
   },
   "seo_audit_summary": {
@@ -175,7 +175,7 @@
       "cause": "Runtime browser crash akibat akumulasi perubahan tanpa commit checkpoint. Import statis BookingTrigger (client hook) di SSR context + koordinat hotspot yang salah.",
       "resolution": "git reset --hard origin/main",
       "documentation": [
-        "AGENT_SYNC.md § Known Incidents",
+        "AGENT_SYNC.md \u00a7 Known Incidents",
         ".agents/skills/hotspot-ui-implementation/SKILL.md",
         "conductor/patterns/hotspot-ui-safe-implementation.md"
       ]

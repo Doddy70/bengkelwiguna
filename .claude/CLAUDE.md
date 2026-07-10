@@ -34,7 +34,7 @@ Proyek ini berada di iterasi ketiga (V3). UI/UX telah dirombak besar-besaran (Gl
 | # | Task | Priority | Status | Branch |
 |---|------|----------|--------|--------|
 | 1 | SEO Internal Linking Phase 1 | 🔴 HIGH | 🔄 IN PROGRESS | `fix/seo-internal-links-phase1` |
-| 2 | Content Cluster #2: Oli & Ganti Oli | 🔴 HIGH | Pending | `feat/seo-cluster-oli` |
+| 2 | Content Cluster #2: Overhaul Engine & Turun Mesin | 🔴 HIGH | Pending | `feat/seo-cluster-overhaul` |
 | 3 | Core Web Vitals Audit & Fix | 🔴 HIGH | Pending | `fix/seo-core-web-vitals` |
 | 4 | Content Cluster #3: Sistem Rem | 🔴 HIGH | Pending | `feat/seo-cluster-rem` |
 | 5 | XML Sitemap + Robots.txt | 🟠 MED | Pending | `fix/seo-sitemap-robots` |

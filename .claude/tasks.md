@@ -74,7 +74,7 @@
 ### PHASE 2: Topical Authority Expansion
 | # | Task | Priority | Branch | Status |
 |---|------|----------|--------|--------|
-| 2.1 | Content Cluster #2: Oli & Ganti Oli (pillar + 5 articles) | 🔴 HIGH | `feat/seo-cluster-oli` | Pending |
+| 2.1 | Content Cluster #2: Overhaul Engine & Turun Mesin (pillar + 5 articles) | 🔴 HIGH | `feat/seo-cluster-overhaul` | Pending |
 | 2.2 | Content Cluster #3: Sistem Rem / Brake (pillar + 5 articles) | 🔴 HIGH | `feat/seo-cluster-rem` | Pending |
 | 2.3 | Content Cluster #4: AC Mobil (pillar + 4 articles) | 🟢 LOW | `feat/seo-cluster-ac` | Optional |
 
@@ -143,7 +143,7 @@
 ```
 ORDER OF OPERATIONS:
 1. [IN PROGRESS] Phase 1 — Internal Linking (Fast, High Impact)
-2. [NEXT] Phase 2.1 — Cluster Oli (Content, High Impact)
+2. [NEXT] Phase 2.1 — Cluster Overhaul Engine (Content, High Impact)
 3. [NEXT] Phase 4.1 — Core Web Vitals (Technical, High Impact)
 4. [NEXT] Phase 2.2 — Cluster Rem (Content, Medium Impact)
 5. [NEXT] Phase 4.2 — Sitemap (Technical, Medium Impact)
