@@ -29,15 +29,100 @@
 > **Rationale:** 1 cluster topic是不够的. Butuh minimum 3 cluster untuk competitive keywords.
 
 ### 2.1 — Content Cluster #2: Semi Overhaul / Overhaul Engine / Turun Mesin
-- [ ] Buat pillar page: `/overhaul-engine-mobil` (1200+ words, target "overhaul mesin mobil", "turun mesin", "semi overhaul")
-- [ ] Buat 4-5 cluster articles:
-  - [ ] `/apa-bedanya-semi-overhaul-dan-overhaul-mesin`
-  - [ ] `/tanda-mesin-mobil-harus-overhaul`
-  - [ ] `/biaya-overhaul-mesin-mobil-2026`
-  - [ ] `/proses-turun-mesin-mobil-step-by-step`
-  - [ ] `/berapa-lama-overhaul-mesin-mobil`
-- [ ] Setup internal linking: Pillar ← Cluster
-- [ ] **Branch:** `feat/seo-cluster-overhaul`
+
+> **Reference:** `.claude/COntent Authority Semi Overhaul.md` — Guidelines WAJIB diikuti untuk setiap artikel.
+
+#### Objective
+Setiap artikel harus meningkatkan:
+- Organic Search (SEO), AI Search Visibility (GEO), Google AI Overview
+- SERP Ranking, Topical Authority, User Experience (Helpful Content)
+- Artikel bukan chasing keyword, tapi bagian dari **knowledge graph** yang saling terhubung
+
+#### Writing Principles (WAJIB)
+- [ ] Menjawab search intent secara lengkap
+- [ ] Ditulis berdasarkan pengalaman bengkel nyata (E-E-A-T)
+- [ ] Bahasa Indonesia profesional tapi mudah dipahami
+- [ ] Tidak keyword stuffing
+- [ ] Struktur heading logis
+- [ ] Mudah dipahami pengguna & AI Search
+
+#### Content Structure (per artikel)
+1. H1
+2. Quick Answer / Ringkasan
+3. Pendahuluan
+4. Penyebab
+5. Gejala
+6. Cara Diagnosis
+7. Solusi
+8. Risiko Jika Diabaikan
+9. Kapan Harus ke Bengkel
+10. Mengapa Memilih Bengkel Wiguna
+11. FAQ
+12. Kesimpulan
+
+Gunakan bullet list, tabel, checklist, atau ilustrasi perbandingan jika relevan.
+
+#### SEO Output (per artikel)
+- [ ] SEO Title
+- [ ] Meta Description
+- [ ] URL Slug
+- [ ] Focus Keyword + Secondary Keywords + Semantic/LSI Keywords
+- [ ] Related Entities
+- [ ] People Also Ask
+- [ ] FAQ (5-7 Q&A)
+- [ ] Suggested Schema (FAQ, Article, Breadcrumb)
+
+#### Topical Authority (per artikel)
+- [ ] Parent Topic
+- [ ] Child Topic
+- [ ] Related Topic
+- [ ] Supporting Topic
+- [ ] Suggested Internal Links
+- [ ] Suggested Next Article
+
+#### E-E-A-T (wajib tampilkan pengalaman nyata Bengkel Wiguna)
+- [ ] Proses diagnosis
+- [ ] Compression test
+- [ ] Leak down test
+- [ ] Pemeriksaan endoscope
+- [ ] Inspeksi tekanan oli
+- [ ] Analisis sebelum pembongkaran mesin
+- [ ] Penggunaan peralatan khusus
+
+#### GEO Optimization (untuk ChatGPT, Gemini, Perplexity, Claude, Google AI Overview)
+- [ ] Ringkasan singkat di awal
+- [ ] Checklist
+- [ ] Langkah-langkah
+- [ ] Tabel perbandingan
+- [ ] FAQ
+- [ ] Jawaban langsung terhadap pertanyaan pengguna
+
+#### Internal Linking (di akhir setiap artikel)
+- [ ] Artikel terkait
+- [ ] Artikel lanjutan
+- [ ] Artikel pendukung
+- [ ] Anchor text natural (bukan keyword stuffing)
+
+#### Quality Standard (sebelum menyelesaikan artikel)
+- [ ] Search intent terjawab sepenuhnya
+- [ ] Informasi akurat dan relevan
+- [ ] Struktur mudah dipindai (scannable)
+- [ ] Konten lebih bernilai dari artikel umum di halaman 1 Google
+- [ ] Peluang tinggi muncul di AI Search & Google AI Overview
+- [ ] Menjadi bagian ekosistem Topical Authority (bukan artikel berdiri sendiri)
+
+#### Artikel yang harus dibuat:
+- [ ] **Pillar Page:** `/overhaul-engine-mobil` (1200+ words, target "overhaul mesin mobil", "turun mesin", "semi overhaul")
+  - Output: SEO Summary + Full Article + Topical Authority Section
+- [ ] `/apa-bedanya-semi-overhaul-dan-overhaul-mesin` (comparison content)
+- [ ] `/tanda-mesin-mobil-harus-overhaul` (gejala & diagnosis)
+- [ ] `/biaya-overhaul-mesin-mobil-2026` (tabel harga + estimasi)
+- [ ] `/proses-turun-mesin-mobil-step-by-step` (how-to, checklist)
+- [ ] `/berapa-lama-overhaul-mesin-mobil` (FAQ-style, durasi & proses)
+
+#### Setup internal linking: Pillar ← Cluster (Cluster ↔ Cluster)
+- **Branch:** `feat/seo-cluster-overhaul`
+- **Output file per artikel:** `.claude/cluster_overhaul/[slug]-seo-brief.md`
 
 ### 2.2 — Content Cluster #3: Service AC & Reset AC Mobil
 - [ ] Buat pillar page: `/service-ac-mobil-depok` (1200+ words, target "service AC mobil depok", "reset AC mobil", "isi freon mobil")
