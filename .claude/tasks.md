@@ -71,18 +71,36 @@
 
 > **Full task breakdown:** `.claude/tasks_seo_performance.md`
 
-### PHASE 2: Topical Authority Expansion
+> **⚠️ STRICT RULES: Semua agent WAJIB mengikuti 20 rules di tasks_seo_performance.md § STRICT RULES (R1-R20)**
+
+### PHASE 0: SEO Intelligence Layer (NEW)
 | # | Task | Priority | Branch | Status |
 |---|------|----------|--------|--------|
-| 2.1 | Content Cluster #2: Overhaul Engine & Turun Mesin (pillar + 5 articles) | 🔴 HIGH | `feat/seo-cluster-overhaul` | Pending |
-| 2.2 | Content Cluster #3: Service AC & Reset AC Mobil (pillar + 5 articles) | 🔴 HIGH | `feat/seo-cluster-ac` | Pending |
+| 0.1 | Keyword Universe & Registry (R1: Keyword Governance) | 🔴 HIGH | `feat/seo-intelligence` | Pending |
+| 0.2 | SERP Reverse Engineering per Cluster | 🔴 HIGH | `feat/seo-intelligence` | Pending |
+| 0.3 | Content Gap Analysis | 🔴 HIGH | `feat/seo-intelligence` | Pending |
+| 0.4 | Entity Mapping + Vehicle Entity Layer (R3) | 🔴 HIGH | `feat/seo-intelligence` | Pending |
+| 0.5 | Knowledge Graph Building (R4, R5) | 🔴 HIGH | `feat/seo-intelligence` | Pending |
+
+### PHASE 1: Knowledge Base Setup (NEW)
+| # | Task | Priority | Branch | Status |
+|---|------|----------|--------|--------|
+| 1.1 | Build Knowledge Base folder structure | 🔴 HIGH | `feat/seo-intelligence` | Pending |
+| 1.2 | Keyword Research: Cluster Overhaul Engine (strict rules R1-R20) | 🔴 HIGH | `feat/seo-cluster-overhaul` | Pending |
+| 1.3 | Keyword Research: Cluster Service AC (strict rules R1-R20) | 🔴 HIGH | `feat/seo-cluster-ac` | Pending |
+
+### PHASE 2: Content Cluster
+| # | Task | Priority | Branch | Status |
+|---|------|----------|--------|--------|
+| 2.1 | Content Cluster #2: Overhaul Engine (pillar + 5 articles) — Authority MIN 90 | 🔴 HIGH | `feat/seo-cluster-overhaul` | Pending |
+| 2.2 | Content Cluster #3: Service AC & Reset AC (pillar + 5 articles) — Authority MIN 90 | 🔴 HIGH | `feat/seo-cluster-ac` | Pending |
 
 ### PHASE 3: Content Depth Upgrade
 | # | Task | Priority | Branch | Status |
 |---|------|----------|--------|--------|
-| 3.1 | Upgrade biaya-service-kaki-kaki → 2000+ words | 🟠 MED | `feat/seo-content-upgrade` | Pending |
-| 3.2 | Upgrade kyoto-shaking-machine article → 2000+ words | 🟠 MED | `feat/seo-content-upgrade` | Pending |
-| 3.3 | Upgrade Pillar Page → 1500+ words + strong CTA | 🟠 MED | `feat/seo-content-upgrade` | Pending |
+| 3.1 | Upgrade Service Kaki-Kaki Pillar Page (Authority MIN 90) | 🟠 MED | `feat/seo-content-upgrade` | Pending |
+| 3.2 | Upgrade biaya-service-kaki-kaki → 2000+ words (Authority MIN 90) | 🟠 MED | `feat/seo-content-upgrade` | Pending |
+| 3.3 | Upgrade Kyoto Shaking Machine → 2000+ words (Authority MIN 90) | 🟠 MED | `feat/seo-content-upgrade` | Pending |
 
 ### PHASE 4: Technical SEO
 | # | Task | Priority | Branch | Status |
@@ -90,6 +108,7 @@
 | 4.1 | Core Web Vitals Audit & Fix (LCP, CLS, INP) | 🔴 HIGH | `fix/seo-core-web-vitals` | Pending |
 | 4.2 | XML Sitemap + Robots.txt | 🟠 MED | `fix/seo-sitemap-robots` | Pending |
 | 4.3 | Mobile Responsiveness Check | 🟠 MED | `fix/seo-mobile` | Pending |
+| 4.4 | Indexing Audit (R14: Canonical, OG, Schema, Breadcrumb) | 🔴 HIGH | `fix/seo-indexing` | Pending |
 
 ### PHASE 5: Off-Page SEO
 | # | Task | Priority | Branch | Status |
@@ -101,9 +120,19 @@
 ### PHASE 6: Schema & Structured Data
 | # | Task | Priority | Branch | Status |
 |---|------|----------|--------|--------|
-| 6.1 | Verify all schema + add FAQ schema per article | 🟢 LOW | `fix/seo-schema` | Pending |
+| 6.1 | Verify all schema + FAQ/Article/Breadcrumb schema per article | 🟢 LOW | `fix/seo-schema` | Pending |
 
----
+### PHASE 7: Performance Monitoring (NEW)
+| # | Task | Priority | Branch | Status |
+|---|------|----------|--------|--------|
+| 7.1 | Weekly Monitoring (Impression, CTR, Ranking, Cannibalization) | 🔴 HIGH | `fix/seo-monitoring` | Pending |
+| 7.2 | Monthly Ranking Report + AI Overview visibility | 🟠 MED | `fix/seo-monitoring` | Pending |
+
+### PHASE 8: Content Refresh Automation (NEW)
+| # | Task | Priority | Branch | Status |
+|---|------|----------|--------|--------|
+| 8.1 | Content Lifecycle Management (Draft→Publish→Refresh→Republish) | 🟠 MED | `feat/seo-refresh` | Pending |
+| 8.2 | 6-Monthly Full Article Refresh Schedule | 🟠 MED | `feat/seo-refresh` | Pending |
 
 ## 🚨 KNOWN INCIDENTS
 
@@ -137,18 +166,21 @@
 
 ---
 
-## 📊 EXECUTION SEQUENCE
+## 📊 EXECUTION ORDER (STRICT)
 
 ```
 ORDER OF OPERATIONS:
-1. [IN PROGRESS] Phase 1 — Internal Linking (Fast, High Impact)
-2. [NEXT] Phase 2.1 — Cluster Overhaul Engine (Content, High Impact)
-3. [NEXT] Phase 4.1 — Core Web Vitals (Technical, High Impact)
-4. [NEXT] Phase 2.2 — Cluster Service AC (Content, Medium Impact)
-5. [NEXT] Phase 4.2 — Sitemap (Technical, Medium Impact)
-6. [NEXT] Phase 3 — Content Depth Upgrade (Content, Medium Impact)
-7. [LATER] Phase 5 — Off-Page SEO (Authority, Long-term)
-8. [LATER] Phase 6 — Schema (Low effort, Fast impact)
+EXECUTION ORDER:
+1. [START] Phase 0 — SEO Intelligence Layer (Keyword Research + SERP + Entity + Knowledge Graph)
+2. [NEXT] Phase 1 — Knowledge Base Setup (Build folder structure + research)
+3. [NEXT] Phase 2.1 — Cluster Overhaul Engine (6 articles, strict rules R1-R20)
+4. [NEXT] Phase 2.2 — Cluster Service AC (5 articles, strict rules R1-R20)
+5. [NEXT] Phase 3 — Content Depth Upgrade (Upgrade existing articles, MIN 90 authority)
+6. [NEXT] Phase 4 — Technical SEO (Core Web Vitals + Sitemap + Mobile + Indexing)
+7. [NEXT] Phase 5 — Off-Page SEO (GBP + Citations + Backlinks)
+8. [NEXT] Phase 6 — Schema (Verify + FAQ schema per article)
+9. [NEXT] Phase 7 — Performance Monitoring (Weekly checklist + Monthly report)
+10. [NEXT] Phase 8 — Content Refresh Automation (Lifecycle + Schedule)
 ```
 
 ---

@@ -42,7 +42,9 @@ Proyek ini berada di iterasi ketiga (V3). UI/UX telah dirombak besar-besaran (Gl
 | 7 | GBP Optimization + Local Citations | 🟠 MED | Pending | `feat/seo-gbp-optimization` |
 | 8 | Content Cluster #4: AC Mobil | 🟢 LOW | Optional | `feat/seo-cluster-ac` |
 
+> 📄 **STRICT RULES: All agents WAJIB follow 20 rules (R1-R20) in `.claude/tasks_seo_performance.md`**
 > 📄 Full task breakdown: `.claude/tasks_seo_performance.md`
+> ⚠️ **Authority Score MIN 90 before publish | Keyword Governance: NOT_STARTED → RANKING**
 
 ---
 

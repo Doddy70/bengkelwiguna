@@ -1,6 +1,6 @@
 {
   "project": "bengkel-wiguna-v3",
-  "version": "2.3.0",
+  "version": "3.0.0",
   "lastUpdated": "2026-07-10T00:00:00+07:00",
   "lastAgent": {
     "name": "Claude Sonnet",
@@ -19,7 +19,7 @@
     "backend": "WordPress Headless CMS"
   },
   "workflow": {
-    "currentPhase": "SEO_PERFORMANCE_OPTIMIZATION",
+    "currentPhase": "SEO_INTELLIGENCE_LAYER",
     "activeTasks": [
       "seo-internal-linking-phase1"
     ],
@@ -40,12 +40,15 @@
       "seo-content-cluster-kaki-kaki-broken-links-fix"
     ],
     "pendingTasks": [
-      "seo-internal-linking-phase1",
+      "seo-intelligence-layer",
+      "seo-knowledge-base",
       "seo-cluster-overhaul",
-      "seo-cluster-ac",
       "seo-cluster-ac",
       "seo-content-upgrade",
       "seo-core-web-vitals",
+      "seo-indexing",
+      "seo-monitoring",
+      "seo-refresh",
       "seo-sitemap-robots",
       "seo-mobile",
       "seo-gbp-optimization",
@@ -69,81 +72,119 @@
       "priority": "HIGH",
       "branch": "fix/seo-internal-links-phase1",
       "description": "Fix pillar page + cluster reciprocal internal linking. 11 articles still have 0 internal links.",
-      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 1",
-      "subtasks": {
-        "1.1": "Add cluster navigation to pillar page (all 11 articles linked)",
-        "1.2": "Add reciprocal links in cluster articles (Cluster \u2194 Cluster)"
-      }
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 1"
+    },
+    "seo-intelligence-layer": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "feat/seo-intelligence",
+      "description": "Phase 0: Keyword Universe + SERP Reverse Engineering + Content Gap + Entity Mapping + Knowledge Graph Building. STRICT RULES R1-R20.",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 0",
+      "rules": [
+        "R1 Keyword Governance",
+        "R2 Search Intent",
+        "R3 Vehicle Entity",
+        "R4 Problem Mapping",
+        "R5 Knowledge Object"
+      ]
+    },
+    "seo-knowledge-base": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "feat/seo-intelligence",
+      "description": "Phase 1: Build Knowledge Base folder structure + keyword research for Cluster Overhaul & AC.",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 1"
+    },
+    "seo-cluster-overhaul": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "feat/seo-cluster-overhaul",
+      "description": "Phase 2.1: Content Cluster Overhaul Engine. 6 articles. Authority Score MIN 90. Strict rules R1-R20.",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.1"
     },
     "seo-cluster-ac": {
       "status": "PENDING",
       "priority": "HIGH",
       "branch": "feat/seo-cluster-ac",
-      "description": "Content Cluster #3: Service AC & Reset AC Mobil. Pillar page + 5 cluster articles.",
+      "description": "Phase 2.2: Content Cluster Service AC & Reset AC. 5 articles. Authority Score MIN 90. Strict rules R1-R20.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.2"
     },
     "seo-content-upgrade": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "feat/seo-content-upgrade",
-      "description": "Upgrade 3 articles to 2000+ words for E-E-A-T. biaya (22095), kyoto (22109), pillar page.",
+      "description": "Phase 3: Upgrade existing articles to 2000+ words. Authority MIN 90. Kaki-Kaki Pillar, biaya, Kyoto.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 3"
     },
     "seo-core-web-vitals": {
       "status": "PENDING",
       "priority": "HIGH",
       "branch": "fix/seo-core-web-vitals",
-      "description": "Lighthouse audit: LCP, CLS, INP. Fix top 3 issues.",
+      "description": "Phase 4.1: Lighthouse audit LCP/CLS/INP. Fix top 3 issues.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 4.1"
+    },
+    "seo-indexing": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "fix/seo-indexing",
+      "description": "Phase 4.4: Indexing Audit (Canonical, OG, Twitter Card, Schema, Breadcrumb, Image ALT, Lazy Load, WebP).",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 4.4"
     },
     "seo-sitemap-robots": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "fix/seo-sitemap-robots",
-      "description": "Generate XML sitemap + verify robots.txt + submit to GSC.",
+      "description": "Phase 4.2: Generate XML sitemap + verify robots.txt + submit to GSC.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 4.2"
     },
     "seo-mobile": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "fix/seo-mobile",
-      "description": "Mobile responsiveness check across all article pages.",
+      "description": "Phase 4.3: Mobile responsiveness check across all article pages.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 4.3"
     },
     "seo-gbp-optimization": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "feat/seo-gbp-optimization",
-      "description": "Complete GBP 100%, weekly posts, respond to all reviews.",
+      "description": "Phase 5.1: Complete GBP 100%, weekly posts, respond to all reviews.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 5.1"
     },
     "seo-local-citations": {
       "status": "PENDING",
       "priority": "MEDIUM",
       "branch": "feat/seo-local-citations",
-      "description": "Submit to 10+ directories: Bing, Apple Maps, Gojek, Tokopedia, OLX, Waze, etc.",
+      "description": "Phase 5.2: Submit to 10+ directories: Bing, Apple Maps, Gojek, Tokopedia, OLX, Waze, etc.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 5.2"
     },
     "seo-backlinks": {
       "status": "PENDING",
       "priority": "LOW",
       "branch": "feat/seo-backlinks",
-      "description": "Create Link to Us page + submit to Indonesian automotive directories.",
+      "description": "Phase 5.3: Create Link to Us page + submit to Indonesian automotive directories.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 5.3"
     },
     "seo-schema": {
       "status": "PENDING",
       "priority": "LOW",
       "branch": "fix/seo-schema",
-      "description": "Verify all schema markup + add FAQ schema per article page.",
+      "description": "Phase 6: Verify all schema markup + add FAQ/Article/Breadcrumb schema per article page.",
       "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 6"
     },
-    "seo-cluster-overhaul": {
+    "seo-monitoring": {
       "status": "PENDING",
       "priority": "HIGH",
-      "branch": "feat/seo-cluster-overhaul",
-      "description": "Content Cluster #2: Overhaul Engine, Semi Overhaul, Turun Mesin. Pillar page + 5 cluster articles.",
-      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 2.1"
+      "branch": "fix/seo-monitoring",
+      "description": "Phase 7: Weekly monitoring (Impression, CTR, Ranking, Cannibalization, Orphan Pages, Broken Links). Monthly ranking report.",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 7"
+    },
+    "seo-refresh": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "feat/seo-refresh",
+      "description": "Phase 8: Content Lifecycle Management + 6-Monthly Full Article Refresh Schedule.",
+      "reference": ".claude/tasks_seo_performance.md \u00a7 Phase 8"
     }
   },
   "seo_audit_summary": {
@@ -158,7 +199,12 @@
     "security_headers": true,
     "schema_markup": true,
     "core_web_vitals_status": "UNKNOWN (pending audit)",
-    "off_page_seo": "0 backlinks (needs building)"
+    "off_page_seo": "0 backlinks (needs building)",
+    "strict_rules_version": "3.0.0",
+    "authority_score_min": 90,
+    "workflow": "Keyword Universe \u2192 Search Intent \u2192 SERP Analysis \u2192 Content Gap \u2192 Entity Mapping \u2192 Knowledge Graph \u2192 Article \u2192 Internal Linking \u2192 Monitoring",
+    "keyword_governance": true,
+    "quality_gates": 4
   },
   "incidentLog": [
     {
