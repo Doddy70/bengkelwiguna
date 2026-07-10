@@ -581,8 +581,8 @@ Garansi after overhaul biasanya **6-12 bulan** untuk labor, tergantung bengkel d
 │                                                             │
 │         [>>>> KONSULTASI GRATIS VIA WHATSAPP <<<<]         │
 │                                                             │
-│  📍 Bengkel Wiguna, [Lokasi]                              │
-│  📞 [Nomor WhatsApp]                                        │
+│  📍 Bengkel Wiguna, Jl. Margonda No.268, Kemiri Muka, Beji, Depok                        │
+│  📞 0878 1777 3888                                        │
 │  ⏰ Buka: Senin-Sabtu, 08.00-17.00                         │
 │                                                             │
 │  *Kuota free diagnosis terbatas per hari                    │

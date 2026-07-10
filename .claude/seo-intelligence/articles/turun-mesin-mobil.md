@@ -423,7 +423,7 @@ Tidak semua bengkel memiliki equipment (engine hoist) dan keahlian untuk turun m
 │                                                             │
 │         [>>>> KONSULTASI GRATIS VIA WHATSAPP <<<<]         │
 │                                                             │
-│  📍 Bengkel Wiguna, [Lokasi]                              │
+│  📍 Bengkel Wiguna, Jl. Margonda No.268, Kemiri Muka, Beji, Kota Depok, Jawa Barat 16423                              │
 │  ⏰ Senin-Sabtu, 08.00-17.00                              │
 └─────────────────────────────────────────────────────────────┘
 ```

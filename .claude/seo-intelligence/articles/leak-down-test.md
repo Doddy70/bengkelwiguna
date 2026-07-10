@@ -413,7 +413,7 @@ Ya, jika ada kebocoran ke coolant/radiator, kemungkinan besar head gasket bocor.
 │                                                             │
 │         [>>>> DIAGNOSTIC GRATIS VIA WHATSAPP <<<<]          │
 │                                                             │
-│  📍 Bengkel Wiguna, [Lokasi]                              │
+│  📍 Bengkel Wiguna, Jl. Margonda No.268, Kemiri Muka, Beji, Kota Depok, Jawa Barat 16423                              │
 │  ⏰ Senin-Sabtu, 08.00-17.00                              │
 └─────────────────────────────────────────────────────────────┘
 ```

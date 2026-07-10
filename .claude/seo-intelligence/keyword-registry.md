@@ -47,17 +47,54 @@
 | leak down test | /leak-down-test | ARTICLE_COMPLETE | Informational | Supporting article ✅ |
 
 ### Vehicle-Specific Keywords (R3: Vehicle Entity Layer)
-| Keyword | Status | Intent | Brand | Model |
-|---------|--------|--------|-------|-------|
-| overhaul mesin toyota avanza | BRIEF_READY | Commercial + Local | Toyota | Avanza | Brief created ✅ |
-| overhaul mesin honda brio | BRIEF_READY | Commercial + Local | Honda | Brio | Brief created ✅ |
-| overhaul mesin innova | BRIEF_READY | Commercial + Local | Toyota | Innova | Brief created ✅ |
-| overhaul avanza | NOT_STARTED | Commercial | Toyota | Avanza | - |
-| overhaul innova | NOT_STARTED | Commercial | Toyota | Innova | - |
-| overhaul brio | NOT_STARTED | Commercial | Honda | Brio | - |
-| overhaul HR-V | NOT_STARTED | Commercial | Honda | HR-V | - |
-| overhaul xuv | NOT_STARTED | Commercial | Mitsubishi | Xpander | - |
-| overhaul pajero | NOT_STARTED | Commercial | Mitsubishi | Pajero | - |
+
+#### Toyota Vehicles
+| Keyword | URL | Status | Model |
+|---------|-----|--------|-------|
+| overhaul mesin toyota avanza | /overhaul-mesin-toyota-avanza | ARTICLE_COMPLETE | Avanza |
+| overhaul mesin toyota innova | /overhaul-mesin-toyota-innova | ARTICLE_COMPLETE | Innova |
+| overhaul mesin toyota rush | /overhaul-mesin-toyota-rush | ARTICLE_COMPLETE | Rush |
+| overhaul mesin toyota calya | /overhaul-mesin-toyota-calya | ARTICLE_COMPLETE | Calya |
+| overhaul mesin toyota fortuner | /overhaul-mesin-toyota-fortuner | ARTICLE_COMPLETE | Fortuner |
+
+#### Honda Vehicles
+| Keyword | URL | Status | Model |
+|---------|-----|--------|-------|
+| overhaul mesin honda brio | /overhaul-mesin-honda-brio | ARTICLE_COMPLETE | Brio |
+| overhaul mesin honda hr-v | /overhaul-mesin-honda-hr-v | ARTICLE_COMPLETE | HR-V |
+| overhaul mesin honda cr-v | /overhaul-mesin-honda-cr-v | ARTICLE_COMPLETE | CR-V |
+
+#### Mitsubishi Vehicles
+| Keyword | URL | Status | Model |
+|---------|-----|--------|-------|
+| overhaul mesin mitsubishi xpander | /overhaul-mesin-mitsubishi-xpander | ARTICLE_COMPLETE | Xpander |
+| overhaul mesin mitsubishi pajero sport | /overhaul-mesin-mitsubishi-pajero-sport | ARTICLE_COMPLETE | Pajero Sport |
+
+#### Suzuki Vehicles
+| Keyword | URL | Status | Model |
+|---------|-----|--------|-------|
+| overhaul mesin suzuki ertiga | /overhaul-mesin-suzuki-ertiga | ARTICLE_COMPLETE | Ertiga |
+| overhaul mesin suzuki carry | /overhaul-mesin-suzuki-carry | ARTICLE_COMPLETE | Carry |
+
+#### Daihatsu Vehicles
+| Keyword | URL | Status | Model |
+|---------|-----|--------|-------|
+| overhaul mesin daihatsu sigra | /overhaul-mesin-daihatsu-sigra | ARTICLE_COMPLETE | Sigra |
+| overhaul mesin daihatsu xenia | /overhaul-mesin-daihatsu-xenia | ARTICLE_COMPLETE | Xenia |
+| overhaul mesin daihatsu rocky | /overhaul-mesin-daihatsu-rocky | ARTICLE_COMPLETE | Rocky |
+| overhaul mesin daihatsu terios | /overhaul-mesin-daihatsu-terios | ARTICLE_COMPLETE | Terios |
+
+#### Isuzu Vehicles
+| Keyword | URL | Status | Model |
+|---------|-----|--------|-------|
+| overhaul mesin isuzu d-max | /overhaul-mesin-isuzu-d-max | ARTICLE_COMPLETE | D-Max |
+| overhaul mesin isuzu elf | /overhaul-mesin-isuzu-elf | ARTICLE_COMPLETE | Elf |
+
+#### Other Brands
+| Keyword | URL | Status | Model |
+|---------|-----|--------|-------|
+| overhaul mesin nissan livina | /overhaul-mesin-nissan-livina | ARTICLE_COMPLETE | Livina |
+| overhaul mesin wuling confero | /overhaul-mesin-wuling-confero | ARTICLE_COMPLETE | Confero |
 | overhaul alphard | NOT_STARTED | Commercial | Toyota | Alphard | - |
 | overhaul fortuner | NOT_STARTED | Commercial | Toyota | Fortuner | - |
 | overhaul civic | NOT_STARTED | Commercial | Honda | Civic | - |
