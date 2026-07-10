@@ -1,10 +1,10 @@
 {
   "project": "bengkel-wiguna-v3",
-  "version": "2.2.0",
-  "lastUpdated": "2026-06-22T18:43:00+07:00",
+  "version": "2.3.0",
+  "lastUpdated": "2026-07-10T00:00:00+07:00",
   "lastAgent": {
-    "name": "Gemini 3.5 Flash (Antigravity IDE)",
-    "action": "Completed V3 Hotspot layout alignment and styling. Configured 12-column grid (Sidebar: 2, Canvas: 6, InfoPanel: 4), removed duplicate text overlays by making hotspot markers transparent/glowing pulses exactly positioned over pre-printed background labels, deleted B-Block duplicate hotspot from Semi Overhaul to lock 6 hotspots (1-6), and refined premium dark mode dashboard aesthetics."
+    "name": "Claude Sonnet",
+    "action": "Fixed 15 broken internal links across 3 WordPress posts (22095, 22107, 22108). Applied all 5 CITE SEO Quick Wins. Generated comprehensive SEO performance task list."
   },
   "lastCommit": {
     "hash": "460f94e8",
@@ -19,8 +19,10 @@
     "backend": "WordPress Headless CMS"
   },
   "workflow": {
-    "currentPhase": "UI_UX_REFINEMENT",
-    "activeTasks": [],
+    "currentPhase": "SEO_PERFORMANCE_OPTIMIZATION",
+    "activeTasks": [
+      "seo-internal-linking-phase1"
+    ],
     "completedTasks": [
       "hero-slider-fix",
       "blog-archive-bento",
@@ -33,13 +35,25 @@
       "nav-menu-sync",
       "agent-knowledge-docs-2026-06-20",
       "semi-overhaul-hotspot-panel-info",
-      "modern-equipment-v3-hotspot"
+      "modern-equipment-v3-hotspot",
+      "seo-quick-wins-cite-audit",
+      "seo-content-cluster-kaki-kaki-broken-links-fix"
     ],
     "pendingTasks": [
-      "domain-authority-audit"
+      "seo-internal-linking-phase1",
+      "seo-cluster-oli",
+      "seo-cluster-rem",
+      "seo-cluster-ac",
+      "seo-content-upgrade",
+      "seo-core-web-vitals",
+      "seo-sitemap-robots",
+      "seo-mobile",
+      "seo-gbp-optimization",
+      "seo-local-citations",
+      "seo-backlinks",
+      "seo-schema"
     ]
   },
-
   "constraints": {
     "dontModify": [
       "package.json"
@@ -50,44 +64,108 @@
     }
   },
   "tasks": {
-    "nav-menu-sync": {
-      "status": "COMPLETED",
+    "seo-internal-linking-phase1": {
+      "status": "IN_PROGRESS",
       "priority": "HIGH",
-      "description": "Synced hardcoded fallback menus in Header.tsx and MobileMenu.tsx."
+      "branch": "fix/seo-internal-links-phase1",
+      "description": "Fix pillar page + cluster reciprocal internal linking. 11 articles still have 0 internal links.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 1",
+      "subtasks": {
+        "1.1": "Add cluster navigation to pillar page (all 11 articles linked)",
+        "1.2": "Add reciprocal links in cluster articles (Cluster ↔ Cluster)"
+      }
     },
-    "domain-authority-audit": {
-      "status": "PAUSED",
+    "seo-cluster-oli": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "feat/seo-cluster-oli",
+      "description": "Content Cluster #2: Oli & Ganti Oli. Pillar page + 5 cluster articles.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 2.1"
+    },
+    "seo-cluster-rem": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "feat/seo-cluster-rem",
+      "description": "Content Cluster #3: Sistem Rem / Brake. Pillar page + 5 cluster articles.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 2.2"
+    },
+    "seo-cluster-ac": {
+      "status": "PENDING",
       "priority": "LOW",
-      "description": "Pending manual data input from user (DA/DR, referring domains)."
+      "branch": "feat/seo-cluster-ac",
+      "description": "Content Cluster #4: AC Mobil. Optional. Skip if time limited.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 2.3"
     },
-    "semi-overhaul-hotspot-panel-info": {
-      "status": "COMPLETED",
+    "seo-content-upgrade": {
+      "status": "PENDING",
       "priority": "MEDIUM",
-
-      "description": "Implement Panel Info cards for Semi Overhaul product (6 hotspots). Previous attempt failed and was reverted. Assets (thumbnail images) sudah tersedia di public/images/equipment/. WAJIB baca .agents/skills/hotspot-ui-implementation/SKILL.md sebelum memulai.",
-      "assets": {
-        "images": [
-          "public/images/equipment/Cover_Clep_Thumb.png",
-          "public/images/equipment/Cramshaft_Thumb.png",
-          "public/images/equipment/Timing_cover_thumb.png",
-          "public/images/equipment/JAlur_oli_thumb.png",
-          "public/images/equipment/Micro_oil_thumb.png",
-          "public/images/equipment/Oil_Sump_thumb.png",
-          "public/images/equipment/Defalut_info.png",
-          "public/images/equipment/Mobil_stinger.png"
-        ],
-        "notes": "Gambar sudah di-copy ke public/images/equipment/ dan tidak ikut git. Aman langsung dipakai."
-      },
-      "hotspots": [
-        { "no": 1, "title": "COVER KLEP (VALVE COVER)", "thumb": "Cover_Clep_Thumb.png" },
-        { "no": 2, "title": "AREA KLEP & CAMSHAFT", "thumb": "Cramshaft_Thumb.png" },
-        { "no": 3, "title": "TIMING COVER & TIMING AREA", "thumb": "Timing_cover_thumb.png" },
-        { "no": 4, "title": "JALUR OLI UTAMA (OIL GALLERY)", "thumb": "JAlur_oli_thumb.png" },
-        { "no": 5, "title": "JALUR OLI PRESISI (MICRO OIL PASSAGE)", "thumb": "Micro_oil_thumb.png" },
-        { "no": 6, "title": "CARTER / OIL PAN (OIL SUMP)", "thumb": "Oil_Sump_thumb.png" }
-      ],
-      "criticalNote": "WAJIB gunakan Protokol Kalibrasi Koordinat Interaktif dari SKILL.md untuk menentukan posisi hotspot. DILARANG menebak koordinat top/left."
+      "branch": "feat/seo-content-upgrade",
+      "description": "Upgrade 3 articles to 2000+ words for E-E-A-T. biaya (22095), kyoto (22109), pillar page.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 3"
+    },
+    "seo-core-web-vitals": {
+      "status": "PENDING",
+      "priority": "HIGH",
+      "branch": "fix/seo-core-web-vitals",
+      "description": "Lighthouse audit: LCP, CLS, INP. Fix top 3 issues.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 4.1"
+    },
+    "seo-sitemap-robots": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "fix/seo-sitemap-robots",
+      "description": "Generate XML sitemap + verify robots.txt + submit to GSC.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 4.2"
+    },
+    "seo-mobile": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "fix/seo-mobile",
+      "description": "Mobile responsiveness check across all article pages.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 4.3"
+    },
+    "seo-gbp-optimization": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "feat/seo-gbp-optimization",
+      "description": "Complete GBP 100%, weekly posts, respond to all reviews.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 5.1"
+    },
+    "seo-local-citations": {
+      "status": "PENDING",
+      "priority": "MEDIUM",
+      "branch": "feat/seo-local-citations",
+      "description": "Submit to 10+ directories: Bing, Apple Maps, Gojek, Tokopedia, OLX, Waze, etc.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 5.2"
+    },
+    "seo-backlinks": {
+      "status": "PENDING",
+      "priority": "LOW",
+      "branch": "feat/seo-backlinks",
+      "description": "Create Link to Us page + submit to Indonesian automotive directories.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 5.3"
+    },
+    "seo-schema": {
+      "status": "PENDING",
+      "priority": "LOW",
+      "branch": "fix/seo-schema",
+      "description": "Verify all schema markup + add FAQ schema per article page.",
+      "reference": ".claude/tasks_seo_performance.md § Phase 6"
     }
+  },
+  "seo_audit_summary": {
+    "date": "2026-07-10",
+    "cite_score": "52/100",
+    "quick_wins_applied": 5,
+    "broken_links_fixed": 15,
+    "content_clusters": 1,
+    "articles_published": 14,
+    "topical_authority": "1 cluster (needs 2-3 more)",
+    "internal_links_fixed": true,
+    "security_headers": true,
+    "schema_markup": true,
+    "core_web_vitals_status": "UNKNOWN (pending audit)",
+    "off_page_seo": "0 backlinks (needs building)"
   },
   "incidentLog": [
     {

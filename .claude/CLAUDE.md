@@ -1,7 +1,7 @@
 # Project: Bengkel Wiguna — Agent Handoff Instructions
 
-> **VERSION:** 2.1.0  
-> **LAST UPDATED:** 2026-06-15  
+> **VERSION:** 2.2.0  
+> **LAST UPDATED:** 2026-07-10  
 > **DOCUMENT TYPE:** Primary Agent Instruction File  
 > **READ FIRST:** Ya — file ini dibaca duluan oleh setiap agent sebelum mulai bekerja
 
@@ -33,7 +33,16 @@ Proyek ini berada di iterasi ketiga (V3). UI/UX telah dirombak besar-besaran (Gl
 
 | # | Task | Priority | Status | Branch |
 |---|------|----------|--------|--------|
-| 1 | Domain Authority Audit | 🟢 LOW | Paused | `chore/seo-audit` |
+| 1 | SEO Internal Linking Phase 1 | 🔴 HIGH | 🔄 IN PROGRESS | `fix/seo-internal-links-phase1` |
+| 2 | Content Cluster #2: Oli & Ganti Oli | 🔴 HIGH | Pending | `feat/seo-cluster-oli` |
+| 3 | Core Web Vitals Audit & Fix | 🔴 HIGH | Pending | `fix/seo-core-web-vitals` |
+| 4 | Content Cluster #3: Sistem Rem | 🔴 HIGH | Pending | `feat/seo-cluster-rem` |
+| 5 | XML Sitemap + Robots.txt | 🟠 MED | Pending | `fix/seo-sitemap-robots` |
+| 6 | Content Depth Upgrade (2000+ words) | 🟠 MED | Pending | `feat/seo-content-upgrade` |
+| 7 | GBP Optimization + Local Citations | 🟠 MED | Pending | `feat/seo-gbp-optimization` |
+| 8 | Content Cluster #4: AC Mobil | 🟢 LOW | Optional | `feat/seo-cluster-ac` |
+
+> 📄 Full task breakdown: `.claude/tasks_seo_performance.md`
 
 ---
 
