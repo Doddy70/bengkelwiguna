@@ -10,17 +10,17 @@
 ### Pillar Page Keywords
 | Keyword | URL (planned) | Status | Intent | Priority | Notes |
 |---------|--------------|--------|--------|---------|-------|
-| overhaul mesin mobil | /overhaul-engine-mobil | NOT_STARTED | Commercial + Local | HIGH | Pillar Page |
-| turun mesin mobil | /turun-mesin-mobil | NOT_STARTED | Informational | MED | Pillar Page support |
-| semi overhaul mesin | /semi-overhaul-mesin | NOT_STARTED | Informational | MED | Pillar Page support |
+| overhaul mesin mobil | /overhaul-engine-mobil | ARTICLE_COMPLETE | Commercial + Local | HIGH | Pillar Page |
+| turun mesin mobil | /turun-mesin-mobil | ARTICLE_COMPLETE | Informational | MED | Pillar Page support |
+| semi overhaul mesin | /semi-overhaul-mesin | ARTICLE_COMPLETE | Informational | MED | Pillar Page support |
 
 ### Cluster Article Keywords
 | Keyword | URL (planned) | Status | Intent | Priority | Notes |
 |---------|--------------|--------|--------|---------|-------|
 | apa bedanya semi overhaul dan overhaul mesin | /apa-bedanya-semi-overhaul-dan-overhaul-mesin | NOT_STARTED | Comparison | HIGH | Comparison article |
-| tanda mesin mobil harus overhaul | /tanda-mesin-mobil-harus-overhaul | NOT_STARTED | Informational | HIGH | Problem-based |
-| biaya overhaul mesin mobil 2026 | /biaya-overhaul-mesin-mobil-2026 | NOT_STARTED | Commercial Investigation | HIGH | Pricing |
-| proses turun mesin mobil step by step | /proses-turun-mesin-mobil-step-by-step | NOT_STARTED | Informational | MED | How-to |
+| tanda mesin mobil harus overhaul | /tanda-mesin-mobil-harus-overhaul | ARTICLE_COMPLETE | Informational | HIGH | Problem-based |
+| biaya overhaul mesin mobil 2026 | /biaya-overhaul-mesin-mobil-2026 | ARTICLE_COMPLETE | Commercial Investigation | HIGH | Pricing |
+| proses turun mesin mobil step by step | /proses-turun-mesin-mobil-step-by-step | ARTICLE_COMPLETE | Informational | MED | How-to |
 | berapa lama overhaul mesin mobil | /berapa-lama-overhaul-mesin-mobil | NOT_STARTED | Informational | MED | FAQ-style |
 
 ### Long-tail / Supporting Keywords
