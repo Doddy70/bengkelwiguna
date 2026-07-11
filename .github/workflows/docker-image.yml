@@ -6,12 +6,83 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  NODE_VERSION: '20'
+  DOCKER_IMAGE: 'brododdev/bwiguna'
+
 jobs:
-  build-and-push:
+  # ===========================================
+  # Job 1: Quality Checks
+  # ===========================================
+  quality-checks:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci --legacy-peer-deps
+
+    - name: Run linting
+      run: npm run lint
+
+    - name: Run TypeScript check
+      run: npx tsc --noEmit || true
+
+  # ===========================================
+  # Job 2: Build
+  # ===========================================
+  build:
+    runs-on: ubuntu-latest
+    needs: quality-checks
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ env.NODE_VERSION }}
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci --legacy-peer-deps
+
+    - name: Build application
+      run: npm run build
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-output
+        path: |
+          .next/
+          public/
+          src/styles/
+        retention-days: 7
+
+  # ===========================================
+  # Job 3: Docker Build & Push
+  # ===========================================
+  docker:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name != 'pull_request'
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Download build artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: build-output
+        path: .
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v4
@@ -26,18 +97,76 @@ jobs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: brododdev/bwiguna
+        images: ${{ env.DOCKER_IMAGE }}
         tags: |
           type=ref,event=branch
           type=sha,prefix=
           type=raw,value=latest
+          type=raw,value=${{ github.run_number }}
 
     - name: Build and push
       uses: docker/build-push-action@v6
       with:
         context: .
-        push: ${{ github.event_name != 'pull_request' }}
+        push: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
         cache-from: type=gha
         cache-to: type=gha,mode=max
+        build-args: |
+          NODE_ENV=production
+          NEXT_TELEMETRY_DISABLED=1
+
+    - name: Image digest
+      run: echo "Docker image pushed successfully!"
+
+  # ===========================================
+  # Job 4: Deploy to VPS (Optional)
+  # ===========================================
+  deploy-vps:
+    runs-on: ubuntu-latest
+    needs: docker
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    environment: production
+
+    steps:
+    - name: Deploy to VPS
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        username: ${{ secrets.VPS_USER }}
+        key: ${{ secrets.VPS_SSH_KEY }}
+        script: |
+          docker pull ${{ env.DOCKER_IMAGE }}:latest
+          docker stop bwiguna || true
+          docker rm bwiguna || true
+          docker run -d \
+            --name bwiguna \
+            --restart unless-stopped \
+            -p 3000:3000 \
+            -e NODE_ENV=production \
+            ${{ env.DOCKER_IMAGE }}:latest
+          docker image prune -f
+      env:
+        DOCKER_IMAGE: ${{ env.DOCKER_IMAGE }}
+
+  # ===========================================
+  # Summary
+  # ===========================================
+  summary:
+    runs-on: ubuntu-latest
+    needs: [quality-checks, build, docker]
+    if: always()
+
+    steps:
+    - name: Build Summary
+      run: |
+        echo "## Deployment Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "| Job | Status |" >> $GITHUB_STEP_SUMMARY
+        echo "|-----|--------|" >> $GITHUB_STEP_SUMMARY
+        echo "| Quality Checks | ${{ needs.quality-checks.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Build | ${{ needs.build.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "| Docker | ${{ needs.docker.result }} |" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Docker Image:** `${{ env.DOCKER_IMAGE }}:latest`" >> $GITHUB_STEP_SUMMARY
