@@ -306,8 +306,10 @@
 
 /* ===========================================
    LIQUID GLASS CARD - Theme Aware
+   With Apple-inspired distortion effect
    =========================================== */
 
+/* SVG Filter Definition (injected via component) */
 .liquidCard {
   position: relative;
   width: 100%;
@@ -326,6 +328,9 @@
     0 2px 8px rgb(0 0 0 / 0.04);
   transition: transform 0.4s ease;
   will-change: transform;
+
+  /* Liquid Glass: Inner shadow layer */
+  isolation: isolate;
 }
 
 /* Dark mode card */
@@ -341,6 +346,43 @@
 .liquidCard:hover {
   transform: translateY(-4px);
 }
+
+/* ===========================================
+   LIQUID GLASS LAYERS (Apple-inspired)
+   =========================================== */
+
+/* Layer 1: Inner shadow (tint) */
+.liquidCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 24px;
+  box-shadow:
+    inset 0 0 12px -8px rgba(255, 255, 255, 0.8),
+    inset 0 -4px 12px -8px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0);
+  pointer-events: none;
+}
+
+/* Layer 2: Backdrop blur + distortion */
+.liquidCard::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 24px;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  filter: url(#liquid-glass-filter);
+  -webkit-filter: url(#liquid-glass-filter);
+  isolation: isolate;
+  pointer-events: none;
+}
+
+/* ===========================================
+   LIQUID REFLECTION & GLOW
+   =========================================== */
 
 /* Liquid Base Layer */
 .liquidBase {
