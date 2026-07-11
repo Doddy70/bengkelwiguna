@@ -149,7 +149,6 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                 <div className="w-full">
 
                     {/* Article Body */}
-                    <div className="overflow-x-auto">
                     <article
                         className="prose prose-lg max-w-none dark:prose-invert
                         prose-headings:font-black prose-headings:tracking-tight prose-headings:text-gray-900 dark:prose-headings:text-white prose-headings:mb-6
@@ -162,14 +161,13 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
                         prose-ol:list-decimal prose-ol:pl-6 prose-li:mb-3
                         prose-h2:text-2xl prose-h2:mt-12 prose-h2:border-b prose-h2:pb-4
                         prose-h3:text-xl
-                        prose-table:w-full
+                        prose-table:w-full prose-table:block prose-table:overflow-x-auto
                         prose-th:bg-gray-100 dark:prose-th:bg-gray-800
                         prose-th:px-4 prose-th:py-3
                         prose-td:px-4 prose-td:py-3
                         prose-iframe:w-full prose-iframe:rounded-xl"
                         dangerouslySetInnerHTML={{ __html: content || "" }}
                     />
-                    </div>
 
                     {/* Tags */}
                     <div className="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
