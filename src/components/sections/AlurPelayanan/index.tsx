@@ -110,10 +110,16 @@ export function AlurPelayanan() {
         {/* Left Column - Title & Info */}
         <div className={styles.leftColumn}>
           <div className={styles.header}>
-            <h2 className={styles.title}>
+            <h2
+              className={styles.title}
+              style={{ color: isDark ? '#60a5fa' : '#224297' }}
+            >
               {alurPelayananMeta.title}
             </h2>
-            <p className={styles.subtitle}>
+            <p
+              className={styles.subtitle}
+              style={{ color: isDark ? '#94a3b8' : '#64748b' }}
+            >
               {alurPelayananMeta.subtitle}
             </p>
           </div>
@@ -284,7 +290,15 @@ export function AlurPelayanan() {
               <div key={step.id} className={styles.dotWrapper}>
                 {/* Tooltip */}
                 <div className={`${styles.tooltip} ${hoveredDot === index ? styles.tooltipVisible : ''}`}>
-                  <span className={styles.tooltipStep}>Langkah {step.number}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '4px' }}>
+                    <span style={{
+                      width: '8px',
+                      height: '8px',
+                      borderRadius: '50%',
+                      backgroundColor: step.color === '#ffd900' ? '#ffd900' : isDark ? '#3b82f6' : '#224297'
+                    }} />
+                    <span className={styles.tooltipStep}>Langkah {step.number}</span>
+                  </div>
                   <span className={styles.tooltipTitle}>{step.title}</span>
                 </div>
 
