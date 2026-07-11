@@ -1,10 +1,10 @@
-# Overhaul Mesin Mitsubishi Pajero Sport: Biaya, Gejala & Kapan Perlu
+# Overhaul Mesin Mitsubishi Pajero Sport: Gejala, Penyebab & Kapan Perlu Overhaul
 
 ## SEO Summary
 
-Artikel panduan overhaul mesin Mitsubishi Pajero Sport. Mencakup: gejala mesin Pajero Sport bermasalah, penyebab, kapan perlu overhaul, estimasi biaya overhaul di Depok. Ditulis oleh Dede Tarya, Head Mechanic Bengkel Wiguna.
+Artikel panduan lengkap overhaul mesin Mitsubishi Pajero Sport. Mencakup: gejala mesin Pajero Sport bermasalah, penyebab umum, kapan perlu overhaul, dan proses perbaikannya di Bengkel Wiguna. Ditulis oleh Dede Tarya, Head Mechanic Bengkel Wiguna.
 
-**Target Keyword:** overhaul mesin pajero sport, biaya overhaul pajero
+**Target Keyword:** overhaul mesin mitsubishi pajero sport, gejala mesin pajero bermasalah
 **Search Intent:** Commercial Investigation + Local
 **Target Location:** Depok, Margonda, Jakarta Selatan
 
@@ -12,59 +12,386 @@ Artikel panduan overhaul mesin Mitsubishi Pajero Sport. Mencakup: gejala mesin P
 
 ## Quick Answer
 
-**Overhaul mesin Mitsubishi Pajero Sport** diperlukan saat mesin mengalami gejala serius. Estimasi biaya overhaul Pajero Sport: **Rp 15.000.000 - Rp 40.000.000+** tergantung engine type dan scope.
+**Overhaul mesin Mitsubishi Pajero Sport** diperlukan saat mesin mengalami gejala serius: oli turun drastis, tenaga hilang, atau overheat berulang. Konsultasikan ke bengkel untuk diagnosis akurat sebelum memutuskan perbaikan.
+
+> ⚠️ **Diagnosis langsung oleh teknisi tetap diperlukan.** Konsultasikan kondisi Pajero Sport Anda sebelum memutuskan overhaul.
+
+---
+
+## Alur Proses Service di Bengkel Wiguna
+
+Sebelum memutuskan overhaul, penting untuk memahami bagaimana proses service di Bengkel Wiguna dirancang untuk memberikan diagnosis yang akurat dan transparan:
+
+![Alur Proses Service Bengkel Wiguna](/wp-content/uploads/2026/07/Alur-Proses-Service-Workflow-Bengkel-Wiguna.jpg)
+
+Proses ini memastikan setiap kendaraan mendapat penanganan yang tepat sesuai kondisi aktualnya.
 
 ---
 
 ## Apa Itu Mitsubishi Pajero Sport?
 
-Mitsubishi Pajero Sport adalah SUV premium:
+Mitsubishi Pajero Sport adalah SUV premium yang diproduksi oleh Mitsubishi Motors. Pajero Sport menawarkan kemampuan off-road yang handal dengan kenyamanan premium, menjadikannya populer untuk keluarga dan penggunaan profesional.
+
+Pajero Sport hadir dalam berbagai variant sepanjang sejarah pemasarannya di Indonesia:
+
+<div style="overflow-x:auto">
 
 | Variant | Tahun | Engine | Jenis |
 |---------|-------|--------|-------|
-| **Pajero Sport** | 2008-2015 | 2.5L 4D56 | Diesel |
-| **Pajero Sport** | 2015-2020 | 2.4L 4D56 | Diesel |
-| **Pajero Sport** | 2020-sekarang | 2.4L 4N15 (DI-D) | Diesel |
+| **Pajero Sport** | 2008-2015 | 2.5L (4D56) | Diesel |
+| **Pajero Sport** | 2015-2020 | 2.4L (4D56) | Diesel |
+| **Pajero Sport** | 2020-sekarang | 2.4L (4N15 DI-D) | Diesel |
+
+</div>
 
 ---
 
-## Engine Specifications
+## Engine Specifications Mitsubishi Pajero Sport
 
-### 4N15 (New Pajero Sport)
+Memahami spesifikasi mesin Pajero Sport penting untuk pemilik kendaraan dalam merawat dan mendiagnosis masalah.
+
+### Engine 4N15 (New Pajero Sport)
+
+<div style="overflow-x:auto">
 
 | Spec | Value |
 |------|-------|
 | Type | 4-cylinder, DOHC, Variable Geometry Turbo |
 | Displacement | 2.352 cc |
+| Bore x Stroke | 86.0 x 101.0 mm |
+| Compression Ratio | 14.4:1 |
 | Max Power | 181 hp @ 3.500 rpm |
 | Max Torque | 430 Nm @ 2.500 rpm |
 | Fuel | Diesel |
 
+</div>
+
+### Engine 4D56 TCI (Pajero Sport Klasik)
+
+<div style="overflow-x:auto">
+
+| Spec | Value |
+|------|-------|
+| Type | 4-cylinder, SOHC, Turbo Intercooler |
+| Displacement | 2.476 cc |
+| Max Power | 136 hp @ 4.000 rpm |
+| Max Torque | 324 Nm @ 2.000 rpm |
+| Fuel | Diesel |
+
+</div>
+
 ---
 
-## Gejala Umum & Estimasi Biaya
+## Gejala Umum Mesin Pajero Sport Bermasalah
 
-### 🔴 Gejala Serius
+Mengenali gejala awal sangat penting untuk mencegah kerusakan yang lebih parah. Berikut klasifikasi gejala yang perlu diwaspadai.
 
-| # | Gejala | Severity |
-|---|--------|----------|
-| 1 | **Tenaga turun (turbo)** | CRITICAL |
-| 2 | **Overheat** | CRITICAL |
-| 3 | **Asap hitam/putih** | HIGH |
+### 🔴 Gejala Serius - Overhaul Diperlukan
 
-### Estimasi Biaya Overhaul Pajero Sport
+<div style="overflow-x:auto">
 
-| Scope | Estimasi |
-|-------|----------|
-| **Full Overhaul** | Rp 18.000.000 - Rp 40.000.000 |
+| # | Gejala | Severity | Kemungkinan Penyebab |
+|---|--------|----------|---------------------|
+| 1 | **Tenaga turun (turbo)** | CRITICAL | Turbo failure / compression loss |
+| 2 | **Oli turun >1L/1000km** | CRITICAL | Ring piston aus |
+| 3 | **Overheat berulang** | CRITICAL | Head gasket bocor / cooling |
+| 4 | **Asap hitam/putih** | HIGH | Fuel system / oil issue |
+| 5 | **Bunyi ketuk dari mesin** | HIGH | Bearing aus |
+| 6 | **Turbo lag berlebihan** | HIGH | Turbo wear |
+| 7 | **RPM tidak stabil** | MEDIUM | Fuel system / injection |
+
+</div>
+
+### 🟡 Gejala Ringan - Service Biasa
+
+<div style="overflow-x:auto">
+
+| Gejala | Kemungkinan | Solusi |
+|--------|-------------|--------|
+| Oli turun sedikit | Normal consumption | Monitor |
+| Idle slightly rough | Tune-up needed | Tune-up |
+| Power sedikit turun | Carbon buildup | Decarbon |
+| Bunyi sedikit | Accessories belt | Check belt |
+
+</div>
+
+---
+
+## Decision Tree: Overhaul atau Service?
+
+Untuk membantu Anda memahami kapan overhaul benar-benar diperlukan, berikut flowchart decision tree sederhana:
+
+```
+PAJERO SPORT - KAPAN OVERHAUL?
+│
+├── [ ] GEJALA BERAT?
+│   │
+│   ├── Turbo boost drop?
+│   │   ├── YA → Turbo diagnostics
+│   │   │         ├─ Turbo worn → Turbo rebuild/replace
+│   │   │         └─ Other → Compression test
+│   │   │
+│   ├── Oil consumption >1L/1000km?
+│   │   ├── YA → Compression test
+│   │   │         ├─ LOW → Overhaul (ring/piston)
+│   │   │         └─ NORMAL → Injector / fuel system
+│   │   │
+│   ├── Overheat berulang?
+│   │   ├── YA → Compression test + block test
+│   │   │         ├─ Coolant mixing oil → Head gasket
+│   │   │         └─ Normal → Water pump/thermostat
+│   │   │
+│   └── Bunyi ketuk keras?
+│       └── YA → Overhaul (bearing)
+│
+├── [ ] GEJALA RINGAN?
+│   └── Service biasa / tune-up
+```
+
+---
+
+## Penyebab Umum Mesin Pajero Sport Overhaul
+
+Memahami penyebab utama kerusakan mesin membantu pemilik Pajero Sport mencegah dan mendeteksi masalah lebih awal.
+
+### 1. Turbo Failure
+
+**Penyebab:**
+- Oil starvation akibat jarang ganti oli
+- Carbon buildup dari penggunaan yang tidak proper
+- Oil contamination
+- Excessive boost pressure
+- Water contamination dalam fuel
+
+**Gejala Khas:**
+- Turbo lag yang berlebihan
+- Whistling atau whine dari turbo
+- Power turun drastis
+- Asap hitam berlebihan
+- Oil consumption meningkat
+
+### 2. Ring Piston Aus
+
+**Penyebab:**
+- Mileage kendaraan di atas 200.000 km
+- Penggantian oli tidak dilakukan secara rutin
+- Sering mengalami overheat
+- Penggunaan oli berkualitas rendah
+- Sering digunakan untuk beban berat (off-road, towing)
+
+**Gejala Khas:**
+- Oli turun konsisten saat berkendara
+- Asap biru saat akselerasi
+- Power mesin terasa turun signifikan
+- Consumption bahan bakar meningkat
+
+### 3. Head Gasket Bocor
+
+**Penyebab:**
+- Overheat berulang yang merusak seal
+- Usia komponen yang sudah aus
+- Cooling system bermasalah kronis
+
+**Gejala Khas:**
+- Coolant habis tanpa ditemukan kebocoran eksternal
+- Oli berubah warna menjadi putih/kream
+- Asap putih dari knalpot
+- Mesin mengalami overheat
+
+### 4. Fuel Injection Issue
+
+**Penyebab:**
+- Injector wear atau clogging
+- High pressure fuel pump failure
+- Fuel quality buruk
+
+**Gejala Khas:**
+- Sulit start terutama pagi
+- Idle tidak stabil
+- Power tidak smooth
+- Asap hitam berlebihan
+
+---
+
+## Perbedaan Pajero Sport dengan Kompetitor
+
+<div style="overflow-x:auto">
+
+| Aspek | Mitsubishi Pajero Sport | Toyota Fortuner | Isuzu D-Max |
+|-------|------------------------|-----------------|-------------|
+| **Engine** | 4N15 2.4L | 2GD-FTV 2.4L | 4JJ3 3.0L |
+| **Power** | 181 hp | 150 hp | 190 hp |
+| **Torque** | 430 Nm | 343 Nm | 450 Nm |
+| **Body Style** | SUV | SUV | SUV / Pickup |
+| **Turbo** | VGT | VGT | VGT |
+
+</div>
+
+---
+
+## Proses Overhaul Pajero Sport di Bengkel Wiguna
+
+Bengkel Wiguna menerapkan proses overhaul yang terstruktur dan transparan untuk setiap kendaraan yang masuk.
+
+### Phase 1: Diagnosis (Day 1)
+
+Pada tahap awal, teknisi akan melakukan serangkaian pengujian untuk menentukan kondisi aktual mesin:
+
+- Compression test pada semua silinder
+- Leak down test untuk mendeteksi kebocoran
+- Oil consumption test
+- Turbo diagnostics
+- Fuel system check
+- Coolant system check menyeluruh
+- Penyusunan written estimate
+
+**Durasi:** 1 hari (tanpa biaya diagnosis)
+
+### Phase 2: Engine Removal (Day 2-3)
+
+Persiapan dan pelepasan mesin dari bodi kendaraan:
+
+- Drain oli dan coolant
+- Pelepasan baterai dan komponen kelistrikan
+- Pelepasan intake manifold dan turbo
+- Pemutusan semua koneksi komponen
+- Pengangkatan engine-transmission unit
+
+**Durasi:** 1-2 hari
+
+### Phase 3: Disassembly & Assessment (Day 3-4)
+
+Proses pembongkaran dan penilaian kondisi parts:
+
+- Full engine teardown
+- Pembersihan semua komponen
+- Pengukuran tolerances komponen
+- Dokumentasi foto kondisi parts
+- Pemesanan parts pengganti
+
+**Durasi:** 1-2 hari
+
+### Phase 4: Machine Work (Day 4-7)
+
+Pekerjaan mesin di workshop specialist:
+
+- Block cleaning dan inspection menyeluruh
+- Cylinder bore hone jika diperlukan
+- Head surface resurfacing
+- Valve job untuk performa optimal
+- Valve guide replacement jika diperlukan
+- Injector inspection
+- Persiapan gasket baru
+
+**Durasi:** 2-4 hari
+
+### Phase 5: Assembly (Day 7-10)
+
+Proses perakitan mesin dengan standar pabrik:
+
+- Instalasi piston dan ring baru
+- Pemasangan main bearings baru
+- Pemasangan rod bearings baru
+- Penggantian timing chain kit lengkap
+- Instalasi oil pump baru
+- Penggunaan semua gasket dan seal baru
+- Torque sesuai spesifikasi pabrik
+
+**Durasi:** 2-3 hari
+
+### Phase 6: Installation & Testing (Day 10-14)
+
+Tahap akhir dan quality control:
+
+- Instalasi mesin kembali ke bodi
+- Instalasi turbo system
+- Penyambungan semua sistem
+- Pengisian cairan (oli, coolant)
+- Initial startup dan monitoring
+- Reset dan kalibrasi komputer
+- Road test menyeluruh
+- Quality check final
+
+**Durasi:** 2-4 hari
+
+---
+
+## Tips Merawat Mesin Pajero Sport
+
+### Preventive Maintenance
+
+<div style="overflow-x:auto">
+
+| Tips | Frekuensi | Benefit |
+|------|-----------|---------|
+| Ganti oli | Setiap 5.000 km | Prevent wear |
+| Check oli level | Setiap BBM fill | Prevent damage |
+| Tune-up | Setiap 20.000 km | Optimal performance |
+| Flush coolant | Setiap 2 tahun | Prevent overheating |
+| Turbo service | Setiap 40.000 km | Maintain turbo |
+| Air filter | Setiap 10.000 km | Clean combustion |
+
+</div>
+
+### Tips Khusus untuk Pajero Sport Diesel
+
+- Gunakan oli dengan spec yang direkomendasikan Mitsubishi
+- Allow turbo to idle 1-2 menit sebelum matikan mesin setelah penggunaan berat
+- Jaga cooling system dengan regular coolant flush
+- Gunakan fuel filter replacement sesuai schedule
+
+### Warning Signs yang Tidak Boleh Diabaikan
+
+**SEGERA PERIKSA KE BENGKEL JIKA:**
+- Temperature gauge naik di atas normal
+- Oli level turun dengan cepat
+- Turbo boost terasa drop
+- Muncul bunyi tidak biasa dari engine atau turbo
+- Power terasa menurun signifikan
+- Asap berwarna berlebihan dari knalpot
+
+---
+
+## FAQ: Overhaul Mesin Pajero Sport
+
+### Q: Berapa lama overhaul mesin Pajero Sport?
+
+A: Full overhaul Pajero Sport membutuhkan waktu sekitar **10-18 hari kerja** tergantung beban kerja bengkel dan ketersediaan parts.
+
+### Q: Overhaul Pajero Sport worth it?
+
+A: Untuk Pajero Sport dengan mileage tinggi dan mengalami gejala serius, overhaul merupakan pilihan yang worth it. Pajero Sport adalah kendaraan premium dengan value tinggi.
+
+### Q: Pajero Sport Diesel sama dengan Fortuner?
+
+A: Tidak, meskipun sama-sama SUV Diesel, Pajero Sport menggunakan engine 4N15 sedangkan Fortuner menggunakan 2GD-FTV. Specs dan overhaul process berbeda.
+
+### Q: After overhaul, Pajero Sport seperti baru?
+
+A: Compression akan dikembalikan ke spesifikasi pabrik. Power dan performance akan mendekati kondisi seperti awal.
+
+### Q: Pajero Sport prone masalah mesin apa?
+
+A: Secara umum Pajero Sport cukup reliable. Masalah yang sering ditemukan adalah turbo actuator issues, EGR valve clogging, dan occasional oil consumption pada mileage tinggi.
 
 ---
 
 ## Internal Links
 
+<div style="overflow-x:auto">
+
 | Artikel | Deskripsi |
 |---------|-----------|
 | [Overhaul Mesin Mobil](/overhaul-engine-mobil) | Pillar page |
+| [Tanda Mesin Perlu Overhaul](/tanda-mesin-overhaul) | Gejala umum |
+| [Semi Overhaul](/semi-overhaul-mesin) | Alternatif perbaikan |
+| [Valve Seal Bocor](/valve-seal-bocor) | Diagnosis terkait |
+| [Ring Piston Aus](/ring-piston-aus) | Diagnosis terkait |
+| [Compression Test](/compression-test) | Diagnostic guide |
+| [Toyota Fortuner](/overhaul-mesin-toyota-fortuner) | Vehicle related |
+| [Isuzu D-Max](/overhaul-mesin-isuzu-d-max) | Vehicle related |
+
+</div>
 
 ---
 
@@ -75,11 +402,18 @@ Mitsubishi Pajero Sport adalah SUV premium:
 │           FREE DIAGNOSIS: MESIN PAJERO SPORT BERMASALAH?          │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│  Pajero Sport bermasalah? Dapatkan diagnosis GRATIS.         │
+│  Pajero Sport makan oli, tenaga turun, atau turbo bermasalah?│
+│  Dapatkan diagnosis GRATIS dari teknisi kami.               │
+│                                                             │
+│  ✅ Free compression test                                   │
+│  ✅ Free leak down test                                    │
+│  ✅ Free turbo diagnostics                                 │
+│  ✅ Dede Tarya (Head Mechanic)                            │
 │                                                             │
 │         [>>>> KONSULTASI VIA WHATSAPP <<<<]                  │
 │         📞 0878 1777 3888                                    │
 │                                                             │
+│  📍 Jl. Margonda No.268, Kemiri Muka, Beji, Kota Depok    │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -87,10 +421,11 @@ Mitsubishi Pajero Sport adalah SUV premium:
 
 **Last Updated:** Juli 2026
 **Author:** Dede Tarya, Head Mechanic Bengkel Wiguna
+**Location:** Jl. Margonda No.268, Kemiri Muka, Beji, Kota Depok
 
 <!--
 META:
-Title: Overhaul Mesin Mitsubishi Pajero Sport: Biaya 2026 | Bengkel Wiguna
+Title: Overhaul Mesin Mitsubishi Pajero Sport: Gejala, Penyebab & Kapan Overhaul | Bengkel Wiguna
 Canonical: /overhaul-mesin-mitsubishi-pajero-sport
-Focus Keyword: overhaul mesin pajero sport, biaya overhaul pajero
+Focus Keyword: overhaul mesin mitsubishi pajero sport, gejala mesin pajero bermasalah
 -->

@@ -57,10 +57,19 @@
       "WebFetch(domain:cruip.com)",
       "Bash(npx motion-ai *)",
       "Bash(npm uninstall *)",
-      "Bash(gh pr create --title 'feat\\(seo\\): Internal Linking Phase 1 — Pillar Page + Reciprocal Links' --body ' *)"
+      "Bash(gh pr create --title 'feat\\(seo\\): Internal Linking Phase 1 — Pillar Page + Reciprocal Links' --body ' *)",
+      "Read(//Users/doddykapilha/Downloads/GITDODDY/new bengkel wiguna/.claude/skills/BW-SEO-OS-v1/skills/automotive-writer/**)",
+      "Bash(mkdir -p \"/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna/.claude/seo-intelligence/articles\")",
+      "Bash(bash /tmp/batch_update.sh)",
+      "Read(//Users/doddykapatha/Downloads/GITDODDY/new bengkel wiguna/.github/workflows/**)"
     ],
     "additionalDirectories": [
-      "/Users/doddykapisha/.claude/projects/-Users-doddykapisha-Downloads-GITDODDY-new-bengkel-wiguna/66e5c90e-45bd-40d7-b1e2-a3924843a104/subagents/workflows"
+      "/Users/doddykapisha/.claude/projects/-Users-doddykapisha-Downloads-GITDODDY-new-bengkel-wiguna/66e5c90e-45bd-40d7-b1e2-a3924843a104/subagents/workflows",
+      "/Users/doddykapisha/DownloadS/GITDODDY/new bengkel wiguna/.claude/seo-intelligence/content-briefs",
+      "/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna/.claude/seo-intelligence/content-briefs",
+      "/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna/.claude/seo-intelligence",
+      "/tmp",
+      "/private/tmp"
     ]
   },
   "enabledPlugins": {

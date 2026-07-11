@@ -34,6 +34,8 @@ const GoogleReviews = dynamic(() => import('@/components/sections/GoogleReviews'
 const YoutubeEducation = dynamic(() => import('@/components/sections/YoutubeEducation'))
 const SpesialisSlider = dynamic(() => import('@/components/heroui/spesialis-slider'))
 const BentoPromoSection = dynamic(() => import('@/components/heroui/bento-promo-section'))
+
+
 const FooterModern = dynamic(() => import('@/components/heroui/footer-modern'))
 const PageTitle3 = dynamic(() => import('@/components/ui/PageTitle3'))
 const Button = dynamic(() => import('@/components/ui/Button'))
@@ -201,6 +203,8 @@ export default async function HomePage() {
       <section id="why-wiguna" className="bg-slate-50 w-full">
           <ModernEquipmentV3 />
       </section>
+
+
 
       {/* SECTION 3: LAYANAN (SpesialisSlider Carousel) */}
       <section id="layanan" className="lg:py-24 py-12 bg-white overflow-hidden border-t border-gray-100">
