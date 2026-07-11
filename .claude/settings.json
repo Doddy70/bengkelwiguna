@@ -61,7 +61,15 @@
       "Read(//Users/doddykapilha/Downloads/GITDODDY/new bengkel wiguna/.claude/skills/BW-SEO-OS-v1/skills/automotive-writer/**)",
       "Bash(mkdir -p \"/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna/.claude/seo-intelligence/articles\")",
       "Bash(bash /tmp/batch_update.sh)",
-      "Read(//Users/doddykapatha/Downloads/GITDODDY/new bengkel wiguna/.github/workflows/**)"
+      "Read(//Users/doddykapatha/Downloads/GITDODDY/new bengkel wiguna/.github/workflows/**)",
+      "Bash(cd \"/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna\" && mkdir -p public/videos && cp \"/Users/doddykapisha/Desktop/PROSES ALUR KERJA BENGKEL/Step01 Customer_arrives_workshop_consul…_202607111141.mp4\" public/videos/step-01.mp4 && ls -la public/videos/)",
+      "Bash(mdls public/videos/step-01.mp4)",
+      "Bash(rm -rf node_modules/.cache)",
+      "Bash(cp \"/Users/doddykapisha/Desktop/PROSES ALUR KERJA BENGKEL/Step 05 Mechanics_perform_vehicle_mainte…_202607111202.mp4\" step-05.mp4)",
+      "Bash(cp \"/Users/doddykapisha/Desktop/PROSES ALUR KERJA BENGKEL/Step 06 Mechanic_quality_control_test_drive_202607111217.mp4\" step-06.mp4)",
+      "Bash(cp \"/Users/doddykapisha/Desktop/PROSES ALUR KERJA BENGKEL/Step 07_payment_and_vehicle_ha…_202607111221.mp4\" step-07.mp4)",
+      "Bash(cp \"/Users/doddykapisha/Desktop/PROSES ALUR KERJA BENGKEL/Step 08 Customer_service_follow_up_phone…_202607111222.mp4\" step-08.mp4)",
+      "Bash(ffmpeg -version)"
     ],
     "additionalDirectories": [
       "/Users/doddykapisha/.claude/projects/-Users-doddykapisha-Downloads-GITDODDY-new-bengkel-wiguna/66e5c90e-45bd-40d7-b1e2-a3924843a104/subagents/workflows",
@@ -69,7 +77,8 @@
       "/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna/.claude/seo-intelligence/content-briefs",
       "/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna/.claude/seo-intelligence",
       "/tmp",
-      "/private/tmp"
+      "/private/tmp",
+      "/Users/doddykapisha/Desktop/PROSES ALUR KERJA BENGKEL"
     ]
   },
   "enabledPlugins": {

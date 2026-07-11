@@ -41,6 +41,7 @@ const PageTitle3 = dynamic(() => import('@/components/ui/PageTitle3'))
 const Button = dynamic(() => import('@/components/ui/Button'))
 const BlogCardOne = dynamic(() => import('@/components/ui/BlogCardOne'))
 const ModernEquipmentV3 = dynamic(() => import('@/components/heroui/ModernEquipmentV3'))
+const AlurPelayanan = dynamic(() => import('@/components/sections/AlurPelayanan'))
 
 // 3. SEO OPTIMIZATION: Trust Signals & FAQ
 import PartnerLogos from '@/components/sections/PartnerLogos'
@@ -203,6 +204,9 @@ export default async function HomePage() {
       <section id="why-wiguna" className="bg-slate-50 w-full">
           <ModernEquipmentV3 />
       </section>
+
+      {/* SECTION: Alur Pelayanan Bengkel Wiguna */}
+      <AlurPelayanan />
 
 
 

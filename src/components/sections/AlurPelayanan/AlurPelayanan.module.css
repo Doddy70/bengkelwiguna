@@ -1,0 +1,1079 @@
+/* ===========================================
+   Alur Pelayanan Bengkel Wiguna
+   Theme-aware: Light/Dark mode compatible
+   =========================================== */
+
+/* Container - Clean, no background */
+.container {
+  position: relative;
+  width: 100%;
+  padding: 80px 0;
+  overflow: hidden;
+}
+
+/* Background - Theme aware */
+.backgroundPattern {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+/* ===========================================
+   CSS ANIMATIONS (Performance Optimized)
+   =========================================== */
+
+/* Fade In Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Shimmer Animation */
+@keyframes liquidShimmer {
+  0%, 100% { transform: rotate(-30deg) translateX(-20%); }
+  50% { transform: rotate(-30deg) translateX(20%); }
+}
+
+/* Pulse Animation */
+@keyframes dotPulse {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.5); opacity: 0; }
+}
+
+/* Scale In Animation */
+@keyframes scaleIn {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+/* Progress Fill Animation */
+@keyframes progressFill {
+  from { width: 0%; }
+}
+
+/* ===========================================
+   ENTRANCE ANIMATIONS (CSS Only)
+   =========================================== */
+
+.animateHeader {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animateTitle {
+  animation: fadeInUp 0.5s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.animateSubtitle {
+  animation: fadeInUp 0.5s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.animateStepInfo {
+  animation: fadeInLeft 0.3s ease-out forwards;
+}
+
+.animateProgress {
+  animation: fadeIn 0.3s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animateCta {
+  animation: fadeInUp 0.5s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+.animateCard {
+  animation: fadeInRight 0.3s ease-out forwards;
+}
+
+/* 2-Column Layout for Desktop */
+.layout {
+  display: flex;
+  flex-direction: column;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  gap: 48px;
+}
+
+/* Left Column - Title & Info */
+.leftColumn {
+  flex: 0 0 100%;
+}
+
+/* Right Column - Carousel */
+.rightColumn {
+  flex: 1;
+}
+
+/* Header */
+.header {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: #224297;
+}
+
+/* Dark mode title */
+.dark .title {
+  color: #60a5fa;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #64748b;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Dark mode subtitle */
+.dark .subtitle {
+  color: #94a3b8;
+}
+
+/* Step Info - Theme aware */
+.stepInfo {
+  background-color: rgb(226 232 240 / 0.5);
+  border-radius: 20px;
+  padding: 20px 24px;
+  margin-top: 32px;
+  border-left: 4px solid #224297;
+}
+
+/* Dark mode stepInfo */
+.dark .stepInfo {
+  background-color: rgb(30 41 59 / 0.5);
+  border-left-color: #60a5fa;
+}
+
+.stepInfoTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #224297;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+/* Dark mode */
+.dark .stepInfoTitle {
+  color: #60a5fa;
+}
+
+.stepInfoDesc {
+  font-size: 1rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* Dark mode */
+.dark .stepInfoDesc {
+  color: #cbd5e1;
+}
+
+/* Desktop: 2 Column Layout */
+@media (min-width: 1024px) {
+  .layout {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 60px;
+  }
+
+  .leftColumn {
+    flex: 0 0 25%;
+    position: sticky;
+    top: 120px;
+    align-self: flex-start;
+  }
+
+  .rightColumn {
+    flex: 1;
+    max-width: calc(75% - 60px);
+  }
+}
+
+/* Carousel Container */
+.carouselContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* Navigation Arrows */
+.navArrow {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid #e2e8f0;
+  background-color: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #224297;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+/* Dark mode navArrow */
+.dark .navArrow {
+  border-color: #334155;
+  background-color: rgb(30 41 59 / 0.8);
+  color: #60a5fa;
+}
+
+.navArrow:hover:not(:disabled) {
+  background-color: #224297;
+  color: white;
+  transform: scale(1.05);
+}
+
+.dark .navArrow:hover:not(:disabled) {
+  background-color: #3b82f6;
+}
+
+.navArrow:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.navArrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 768px) {
+  .navArrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .carouselContainer {
+    gap: 0;
+  }
+}
+
+/* Card Display */
+.cardDisplay {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ===========================================
+   LIQUID GLASS CARD - Theme Aware
+   =========================================== */
+
+.liquidCard {
+  position: relative;
+  width: 100%;
+  min-height: 420px;
+  border-radius: 24px;
+  overflow: hidden;
+
+  /* Theme-aware glass */
+  background-color: rgb(255 255 255 / 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+
+  border: 1px solid #e2e8f0;
+  box-shadow:
+    0 8px 32px rgb(0 0 0 / 0.08),
+    0 2px 8px rgb(0 0 0 / 0.04);
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+/* Dark mode card */
+.dark .liquidCard {
+  background-color: rgb(30 41 59 / 0.7);
+  border-color: #334155;
+  box-shadow:
+    0 8px 32px rgb(0 0 0 / 0.3),
+    0 2px 8px rgb(0 0 0 / 0.2);
+}
+
+/* Hover effect - CSS only */
+.liquidCard:hover {
+  transform: translateY(-4px);
+}
+
+/* Liquid Base Layer */
+.liquidBase {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 0.3) 0%,
+    rgb(255 255 255 / 0.1) 50%,
+    rgb(255 255 255 / 0.2) 100%
+  );
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.dark .liquidBase {
+  background: linear-gradient(
+    135deg,
+    rgb(255 255 255 / 0.05) 0%,
+    rgb(255 255 255 / 0.02) 50%,
+    rgb(255 255 255 / 0.03) 100%
+  );
+}
+
+/* Liquid Reflection - Light Effect */
+.liquidReflection {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgb(255 255 255 / 0.3) 40%,
+    rgb(255 255 255 / 0.5) 50%,
+    rgb(255 255 255 / 0.3) 60%,
+    transparent 100%
+  );
+  transform: rotate(-30deg);
+  pointer-events: none;
+  animation: liquidShimmer 6s ease-in-out infinite;
+}
+
+/* Liquid Edge - Top Accent */
+.liquidEdge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    #224297 0%,
+    rgba(34, 66, 151, 0.6) 100%
+  );
+  border-radius: 24px 24px 0 0;
+}
+
+.dark .liquidEdge {
+  background: linear-gradient(
+    90deg,
+    #3b82f6 0%,
+    rgba(59, 130, 246, 0.6) 100%
+  );
+}
+
+.liquidEdgeGold {
+  background: linear-gradient(
+    90deg,
+    #ffd900 0%,
+    rgba(255, 217, 0, 0.7) 100%
+  );
+  box-shadow: 0 0 20px rgba(255, 217, 0, 0.4);
+}
+
+/* Liquid Glow Effect */
+.liquidGlow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 26px;
+  background: transparent;
+  box-shadow:
+    0 0 40px rgb(34 66 151 / 0.15),
+    0 0 80px rgb(34 66 151 / 0.08);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.dark .liquidGlow {
+  box-shadow:
+    0 0 40px rgb(59 130 246 / 0.2),
+    0 0 80px rgb(59 130 246 / 0.1);
+}
+
+.liquidCard:hover .liquidGlow {
+  opacity: 1;
+}
+
+.liquidHighlight .liquidGlow {
+  box-shadow:
+    0 0 40px rgb(255 217 0 / 0.2),
+    0 0 80px rgb(255 217 0 / 0.1);
+}
+
+/* Highlight Variant */
+.liquidHighlight {
+  background-color: rgb(255 255 255 / 0.8);
+}
+
+.dark .liquidHighlight {
+  background-color: rgb(30 41 59 / 0.8);
+}
+
+/* Media Container */
+.mediaContainer {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: #f1f5f9;
+}
+
+.dark .mediaContainer {
+  background-color: #1e293b;
+}
+
+@media (min-width: 768px) {
+  .mediaContainer {
+    height: 260px;
+  }
+}
+
+/* Liquid Media */
+.liquidMedia {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+  will-change: transform;
+}
+
+.liquidCard:hover .liquidMedia {
+  transform: scale(1.02);
+}
+
+/* Liquid Icon Background */
+.liquidIconBg {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f8fafc;
+}
+
+.dark .liquidIconBg {
+  background-color: #0f172a;
+}
+
+.liquidIconPlaceholder {
+  width: 80px;
+  height: 80px;
+  border-radius: 24px;
+  background-color: rgb(255 255 255 / 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 0.08);
+  transition: transform 0.3s ease;
+}
+
+.dark .liquidIconPlaceholder {
+  background-color: rgb(30 41 59 / 0.9);
+  border-color: #334155;
+}
+
+.liquidIconPlaceholder:hover {
+  transform: scale(1.05);
+}
+
+.liquidIconGold {
+  background: linear-gradient(135deg, rgba(255, 217, 0, 0.2) 0%, rgba(255, 217, 0, 0.1) 100%);
+  border-color: rgba(255, 217, 0, 0.3);
+}
+
+.liquidIconText {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #224297;
+  opacity: 0.8;
+}
+
+.dark .liquidIconText {
+  color: #60a5fa;
+}
+
+.liquidIconGold .liquidIconText {
+  color: #b8860b;
+}
+
+/* Liquid Overlay */
+.liquidOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(
+    to top,
+    rgb(255 255 255 / 0.95) 0%,
+    rgb(255 255 255 / 0.5) 50%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.dark .liquidOverlay {
+  background: linear-gradient(
+    to top,
+    rgb(30 41 59 / 0.95) 0%,
+    rgb(30 41 59 / 0.5) 50%,
+    transparent 100%
+  );
+}
+
+/* Content */
+.liquidContent {
+  position: relative;
+  padding: 28px;
+  z-index: 1;
+}
+
+/* Liquid Badge */
+.liquidBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+  margin-bottom: 18px;
+  background-color: rgb(255 255 255 / 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.06);
+  transition: transform 0.3s ease;
+}
+
+.dark .liquidBadge {
+  background-color: rgb(30 41 59 / 0.9);
+  border-color: #334155;
+}
+
+.liquidBadge:hover {
+  transform: scale(1.05);
+}
+
+.liquidBadgeGold {
+  background: rgba(255, 217, 0, 0.25);
+  border-color: rgba(255, 217, 0, 0.4);
+}
+
+.liquidBadgeText {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #224297;
+}
+
+.dark .liquidBadgeText {
+  color: #60a5fa;
+}
+
+/* Title */
+.liquidTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.dark .liquidTitle {
+  color: #f1f5f9;
+}
+
+/* Description */
+.liquidDescription {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.dark .liquidDescription {
+  color: #94a3b8;
+}
+
+/* Frame Title - Scene title above card title */
+.frameTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+  padding: 6px 12px;
+  background-color: rgb(226 232 240 / 0.6);
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.dark .frameTitle {
+  color: #94a3b8;
+  background-color: rgb(51 65 85 / 0.5);
+}
+
+/* Description Bullet List */
+.liquidDescriptionList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.liquidDescriptionItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
+}
+
+.dark .liquidDescriptionItem {
+  color: #cbd5e1;
+}
+
+.bulletPoint {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #224297;
+  margin-top: 7px;
+}
+
+.dark .bulletPoint {
+  background-color: #60a5fa;
+}
+
+/* Active Indicator - CSS Animation */
+.liquidActiveIndicator {
+  position: absolute;
+  bottom: 0;
+  left: 28px;
+  right: 28px;
+  height: 3px;
+  background: linear-gradient(90deg, #224297 0%, #ffd900 100%);
+  border-radius: 2px;
+  transform-origin: left;
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+.dark .liquidActiveIndicator {
+  background: linear-gradient(90deg, #3b82f6 0%, #ffd900 100%);
+}
+
+/* ===========================================
+   DOT NAVIGATION
+   =========================================== */
+
+.dotNavigation {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 40px;
+  padding: 0 20px;
+  flex-wrap: wrap;
+}
+
+/* Progress Line Background */
+.progressLine {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  max-width: 500px;
+  height: 3px;
+  background-color: rgb(226 232 240 / 0.5);
+  border-radius: 2px;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.dark .progressLine {
+  background-color: rgb(51 65 85 / 0.5);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #224297 0%, #ffd900 100%);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.dark .progressFill {
+  background: linear-gradient(90deg, #3b82f6 0%, #ffd900 100%);
+}
+
+/* Dot Wrapper */
+.dotWrapper {
+  position: relative;
+  z-index: 10;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e293b;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  box-shadow: 0 8px 32px rgb(0 0 0 / 0.2);
+  min-width: 130px;
+  text-align: center;
+  border: 1px solid #334155;
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 8px solid transparent;
+  border-top-color: #1e293b;
+}
+
+.tooltipVisible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.tooltipStep {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tooltipTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Dot Button */
+.dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: rgb(255 255 255 / 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid #cbd5e1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: visible;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.08);
+}
+
+.dark .dot {
+  background-color: rgb(30 41 59 / 0.8);
+  border-color: #475569;
+}
+
+.dot:hover {
+  transform: scale(1.2);
+}
+
+.dotActive {
+  background-color: #224297;
+  border-color: #224297;
+  width: 18px;
+  height: 18px;
+  box-shadow:
+    0 0 16px rgb(34 66 151 / 0.5),
+    inset 0 1px 0 rgb(255 255 255 / 0.3);
+}
+
+.dark .dotActive {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  box-shadow:
+    0 0 16px rgb(59 130 246 / 0.5),
+    inset 0 1px 0 rgb(255 255 255 / 0.3);
+}
+
+.dotGold {
+  background-color: rgba(255, 217, 0, 0.4);
+  border-color: rgba(255, 217, 0, 0.5);
+}
+
+.dotGold.dotActive {
+  background-color: #ffd900;
+  border-color: #ffd900;
+  box-shadow:
+    0 0 16px rgb(255 217 0 / 0.6),
+    inset 0 1px 0 rgb(255 255 255 / 0.3);
+}
+
+/* Dot Pulse Animation - CSS Only */
+.dotPulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background-color: rgb(34 66 151 / 0.4);
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+.dark .dotPulse {
+  background-color: rgb(59 130 246 / 0.4);
+}
+
+/* ===========================================
+   CTA BUTTON
+   =========================================== */
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  width: 100%;
+  background-color: #224297;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: white;
+  border-radius: 16px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgb(34 66 151 / 0.3);
+  border: 1px solid rgb(255 255 255 / 0.1);
+}
+
+.dark .ctaButton {
+  background-color: #2563eb;
+  box-shadow: 0 4px 20px rgb(37 99 235 / 0.3);
+}
+
+.ctaButton:hover {
+  transform: translateY(-2px);
+  background-color: #1e40af;
+  box-shadow: 0 8px 32px rgb(34 66 151 / 0.4);
+}
+
+.dark .ctaButton:hover {
+  background-color: #1d4ed8;
+  box-shadow: 0 8px 32px rgb(37 99 235 / 0.4);
+}
+
+.ctaButton:active {
+  transform: translateY(0);
+}
+
+/* ===========================================
+   PROGRESS INDICATOR
+   =========================================== */
+
+.progressIndicator {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  background-color: rgb(255 255 255 / 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: #224297;
+  padding: 10px 18px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.1);
+  z-index: 20;
+  border: 1px solid #e2e8f0;
+  max-width: 300px;
+}
+
+.dark .progressIndicator {
+  background-color: rgb(30 41 59 / 0.9);
+  color: #60a5fa;
+  border-color: #334155;
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.2);
+}
+
+.currentStep {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #224297;
+  flex-shrink: 0;
+}
+
+.dark .currentStep {
+  color: #60a5fa;
+}
+
+.separator {
+  color: #94a3b8;
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+
+.totalSteps {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 180px;
+}
+
+.dark .totalSteps {
+  color: #94a3b8;
+}
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+
+@media (max-width: 640px) {
+  .container {
+    padding: 48px 0;
+  }
+
+  .layout {
+    padding: 0 16px;
+  }
+
+  .header {
+    text-align: center;
+  }
+
+  .subtitle {
+    max-width: 100%;
+  }
+
+  .stepInfo {
+    margin-top: 24px;
+  }
+
+  .liquidCard {
+    min-height: 380px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .mediaContainer {
+    height: 180px;
+  }
+
+  .dotNavigation {
+    margin-top: 32px;
+    gap: 6px;
+  }
+
+  .tooltip {
+    display: none;
+  }
+
+  .cardDisplay {
+    width: 100%;
+  }
+
+  .progressIndicator {
+    right: 0;
+    max-width: calc(100% - 32px);
+  }
+
+  .totalSteps {
+    max-width: 120px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .liquidCard {
+    min-height: 400px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1023px) {
+  .layout {
+    padding: 0 32px;
+  }
+
+  .liquidCard {
+    min-height: 420px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .liquidCard {
+    min-height: 450px;
+    max-width: 100%;
+  }
+}
