@@ -71,7 +71,9 @@
       "Bash(cp \"/Users/doddykapisha/Desktop/PROSES ALUR KERJA BENGKEL/Step 08 Customer_service_follow_up_phone…_202607111222.mp4\" step-08.mp4)",
       "Bash(ffmpeg -version)",
       "Bash(ls -la \"src/app/\\(site\\)/services/\")",
-      "Bash(ls -la \"src/app/\\(site\\)/paket-service/\")"
+      "Bash(ls -la \"src/app/\\(site\\)/paket-service/\")",
+      "Bash(pkill -f \"next\")",
+      "Bash(curl -s http://localhost:3000)"
     ],
     "additionalDirectories": [
       "/Users/doddykapisha/.claude/projects/-Users-doddykapisha-Downloads-GITDODDY-new-bengkel-wiguna/66e5c90e-45bd-40d7-b1e2-a3924843a104/subagents/workflows",
