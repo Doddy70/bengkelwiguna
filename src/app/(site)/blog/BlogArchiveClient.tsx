@@ -5,13 +5,12 @@
 
 "use client";
 
-import { useState, useMemo, useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Icon } from '@iconify/react';
 import { WPPost } from "@/types/wordpress";
 import WigunaCard from "@/components/ui/WigunaCard";
-import SlideTabFilter from "@/components/ui/SlideTabFilter";
 
 // Brand Colors
 const BRAND_BLUE = '#224297';
@@ -23,7 +22,6 @@ interface BlogArchiveClientProps {
 }
 
 export default function BlogArchiveClient({ posts, categories }: BlogArchiveClientProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>("Semua Artikel");
   const [visibleCount, setVisibleCount] = useState<number>(6);
   const [activeSlide, setActiveSlide] = useState(0);
   const listScrollRef = useRef<HTMLDivElement>(null);
@@ -70,33 +68,16 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
     return minutes < 1 ? '1' : String(minutes);
   };
 
-  // Filter posts by category
-  const filteredPosts = useMemo(() => {
-    let result = [...posts];
-    if (selectedCategory && selectedCategory !== "Semua Artikel") {
-      result = result.filter((post: any) => {
-        const postCategories = post._embedded?.['wp:term']?.[0] || [];
-        return postCategories.some((cat: any) => cat.name === selectedCategory);
-      });
-    }
-    return result;
-  }, [posts, selectedCategory]);
-
   // Featured post (single big post on right)
-  const featuredPost = filteredPosts[0];
+  const featuredPost = posts[0];
 
   // Small list cards (left side with vertical scroll)
-  const listPosts = filteredPosts.slice(1, 9);
+  const listPosts = posts.slice(1, 9);
 
   // Grid posts (remaining for main grid below)
-  const gridPosts = filteredPosts.slice(9, visibleCount + 9);
-  const hasMore = visibleCount < filteredPosts.length - 9;
+  const gridPosts = posts.slice(9, visibleCount + 9);
+  const hasMore = visibleCount < posts.length - 9;
 
-  // Prepare categories for filter
-  const filterCategories = useMemo(() => [
-    { id: 0, name: "Semua Artikel" },
-    ...categories.map((c: any) => ({ id: c.id, name: c.name, slug: c.slug }))
-  ], [categories]);
 
   // Vertical list scroll handler
   const handleListScroll = () => {
@@ -258,11 +239,10 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                       key={index}
                       onClick={() => scrollToListSlide(index)}
                       aria-label={`Page ${index + 1}`}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        activeSlide === index
-                          ? 'w-6 bg-[#224297] dark:bg-[#ffd900]'
-                          : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-                      }`}
+                      className={`h-2 rounded-full transition-all duration-300 ${activeSlide === index
+                        ? 'w-6 bg-[#224297] dark:bg-[#ffd900]'
+                        : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                        }`}
                     />
                   ))}
                 </div>
@@ -368,17 +348,10 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                 Koleksi Artikel
               </h2>
               <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
-                {filteredPosts.length} artikel tersedia
+                {posts.length} artikel tersedia
               </p>
             </div>
           </div>
-
-          {/* Slide Tab Filter */}
-          <SlideTabFilter
-            categories={filterCategories}
-            selectedCategory={selectedCategory}
-            onSelect={setSelectedCategory}
-          />
         </div>
       </section>
 
@@ -412,7 +385,7 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
                         navigator.share({
                           title: getRenderedTitle(post),
                           url: `${window.location.origin}/blog/${post.slug}`
-                        }).catch(() => {});
+                        }).catch(() => { });
                       } else if (typeof window !== 'undefined') {
                         navigator.clipboard.writeText(`${window.location.origin}/blog/${post.slug}`);
                         alert("Link artikel berhasil disalin!");
@@ -433,9 +406,6 @@ export default function BlogArchiveClient({ posts, categories }: BlogArchiveClie
           {/* Load More Button */}
           {hasMore && (
             <div className="flex flex-col items-center gap-4 mt-12 pt-8">
-              <p className="text-sm text-gray-500">
-                Menampilkan {Math.min(visibleCount, gridPosts.length)} dari {filteredPosts.length - 9} artikel
-              </p>
               <button
                 onClick={() => setVisibleCount(prev => prev + ITEMS_PER_LOAD)}
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#224297] hover:bg-[#1a356d] text-white text-sm font-bold rounded-xl transition-all shadow-lg hover:shadow-xl"

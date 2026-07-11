@@ -1,19 +1,34 @@
 # Di LOCAL MACHINE
 cd "/Users/doddykapisha/Downloads/GITDODDY/new bengkel wiguna"
 
-# Build & push
-docker build -t brododdev/bwiguna:latest
+docker build -t brododdev/bwiguna:latest .
+Tunggu sampai selesai, lalu:
+
+
 docker push brododdev/bwiguna:latest
+
+
 
 # Di SERVER - Pull & restart
 docker pull brododdev/bwiguna:latest
-docker stop bengkelwiguna-web && docker rm bengkelwiguna-web
-docker run -d --name bengkelwiguna-web \
-  -p 3000:3000 \
+
+docker stop bengkelwiguna-web
+
+docker rm bengkelwiguna-web
+
+docker run -d \
+  --name bengkelwiguna-web \
   --restart unless-stopped \
-  --add-host=backend.bengkelwiguna.com:host-gateway \
+  -p 3000:3000 \
+  -e NODE_ENV=production \
   brododdev/bwiguna:latest
 
+
+
+Verifikasi dengan:
+
+
+docker logs -f bengkelwiguna-web
 
 
 

@@ -8,7 +8,10 @@ import { ServiceTabs } from "./hotspot/ServiceTabs";
 import { VehicleCanvas, VehicleCanvasRef } from "./hotspot/VehicleCanvas";
 import { InfoPanel } from "./hotspot/InfoPanel";
 import { Snowflake, Shield, Leaf, X } from "lucide-react";
-import equipmentDataV3 from "@/data/equipment-v3.json";
+import equipmentDataRaw from "@/data/equipment-v3.json";
+
+// Hide "Perawatan Berkala" tab because content is not ready yet
+const equipmentDataV3 = equipmentDataRaw.filter(item => item.slug !== 'perawatan-berkala' && item.name !== 'Servis Berkala');
 
 export default function ModernEquipmentV3() {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
