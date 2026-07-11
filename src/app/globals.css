@@ -53,17 +53,88 @@
 }
 
 /* ============================================
-   RESPONSIVE TABLES — via Tailwind overflow-x-auto wrapper
-   Table scrolling handled by prose-table:w-full + parent overflow-x-auto
+   RESPONSIVE TABLES — Handle WordPress Hardcoded HTML
+   All table patterns from WordPress editor will be responsive
    ============================================ */
-.prose table {
-  display: table;
-  width: 100%;
+
+/* Force tables to be responsive */
+.prose table,
+.prose .wp-block-table table,
+.prose section table {
+  display: table !important;
+  width: 100% !important;
+  table-layout: auto !important;
+  border-collapse: collapse !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Table structure */
+.prose table thead,
+.prose .wp-block-table table thead {
+  display: table-header-group !important;
+  background: linear-gradient(to bottom, #f8fafc, #f1f5f9) !important;
+}
+
+.dark .prose table thead,
+.dark .prose .wp-block-table table thead {
+  background: linear-gradient(to bottom, #1f2937, #111827) !important;
+}
+
+.prose table tbody {
+  display: table-row-group !important;
+}
+
+.prose table tr {
+  display: table-row !important;
 }
 
 .prose table th,
-.prose table td {
+.prose table td,
+.prose .wp-block-table table th,
+.prose .wp-block-table table td {
+  display: table-cell !important;
   min-width: 100px;
+  padding: 12px 16px !important;
+  text-align: left !important;
+  border: 1px solid #e5e7eb !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+.dark .prose table th,
+.dark .prose table td {
+  border-color: #374151 !important;
+}
+
+/* Override any inline width/height from WordPress */
+.prose table[style],
+.prose table th[style],
+.prose table td[style],
+.prose tr[style] {
+  width: auto !important;
+  max-width: none !important;
+}
+
+/* First column (often labels) - keep readable */
+.prose table td:first-child,
+.prose table th:first-child {
+  font-weight: 600 !important;
+  background: rgba(0,0,0,0.02) !important;
+}
+
+.dark .prose table td:first-child,
+.dark .prose table th:first-child {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+/* Alternating row colors */
+.prose table tbody tr:nth-child(even) {
+  background: rgba(0,0,0,0.02) !important;
+}
+
+.dark .prose table tbody tr:nth-child(even) {
+  background: rgba(255,255,255,0.02) !important;
 }
 
 /* ============================================
