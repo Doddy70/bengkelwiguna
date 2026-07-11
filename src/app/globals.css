@@ -52,6 +52,61 @@
   line-height: 1.7;
 }
 
+/* ============================================
+   RESPONSIVE IMAGES & MEDIA
+   ============================================ */
+.prose img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+.prose iframe,
+.prose video {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 0.75rem;
+}
+
+/* WordPress embeds responsive */
+.prose .wp-embedded-content {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Responsive iframes (YouTube, Google Maps) */
+.prose iframe[src*="youtube"],
+.prose iframe[src*="google.com/maps"] {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+
+/* ============================================
+   RESPONSIVE TABLES — Fix horizontal overflow
+   ============================================ */
+.prose table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100% !important;
+  width: auto !important;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.prose table th,
+.prose table td {
+  min-width: 120px;
+  white-space: normal;
+}
+
+.prose thead {
+  background: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+}
+
+.dark .prose thead {
+  background: linear-gradient(to bottom, #1f2937, #111827);
+}
+
 .prose strong {
   font-weight: 600;
   color: #111827;

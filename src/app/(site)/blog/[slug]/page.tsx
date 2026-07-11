@@ -143,26 +143,29 @@ export default async function SingleBlogPage({ params }: BlogPageProps) {
 
         {/* ═══ Main Content Section ═══ */}
         <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
-            <div className="grid lg:grid-cols-[1fr_340px] gap-12 lg:gap-16">
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] xl:grid-cols-[1fr_320px] gap-8 lg:gap-12 xl:gap-16">
 
                 {/* ═══ Left Column — Article Content ═══ */}
-                <div className="w-full">
+                <div className="w-full overflow-hidden">
 
                     {/* Article Body */}
+                    <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
                     <article
-                        className="prose prose-lg max-w-none dark:prose-invert
+                        className="prose prose-lg max-w-none dark:prose-invert min-w-[300px]
                         prose-headings:font-black prose-headings:tracking-tight prose-headings:text-gray-900 dark:prose-headings:text-white prose-headings:mb-6
                         prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6 prose-p:text-[17px]
                         prose-a:text-[#224297] prose-a:no-underline hover:prose-a:underline prose-a:font-semibold
                         prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-black
-                        prose-img:rounded-2xl prose-img:shadow-xl prose-img:mx-auto
+                        prose-img:rounded-2xl prose-img:shadow-xl prose-img:mx-auto prose-img:w-full prose-img:max-w-full
                         prose-blockquote:border-l-4 prose-blockquote:border-[#ffd900] prose-blockquote:bg-gray-50 dark:prose-blockquote:bg-gray-800 prose-blockquote:p-6 prose-blockquote:rounded-r-xl prose-blockquote:font-bold prose-blockquote:italic prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300
                         prose-ul:list-disc prose-ul:pl-6 prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:text-[17px]
                         prose-ol:list-decimal prose-ol:pl-6 prose-li:mb-3
                         prose-h2:text-2xl prose-h2:mt-12 prose-h2:border-b prose-h2:pb-4
-                        prose-h3:text-xl"
+                        prose-h3:text-xl
+                        prose-table:min-w-full"
                         dangerouslySetInnerHTML={{ __html: content || "" }}
                     />
+                    </div>
 
                     {/* Tags */}
                     <div className="mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
